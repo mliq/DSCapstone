@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html class="supports-svg" xmlns:fb="http://ogp.me/ns/fb#" itemtype="http://schema.org"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE7"><meta name="fragment" content="!"><meta name="robots" content="NOODP"><meta charset="utf-8"><meta property="og:title" content="Coursera"><meta property="og:type" content="website"><meta property="og:image" content="http://s3.amazonaws.com/coursera/media/Coursera_Computer_Narrow.png"><meta property="og:url" content="https://www.coursera.org/auth"><meta property="og:site_name" content="Coursera"><meta property="og:locale" content="en_US"><meta property="og:description" content="Take free online classes from 80+ top universities and organizations. Coursera is a social entrepreneurship company partnering with Stanford University, Yale University, Princeton University and others around the world to offer courses online for anyone to take, for free. We believe in connecting people to a great education so that anyone around the world can learn without limits."><meta property="fb:admins" content="727836538,4807654"><meta property="fb:app_id" content="274998519252278"><meta name="twitter:site" content="Coursera"><meta name="twitter:app:name:iphone" content="Coursera"><meta name="twitter:app:name:ipad" content="Coursera"><meta name="twitter:app:name:googleplay" content="Coursera"><meta name="twitter:app:id:iphone" content="id736535961"><meta name="twitter:app:id:ipad" content="id736535961"><meta name="twitter:app:id:googleplay" content="org.coursera.android"><meta name="description" content="Take free online classes from 80+ top universities and organizations. Coursera is a social entrepreneurship company partnering with Stanford University, Yale University, Princeton University and others around the world to offer courses online for anyone to take, for free. We believe in connecting people to a great education so that anyone around the world can learn without limits."><meta name="image" content="http://s3.amazonaws.com/coursera/media/Coursera_Computer_Narrow.png"><meta name="apple-itunes-app" content="app-id=736535961"><title>Data Science Capstone | Coursera</title>    <link href="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/spark.css" rel="stylesheet" type="text/css">
+      <link href="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/course.css" rel="stylesheet" type="text/css">
+    <link href="https://spark-public.s3.amazonaws.com/dsscapstone/static/images/favicon.ico" rel="icon">
+<script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/ga.js" async="" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/MathJax.js" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/routes.js" data-requiremodule="pages/spark/routes" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><meta content="summary" name="twitter:card"><meta content="Coursera" name="twitter:title"><meta content="Take free online classes from 80+ top universities and organizations. Coursera is a social entrepreneurship company partnering with Stanford University, Yale University, Princeton University and others around the world to offer courses online for anyone to take, for free. We believe in connecting people to a great education so that anyone around the world can learn without limits." name="twitter:description"><meta content="http://s3.amazonaws.com/coursera/media/Coursera_Computer_Narrow.png" name="twitter:image:src"><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/204.js" data-requiremodule="js/lib/204" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/student-page_002.js" data-requiremodule="pages/spark/views/template/student-page" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/student-page.js" data-requiremodule="pages/spark/views/template/student-page.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/sparkSurveyQuestionsSessionModel.js" data-requiremodule="bundles/assess/assessmentTypes/sparkSurveyQuestions/sparkSurveyQuestionsSessionModel" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/student-page_003.js" data-requiremodule="pages/spark/views/template/nls/student-page" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/sessionModel.js" data-requiremodule="bundles/assess/assessmentTypes/quickQuestions/sessionModel" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/SessionModel.js" data-requiremodule="bundles/assess/assessmentTypes/SessionModel" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/QuestionCollection.js" data-requiremodule="bundles/assess/framework/QuestionCollection" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/QuestionModel.js" data-requiremodule="bundles/assess/framework/QuestionModel" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/backbone.js" data-requiremodule="bundles/assess/lib/backbone.hascollections" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/underscore.js" data-requiremodule="js/lib/underscore.extend" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/header.js" data-requiremodule="pages/spark/views/template/header" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/sidebar_003.js" data-requiremodule="pages/spark/views/template/sidebar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/readme.js" data-requiremodule="js/lib/readme" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/header_003.js" data-requiremodule="pages/spark/views/template/header.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/LearnerStoriesCollection.js" data-requiremodule="pages/analytics/models/LearnerStoriesCollection" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/header_002.js" data-requiremodule="pages/spark/views/template/nls/header" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/LearnerStoryModel.js" data-requiremodule="pages/analytics/models/LearnerStoryModel" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/jade.js" data-requiremodule="js/vendor/jade" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/assessApi.js" data-requiremodule="pages/spark-survey/assessApi" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/sidebar.js" data-requiremodule="pages/spark/views/template/sidebar.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/signature_track.js" data-requiremodule="spark/app/signature/js/signature_track" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/HelpCenterLinks.js" data-requiremodule="pages/help-center/data/HelpCenterLinks" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/sidebar_002.js" data-requiremodule="pages/spark/views/template/nls/sidebar" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/signatureTrackLastChanceModal.js" data-requiremodule="spark/app/signature/js/signatureTrackLastChanceModal.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/flexjoinLastChanceModal.js" data-requiremodule="spark/app/signature/js/flexjoinLastChanceModal.html" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/util.js" data-requiremodule="js/lib/util" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/path.js" data-requiremodule="js/lib/path" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuTitle {background-color: #CCCCCC; margin: -1px -1px 1px -1px; text-align: center; font-style: italic; font-size: 80%; color: #444444; padding: 2px 0; overflow: hidden}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head><body><div style="display: none;" id="MathJax_Message"></div><div id="fb-root"></div><div id="spark-help" class="hide"></div><a href="https://courserahelp.zendesk.com/hc/en-us/requests/new" target="_blank"><div style="z-index: 1" data-networkprioritysupportwidget="" role="button" class="helpwidget-tab hide">Premium Support</div></a><div id="origami"><div><div><div class="coursera-page"><div class="coursera-header" role="menubar"><div class="hidden">This page features MathJax technology to render mathematical formulae.
+If you are using a screen reader, please visit <a href="http://www.dessci.com/en/products/mathplayer/">MathPlayer</a> to download the plugin for your browser. Please note that this is an Internet Explorer-only plugin at this time.</div><h1 class="hidden">Data Science Capstone</h1><!-- UNTIL dashboard announcement expires 2014-08-31 (then delete this code)--><div role="banner" class="course-topbar container-fluid"><div class="row-fluid"><div class="span3"><a href="https://www.coursera.org/" data-if-linkable="add-referrer" class="course-topbar-logo"></a></div><div style="float:right;" class="course-topbar-nav-container span9"><h2 class="hidden">Top Navigation Bar</h2><ul class="course-topbar-nav-list"><li class="course-topbar-nav-list-item"><a href="https://www.coursera.org/courses" data-if-linkable="add-referrer">Courses</a></li><li tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-owns="course-topbar-my" data-popup="#course-topbar-my" data-popup-bind-open="mouseenter" data-popup-close="data-popup-close" style="cursor:pointer;" data-popup-direction="se" class="course-topbar-nav-list-item"><a data-user-id="7424047">Michael Liquori<i class="icon-caret-down"></i></a></li></ul></div></div><div id="course-topbar-aboutus" class="course-topbar-sublist"><a href="https://www.coursera.org//about/" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">About Us</a><a href="https://www.coursera.org//about/careers" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Careers</a><a href="https://www.coursera.org//about/people" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">People</a><a href="https://www.coursera.org//about/contact" target="_new" data-if-linkable="add-referrer" class="internal-about course-topbar-sublist-item">Contact Us</a></div><div id="course-topbar-my" class="course-topbar-sublist"><a data-popup-close="data-popup-close" href="https://www.coursera.org/" target="_new" class="course-topbar-sublist-item">My Courses</a><a data-popup-close="data-popup-close" href="https://www.coursera.org/account/profile" target="_new" class="course-topbar-sublist-item">Profile</a><a data-popup-close="data-popup-close" href="https://www.coursera.org/account/records" target="_new" class="course-topbar-sublist-item">Course Records</a><a href="https://www.coursera.org/account/settings" target="_new" class="course-topbar-sublist-item">Settings</a><a data-popup-close="data-popup-close" href="https://www.coursera.org/account/settings/signature" target="_new" class="course-topbar-sublist-item">Signature Track</a><a href="https://class.coursera.org/dsscapstone-002/class/preferences" class="course-topbar-sublist-item">Course Preferences</a><a href="https://class.coursera.org/dsscapstone-002/auth/logout" class="course-topbar-sublist-item">Sign Out</a></div></div><div class="course-topbanner-wrapper"><div class="course-topbanner"><div class="course-topbanner-university-logo"><a href="https://www.coursera.org/jhu" target="_blank" data-if-linkable="add-referrer" title="https://www.coursera.org/jhu" class="coursera-university-color"><img src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/university_logo.png" alt="jhu"></a></div><div class="course-signaturetrack"><div class="course-signaturetrack-topbanner-side-signaturetrack"><div class="course-signaturetrack-bannerbox-enrolled"><div role="button" aria-haspopup="false" aria-expanded="false" aria-owns="signature-track-photo-id-status" data-popup-offset-y="-7" data-popup-offset-x="-27" data-popup="#signature-track-photo-id-status" data-popup-bind-open="mouseenter" data-popup-direction="w" class="coursera-signaturetrack-topbanner">Signature Track</div></div><div id="signature-track-photo-id-status" style="width:340px" class="course-topbar-sublist"><div style="border-color: white" class="course-signaturetrack-sublist-arrow"></div><div target="_blank" class="course-topbar-sublist-item">Welcome! Have questions? Visit the <a href="https://www.coursera.org/signature/guidebook" target="_blank">guidebook</a>.</div></div></div></div><h1 class="course-topbanner-header"><a href="https://class.coursera.org/dsscapstone-002/" data-if-linkable="modal-lock" class="course-topbanner-name coursera-university-color">Data Science Capstone</a><br><span style="" class="course-topbanner-instructor">by Jeff Leek, PhD, Roger D. Peng, PhD, Brian Caffo, PhD</span></h1></div></div></div><div style="position:relative;" class="container-fluid"><div class="row-fluid"><div id="course-page-sidebar" role="navigation"><div class="coursera-sidebar" role="menubar"><div id="course-page-sidebar" role="navigation"><div class="course-navbar-container"><a href="https://class.coursera.org/dsscapstone-002" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_index"><img src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/logo.jpg" style="width: 205px;height: 116px;margin: -15px 0px 8px 1px; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);" alt="Course Home Page"></a><div data-coursera-course-search-nav-widget="data-coursera-course-search-nav-widget" class="input-append course-search-nav-box"><form method="get" action="/dsscapstone-002/class/search" data-js-search-form="data-js-search-form" class="form-inline minimized-search"><label for="course-search-nav-input" class="accessible-text-for-reader">Search this course</label><input id="course-search-nav-input" name="q" data-js-search-input="data-js-search-input" type="text">&nbsp;<button type="submit" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="search" class="btn icon-search"><span class="accessible-text-for-reader">Search</span></button></form></div><h2 class="hidden">Side Navigation Bar</h2><ul class="course-navbar-list"><li class="course-navbar-item"><h3>Home</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/class/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Announcements" class="coursera-university-color"><span>Announcements </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/lecture/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Videos" class="coursera-university-color"><span>Videos </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/syllabus" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Syllabus" class="coursera-university-color"><span>Syllabus </span><span></span></a></li><li class="course-navbar-item"></li><li class="course-navbar-item"><h3>Capstone Project</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Task_0" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Task_0_Info:_Understanding_the_problem" class="coursera-university-color"><span>Task 0 Info: Understanding the problem </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Task_1" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Task_1_Info:_Data_acquisition_and_cleaning" class="coursera-university-color"><span>Task 1 Info: Data acquisition and cleaning </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Task_2" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Task_2_Info:_Exploratory_analysis" class="coursera-university-color"><span>Task 2 Info: Exploratory analysis </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Task_3" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Task_3_Info:_Modeling" class="coursera-university-color"><span>Task 3 Info: Modeling </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Task_4" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Task_4_Info:_Prediction_" class="coursera-university-color"><span>Task 4 Info: Prediction  </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Task_5" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Task_5_Info:_Creative_exploration" class="coursera-university-color"><span>Task 5 Info: Creative exploration </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Task_6" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Task_6_Info:_Data_product" class="coursera-university-color"><span>Task 6 Info: Data product </span><span></span></a></li><li class="course-navbar-item"><h3>Assignments</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/quiz/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Quizzes" class="coursera-university-color"><span>Quizzes </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/human_grading/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Report_Submission" class="coursera-university-color"><span>Report Submission </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Milestone_Report_Rubric" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Milestone_Report_Rubric" class="coursera-university-color"><span>Milestone Report Rubric </span><span></span></a></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/wiki/Final_Project_Rubric" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Final_Project_Rubric" class="coursera-university-color"><span>Final Project Rubric </span><span></span></a></li><li class="course-navbar-item"><h3>Community</h3></li><li class="course-navbar-item"><a href="https://class.coursera.org/dsscapstone-002/forum/index" data-if-linkable="modal-lock,gray,lock-icon" data-ab-user-convert-for="honorcode_to_welcome2" data-ab-user-convert="navclick_Discussion_Forums" class="coursera-university-color"><span>Discussion Forums </span><span></span></a></li><li class="course-navbar-item"><a href="https://share.coursera.org/wiki/index.php/dsscapstone-002:Main" target="_blank" title="Open course wiki in new window" class="coursera-university-color">Course Wiki<span class="icon-share"></span><span class="accessible-text-for-reader">opens in new browser tab</span></a></li><li class="course-navbar-item"><a href="http://www.meetup.com/Coursera/" target="_blank" class="coursera-university-color">Join a Meetup<span class="icon-share"></span><span class="accessible-text-for-reader">opens in new browser tab</span></a></li></ul><ul style="list-style-type:none;margin-left: 10px;"><li><a href="https://accounts.coursera.org/i/zendesk?return_to=https://courserahelp.zendesk.com/hc/en-us/" target="_blank" title="Open help articles in new window" class="coursera-university-color"><i class="icon-question-sign"></i>Help Articles</a></li></ul><ul style="list-style-type:none;margin-left: 10px;"></ul></div></div></div></div><div id="course-page-content" role="main"><div style="display: block;" id="spark" class="hide">
+
+<a data-coursera-admin-helpwidget-link="" rel="help" href="https://class.coursera.org/mooc/help/messaging" title="Emails and Announcements" style="display:none;">Learn more</a>
+<a data-coursera-admin-helpwidget-link="" rel="help" href="https://class.coursera.org/mooc/help/manager/glossary/overview" title="Section Manager" style="display:none;">Learn more</a>
+
+<div style="width:240px;float:right;" class="course-page-sidebar">
+    
+  <div style="width:100%;background-color:#f8f8f8;padding:15px;border:1px solid #d0d0d0;">
+
+    <h2 class="hidden">Reminders</h2>
+
+        
+                    <div id="coursera-calendar-help" class="modal" style="display:none;" data-modal-overlay-class="course-modal-overlay-dark">
+           <div class="modal-header"><h4>Course Calendar ICS</h4></div>
+           <div class="modal-body">
+            <div>
+                If you use a calendar that accepts .ics files (ex: 
+google, ical), then import the URL below to see due dates for all 
+quizzes and assignments <br><br>
+            </div>
+            <div class="input-prepend">
+             <span class="add-on"><span class="icon-calendar"></span></span>
+             <input style="width:450px;" value="https://class.coursera.org/dsscapstone-002/api/course/calendar" readonly="readonly" onclick="this.select()" data-modal-focus="" type="text">
+            </div>
+           </div>
+        </div>
+        
+                    <h4>
+                                <a href="https://class.coursera.org/dsscapstone-002/api/course/calendar" data-modal="#coursera-calendar-help" data-tooltip="You can always access the Calendar here">
+                    <span class="icon-calendar"></span>
+                </a>
+                                Upcoming Deadlines            </h4>
+
+            
+       
+
+            
+       
+
+            
+       
+
+            
+       
+
+            
+       
+
+            <!-- DEADLINES FOOTER -->        
+        
+
+    
+        <hr>
+    
+       
+
+    
+        <h4>Recent Discussions</h4>
+    <div data-coursera-forum-mini-threads-widget="">
+        Loading threads...
+    </div>
+    <a href="https://class.coursera.org/dsscapstone-002/forum/index">Browse all discussions »</a>
+    
+  </div>
+
+  
+</div>
+
+
+    
+
+
+<div style="padding-right:280px">
+    
+    <h2 class="course-page-header">Announcements</h2>
+    <!-- ANNOUNCEMENTS PREAMBLE -->    
+                        <div style="border-bottom:1px solid #f0f0f0;padding-top:16px;padding-bottom:16px;">
+                <div style="overflow:hidden;margin-top:-5px;padding-right:25px;">
+                                        <h3>Welcome to the Data Science Capstone Session</h3>
+                                        <div dir="auto"><p>Around the 
+world, people are spending an increasing amount of time on their mobile 
+devices for email, social networking, banking and a whole range of other
+ activities. But typing on mobile devices can be a serious pain. 
+SwiftKey, our corporate partner in this capstone, builds a smart 
+keyboard that makes it easier for people to type on their mobile 
+devices. One cornerstone of their smart keyboard is predictive text 
+models. When someone types: </p>
+<p>I went to the </p>
+<p>the keyboard presents three options for what the next word might be. 
+For example, the three words might be gym, store, restaurant. In this 
+capstone you will work on understanding and building predictive text 
+models like those used by SwiftKey. </p>
+<p>This course will start with the basics, analyzing a large corpus of 
+text documents to discover the structure in the data and how words are 
+put together. It will cover cleaning and analyzing text data, then 
+building and sampling from a predictive text model. Finally, you will 
+use the knowledge you gained in data products to build a predictive text
+ product you can show off to your family, friends, and potential 
+employers. </p>
+<p>You will use all of the skills you have learned during the Data 
+Science Specialization in this course, but you'll notice that we are 
+tackling a brand new application: analysis of text data and natural 
+language processing. This choice is on purpose. As a practicing data 
+scientist you will be frequently confronted with new data types and 
+problems. A big part of the fun and challenge of being a data scientist 
+is figuring out how to work with these new data types to build data 
+products people love. The capstone will be evaluated based on the 
+following assessments:  </p>
+<p>1. An introductory quiz to test whether you have downloaded and can manipulate the data.<br>2.
+ An intermediate R markdown report that describes in plain language, 
+plots, and code your exploratory analysis of the course data set.<br>3. Two natural language processing quizzes, where you apply your predictive model to real data to check how it is working.<br>4. A Shiny app that takes as input a phrase (multiple words), one clicks submit, and it predicts the next word.<br>5. A 5 slide deck created with R presentations pitching your algorithm and app to your boss or investor.   </p>
+<p>During the capstone you can get support from your fellow students, 
+from us, and from the engineers at SwiftKey. But we really want you to 
+show your independence, creativity, and initiative. We have been 
+incredibly impressed by your performance in the classes up until now and
+ know you can do great things. </p>
+<p>We have compiled some basic natural language processing resources 
+below. You are welcome to use these resources or any others you can find
+ while performing this analysis. One thing to keep in mind is that&nbsp;<strong>we do not expect you to become a world's expert in natural language processing</strong>.
+ The point of this capstone is for you to show you can explore a new 
+data type, quickly get up to speed on a new application, and implement a
+ useful model in a reasonable period of time. We think NLP is very cool 
+and depending on your future goals may be worth studying more in-depth, 
+but you can complete this project by using your general knowledge of 
+data science and basic knowledge of NLP.&nbsp;</p><p>Here are a few resources that might be good places to start as you tackle this ambitious project. </p>
+<ul><li>Text mining infrastucture in R: <a href="http://www.jstatsoft.org/v25/i05/"></a><a href="http://www.jstatsoft.org/v25/i05/"></a><a href="http://www.jstatsoft.org/v25/i05/" title="Link: http://www.jstatsoft.org/v25/i05/"></a><a href="http://www.jstatsoft.org/v25/i05/" title="Link: http://www.jstatsoft.org/v25/i05/">http://www.jstatsoft.org/v25/i05/</a></li>
+<li>CRAN Task View: Natural Language Processing: <a href="http://cran.r-project.org/web/views/NaturalLanguageProcessing.html"></a><a href="http://cran.r-project.org/web/views/NaturalLanguageProcessing.html"></a><a href="http://cran.r-project.org/web/views/NaturalLanguageProcessing.html"></a><a href="http://cran.r-project.org/web/views/NaturalLanguageProcessing.html" title="Link: http://cran.r-project.org/web/views/NaturalLanguageProcessing.html">http://cran.r-project.org/web/views/NaturalLanguageProcessing.html</a></li>
+<li>Coursera course on NLP (not in R): <a href="https://class.coursera.org/nlp"></a><a href="https://class.coursera.org/nlp" title="Link: https://class.coursera.org/nlp"></a><a href="https://class.coursera.org/nlp"></a><a href="https://class.coursera.org/nlp" title="Link: https://class.coursera.org/nlp">https://class.coursera.org/nlp</a></li>
+</ul><p>In the meantime here is a welcome from us at Johns Hopkins and from SwiftKey: </p>
+<ul><li><a href="https://class.coursera.org/dsscapstone-002/lecture/3" title="null">Johns Hopkins Welcome</a></li>
+<li><p><a href="https://class.coursera.org/dsscapstone-002/lecture/21" title="null">SwiftKey Welcome</a>
+We also have made a video explaining our thinking behind the capstone 
+and what it means for the organization of this course here:   </p>
+</li>
+<li><p><a href="https://class.coursera.org/dsscapstone-002/lecture/23" title="Link: ../lecture/23">You are a data scientist now</a></p>
+</li>
+</ul></div>
+                                        <div style="text-align:right;padding-top:10px;font-style:italic;">Mon 27 Oct 2014  6:15 AM PDT</div>
+                                    </div>
+            </div>
+                    <div style="border-bottom:1px solid #f0f0f0;padding-top:16px;padding-bottom:16px;">
+                <div style="overflow:hidden;margin-top:-5px;padding-right:25px;">
+                                        <h3>Task 0 - Understanding the problem</h3>
+                                        <div dir="auto"><p>The first 
+step in analyzing any new data set is figuring out: (a) what data you 
+have and (b) what are the standard tools and models used for that type 
+of data. Make sure you have downloaded the data from Coursera before 
+heading for the exercises. This exercise uses the files named 
+LOCALE.blogs.txt where LOCALE is the each of the four locales en_US, 
+de_DE, ru_RU and fi_FI. The data is from a corpus called HC Corpora (<a href="http://www.corpora.heliohost.org/" title="Link: http://www.corpora.heliohost.org">www.corpora.heliohost.org</a>). See the readme file at <a href="http://www.corpora.heliohost.org/aboutcorpus.html"></a><a href="http://www.corpora.heliohost.org/aboutcorpus.html"></a><a href="http://www.corpora.heliohost.org/aboutcorpus.html"></a><a href="http://www.corpora.heliohost.org/aboutcorpus.html" title="Link: http://www.corpora.heliohost.org/aboutcorpus.html">http://www.corpora.heliohost.org/aboutcorpus.html</a> for details on the corpora available. The files have been language filtered but may still contain some foreign text. </p>
+<p>In this capstone we will be applying data science in the area of 
+natural language processing. As a first step toward working on this 
+project, you should familiarize yourself with Natural Language 
+Processing, Text Mining, and the associated tools in R. Here are some 
+resources that may be helpful to you. </p>
+<ul><li>Natural language processing Wikipedia page: <a href="http://en.wikipedia.org/wiki/Natural_language_processing" title="Link: http://en.wikipedia.org/wiki/Natural_language_processing"></a><a href="http://en.wikipedia.org/wiki/Natural%5C_language%5C_processing"></a><a href="http://en.wikipedia.org/wiki/Natural%5C%5C%5C_language%5C%5C%5C_processing"></a><a href="http://en.wikipedia.org/wiki/Natural_language_processing" title="null">http://en.wikipedia.org/wiki/Natural_language_processing</a></li>
+<li>Text mining infrastucture in R: <a href="http://www.jstatsoft.org/v25/i05/"></a><a href="http://www.jstatsoft.org/v25/i05/"></a><a href="http://www.jstatsoft.org/v25/i05/"></a><a href="http://www.jstatsoft.org/v25/i05/" title="Link: http://www.jstatsoft.org/v25/i05/">http://www.jstatsoft.org/v25/i05/</a></li>
+<li>CRAN Task View: Natural Language Processing: <a href="http://cran.r-project.org/web/views/NaturalLanguageProcessing.html"></a><a href="http://cran.r-project.org/web/views/NaturalLanguageProcessing.html"></a><a href="http://cran.r-project.org/web/views/NaturalLanguageProcessing.html"></a><a href="http://cran.r-project.org/web/views/NaturalLanguageProcessing.html" title="Link: http://cran.r-project.org/web/views/NaturalLanguageProcessing.html">http://cran.r-project.org/web/views/NaturalLanguageProcessing.html</a></li>
+<li>Coursera course on NLP (not in R): <a href="https://www.coursera.org/course/nlp" title="Link: https://www.coursera.org/course/nlp"></a><a href="https://www.coursera.org/course/nlp"></a><a href="https://www.coursera.org/course/nlp"></a><a href="https://www.coursera.org/course/nlp">https://www.coursera.org/course/nlp</a></li>
+</ul><p><em>Dataset</em></p>
+<p>This is the training data to get you started that will be the basis 
+for most of the capstone. You must download the data from the Coursera 
+site and not from external websites to start. </p>
+<ul><li><a href="https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip" title="Link: https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/Coursera-SwiftKey.zip">Capstone Dataset</a></li>
+</ul><p>Your original exploration of the data and modeling steps will be
+ performed on this data set. Later in the capstone, if you find 
+additional data sets that may be useful for building your model you may 
+use them. </p>
+<p><em>Tasks to accomplish</em> </p>
+<ol><li>Obtaining the data - Can you download the data and load/manipulate it in R?</li>
+<li>Familiarizing yourself with NLP and text mining - Learn about the 
+basics of natural language processing and how it relates to the data 
+science process you have learned in the Data Science Specialization. </li>
+</ol><p><em>Questions to consider</em> </p>
+<ol><li>What do the data look like? </li>
+<li>Where do the data come from? </li>
+<li>Can you think of any other data sources that might help you in this project?</li>
+<li>What are the common steps in natural language processing?</li>
+<li>What are some common issues in the analysis of text data?</li>
+<li>What is the relationship between NLP and the concepts you have learned in the Specialization? </li>
+</ol><p><em>Introductory Video</em></p>
+<ul><li><a href="https://class.coursera.org/dsscapstone-002/lecture/5" title="null">Understanding the problem</a></li>
+</ul></div>
+                                        <div style="text-align:right;padding-top:10px;font-style:italic;">Mon 27 Oct 2014  6:15 AM PDT</div>
+                                    </div>
+            </div>
+                    <div style="border-bottom:1px solid #f0f0f0;padding-top:16px;padding-bottom:16px;">
+                <div style="overflow:hidden;margin-top:-5px;padding-right:25px;">
+                                        <h3>Task 1 - Data acquisition and cleaning</h3>
+                                        <div dir="auto"><p>Large 
+databases comprising of text in a target language are commonly used when
+ generating language models for various purposes. In this exercise, you 
+will use the English database but may consider three other databases in 
+German, Russian and Finnish. </p>
+<p>The goal of this task is to get familiar with the databases and do 
+the necessary cleaning. After this exercise, you should understand what 
+real data looks like and how much effort you need to put into cleaning 
+the data. When you commence on developing a new language, the first 
+thing is to understand the language and its peculiarities with respect 
+to your target. You can learn to read, speak and write the language. 
+Alternatively, you can study data and learn from existing information 
+about the language through literature and the internet. At the very 
+least, you need to understand how the language is written: writing 
+script, existing input methods, some phonetic knowledge, etc. </p>
+<p>Make sure you have downloaded the data from Coursera before heading 
+for the exercises. This exercise uses the files named LOCALE.blogs.txt 
+where LOCALE is the each of the four locales en_US, de_DE, ru_RU and 
+fi_FI. The data is from a corpus called HC Corpora (<a href="http://www.corpora.heliohost.org/" title="Link: http://www.corpora.heliohost.org">www.corpora.heliohost.org</a>). See the readme file at <a href="http://www.corpora.heliohost.org/aboutcorpus.html"></a><a href="http://www.corpora.heliohost.org/aboutcorpus.html"></a><a href="http://www.corpora.heliohost.org/aboutcorpus.html"></a><a href="http://www.corpora.heliohost.org/aboutcorpus.html" title="Link: http://www.corpora.heliohost.org/aboutcorpus.html">http://www.corpora.heliohost.org/aboutcorpus.html</a>
+ for details on the corpora available. Note, download the data from the 
+Coursera site. The files have been language filtered but may still 
+contain some foreign text. </p>
+<p>Note that the data contain words of offensive and profane meaning. 
+They are left there intentionally to highlight the fact that the 
+developer has to work on them. </p>
+<p><em>Tasks to accomplish</em> </p>
+<ol><li>Tokenization - identifying appropriate tokens such as words, 
+punctuation, and numbers. Writing a function that takes a file as input 
+and returns a tokenized version of it. </li>
+<li>Profanity filtering - removing profanity and other words you do not want to predict. </li>
+</ol><p><em>Questions to consider</em> </p>
+<ol><li>How should you handle punctuation?</li>
+<li>The data contains lots of times, dates, numbers and currency values. How to handle these? Are they useful for prediction?</li>
+<li>How do you find typos in the data?</li>
+<li>How do you identify garbage, or the wrong language?</li>
+<li>How do you define profanity? How do you ensure you don't remove words you want to include?</li>
+<li>How do you handle capital and lower cases? </li>
+<li>What is the best set of features you might use to predict the next word? </li>
+</ol><p><em>Introductory Video</em></p>
+<ul><li><a href="https://class.coursera.org/dsscapstone-002/lecture/7" title="null">Data acquisition and cleaning</a></li>
+</ul><em>Tips and hints<br></em><strong><br></strong><ol><li>The data 
+sets for this project are reasonably large. It may cause problems for 
+your computer if you try to read the whole data set in at once. You can 
+use the file() and readLines() functions to read a fixed number of lines
+ into R to begin your exploration.</li></ol></div>
+                                        <div style="text-align:right;padding-top:10px;font-style:italic;">Mon 27 Oct 2014  6:15 AM PDT</div>
+                                    </div>
+            </div>
+            </div>
+<script type="text/x-mathjax-config;executed=true">
+MathJax.Hub.Config({
+  config: ["MMLorHTML.js"],
+  
+  styleSheets: [],
+  styles: {},
+
+  jax: ["input/TeX"],
+  
+  extensions: ["tex2jax.js"],
+
+  preJax: null,
+  postJax: null,
+
+  preRemoveClass: "MathJax_Preview",
+
+  showProcessingMessages: true,
+
+  messageStyle: "none",
+  
+  displayAlign: "center",
+  displayIndent: "0em",
+  
+  delayStartupUntil: "none",
+
+  skipStartupTypeset: false,
+  
+  elements: [],
+  
+  tex2jax: {
+	    inlineMath: [
+	                 ['$$','$$'],      // uncomment this for standard TeX math delimiters
+	                 ['\\(','\\)']
+	                 ],
+
+	                 displayMath: [
+	                 ['\\[','\\]']
+	                 ],
+
+    skipTags: ["script","noscript","style","textarea","pre","code"],
+    ignoreClass: "tex2jax_ignore",
+    processClass: "tex2jax_process",
+    processEscapes: false,
+    processEnvironments: true,
+    preview: "TeX"
+    
+  },
+  
+  mml2jax: {
+    preview: "alttext"
+    
+  },
+  
+  jsMath2jax: {
+    preview: "TeX"
+    
+  },
+
+  TeX: {
+    TagSide: "right",
+    TagIndent: ".8em",
+    MultLineWidth: "85%",
+    Macros: {},
+
+    extensions: ["AMSmath.js", "AMSsymbols.js"]
+    
+  },
+
+  //============================================================================
+  //
+  //  These parameters control the MathML inupt jax.
+  //
+  MathML: {
+    //
+    //  This specifies whether to use TeX spacing or MathML spacing when the
+    //  HTML-CSS output jax is used.
+    //
+    useMathMLspacing: false
+  },
+  
+  //============================================================================
+  //
+  //  These parameters control the HTML-CSS output jax.
+  //
+  "HTML-CSS": {
+    
+    scale: 100,
+    
+    availableFonts: ["STIX","TeX"],
+    
+    preferredFont: "TeX",
+    
+    webFont: "TeX",
+    
+    imageFont: "TeX",
+    
+    undefinedFamily: "STIXGeneral,'Arial Unicode MS',serif",
+      
+    showMathMenu: true,
+
+    styles: {},
+    
+    tooltip: {
+      delayPost: 600,          // milliseconds delay before tooltip is posted after mouseover
+      delayClear: 600,         // milliseconds delay before tooltip is cleared after mouseout
+      offsetX: 10, offsetY: 5  // pixels to offset tooltip from mouse position
+    }
+  },
+  
+  //============================================================================
+  //
+  //  These parameters control the NativeMML output jax.
+  //
+  NativeMML: {
+
+    scale: 100,
+
+    showMathMenu: true,
+    showMathMenuMSIE: true,
+
+    styles: {}
+  },
+  
+  MathMenu: {
+    delay: 400,
+    
+    helpURL: "http://www.mathjax.org/help/user/",
+
+    showRenderer: true,
+    showFontMenu: false,
+    showContext:  false,
+
+    windowSettings: {
+      status: "no", toolbar: "no", locationbar: "no", menubar: "no",
+      directories: "no", personalbar: "no", resizable: "yes", scrollbars: "yes",
+      width: 100, height: 50
+    },
+    
+    styles: {}
+    
+  },
+
+  MMLorHTML: {
+    prefer: {
+      MSIE:    "MML",
+      Firefox: "HTML",
+      Opera:   "HTML",
+      other:   "HTML"
+    }
+  }
+});
+</script>
+</div></div></div></div></div><div class="coursera-footer"></div></div></div></div><!--[if gte IE 8]><script>document.getElementById("coursera-loading-js").style.display = 'block';</script><![endif]-->
+<!--[if lte IE 7]><script>document.getElementById("coursera-loading-nojs").style.display = 'block';
+window._204 = window._204 || [];
+window._gaq = window._gaq || [];
+
+window._gaq.push(
+    ['_setAccount', 'UA-28377374-1'],
+    ['_setDomainName', window.location.hostname],
+    ['_setAllowLinker', true],
+    ['_trackPageview', window.location.pathname]);
+    
+window._204.push(
+  ['client', 'home'],
+  {key:"pageview", value:window.location.pathname});
+  </script><script src="https://dw0ugk4msqulk.cloudfront.net/781d2c0a59d16ec4b57f71c24c16869b50643a93/js/lib/204.js"></script><script src="https://ssl.google-analytics.com/ga.js"></script><![endif]-->
+<!--[if !IE]> --><script>document.getElementById("coursera-loading-js").style.display = 'block';</script><!-- <![endif]-->
+    <script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/jquery.js"></script>
+      <script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/loadOrRefreshMathJax.js"></script>
+  <script src="Welcome_Data%20Science%20Capstone%20_%20Coursera_files/require.js"></script><script data-baseurl="https://dw0ugk4msqulk.cloudfront.net/781d2c0a59d16ec4b57f71c24c16869b50643a93/" data-version="781d2c0a59d16ec4b57f71c24c16869b50643a93" data-timestamp="1414185469949" data-debug="0" data-locale="en" id="_require">if(document.getElementById("coursera-loading-js").style.display == 'block') {
+  (function(el) {
+     require.config({
+       //enforceDefine: true,
+       waitSeconds: 75,
+       baseUrl: el.getAttribute("data-baseurl"),
+       urlArgs: el.getAttribute("data-debug") == "1" ? "v=" + el.getAttribute("data-timestamp") : "",
+       shim: {
+          'underscore': {
+             exports: '_'
+          },
+          'backbone': {
+             deps: ['underscore', 'jquery'],
+             exports: 'Backbone',
+             init: function(_, $) {
+               Backbone.$ = $;
+               return Backbone;
+             }
+          },
+          'pages/hg/thirdparty/js/backbone.marionette': {
+            deps: ["backbone"]
+          },
+          'pages/hg/thirdparty/js/webshims/polyfiller': {
+            deps: ["jquery"]
+          },
+          'pages/hg/thirdparty/js/webshims/extras/mousepress': {
+            deps: ["jquery", "pages/hg/thirdparty/js/webshims/polyfiller"]
+          },
+          'pages/hg/thirdparty/js/jquery.throttle': {
+            deps: ["jquery"]
+          },
+          'js/lib/jquery.linkify': {
+            deps: ["jquery"]
+          },
+          'pages/hg/thirdparty/js/js/bootstrap/alert': {
+            deps: ["jquery", "pages/hg/thirdparty/js/bootstrap/transition"]
+          },
+          'spark/core/js/jquery_ui': {
+            deps: ["jquery"]
+          },
+          'spark/core/js/jquery.history': {
+            deps: ["jquery"]
+          },
+          'js/lib/bootstrap.tooltip': {
+            deps: ["jquery"]
+          },
+          'pages/hg/thirdparty/js/bootstrap/transition': {
+            deps: ["jquery"]
+          },
+          'pages/hg/thirdparty/js/bootstrap/tab': {
+            deps: ["jquery"]
+          },
+          'bundles/videojs/lib/video.4.3.0': {
+            exports: 'vjs'
+          }
+       },
+       paths: {
+          "jquery":                         "pages/spark/jquery",
+          "underscore":                     "js/core/underscore.1.5.2",
+          "backbone":                       "js/core/backbone.1.1.0",
+          "backbone.relational":            "js/lib/backbone.relational.0.8.6",
+          "i18n":                           "js/lib/i18n._t",
+          "css":                            "js/vendor/require.css.v0-1-2",
+          "memoize":                        "js/lib/require.memoize.v0-0-1",
+          "pages/spark/models/user.json":   "empty:",
+          "pages/spark/models/course.json": "empty:",
+          "pages/spark/models/navbar.json": "empty:"
+       },
+       callback: function() {
+                    require(["pages/spark/routes"]);
+                },
+       config: {
+         i18n: {
+           locale: (window.localStorage ? localStorage.getItem('locale') : '') || el.getAttribute('data-locale')
+         }
+       }
+     });
+  })(document.getElementById("_require"));
+}
+</script><script>define("pages/spark/models/user.json", [], function(){
+      return JSON.parse("{\"id\":7424047,\"email_address\":\"liquori@gmail.com\",\"full_name\":\"Michael Liquori\",\"locale\":null,\"timezone\":\"America\\\/Los_Angeles\",\"access_group_id\":\"4\",\"registration_time\":\"1413900193\",\"last_access_time\":\"1414416059\",\"last_access_ip\":\"\",\"signature_track_register_time\":\"1413900193\",\"email_announcement\":\"1\",\"email_forum\":\"1\",\"in_signature_track\":\"1\",\"wishes_proctored_exam\":null,\"first_name\":\"Michael\",\"permissions\":[\"default\",\"allow_site_access\"],\"group\":\"Student\",\"anonymous\":false,\"forum_title\":\"Student\",\"signature_track_state\":4,\"verified_quizzes\":[],\"submitted_quizzes\":[],\"scheduled_proctored_exam\":null,\"last_chance_modal\":null,\"flexjoin_last_chance_modal\":null}");
+  });
+define("pages/spark/models/course.json", [], function(){
+      return JSON.parse("{\"id\":973753,\"isPrivate\":false,\"type\":\"public\",\"name\":\"Data Science Capstone\",\"instructor\":\"Jeff Leek, PhD, Roger D. Peng, PhD, Brian Caffo, PhD\",\"sessionName\":\"dsscapstone-002\",\"externalBaseURL\":\"https:\\\/\\\/www.coursera.org\\\/\",\"shortname\":\"dsscapstone\",\"host\":\"https:\\\/\\\/www.coursera.org\\\/\",\"assetUnversionedLink\":\"https:\\\/\\\/dw0ugk4msqulk.cloudfront.net\\\/\",\"cheggID\":\"\",\"hasLTI\":true,\"badgevilleDomain\":\"\",\"linkable\":false,\"universityShortname\":\"jhu\",\"signatureTrackStatus\":{\"signature_track_enabled\":1,\"signature_track_duration_left\":\"3 weeks and 10 hours\",\"signature_track_duration_left_days\":\"3 weeks\",\"signature_track_sign_up_now\":1,\"signature_track_last_chance_dialog\":0,\"flexjoin_last_chance_dialog\":0},\"courseURLs\":{\"log_in_link\":\"https:\\\/\\\/accounts.coursera.org\\\/signin?post_redirect=https%3A%2F%2Faccounts.coursera.org%2Fsignin%3Fuser_action%3Dclass%26course_id%3D973753%26post_redirect%3Dhttps%253A%252F%252Fclass.coursera.org%252Fdsscapstone-002%252Fauth%252Fauth_redirector%253Ftype%253Dlogin%2526subtype%253Dnormal%2526visiting%253D\",\"sign_up_link\":\"https:\\\/\\\/accounts.coursera.org\\\/signup?enroll_cid=973753&enroll_sn=dsscapstone&enroll_n=Data Science Capstone\",\"view_course_info_link\":\"https:\\\/\\\/www.coursera.org\\\/course\\\/dsscapstone\",\"sign_up_link_cant_enroll\":\"https:\\\/\\\/accounts.coursera.org\\\/signup?post_redirect=https%3A%2F%2Fwww.coursera.org%2Fcourse%2Fdsscapstone\"},\"courseBase\":\"https:\\\/\\\/class.coursera.org\\\/dsscapstone-002\\\/\",\"search\":true,\"hideWiki\":false,\"hideMeetup\":false,\"aceStartRegistrationDate\":\"Wed 31 Dec 1969  4:00 PM PST\",\"aceEndRegistrationDate\":\"Wed 31 Dec 1969  4:00 PM PST\",\"aceExamStartDate\":\"Wed 31 Dec 1969  4:00 PM PST\",\"aceExamEndDate\":\"Wed 31 Dec 1969  4:00 PM PST\",\"aceExamRules\":\"\",\"aceExamDuration\":\"\",\"aceBeforeExam\":false,\"aceAfterExam\":true,\"aceHours\":null,\"aceCreditType\":\"\",\"acePrice\":null,\"aceExamID\":null,\"aceEligible\":false,\"canRegisterForACE\":false,\"specialization\":{\"numCourse\":9,\"image\":\"https:\\\/\\\/s3.amazonaws.com\\\/coursera\\\/specializations\\\/jhudatascience\\\/logo_small.png\",\"id\":1,\"short_name\":\"jhudatascience\",\"name\":\"Data Science\"},\"supportForums\":true,\"textbooks\":\"\",\"inVideoQuizV2\":true,\"in_flexjoin\":0,\"honorCodeExtraText\":\"\",\"honorCodeCustomTitle\":\"\",\"honorCodeCustomButton\":\"\",\"studentAccessDisabled\":0,\"disableQQs\":false}");
+  });
+  define("pages/spark/models/navbar.json", [], function(){
+      return JSON.parse("{\"items\":[{\"name\":\"Home\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Announcements\",\"icon\":\"home\",\"link_type\":\"circuit\",\"link_data\":\"class:index\"},{\"name\":\"Videos\",\"icon\":\"lecture\",\"link_type\":\"circuit\",\"link_data\":\"lecture:index\"},{\"name\":\"Syllabus\",\"icon\":\"wiki\",\"link_type\":\"wiki\",\"link_data\":\"syllabus\"},{\"name\":\"\",\"icon\":\"\",\"link_type\":\"circuit\",\"link_data\":\"\"},{\"name\":\"Capstone Project\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Task 0 Info: Understanding the problem\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Task_0\"},{\"name\":\"Task 1 Info: Data acquisition and cleaning\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Task_1\"},{\"name\":\"Task 2 Info: Exploratory analysis\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Task_2\"},{\"name\":\"Task 3 Info: Modeling\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Task_3\"},{\"name\":\"Task 4 Info: Prediction \",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Task_4\"},{\"name\":\"Task 5 Info: Creative exploration\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Task_5\"},{\"name\":\"Task 6 Info: Data product\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Task_6\"},{\"name\":\"Assignments\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Quizzes\",\"icon\":\"\",\"link_type\":\"circuit\",\"link_data\":\"quiz:index\"},{\"name\":\"Report Submission\",\"icon\":\"\",\"link_type\":\"circuit\",\"link_data\":\"human_grading:index\"},{\"name\":\"Milestone Report Rubric\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Milestone_Report_Rubric\"},{\"name\":\"Final Project Rubric\",\"icon\":\"\",\"link_type\":\"wiki\",\"link_data\":\"Final_Project_Rubric\"},{\"name\":\"Community\",\"icon\":\"\",\"link_type\":\"heading\",\"link_data\":\"\"},{\"name\":\"Discussion Forums\",\"icon\":\"forum\",\"link_type\":\"circuit\",\"link_data\":\"forum:index\"}]}");
+  });
+</script><script>var coursera_enable_new_help_center = true;
+</script><div class="hide confirm-navigation modal"><div class="modal-header"><h3>Confirm Navigation</h3></div><div class="modal-body"><div class="confirm-navigation-message"></div><div>Are you sure you want to leave this page?</div></div><div class="modal-footer"><button data-modal-close="data-modal-close" class="btn confirm-navigation-stay">Stay on this Page</button><button data-modal-close="data-modal-close" class="btn btn-danger confirm-navigation-leave">Leave this Page</button></div></div><div style="display: none;" class="coursera-async-message"></div></body></html>

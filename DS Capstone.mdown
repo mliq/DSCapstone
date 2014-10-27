@@ -1,0 +1,10 @@
+#DS Capstone
+============
+
+The capstone will be evaluated based on the following assessments:
+
+1. An introductory quiz to test whether you have downloaded and can manipulate the data.
+2. An intermediate R markdown report that describes in plain language, plots, and code your exploratory analysis of the course data set.
+3. Two natural language processing quizzes, where you apply your predictive model to real data to check how it is working.
+4. A Shiny app that takes as input a phrase (multiple words), one clicks submit, and it predicts the next word.
+5. A 5 slide deck created with R presentations pitching your algorithm and app to your boss or investor. 
