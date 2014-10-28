@@ -8,3 +8,194 @@ The capstone will be evaluated based on the following assessments:
 3. Two natural language processing quizzes, where you apply your predictive model to real data to check how it is working.
 4. A Shiny app that takes as input a phrase (multiple words), one clicks submit, and it predicts the next word.
 5. A 5 slide deck created with R presentations pitching your algorithm and app to your boss or investor. 
+
+#Assessments and Grading
+Your course score will be based on three pieces of work
+(Chicago will stay on CDT until Sunday, November 2, 2014 going to CST)
+CST=UTC-6 
+*11:30PM UTC = 5:30PM CST*
+Quiz 1: Getting Started (5%) - Due November 9th @ 11:30 PM UTC
+A milestone report on exploratory analysis of the data set (20%) - Due November 16th @ 11:30 PM UTC
+Quiz 2: Natural Language Processing I (10%) - Due November 16th @ 11:30 PM UTC
+Quiz 3: Natural Language Processing II (10%) - Due November 23rd @ 11:30 PM UTC
+Final Project: your data product and a presentation describing your final data product (55%) - Due December 14th @ 11:30 PM UTC
+
+## Lateness: Quizzes only!
+5 Late Days for quizzes only
+The reported due date is the soft deadline for each quiz. You may turn in quizzes up to two days after the soft deadline. The hard deadline is the Tuesday after the Quiz is due at 23:30 UTC-5:00. Each day late will incur a 10% penalty, but if you use a late day, the penalty will not be applied to that day.
+
+
+# Quiz 1: Getting Started
+
+## 1. The en_US_blogs.txt file is 200MB
+### Explanation:
+Do `ls -alh` in the `Coursera-Swiftkey/final/en_US` directory.
+
+## 2. The en_US.twitter.txt has how 2360148 lines (plus one blank)
+### Explanation:
+Do `wc -l en_US.twitter.txt` at the prompt (or git bash on windows) or `length(readLines("en_US.twitter.txt"))` in R
+
+## Question 3: What is the length of the longest line seen in any of the three en_US data sets?
+
+1. OK, this code reads in the lines to arrays:
+
+```r
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+fileName="en_US.blogs.txt"
+con=file(fileName,open="r")
+lineBlogs=readLines(con) 
+longBlogs=length(line)
+close(con)
+
+fileName="en_US.news.txt"
+con=file(fileName,open="r")
+lineNews=readLines(con) 
+longNews=length(line)
+close(con)
+
+fileName="en_US.twitter.txt"
+con=file(fileName,open="r")
+lineTwitter=readLines(con) 
+longTwitter=length(line)
+close(con)
+
+<!-- for (i in 1:long){
+    linn=readLines(con,1)
+    print(linn)
+}
+ -->
+```
+
+2. Now, I don't really need the length though, I need the longest line in each array.
+	1. Can I get the length of ONE item? length(as.character()) does NOT work.
+		`nchar` ? Yes, this works.
+	2. I can make a new array for each of nchars.
+
+```r
+longBlogs = nchar(longBlogs) #Sweet, this works.
+```
+	3. So, just this? 
+```r
+max(nchar(longBlogs)) # incorrect.
+```
+Beware nchar(NA) –  hadley Mar 19 at 16:02
+  	 	
+@hadley Indeed, or for that matter any character vector with one or more NAs. (Though this is documented to be so). –  Gavin Simpson Mar 19 at 16:19 
+1	 	
+Or use stri_length from stringi - it works fine with NA's and it is faster :) Check my post! –  bartektartanus Apr 4 at 16:37
+
+	4. Use stringi package and stri_length function
+	
+	stri_length(c("ala ma kota","ABC",NA))
+	[1] 11  3 NA
+Why? Because it is the FASTEST among presented solutions :)
+and also works fine with NA's
+
+OK so apparently 40835 is max of lineBlogs
+
+```r
+require(stringi)
+longBlogs<-stri_length(lineBlogs)
+max(longBlogs) #40835
+
+###
+#to find which line that is:
+which(a==40835)
+[1] 483415
+###
+
+longNews<-stri_length(lineNews)
+max(longNews) #5760
+
+longTwitter<-stri_length(lineTwitter)
+max(longTwitter) #213
+
+```
+### Explanation:
+Again a simple wc command suffices `wc -L *.txt` in the directory with the three files. Note, we had a small discrepancy between doing this in R versus WC.
+
+## Question 4 In the en_US twitter data set, if you divide the number of lines where the word "love" (all lowercase) occurs by the number of lines the word "hate" (all lowercase) occurs, about what do you get?
+
+1. Find out how to get count of lines with "love" (case-sensitive), store in variable
+	grep? 
+
+```r
+loveBlogs<-grep("love",lineBlogs)
+length(loveBlogs) #49167
+# oops, i only need twitter!
+loveTwitter<-grep("love",lineTwitter)
+length(loveTwitter) #90956
+# 2. do same for "hate"
+hateTwitter<-grep("hate",lineTwitter)
+length(hateTwitter) #22138
+# 3. divide love by hate
+90956/22138 #4.108592
+```
+
+`grep "love" en_US.twitter | wc -l` and `grep "hate" en_US.twitter | wc -l` gives you the counts. Then you could divide in whatever. If you never want to leave the console, you can use bc (not present on gitbash in windows). You could also read into R (readLines) and use character search. This worked on gitbash `love=$(grep "love" en_US.twitter.txt | wc -l) then hate=$(grep "hate" en_US.twitter.txt | wc -l)` then `let m=love/hate` then `echo $m`
+```
+## Question 5
+The one tweet in the en_US twitter data set that matches the word "biostats" says what?
+
+```r
+biostatsTwitter<-grep("biostats",lineTwitter)
+lineTwitter[biostatsTwitter]
+```
+### Explanation:
+`grep -i "biostat" en_US.twitter.txt` (note the -i doesn't matter since there's only one line ignoring case).
+
+```
+## Question 6
+How many tweets have the exact characters "A computer once beat me at chess, but it was no match for me at kickboxing". (I.e. the line matches those characters exactly.)
+
+```r
+sentenceTwitter<-grep("A computer once beat me at chess, but it was no match for me at kickboxing",lineTwitter)
+length(sentenceTwitter) #
+
+```
+### Explanation:
+
+`grep -x "A computer once beat me at chess, but it was no match for me at kickboxing" en_US.twitter.txt | wc -l`
+
+# Reference
+## Unix / Bash / Console / Gitbash
+`wc` (short for word count) - generates one or more of the following statistics: newline count, word count, and byte count. (all, in that order)
+	Newer versions of wc can differentiate between byte and character count. This difference arises with Unicode which includes multi-byte characters. The desired behaviour is selected with the -c or -m switch.
+	wc -l <filename> print the line count (note that if the last line does not have \n, it will not be counted)
+	wc -c <filename> print the byte count
+	wc -m <filename> print the character count
+	wc -L <filename> print the length of longest line
+	wc -w <filename> print the word count
+
+
+
+## R
+### Basic character string functions provided by R:
+
+	nchar
+	string length
+	paste
+	concatenate strings
+	substr
+	substring
+	toupper
+	convert entire string to uppercase
+	tolower
+	convert entire string to lowercase
+	chartr
+	character map replacement (like "tr")
+	strtrim
+	truncates string
+	nchar, substr, toupper, tolower will accept string vectors as arguments and return vector results.
+	strtrim accepts both a vector of strings and a vector of truncation positions.
+
+### Functions which work with regular expression patterns
+
+	strsplit
+	split string into substrings at occurances of regexp
+	grep
+	search for a regular expression within a string
+	sub
+	search and then replace an occurance of a regular expression in a strng
+	gsub
+	global search and replace all occurances of a regular expression in a string

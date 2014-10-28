@@ -1,0 +1,10 @@
+body {color:#444444;font-size:15px;font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;font-style:normal;background:#fcfcfc url(http://datacommunitydc.org/blog/wp-content/themes/skeleton/images/border_top.png) repeat-x top center fixed}h1 {color:#213273;font-size:28px;font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:bold;font-style:bold;}h2 {color:#213273;font-size:22px;font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:bold;font-style:bold;}h3 {color:#213273;font-size:18px;font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:bold;font-style:bold;}h4 {color:#213273;font-size:16px;font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:bold;font-style:bold;}h5 {color:#181818;font-size:15px;font-family:"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:bold;font-style:bold;}
+a,a:link,a:visited,a:active,#content .gist .gist-file .gist-meta a:visited {color: #003ea3;}
+
+#wrap #content {float:left;}
+#wrap #sidebar {float:right;}
+#wrap #sidebar .widget-container {margin-left: 20px;margin-right: 0px;}
+#site-title a {
+	color: #000000;
+}
+

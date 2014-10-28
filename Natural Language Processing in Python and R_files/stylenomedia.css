@@ -1,0 +1,75 @@
+/*INLINE*/
+.wfsf-widget-inline {-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;position:relative;z-index:100;margin:10px 0;padding:0}
+
+.wfsf-widget-inline *{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing:border-box;margin:0;padding:0;outline:0;vertical-align:bottom;}
+
+.wfsf-widget-inline .wfsf-widget-feedback {position:absolute;z-index:102;width:330px;padding:10px; background:#f6f6f6; border:1px solid #b1b1b1;box-shadow: 2px 2px 3px #D0D0D0;bottom:32px;margin:0 !important} 
+
+.wfsf-widget-inline .wfsf-open-top{bottom:32px;}
+
+.wfsf-widget-inline .wfsf-open-bottom{top:32px;}
+
+.wfsf-widget-inline  .wfsf-widget-close{/*padding:12px;border-left:1px solid #dddddd;position:absolute;top:0px;right:0px;background:url(http://www.sitefeedback.com/wth6/images/close-btn-grey.png) center center no-repeat;cursor:pointer*/ display:none;}
+
+.wfsf-widget-inline .wfsf-open-top .wfsf-widget-pointer{position:absolute;bottom:-11px;width:19px;height:11px;background:transparent url(http://www.sitefeedback.com/wth6/images/widget-pointer.png) 0 0 no-repeat;}
+
+.wfsf-widget-inline .wfsf-open-bottom .wfsf-widget-pointer{position:absolute;top:-11px;width:19px;height:11px;background:transparent url(http://www.sitefeedback.com/wth6/images/widget-pointer-up.png) 0 0 no-repeat;}
+
+/*BOTTOM-RIGHT*/
+.wfsf-widget-bottom-right{bottom:0;right:0;display:inline-block;position:fixed;border-radius:4px 0 0 0;background:#f90;padding:6px 40px 6px 14px;}
+
+.wfsf-widget-bottom-right *{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing:border-box;margin:0;padding:0;outline:0;vertical-align:bottom;}
+
+.wfsf-widget-bottom-right .wfsf-widget-feedback{margin:0 !important;position:absolute;z-index:102;width:330px;padding:10px; background:#f6f6f6; border:1px solid #b1b1b1;box-shadow: 2px 2px 3px #D0D0D0;bottom:40px;right:10px} 
+
+.wfsf-widget-bottom-right .wfsf-widget-pointer{position:absolute;bottom:-16px;width:26px;height:16px;background:transparent url(http://www.sitefeedback.com/wth6/images/widget-pointer2.png) 0 0 no-repeat;}
+
+.wfsf-widget-bottom-right .wfsf-widget-title{font-weight:bold;}
+
+.wfsf-widget-bottom-right  .wfsf-widget-close{position:absolute;top:4px;right:4px;width:14px;height:14px;background:url(http://www.sitefeedback.com/wth6/images/close-btn.png) center center no-repeat;cursor:pointer}
+
+/*BOTTOM-LEFT*/
+.wfsf-widget-bottom-left{bottom:0;left:0;display:inline-block;position:fixed;border-radius:0 4px 0 0;background:#f90;padding:6px 40px 6px 14px;}
+
+.wfsf-widget-bottom-left *{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing:border-box;margin:0;padding:0;outline:0;vertical-align:bottom;}
+
+.wfsf-widget-bottom-left .wfsf-widget-feedback{margin:0 !important;position:absolute;z-index:102;width:330px;padding:10px; background:#f6f6f6; border:1px solid #b1b1b1;box-shadow: 2px 2px 3px #D0D0D0;bottom:40px;} 
+
+.wfsf-widget-bottom-left .wfsf-widget-pointer{position:absolute;bottom:-16px;width:26px;height:16px;background:transparent url(http://www.sitefeedback.com/wth6/images/widget-pointer2.png) 0 0 no-repeat;}
+
+.wfsf-widget-bottom-left .wfsf-widget-title{font-weight:bold;}
+
+.wfsf-widget-bottom-left  .wfsf-widget-close{position:absolute;top:4px;right:4px;width:14px;height:14px;background:url(http://www.sitefeedback.com/wth6/images/close-btn.png) center center no-repeat;cursor:pointer}
+
+/*BOTTOM-MIDDLE*/
+.wfsf-widget-bottom-middle{bottom:0;display:inline-block;position:fixed;border-radius:4px 4px 0 0;background:#f90;padding:6px 40px 6px 14px;}
+
+.wfsf-widget-bottom-middle *{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing:border-box;margin:0;padding:0;outline:0;vertical-align:bottom;}
+
+.wfsf-widget-bottom-middle .wfsf-widget-feedback{margin:0 !important;position:absolute;z-index:102;width:330px;padding:10px; background:#f6f6f6; border:1px solid #b1b1b1;box-shadow: 2px 2px 3px #D0D0D0;bottom:40px;} 
+
+.wfsf-widget-bottom-middle .wfsf-widget-pointer{position:absolute;bottom:-16px;width:26px;height:16px;background:transparent url(http://www.sitefeedback.com/wth6/images/widget-pointer2.png) 0 0 no-repeat;}
+
+.wfsf-widget-bottom-middle .wfsf-widget-title{font-weight:bold;}
+
+.wfsf-widget-bottom-middle  .wfsf-widget-close{position:absolute;top:4px;right:4px;width:14px;height:14px;background:url(http://www.sitefeedback.com/wth6/images/close-btn.png) center center no-repeat;cursor:pointer}
+
+/*COMMON*/
+#wfsf-widget{z-index: 999999;}
+.wfsf-widget-feedback{display:none;position:relative;font-size:100% !important}
+.wfsf-widget-title{display:inline-block;font:bold 100%/140% Arial !important; color:#000000; margin:0 6px 0 0 !important;}
+.wfsf-widget-button{display:inline-block; min-width:50px;text-align:center; font:bold 95% Arial; color:#000;padding:3px 5px; background:#ffffff url(http://www.sitefeedback.com/wth6/images/widget-btn-bg.png) 0 0 repeat-x; border:1px solid #afafaf; border-radius:3px;cursor:pointer;margin:0 0 0 4px !important;}
+.wfsf-widget-button:hover{background-position: 0 -30px;color:#000;}
+	 .wfsf-widget-button-activate{background-position: 0 -30px;color:#000;}
+     .wfsf-widget-button-deactivate{background-position: 0 -60px;color:#aaaaaa;}
+.wfsf-widget-feedback .wfsf-widget-cta{font:bold 100% Arial !important; color:#222222 !important;margin:0 0 6px 0 !important;text-shadow:0 1px 0 #ffffff}
+.wfsf-widget-feedback .wfsf-widget-textarea{resize: none; border:1px solid #b9b9b9; color:#7a6d6d; box-shadow:inset 2px 2px 6px #dddddd; padding:5px 4px;font:100 100% Arial;width:100%;position:relative}
+.wfsf-widget-feedback .wfsf-submit{font-weight:bold;display:inline-block;float:right;margin:10px 0 0 0 !important;}
+.wfsf-widget-feedback .wfsf-widget-logo{width:88px;height:17px; background:url(http://www.sitefeedback.com/wth6/images/sflogo-small.png) 0 0 no-repeat;display:inline-block;float:left;margin:14px 0 0 0 !important;}
+.wfsf-widget-feedback .wfsf-errormsg{position:absolute; top:-6px; left:-4px; width:90%;background:#a00; color:#fff; font:100 11px arial; padding:1px 4px;display:none; border-radius:3px;text-align:center}
+.wfsf-widget-logo a{width:88px;height:13px;display:block;text-decoration:none}
+.wfsf-widget-logo a:hover{text-decoration:none}
+.wfsf-widget-error{}
+.wfsf-widget-feedback-close{width:12px;height:12px;position:absolute;top:3px;right:3px;background:url(http://www.sitefeedback.com/wth6/images/close-btn-grey.png) center center no-repeat;cursor:pointer;margin:0 !important;}
+/*COMMON*/
+
