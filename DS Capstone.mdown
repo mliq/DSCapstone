@@ -24,7 +24,6 @@ Final Project: your data product and a presentation describing your final data p
 5 Late Days for quizzes only
 The reported due date is the soft deadline for each quiz. You may turn in quizzes up to two days after the soft deadline. The hard deadline is the Tuesday after the Quiz is due at 23:30 UTC-5:00. Each day late will incur a 10% penalty, but if you use a late day, the penalty will not be applied to that day.
 
-
 # Quiz 1: Getting Started
 
 ## 1. The en_US_blogs.txt file is 200MB
@@ -144,7 +143,6 @@ lineTwitter[biostatsTwitter]
 ### Explanation:
 `grep -i "biostat" en_US.twitter.txt` (note the -i doesn't matter since there's only one line ignoring case).
 
-```
 ## Question 6
 How many tweets have the exact characters "A computer once beat me at chess, but it was no match for me at kickboxing". (I.e. the line matches those characters exactly.)
 
@@ -156,6 +154,104 @@ length(sentenceTwitter) #
 ### Explanation:
 
 `grep -x "A computer once beat me at chess, but it was no match for me at kickboxing" en_US.twitter.txt | wc -l`
+
+# Task 1: Data acquisition and cleaning
+## Tasks to accomplish
+
+1. Tokenization - identifying appropriate tokens such as words, punctuation, and numbers. Writing a function that takes a file as input and returns a tokenized version of it.
+
+2. Profanity filtering - removing profanity and other words you do not want to predict.
+
+## 1. Tokenization - identifying appropriate tokens such as words, punctuation, and numbers. Writing a function that takes a file as input and returns a tokenized version of it.
+
+	Let's work with the smallest dataset first for speed reasons.
+This is *news* with 77259 lines vs. twitter 2360148 vs. blogs 899288
+
+	1. clean up workspace from quiz 1, removing some variables.
+This leaves just 6: line and long for each dataset. 
+*line are the lines, long are the line lengths*
+	
+	2. Write tokenizing functions
+### Isolate Words
+	1. let's start with one sentence.
+```r
+a<-lineNews[1]
+ a
+[1] "He wasn't home alone, apparently."
+```
+	2. How to split those words into an array? 
+
+[](http://stackoverflow.com/questions/11927121/r-convert-string-to-vector-tokenize-using)
+You can use strsplit to accomplish this task.
+
+```r
+string1 <- "This is my string"
+strsplit(string1, " ")[[1]]
+#[1] "This"   "is"     "my"     "string"
+```
+
+"\\s+" will split for any amount of white space including newlines.
+
+Try that:
+
+```r
+b<-strsplit(a, " ")
+b
+[[1]]
+[1] "He"          "wasn't"      "home"        "alone,"      "apparently."
+```
+Can I access each word individually?
+>not easily, needs further manipulation, see lists link in reference.
+
+#### Document Term Matrix?
+[](http://www.inside-r.org/packages/cran/tm/docs/DocumentTermMatrix)
+
+[](http://www.unt.edu/rss/class/Jon/Benchmarks/TextMining_L_JDS_Jan2014.pdf)
+
+Now we can load the ‘tm’ package (Feinerer & Hornik, 2013) and convert our vector of character strings into a recognizable corpus of text using the ‘VectorSource’ function and the ‘Corpus’ function.
+
+```r
+txt<-VectorSource(lineNews)
+txt.corpus<-Corpus(txt)
+inspect(txt.corpus)
+```
+*OK i think that worked.*
+
+Next, we make some adjustments to the text; making everything lower case, removing punctuation, removing numbers, and removing common English stop words. The ‘tm map’ function allows us to apply transformation functions to a corpus.
+
+```r
+txt.corpus<- tm_map(txt.corpus,tolower)
+txt.corpus<- tm_map(txt.corpus,removePunctuation)
+txt.corpus<- tm_map(txt.corpus,removeNumbers)
+txt.corpus<- tm_map(txt.corpus,removeWords,stopwords("english"))
+```
+Next we perform stemming, which truncates words (e.g., “compute”, “computes” & “computing” all become “comput”). However, we need to load the ‘SnowballC’ package (Bouchet-Valat, 2013) which allows us to identify specific stem elements using the ‘tm map’ function of the ‘tm’ package.
+*Not going to do this at this time*
+
+##### Below is not clear, XXX:
+
+```r
+require(tm)
+corpus<- lineNews
+(f <- content_transformer(function(x, pattern) gsub(pattern, "", x)))
+tm_map(crude, f, "[[:digit:]]+")[[1]]
+
+corpus <- tm_map(corpus, content_transformer(tolower))
+tdm <- TermDocumentMatrix(corpus,
+                          control = list(removePunctuation = TRUE,
+                                         stopwords = TRUE))
+dtm <- DocumentTermMatrix(corpus,
+                          control = list(weighting =
+                                         function(x)
+                                         weightTfIdf(x, normalize =
+                                                     FALSE),
+                                         stopwords = TRUE))
+inspect(tdm[155:160,1:5])
+inspect(tdm[c("price", "texas"),c("127","144","191","194")])
+inspect(dtm[1:5,155:160])
+```
+### Isolate Punctuation
+### Isolate Numbers
 
 # Reference
 ## Unix / Bash / Console / Gitbash
@@ -170,6 +266,27 @@ length(sentenceTwitter) #
 
 
 ## R
+### Lists
+[](http://stackoverflow.com/questions/14376506/how-to-extract-elements-from-list-of-lists)
+
+### Double Brackets in R? [[]] [[1]]
+The [R Language Definition](http://cran.r-project.org/doc/manuals/R-lang.html#Indexing) is handy for answering these types of questions:
+
+R has three basic indexing operators, with syntax displayed by the following examples
+
+```r
+    x[i]
+    x[i, j]
+    x[[i]]
+    x[[i, j]]
+    x$a
+    x$"a"
+ ```
+For vectors and matrices the [[ forms are rarely used, although they have some slight semantic differences from the [ form (e.g. it drops any names or dimnames attribute, and that partial matching is used for character indices). When indexing multi-dimensional structures with a single index, x[[i]] or x[i] will return the ith sequential element of x.
+
+For lists, one generally uses [[ to select any single element *(character)*, whereas [ returns a *list* of the selected elements.
+
+The [[ form allows only a single element to be selected using integer or character indices, whereas [ allows indexing by vectors. Note though that for a list, the index can be a vector and each element of the vector is applied in turn to the list, the selected component, the selected component of that component, and so on. The result is still a single element.
 ### Basic character string functions provided by R:
 
 	nchar

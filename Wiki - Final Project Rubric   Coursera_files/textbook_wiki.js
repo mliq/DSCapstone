@@ -1,0 +1,1 @@
+$(function(){var WIKI_OPEN_TRACKER="Wiki Textbook Open",textbook="/textbook/api";$('a[href*="'+textbook+'"]').on("click",function(){var href=$(this).attr("href"),m=href.match(/textbook\/api\/(\d*)/m);if(m.length>=2){var isbn=m[1];window.multitracker.push([WIKI_OPEN_TRACKER,isbn])}})});
