@@ -58,7 +58,16 @@ inspect(tdm[1:20,]) #display top 20
 # return TextDocuments (it looks like the older version may have automatically 
 # done the conversion). They instead return characters and the DocumentTermMatrix
 # isn't sure how to handle a corpus of characters.
+#So you could change to
+#corpus_clean <- tm_map(news_corpus, content_transformer(tolower))
+#Or you can run
+#corpus_clean <- tm_map(corpus_clean, PlainTextDocument)
+#after all of your non-standard transformations (those not in 
+# getTransformations()) are done and just before you create the DocumentTermMatrix. That should
+# make sure all of your data is in PlainTextDocument and should make DocumentTermMatrix happy.
+# http://stackoverflow.com/questions/24191728/documenttermmatrix-error-on-corpus-argument
 
+txt.corpus <- tm_map(txt.corpus, PlainTextDocument)
 
 
 #-------

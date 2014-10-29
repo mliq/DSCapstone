@@ -6,7 +6,7 @@ The capstone will be evaluated based on the following assessments:
 1. An introductory quiz to test whether you have downloaded and can manipulate the data.
 2. An intermediate R markdown report that describes in plain language, plots, and code your exploratory analysis of the course data set.
 3. Two natural language processing quizzes, where you apply your predictive model to real data to check how it is working.
-4. A Shiny app that takes as input a phrase (multiple words), one clicks submit, and it predicts the next word.
+*4. A Shiny app that takes as input a phrase (multiple words), one clicks submit, and it predicts the next word.*
 5. A 5 slide deck created with R presentations pitching your algorithm and app to your boss or investor. 
 
 #Assessments and Grading
@@ -226,7 +226,16 @@ txt.corpus<- tm_map(txt.corpus,removeNumbers)
 txt.corpus<- tm_map(txt.corpus,removeWords,stopwords("english"))
 ```
 Next we perform stemming, which truncates words (e.g., “compute”, “computes” & “computing” all become “comput”). However, we need to load the ‘SnowballC’ package (Bouchet-Valat, 2013) which allows us to identify specific stem elements using the ‘tm map’ function of the ‘tm’ package.
-*Not going to do this at this time*
+
+```r
+require(SnowballC)
+txt.corpus<- tm_map(txt.corpus, stemDocument)
+detach("package:SnowballC")
+# inspect(txt.corpus) - more useful for a smaller dataset, which actually I Should be doing.
+```
+
+#### The issue of numbers
+Although they may be useful in a prediction engine, for now I am going to build without them. Later, let's think about it.
 
 ##### Below is not clear, XXX:
 
