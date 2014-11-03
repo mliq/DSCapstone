@@ -1,0 +1,399 @@
+Handbook of NLP Notes
+=====================
+# The Classical Toolkit
+Traditionally, work in natural language processing has tended to view the process of language analysis as being decomposable into a number of stages, mirroring the theoretical linguistic distinctions drawn between SYNTAX, SEMANTICS, and PRAGMATICS.
+The simple view is that the sentences of a text are first analyzed in terms of their syntax; this provides an order and structure that is more amenable to an analysis in terms of semantics, or literal meaning; and this is followed by a stage of pragmatic analysis whereby the meaning of the utterance or text in context is determined. This last stage is often seen as being concerned with DISCOURSE, whereas the previous two are generally concerned with sentential matters.
+
+it is not so easy to separate the processing of language neatly into
+boxes corresponding to each of the strata. However, such a separation
+serves as a useful pedagogic aid, and also constitutes the basis for architectural
+models that make the task of natural language analysis more
+manageable from a software engineering point of view.
+
+## Stages of analysis:
+Surface text -> Tokenization -> Lexical analysis -> Syntactic analysis -> Semantic analysis -> Pragmatic analysis -> Speaker's intended meaning
+
+We identify here the stage of tokenization and sentence segmentation
+as a crucial first step. Natural language text is generally not made up of
+the short, neat, well-formed, and well-delimited sentences we find in
+textbooks;
+we know quite a lot about general techniques
+for tokenization, lexical analysis, and syntactic analysis, but much less
+about semantics and discourse-level processing.
+
+## Text Preprocessing
+As we have already noted, not all languages deliver text in the form of words neatly delimited by spaces.
+Languages such as Chinese, Japanese, and Thai require first that a segmentation process be applied,
+analogous to the segmentation process that must first be applied to a continuous speech stream in
+order to identify the words that make up an utterance. As Palmer demonstrates in his chapter, there
+are significant segmentation and tokenization issues in apparently easier-to-segment languages—such as
+English—too. Fundamentally, the issue here is that of what constitutes a word; as Palmer shows, there is
+no easy answer here. This chapter also looks at the problem of sentence segmentation: since so much work
+in natural language processing views the sentence as the unit of analysis, clearly it is of crucial importance
+to ensure that, given a text, we can break it into sentence-sized pieces. This turns out not to be so trivial
+either. Palmer offers a catalog of tips and techniques that will be useful to anyone faced with dealing with
+real raw text as the input to an analysis process, and provides a healthy reminder that these problems have
+tended to be idealized away in much earlier, laboratory-based work in natural language processing.
+
+## Lexical Analysis
+The previous chapter addressed the problem of breaking a stream of input text into the words and
+sentences that will be subject to subsequent processing. The words, of course, are not atomic, and are
+themselves open to further analysis. Here we enter the realms of computational morphology, the focus
+of Andrew Hippisley’s chapter. By taking words apart, we can uncover information that will be useful
+at later stages of processing. The combinatorics also mean that decomposing words into their parts, and
+maintaining rules for how combinations are formed, is much more efficient in terms of storage space than
+would be the case if we simply listed every word as an atomic element in a huge inventory. And, once
+more returning to our concern with the handling of real texts, there will always be words missing from any
+such inventory; morphological processing can go some way toward handling such unrecognized words.
+Hippisley provides a wide-ranging and detailed review of the techniques that can be used to carry out
+morphological processing, drawing on examples from languages other than English to demonstrate the
+need for sophisticated processing methods; along the way he provides some background in the relevant
+theoretical aspects of phonology and morphology.
+
+## Syntactic Parsing
+A presupposition in most work in natural language processing is that the basic unit of meaning analysis
+is the sentence: a sentence expresses a proposition, an idea, or a thought, and says something about some
+real or imaginary world. Extracting the meaning from a sentence is thus a key issue. Sentences are not,
+however, just linear sequences of words, and so it is widely recognized that to carry out this task requires an
+analysis of each sentence, which determines its structure in one way or another. In NLP approaches based
+on generative linguistics, this is generally taken to involve the determining of the syntactic or grammatical
+structure of each sentence. In their chapter, Ljunglöf and Wirén present a range of techniques that can
+be used to achieve this end. This area is probably the most well established in the field of NLP, enabling
+the authors here to provide an inventory of basic concepts in parsing, followed by a detailed catalog of
+parsing techniques that have been explored in the literature.
+
+## Semantic Analysis
+Identifying the underlying syntactic structure of a sequence of words is only one step in determining the
+meaning of a sentence; it provides a structured object that is more amenable to further manipulation and
+subsequent interpretation. It is these subsequent steps that derive a meaning for the sentence in question.
+Goddard and Schalley’s chapter turns to these deeper issues. It is here that we begin to reach the bounds
+of what has so far been scaled up from theoretical work to practical application. As pointed out earlier
+in this introduction, the semantics of natural language have been less studied than syntactic issues, and
+so the techniques described here are not yet developed to the extent that they can easily be applied in a
+broad-coverage fashion.
+After setting the scene by reviewing a range of existing approaches to semantic interpretation, Goddard
+and Schalley provide a detailed exposition of Natural Semantic Metalanguage, an approach to semantics
+that is likely to be new to many working in natural language processing. They end by cataloging some of
+the challenges to be faced if we are to develop truly broad coverage semantic analyses.
+
+## Natural Language Generation
+At the end of the day, determining the meaning of an utterance is only really one-half of the story of natural
+language processing: in many situations, a response then needs to be generated, either in natural language
+alone or in combination with other modalities. For many of today’s applications, what is required here
+is rather trivial and can be handled by means of canned responses; increasingly, however, we are seeing
+natural language generation techniques applied in the context of more sophisticated back-end systems,
+where the need to be able to custom-create fluent multi-sentential texts on demand becomes a priority.
+The generation-oriented chapters in the Applications part bear testimony to the scope here.
+In his chapter, David McDonald provides a far-reaching survey of work in the field of natural language
+generation. McDonald begins by lucidly characterizing the differences between natural language analysis
+and natural language generation. He goes on to show what can be achieved using natural language
+generation techniques, drawing examples from systems developed over the last 35 years. The bulk of
+the chapter is then concerned with laying out a picture of the component processes and representations
+required in order to generate fluent multi-sentential or multi-paragraph texts, built around the nowstandard
+distinction between text planning and linguistic realization.
+
+## Not Represented - Discourse and Pragmatics
+One aspect of computational work not represented here is the body of research that focuses on discourse and pragmatics. 
+As noted earlier, it is in these areas that our understanding is still very much weaker
+than in areas such as morphology and syntax. It is probably also the case that there is currently less work
+going on here than there was in the past: there is a sense in which the shift to statistically based work
+restarted investigations of language processing from the ground up, and current approaches have many
+intermediate problems to tackle before they reach the concerns that were once the focus of “the discourse
+community.” There is no doubt that these issues will resurface; but right now, the bulk of attention is
+focused on dealing with syntax and semantics.∗ When most problems here have been solved, we can
+expect to see a renewed interest in discourse-level phenomena and pragmatics, and at that point the time
+will be ripe for another edition of this handbook that puts classical approaches to discourse back on the
+table as a source of ideas and inspiration. Meanwhile, a good survey of various approaches can be found
+in Jurafsky and Martin (2008).
+
+### Pragmatics - 
+Pragmatics is a subfield of linguistics and semiotics which studies the ways in which context contributes to meaning. Pragmatics encompasses speech act theory, conversational implicature, talk in interaction and other approaches to language behavior in philosophy, sociology, linguistics and anthropology.[1] Unlike semantics, which examines meaning that is conventional or "coded" in a given language, pragmatics studies how the transmission of meaning depends not only on structural and linguistic knowledge (e.g., grammar, lexicon, etc.) of the speaker and listener, but also on the context of the utterance, any pre-existing knowledge about those involved, the inferred intent of the speaker, and other factors.[2] In this respect, pragmatics explains how language users are able to overcome apparent ambiguity, since meaning relies on the manner, place, time etc. of an utterance.[1]
+
+The ability to understand another speaker's intended meaning is called pragmatic competence.
+
+# Text Preprocessing
+
+Text preprocessing can be divided into two stages: document triage and text segmentation. 
+
+## Document triage 
+is the process of converting a set of digital files into well-defined text documents.
+
+### Character encoding identification
+determines the character encoding (or encodings) for any file and optionally converts between encodings.
+
+### Language Identification
+Second, in order to know what language-specific algorithms to apply to a document, *language identification* determines the natural language for a document; this step is closely linked to, but not uniquely determined by, the character encoding.
+
+### Text Sectioning
+Finally, *Text Sectioning* identifies the actual content within a file while discarding undesirable elements,
+such as images, tables, headers, links, and HTML formatting. The output of the document triage stage is a well-defined text corpus, organized by language, suitable for text segmentation and further analysis.
+
+### Text segmentation / Tokenization
+is the process of converting a well-defined text corpus into its component words and sentences. 
+Word segmentation breaks up the sequence of characters in a text by locating the word boundaries, the points where one word ends and another begins. For computational linguistics purposes, the words thus identified are frequently referred to as *tokens*, and word segmentation is also known as *tokenization*. 
+
+### Text normalization 
+is a related step that involves merging different written forms of a token into a canonical normalized form; for example, a document may contain the equivalent tokens “Mr.”, “Mr”, “mister”, and “Mister” that would all be normalized to a single form.
+
+### Sentence segmentation 
+is the process of determining the longer processing units consisting of one or more words. This task involves identifying sentence boundaries between words in different sentences.
+Since most written languages have punctuation marks that occur at sentence boundaries, sentence segmentation
+is frequently referred to as sentence boundary detection, sentence boundary disambiguation,
+or sentence boundary recognition. All these terms refer to the same task: determining how a text should
+be divided into sentences for further processing.
+
+#### In practice, sentence and word segmentation cannot be performed successfully independent from one another. 
+For example, an essential subtask in both word and sentence segmentation for most European
+languages is identifying abbreviations, because a period can be used to mark an abbreviation as well
+as to mark the end of a sentence. In the case of a period marking an abbreviation, the period is usually
+considered a part of the abbreviation token, whereas a period at the end of a sentence is usually considered
+a token in and of itself. In the case of an abbreviation at the end of a sentence, the period marks both the
+abbreviation and the sentence boundary.
+
+## 2.2 Challenges of Text Preprocessing
+The type of writing system used for a language is the most important factor for determining the
+best approach to text preprocessing. Writing systems can be logographic, where a large number (often
+thousands) of individual symbols represent words. In contrast, writing systems can be syllabic, in
+which individual symbols represent syllables, or alphabetic, in which individual symbols (more or less)
+represent sounds; unlike logographic systems, syllabic and alphabetic systems typically have fewer than
+100 symbols. According to Comrie et al. (1996), the majority of all written languages use an alphabetic
+or syllabic system. However, in practice, no modern writing system employs symbols of only one kind,
+so no natural language writing system can be classified as purely logographic, syllabic, or alphabetic.
+Even English, with its relatively simple writing system based on the Roman alphabet, utilizes logographic
+symbols including Arabic numerals (0–9), currency symbols ($, £), and other symbols (%, &, #). English is
+nevertheless predominately alphabetic, and most other writing systems are comprised of symbols which
+are mainly of one type.
+In this section, we discuss the essential document triage steps, and we emphasize the main types
+of dependencies that must be addressed in developing algorithms for text segmentation: character-set
+dependence (Section 2.2.1), language dependence (Section 2.2.2), corpus dependence (Section 2.2.3),
+and application dependence (Section 2.2.4).
+
+### 2.2.1 Character-Set Dependence
+
+#### 2.2.1.1 About Character Sets
+Historically, interpreting digital text files was trivial, since nearly all texts were encoded in the 7-bit
+character set ASCII, which allowed only 128 (2^7) characters and included only the Roman (or Latin)
+alphabet and essential characters for writing English. This limitation required the “asciification” or
+“romanization” of many texts, in which ASCII equivalents were defined for characters not defined in the
+character set. An example of this asciification is the adaptation of many European languages containing
+umlauts and accents, in which the umlauts are replaced by a double quotation mark or the letter ‘e’ and
+accents are denoted by a single quotation mark or even a number code. In this system, the German
+word über would be written as u”ber or ueber, and the French word déjà would be written as de’ja‘ or
+de1ja2. Languages that do not use the roman alphabet, such as Russian and Arabic, required much more
+elaborate romanization systems, usually based on a phonetic mapping of the source characters to the
+roman characters. The Pinyin transliteration of Chinese writing is another example of asciification of a
+more complex writing system. These adaptations are still common due to the widespread familiarity with
+the roman characters; in addition, some computer applications are still limited to this 7-bit encoding.
+
+Eight-bit character sets can encode 256 (2^8) characters using a single 8-bit byte, but most of these
+8-bit sets reserve the first 128 characters for the original ASCII characters. Eight-bit encodings exist for all
+common alphabetic and some syllabic writing systems; for example, the ISO-8859 series of 10+ character
+sets contains encoding definitions for most European characters, including separate ISO-8859 sets for
+the Cyrillic and Greek alphabets. However, since all 8-bit character sets are limited to exactly the same
+256 byte codes (decimal 0–255), this results in a large number of overlapping character sets for encoding
+characters in different languages.
+
+Writing systems with larger character sets, such as those of written Chinese and Japanese, which have
+several thousand distinct characters, require multiple bytes to encode a single character. A two-byte
+character set can represent 65,536 (216) distinct characters, since 2 bytes contain 16 bits. Determining
+individual characters in two-byte character sets involves grouping pairs of bytes representing a single
+character. This process can be complicated by the tokenization equivalent of code-switching, in which
+characters from many different writing systems occur within the same text. It is very common in digital
+texts to encounter multiple writing systems and thus multiple encodings, or as discussed previously,
+character encodings that include other encodings as subsets. In Chinese and Japanese texts, single-byte
+letters, spaces, punctuation marks (e.g., periods, quotation marks, and parentheses), and Arabic numerals
+(0–9) are commonly interspersed with 2-byte Chinese and Japanese characters. Such texts also frequently
+contain ASCII headers. Multiple encodings also exist for these character sets; for example, the Chinese
+character set is represented in two widely used encodings, Big-5 for the complex-form (traditional)
+character set and GB for the simple-form (simplified) set, with several minor variants of these sets also
+commonly found.
+
+The Unicode 5.0 standard (Unicode Consortium 2006) seeks to eliminate this character set ambiguity
+by specifying a Universal Character Set that includes over 100,000 distinct coded characters derived
+from over 75 supported scripts representing all the writing systems commonly used today. The Unicode
+standard is most commonly implemented in the UTF-8 variable-length character encoding, in which
+each character is represented by a 1 to 4 byte encoding. In the UTF-8 encoding, ASCII characters require
+1 byte, most other characters included in ISO-8859 character encodings and other alphabetic systems
+require 2 bytes, and all other characters, including Chinese, Japanese, and Korean, require 3 bytes (and
+very rarely 4 bytes). The Unicode standard and its implementation in UTF-8 allow for the encoding of
+all supported characters with no overlap or confusion between conflicting byte ranges, and it is rapidly
+replacing older character encoding sets for multilingual applications.
+
+#### 2.2.1.2 Character Encoding Identification and Its Impact on Tokenization
+Despite the growing use of Unicode, the fact that the same range of numeric values can represent
+different characters in different encodings can be a problem for tokenization. For example, English or
+Spanish are both normally stored in the common 8-bit encoding Latin-1 (or ISO-8859-1). An English or
+Spanish tokenizer would need to be aware that bytes in the (decimal) range 161–191 in Latin-1 represent
+punctuation marks and other symbols (such as ‘¡’, ‘¿’, ‘£’, and ‘c ’). Tokenization rules would then
+be required to handle each symbol (and thus its byte code) appropriately for that language. However,
+this same byte range in UTF-8 represents the second (or third or fourth) byte of a multi-byte sequence
+and is meaningless by itself; an English or Spanish tokenizer for UTF-8 would thus need to model
+multi-byte character sequences explicitly. Furthermore, the same byte range in ISO-8859-5, a common
+Russian encoding, contains Cyrillic characters; in KOI8-R, another Russian encoding, the range contains
+a different set of Cyrillic characters. Tokenizers thus must be targeted to a specific language in a specific
+encoding.
+
+>Tokenization is unavoidably linked to the underlying character encoding of the text being processed,
+and character encoding identification is an essential first step. While the header of a digital document
+may contain information regarding its character encoding, this information is not always present or even
+reliable, in which case the encoding must be determined automatically.
+
+#### -more on this which i don't need now- (I am assuming english and unicode identified)
+
+### 2.2.2 Language Dependence
+
+#### 2.2.2.1 Impact of Writing System on Text Segmentation
+English employs
+whitespace between most words and punctuation marks at sentence boundaries, but neither feature is
+sufficient to segment the text completely and unambiguously.
+
+-skipping language identification-
+
+### 2.2.3 Corpus Dependence
+
+Corpora automatically harvested from the Internet can be especially ill-formed,
+such as Example (1), an actual posting to a Usenet newsgroup, which shows the erratic use of capitalization
+and punctuation, “creative” spelling, and domain-specific terminology inherent in such texts.
+(1) ive just loaded pcl onto my akcl. when i do an ‘in- package’ to load pcl, ill get the prompt but
+im not able to use functions like defclass, etc... is there womething basic im missing or am i just left
+hanging, twisting in the breeze?
+
+A key task in the document triage stage for such files
+is text sectioning, in which extraneous text is removed. The sectioning and cleaning of Web pages has
+recently become the focus of Cleaneval, “a shared task and competitive evaluation on the topic of cleaning
+arbitrary Web pages, with the goal of preparing Web data for use as a corpus for linguistic and language
+technology research and development.” (Baroni et al. 2008)
+
+### 2.2.4 Application Dependence
+
+Although word and sentence segmentation are necessary, in reality, there is no absolute definition for what
+constitutes a word or a sentence. Both are relatively arbitrary distinctions that vary greatly across written
+languages. 
+
+However, for the purposes of computational linguistics we need to define exactly what we need
+for further processing; in most cases, the language and task at hand determine the necessary conventions.
+For example, the English words I amare frequently contracted to I’m, and a tokenizer frequently expands
+the contraction to recover the essential grammatical features of the pronoun and the verb. A tokenizer
+that does not expand this contraction to the component words would pass the single token I’m to later
+processing stages.
+
+Unless these processors, which may include morphological analyzers, part-of-speech taggers, lexical lookup routines, or parsers, are aware of both the contracted and uncontracted forms, the
+token may be treated as an unknown word.
+
+Another example of the dependence of tokenization output on later processing stages is the treatment
+of the English possessive ’s in various tagged corpora.∗ In the Brown corpus (Francis and Kucera 1982),
+the word governor’s is considered one token and is tagged as a possessive noun. In the Susanne corpus
+(Sampson 1995), on the other hand, the same word is treated as two tokens, governor and ’s, tagged
+singular noun and possessive, respectively.
+
+Examples such as the above are usually addressed during tokenization by normalizing the text to meet
+the requirements of the applications. For example, language modeling for automatic speech recognition
+requires that the tokens be represented in a form similar to how they are spoken (and thus input
+to the speech recognizer). For example, the written token $300 would be spoken as “three hundred
+dollars,” and the text normalization would convert the original to the desired three tokens. Other
+applications may require that this and all other monetary amounts be converted to a single token such as
+“MONETARY_TOKEN.”
+
+## 2.3 Tokenization
+
+In
+space-delimited languages, such as most European languages, some word boundaries are indicated by
+the insertion of whitespace. The character sequences delimited are not necessarily the tokens required
+for further processing, due both to the ambiguous nature of the writing systems and to the range of
+tokenization conventions required by different applications.
+
+>There are three main categories into which word
+structures can be placed,‡ and each category exists in both unsegmented and space-delimited writing
+systems. The morphology of words in a language can be *isolating*, where words do not divide into smaller
+units; *agglutinating* (or agglutinative), where words divide into smaller units (*morphemes*) with clear boundaries between the morphemes; or *inflectional*, where the boundaries between morphemes are not clear and where the component morphemes can express more than one grammatical meaning.
+
+A fourth typological classification frequently studied by linguists, polysynthetic, can be
+considered an extreme case of agglutinative, where several morphemes are put together to form complex
+words that can function as a whole sentence.
+
+### 2.3.1 Tokenization in Space-Delimited Languages
+
+In many alphabetic writing systems, including those that use the Latin alphabet, words are separated by
+whitespace. Yet even in a well-formed corpus of sentences, there are many issues to resolve in tokenization.
+Most tokenization ambiguity exists among uses of punctuation marks, such as periods, commas, quotation
+marks, apostrophes, and hyphens, since the same punctuation mark can serve many different functions
+in a single sentence, let alone a single text. Consider example sentence (3) from the Wall Street Journal
+(1988).
+
+	(3) Clairson International Corp. said it expects to report a net loss for its second quarter ended March 26 and doesn’t expect to meet analysts’ profit estimates of $3.9 to $4 million, or 76 cents a share to 79 cents a share, for its year ending Sept. 24.
+
+This sentence has several items of interest that are common for Latinate, alphabetic, space-delimited
+languages. First, it uses periods in three different ways : within numbers as a decimal point ($3.9), to mark
+abbreviations (Corp. and Sept.), and to mark the end of the sentence, in which case the period following
+the number 24 is not a decimal point. The sentence uses apostrophes in two ways: to mark the genitive
+case (where the apostrophe denotes possession) in analysts’ and to show contractions (places where letters
+have been left out of words) in doesn’t. The tokenizer must thus be aware of the uses of punctuation marks
+and be able to determine when a punctuation mark is part of another token and when it is a separate
+token.
+
+In addition to resolving these cases, we must make tokenization decisions about a phrase such as 76
+cents a share, which on the surface consists of four tokens. However, when used adjectivally such as in the
+phrase a 76-cents-a-share dividend, it is normally hyphenated and appears as one. The semantic content
+is the same despite the orthographic differences, so it makes sense to treat the two identically, as the same
+number of tokens. Similarly, we must decide whether to treat the phrase $3.9 to $4million differently than
+if it had been written as 3.9 to 4 million dollars or $3,900,000 to $4,000,000. Note also that the semantics
+of numbers can be dependent on both the genre and the application; in scientific literature, for example,
+the numbers 3.9, 3.90, and 3.900 have different significant digits and are not semantically equivalent. We
+discuss these ambiguities and other issues in the following sections
+
+A logical initial tokenization of a space-delimited language would be to consider as a separate token
+any sequence of characters preceded and followed by space. This successfully tokenizes words that are
+a sequence of alphabetic characters, but does not take into account punctuation characters. In many
+cases, characters such as commas, semicolons, and periods should be treated as separate tokens, although
+they are not preceded by whitespace (such as the case with the comma after $4 million in Example (3)).
+Additionally, many texts contain certain classes of character sequences which should be filtered out
+before actual tokenization; these include existing markup and headers (including HTML markup), extra
+whitespace, and extraneous control characters.
+
+#### 2.3.1.1 Tokenizing Punctuation
+While punctuation characters are usually treated as separate tokens, there are many cases when they
+should be “attached” to another token. The specific cases vary from one language to the next, and the
+specific treatment of the punctuation characters needs to be enumerated within the tokenizer for each
+language. In this section, we give examples of English tokenization.
+
+Abbreviations are used in written language to denote the shortened form of a word. In many cases,
+abbreviations are written as a sequence of characters terminated with a period. When an abbreviation
+occurs at the end of a sentence, a single period marks both the abbreviation and the sentence boundary.
+For this reason, recognizing abbreviations is essential for both tokenization and sentence segmentation.
+Compiling a list of abbreviations can help in recognizing them, but abbreviations are productive, and
+it is not possible to compile an exhaustive list of all abbreviations in any language. Additionally, many
+abbreviations can also occur as words elsewhere in a text (e.g., the word Mass is also the abbreviation for
+Massachusetts). An abbreviation can also represent several different words, as is the case for St. which
+can stand for Saint, Street, or State. However, as Saint it is less likely to occur at a sentence boundary
+than as Street, or State. Examples (4) and (5) from the Wall Street Journal (1991 and 1987 respectively)
+demonstrate the difficulties produced by such ambiguous cases, where the same abbreviation can represent
+different words and can occur both within and at the end of a sentence.
+
+	(4) The contemporary viewer may simply ogle the vast wooded vistas rising up from the Saguenay River and Lac St. Jean, standing in for the St. Lawrence River.
+	(5) The firm said it plans to sublease its current headquarters at 55 Water St. A spokesman declined to elaborate.
+
+Recognizing an abbreviation is thus not sufficient for complete tokenization, and the appropriate definition
+for an abbreviation can be ambiguous, as discussed in Park and Byrd (2001). We address abbreviations at
+sentence boundaries fully in Section 2.4.2.
+
+Quotation marks and apostrophes (“ ” ‘ ’) are a major source of tokenization ambiguity. In most cases,
+single and double quotes indicate a quoted passage, and the extent of the tokenization decision is to
+determine whether they open or close the passage. In many character sets, single quote and apostrophe
+are the same character, and it is therefore not always possible to immediately determine if the single
+quotation mark closes a quoted passage, or serves another purpose as an apostrophe. In addition, as
+discussed in Section 2.2.1, quotation marks are also commonly used when “romanizing” writing systems,
+in which umlauts are replaced by a double quotation mark and accents are denoted by a single quotation
+mark or an apostrophe.
+
+The apostrophe is a very ambiguous character. In English, the main uses of apostrophes are to mark
+the genitive form of a noun, to mark contractions, and to mark certain plural forms. In the genitive case,
+some applications require a separate token while some require a single token, as discussed in Section
+2.2.4. How to treat the genitive case is important, since in other languages, the possessive form of a word
+is not marked with an apostrophe and cannot be as readily recognized. In German, for example, the
+possessive form of a noun is usually formed by adding the letter s to the word, without an apostrophe,
+as in Peters Kopf (Peter’s head). However, in modern (informal) usage in German, Peter’s Kopf would
+also be common; the apostrophe is also frequently omitted in modern (informal) English such that Peters
+head is a possible construction. Furthermore, in English, ’s can serve as a contraction for the verb is, as
+in he’s, it’s, she’s, and Peter’s head and shoulders above the rest. It also occurs in the plural form of some
+words, such as I.D.’s or 1980’s, although the apostrophe is also frequently omitted from such plurals. The
+tokenization decision in these cases is context dependent and is closely tied to syntactic analysis.

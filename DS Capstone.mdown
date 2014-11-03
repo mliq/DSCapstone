@@ -1,6 +1,40 @@
 #DS Capstone
 ============
+# Summary of progress
 
+## Task 1: Defining the steps to tokenization
+
+1. a token is a word after it's broken up to words from corpus.
+2. This is done with the `tm` R package. How?
+
+# NLP Vocab
+types - cook & cooked are 1 type.
+tokens - words - cook & cooked are 2 tokens.
+morphemes - the small meaningful units that make up words
+stems - the core meaning-bearing units
+affixes - bits and pieces that adhere to stems (suffix, prefix)
+	-often with grammatical functions
+	
+# Best resources:
+- Stanford NLP Class - https://class.coursera.org/nlp/lecture/127
+
+## 1. Tokenization
+
+### Main issues in tokenization:
+1. apostrophes, `'s`. We could eliminate. `'re` - more important, expand these contractions to two words.
+2. dashes `-` expand? `state-of-the-art`
+3. periods - `p.h.d.`
+
+## 2. Normalization & Stemming
+1. delete periods - make U.S.A. = USA
+2. reduce all to lower case - possible exception in mid-sentence to distinguish proper nouns - the Fed vs. fed the verb.
+3. Alternative option - asymmetric expansion - differentiate between window/windows/Windows
+
+Porter algorithm for stemming is most common
+stems ache/aches/aching to "ach"
+
+-----
+# Syllabus
 The capstone will be evaluated based on the following assessments:
 
 1. An introductory quiz to test whether you have downloaded and can manipulate the data.
@@ -9,7 +43,7 @@ The capstone will be evaluated based on the following assessments:
 *4. A Shiny app that takes as input a phrase (multiple words), one clicks submit, and it predicts the next word.*
 5. A 5 slide deck created with R presentations pitching your algorithm and app to your boss or investor. 
 
-#Assessments and Grading
+## Assessments and Grading
 Your course score will be based on three pieces of work
 (Chicago will stay on CDT until Sunday, November 2, 2014 going to CST)
 CST=UTC-6 
@@ -23,6 +57,8 @@ Final Project: your data product and a presentation describing your final data p
 ## Lateness: Quizzes only!
 5 Late Days for quizzes only
 The reported due date is the soft deadline for each quiz. You may turn in quizzes up to two days after the soft deadline. The hard deadline is the Tuesday after the Quiz is due at 23:30 UTC-5:00. Each day late will incur a 10% penalty, but if you use a late day, the penalty will not be applied to that day.
+
+# What is an n-gram?
 
 # Quiz 1: Getting Started
 
