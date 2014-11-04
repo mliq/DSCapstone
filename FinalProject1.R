@@ -25,25 +25,27 @@ meta(corpus[[1]])
 #origin       : character(0)
 
 #Next, we make some adjustments to the text; 
-#making everything lower case, removing punctuation, removing numbers,
-# and removing common English stop words. 
-#The ‘tm map’ function allows us to apply transformation functions to a corpus.
-txt.corpus<- tm_map(txt.corpus,tolower)
-txt.corpus<- tm_map(txt.corpus,removePunctuation)
-txt.corpus<- tm_map(txt.corpus,removeNumbers)
-txt.corpus<- tm_map(txt.corpus,removeWords,stopwords("english"))
+#remove whitespace:
+corpus1 <- tm_map(corpus, stripWhitespace)
+inspect(corpus1) #don't see a big difference
 
-#Next we perform stemming, which truncates words (e.g., “compute”, “computes” & 
-#“computing” all become “comput”). 
-#However, we need to load the ‘SnowballC’ package (Bouchet-Valat, 2013) 
-#which allows us to identify specific stem elements using the ‘tm map’ 
-#function of the ‘tm’ package.
-require(SnowballC)
-txt.corpus<- tm_map(txt.corpus, stemDocument)
-detach("package:SnowballC")
+#making everything lower case:
+corpus2 <- tm_map(corpus1, content_transformer(tolower))
+inspect(corpus2) #works
 
-#strip whitespace
-txt.corpus<-tm_map(txt.corpus, stripWhitespace)
+#remove stopwords
+corpus3 <- tm_map(corpus2, removeWords, stopwords("english"))
+inspect(corpus3) # ok the has been removed...
+
+# Stemming
+corpus4 <- tm_map(corpus3, stemDocument)
+inspect(corpus4) # Looks stemmed.
+
+## do these?
+#removing punctuation? 
+# corpus<- tm_map(corpus,removePunctuation)
+#removing numbers ?
+#corpus<- tm_map(corpus,removeNumbers)
 
 ##END DATA CLEANUP##
 
@@ -51,30 +53,36 @@ txt.corpus<-tm_map(txt.corpus, stripWhitespace)
 
 # First, we create something called a Term Document Matrix (TDM) 
 # which is a matrix of frequency counts for each word used in the corpus.
-tdm<- TermDocumentMatrix(txt.corpus)
+tdm<- TermDocumentMatrix(corpus4)
 inspect(tdm[1:20,]) #display top 20
-#ERROR: TDM not created: 
-#Error: inherits(doc, "TextDocument") is not TRUE
-# The problem is that the functions tolower and trim won't necessarily 
-# return TextDocuments (it looks like the older version may have automatically 
-# done the conversion). They instead return characters and the DocumentTermMatrix
-# isn't sure how to handle a corpus of characters.
-#So you could change to
-#corpus_clean <- tm_map(news_corpus, content_transformer(tolower))
-#Or you can run
-#corpus_clean <- tm_map(corpus_clean, PlainTextDocument)
-#after all of your non-standard transformations (those not in 
-# getTransformations()) are done and just before you create the DocumentTermMatrix. That should
-# make sure all of your data is in PlainTextDocument and should make DocumentTermMatrix happy.
-# http://stackoverflow.com/questions/24191728/documenttermmatrix-error-on-corpus-argument
 
-txt.corpus <- tm_map(txt.corpus, PlainTextDocument)
+# ok, a lot of stuff has hyphens. Guess I should remove those.
+corpus5<- tm_map(corpus4,removePunctuation)
+tdm2<- TermDocumentMatrix(corpus5)
+inspect(tdm2[1:20,]) #display top 20
 
+#ok, now it's all numbers, let's remove those too!
+corpus6<- tm_map(corpus5,removeNumbers)
+tdm3<- TermDocumentMatrix(corpus6)
+inspect(tdm3[1:20,]) #display top 20
+# ok now my problem is weird symbols: 
+#Terms                    980 981 982 983 984 985 986 987 988 989 990 991 992
+#â“iâ’m                   0   0   0   0   0   0   0   0   0   0   0   0   0
+#â“oresteian              0   0   0   0   0   0   0   0   0   0   0   0   0
+#â“reach                  0   0   0   0   0   0   0   0   0   0   0   0   0
+#â€˜m                     0   0   0   0   0   0   0   0   0   0   0   0   0
+#â€˜well                  0   0   0   0   0   0   0   0   0   0   0   0   0
+#â€˜will                  0   0   0   0   0   0   0   0   0   0   0   0   0
+#â€“                      0   0   0   0   0   0   0   0   0   0   0   0   0
+#â€”                      0   0   0   0   0   0   0   0   0   0   0   0   0
+#â€”found                 0   0   0   0   0   0   0   0   0   0   0   0   0
+#â€\u009d
 
-#-------
-##Issues
-# what is this?
-# [[997]]
-# [1]  trillion projected overall cost  alzheimerâ€™s patients 
-# what about single letters?
-
+## WHAT'S NEXT?
+## PERHAPS CLEAN THESE STRANGE CHARACTERS USING GSUB.
+inspect(corpus6[10]) #here is an example with the odd data:
+#â“  just tri  hit  hard someplaceâ” said rizzo  hit  pitch   opposit field  leftcenter â“iâ’m just   tri  make good contactâ”
+#how was it orig?
+inspect(corpus[10])
+#Â“I was just trying to hit it hard someplace,Â” said Rizzo, who hit the pitch to the opposite field in left-center. Â“IÂ’m just up there trying to make good contact.Â”
+#hmm.. so it has these strange letters from the start?
