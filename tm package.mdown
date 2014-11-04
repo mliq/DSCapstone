@@ -18,3 +18,85 @@ The second argument `readerControl` of the corpus constructor has to be a list w
 # Inspecting Corpora
 
 `print()` gives a concise overview whereas the full content of text documents is displayed with `inspect()`.
+
+Individual documents can be accessed via [[, either via the position in the corpus, or via their identifier.
+	
+	meta(ovid[[2]], "id")
+	[1] "ovid_2.txt"
+	identical(ovid[[2]], ovid[["ovid_2.txt"]])
+	[1] TRUE
+
+The content() and meta() getters and setters aim at providing a consistent high-level interface to the respective information (abstracting from how classes internally represent the information).
+
+# Transformations
+
+Once we have a corpus we typically want to modify the documents in it, e.g., stemming, stopword removal, et cetera. In tm, all this functionality is subsumed into the concept of a transformation. Transformations are done via the `tm_map()` function which applies (maps) a function to all elements of the corpus. Basically, all transformations work on single text documents and `tm_map()` just applies them to all documents in a corpus.
+
+## Eliminating Extra Whitespace
+Extra whitespace is eliminated by:
+	
+	reuters <- tm_map(reuters, stripWhitespace)
+
+## Convert to Lower Case
+Conversion to lower case by:
+	
+	reuters <- tm_map(reuters, content_transformer(tolower))
+
+We can use arbitrary character processing functions as transformations as long as the function returns a text
+document. In this case we use content_transformer() which provides a convenience wrapper to access and
+set the content of a document. Consequently most text manipulation functions from base R can directly be used
+with this wrapper. This works for tolower() as used here but also e.g. for gsub() which comes quite handy
+for a broad range of text manipulation tasks.
+
+## Remove Stopwords
+Removal of stopwords by:
+
+	reuters <- tm_map(reuters, removeWords, stopwords("english"))
+
+## Stemming
+
+Stemming is done by:
+	tm_map(reuters, stemDocument)
+
+# Issues to consider / Improvements to make in future
+
+## Before lowercasing we should identify proper nouns 
+*decision: come back to this later after basic model is built*
+
+```r
+## NOW I see a problem already, which is that by lowercasing all we have made confusing names which seem like words now...
+#So, let's go back to corpus1 and try tagging first:
+require("openNLP")
+tagPOS(corpus1)
+```
+
+such as corpus[[1000]] where Emotes Furet becomes emotes furet and this seems like words incorrectly. Solution?
+
+[](Text Mining Infrastructure in R.pdf) 4.6:
+		In computational linguistics a common task is tagging words with their part of speech for further analysis. Via an interface with the openNLP package to the OpenNLP tool kit tm integrates part of speech tagging functionality based on maximum entropy machine learned models. openNLP ships transformations wrapping OpenNLP's internal Java system calls for our convenience, e.g.,
+		
+	library("openNLP")
+	tagPOS(acq[[10]])
+
+shows the tagged words using a set of predefined tags identifying nouns, verbs, adjectives,
+adverbs, et cetera depending on their context in the text. The tags are Penn Treebank
+tags (Mitchell et al. 1993), so e.g., NNP stands for proper noun, singular, or e.g., VBD stands
+for verb, past tense.
+
+# Questions
+- What are stop words? 
+	words which are filtered out before or after processing of natural language data (text), often because too common (the).
+	Any group of words can be chosen as the stop words for a given purpose. For some search engines, these are some of the most common, short function words, such as the, is, at, which, and on. In this case, stop words can cause problems when searching for phrases that include them, particularly in names such as 'The Who', 'The The', or 'Take That'. Other search engines remove some of the most common words—including lexical words, such as "want"—from a query in order to improve performance.
+
+- What is meant by metadata:7 ?
+All extension classes must provide accessors to extract subsets ([), individual documents ([[), and
+metadata (meta).
+
+A corpus can have two types of metadata (accessible via meta). Corpus metadata contains corpus
+specific metadata in form of tag-value pairs. Document level metadata contains document specific
+metadata but is stored in the corpus as a data frame. Document level metadata is typically used
+for semantic reasons (e.g., classifications of documents form an own entity due to some high-level
+information like the range of possible values) or for performance reasons (single access instead of
+extracting metadata of each document).
+
+http://dublincore.org/documents/dces/
