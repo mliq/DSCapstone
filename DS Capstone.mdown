@@ -16,7 +16,7 @@ affixes - bits and pieces that adhere to stems (suffix, prefix)
 	-often with grammatical functions
 	
 # Best resources:
-- Stanford NLP Class - https://class.coursera.org/nlp/lecture/127
+# Stanford NLP Class - https://class.coursera.org/nlp/lecture/127
 
 ## 1. Tokenization
 
@@ -30,8 +30,37 @@ affixes - bits and pieces that adhere to stems (suffix, prefix)
 2. reduce all to lower case - possible exception in mid-sentence to distinguish proper nouns - the Fed vs. fed the verb.
 3. Alternative option - asymmetric expansion - differentiate between window/windows/Windows
 
-Porter algorithm for stemming is most common
+Porter's algorithm most common English stemmer
 stems ache/aches/aching to "ach"
+
+## 3. Sentence Segmentation
+we look at periods and then must decide if the word preceding the period is likely to be ending a sentence, AND if the word following has high probability of starting a sentence:
+	-all caps? probably an abbreviation.
+	- lower case before, upper case after? likely to be sentence...
+
+## 4. Minimum Edit Distance
+in Levenshtein distance, substitutions cost 2, add or delete costs 1
+otherwise all is 1.
+
+### Uses
+to compare the accuracy of machine translation, to test similarity of different tokens/ fine-tune stemming
+
+# Understanding `tm` Package
+
+## Term-Document Matrix vs. Document-Term Matrix vs. ?
+
+## Introduction to the tm Package.pdf
+methods for data import, corpus handling, preprocessing, metadata management,
+and creation of term-document matrices.
+Our focus is on the main aspects of getting started with text mining
+in R - an in-depth description of the text mining infrastructure offered by tm was published in the Journal of Statistical Software (Feinerer et al., 2008)[]("C:\Users\Michael\SkyDrive\Code\GitHub\DSCapstone\Text Mining Infrastructure in R.pdf"). An introductory article on text mining in R was published in R News (Feinerer, 2008).
+
+## Data Import / Structures / VCorpus vs. PCorpus
+The main structure for managing documents in tm is a so-called Corpus, representing a collection of text documents. A corpus is an abstract concept, and there can exist several implementations in parallel. The default implementation is the so-called *VCorpus (short for Volatile Corpus)* which realizes a semantics as known from most R objects: corpora are R objects held fully in memory. We denote this as volatile since once the R object is destroyed, the whole corpus is gone. Such a volatile corpus can be created via the constructor `VCorpus(x, readerControl)`. Another implementation is the *PCorpus which implements a Permanent Corpus* semantics, i.e., the documents are physically stored outside of R (e.g., in a database), corresponding R objects are basically only pointers to external structures, and changes to the underlying corpus are reflected to all R objects associated with it. Compared to the volatile corpus the corpus encapsulated by a permanent corpus object is not destroyed if the corresponding R object is released.
+
+Within the corpus constructor, `x` must be a Source object which abstracts the input location. tm provides a set of predefined sources, e.g., `DirSource, VectorSource, or DataframeSource`, which handle a directory, a vector interpreting each component as document, or data frame like structures (like CSV files), respectively. Except DirSource, which is designed solely for directories on a file system, and VectorSource, which only accepts (character) vectors, most other implemented sources can take connections as input (a character string is interpreted as file path). `getSources()` lists available sources, and users can create their own sources.
+
+The second argument `readerControl` of the corpus constructor has to be a list with the named components `reader and language`.
 
 -----
 # Syllabus
