@@ -6,22 +6,23 @@
 
 #Set working directory
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
-#Load in news dataset
-fileName="en_US.news.txt"
-con=file(fileName,open="r")
-lineNews=readLines(con) 
-close(con)
-rm(fileName,con)
 
-#now we have lineNews, a 77259 long character list
-#let's edit down to 1000 lines for now.
-aset<-lineNews[1:1000]
-
-#load to corpus
+#load in just 1000 lines of news dataset
 require(tm)
-txt<-VectorSource(aset)
-txt.corpus<-Corpus(txt)
-inspect(txt.corpus)
+fileName="en_US.news.txt"
+lineNews <- readLines(fileName, n=1000)
+corpus <- Corpus(VectorSource(lineNews))
+
+# Now we have in TextDocument format with 7 metadata:
+meta(corpus[[1]])
+#Metadata:
+#author       : character(0)
+#datetimestamp: 2014-11-04 19:35:36
+#description  : character(0)
+#heading      : character(0)
+#id           : 1
+#language     : en
+#origin       : character(0)
 
 #Next, we make some adjustments to the text; 
 #making everything lower case, removing punctuation, removing numbers,
