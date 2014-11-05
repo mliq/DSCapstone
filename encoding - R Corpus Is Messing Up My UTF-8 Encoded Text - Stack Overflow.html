@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=038622610830">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=fd7230a85918">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="R Corpus Is Messing Up My UTF-8 Encoded Text">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I am simply trying to create a corpus from Russian, UTF-8 encoded text.  The problem is, the Corpus method from the tm package is not encoding the strings correctly.
+
+Here is a reproducible example...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text">
+    <link rel="canonical" href="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow.html">
+
+    
+    
+    <script type="text/javascript" async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/ados"></script><script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/quant.js"></script><script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/beacon.js"></script><script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/ados.js"></script><script src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;R Corpus Is Messing Up My UTF-8 Encoded Text&#39;" href="http://stackoverflow.com/feeds/question/24920396">
+    <script>
+        
+        StackExchange.ready(function () {
+                
+                StackExchange.using("snippets", function () {
+                    StackExchange.snippets.initSnippetRenderer();
+                });
+                
+
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({votesCast:[],autoShowCommentHelp:true,showAnswerHelp:true,totalCommentCount:6,shownCommentCount:5,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:24920396});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '24920396');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1415202003,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"6bef6e5254dbe64879cbccfe9e04b968","isRegistered":true,"userType":3,"userId":3626188,"accountId":2706904,"gravatar":"<div class=\"gravatar-wrapper-32\"><img src=\"http://i.stack.imgur.com/T08bM.jpg?s=32&g=1\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"http://stackoverflow.com/users/3626188/mliqu","notificationsUnviewedCount":4,"inboxUnviewedCount":0,"ab":{"homepage_recommended_algo":{"v":"c","g":1}}}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"0b42479fbf20","js/moderator.en.js":"3bf88d4bfb80","js/full-anon.en.js":"f36061371874","js/full.en.js":"ea231cd2e6ab","js/wmd.en.js":"ae6d42e9ef85","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"6f90cb09d971","js/help.en.js":"c8c7bae0ab4d","js/tageditor.en.js":"63052db07564","js/tageditornew.en.js":"760936c4b4f9","js/inline-tag-editing.en.js":"de80429b1816","js/revisions.en.js":"989c474e85a9","js/review.en.js":"659469944c86","js/tagsuggestions.en.js":"cc108c1afbca","js/post-validation.en.js":"d6f09029c0d1","js/explore-qlist.en.js":"4e6f969d97ee","js/events.en.js":"3d7b826514c3","js/keyboard-shortcuts.en.js":"63dd3ef04564","js/external-editor.en.js":"0cab63d6a599","js/external-editor.en.js":"0cab63d6a599","js/snippet-javascript.en.js":"9d776fe161e5","js/snippet-javascript-codemirror.en.js":"3b12d3d6f3f3"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+    
+    
+<script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/full.en.js"></script><script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/prettify-full.en.js"></script><script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/external-editor.en.js"></script><script async="" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/wmd.en.js"></script><script type="text/javascript" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="http://static.adzerk.net/Extensions/adFeedback.css"><style type="text/css"> .wmd-snippet-button span { background-position: 0 0; } .wmd-snippet-button:hover span { background-position: 0 -40px; }</style><link href="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/sidebar.min.css" type="text/css" rel="stylesheet"></head>
+<body class="question-page new-topbar" lang="">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+                    <a href="http://stackoverflow.com/users/logout" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+    </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+                <a href="http://stackexchange.com/users/2706904/?tab=accounts">your communities</a>
+        </h3>
+            
+            <a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" id="edit-pinned-sites">edit</a>
+            <a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" id="cancel-pinned-sites" style="display: none;">cancel</a>
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <ul class="my-sites">
+                    <li>
+                        
+
+
+
+    <a href="http://ebooks.stackexchange.com/" class="site-link js-gps-track" data-id="530" data-gps-track="
+            site.switch({ target_site:530, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-ebooks" title="Ebooks"></div>
+        Ebooks
+            <span class="rep-score">11</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://stackoverflow.com/" class="site-link js-gps-track" data-id="1" data-gps-track="
+            site.switch({ target_site:1, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+            <span class="rep-score">3</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://apple.stackexchange.com/" class="site-link js-gps-track" data-id="118" data-gps-track="
+            site.switch({ target_site:118, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-apple" title="Ask Different"></div>
+        Ask Different
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://expatriates.stackexchange.com/" class="site-link js-gps-track" data-id="546" data-gps-track="
+            site.switch({ target_site:546, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-expatriates" title="Expatriates"></div>
+        Expatriates
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://music.stackexchange.com/" class="site-link js-gps-track" data-id="240" data-gps-track="
+            site.switch({ target_site:240, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-music" title="Musical Practice &amp; Performance"></div>
+        Musical Practice &amp; Performance
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+            </ul>
+                <div class="pinned-site-editor-container" style="display: none;">
+                    <input id="js-site-search-txt" type="text" class="site-filter-input" value="" placeholder="Add a Stack Exchange community">
+                    <input type="submit" id="pin-site-btn" value="Add" disabled="disabled">
+                    <ul class="js-found-sites found-sites"></ul>
+                    <ul class="pinned-site-list sortable" data-custom-list="False">
+                    </ul>
+                    <input type="submit" value="Save" id="save-pinned-sites-btn" disabled="disabled">
+                    <a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" id="reset-pinned-sites">reset to default list</a>
+                </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 130 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+                <a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+                    <span class="hidden-text">Inbox</span>
+                    <span class="unread-count" style="display:none"></span>
+                </a>
+                <a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" class="topbar-icon icon-achievements yes-hover js-achievements-button" data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+                    <span class="hidden-text">Reputation and Badges</span>
+                    <span class="unread-count" style="display:none">
+                        
+                    </span>
+                </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <a href="http://stackoverflow.com/users/3626188/mliqu" class="profile-me js-gps-track" data-gps-track="profile_summary.click()">
+                    <div class="gravatar-wrapper-24" title="mliqu"><img src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/T08bM.jpg" alt="" width="24" height="24" class="avatar-me js-avatar-me"></div>
+                    <div class="links-container topbar-flair">
+
+                        <span class="reputation" title="your reputation: 3">
+                            3
+                        </span>
+<span title="3 bronze badges"><span class="badge3"></span><span class="badgecount">3</span></span>                    </div>
+                </a>
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+
+
+
+
+    <a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs ">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+	<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow.html" class="question-hyperlink">R Corpus Is Messing Up My UTF-8 Encoded Text</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="24920396" id="question">
+
+    <script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk653703080",4).setZone(43) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk653703080">
+            <iframe id="ados_frame_adzerk653703080_309706" frameborder="0" scrolling="no" height="90" width="728"></iframe><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/i.gif"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="24920396">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b></b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+        <p>I am simply trying to create a corpus from Russian, UTF-8 encoded text.  The problem is, the Corpus method from the <code>tm</code> package is not encoding the strings correctly.</p>
+
+<p>Here is a reproducible example of my problem:</p>
+
+<p><strong>Load in the Russian text:</strong></p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pun">&gt;</span><span class="pln"> data </span><span class="pun">&lt;-</span><span class="pln"> c</span><span class="pun">(</span><span class="str">"Renault Logan, 2005"</span><span class="pun">,</span><span class="str">"Складское помещение, 345 м²"</span><span class="pun">,</span><span class="pln">
+          </span><span class="str">"Су-шеф"</span><span class="pun">,</span><span class="str">"3-к квартира, 64 м², 3/5 эт."</span><span class="pun">,</span><span class="str">"Samsung galaxy S4 mini GT-I9190 (чёрный)"</span><span class="pun">)</span></code></pre>
+
+<p><strong>Create a VectorSource:</strong></p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pun">&gt;</span><span class="pln"> vs </span><span class="pun">&lt;-</span><span class="pln"> VectorSource</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">&gt;</span><span class="pln"> vs </span><span class="com"># outputs correctly</span></code></pre>
+
+<p><strong>Then, create the corpus:</strong></p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pun">&gt;</span><span class="pln"> corp </span><span class="pun">&lt;-</span><span class="pln"> Corpus</span><span class="pun">(</span><span class="pln">vs</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">&gt;</span><span class="pln"> inspect</span><span class="pun">(</span><span class="pln">corp</span><span class="pun">)</span><span class="pln"> </span><span class="com"># output is not encoded properly</span></code></pre>
+
+<p>The output that I get is:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pun">&gt;</span><span class="pln"> inspect</span><span class="pun">(</span><span class="pln">corp</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">&lt;&lt;</span><span class="pln">VCorpus </span><span class="pun">(</span><span class="pln">documents</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln"> metadata </span><span class="pun">(</span><span class="pln">corpus</span><span class="pun">/</span><span class="pln">indexed</span><span class="pun">):</span><span class="pln"> </span><span class="lit">0</span><span class="pun">/</span><span class="lit">0</span><span class="pun">)&gt;&gt;</span><span class="pln">
+
+</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">&lt;&lt;</span><span class="pln">PlainTextDocument </span><span class="pun">(</span><span class="pln">metadata</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">)&gt;&gt;</span><span class="pln">
+Renault Logan</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2005</span><span class="pln">
+
+</span><span class="pun">[[</span><span class="lit">2</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">&lt;&lt;</span><span class="pln">PlainTextDocument </span><span class="pun">(</span><span class="pln">metadata</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">)&gt;&gt;</span><span class="pln">
+Ñêëàäñêîå ïîìåùåíèå</span><span class="pun">,</span><span class="pln"> </span><span class="lit">345</span><span class="pln"> ì</span><span class="pun">&lt;</span><span class="pln">U</span><span class="lit">+00</span><span class="pln">B2</span><span class="pun">&gt;</span><span class="pln">
+
+</span><span class="pun">[[</span><span class="lit">3</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">&lt;&lt;</span><span class="pln">PlainTextDocument </span><span class="pun">(</span><span class="pln">metadata</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">)&gt;&gt;</span><span class="pln">
+Ñó</span><span class="pun">-</span><span class="pln">øåô
+
+</span><span class="pun">[[</span><span class="lit">4</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">&lt;&lt;</span><span class="pln">PlainTextDocument </span><span class="pun">(</span><span class="pln">metadata</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">)&gt;&gt;</span><span class="pln">
+</span><span class="lit">3</span><span class="pun">-</span><span class="pln">ê êâàðòèðà</span><span class="pun">,</span><span class="pln"> </span><span class="lit">64</span><span class="pln"> ì</span><span class="pun">&lt;</span><span class="pln">U</span><span class="lit">+00</span><span class="pln">B2</span><span class="pun">&gt;,</span><span class="pln"> </span><span class="lit">3</span><span class="pun">/</span><span class="lit">5</span><span class="pln"> ýò.
+
+</span><span class="pun">[[</span><span class="lit">5</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">&lt;&lt;</span><span class="pln">PlainTextDocument </span><span class="pun">(</span><span class="pln">metadata</span><span class="pun">:</span><span class="pln"> </span><span class="lit">7</span><span class="pun">)&gt;&gt;</span><span class="pln">
+Samsung galaxy S4 mini GT</span><span class="pun">-</span><span class="pln">I9190 </span><span class="pun">(</span><span class="pln">÷¸ðíûé</span><span class="pun">)</span></code></pre>
+
+<p><strong>Why does it output incorrectly?</strong>  There doesn't seem to be any option to set the encoding on the Corpus method.  Is there a way to set it after the fact?  I have tried this:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pun">&gt;</span><span class="pln"> title_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">title_corpus</span><span class="pun">,</span><span class="pln"> enc2utf8</span><span class="pun">)</span><span class="pln">
+Error </span><span class="kwd">in</span><span class="pln"> FUN</span><span class="pun">(</span><span class="pln">X</span><span class="pun">[[</span><span class="lit">1L</span><span class="pun">]],</span><span class="pln"> </span><span class="lit">...</span><span class="pun">)</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> argumemt is not a character vector</span></code></pre>
+
+<p>But, it errors as shown.</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag js-gps-track" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/encoding" class="post-tag js-gps-track" title="show questions tagged &#39;encoding&#39;" rel="tag">encoding</a> <a href="http://stackoverflow.com/questions/tagged/utf-8" class="post-tag js-gps-track" title="show questions tagged &#39;utf-8&#39;" rel="tag">utf-8</a> <a href="http://stackoverflow.com/questions/tagged/tm" class="post-tag js-gps-track" title="show questions tagged &#39;tm&#39;" rel="tag">tm</a> <a href="http://stackoverflow.com/questions/tagged/corpus" class="post-tag js-gps-track" title="show questions tagged &#39;corpus&#39;" rel="tag">corpus</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/24920396/3626188" title="short permalink to this question" class="short-link" id="link-post-24920396">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/24920396/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info user-hover">
+    <div class="user-action-time">
+        asked <span title="2014-07-23 20:32:06Z" class="relativetime">Jul 23 at 20:32</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1477388/user1477388"><div class="gravatar-wrapper-32"><img src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/260bb71d267800168d25e7c3be88b1c5" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1477388/user1477388">user1477388</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">5,814</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="27 silver badges"><span class="badge2"></span><span class="badgecount">27</span></span><span title="77 bronze badges"><span class="badge3"></span><span class="badgecount">77</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-24920396" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="1" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-38721185" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I cannot replicate. When i run <code>inspect</code> it looks the same as it does in <code>data</code>. What version of <code>tm</code> and R are you using (<code>sessionInfo()</code> should tell you both).</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/2372064/mrflick" title="33464 reputation" class="comment-user">MrFlick</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#comment38721185_24920396"><span title="2014-07-23 20:38:11Z" class="relativetime-clean">Jul 23 at 20:38</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38721290" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@MrFlick I am using <code>R version 3.1.0 (2014-04-10) Platform: x86_64-w64-mingw32/x64 (64-bit)</code> and <code>tm_0.6</code>.  I am on Windows.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1477388/user1477388" title="5814 reputation" class="comment-user owner">user1477388</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#comment38721290_24920396"><span title="2014-07-23 20:41:53Z" class="relativetime-clean">Jul 23 at 20:41</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38721391" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">OK. I'm at a computer with 3.0.2 so I can't get the latest version of <code>tm</code>. But the Corpus doesn't have an encoding parameter but VectorSource should. What happens with <code>VectorSource(data, encoding="UTF-8")</code>. Anything different?</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/2372064/mrflick" title="33464 reputation" class="comment-user">MrFlick</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#comment38721391_24920396"><span title="2014-07-23 20:44:47Z" class="relativetime-clean">Jul 23 at 20:44</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38721469" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">It says, <code>Error in VectorSource(raw_test$title, encoding = "UTF-8") :    unused argument (encoding = "UTF-8")</code></span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1477388/user1477388" title="5814 reputation" class="comment-user owner">user1477388</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#comment38721469_24920396"><span title="2014-07-23 20:47:09Z" class="relativetime-clean">Jul 23 at 20:47</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38721619" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Ugh. It does seem to be removed from the latest version of <code>tm</code> for some reason.  One last shot, <code>VectorSource(enc2utf8(data))</code>. Maybe I can try on my other computer if that doesn't work.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/2372064/mrflick" title="33464 reputation" class="comment-user">MrFlick</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#comment38721619_24920396"><span title="2014-07-23 20:51:23Z" class="relativetime-clean">Jul 23 at 20:51</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-24920396" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link " title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" onclick="">show <b>1</b> more comment</a>
+            </div>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								1 Answer
+                                <span style="display:none;" itemprop="answerCount">1</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="24922159"></a>
+<div id="answer-24922159" class="answer accepted-answer" data-answerid="24922159" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="24922159">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Well, there seems to be good news and bad news. </p>
+
+<p>The good news is that the data appears to be fine even if it doesn't display correctly with <code>inspect()</code>. Try looking at </p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">content</span><span class="pun">(</span><span class="pln">corp</span><span class="pun">[[</span><span class="lit">2</span><span class="pun">]])</span><span class="pln">
+</span><span class="com"># [1] "Складское помещение, 345 м²"</span></code></pre>
+
+<p>The reason it looks funny in <code>inspect()</code> is because the authors changed the way the <code>print.PlainTextDocument</code> function works. It formerly would <code>cat</code> the value to screen. Now, however, they feed the data though <code>writeLines()</code>. This function uses the locale of the system to format the characters/bytes in the document. (This can be viewed with <code>Sys.getlocale()</code>). It turns out Linux and OS X have a proper "UTF-8" encoding, but Windows uses language specific code pages. So if the characters aren't in the code page, they get escaped or translated to funny characters. This means this should work just fine on a Mac, but not on a PC.</p>
+
+<p>Try going a step further and building a DocumentTermMatrix</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">dtm </span><span class="pun">&lt;-</span><span class="pln"> DocumentTermMatrix</span><span class="pun">(</span><span class="pln">corp</span><span class="pun">)</span><span class="pln">
+Terms</span><span class="pun">(</span><span class="pln">dtm</span><span class="pun">)</span></code></pre>
+
+<p>Hopefully you will see (as I do) the words correctly displayed.</p>
+
+<p>If you like, <a href="http://tomizonor.wordpress.com/2013/04/17/file-utf8-windows/" rel="nofollow">this article about writing UTF-8 files on Windows</a> has some more information about this OS specific issue. I see no easy way to get writeLines to output UTF-8 to <code>stdout()</code> on Windows. I'm not sure why the package maintainers changed the print method, but one might ask or submit a feature request to change it back.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/24922159/3626188" title="short permalink to this answer" class="short-link" id="link-post-24922159">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/24922159/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-07-23 22:32:23Z" class="relativetime">Jul 23 at 22:32</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2372064/mrflick"><div class="gravatar-wrapper-32"><img src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/vFfVt.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2372064/mrflick">MrFlick</a><br>
+        <span class="reputation-score" title="reputation score 33464" dir="ltr">33.5k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="17 silver badges"><span class="badge2"></span><span class="badgecount">17</span></span><span title="36 bronze badges"><span class="badge3"></span><span class="badgecount">36</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-24922159" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-38728870" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Perhaps the maintainer should be notified.  +1</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1000343/tyler-rinker" title="29454 reputation" class="comment-user">Tyler Rinker</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#comment38728870_24922159"><span title="2014-07-24 03:45:27Z" class="relativetime-clean">Jul 24 at 3:45</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-38747240" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">You're correct, if I create a DTM it appears to be fine.  Thank you for your guidance.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1477388/user1477388" title="5814 reputation" class="comment-user owner">user1477388</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#comment38747240_24922159"><span title="2014-07-24 13:10:28Z" class="relativetime-clean">Jul 24 at 13:10</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-24922159" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/24920396/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="24920396">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.com/">
+							<h2 class="space">Your Answer</h2>
+
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+            // Have to fire editor after snippets, if snippets enabled
+            if (StackExchange.options.snippets.enabled) {
+                StackExchange.using("snippets", function() {
+                    createEditor();
+                });
+            }
+            else {
+                createEditor();
+            }
+        });
+
+        function createEditor() {
+            prepareEditor({
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: false,
+                    discardSelector: ".discard-answer"
+                ,immediatelyShowMarkdownHelp:true
+                });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I" style="left: 25px;"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L" style="left: 75px;"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q" style="left: 100px;"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K" style="left: 125px;"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G" style="left: 150px;"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" style="left:175px" id="wmd-snippet-button" title="Code snippet Ctrl-M"><span style="background-image: url(http://stackoverflow.com/content/balsamiq/wmd-mockup-button.png?v=4);"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2" style="left: 200px;"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O" style="left: 225px;"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U" style="left: 250px;"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H" style="left: 275px;"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R" style="left: 300px;"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3" style="left: 325px;"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z" style="left: 350px;"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y" style="left: 375px;"><span style="background-position: -220px -20px;"></span></li><li class="wmd-button wmd-help-button active-help" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li><div id="mdhelp" class="mdhelp" style="right: -7.99996566772461px; width: 668px; top: 25px;">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-buttons="image">Images</li>
+        <li data-tab="mdhelp-styles" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html"> HTML </li>
+        <li style="float:right"><a href="http://stackoverflow.com/editing-help" target="_blank">advanced help »</a></li>
+    </ul>
+    
+    <div class="mdhelp-tab" id="mdhelp-links">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit http://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;http://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+                <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: http://notfound.stackexchange.com/
+ [question]: http://english.stackexchange.com/questions/11481
+</pre>
+                <p>You can add tooltips to links:</p>
+<pre> Click [here](http://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")! This works with [reference links][blog] as well.   [blog]: http://blog.stackoverflow.com/<span class="spaces">&nbsp;</span>"click here for updates" </pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-images">
+        <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+        <pre>![a busy cat](http://sstatic.net/stackoverflow/img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: http://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+        <p>
+            The word in square brackets is the alt text, which gets displayed if the browser
+ can't show the image. Be sure to include meaningful alt text for screen-reading
+ software.
+        </p>
+   
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-styles">
+        <div class="col1">
+            <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+        
+        </div>
+        <div class="col2">
+            <p>
+                To break your text into sections, you can use headers:
+            </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+            <p>
+                Use hash marks if you need several levels of headers:</p>
+    <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+
+            
+        </div>
+
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-lists">
+        <p>Both bulleted and numbered lists are possible:</p>
+        <div class="col1">
+<pre> -<span class="spaces">&nbsp;</span>Use a minus sign for a bullet +<span class="spaces">&nbsp;</span>Or plus sign *<span class="spaces">&nbsp;</span>Or an asterisk  1.<span class="spaces">&nbsp;</span>Numbered lists are easy 2.<span class="spaces">&nbsp;</span>Markdown keeps track of  the numbers for you 7.<span class="spaces">&nbsp;</span>So this will be item 3. </pre>
+        </div>
+        <div class="col2">
+<pre> 1.<span class="spaces">&nbsp;</span>Lists in a list item: <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again. 2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items. <span class="spaces">&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent. </pre>        
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes">
+        <div class="col1">
+            <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+</pre>
+        </div>
+        <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-code">
+        <p>
+            To create code blocks or other preformatted text, indent by four spaces:
+        </p>
+        <pre> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Markdown and HTML are turned off in code blocks: <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](http://example.com) </pre>
+        <p>
+            To create not a block, but an inline code span, use backticks:
+        </p>
+        <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+        <p>
+            If you want to have a preformatted block within a list, indent by eight spaces:
+        </p>
+        <pre> 1. This is normal text. 2. So is this, but now follows a code block: <span class="spaces">&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block. </pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-html">
+        <p>
+            If you need to do something that Markdown can't handle, use HTML. Note that <a href="http://meta.stackexchange.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a>
+        </p>
+        <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+        <p>
+            Markdown is smart enough not to mangle your span-level HTML:
+        </p>
+        <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+        <p>
+            Block-level HTML elements have a few restrictions:
+        </p>
+        <ol>
+            <li>They must be separated from surrounding text by blank lines.</li>
+            <li>The begin and end tags of the outermost block element must not be indented.</li>
+            <li>Markdown can't be used within HTML blocks.</li>
+        </ol>
+        <br>
+        <pre> &lt;pre&gt;  You can &lt;em&gt;not&lt;/em&gt; use Markdown in here. &lt;/pre&gt; </pre>
+    </div>
+
+    <div class="cbt"></div>
+</div></ul></div>
+            <div style="clear: both; height: 24px;"></div><textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div class="grippie" style="margin-right: -8px;"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="6bef6e5254dbe64879cbccfe9e04b968">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" class="discard-answer dno">discard</a>
+								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/encoding" class="post-tag" title="show questions tagged &#39;encoding&#39;" rel="tag">encoding</a> <a href="http://stackoverflow.com/questions/tagged/utf-8" class="post-tag" title="show questions tagged &#39;utf-8&#39;" rel="tag">utf-8</a> <a href="http://stackoverflow.com/questions/tagged/tm" class="post-tag" title="show questions tagged &#39;tm&#39;" rel="tag">tm</a> <a href="http://stackoverflow.com/questions/tagged/corpus" class="post-tag" title="show questions tagged &#39;corpus&#39;" rel="tag">corpus</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+
+
+
+<script>
+    window.showNewUser = false;
+
+</script>
+
+<div class="module newuser newuser-greeting" id="newuser-box" style="display:none;">
+    <h4>Hello World!</h4>
+    <div>
+        <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p><p>Got a question about the site itself? <a href="http://meta.stackoverflow.com/">meta</a> is the place to talk about things like what questions are appropriate, what tags we should use, etc.</p>
+        <p class="ar">
+                <a href="http://stackoverflow.com/tour?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;
+            <a href="http://stackoverflow.com/help?mnu=1">help »</a>
+                &nbsp; <a href="http://meta.stackoverflow.com/">meta »</a>
+        </p>
+    </div>
+</div>
+    <script>
+    if (showNewUser) {
+        document.getElementById('newuser-box').style.display = '';
+    }
+    </script>						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2014-07-23 20:32:06Z"><b>3 months ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>143 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text?lastactivity" class="lastactivity-link" title="2014-07-23 22:32:23Z">3 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Blog
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="http://blog.stackoverflow.com/2014/11/stack-exchange-for-the-ipad-is-here-and-ios-apps-now-support-ios-8/?cb=1" class="question-hyperlink">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://blog.stackoverflow.com/2014/11/stack-exchange-for-the-ipad-is-here-and-ios-apps-now-support-ios-8/?cb=1" class="question-hyperlink">Stack Exchange for the iPad is here – and iOS apps now support iOS 8</a>
+                </div>
+                <br class="cbt">
+            </div>
+                <div class="bulletin-title">
+                    Hot Meta Posts
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">9</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/276120/undo-android-wear-android-tag-synonym?cb=1" class="question-hyperlink">Undo [android-wear] -&gt; [android] tag synonym</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">18</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/276105/add-this-is-my-first-post-to-the-question-content-filter?cb=1" class="question-hyperlink">Add 'this is my first post' to the question content filter</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">3</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/276100/do-i-misunderstand-the-cant-be-reproduced-close-reason?cb=1" class="question-hyperlink">Do I misunderstand the “can't be reproduced” close-reason?</a>
+                </div>
+                <br class="cbt">
+            </div>
+    </div>
+</div>			
+			<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk1041247192",[17,2221]).setZone(45) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1041247192">
+            <iframe id="ados_frame_adzerk1041247192_322052" frameborder="0" scrolling="no" height="500" width="220"></iframe><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/24920396/r-corpus-is-messing-up-my-utf-8-encoded-text#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/i(1).gif"></div>  
+        <div id="hireme" class=" orange near-you tagged">  <a href="http://careers.stackoverflow.com/?a=2CMX6&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-orange-nearyou" class="top" target="_blank"> <span>Jobs near you</span> </a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/67320/software-developer-wpf-silverlight-xaml-net-mgc-diagnostics?a=mzMxVXjw6CB&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-orange-nearyou" target="_blank" title="Software Developer - WPF Silverlight, XAML,.Net at MGC Diagnostics. Click to learn more."> <span class="title">Software Developer - WPF Silverlight, XAML,.Net</span> <span class="company">MGC Diagnostics</span> <span class="location">St. Paul, MN</span> <span class="post-tag">wpf</span> <span class="post-tag">silverlight</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/70107/software-automation-intern-local-candidates-only-municipal-parking-services?a=nvJlLSReZDY&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-orange-nearyou" target="_blank" title="SOFTWARE AUTOMATION INTERN-local candidates only at Municipal Parking Services. Click to learn more."> <span class="title">SOFTWARE AUTOMATION INTERN-local candidates only</span> <span class="company">Municipal Parking Services</span> <span class="location">Minnetonka, MN</span> </a> </li> <li class="city"><a href="http://careers.stackoverflow.com/jobs/location/minneapolis%2c%20mn%2c%20united%20states?a=94CsciQ&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-orange-nearyou">More jobs near Minneapolis...</a></li> </ul> <img alt="" class="impression" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/mzMxVXjw6CB-nvJlLSReZDY-2CMX6-94CsciQ" style="display:none"> </div>
+			  
+    
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/15089655?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/15089655/r-is-it-possible-to-manipulate-a-corpus-made-with-tm?rq=1" class="question-hyperlink">R: is it possible to manipulate a corpus made with tm?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/18706717?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/18706717/r-find-corpus-document-by-id-tag-and-set-an-additional-tag?rq=1" class="question-hyperlink">R: find corpus document by ID-tag and set an additional tag</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20184541?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/20184541/using-r-for-text-mining-reuters-21578?rq=1" class="question-hyperlink">Using R for Text Mining Reuters-21578</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21251048?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/21251048/corpus-with-selected-files-in-a-directory?rq=1" class="question-hyperlink">corpus with selected files in a directory</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/24191728?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">6
+    </div>
+</a><a href="http://stackoverflow.com/questions/24191728/documenttermmatrix-error-on-corpus-argument?rq=1" class="question-hyperlink">DocumentTermMatrix error on Corpus argument</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/24501514?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/24501514/keep-document-id-with-r-corpus?rq=1" class="question-hyperlink">Keep document ID with R corpus</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/24703920?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/24703920/r-tm-package-vcorpus-corpus-to-dataframe?rq=1" class="question-hyperlink">R tm package vcorpus, corpus to dataframe</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25330753?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/25330753/more-efficient-means-of-creating-a-corpus-and-dtm?rq=1" class="question-hyperlink">More efficient means of creating a corpus and DTM</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25490088?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/25490088/convert-corpus-into-data-frame-in-r?rq=1" class="question-hyperlink">convert corpus into data.frame in R</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25972342?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/25972342/r-how-to-use-specc-with-a-corpus?rq=1" class="question-hyperlink">R: How to use specc() with a corpus</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/38405/what-does-mean-to-get-to-the-nuts-and-balls-of-something" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does mean to "get to the nuts and balls of something"?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-webmasters" title="Webmasters Stack Exchange"></div><a href="http://webmasters.stackexchange.com/questions/71690/for-seo-should-an-id-in-the-url-go-at-the-beginning-or-end" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:45 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    For SEO, should an ID in the URL go at the beginning or end
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/68846/someone-thinks-poorly-of-my-server-log-parser" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Someone thinks poorly of my server log parser
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div><a href="http://photo.stackexchange.com/questions/56448/horrible-quality-of-prints-developed-from-film" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Horrible quality of prints developed from film
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/31184/good-idea-to-name-the-keynote-speaker-of-a-local-conference-at-which-my-paper-wa" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Good idea to name the keynote speaker of a local conference at which my paper was accepted to be presented?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/3601/how-would-law-enforcement-be-different-if-we-could-talk-to-the-dead" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How would law enforcement be different if we could talk to the dead?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gis" title="Geographic Information Systems Stack Exchange"></div><a href="http://gis.stackexchange.com/questions/121023/automatically-publishing-wms-wfs-in-geoserver" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:79 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Automatically publishing WMS/WFS in Geoserver
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div><a href="http://space.stackexchange.com/questions/5821/where-in-the-solar-system-can-a-person-safely-get-enough-sun-to-make-vitamin-d" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where in the solar system can a person safely get enough sun to make vitamin D?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/210592/how-to-bend-a-curve-above-text-with-tikz" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to bend a curve above text with TikZ?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/38281/how-to-start-traveling-the-world-by-bicycle" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to start traveling the world by bicycle?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/72230/is-blocking-a-countrys-access-to-a-website-a-good-measure-to-avoid-hackers-from" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is blocking a country's access to a website a good measure to avoid hackers from that country?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/261801/how-to-deal-with-no-code-reviews-in-my-new-place-when-i-come-from-that-practice" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to deal with no code reviews in my new place when I come from that practice?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/3623/if-a-space-ship-crashes-on-a-planet-is-it-realistic-that-things-from-that-space" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    If a space ship crashes on a planet, is it realistic that things from that space ship could be rescued afterwards?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/71951/did-the-original-thundercats-cartoon-take-place-on-earth" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Did the original Thundercats cartoon take place on Earth?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div><a href="http://bicycles.stackexchange.com/questions/25451/how-to-get-over-anger-at-inconsiderate-drivers" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to get over anger at inconsiderate drivers
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/3583/a-small-pandigital-equation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A small pandigital equation
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="http://salesforce.stackexchange.com/questions/55241/possible-to-add-a-clickable-url-using-apexpages-addmessage" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Possible to add a clickable URL using ApexPages.addMessage
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-magento" title="Magento Stack Exchange"></div><a href="http://magento.stackexchange.com/questions/42566/how-to-identify-extensions-that-phone-home" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:479 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to identify extensions that "phone home"?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/3564/cremation-in-new-york" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Cremation in New York
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/642123/hp-dl585-g6-and-pcie-ssd" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    HP DL585 G6 and PCIE SSD
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/38218/catalan-or-spanish-in-barcelona" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Catalan or Spanish in Barcelona?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/40932/unscramble-the-source-code" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Unscramble the Source Code
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="http://salesforce.stackexchange.com/questions/55235/delete-operation-too-large-but-all-related-records-have-been-deleted" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Delete Operation Too Large - but all related records have been deleted
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/122722/please-explain-the-waiting-paradox" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Please explain the waiting paradox
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/24920396" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/24920396/ivc/d9ed');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/24920396/ivc/d9ed" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-r</div></div>
+
+    <script>
+        $('#wmd-input').one("keypress", function() {
+            $.ajax({
+                url: '/accounts/email-settings-form',
+                cache: false,
+                success: function(data) {
+                    $('#submit-button').parent().prepend(data);
+                }
+            });
+        });
+
+    </script>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=footerlink">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>                   with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.11.5.1993
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('r,encoding,utf-8,tm,corpus,x-user-registered');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        ga('set', 'dimension1', '2706904');         
+        ga('set', 'dimension2', '|r|encoding|utf-8|tm|corpus|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script><script type="text/javascript" src="./encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/p"></script></body></html>
