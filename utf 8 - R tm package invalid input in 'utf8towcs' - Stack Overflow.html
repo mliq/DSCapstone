@@ -1,0 +1,2118 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=038622610830">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=fd7230a85918">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="R tm package invalid input in &#39;utf8towcs&#39;">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I&#39;m trying to use the tm package in R to perform some text analysis. I tied the following:
+
+require(tm)
+dataSet &amp;lt;- Corpus(DirSource(&#39;tmp/&#39;))
+dataSet &amp;lt;- tm_map(dataSet, tolower)
+Error in ">
+    <meta property="og:url" content="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs">
+    <link rel="canonical" href="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow.html">
+
+    
+    
+    <script type="text/javascript" async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/ados"></script><script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/quant.js"></script><script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/beacon.js"></script><script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/ados.js"></script><script src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;R tm package invalid input in &#39;utf8towcs&#39;&#39;" href="http://stackoverflow.com/feeds/question/9637278">
+    <script>
+        
+        StackExchange.ready(function () {
+                
+                StackExchange.using("snippets", function () {
+                    StackExchange.snippets.initSnippetRenderer();
+                });
+                
+
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({votesCast:[],autoShowCommentHelp:true,showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:9637278});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '9637278');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1415143376,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"6bef6e5254dbe64879cbccfe9e04b968","isRegistered":true,"userType":3,"userId":3626188,"accountId":2706904,"gravatar":"<div class=\"gravatar-wrapper-32\"><img src=\"http://i.stack.imgur.com/T08bM.jpg?s=32&g=1\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"http://stackoverflow.com/users/3626188/mliqu","notificationsUnviewedCount":4,"inboxUnviewedCount":0,"ab":{"homepage_recommended_algo":{"v":"c","g":1}}}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"6815b3b9e5bb","js/moderator.en.js":"f0aae043e417","js/full-anon.en.js":"4d8843a00435","js/full.en.js":"d5b469d48fb4","js/wmd.en.js":"33ee5d5fdec6","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"a3258d148a79","js/help.en.js":"3f77ed7484ba","js/tageditor.en.js":"cce06892ec76","js/tageditornew.en.js":"c75b934d92c1","js/inline-tag-editing.en.js":"1a5cabd8e30a","js/revisions.en.js":"c7eee8ab1fda","js/review.en.js":"1350d8e6df90","js/tagsuggestions.en.js":"8d0285beb9fb","js/post-validation.en.js":"d6f09029c0d1","js/explore-qlist.en.js":"ce6dbe2ac3f4","js/events.en.js":"11fb9f812476","js/keyboard-shortcuts.en.js":"d21edebf1437","js/external-editor.en.js":"d63c2f10e7e1","js/external-editor.en.js":"d63c2f10e7e1","js/snippet-javascript.en.js":"1d51257a8f1d","js/snippet-javascript-codemirror.en.js":"27207422c59d"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+    
+    
+<script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/full.en.js"></script><script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/prettify-full.en.js"></script><script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/external-editor.en.js"></script><script async="" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/wmd.en.js"></script><script type="text/javascript" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="http://static.adzerk.net/Extensions/adFeedback.css"><style type="text/css"> .wmd-snippet-button span { background-position: 0 0; } .wmd-snippet-button:hover span { background-position: 0 -40px; }</style><link href="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/sidebar.min.css" type="text/css" rel="stylesheet"></head>
+<body class="question-page new-topbar" lang="">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+                    <a href="http://stackoverflow.com/users/logout" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+    </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+                <a href="http://stackexchange.com/users/2706904/?tab=accounts">your communities</a>
+        </h3>
+            
+            <a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" id="edit-pinned-sites">edit</a>
+            <a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" id="cancel-pinned-sites" style="display: none;">cancel</a>
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <ul class="my-sites">
+                    <li>
+                        
+
+
+
+    <a href="http://ebooks.stackexchange.com/" class="site-link js-gps-track" data-id="530" data-gps-track="
+            site.switch({ target_site:530, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-ebooks" title="Ebooks"></div>
+        Ebooks
+            <span class="rep-score">11</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://stackoverflow.com/" class="site-link js-gps-track" data-id="1" data-gps-track="
+            site.switch({ target_site:1, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+            <span class="rep-score">3</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://apple.stackexchange.com/" class="site-link js-gps-track" data-id="118" data-gps-track="
+            site.switch({ target_site:118, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-apple" title="Ask Different"></div>
+        Ask Different
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://expatriates.stackexchange.com/" class="site-link js-gps-track" data-id="546" data-gps-track="
+            site.switch({ target_site:546, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-expatriates" title="Expatriates"></div>
+        Expatriates
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://music.stackexchange.com/" class="site-link js-gps-track" data-id="240" data-gps-track="
+            site.switch({ target_site:240, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-music" title="Musical Practice &amp; Performance"></div>
+        Musical Practice &amp; Performance
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+            </ul>
+                <div class="pinned-site-editor-container" style="display: none;">
+                    <input id="js-site-search-txt" type="text" class="site-filter-input" value="" placeholder="Add a Stack Exchange community">
+                    <input type="submit" id="pin-site-btn" value="Add" disabled="disabled">
+                    <ul class="js-found-sites found-sites"></ul>
+                    <ul class="pinned-site-list sortable" data-custom-list="False">
+                    </ul>
+                    <input type="submit" value="Save" id="save-pinned-sites-btn" disabled="disabled">
+                    <a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" id="reset-pinned-sites">reset to default list</a>
+                </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 130 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+                <a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+                    <span class="hidden-text">Inbox</span>
+                    <span class="unread-count" style="display:none"></span>
+                </a>
+                <a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" class="topbar-icon icon-achievements yes-hover js-achievements-button" data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+                    <span class="hidden-text">Reputation and Badges</span>
+                    <span class="unread-count" style="display:none">
+                        
+                    </span>
+                </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <a href="http://stackoverflow.com/users/3626188/mliqu" class="profile-me js-gps-track" data-gps-track="profile_summary.click()">
+                    <div class="gravatar-wrapper-24" title="mliqu"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/T08bM.jpg" alt="" width="24" height="24" class="avatar-me js-avatar-me"></div>
+                    <div class="links-container topbar-flair">
+
+                        <span class="reputation" title="your reputation: 3">
+                            3
+                        </span>
+<span title="3 bronze badges"><span class="badge3"></span><span class="badgecount">3</span></span>                    </div>
+                </a>
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+
+
+
+
+    <a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs ">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+	<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow.html" class="question-hyperlink">R tm package invalid input in 'utf8towcs'</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="9637278" id="question">
+
+    <script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk946057998",4).setZone(43) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk946057998"><a href="http://engine.adzerk.net/r?e=eyJhdiI6Mzc2OCwiYXQiOjQsImJ0IjowLCJjbSI6MTczMDczLCJjaCI6MTE3OCwiY3IiOjU2ODg4MSwiZGkiOiJkNjEwMDAzMzRlMjM0NTUyOTI0ZGY2YWZlNWY5NTY1MCIsImRtIjoxLCJmYyI6NTg2MzEzLCJmbCI6MzAyMjUwLCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6InIsdXRmLTgsaWNvbnYsdGV4dC1taW5pbmcseC11c2VyLXJlZ2lzdGVyZWQiLCJtayI6InIsdGV4dC1taW5pbmciLCJudyI6MjIsInBjIjo3LjUsInByIjo3NjUsInJ0IjoyLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3QiOjgyNzcsInVrIjoidWUxLWUwMzIyMGUzNWFmZTQ4MWU4MjZiNWQyOGIyNmZhM2Q2Iiwiem4iOjQzLCJ0cyI6MTQxNTE0MzM3NzI3OCwidXIiOiJodHRwOi8vd3d3LnVzZmNhLmVkdS9hcnRzY2kvbXNhbi8ifQ&s=bu0hP4XNR7pirKhKprqSmiN00gM" rel="nofollow" target="_blank" title=""><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/0a88883b872049f7b2b30ba450056f57.gif" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/i.gif"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="9637278">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">11</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>3</b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+        <p>I'm trying to use the tm package in R to perform some text analysis. I tied the following:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">require</span><span class="pun">(</span><span class="pln">tm</span><span class="pun">)</span><span class="pln">
+dataSet </span><span class="pun">&lt;-</span><span class="pln"> Corpus</span><span class="pun">(</span><span class="pln">DirSource</span><span class="pun">(</span><span class="str">'tmp/'</span><span class="pun">))</span><span class="pln">
+dataSet </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">dataSet</span><span class="pun">,</span><span class="pln"> tolower</span><span class="pun">)</span><span class="pln">
+Error </span><span class="kwd">in</span><span class="pln"> FUN</span><span class="pun">(</span><span class="pln">X</span><span class="pun">[[</span><span class="lit">6L</span><span class="pun">]],</span><span class="pln"> </span><span class="lit">...</span><span class="pun">)</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> invalid input </span><span class="str">'RT @noXforU Erneut riesiger (Alt-)�lteppich im Golf von Mexiko (#pics vom Freitag) http://bit.ly/bw1hvU http://bit.ly/9R7JCf #oilspill #bp'</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> </span><span class="str">'utf8towcs'</span></code></pre>
+
+<p>The problem is some characters are not valid. I'd like to exclude the invalid characters from analysis either from within R or before importing the files for processing.</p>
+
+<p>I tried using iconv to convert all files to utf-8 and exclude anything that can't be converted to that as follows:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">find . </span><span class="pun">-</span><span class="pln">type f </span><span class="pun">-</span><span class="pln">exec iconv </span><span class="pun">-</span><span class="pln">t utf</span><span class="lit">-8</span><span class="pln"> </span><span class="str">"{}"</span><span class="pln"> </span><span class="pun">-</span><span class="pln">c </span><span class="pun">-</span><span class="pln">o tmpConverted</span><span class="pun">/</span><span class="str">"{}"</span><span class="pln"> \</span><span class="pun">;</span><span class="pln"> </span></code></pre>
+
+<p>as pointed out here <a href="http://stackoverflow.com/questions/4544669/batch-convert-latin-1-files-to-utf-8-using-iconv">Batch convert latin-1 files to utf-8 using iconv</a></p>
+
+<p>But I still get the same error.</p>
+
+<p>I'd appreciate any help.</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag js-gps-track" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/utf-8" class="post-tag js-gps-track" title="show questions tagged &#39;utf-8&#39;" rel="tag">utf-8</a> <a href="http://stackoverflow.com/questions/tagged/iconv" class="post-tag js-gps-track" title="show questions tagged &#39;iconv&#39;" rel="tag">iconv</a> <a href="http://stackoverflow.com/questions/tagged/text-mining" class="post-tag js-gps-track" title="show questions tagged &#39;text-mining&#39;" rel="tag">text-mining</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/9637278/3626188" title="short permalink to this question" class="short-link" id="link-post-9637278">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9637278/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/9637278/revisions" title="show all edits to this post">edited <span title="2012-03-10 09:59:54Z" class="relativetime">Mar 10 '12 at 9:59</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1036500/ben"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/wUrRD.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1036500/ben">Ben</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">9,418</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="50 bronze badges"><span class="badge3"></span><span class="badgecount">50</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2012-03-09 16:10:20Z" class="relativetime">Mar 9 '12 at 16:10</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1135928/maiaini"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/292b8fbc4c1c923925d7e7feeafaf13b" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1135928/maiaini">maiaini</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">90</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9637278" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-9637278" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								8 Answers
+                                <span style="display:none;" itemprop="answerCount">8</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="14389820"></a>
+<div id="answer-14389820" class="answer" data-answerid="14389820" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="14389820">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I have just run afoul of this problem. By chance are you using a machine running OSX? I am and seem to have traced the problem to the definition of the character set that R is compiled against on this operating system (see <a href="https://stat.ethz.ch/pipermail/r-sig-mac/2012-July/009374.html">https://stat.ethz.ch/pipermail/r-sig-mac/2012-July/009374.html</a>)</p>
+
+<p>What I was seeing is that using the solution from the FAQ</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">tm_map</span><span class="pun">(</span><span class="pln">yourCorpus</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> iconv</span><span class="pun">(</span><span class="pln">enc2utf8</span><span class="pun">(</span><span class="pln">x</span><span class="pun">),</span><span class="pln"> sub </span><span class="pun">=</span><span class="pln"> </span><span class="str">"byte"</span><span class="pun">))</span></code></pre>
+
+<p>was giving me this warning:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">Warning message</span><span class="pun">:</span><span class="pln">
+it is not known that wchar_t is Unicode on this platform </span></code></pre>
+
+<p>This I traced to the <code>enc2utf8</code> function. Bad news is that this is a problem with my underlying OS and not R. </p>
+
+<p>So here is what I did as a work around:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">tm_map</span><span class="pun">(</span><span class="pln">yourCorpus</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> iconv</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> to</span><span class="pun">=</span><span class="str">'UTF-8-MAC'</span><span class="pun">,</span><span class="pln"> sub</span><span class="pun">=</span><span class="str">'byte'</span><span class="pun">))</span></code></pre>
+
+<p>This forces iconv to use the utf8 encoding on the macintosh and works fine without the need to recompile.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/14389820/3626188" title="short permalink to this answer" class="short-link" id="link-post-14389820">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/14389820/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/14389820/revisions" title="show all edits to this post">edited <span title="2013-01-18 16:10:26Z" class="relativetime">Jan 18 '13 at 16:10</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-01-17 23:08:20Z" class="relativetime">Jan 17 '13 at 23:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1005808/kenton"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/3c16c2de3a09c0a0991d1335a71f1e34" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1005808/kenton">Kenton</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">424</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="4 bronze badges"><span class="badge3"></span><span class="badgecount">4</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-14389820" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-14389820" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk1570826799",4).setZone(44) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1570826799"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo4NDcsImNoIjoxMTc4LCJjciI6NTkyMCwiZGkiOiI4NWM3ZWZmZTBhN2U0NTllOTJjYmI4NzA2MjVkMmJlMCIsImRtIjoxLCJmYyI6ODgwNiwiZmwiOjI0NDQsImlwIjoiNzUuNzMuNi42MiIsImt3Ijoicix1dGYtOCxpY29udix0ZXh0LW1pbmluZyx4LXVzZXItcmVnaXN0ZXJlZCIsIm53IjoyMiwicGMiOjAsInByIjoxNTY4LCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS1lMDMyMjBlMzVhZmU0ODFlODI2YjVkMjhiMjZmYTNkNiIsInpuIjo0NCwidHMiOjE0MTUxNDMzNzcyODAsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20_dXRtX3NvdXJjZT1zdGFja2V4Y2hhbmdlLmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1ob3VzZS1hZHMtY2F0Y2gtYWxsLWFsbC1zaXRlcyZ1dG1fY29udGVudD1sYi1naXRodWIifQ&s=dulpV4gtQe1tofdp6DQscm1FVy4" rel="nofollow" target="_blank" title=""><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/60abb4b317034aa2af0bc697e6f02963.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/i(1).gif"></div>
+  
+<a name="11633398"></a>
+<div id="answer-11633398" class="answer" data-answerid="11633398" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="11633398">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">5</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>This is from the tm faq:</p>
+
+<blockquote>
+  <p>it will replace non-convertible bytes in yourCorpus with strings
+  showing their hex codes.</p>
+</blockquote>
+
+<p>I hope this helps, for me it does.</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">tm_map</span><span class="pun">(</span><span class="pln">yourCorpus</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> iconv</span><span class="pun">(</span><span class="pln">enc2utf8</span><span class="pun">(</span><span class="pln">x</span><span class="pun">),</span><span class="pln"> sub </span><span class="pun">=</span><span class="pln"> </span><span class="str">"byte"</span><span class="pun">))</span></code></pre>
+
+<p><a href="http://tm.r-forge.r-project.org/faq.html">http://tm.r-forge.r-project.org/faq.html</a></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/11633398/3626188" title="short permalink to this answer" class="short-link" id="link-post-11633398">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/11633398/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/11633398/revisions" title="show all edits to this post">edited <span title="2012-07-24 14:54:20Z" class="relativetime">Jul 24 '12 at 14:54</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/480659/chad-ferguson"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/689e6ba5f47bd143032e015633d45bff" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/480659/chad-ferguson">Chad Ferguson</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,354</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="17 silver badges"><span class="badge2"></span><span class="badgecount">17</span></span><span title="28 bronze badges"><span class="badge3"></span><span class="badgecount">28</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-07-24 14:45:44Z" class="relativetime">Jul 24 '12 at 14:45</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1374611/user1374611"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/d2edb5fb1eead3b5fe8eb514235094f8" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1374611/user1374611">user1374611</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">51</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-11633398" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-11633398" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="22794831"></a>
+<div id="answer-22794831" class="answer" data-answerid="22794831" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="22794831">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>None of the above answers worked for me. The only way to work around this problem was to remove all non graphical characters (<a href="http://stat.ethz.ch/R-manual/R-patched/library/base/html/regex.html" rel="nofollow">http://stat.ethz.ch/R-manual/R-patched/library/base/html/regex.html</a>).</p>
+
+<p>The code is this simple </p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">usableText</span><span class="pun">=</span><span class="pln">str_replace_all</span><span class="pun">(</span><span class="pln">tweets</span><span class="pun">$</span><span class="pln">text</span><span class="pun">,</span><span class="str">"[^[:graph:]]"</span><span class="pun">,</span><span class="pln"> </span><span class="str">" "</span><span class="pun">)</span><span class="pln"> </span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/22794831/3626188" title="short permalink to this answer" class="short-link" id="link-post-22794831">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/22794831/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/22794831/revisions" title="show all edits to this post">edited <span title="2014-04-01 19:29:37Z" class="relativetime">Apr 1 at 19:29</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/120917/sztupy"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/cfb74e792db321ba120ffa223197f673" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/120917/sztupy">SztupY</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">4,699</span><span title="5 gold badges"><span class="badge1"></span><span class="badgecount">5</span></span><span title="31 silver badges"><span class="badge2"></span><span class="badgecount">31</span></span><span title="56 bronze badges"><span class="badge3"></span><span class="badgecount">56</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-04-01 19:12:36Z" class="relativetime">Apr 1 at 19:12</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/3486552/david"><div><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/18d3c613698a45668121ff5bc352ffed" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/3486552/david">David</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">31</span><span title="1 bronze badge"><span class="badge3"></span><span class="badgecount">1</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-22794831" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-22794831" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="12085635"></a>
+<div id="answer-12085635" class="answer" data-answerid="12085635" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="12085635">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Use the following steps:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="com"># First you change your document in .txt format with encoding UFT-8</span><span class="pln">
+library</span><span class="pun">(</span><span class="pln">tm</span><span class="pun">)</span><span class="pln">
+</span><span class="com"># Set Your directoryExample ("F:/tmp").</span><span class="pln">
+dataSet </span><span class="pun">&lt;-</span><span class="pln"> Corpus</span><span class="pun">(</span><span class="pln">DirSource </span><span class="pun">(</span><span class="str">"/tmp"</span><span class="pun">),</span><span class="pln"> readerControl</span><span class="pun">=</span><span class="pln">list</span><span class="pun">(</span><span class="pln">language</span><span class="pun">=</span><span class="str">"english)) # "</span><span class="pun">/</span><span class="pln">tmp</span><span class="str">" is your directory. You can use any language in place of English whichever allowed by R.
+dataSet &lt;- tm_map(dataSet, tolower)
+
+Inspect(dataSet)</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/12085635/3626188" title="short permalink to this answer" class="short-link" id="link-post-12085635">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/12085635/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/12085635/revisions" title="show all edits to this post">edited <span title="2012-09-05 01:18:34Z" class="relativetime">Sep 5 '12 at 1:18</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/646382/jonsca"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/ab24c0e23c30888c23e2d4fe9991cf2b" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/646382/jonsca">jonsca</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">6,610</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="28 silver badges"><span class="badge2"></span><span class="badgecount">28</span></span><span title="44 bronze badges"><span class="badge3"></span><span class="badgecount">44</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-08-23 06:04:57Z" class="relativetime">Aug 23 '12 at 6:04</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1616019/ashutosh-agrahari"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/4c466a78bfff8983696fe7144d056644" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1616019/ashutosh-agrahari">Ashutosh Agrahari</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">19</span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-12085635" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-12085635" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="9644641"></a>
+<div id="answer-9644641" class="answer" data-answerid="9644641" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="9644641">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>This is a common issue with the <code>tm</code> package (<a href="https://stat.ethz.ch/pipermail/r-help/2011-February/268398.html" rel="nofollow">1</a>, <a href="http://www.mail-archive.com/r-help@r-project.org/msg82509.html" rel="nofollow">2</a>, <a href="http://comments.gmane.org/gmane.comp.lang.r.general/229909" rel="nofollow">3</a>).</p>
+
+<p>One non-<code>R</code> way to fix it is to use a text editor to find and replace all the fancy characters (ie. those with diacritics) in your text before loading it into <code>R</code> (or use <code>gsub</code> in <code>R</code>). For example you'd search and replace all instances of the O-umlaut in Öl-Teppich. <a href="http://comments.gmane.org/gmane.comp.lang.r.general/229909" rel="nofollow">Others</a> have had success with this (I have too), but if you have thousands of individual text files obviously this is no good.</p>
+
+<p>For an <code>R</code> solution, I found that using <code>VectorSource</code> instead of <code>DirSource</code> seems to solve the problem:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="com"># I put your example text in a file and tested it with both ANSI and </span><span class="pln">
+</span><span class="com"># UTF-8 encodings, both enabled me to reproduce your problem</span><span class="pln">
+</span><span class="com">#</span><span class="pln">
+tmp </span><span class="pun">&lt;-</span><span class="pln"> Corpus</span><span class="pun">(</span><span class="pln">DirSource</span><span class="pun">(</span><span class="str">'C:\\...\\tmp/'</span><span class="pun">))</span><span class="pln">
+tmp </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">dataSet</span><span class="pun">,</span><span class="pln"> tolower</span><span class="pun">)</span><span class="pln">
+Error </span><span class="kwd">in</span><span class="pln"> FUN</span><span class="pun">(</span><span class="pln">X</span><span class="pun">[[</span><span class="lit">1L</span><span class="pun">]],</span><span class="pln"> </span><span class="lit">...</span><span class="pun">)</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> 
+  invalid input </span><span class="str">'RT @noXforU Erneut riesiger (Alt-)Öl–teppich im Golf von Mexiko (#pics vom Freitag) http://bit.ly/bw1hvU http://bit.ly/9R7JCf #oilspill #bp'</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> </span><span class="str">'utf8towcs'</span><span class="pln">
+</span><span class="com"># quite similar error to what you got, both from ANSI and UTF-8 encodings</span><span class="pln">
+</span><span class="com">#</span><span class="pln">
+</span><span class="com"># Now try VectorSource instead of DirSource</span><span class="pln">
+tmp </span><span class="pun">&lt;-</span><span class="pln"> readLines</span><span class="pun">(</span><span class="str">'C:\\...\\tmp.txt'</span><span class="pun">)</span><span class="pln"> 
+tmp
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="str">"RT @noXforU Erneut riesiger (Alt-)Öl–teppich im Golf von Mexiko (#pics vom Freitag) http://bit.ly/bw1hvU http://bit.ly/9R7JCf #oilspill #bp"</span><span class="pln">
+</span><span class="com"># looks ok so far</span><span class="pln">
+tmp </span><span class="pun">&lt;-</span><span class="pln"> Corpus</span><span class="pun">(</span><span class="pln">VectorSource</span><span class="pun">(</span><span class="pln">tmp</span><span class="pun">))</span><span class="pln">
+tmp </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">tmp</span><span class="pun">,</span><span class="pln"> tolower</span><span class="pun">)</span><span class="pln">
+tmp</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]]</span><span class="pln">
+rt </span><span class="pun">@</span><span class="pln">noxforu erneut riesiger </span><span class="pun">(</span><span class="pln">alt</span><span class="pun">-)</span><span class="pln">öl–teppich im golf von mexiko </span><span class="pun">(</span><span class="com">#pics vom freitag) http://bit.ly/bw1hvu http://bit.ly/9r7jcf #oilspill #bp</span><span class="pln">
+</span><span class="com"># seems like it's worked just fine. It worked for best for ANSI encoding. </span><span class="pln">
+</span><span class="com"># There was no error with UTF-8 encoding, but the Ö was returned </span><span class="pln">
+</span><span class="com"># as ã– which is not good</span></code></pre>
+
+<p>But this seems like a bit of a lucky coincidence. There must be a more direct way about it. Do let us know what works for you!</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/9644641/3626188" title="short permalink to this answer" class="short-link" id="link-post-9644641">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9644641/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-03-10 07:12:22Z" class="relativetime">Mar 10 '12 at 7:12</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1036500/ben"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/wUrRD.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1036500/ben">Ben</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">9,418</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="50 bronze badges"><span class="badge3"></span><span class="badgecount">50</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9644641" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-12354311" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks for your reply Ben! For some reason, that same line of code that failed for me works now. I don't know if this is another lucky coincidence :) I didn't change anything, just rerun it and this time it works without any hiccups.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1135928/maiaini" title="90 reputation" class="comment-user owner">maiaini</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#comment12354311_9644641"><span title="2012-03-15 10:46:17Z" class="relativetime-clean">Mar 15 '12 at 10:46</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-12368207" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Glad to hear you got it working!</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1036500/ben" title="9418 reputation" class="comment-user">Ben</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#comment12368207_9644641"><span title="2012-03-15 20:01:37Z" class="relativetime-clean">Mar 15 '12 at 20:01</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-9644641" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="16396661"></a>
+<div id="answer-16396661" class="answer" data-answerid="16396661" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="16396661">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The official FAQ seems to be not working in my situation:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">tm_map</span><span class="pun">(</span><span class="pln">yourCorpus</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> iconv</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> to</span><span class="pun">=</span><span class="str">'UTF-8-MAC'</span><span class="pun">,</span><span class="pln"> sub</span><span class="pun">=</span><span class="str">'byte'</span><span class="pun">))</span></code></pre>
+
+<p>Finally I made it using the for &amp; Encoding function:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="kwd">in</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="pln">length</span><span class="pun">(</span><span class="pln">dataSet</span><span class="pun">))</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+  Encoding</span><span class="pun">(</span><span class="pln">corpus</span><span class="pun">[[</span><span class="pln">i</span><span class="pun">]])=</span><span class="str">"UTF-8"</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">dataSet</span><span class="pun">,</span><span class="pln"> tolower</span><span class="pun">)</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/16396661/3626188" title="short permalink to this answer" class="short-link" id="link-post-16396661">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/16396661/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-05-06 10:21:26Z" class="relativetime">May 6 '13 at 10:21</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2349564/pudding"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/436174399b7aaeb22c666bc623015a5c" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2349564/pudding">pudding</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">51</span><span title="4 bronze badges"><span class="badge3"></span><span class="badgecount">4</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-16396661" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-16396661" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="18125485"></a>
+<div id="answer-18125485" class="answer" data-answerid="18125485" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="18125485">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I have been running this on Mac and to my frustration,I had to identify the foul record (as these were tweets) to resolve. Since the next time, there is no guarantee of the record being the same, I used the following function</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">tm_map</span><span class="pun">(</span><span class="pln">yourCorpus</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> iconv</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> to</span><span class="pun">=</span><span class="str">'UTF-8-MAC'</span><span class="pun">,</span><span class="pln"> sub</span><span class="pun">=</span><span class="str">'byte'</span><span class="pun">))</span></code></pre>
+
+<p>as suggested above.</p>
+
+<p>It worked like a charm</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/18125485/3626188" title="short permalink to this answer" class="short-link" id="link-post-18125485">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/18125485/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/18125485/revisions" title="show all edits to this post">edited <span title="2014-02-11 13:00:28Z" class="relativetime">Feb 11 at 13:00</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1894388/kabir"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/yvqUn.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1894388/kabir">Kabir</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,268</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="18 bronze badges"><span class="badge3"></span><span class="badgecount">18</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-08-08 11:59:59Z" class="relativetime">Aug 8 '13 at 11:59</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1611445/krishna-vedula"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/46338d983db8bdacc0c3b60d4991bf35" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1611445/krishna-vedula">Krishna Vedula</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">121</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="4 bronze badges"><span class="badge3"></span><span class="badgecount">4</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18125485" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-18125485" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="9816312"></a>
+<div id="answer-9816312" class="answer" data-answerid="9816312" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="9816312">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>If it's alright to ignore invalid inputs, you could use R's error handling. e.g:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">  dataSet </span><span class="pun">&lt;-</span><span class="pln"> Corpus</span><span class="pun">(</span><span class="pln">DirSource</span><span class="pun">(</span><span class="str">'tmp/'</span><span class="pun">))</span><span class="pln">
+  dataSet </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">dataSet</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+     </span><span class="com">#ERROR HANDLING</span><span class="pln">
+     possibleError </span><span class="pun">&lt;-</span><span class="pln"> tryCatch</span><span class="pun">(</span><span class="pln">
+         tolower</span><span class="pun">(</span><span class="pln">data</span><span class="pun">),</span><span class="pln">
+         error</span><span class="pun">=</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> e
+     </span><span class="pun">)</span><span class="pln">
+
+     </span><span class="com"># if(!inherits(possibleError, "error")){</span><span class="pln">
+     </span><span class="com">#   REAL WORK. Could do more work on your data here,</span><span class="pln">
+     </span><span class="com">#   because you know the input is valid.</span><span class="pln">
+     </span><span class="com">#   useful(data); fun(data); good(data);</span><span class="pln">
+     </span><span class="com"># }</span><span class="pln">
+  </span><span class="pun">})</span><span class="pln"> </span></code></pre>
+
+<p>There is an additional example here: <a href="http://gastonsanchez.wordpress.com/2012/05/29/catching-errors-when-using-tolower/" rel="nofollow">http://gastonsanchez.wordpress.com/2012/05/29/catching-errors-when-using-tolower/</a></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/9816312/3626188" title="short permalink to this answer" class="short-link" id="link-post-9816312">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/9816312/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/9816312/revisions" title="show all edits to this post">edited <span title="2012-10-31 15:56:03Z" class="relativetime">Oct 31 '12 at 15:56</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/-1/community"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/a007be5a61f6aa8f3e85ae2fc18dd66e" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/-1/community">Community</a><span class="mod-flair" title="moderator">♦</span><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1</span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-03-22 04:08:52Z" class="relativetime">Mar 22 '12 at 4:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/365298/rose-perrone"><div class="gravatar-wrapper-32"><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/09650c0dfd63d0cdfeee378b7c5945ed" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/365298/rose-perrone">Rose Perrone</a><br>
+        <span class="reputation-score" title="reputation score 15926" dir="ltr">15.9k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="88 silver badges"><span class="badge2"></span><span class="badgecount">88</span></span><span title="100 bronze badges"><span class="badge3"></span><span class="badgecount">100</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-9816312" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-9816312" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/9637278/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="9637278">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.com/">
+							<h2 class="space">Your Answer</h2>
+
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+            // Have to fire editor after snippets, if snippets enabled
+            if (StackExchange.options.snippets.enabled) {
+                StackExchange.using("snippets", function() {
+                    createEditor();
+                });
+            }
+            else {
+                createEditor();
+            }
+        });
+
+        function createEditor() {
+            prepareEditor({
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: false,
+                    discardSelector: ".discard-answer"
+                ,immediatelyShowMarkdownHelp:true
+                });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I" style="left: 25px;"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L" style="left: 75px;"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q" style="left: 100px;"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K" style="left: 125px;"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G" style="left: 150px;"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" style="left:175px" id="wmd-snippet-button" title="Code snippet Ctrl-M"><span style="background-image: url(http://stackoverflow.com/content/balsamiq/wmd-mockup-button.png?v=4);"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2" style="left: 200px;"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O" style="left: 225px;"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U" style="left: 250px;"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H" style="left: 275px;"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R" style="left: 300px;"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3" style="left: 325px;"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z" style="left: 350px;"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y" style="left: 375px;"><span style="background-position: -220px -20px;"></span></li><li class="wmd-button wmd-help-button active-help" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li><div id="mdhelp" class="mdhelp" style="right: -8px; width: 668px; top: 25px;">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-buttons="image">Images</li>
+        <li data-tab="mdhelp-styles" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html"> HTML </li>
+        <li style="float:right"><a href="http://stackoverflow.com/editing-help" target="_blank">advanced help »</a></li>
+    </ul>
+    
+    <div class="mdhelp-tab" id="mdhelp-links">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit http://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;http://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+                <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: http://notfound.stackexchange.com/
+ [question]: http://english.stackexchange.com/questions/11481
+</pre>
+                <p>You can add tooltips to links:</p>
+<pre> Click [here](http://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")! This works with [reference links][blog] as well.   [blog]: http://blog.stackoverflow.com/<span class="spaces">&nbsp;</span>"click here for updates" </pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-images">
+        <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+        <pre>![a busy cat](http://sstatic.net/stackoverflow/img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: http://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+        <p>
+            The word in square brackets is the alt text, which gets displayed if the browser
+ can't show the image. Be sure to include meaningful alt text for screen-reading
+ software.
+        </p>
+   
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-styles">
+        <div class="col1">
+            <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+        
+        </div>
+        <div class="col2">
+            <p>
+                To break your text into sections, you can use headers:
+            </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+            <p>
+                Use hash marks if you need several levels of headers:</p>
+    <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+
+            
+        </div>
+
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-lists">
+        <p>Both bulleted and numbered lists are possible:</p>
+        <div class="col1">
+<pre> -<span class="spaces">&nbsp;</span>Use a minus sign for a bullet +<span class="spaces">&nbsp;</span>Or plus sign *<span class="spaces">&nbsp;</span>Or an asterisk  1.<span class="spaces">&nbsp;</span>Numbered lists are easy 2.<span class="spaces">&nbsp;</span>Markdown keeps track of  the numbers for you 7.<span class="spaces">&nbsp;</span>So this will be item 3. </pre>
+        </div>
+        <div class="col2">
+<pre> 1.<span class="spaces">&nbsp;</span>Lists in a list item: <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again. 2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items. <span class="spaces">&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent. </pre>        
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes">
+        <div class="col1">
+            <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+</pre>
+        </div>
+        <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-code">
+        <p>
+            To create code blocks or other preformatted text, indent by four spaces:
+        </p>
+        <pre> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Markdown and HTML are turned off in code blocks: <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](http://example.com) </pre>
+        <p>
+            To create not a block, but an inline code span, use backticks:
+        </p>
+        <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+        <p>
+            If you want to have a preformatted block within a list, indent by eight spaces:
+        </p>
+        <pre> 1. This is normal text. 2. So is this, but now follows a code block: <span class="spaces">&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block. </pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-html">
+        <p>
+            If you need to do something that Markdown can't handle, use HTML. Note that <a href="http://meta.stackexchange.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a>
+        </p>
+        <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+        <p>
+            Markdown is smart enough not to mangle your span-level HTML:
+        </p>
+        <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+        <p>
+            Block-level HTML elements have a few restrictions:
+        </p>
+        <ol>
+            <li>They must be separated from surrounding text by blank lines.</li>
+            <li>The begin and end tags of the outermost block element must not be indented.</li>
+            <li>Markdown can't be used within HTML blocks.</li>
+        </ol>
+        <br>
+        <pre> &lt;pre&gt;  You can &lt;em&gt;not&lt;/em&gt; use Markdown in here. &lt;/pre&gt; </pre>
+    </div>
+
+    <div class="cbt"></div>
+</div></ul></div>
+            <div style="clear: both; height: 24px;"></div><textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div class="grippie" style="margin-right: -8px;"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="6bef6e5254dbe64879cbccfe9e04b968">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" class="discard-answer dno">discard</a>
+								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/utf-8" class="post-tag" title="show questions tagged &#39;utf-8&#39;" rel="tag">utf-8</a> <a href="http://stackoverflow.com/questions/tagged/iconv" class="post-tag" title="show questions tagged &#39;iconv&#39;" rel="tag">iconv</a> <a href="http://stackoverflow.com/questions/tagged/text-mining" class="post-tag" title="show questions tagged &#39;text-mining&#39;" rel="tag">text-mining</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+
+
+
+<script>
+    window.showNewUser = false;
+
+</script>
+
+<div class="module newuser newuser-greeting" id="newuser-box" style="display:none;">
+    <h4>Hello World!</h4>
+    <div>
+        <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p><p>Got a question about the site itself? <a href="http://meta.stackoverflow.com/">meta</a> is the place to talk about things like what questions are appropriate, what tags we should use, etc.</p>
+        <p class="ar">
+                <a href="http://stackoverflow.com/tour?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;
+            <a href="http://stackoverflow.com/help?mnu=1">help »</a>
+                &nbsp; <a href="http://meta.stackoverflow.com/">meta »</a>
+        </p>
+    </div>
+</div>
+    <script>
+    if (showNewUser) {
+        document.getElementById('newuser-box').style.display = '';
+    }
+    </script>						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-03-09 16:10:20Z"><b>2 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>4760 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs?lastactivity" class="lastactivity-link" title="2014-04-01 19:29:37Z">7 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Blog
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="http://blog.stackoverflow.com/2014/11/stack-exchange-for-the-ipad-is-here-and-ios-apps-now-support-ios-8/?cb=1" class="question-hyperlink">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://blog.stackoverflow.com/2014/11/stack-exchange-for-the-ipad-is-here-and-ios-apps-now-support-ios-8/?cb=1" class="question-hyperlink">Stack Exchange for the iPad is here – and iOS apps now support iOS 8</a>
+                </div>
+                <br class="cbt">
+            </div>
+                <div class="bulletin-title">
+                    Hot Meta Posts
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">38</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/275986/whats-going-on-with-my-reputation?cb=1" class="question-hyperlink">What's going on with my reputation?</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">23</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/275961/why-do-tag-wiki-revision-history-pages-have-an-answered-by-box?cb=1" class="question-hyperlink">Why do tag wiki revision history pages have an “answered by” box?</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">11</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/275993/how-should-we-handle-questions-that-repeat-frequent-misconceptions?cb=1" class="question-hyperlink">How should we handle questions that repeat frequent misconceptions?</a>
+                </div>
+                <br class="cbt">
+            </div>
+    </div>
+</div>			
+			<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk1948732455",[17,2221]).setZone(45) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1948732455"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImJ0IjowLCJjbSI6ODQ3LCJjaCI6MTE3OCwiY3IiOjIzODU4LCJkaSI6ImU2NGZhZGRmZGRkYzQ4NWE5MzMxMWE5YTVmYTVlYzk0IiwiZG0iOjEsImZjIjo0Mzk0NjYsImZsIjoyMjMwODIsImlwIjoiNzUuNzMuNi42MiIsImt3Ijoicix1dGYtOCxpY29udix0ZXh0LW1pbmluZyx4LXVzZXItcmVnaXN0ZXJlZCIsIm53IjoyMiwicGMiOjAsInByIjoxNTY4LCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS1lMDMyMjBlMzVhZmU0ODFlODI2YjVkMjhiMjZmYTNkNiIsInpuIjo0NSwidHMiOjE0MTUxNDMzNzcyODIsInVyIjoiaHR0cDovL2NhcmVlcnMuc3RhY2tvdmVyZmxvdy5jb20_dXRtX3NvdXJjZT1zdGFja2V4Y2hhbmdlLmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1zdS1kZWZhdWx0JnV0bV9jb250ZW50PXNiLXN0YXJmaXNoIn0&s=sSwV-B4zVfHUie0uKlaNTOezwhM" rel="nofollow" target="_blank" title=""><img src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/fdec4733b4814d9e958b7f86c25020b5.jpg" title="" alt="" border="0" width="220" height="250"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/9637278/r-tm-package-invalid-input-in-utf8towcs#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/i(2).gif"></div>  
+        <div id="hireme" class=" blue near-you tagged">  <a href="http://careers.stackoverflow.com/?a=2yoaA&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-blue-nearyou" class="top" target="_blank"> <span>Jobs near you</span> </a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/69522/lead-java-developer-polaris-industries?a=njzUXlT49ih&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-blue-nearyou" target="_blank" title="Lead Java Developer at Polaris Industries. Click to learn more."> <span class="title">Lead Java Developer</span> <span class="company">Polaris Industries</span> <span class="location">Plymouth, MN / relocation</span> <span class="post-tag">java</span> <span class="post-tag">soa</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/69884/lead-integration-developer-polaris-industries?a=nr6APkKlWf0&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-blue-nearyou" target="_blank" title="Lead Integration Developer at Polaris Industries. Click to learn more."> <span class="title">Lead Integration Developer</span> <span class="company">Polaris Industries</span> <span class="location">Plymouth, MN / relocation</span> <span class="post-tag">soa</span> <span class="post-tag">esb</span> </a> </li> <li class="city"><a href="http://careers.stackoverflow.com/jobs/location/minneapolis%2c%20mn%2c%20united%20states?a=94CnNwk&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-blue-nearyou">More jobs near Minneapolis...</a></li> </ul> <img alt="" class="impression" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/njzUXlT49ih-nr6APkKlWf0-2yoaA-94CnNwk" style="display:none"></div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/4544669?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">8</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/4544669/batch-convert-latin-1-files-to-utf-8-using-iconv?lq=1" class="question-hyperlink">Batch convert latin-1 files to utf-8 using iconv</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/26143270?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/26143270/read-umlaut-from-csv-file-in-rattle?lq=1" class="question-hyperlink">Read umlaut from csv file in Rattle</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/9631299?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://stackoverflow.com/questions/9631299/removing-invalid-incomplete-multibyte-characters?rq=1" class="question-hyperlink">Removing invalid/incomplete multibyte characters</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/12726517?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/12726517/how-do-i-convert-files-between-encodings-where-only-some-of-them-are-wrong?rq=1" class="question-hyperlink">How do I convert files between encodings where only some of them are wrong?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/17699842?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/17699842/predict-svm-function-r-text-mining?rq=1" class="question-hyperlink">predict.svm function R text mining?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/19024873?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/19024873/why-does-r-hang-when-using-ngramtokenizer?rq=1" class="question-hyperlink">Why does R hang when using NGramTokenizer?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/19615181?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/19615181/finding-ngrams-in-r-and-comparing-ngrams-across-corpora?rq=1" class="question-hyperlink">Finding ngrams in R and comparing ngrams across corpora</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20970681?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/20970681/convert-tdm-csv-file-into-corpus-format-in-text-mining?rq=1" class="question-hyperlink">Convert TDM CSV file into Corpus Format in Text Mining</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21251736?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/21251736/r-tm-package-utf-8-text?rq=1" class="question-hyperlink">R tm package: utf-8 text</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/23506964?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/23506964/rtexttools-package-error?rq=1" class="question-hyperlink">RTextTools package error</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/24601747?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/24601747/text-mining-arabic-english-with-tm-package-in-r-issue-with-different-results?rq=1" class="question-hyperlink">Text mining arabic &amp; english with tm package in R - Issue with different results between MAC OSX and MICROSOFT Windows 8.1 OS</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/26257951?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term?rq=1" class="question-hyperlink">R - Text Mining - Importing a Corpus and keeping the file names in document term matrix</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/3601/how-would-law-enforcement-be-different-if-we-could-talk-to-the-dead" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How would law enforcement be different if we could talk to the dead?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/186125/recent-elementary-results-in-algebraic-geometry" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Recent, elementary results in algebraic geometry
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/50438/how-can-i-roleplay-multiclassing-to-explain-new-class-features" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I roleplay multiclassing to explain new class features?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-skeptics" title="Skeptics Stack Exchange"></div><a href="http://skeptics.stackexchange.com/questions/23681/do-specific-exercises-target-specific-fat-deposits" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:212 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do specific exercises target specific fat deposits?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/71882/if-hermione-had-died-on-the-hunt-for-the-horcruxes-would-her-parents-remember-h" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    If Hermione had died on the hunt for the horcruxes, would her parents remember her?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/40913/eating-candy-in-the-correct-order" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Eating Candy in the Correct Order
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/144736/why-doesnt-the-speed-of-earth-moving-through-space-kill-us" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why doesn't the speed of Earth (moving through space) kill us?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/210555/how-do-you-make-text-flow-to-another-part-of-a-page" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do you make text flow to another part of a page?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/165858/transfering-millions-of-files-from-one-server-to-another" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Transfering millions of files from one server to another
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/71940/why-was-sm%c3%a9agol-affected-by-the-ring-so-fast-while-both-frodo-and-sam-could-han" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why was Sméagol affected by the ring so fast, while both Frodo and Sam could handle it without immediately trying to choke each other?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-joomla" title="Joomla Stack Exchange"></div><a href="http://joomla.stackexchange.com/questions/5069/how-can-you-hide-the-title-from-a-featured-article" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:555 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can you hide the title from a featured article?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/261585/should-a-getter-throw-an-exception-if-its-object-has-invalid-state" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should a getter throw an exception if its object has invalid state?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-photo" title="Photography Stack Exchange"></div><a href="http://photo.stackexchange.com/questions/56424/why-are-large-zoom-ratio-constant-apertures-lenses-not-generally-available" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:61 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why are large zoom ratio constant apertures lenses not generally available?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/35786/why-ask-have-you-ever-worked-for-the-federal-government-as-part-of-the-pre-s" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why ask, "Have you ever worked for the federal government?" as part of the pre-screen questions of a non-gov't agency?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/68894/deviating-from-the-norm" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Deviating from the norm
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1006119/can-basis-vectors-have-fractions" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can basis vectors have fractions?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gis" title="Geographic Information Systems Stack Exchange"></div><a href="http://gis.stackexchange.com/questions/120922/how-to-create-a-series-of-points-along-multiple-polylines-at-once-in-arcmap-10" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:79 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to create a series of points along multiple polylines at once in ArcMap 10
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/206303/provide-proof-or-provide-a-proof-mathematics" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Provide proof or provide a proof (mathematics)
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1004148/examples-of-mathematical-discoveries-which-were-kept-as-a-secret" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Examples of mathematical discoveries which were kept as a secret
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/72230/is-blocking-a-countrys-access-to-a-website-a-good-measure-to-avoid-hackers-from" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is blocking a country's access to a website a good measure to avoid hackers from that country?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/3429/how-might-modern-humans-leave-a-message-for-50-000-years" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How might modern humans leave a message for 50,000 years?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-homebrew" title="Homebrewing Stack Exchange"></div><a href="http://homebrew.stackexchange.com/questions/13178/basic-yeast-questions" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:156 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Basic yeast questions
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/3623/if-a-space-ship-crashes-on-a-planet-is-it-realistic-that-things-from-that-space" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    If a space ship crashes on a planet, is it realistic that things from that space ship could be rescued afterwards?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/64860/built-in-way-to-convert-integer-to-ordinal-string" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Built-in way to convert Integer to Ordinal String
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/9637278" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/9637278/ivc/8fe8');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/9637278/ivc/8fe8" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-r</div></div>
+
+    <script>
+        $('#wmd-input').one("keypress", function() {
+            $.ajax({
+                url: '/accounts/email-settings-form',
+                cache: false,
+                success: function(data) {
+                    $('#submit-button').parent().prepend(data);
+                }
+            });
+        });
+
+    </script>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=footerlink">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>                   with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.11.4.1991
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('r,utf-8,iconv,text-mining,x-user-registered');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        ga('set', 'dimension1', '2706904');         
+        ga('set', 'dimension2', '|r|utf-8|iconv|text-mining|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script><script type="text/javascript" src="./utf 8 - R tm package invalid input in 'utf8towcs' - Stack Overflow_files/p"></script></body></html>

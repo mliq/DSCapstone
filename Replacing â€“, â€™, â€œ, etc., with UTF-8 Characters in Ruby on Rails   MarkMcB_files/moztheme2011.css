@@ -1,0 +1,88 @@
+/*  Copyright 2011  Michael J. Walker (email: mike@moztools.com)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+/* Realign the widget list bullets inside the list items */  
+.moz-widget-list-adjust .widget-area ul {
+  list-style: square outside none;
+  padding-left: 1em;
+}
+
+.moz-widget-list-adjust #primary {
+  margin-right: -28.2%; 
+}
+
+.moz-widget-list-adjust #secondary {
+  width: 20.3%;
+}
+
+/* Handle the left-sidebar widgets */
+.left-sidebar.moz-widget-list-adjust #primary {
+  margin-left: -28.2%; 
+  margin-right: 0;
+}
+
+.left-sidebar.moz-widget-list-adjust #secondary {
+  margin-left: 5.7%;
+}
+
+/* Widen the comments and comment response box */ 
+.moz-sidebar-adjust .commentlist, #respond {
+  width: 91.5%;
+}
+.moz-sidebar-adjust .commentlist {
+  padding-left: 50px;
+}
+
+.moz-nav-adjust #nav-single {
+  float:none;
+  text-align:center;
+}
+
+/* Transform the sticky post into a single line headline link */
+.moz-headline.sticky {
+  padding:0;
+}
+
+/* The rest of the post and metadata are hidden using CSS     */
+.moz-headline.sticky .entry-content, .moz-headline.sticky .entry-meta, .moz-headline.sticky .entry-format, .moz-headline.sticky .comments-link {
+  display:none;
+}
+/* Center the heading and reduce the spacing around it        */
+.moz-headline.sticky .entry-title {
+  text-align:center;
+  padding: 0;
+}
+
+/* Change the title color, use italics and shrink it a little */
+.moz-headline.sticky .entry-title a {
+  color:blue;
+  font-style: italic;
+  font-size: 80%;
+}
+
+/* Make the headline prefix stand out in red */
+.moz-headline.sticky .headline-text {
+  color:red;
+}
+
+/* Adjusts the menu bar in IE7 only so that there is 
+   no gap between the header image and the menu bar */
+   
+*:first-child+html #access {
+    margin-top: -6px;
+}     
+ 

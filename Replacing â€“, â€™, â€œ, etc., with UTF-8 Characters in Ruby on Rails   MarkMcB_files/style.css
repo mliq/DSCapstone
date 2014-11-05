@@ -1,0 +1,99 @@
+/*
+Theme Name: Twentyeleven Child
+Description: Child theme for the twentyeleven theme 
+Author: Mark McBride
+Template: twentyeleven
+*/
+@import url("../twentyeleven/style.css");
+/*@import url("./single-sidebar.css");*/
+.widget a {font-weight: normal;}
+
+body.custom-background {background-color: #fff;}
+/*#page {border-left: 1px solid silver; border-right: 1px solid silver}*/
+
+/* Header  */
+#page {margin: 0 auto 2em auto;}
+#branding {border: 0;}
+#access {margin: 0 auto; background: #fff; display: none}
+#branding .only-search { display: none;}
+
+#menu-main li a {line-height: 2.5em}
+#access div.menu-main-container {margin: 0 0 0 3%;}
+#nav-single {
+	display: none;
+}
+.singular .entry-header .entry-meta {
+	position: relative;
+}
+.singular .hentry {
+  padding: 0;
+}
+
+.singular .entry-meta .edit-link a {
+	left: 20px;
+	top: 13px;
+	right: auto;
+}
+
+/* Side Area */
+#main {padding: 0; overflow: hidden;}
+#main #secondary {position: fixed; top: 10px; background-color: transparent; border-right: 0px solid #ccc; margin: 0; padding: 10px 20px 0 20px;}
+#content {padding-top: 40px}
+#profile-photo {margin: 25px auto}
+#profile-connect-short {display: none}
+#profile-connect-long {display: block}
+#profile-connect-long ul {margin: 0 0 5px 0; list-style-type: none}
+#profile-connect-long ul.sub-list {padding: 0 0 0 15px; margin: 0 }
+#profile-photo-feed {margin-top: 20px}
+
+/* Footer  */
+#site-generator {display: none;}
+#colophon {background: transparent; color: #999; margin-left: 240px; border-left: 1px solid #ddd;}
+/*
+#supplementary {padding-top: 10px; padding-bottom: 10px; border: 0}
+#php_widget-2 {margin: 0}
+*/
+#markmcb-footer-meta {padding-top: 50px; text-align: center;}
+#markmcb-footer-meta ul {margin-left: 2em}
+#markmcb-footer-meta * {font-weight: 300; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;}
+#markmcb-footer-meta p {font-size: 1.7em;}
+#mcb-copyright {text-align: center; margin-top: 30px; font-size: 1.3em; color: #999}
+#markmcb-footer-meta a { color: #7be }
+
+/* Content  */
+.entry-title, .singular .entry-title {font-size: 30px; padding-top: 0;}
+.hentry, .no-results {border: 0; margin: 0}
+.commentlist > li.comment {margin-left: 3em;}
+.hey_you_title {font-size: 3em; line-height: 1.1em;}
+@media (max-width: 950px) {.hey_you { display: none} .hey_you_title {font-size: 1.6em; font-weight: normal; line-height: 1.3em} }
+
+/* Mobile  */
+@media only screen and (max-width: 800px) {
+        /* markmcb: added to remove some elements from small screens */
+        body {padding: 0}
+        #main #secondary {background: #dfefff; display: block; height: 75px; padding: 10px; margin: 0; position: absolute; top: 0; right: 0; left: 0}
+        #access div.menu-main-container {margin: 0;}
+        #profile {width: 300px; margin: 0;}
+        #profile-photo {float: left; margin: 0 auto}
+        #profile-photo img {width: 75px; height: 75px;}
+        #profile-photo-tagline {float: left; margin: 0px 0 0 10px}
+        #profile-photo-tagline p {margin: 0; line-height: 1.2em}
+        #profile-connect {}
+        #profile-connect-short {float: left; display: block;  margin: 0 0 0 10px; line-height: 1.2em}
+        #profile-connect-long {display: none}
+        #profile-photo-feed {display: none;}
+        #primary {padding-top: 80px}
+        .singular #primary {padding-top: 0}
+        #about-photo-large {display: none}
+        #about-photo-small {display: block;}
+        #colophon {margin-left: 0; border: 0;}
+}
+@media only screen and (min-width: 801px) {
+        #primary #content {border-left: 1px solid #ddd; padding-left: 30px; margin-left: 240px;}
+        .left-sidebar #secondary {width: 190px}
+        #profile-photo img {width: 185px; height: 185px;}
+        #about-photo-large {display: block}
+        #about-photo-small {display: none}
+        #branding {padding-bottom: 0px}
+        .single #access div.menu-main-container, .page #access div.menu-main-container { margin: 0 0 0 20.2% }
+}

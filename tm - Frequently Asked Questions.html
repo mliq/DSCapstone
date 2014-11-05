@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0063)http://tm.r-forge.r-project.org/faq.html#TermDocumentMatrixPlot -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>tm - Frequently Asked Questions</title>
+    <link rel="stylesheet" type="text/css" href="./tm - Frequently Asked Questions_files/tm.css">
+  </head>
+  <body>
+    <div id="leftcol">
+  <ul>
+    <li><a href="http://tm.r-forge.r-project.org/index.html">Home</a></li>
+    <li>About
+      <ul>
+	<li><a href="http://tm.r-forge.r-project.org/authors.html">Authors</a></li>
+	<li><a href="http://tm.r-forge.r-project.org/users.html">Users</a></li>
+      </ul>
+    </li>
+    <li><a href="http://tm.r-forge.r-project.org/screenshots.html">Screenshots</a></li>
+    <li>News
+      <ul>
+	<li><a href="https://r-forge.r-project.org/scm/viewvc.php/pkg/ChangeLog?view=markup&root=tm">Changelog</a></li>
+	<li><a href="https://r-forge.r-project.org/scm/viewvc.php/pkg/inst/NEWS.Rd?view=markup&root=tm">NEWS</a></li>
+      </ul>
+    </li>
+    <li>Getting tm
+      <ul>
+	<li><a href="http://cran.r-project.org/package=tm">Stable release from CRAN</a></li>
+	<li><a href="https://r-forge.r-project.org/projects/tm/">Development version from R-Forge</a></li>
+      </ul>
+    </li>
+    <li>Resources
+      <ul>
+	<li><a href="http://tm.r-forge.r-project.org/faq.html">Frequently Asked Questions</a></li>
+	<li><a href="http://tm.r-forge.r-project.org/publications.html">Publications</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+    <div id="maincol">
+      <h2>Frequently Asked Questions</h2>
+      <p>
+	This document contains answers to some of the most frequently
+	asked questions about tm.
+      </p>
+      <hr>
+      <ol>
+	<li><a href="http://tm.r-forge.r-project.org/faq.html#Citation">How should I cite tm?</a></li>
+	<li><a href="http://tm.r-forge.r-project.org/faq.html#PDF">Where can I find the tools to read in a PDF file?</a></li>
+	<li><a href="http://tm.r-forge.r-project.org/faq.html#Custom">What is the easiest way to handle custom file formats?</a></li>
+	<li><a href="http://tm.r-forge.r-project.org/faq.html#Encoding">What about error messages indicating invalid multibyte strings?</a></li>
+	<li><a href="http://tm.r-forge.r-project.org/faq.html#Bigrams">Can I use bigrams instead of single tokens in a term-document matrix?</a></li>
+	<li><a href="./tm - Frequently Asked Questions_files/tm - Frequently Asked Questions.html">How can I plot a term-document matrix?</a></li>
+      </ol>
+      <hr>
+      <ol>
+	<li>
+	  <a name="Citation"></a>
+	  <cite>How should I cite tm?</cite>
+	  <p>Please have a look at the output
+	  of <kbd>citation("tm")</kbd> in R. A BibTeX representation
+	  can be obtained via <kbd>toBibtex(citation("tm"))</kbd>.
+	  </p>
+	  <p>The preferred way for journal and conference papers is to
+	  cite the <a href="http://www.jstatsoft.org/v25/i05/">JSS
+	  article</a>.</p>
+	</li>
+	<li>
+	  <a name="PDF"></a>
+	  <cite>I want to read in a PDF file using
+	    the <code>readPDF</code> reader. However, the manual says
+	    I need the tool <kbd>pdftotext</kbd> installed and
+	    accessable on my system. Where can I find and how can I
+	    install this tool?</cite>
+	  <p>
+	    Many linux distributions provide pre-built
+	    packages: <kbd>poppler-utils</kbd>, <kbd>xpdf-utils</kbd>,
+	    or similar. Windows users need to download and
+	    install <a href="http://www.foolabs.com/xpdf/download.html">Xpdf</a>. Ensure
+	    that the program is included in
+	    your <a href="http://en.wikipedia.org/wiki/Path_(variable)">PATH</a>
+	    variable.
+	  </p>
+	  <p>Windows users might find a
+	  <a href="https://stat.ethz.ch/pipermail/r-help/2008-November/179785.html">R-help
+	  thread</a> on this topic useful.
+	  </p>
+	</li>
+	<li>
+	  <a name="Custom"></a>
+	  <cite>My documents are stored in file format XYZ. How do I
+	    get the material into tm and construct a corpus from
+	    it?</cite>
+	  <p>
+	    Please have a look at the
+	    vignette <a href="http://cran.r-project.org/web/packages/tm/vignettes/extensions.pdf">Extensions:
+	    How to Handle Custom File Formats</a>.
+	  </p>
+	</li>
+	<li>
+	  <a name="Encoding"></a>
+	  <cite>What about error messages indicating invalid multibyte
+	    strings?</cite>
+	  <p>
+	    Ensure that all your datasets and documents are encoded
+	    in <a href="http://en.wikipedia.org/wiki/UTF-8">UTF-8</a>. If
+	    you still have problems
+	    <code>tm_map(yourCorpus, function(x) iconv(enc2utf8(x),
+            sub = "byte"))</code> will replace non-convertible bytes
+            in <code>yourCorpus</code> with strings showing their hex
+            codes.
+	  </p>
+	</li>
+	<li>
+	  <a name="Bigrams"></a>
+	  <cite>Can I use <a href="http://en.wikipedia.org/wiki/Bigram">bigram</a>s
+	    instead of single tokens in a term-document matrix?</cite>
+	  <p>
+	    Yes. <a href="http://cran.r-project.org/package=RWeka">RWeka</a>
+	    provides a tokenizer for
+	    arbitrary <a href="http://en.wikipedia.org/wiki/N-gram">n-gram</a>s
+	    which can be directly passed on to the term-document
+	    matrix constructor. E.g.:
+	  </p>
+<pre><code>  library("RWeka")
+  library("tm")
+
+  data("crude")
+
+  BigramTokenizer &lt;- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+  tdm &lt;- TermDocumentMatrix(crude, control = list(tokenize = BigramTokenizer))
+
+  inspect(tdm[340:345,1:10])</code></pre>
+	</li>
+	<li>
+	  <a name="TermDocumentMatrixPlot"></a>
+	  <cite>How can I plot a term-document matrix like Figure 6 in
+	  the <a href="http://www.jstatsoft.org/v25/i05/">JSS
+	  article</a> on tm?</cite>
+	  <p>Please check the manual accessible
+	  via <kbd>?plot.TermDocumentMatrix</kbd> for available
+	  arguments to the plot function. A plot similar to Figure 6
+	  can be produced e.g. with:</p>
+<pre><code>  library("tm")
+
+  data("crude")
+
+  tdm &lt;- TermDocumentMatrix(crude, control = list(removePunctuation = TRUE,
+                                                  removeNumbers = TRUE,
+                                                  stopwords = TRUE))
+
+  plot(tdm, terms = findFreqTerms(tdm, lowfreq = 6)[1:25], corThreshold = 0.5)</code></pre>
+	</li>
+      </ol>
+    </div>
+  
+
+</body></html>

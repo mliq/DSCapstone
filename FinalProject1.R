@@ -7,11 +7,46 @@
 #Set working directory
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 
+#--- Here we have debate about the methods, I will go with the first one since none seem to fix anything.
+require(tm)
+fileName="en_US.news.txt"
+lineNews <- readLines(fileName, n=1000)
+corpus <- Corpus(VectorSource(lineNews), encoding="UTF-8")
+
+
+
+
+#Another option, read in as binary
+fileName <- file("en_US.news.txt", "rb")
+lineNews <- readLines(fileName, n=1000)
+lineNews[10] #Nope, still a problem.
+
+#yet another
+#removing strange stuffs
+clean_data <- gsub('[])(;:#%$^*\\~{}[&+=@/"`|<>_]+', " ", clean_data)
+
+clean_data <- gsub("[¤º–»«Ã¢â¬Å¥¡Â¿°£·©Ë¦¼¹¸±€ð\u201E\u201F\u0097\u0083\u0082\u0080\u0081\u0090\u0095\u009f\u0098\u008d\u008b\u0089\u0087\u008a■①�…]+", " ", clean_data)
+clean_data <- gsub("[\002\020\023\177\003]", "", clean_data)
+--
+#Use DirSource now
+corpus<-Corpus(DirSource("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/subset/", encoding="UTF-8"), readerControl = list(language="en_US"))
+
+#fileName="en_US.news.txt"
+#lineNews <- readLines(fileName, n=1000)
+
+
+
 #load in just 1000 lines of news dataset
 require(tm)
 fileName="en_US.news.txt"
 lineNews <- readLines(fileName, n=1000)
-corpus <- Corpus(VectorSource(lineNews))
+corpus <- Corpus(VectorSource(lineNews), encoding="UTF-8")
+# When reading from DirSource, you get documents as root entries, you can access individual lines by:
+#crps[[1]]$content[1] to read the first line of the first document.
+#Fix unicode issues like so:
+#gsub("\u2019", "\'", crps[[1]]$content[2])
+
+gsub("\u0093", "",corpus[[1]])
 
 # Now we have in TextDocument format with 7 metadata:
 meta(corpus[[1]])
@@ -23,6 +58,9 @@ meta(corpus[[1]])
 #id           : 1
 #language     : en
 #origin       : character(0)
+
+## Here solve UTF Issue:
+#corpus1<-tm_map(corpus, function(x) iconv(enc2utf8(x), sub = "byte"))
 
 #Next, we make some adjustments to the text; 
 #remove whitespace:
@@ -84,5 +122,17 @@ inspect(corpus6[10]) #here is an example with the odd data:
 #â“  just tri  hit  hard someplaceâ” said rizzo  hit  pitch   opposit field  leftcenter â“iâ’m just   tri  make good contactâ”
 #how was it orig?
 inspect(corpus[10])
+#ok so this is a UTF encoding issue, perhaps because i'm on PC even.
+# nope: tm_map(corpus6, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
+Encoding(aset[[10]])="UTF-8"
+aset[10]
+
+for (i in 1:length(corpus))
+{
+  Encoding(corpus6[[i]])="UTF-8"
+
+}
 #Â“I was just trying to hit it hard someplace,Â” said Rizzo, who hit the pitch to the opposite field in left-center. Â“IÂ’m just up there trying to make good contact.Â”
 #hmm.. so it has these strange letters from the start?
+#Model to remove strange characters:
+#corpus7<- tm_map(corpus6,gsub(" ","")

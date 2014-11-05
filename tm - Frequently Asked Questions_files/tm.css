@@ -1,0 +1,83 @@
+img { border: 0; }
+
+#leftcol {
+    width: 240px;
+    float: left;
+    margin: 0 0.5em 0 0.5em;
+    padding: 1em;
+    background: #BBBBFF;
+    font-size: 0.9em;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #BBBBFF;
+}
+#leftcol a:link, #leftcol a:visited {
+    color: black;
+    text-decoration: none;
+}
+#leftcol a:hover {
+    background-color: #DDEEFF;
+}
+#leftcol ul {
+    margin: 2px;
+    padding: 0;
+    list-style-type: none;
+    font-weight: bold;
+}
+#leftcol ul.votemenu {
+    width: 11em;
+}
+#leftcol ul.cdmenu {
+    width: 12em;
+}
+#leftcol ul.votemenu ul li, #leftcol ul.cdmenu ul li {
+    padding-bottom: 0.4em;
+}
+#leftcol li ul {
+    display: inline;
+}
+#leftcol ul li {
+    padding: 0.2em 0;
+}
+#leftcol ul ul {
+    font-size: 0.9em;
+    margin: 0;
+}
+#leftcol ul li a {
+    line-height: 1.2em;
+    padding-right: 0.5em;
+}
+#leftcol ul ul li a {
+    font-weight: normal;
+    padding: 0.1em 0.5em;
+    line-height: 1.1em;
+}
+#leftcol ul ul li {
+    padding-top: 0;
+}
+#leftcol p {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#leftcol p a {
+    display: block;
+    margin: 0;
+}
+
+#maincol {
+    background: #FFFFFF;
+    margin-left: 300px;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+#maincol blockquote {
+    font-style: italic;
+}
+
+#footer {
+    clear: both;
+    width: 100%;
+    padding-top: 3px;
+    bottom: 0;
+    text-align: center;
+    margin: 0px;
+}
