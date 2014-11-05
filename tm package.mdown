@@ -56,6 +56,7 @@ Removal of stopwords by:
 ## Stemming
 
 Stemming is done by:
+
 	tm_map(reuters, stemDocument)
 
 # Issues to consider / Improvements to make in future

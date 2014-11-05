@@ -8,131 +8,54 @@
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 
 #--- Here we have debate about the methods, I will go with the first one since none seem to fix anything.
-require(tm)
+#load in just 1000 lines of news dataset
 fileName="en_US.news.txt"
 lineNews <- readLines(fileName, n=1000)
-corpus <- Corpus(VectorSource(lineNews), encoding="UTF-8")
 
-
-
-
-#Another option, read in as binary
-fileName <- file("en_US.news.txt", "rb")
-lineNews <- readLines(fileName, n=1000)
-lineNews[10] #Nope, still a problem.
-
-#yet another
-#removing strange stuffs
-clean_data <- gsub('[])(;:#%$^*\\~{}[&+=@/"`|<>_]+', " ", clean_data)
-
+## REMOVAL OF STRANGE CHARACTERS##
+clean_data <- gsub('[])(;:#%$^*\\~{}[&+=@/"`|<>_]+', " ", lineNews)
 clean_data <- gsub("[¤º–»«Ã¢â¬Å¥¡Â¿°£·©Ë¦¼¹¸±€ð\u201E\u201F\u0097\u0083\u0082\u0080\u0081\u0090\u0095\u009f\u0098\u008d\u008b\u0089\u0087\u008a■①�…]+", " ", clean_data)
 clean_data <- gsub("[\002\020\023\177\003]", "", clean_data)
---
-#Use DirSource now
-corpus<-Corpus(DirSource("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/subset/", encoding="UTF-8"), readerControl = list(language="en_US"))
+clean_data <- gsub("™", "", clean_data)
+clean_data <- gsub("˜", "", clean_data)
+clean_data <- gsub("“", "", clean_data)
+clean_data <- gsub("”", "", clean_data)
+# ELIMINATE DASHES / HYPHENS
+clean_data <- gsub("-", " ", clean_data)
+## END REMOVAL OF STRANGE CHARACTERS##
 
-#fileName="en_US.news.txt"
-#lineNews <- readLines(fileName, n=1000)
-
-
-
-#load in just 1000 lines of news dataset
+## MAKE CORPUS ##
 require(tm)
-fileName="en_US.news.txt"
-lineNews <- readLines(fileName, n=1000)
-corpus <- Corpus(VectorSource(lineNews), encoding="UTF-8")
-# When reading from DirSource, you get documents as root entries, you can access individual lines by:
-#crps[[1]]$content[1] to read the first line of the first document.
-#Fix unicode issues like so:
-#gsub("\u2019", "\'", crps[[1]]$content[2])
+corpus <- Corpus(VectorSource(clean_data))
 
-gsub("\u0093", "",corpus[[1]])
+## TOKENIZATION ##
 
-# Now we have in TextDocument format with 7 metadata:
-meta(corpus[[1]])
-#Metadata:
-#author       : character(0)
-#datetimestamp: 2014-11-04 19:35:36
-#description  : character(0)
-#heading      : character(0)
-#id           : 1
-#language     : en
-#origin       : character(0)
-
-## Here solve UTF Issue:
-#corpus1<-tm_map(corpus, function(x) iconv(enc2utf8(x), sub = "byte"))
-
-#Next, we make some adjustments to the text; 
-#remove whitespace:
+# REMOVE WHITESPACE:
 corpus1 <- tm_map(corpus, stripWhitespace)
 inspect(corpus1) #don't see a big difference
 
-#making everything lower case:
+# LOWERCASE:
 corpus2 <- tm_map(corpus1, content_transformer(tolower))
 inspect(corpus2) #works
 
-#remove stopwords
+# REMOVE STOPWORDS
 corpus3 <- tm_map(corpus2, removeWords, stopwords("english"))
 inspect(corpus3) # ok the has been removed...
 
-# Stemming
+# STEMMING
 corpus4 <- tm_map(corpus3, stemDocument)
 inspect(corpus4) # Looks stemmed.
 
-## do these?
-#removing punctuation? 
-# corpus<- tm_map(corpus,removePunctuation)
-#removing numbers ?
-#corpus<- tm_map(corpus,removeNumbers)
-
-##END DATA CLEANUP##
-
-##BEGIN DATA ANALYSIS##
-
-# First, we create something called a Term Document Matrix (TDM) 
-# which is a matrix of frequency counts for each word used in the corpus.
-tdm<- TermDocumentMatrix(corpus4)
-inspect(tdm[1:20,]) #display top 20
-
-# ok, a lot of stuff has hyphens. Guess I should remove those.
+# REMOVE PUNCTUATION
 corpus5<- tm_map(corpus4,removePunctuation)
-tdm2<- TermDocumentMatrix(corpus5)
-inspect(tdm2[1:20,]) #display top 20
 
-#ok, now it's all numbers, let's remove those too!
+# REMOVE NUMBERS
 corpus6<- tm_map(corpus5,removeNumbers)
-tdm3<- TermDocumentMatrix(corpus6)
-inspect(tdm3[1:20,]) #display top 20
-# ok now my problem is weird symbols: 
-#Terms                    980 981 982 983 984 985 986 987 988 989 990 991 992
-#â“iâ’m                   0   0   0   0   0   0   0   0   0   0   0   0   0
-#â“oresteian              0   0   0   0   0   0   0   0   0   0   0   0   0
-#â“reach                  0   0   0   0   0   0   0   0   0   0   0   0   0
-#â€˜m                     0   0   0   0   0   0   0   0   0   0   0   0   0
-#â€˜well                  0   0   0   0   0   0   0   0   0   0   0   0   0
-#â€˜will                  0   0   0   0   0   0   0   0   0   0   0   0   0
-#â€“                      0   0   0   0   0   0   0   0   0   0   0   0   0
-#â€”                      0   0   0   0   0   0   0   0   0   0   0   0   0
-#â€”found                 0   0   0   0   0   0   0   0   0   0   0   0   0
-#â€\u009d
 
-## WHAT'S NEXT?
-## PERHAPS CLEAN THESE STRANGE CHARACTERS USING GSUB.
-inspect(corpus6[10]) #here is an example with the odd data:
-#â“  just tri  hit  hard someplaceâ” said rizzo  hit  pitch   opposit field  leftcenter â“iâ’m just   tri  make good contactâ”
-#how was it orig?
-inspect(corpus[10])
-#ok so this is a UTF encoding issue, perhaps because i'm on PC even.
-# nope: tm_map(corpus6, function(x) iconv(x, to='UTF-8-MAC', sub='byte'))
-Encoding(aset[[10]])="UTF-8"
-aset[10]
+## END TOKENIZATION ##
 
-for (i in 1:length(corpus))
-{
-  Encoding(corpus6[[i]])="UTF-8"
+## CORPUS ANALYSIS ##
 
-}
-#Â“I was just trying to hit it hard someplace,Â” said Rizzo, who hit the pitch to the opposite field in left-center. Â“IÂ’m just up there trying to make good contact.Â”
-#hmm.. so it has these strange letters from the start?
-#Model to remove strange characters:
-#corpus7<- tm_map(corpus6,gsub(" ","")
+## MAKE TERM DOCUMENT MATRIX (TDM) - a matrix of frequency counts for each word used in the corpus.
+tdm<- TermDocumentMatrix(corpus6)
+inspect(tdm[1:20,]) #display top 20
