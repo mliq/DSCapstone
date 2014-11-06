@@ -1,6 +1,26 @@
 # Understanding `tm` Package
 
+# Next
+Next, we can begin to explore the TDM, using the ‘findFreqTerms’ function, to find which words were used most. Below we specify that we want term / word stems which were used 8 or more times (in all documents / paragraphs).
+`findFreqTerms(x = tdm, lowfreq=18, highfreq=Inf)`
+
+Next, we can use the ‘findAssocs’ function to find words which associate together. Here, we are specifying
+the TDM to use, the term we want to find associates for, and the lowest acceptable correlation limit
+with that term. This returns a vector of terms which are associated with ‘comput’ at r = 0.60 or more
+(correlation) – and reports each association in descending order.
+`findAssocs(x=tdm,term="comput",corlimit=0.6)`
+
+*This means words associated in 60% of documents to be displayed, hence for many small documents like you are doing, not a good number to use!*
+
+If desired, terms which occur very infrequently (i.e. sparse terms) can be removed; leaving only the‘common’ terms. Below, the ‘sparse’ argument refers to the MAXIMUM sparse-ness allowed for a term to be in the returned matrix; in other words, the larger the percentage, the more terms will be retained (the smaller the percentage, the fewer [but more common] terms will be retained).
+
+`tdm.common.60<-removeSparseTerms(x=tdm,sparse=0.60)`
+
+========
+# BASICS
 ## Term-Document Matrix vs. Document-Term Matrix vs. ?
+In the tm package the classes TermDocumentMatrix and DocumentTermMatrix (depending on whether you want terms as rows and documents as columns, or vice versa) employ sparse matrices for corpora.
+
 
 ## Introduction to the tm Package.pdf
 methods for data import, corpus handling, preprocessing, metadata management,

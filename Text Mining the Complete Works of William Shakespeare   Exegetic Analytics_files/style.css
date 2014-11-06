@@ -1,0 +1,53 @@
+/*
+Theme Name:     Exegetic
+Theme URI:      http://example.com/
+Description:    Exegetic theme (derived from the Twenty Twelve theme)
+Author:         Andrew B. Collier
+Author URI:     http://example.com/about/
+Template:       twentytwelve
+Version:        0.0.3
+*/
+
+/* To activate changes made here, hit F5 on blog page. This will remove the cached copy. */
+
+@import url("../twentytwelve/style.css");
+@import url("http://www.exegetic.biz/exegetic-common.css");
+
+footer[role="contentinfo"] {
+    max-width: 1100px;
+}
+@media screen and (min-width: 600px) {
+    .site {
+        max-width: 1100px;
+        /* max-width: 78.571428571rem; */
+        max-width: 90rem;
+    }
+}
+.ie .site {
+    max-width: 1100px;
+}
+
+#content table {
+}
+
+#content th {
+	background-color: #C6DBEF;
+	color: white;
+	text-align: center;
+}
+
+#content table, #content tr td {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+#content td.currency {
+	text-align: right !important;
+}
+
+img {
+	border: none !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}

@@ -1,0 +1,35 @@
+Post-Tokenization
+====
+# Implement "Bag of Words" model
+
+I need to weight the words.
+
+
+[](http://anythingbutrbitrary.blogspot.com/2013/03/build-search-engine-in-20-minutes-or.html)
+
+# SOME COMMANDS:
+
+```r
+findFreqTerms(x = tdm, lowfreq=58, highfreq=Inf)
+findAssocs(x=tdm,term="also",corlimit=0.1)
+
+# 1. take a sentence and iterate through the words
+
+# 2. Look up associated words 
+
+# 3. Give a score to each association with higher score to the words near the blank. 
+
+## POSSIBILITIES:
+
+# 1. REMOVE SPARSE TERMS
+TDM.common = removeSparseTerms(TDM, 0.1)
+dim(TDM)
+# [1] 18651   182
+dim(TDM.common)
+# [1]  71 182
+```
+
+# Vocab
+*orthogonal* - right-angle but in statistics means not related.
+*dot product* - an algebraic operation that takes two equal-length sequences of numbers (usually coordinate vectors) and returns a single number.
+*Euclidean space* - encompasses the two-dimensional Euclidean plane, the three-dimensional space of Euclidean geometry, and certain other spaces

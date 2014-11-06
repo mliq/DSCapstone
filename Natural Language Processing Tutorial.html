@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://vikparuchuri.com/blog/natural-language-processing-tutorial/ -->
+<html lang="en" xmlns="http://www.w3.org/1999/html"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <title>Natural Language Processing Tutorial</title>
+
+            <!-- Bootstrap core CSS -->
+            <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.3/journal/bootstrap.min.css?v=717" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="./Natural Language Processing Tutorial_files/style.css">
+            <link rel="stylesheet" type="text/css" href="./Natural Language Processing Tutorial_files/pygments.css">
+            <link rel="stylesheet" type="text/css" href="./Natural Language Processing Tutorial_files/jquery.nailthumb.1.1.min.css">
+
+
+            <script src="./Natural Language Processing Tutorial_files/cb=gapi.loaded_1" async=""></script><script src="./Natural Language Processing Tutorial_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Natural Language Processing Tutorial_files/platform.js" gapi_processed="true"></script><script id="facebook-jssdk" src="./Natural Language Processing Tutorial_files/all.js"></script><script id="twitter-wjs" src="./Natural Language Processing Tutorial_files/widgets.js"></script><script type="text/javascript" async="" src="./Natural Language Processing Tutorial_files/ga.js"></script><script type="text/javascript" src="./Natural Language Processing Tutorial_files/jquery.min.js"></script>
+            <script type="text/javascript" src="./Natural Language Processing Tutorial_files/bootstrap.min.js"></script>
+            <script type="text/javascript" src="./Natural Language Processing Tutorial_files/MathJax.js"></script>
+            <script type="text/x-mathjax-config;executed=true">
+                MathJax.Hub.Config({
+                    "HTML-CSS": {
+                        styles: {
+                            ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+                    },
+                    tex2jax: {inlineMath: [['$$','$$'], ['\\(','\\)']],processEscapes: true}
+                });
+            </script>
+
+            <script type="text/javascript" src="./Natural Language Processing Tutorial_files/jquery.nailthumb.1.1.min.js"></script>
+            <script type="text/javascript" src="./Natural Language Processing Tutorial_files/jquery.lazy.min.js"></script>
+            <script type="text/javascript" src="./Natural Language Processing Tutorial_files/index.js"></script>
+
+    <script type="text/javascript">
+        var disqus_shortname = 'vikparuchuri';
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script><script async="" type="text/javascript" src="./Natural Language Processing Tutorial_files/count.js"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-41411988-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+            <link href="http://vikparuchuri.com/atom.xml" type="application/atom+xml" rel="alternate" title="Vik Paruchuri Full Atom Feed">
+            <link href="http://vikparuchuri.com/blog/categories/r/atom.xml" type="application/atom+xml" rel="alternate" title="Vik Paruchuri Categories Atom Feed">
+
+    <meta property="og:title" content="Natural Language Processing Tutorial">
+    <meta name="twitter:title" content="Natural Language Processing Tutorial">
+
+    <script type="text/javascript" async="" src="./Natural Language Processing Tutorial_files/embed.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fbpluginrecommendationsbarleft,.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}.fbpluginrecommendationsbarleft{left:10px}.fbpluginrecommendationsbarright{right:10px}</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?rev=2.4-beta-2') format('opentype')}
+.MathJax .mo, .MathJax .mi {color: black ! important}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+    <body data-twttr-rendered="true"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+    <div id="wrap">
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="http://vikparuchuri.com/">Vik Paruchuri</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="main-nav">
+                    <ul class="nav navbar-nav">
+                        <li><a href="http://vikparuchuri.com/">Home</a></li>
+                                <li><a href="http://vikparuchuri.com/pages/about-me.html">About Me</a></li>
+                        <li><a href="http://vikparuchuri.com/archives.html">Archives</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+        </nav>
+        <div class="container">
+    <section id="content" class="body">
+        <article>
+            <h4 class="date">Jun 26,  2013</h4>
+            <header>
+                <h1 class="entry-title">
+                    <a href="./Natural Language Processing Tutorial_files/Natural Language Processing Tutorial.html" rel="bookmark" title="Permalink to Natural Language Processing Tutorial">Natural Language Processing Tutorial</a></h1>
+            </header>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="entry-content">
+                        <h2>Introduction</h2>
+<p>This will serve as an introduction to natural language processing. I adapted it from slides for a recent talk at Boston Python.</p>
+<p>We will go from tokenization to feature extraction to creating a model using a machine learning algorithm. The goal is to provide a reasonable baseline on top of which more complex natural language processing can be done, and provide a good introduction to the material.  </p>
+<p>The examples in this code are done in R, but are easily translatable to other languages. You can get the source of the post from <a href="http://www.github.com/vikparuchuri/vikparuchuri.com">github</a></p>
+<!--more-->
+
+<h2>Training set example</h2>
+<p>Let's say that I wanted to give a survey today and ask the following question:</p>
+<p>Why do you want to learn about machine learning?</p>
+<p>The responses might look like this:</p>
+<pre><code>## 1 I like solving interesting problems.
+## 2 What is machine learning?
+## 3 I'm not sure.
+## 4 Machien lerning predicts eveyrthing.
+</code></pre>
+
+<p>Let's say that the survey also asks people to rate their interest on a scale of 0 to 2.</p>
+<p>We would now have text and associated scores:</p>
+<p><img alt="plot of chunk unnamed-chunk-3" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-3.png"> </p>
+<h2>First steps</h2>
+<ul>
+<li>Computers can't directly understand text like humans can.<ul>
+<li>Humans automatically break down sentences into units of meaning.</li>
+</ul>
+</li>
+<li>In this case, we have to first explicitly show the computer how to do this, in a process called tokenization.</li>
+<li>After tokenization, we can convert the tokens into a matrix (bag of words model).</li>
+<li>Once we have a matrix, we can a machine learning algorithm to train a model and predict scores.</li>
+</ul>
+<h2>What is the algorithm doing?</h2>
+<ul>
+<li>The algorithm is going to be taking in a lot of numerical values, along with the scores that are associated with these values.</li>
+<li>We will extract the numerical values from the text<ul>
+<li>For example, <em>number of times the word plane appears in a piece of text</em> is a feature.</li>
+</ul>
+</li>
+<li>The values (features) are derived from the input text, and aggregated on a per-text basis into feature vectors.</li>
+<li>Multiple feature vectors are generally placed together into a feature matrix, where each row represents a piece of text.</li>
+<li>The algorithm will discover which of these features is relevant, and which are not.</li>
+<li>The relevance is determined by whether or not the features differentiate a high scoring essay from a low scoring one.</li>
+<li>So, we want to feed it features that are specific (they measure as few things as possible) and relevant.</li>
+</ul>
+<h2>Tokenization</h2>
+<p>Let's tokenize the first survey response:</p>
+<pre><code>## [1] "I" "like" "solving" "interesting" "problems"
+</code></pre>
+
+<p>In this very simple case, we have just made each word a token (similar to <em>string.split(' ')</em>).</p>
+<p>Tokenization where n-grams are extracted is also useful. N-grams are sequences of words. So a 2-gram would be two words together. This allows the bag of words model to have some information about word ordering.</p>
+<h2>Bag of words model</h2>
+<ul>
+<li>The bag of words model is a common way to represent documents in matrix form.</li>
+<li>We construct an <em>nxt</em> document-term matrix, where <em>n</em> is the number of documents, and <em>t</em> is the number of unique terms.</li>
+<li>Each column represents a unique term, and each cell <em>i,j</em> represents how many of term <em>j</em> are in document <em>i</em>.<ul>
+<li>We are using a simple term frequency bag of words. Other techniques, such as term frequency - inverse document frequency (tf-idf) would have something other than just counts in the cells.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="plot of chunk unnamed-chunk-5" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-5.png"> </p>
+<h2>Bag of words overview</h2>
+<ul>
+<li>Ordering of words within a document is not taken into account in the basic bag of words model.</li>
+<li>Once we have our document-term matrix, we can use machine learning techniques.</li>
+<li>I have outlined a very simple framework, but it can easily be built on and extended.</li>
+<li>The bag of words is a foundational block for a lot of more advanced techniques.</li>
+<li>What we are doing is extracting potentially relevant information in a manner the computer can utilize (ie numbers)</li>
+</ul>
+<h2>Minimizing distances between vectors</h2>
+<ul>
+<li>We want to minimize the distance between two similar feature vectors.<ul>
+<li>For example, the below text fragments are substantially similar:<ul>
+<li>Bill wanted to grow up and be a Doctor.</li>
+<li>bill wnted to gorw up and a be a doctor!</li>
+</ul>
+</li>
+<li>However, the simple tokenization we outlined above will not catch this.</li>
+</ul>
+</li>
+<li>Spell correction using aspell or <a href="http://norvig.com/spell-correct.html">Peter Norvig's method</a>.</li>
+<li>Lowercase input strings.</li>
+<li>We minimize distance because we want the same response to get the same score from our algorithm.</li>
+</ul>
+<h2>Preserving information</h2>
+<ul>
+<li>It is important to preserve as much of the input information as we can.</li>
+<li>When we start to spell correct or lowercase strings, we lose information.<ul>
+<li>We may be lowercasing the proper name Bill to the word bill.</li>
+<li>If we are scoring an essay, and spelling is an important criteria, we don't want to lose that.</li>
+</ul>
+</li>
+</ul>
+<p>Old features:</p>
+<p><img alt="plot of chunk unnamed-chunk-6" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-6.png"> </p>
+<p>New features with lowercasing and spell correction:</p>
+<p><img alt="plot of chunk unnamed-chunk-7" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-7.png"> </p>
+<h2>Orthogonality</h2>
+<ul>
+<li>As we saw in the slide before, we want to generate as much new information as possible while preserving existing information.</li>
+<li>This will have us generate multiple <em>feature sets</em>. All of the feature sets will eventually be collapsed into one matrix and fed into the algorithm.<ul>
+<li>Recommend having one feature set with original input text.</li>
+</ul>
+</li>
+<li>Can measure orthogonality by taking vector distance or vector similarity between each document vector.<ul>
+<li>Need to reformat document vectors to contain all terms.</li>
+</ul>
+</li>
+</ul>
+<p>Cosine similarities:</p>
+<pre><code>## [1] 1.0000 0.6667 1.0000 0.2500
+</code></pre>
+
+<p>Mean similarity:</p>
+<pre><code>## [1] 0.7292
+</code></pre>
+
+<h2>Meta-features</h2>
+<ul>
+<li>We may also wish to extract higher-level features, such as number of spelling errors, number of grammar errors, etc.</li>
+<li>Can add meta-features to the bag of words matrix.</li>
+<li>Meta-features preserve information.<ul>
+<li>If we are lowercasing everything, a "number of spelling errors" feature will capture some of the original information.</li>
+</ul>
+</li>
+<li>Can also extract and condense information.<ul>
+<li>Several columns with capitalized words will contain a lot of word-specific information (including whether or not the word is capitalized), but making a feature "number of capitalizations" will condense all of that information.</li>
+<li>If one of the criteria for whether or not an essay is good is whether or not the student has a synonym for "sun", a meta-feature could extract all possible synonyms and condense them into a count.</li>
+</ul>
+</li>
+</ul>
+<h2>Relevance of Information</h2>
+<ul>
+<li>Just like with a human, too much information will swamp an algorithm will irrelevant inputs.</li>
+<li>Similarly, information that is too broad will not help much.<ul>
+<li>For example, say a latent trait that gives a student a 2/2 on an essay vs a 0/2 is the presence of a synonym for the word "sun" in the response</li>
+<li>Broad information would be several columns in our matrix that contain synonyms for the word "sun"</li>
+<li>Specific information would be a feature that counts all of the synonyms up</li>
+</ul>
+</li>
+<li>Our goal is to give the computer as much relevant information as possible. If an item is relevant, more specific is better, but the less specific it is, the more potentially relevant it will be.</li>
+</ul>
+<h2>Which features are the right features?</h2>
+<ul>
+<li>Two simple ways<ul>
+<li>Create a machine learning model and measure error</li>
+<li>Do a chi-squared test or a fisher test of significance.</li>
+</ul>
+</li>
+<li>The tests essentially say "Is feature x significantly different between low and high scoring texts"?</li>
+<li>P-value -- the lower the p-value, the more significant the difference is. Generally, a .05 or a .01 is a good threshold for significance.</li>
+</ul>
+<p><img alt="plot of chunk unnamed-chunk-10" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-10.png"> </p>
+<h2>Finally, some machine learning!</h2>
+<ul>
+<li>Now that we have generated our bag of words features and our meta-features, and figured out which ones are good, we can move onto machine learning.</li>
+<li>The goal is to "train" a model that can predict future scores and categories.</li>
+<li>Two broad categories of algorithms: classification and regression (not linear regression!)<ul>
+<li>Most regression assumes that you are on a continuous scale.</li>
+<li>Classification is discrete.</li>
+<li>Classification works best if you have less than 5 "score points" (we have 3).</li>
+<li>Should try both, and measure error.</li>
+</ul>
+</li>
+<li>We also have a lot of choice regarding the algorithm to use.<ul>
+<li>In this case, use linear regression</li>
+</ul>
+</li>
+</ul>
+<h2>Linear regression</h2>
+<ul>
+<li>A simple linear equation is <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-1-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-1" style="width: 6.509em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.858em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.854em 1000.003em 3.056em -0.448em); top: -2.7em; left: 0.003em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-4" style="font-family: MathJax_Main; padding-left: 0.303em;">=</span><span class="mi" id="MathJax-Span-5" style="font-family: MathJax_Math-italic; padding-left: 0.303em;">m</span><span class="mo" id="MathJax-Span-6" style="font-family: MathJax_Main; padding-left: 0.203em;">∗</span><span class="mi" id="MathJax-Span-7" style="font-family: MathJax_Math-italic; padding-left: 0.203em;">x</span><span class="mo" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.203em;">+</span><span class="mi" id="MathJax-Span-9" style="font-family: MathJax_Math-italic; padding-left: 0.203em;">b</span></span><span style="display: inline-block; width: 0px; height: 2.705em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.114em; vertical-align: -0.275em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-1">y=m*x+b</script>, where y is the target value(score), m is a coefficient, and b is a constant.</li>
+<li>In linear regression, we would do something like <span><span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-2-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-10" style="width: 20.223em; display: inline-block;"><span style="display: inline-block; position: relative; width: 18.221em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.854em 1000.003em 3.056em -0.448em); top: -2.7em; left: 0.003em;"><span class="mrow" id="MathJax-Span-11"><span class="mi" id="MathJax-Span-12" style="font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-13" style="font-family: MathJax_Main; padding-left: 0.303em;">=</span><span class="msubsup" id="MathJax-Span-14" style="padding-left: 0.303em;"><span style="display: inline-block; position: relative; width: 1.354em; height: 0px;"><span style="position: absolute; clip: rect(1.854em 1000.003em 2.605em -0.448em); top: -2.45em; left: 0.003em;"><span class="mi" id="MathJax-Span-15" style="font-family: MathJax_Math-italic;">m</span><span style="display: inline-block; width: 0px; height: 2.455em;"></span></span><span style="position: absolute; top: -2.15em; left: 0.903em;"><span class="texatom" id="MathJax-Span-16"><span class="mrow" id="MathJax-Span-17"><span class="mn" id="MathJax-Span-18" style="font-size: 70.7%; font-family: MathJax_Main;">1</span></span></span><span style="display: inline-block; width: 0px; height: 2.305em;"></span></span></span></span><span class="mo" id="MathJax-Span-19" style="font-family: MathJax_Main; padding-left: 0.203em;">∗</span><span class="msubsup" id="MathJax-Span-20" style="padding-left: 0.203em;"><span style="display: inline-block; position: relative; width: 1.054em; height: 0px;"><span style="position: absolute; clip: rect(1.854em 1000.003em 2.605em -0.398em); top: -2.45em; left: 0.003em;"><span class="mi" id="MathJax-Span-21" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 2.455em;"></span></span><span style="position: absolute; top: -2.15em; left: 0.603em;"><span class="texatom" id="MathJax-Span-22"><span class="mrow" id="MathJax-Span-23"><span class="mn" id="MathJax-Span-24" style="font-size: 70.7%; font-family: MathJax_Main;">1</span></span></span><span style="display: inline-block; width: 0px; height: 2.305em;"></span></span></span></span><span class="mo" id="MathJax-Span-25" style="font-family: MathJax_Main; padding-left: 0.203em;">+</span><span class="msubsup" id="MathJax-Span-26" style="padding-left: 0.203em;"><span style="display: inline-block; position: relative; width: 1.354em; height: 0px;"><span style="position: absolute; clip: rect(1.854em 1000.003em 2.605em -0.448em); top: -2.45em; left: 0.003em;"><span class="mi" id="MathJax-Span-27" style="font-family: MathJax_Math-italic;">m</span><span style="display: inline-block; width: 0px; height: 2.455em;"></span></span><span style="position: absolute; top: -2.15em; left: 0.903em;"><span class="texatom" id="MathJax-Span-28"><span class="mrow" id="MathJax-Span-29"><span class="mn" id="MathJax-Span-30" style="font-size: 70.7%; font-family: MathJax_Main;">2</span></span></span><span style="display: inline-block; width: 0px; height: 2.305em;"></span></span></span></span><span class="mo" id="MathJax-Span-31" style="font-family: MathJax_Main; padding-left: 0.203em;">∗</span><span class="msubsup" id="MathJax-Span-32" style="padding-left: 0.203em;"><span style="display: inline-block; position: relative; width: 1.054em; height: 0px;"><span style="position: absolute; clip: rect(1.854em 1000.003em 2.605em -0.398em); top: -2.45em; left: 0.003em;"><span class="mi" id="MathJax-Span-33" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 2.455em;"></span></span><span style="position: absolute; top: -2.15em; left: 0.603em;"><span class="texatom" id="MathJax-Span-34"><span class="mrow" id="MathJax-Span-35"><span class="mn" id="MathJax-Span-36" style="font-size: 70.7%; font-family: MathJax_Main;">2</span></span></span><span style="display: inline-block; width: 0px; height: 2.305em;"></span></span></span></span><span class="mo" id="MathJax-Span-37" style="font-family: MathJax_Main; padding-left: 0.203em;">+</span><span class="mo" id="MathJax-Span-38" style="font-family: MathJax_Main; padding-left: 0.203em;">⋯</span><span class="mo" id="MathJax-Span-39" style="font-family: MathJax_Main; padding-left: 0.203em;">+</span><span class="msubsup" id="MathJax-Span-40" style="padding-left: 0.203em;"><span style="display: inline-block; position: relative; width: 1.404em; height: 0px;"><span style="position: absolute; clip: rect(1.854em 1000.003em 2.605em -0.448em); top: -2.45em; left: 0.003em;"><span class="mi" id="MathJax-Span-41" style="font-family: MathJax_Math-italic;">m</span><span style="display: inline-block; width: 0px; height: 2.455em;"></span></span><span style="position: absolute; top: -2.1em; left: 0.903em;"><span class="texatom" id="MathJax-Span-42"><span class="mrow" id="MathJax-Span-43"><span class="mi" id="MathJax-Span-44" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span></span></span><span style="display: inline-block; width: 0px; height: 2.255em;"></span></span></span></span><span class="mo" id="MathJax-Span-45" style="font-family: MathJax_Main; padding-left: 0.203em;">∗</span><span class="msubsup" id="MathJax-Span-46" style="padding-left: 0.203em;"><span style="display: inline-block; position: relative; width: 1.104em; height: 0px;"><span style="position: absolute; clip: rect(1.854em 1000.003em 2.605em -0.398em); top: -2.45em; left: 0.003em;"><span class="mi" id="MathJax-Span-47" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 2.455em;"></span></span><span style="position: absolute; top: -2.1em; left: 0.603em;"><span class="texatom" id="MathJax-Span-48"><span class="mrow" id="MathJax-Span-49"><span class="mi" id="MathJax-Span-50" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span></span></span><span style="display: inline-block; width: 0px; height: 2.255em;"></span></span></span></span><span class="mo" id="MathJax-Span-51" style="font-family: MathJax_Main; padding-left: 0.203em;">+</span><span class="mi" id="MathJax-Span-52" style="font-family: MathJax_Math-italic; padding-left: 0.203em;">b</span></span><span style="display: inline-block; width: 0px; height: 2.705em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.114em; vertical-align: -0.275em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-2">y=m_{1}*x_{1}+m_{2}*x_{2}+\dots+m_{n}*x_{n}+b</script></span>.<ul>
+<li>Each column in the matrix (feature) has a coefficient.</li>
+<li>When we train the model, we calculate the coefficients.</li>
+<li>Once we have the coefficients, we can predict how future text would score.</li>
+</ul>
+</li>
+</ul>
+<p>Coefficients:</p>
+<pre><code>## (Intercept) everything interesting learning
+## coefficients 1 -1 1 -1
+</code></pre>
+
+<p>Words that are not shown do not have a coefficient (ie they did not have any useful information for scoring).</p>
+<h2>Predicting scores</h2>
+<ul>
+<li>Now that we have our coefficients, and our intercept term, we can construct our equation and predict scores for new text.</li>
+<li>Any new text has to go through the exact same process that we passed our training text through.<ul>
+<li>In this case, text will go through the bag of words model. We will skip additional processing to keep it simple.</li>
+</ul>
+</li>
+</ul>
+<p>Let's use this as our "test" text that we will predict a score for:</p>
+<pre><code>## 1 I want to learn to solve interesting problems.
+</code></pre>
+
+<p><img alt="plot of chunk unnamed-chunk-13" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-13.png"> </p>
+<ul>
+<li>Note that we have used the exact same features as in the training matrix. <ul>
+<li>Without this, our model will not work.</li>
+</ul>
+</li>
+</ul>
+<h2>Doing the prediction</h2>
+<ul>
+<li>
+<p>We can use our new features to predict a score for our test text.</p>
+</li>
+<li>
+<p>Our prediction is 2</p>
+</li>
+<li>We derive this by multiplying each column in the matrix by its associated coefficient, then adding those together and adding the intercept.</li>
+<li>In this case, the intercept was 1 and the presence of the word <em>interesting</em> added another 1.</li>
+</ul>
+<h2>Evaluating model accuracy</h2>
+<ul>
+<li>A very important question when creating a model and exploring various feature combinations is accuracy.</li>
+<li>In order to measure accuracy, we use a principle called cross-validation.<ul>
+<li>Split training data set into n parts randomly (each part is a "fold", and we call it n-fold cross validation).</li>
+<li>Iterate from 1 to n and predict the scores of parts[n] from all the data in parts[!n].</li>
+</ul>
+</li>
+<li>Let's keep it simple, and split into 2 parts non-randomly.<ul>
+<li>We will make a model using only the first 2 training matrix rows, and then another model using the next 2.</li>
+<li>Each model will be used to predict the scores of the texts that did not go into the model.</li>
+</ul>
+</li>
+<li>Why do we do this?<ul>
+<li>Measuring accuracy allow us to figure out optimal combinations of strategies.</li>
+<li>Cross validation gives us an unbiased accuracy estimate.</li>
+</ul>
+</li>
+</ul>
+<h2>Evaluating model accuracy</h2>
+<p>First fold:</p>
+<p><img alt="plot of chunk unnamed-chunk-16" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-16.png"> </p>
+<p>Second fold:
+<img alt="plot of chunk unnamed-chunk-17" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-17.png"> </p>
+<p>Predictions:
+<img alt="plot of chunk unnamed-chunk-18" src="./Natural Language Processing Tutorial_files/2013-06-26-natural-language-processing-tutorial-unnamed-chunk-18.png"> </p>
+<ul>
+<li>Predictions are not very accurate due to very limited data.</li>
+</ul>
+<h2>Quantify error</h2>
+<ul>
+<li>Quantify accuracy through one of several methods<ul>
+<li>Kappa correlation</li>
+<li>Mean absolute error</li>
+<li>Root mean squared error</li>
+<li>All of them turn error into a single number</li>
+</ul>
+</li>
+<li>Important to set random seeds when doing most machine learning methods in order to make error meaningful from run to run.</li>
+<li><span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-3-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-53" style="width: 13.466em; display: inline-block;"><span style="display: inline-block; position: relative; width: 12.115em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(0.853em 1000.003em 4.157em -0.398em); top: -2.7em; left: 0.003em;"><span class="mrow" id="MathJax-Span-54"><span class="mi" id="MathJax-Span-55" style="font-family: MathJax_Math-italic;">R</span><span class="mi" id="MathJax-Span-56" style="font-family: MathJax_Math-italic;">M<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.103em;"></span></span><span class="mi" id="MathJax-Span-57" style="font-family: MathJax_Math-italic;">S<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.053em;"></span></span><span class="mi" id="MathJax-Span-58" style="font-family: MathJax_Math-italic;">E<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.053em;"></span></span><span class="mo" id="MathJax-Span-59" style="font-family: MathJax_Main; padding-left: 0.303em;">=</span><span class="msqrt" id="MathJax-Span-60" style="padding-left: 0.303em;"><span style="display: inline-block; position: relative; width: 7.41em; height: 0px;"><span style="position: absolute; clip: rect(1.204em 1000.003em 3.856em -0.448em); top: -2.7em; left: 1.004em;"><span class="mrow" id="MathJax-Span-61"><span class="mfrac" id="MathJax-Span-62"><span style="display: inline-block; position: relative; width: 0.553em; height: 0px; margin-right: 0.103em; margin-left: 0.103em;"><span style="position: absolute; clip: rect(1.704em 1000.003em 2.455em -0.398em); top: -2.7em; left: 50%; margin-left: -0.198em;"><span class="mn" id="MathJax-Span-63" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 2.305em;"></span></span><span style="position: absolute; clip: rect(1.804em 1000.003em 2.405em -0.448em); top: -1.899em; left: 50%; margin-left: -0.198em;"><span class="mi" id="MathJax-Span-64" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span style="display: inline-block; width: 0px; height: 2.255em;"></span></span><span style="position: absolute; clip: rect(0.853em 1000.003em 1.204em -0.448em); top: -1.249em; left: 0.003em;"><span style="border-left-width: 0.553em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.25px; vertical-align: 0.003em;"></span><span style="display: inline-block; width: 0px; height: 1.054em;"></span></span></span></span><span class="munderover" id="MathJax-Span-65" style="padding-left: 0.153em;"><span style="display: inline-block; position: relative; width: 1.154em; height: 0px;"><span style="position: absolute; clip: rect(1.804em 1000.003em 3.106em -0.398em); top: -2.7em; left: 0.003em;"><span class="mo" id="MathJax-Span-66" style="font-family: MathJax_Size1; vertical-align: 0.003em;">∑</span><span style="display: inline-block; width: 0px; height: 2.705em;"></span></span><span style="position: absolute; clip: rect(1.704em 1000.003em 2.555em -0.448em); top: -1.399em; left: 0.003em;"><span class="texatom" id="MathJax-Span-67"><span class="mrow" id="MathJax-Span-68"><span class="mi" id="MathJax-Span-69" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span class="mo" id="MathJax-Span-70" style="font-size: 70.7%; font-family: MathJax_Main;">=</span><span class="mn" id="MathJax-Span-71" style="font-size: 70.7%; font-family: MathJax_Main;">1</span></span></span><span style="display: inline-block; width: 0px; height: 2.305em;"></span></span><span style="position: absolute; clip: rect(1.704em 1000.003em 2.405em -0.448em); top: -3.201em; left: 0.353em;"><span class="mi" id="MathJax-Span-72" style="font-size: 70.7%; font-family: MathJax_Math-italic;">n</span><span style="display: inline-block; width: 0px; height: 2.255em;"></span></span></span></span><span class="mo" id="MathJax-Span-73" style="font-family: MathJax_Main;">(</span><span class="texatom" id="MathJax-Span-74"><span class="mrow" id="MathJax-Span-75"><span class="munderover" id="MathJax-Span-76"><span style="display: inline-block; position: relative; width: 0.953em; height: 0px;"><span style="position: absolute; clip: rect(3.156em 1000.003em 4.307em -0.398em); top: -4.002em; left: 0.003em;"><span class="msubsup" id="MathJax-Span-77"><span style="display: inline-block; position: relative; width: 0.953em; height: 0px;"><span style="position: absolute; clip: rect(1.604em 1000.003em 2.605em -0.398em); top: -2.45em; left: 0.003em;"><span class="mi" id="MathJax-Span-78" style="font-family: MathJax_Math-italic;">Y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.203em;"></span></span><span style="display: inline-block; width: 0px; height: 2.455em;"></span></span><span style="position: absolute; top: -2.1em; left: 0.603em;"><span class="texatom" id="MathJax-Span-79"><span class="mrow" id="MathJax-Span-80"><span class="mi" id="MathJax-Span-81" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span></span></span><span style="display: inline-block; width: 0px; height: 2.255em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="position: absolute; clip: rect(1.854em 1000.003em 2.305em -0.348em); top: -3.001em; left: 0.203em;"><span class="mo" id="MathJax-Span-82" style="font-family: MathJax_Main;">^</span><span style="display: inline-block; width: 0px; height: 2.705em;"></span></span></span></span></span></span><span class="mo" id="MathJax-Span-83" style="font-family: MathJax_Main; padding-left: 0.203em;">−</span><span class="msubsup" id="MathJax-Span-84" style="padding-left: 0.203em;"><span style="display: inline-block; position: relative; width: 0.953em; height: 0px;"><span style="position: absolute; clip: rect(1.604em 1000.003em 2.605em -0.398em); top: -2.45em; left: 0.003em;"><span class="mi" id="MathJax-Span-85" style="font-family: MathJax_Math-italic;">Y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.203em;"></span></span><span style="display: inline-block; width: 0px; height: 2.455em;"></span></span><span style="position: absolute; top: -2.1em; left: 0.603em;"><span class="texatom" id="MathJax-Span-86"><span class="mrow" id="MathJax-Span-87"><span class="mi" id="MathJax-Span-88" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span></span></span><span style="display: inline-block; width: 0px; height: 2.255em;"></span></span></span></span><span class="msubsup" id="MathJax-Span-89"><span style="display: inline-block; position: relative; width: 0.853em; height: 0px;"><span style="position: absolute; clip: rect(1.804em 1000.003em 3.106em -0.398em); top: -2.7em; left: 0.003em;"><span class="mo" id="MathJax-Span-90" style="font-family: MathJax_Main;">)</span><span style="display: inline-block; width: 0px; height: 2.705em;"></span></span><span style="position: absolute; top: -2.8em; left: 0.403em;"><span class="mn" id="MathJax-Span-91" style="font-size: 70.7%; font-family: MathJax_Main;">2</span><span style="display: inline-block; width: 0px; height: 2.305em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.705em;"></span></span><span style="position: absolute; clip: rect(3.606em 1000.003em 4.007em -0.448em); top: -5.403em; left: 1.004em;"><span style="display: inline-block; position: relative; width: 6.409em; height: 0px;"><span style="position: absolute; font-family: MathJax_Main; top: -4.002em; left: -0.098em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="position: absolute; font-family: MathJax_Main; top: -4.002em; left: 5.758em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 0.403em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 0.953em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 1.504em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 2.005em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 2.555em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 3.106em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 3.606em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 4.157em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 4.657em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="font-family: MathJax_Main; position: absolute; top: -4.002em; left: 5.208em;">−<span style="display: inline-block; width: 0px; height: 4.007em;"></span></span></span><span style="display: inline-block; width: 0px; height: 4.007em;"></span></span><span style="position: absolute; clip: rect(2.105em 1000.003em 5.408em -0.348em); top: -3.951em; left: 0.003em;"><span style="font-family: MathJax_Size4;">√</span><span style="display: inline-block; width: 0px; height: 4.007em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.705em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 3.447em; vertical-align: -1.497em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-3">RMSE=\sqrt{\frac{1}n\sum\limits_{i=1}^n(\hat{Y_{i}}-Y_{i})^2}</script></li>
+<li>Our RMSE is 0.9354</li>
+<li>If we tried another method, and the RMSE improved, we would have a reasonable expectation that the method was better.</li>
+</ul>
+<h2>More advanced features</h2>
+<ul>
+<li>Find similarity between documents or terms with latent semantic analysis.</li>
+<li>Model topics with latent dirichlet allocation</li>
+<li>Part of speech tagging</li>
+<li>Stemming/lemmatization</li>
+<li>Synonym detection with wordnet</li>
+<li>Sentiment analysis</li>
+<li>Deep learning</li>
+</ul>
+<h2>More advanced algorithms</h2>
+<ul>
+<li>Support vector machines</li>
+<li>Decision trees</li>
+<li>Random forest</li>
+<li>Gradient boosted trees</li>
+<li>Different algorithms work better in different situations. Try several.<ul>
+<li>A framework to measure error is critical before experimenting.</li>
+</ul>
+</li>
+<li>You can also "blend" the outputs of various algorithms in a process called ensembling.</li>
+</ul><script> var _mt = _mt || {}; _mt.apikey = 'EYGlPGk3'; _mt.init  = function(response){  };  (function() { var mt = document.createElement('script'); mt.type = 'text/javascript';mt.async = true; mt.src = 'https://moontower.yhathq.com/js/moontower.min.js'; var s = document.getElementsByTagName('script'); var l = s[s.length - 1]; l.parentNode.insertBefore(mt, l.nextSibling);})(); </script><script type="text/javascript" async="" src="./Natural Language Processing Tutorial_files/moontower.min.js"></script>
+                    </div><!-- /.entry-content -->
+                </div>
+            </div>
+
+   <hr>
+<div class="row social-media-row">
+    <div class="col-md-12">
+        <div class="btn-group btn-group-sm">
+            <ul class="social-media-buttons">
+                    <li class="twitter-share-button"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./Natural Language Processing Tutorial_files/tweet_button.d58098f8a7f0ff5a206e7f15442a6b30.en.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 109px; height: 20px;"></iframe></li>
+                    <li class="facebook-share-button"><div class="fb-share-button fb_iframe_widget" data-type="button_count" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=1383357648588967&amp;href=http%3A%2F%2Fvikparuchuri.com%2Fblog%2Fnatural-language-processing-tutorial%2F&amp;locale=en_US&amp;sdk=joey&amp;type=button_count"><span style="vertical-align: bottom; width: 85px; height: 20px;"><iframe name="f3dd2511b" width="1000px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:share_button Facebook Social Plugin" src="./Natural Language Processing Tutorial_files/share_button.html" style="border: none; visibility: visible; width: 85px; height: 20px;" class=""></iframe></span></div></li>
+                    <li class="google-share-button"><div id="___plus_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 84px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 84px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1415242309592" name="I0_1415242309592" src="./Natural Language Processing Tutorial_files/sharebutton.html" data-gapiattached="true" title="+Share"></iframe></div></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Natural Language Processing Tutorial_files/QjK2hWv6uak.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Natural Language Processing Tutorial_files/QjK2hWv6uak(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="f20c2398d" frameborder="0" allowtransparency="true" scrolling="no" src="./Natural Language Processing Tutorial_files/ping.html" style="display: none;"></iframe></div></div></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1383357648588967";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script type="text/javascript">
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/platform.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+                <hr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="comments">
+                            <div id="disqus_thread"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Natural Language Processing Tutorial_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 766px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+                            <script type="text/javascript">
+                                var disqus_shortname = 'vikparuchuri';
+                                var disqus_identifier = 'blog/natural-language-processing-tutorial/';
+                                var disqus_url = 'http://vikparuchuri.com/blog/natural-language-processing-tutorial/';
+                                (function() {
+                                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                    dsq.src = '//vikparuchuri.disqus.com/embed.js';
+                                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                })();
+                            </script>
+                            <noscript>Please enable JavaScript to view the comments.</noscript>
+                        </div>
+                    </div>
+                </div>
+        </article>
+    </section>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="pull-right">Powered by the <a href="http://www.affirm.io/">Affirm</a> blogging platform.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<iframe name="oauth2relay706298223" id="oauth2relay706298223" src="./Natural Language Processing Tutorial_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size4, sans-serif;"></div></div></body></html>

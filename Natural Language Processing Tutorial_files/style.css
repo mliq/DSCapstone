@@ -1,0 +1,190 @@
+.social-media-buttons{
+    float: left;
+    list-style: none;
+    margin: 5px 0 20px 0;
+    padding: 0;
+    width: 100%;
+}
+
+ul.social-media-buttons li{
+    display: block;
+    float: left;
+    margin-right: 10px;
+    height: 30px;
+    width: 107px;
+}
+
+a.readmore {
+    background: #ebebeb;
+    display: inline-block;
+    padding: .4em .8em;
+    margin-right: .5em;
+    text-decoration: none;
+    color: #666;
+    -webkit-transition: background-color 0.5s;
+    -moz-transition: background-color 0.5s;
+    -o-transition: background-color 0.5s;
+    transition: background-color 0.5s;
+}
+
+a.readmore:hover{
+    background:#777;
+    text-shadow:none;
+    color:#f8f8f8
+}
+
+div.posts{
+    padding-bottom: 20px;
+}
+
+div.nailthumb-container{
+    height: 200px;
+    width: 250px;
+}
+
+img {
+    max-width: 100%;
+    height: auto; /*Height is auto the image to be re-sized proportionally */
+}
+
+section#content{
+    font-size: 18px;
+}
+
+@media (min-width: 1200px) {
+    section#content{
+        line-height: 29px;
+    }
+
+    section#content p{
+        margin: 0 0 20px;
+    }
+
+    ul.social-media-buttons li.google-share-button{
+        margin-top: 9px;
+    }
+
+    ul.social-media-buttons li.twitter-share-button{
+        margin-top: 9px;
+    }
+
+    ul.social-media-buttons li.linkedin-share-button{
+        margin-top: 8px;
+    }
+}
+
+@media (min-width: 768px ) and (max-width: 1200px) {
+    section#content{
+        line-height: 27px;
+    }
+
+    section#content p{
+        margin: 0 0 19px;
+    }
+
+    ul.social-media-buttons li.google-share-button{
+        margin-top: 7px;
+    }
+
+    ul.social-media-buttons li.twitter-share-button{
+        margin-top: 7px;
+    }
+
+    ul.social-media-buttons li.linkedin-share-button{
+        margin-top: 6px;
+    }
+}
+
+@media (max-width: 768px ) {
+    ul.social-media-buttons li{
+        margin-right: 0px;
+    }
+    section#content{
+        line-height: 25px;
+    }
+
+    section#content p{
+        margin: 0 0 17px;
+    }
+
+    ul.social-media-buttons li.google-share-button{
+        margin-top: 5px;
+    }
+
+    ul.social-media-buttons li.twitter-share-button{
+        margin-top: 5px;
+    }
+
+    ul.social-media-buttons li.linkedin-share-button{
+        margin-top: 4px;
+    }
+}
+
+body{
+    color: #000;
+}
+
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto;
+    /* Negative indent footer by its height */
+    margin: 0 auto -60px;
+    /* Pad bottom by footer height */
+    padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+    height: 60px;
+}
+
+.pages {
+    font-family: sans-serif;
+    line-height: 2.5em;
+    margin: 4.5em 0 3em;
+    color: #444;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.pages a.next_page {
+    float: right;
+    width: 140px;
+    text-align: center;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.pages a.prev_page {
+    float: left;
+    width: 140px;
+    text-align: center;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.pages a {
+    color: inherit;
+    border: none;
+}
+.pages a:hover {
+    background-color: #DDD;
+}
+.pages span {
+    display: block;
+    margin: 0 160px;
+    text-align: center;
+}

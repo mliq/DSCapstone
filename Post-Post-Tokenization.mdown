@@ -1,0 +1,38 @@
+Post-Post-Tokenization
+=====
+# NEXT
+
+1. n-grams?
+
+2. Profanity filter.
+
+3. Spell correct.
+
+4. Examine proper noun isolation (preserving via a separate feature set or possbily in meta-data?)
+
+## Reference:
+# [Natural Language Processing Tutorial](http://vikparuchuri.com/blog/natural-language-processing-tutorial/)
+
+## Bag of Words model
+
+-Does not account for word order (n-grams)
+>The bag of words is a foundational block for a lot of more advanced techniques.
+
+### DO:
+	
+1. Spell correction using aspell or Peter Norvig's method. (Minimizing distance between vectors)
+
+2. Algorithm
+	-Two broad categories of algorithms: classification and regression (not linear regression!)
+	-Most regression assumes that you are on a continuous scale.
+	-Classification is discrete.
+	-Classification works best if you have less than 5 "score points" (we have 3).
+	-Should try both, and measure error.
+
+
+
+### Later:
+3. Preserving capitalization for proper noun differentiation? 
+	-Orthogonality. Create two feature sets. 
+	-Can use meta-data for this?
+	-Then machine learning to train a model... or chi-squared test of fisher test of significance.

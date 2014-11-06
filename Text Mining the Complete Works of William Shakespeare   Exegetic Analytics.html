@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/ -->
+<html lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Text Mining the Complete Works of William Shakespeare | Exegetic Analytics</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.exegetic.biz/blog/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://www.exegetic.biz/blog/wp-content/themes/twentytwelve/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="Exegetic Analytics » Feed" href="http://www.exegetic.biz/blog/feed/">
+<link rel="alternate" type="application/rss+xml" title="Exegetic Analytics » Comments Feed" href="http://www.exegetic.biz/blog/comments/feed/">
+
+            <script id="twitter-wjs" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/widgets.js"></script><script type="text/javascript" async="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ga.js"></script><script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.5 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-40073522-1']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel="alternate" type="application/rss+xml" title="Exegetic Analytics » Text Mining the Complete Works of William Shakespeare Comments Feed" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/feed/">
+<link rel="stylesheet" id="jetpack-subscriptions-css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/subscriptions.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack-widgets-css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/widgets.css" type="text/css" media="all">
+<link rel="stylesheet" id="twentytwelve-fonts-css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="twentytwelve-style-css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentytwelve-ie-css'  href='http://www.exegetic.biz/blog/wp-content/themes/twentytwelve/css/ie.css?ver=20121010' type='text/css' media='all' />
+<![endif]-->
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/jquery.js"></script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/jquery-migrate.min.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.exegetic.biz/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.exegetic.biz/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="What can be learned from 5 million books" href="http://www.exegetic.biz/blog/2013/08/what-can-be-learned-from-5-million-books/">
+<link rel="next" title="MetaTrader Time Zones" href="http://www.exegetic.biz/blog/2013/09/metatrader-time-zones/">
+<meta name="generator" content="WordPress 4.0">
+<link rel="canonical" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/Text Mining the Complete Works of William Shakespeare   Exegetic Analytics.html">
+<link rel="shortlink" href="http://wp.me/p3pzmk-72">
+<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style>	<style type="text/css">
+			.site-title,
+		.site-description {
+			position: absolute !important;
+			clip: rect(1px 1px 1px 1px); /* IE7 */
+			clip: rect(1px, 1px, 1px, 1px);
+		}
+		</style>
+	
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Text Mining the Complete Works of William Shakespeare">
+<meta property="og:url" content="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/">
+<meta property="og:description" content="I am starting a new project that will require some serious text mining. So, in the interests of bringing myself up to speed on the tm package, I thought I would apply it to the Complete Works of Wi...">
+<meta property="article:published_time" content="2013-09-05T11:41:41+00:00">
+<meta property="article:modified_time" content="2014-08-13T03:42:54+00:00">
+<meta property="article:author" content="http://www.exegetic.biz/blog/author/admin/">
+<meta property="og:site_name" content="Exegetic Analytics">
+<meta property="og:image" content="http://www.exegetic.biz/blog/wp-content/uploads/2013/09/shakespeare-word-cloud.png">
+<meta property="og:image" content="http://www.exegetic.biz/blog/wp-content/uploads/2013/09/shakespeare-common-tdm.png">
+<meta name="twitter:site" content="@jetpack">
+<meta name="twitter:image" content="http://www.exegetic.biz/blog/wp-content/uploads/2013/09/shakespeare-word-cloud.png?w=240">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" type="text/css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+		<link rel="stylesheet" id="custom-css-css" type="text/css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/saved_resource">
+		<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/services.css"></head>
+
+<body class="single single-post postid-436 single-format-standard custom-font-enabled single-author" data-twttr-rendered="true">
+<div id="page" class="hfeed site">
+	<header id="masthead" class="site-header" role="banner">
+		<hgroup>
+			<h1 class="site-title"><a href="http://www.exegetic.biz/blog/" title="Exegetic Analytics" rel="home">Exegetic Analytics</a></h1>
+			<h2 class="site-description">Sapientia ex numero: Now you know!</h2>
+		</hgroup>
+
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<h3 class="menu-toggle">Menu</h3>
+			<a class="assistive-text" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#content" title="Skip to content">Skip to content</a>
+			<div class="nav-menu"><ul><li><a href="http://www.exegetic.biz/blog/">Home</a></li><li class="page_item page-item-114"><a href="http://www.exegetic.biz/">Exegetic Analytics</a></li></ul></div>
+		</nav><!-- #site-navigation -->
+
+					<a href="http://www.exegetic.biz/blog/"><img src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/mosaic-wordpress-header.png" class="header-image" width="100%" height="100%" alt="" scale="0"></a>
+			</header><!-- #masthead -->
+
+	<div id="main" class="wrapper">
+
+	<div id="primary" class="site-content">
+		<div id="content" role="main">
+
+			
+				
+	<article id="post-436" class="post-436 post type-post status-publish format-standard hentry category-r tag-ggplot2 tag-heat-map tag-melt tag-r tag-reshape2 tag-text-mining tag-word-cloud">
+				<header class="entry-header">
+									<h1 class="entry-title">Text Mining the Complete Works of William Shakespeare</h1>
+										<div class="comments-link">
+					<a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comments" title="Comment on Text Mining the Complete Works of William Shakespeare">23 Replies</a>				</div><!-- .comments-link -->
+					</header><!-- .entry-header -->
+
+				<div class="entry-content">
+			<p>I am starting a new project that will require some serious text mining. So, in the interests of bringing myself up to speed on the tm package, I thought I would apply it to the Complete Works of William Shakespeare and just see what falls out.</p>
+<p>The first order of business was getting my hands on all that text. Fortunately it is available from a number of sources. I chose to use <a href="http://www.gutenberg.org/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://www.gutenberg.org&#39;]);">Project Gutenberg</a>.</p>
+<div><div id="highlighter_563673" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; TEXTFILE = </code><code class="r string">"data/pg100.txt"</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; </code><code class="r functions">if </code><code class="r plain">(!</code><code class="r functions">file.exists</code><code class="r plain">(TEXTFILE)) {</code></div><div class="line number3 index2 alt2"><code class="r plain">+&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="r functions">download.file</code><code class="r plain">(</code><code class="r string">"<a href="http://www.gutenberg.org/cache/epub/100/pg100.txt">http://www.gutenberg.org/cache/epub/100/pg100.txt</a>"</code><code class="r plain">, destfile = TEXTFILE)</code></div><div class="line number4 index3 alt1"><code class="r plain">+ }</code></div><div class="line number5 index4 alt2"><code class="r plain">&gt; shakespeare = </code><code class="r functions">readLines</code><code class="r plain">(TEXTFILE)</code></div><div class="line number6 index5 alt1"><code class="r plain">&gt; </code><code class="r functions">length</code><code class="r plain">(shakespeare)</code></div><div class="line number7 index6 alt2"><code class="r plain">[1] 124787</code></div></div></td></tr></tbody></table></div></div>
+<p>That's quite a solid chunk of data: 124787 lines. Let's take a closer look.</p>
+<div><div id="highlighter_800445" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">head</code><code class="r plain">(shakespeare)</code></div><div class="line number2 index1 alt1"><code class="r plain">[1] </code><code class="r string">"The Project Gutenberg EBook of The Complete Works of William Shakespeare, by"</code></div><div class="line number3 index2 alt2"><code class="r plain">[2] </code><code class="r string">"William Shakespeare"</code></div><div class="line number4 index3 alt1"><code class="r plain">[3] </code><code class="r string">""</code></div><div class="line number5 index4 alt2"><code class="r plain">[4] </code><code class="r string">"This eBook is for the use of anyone anywhere at no cost and with"</code></div><div class="line number6 index5 alt1"><code class="r plain">[5] </code><code class="r string">"almost no restrictions whatsoever.&nbsp; You may copy it, give it away or"</code></div><div class="line number7 index6 alt2"><code class="r plain">[6] </code><code class="r string">"re-use it under the terms of the Project Gutenberg License included"</code></div><div class="line number8 index7 alt1"><code class="r plain">&gt; </code><code class="r functions">tail</code><code class="r plain">(shakespeare)</code></div><div class="line number9 index8 alt2"><code class="r plain">[1] </code><code class="r string">"<a href="http://www.gutenberg.org/2/4/6/8/24689">http://www.gutenberg.org/2/4/6/8/24689</a>"</code>&nbsp;&nbsp;&nbsp; <code class="r string">""</code></div><div class="line number10 index9 alt1"><code class="r plain">[3] </code><code class="r string">"An alternative method of locating eBooks:"</code> <code class="r string">"<a href="http://www.gutenberg.org/GUTINDEX.ALL">http://www.gutenberg.org/GUTINDEX.ALL</a>"</code></div><div class="line number11 index10 alt2"><code class="r plain">[5] </code><code class="r string">""</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code class="r string">"*** END: FULL LICENSE ***"</code></div></div></td></tr></tbody></table></div></div>
+<p>There seems to be some header and footer text. We will want to get rid of that! Using a text editor I checked to see how many lines were occupied with metadata and then removed them before concatenating all of the lines into a single long, long, long string.</p>
+<div><div id="highlighter_419987" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; shakespeare = shakespeare[-(1:173)]</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; shakespeare = shakespeare[-(124195:</code><code class="r functions">length</code><code class="r plain">(shakespeare))]</code></div><div class="line number3 index2 alt2"><code class="r plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="r plain">&gt; shakespeare = </code><code class="r functions">paste</code><code class="r plain">(shakespeare, collapse = </code><code class="r string">" "</code><code class="r plain">)</code></div><div class="line number5 index4 alt2"><code class="r plain">&gt; </code><code class="r functions">nchar</code><code class="r plain">(shakespeare)</code></div><div class="line number6 index5 alt1"><code class="r plain">[1] 5436541</code></div></div></td></tr></tbody></table></div></div>
+<p>While I had the text open in the editor I noticed that sections in the document were separated by the following text:</p>
+<div><div id="highlighter_570893" class="syntaxhighlighter nogutter  plain"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="plain plain">&lt;&lt;THIS ELECTRONIC VERSION OF THE COMPLETE WORKS OF WILLIAM</code></div><div class="line number2 index1 alt1"><code class="plain plain">SHAKESPEARE IS COPYRIGHT 1990-1993 BY WORLD LIBRARY, INC., AND IS</code></div><div class="line number3 index2 alt2"><code class="plain plain">PROVIDED BY PROJECT GUTENBERG ETEXT OF ILLINOIS BENEDICTINE COLLEGE</code></div><div class="line number4 index3 alt1"><code class="plain plain">WITH PERMISSION.&nbsp; ELECTRONIC AND MACHINE READABLE COPIES MAY BE</code></div><div class="line number5 index4 alt2"><code class="plain plain">DISTRIBUTED SO LONG AS SUCH COPIES (1) ARE FOR YOUR OR OTHERS</code></div><div class="line number6 index5 alt1"><code class="plain plain">PERSONAL USE ONLY, AND (2) ARE NOT DISTRIBUTED OR USED</code></div><div class="line number7 index6 alt2"><code class="plain plain">COMMERCIALLY.&nbsp; PROHIBITED COMMERCIAL DISTRIBUTION INCLUDES BY ANY</code></div><div class="line number8 index7 alt1"><code class="plain plain">SERVICE THAT CHARGES FOR DOWNLOAD TIME OR FOR MEMBERSHIP.&gt;&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p>Obviously that is going to taint the analysis. But it also serves as a convenient marker to divide that long, long, long string into separate documents.</p>
+<div><div id="highlighter_32723" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; shakespeare = </code><code class="r functions">strsplit</code><code class="r plain">(shakespeare, </code><code class="r string">"&lt;&lt;[^&gt;]*&gt;&gt;"</code><code class="r plain">)[[1]]</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; </code><code class="r functions">length</code><code class="r plain">(shakespeare)</code></div><div class="line number3 index2 alt2"><code class="r plain">[1] 218</code></div></div></td></tr></tbody></table></div></div>
+<p>This left me with a list of 218 documents. On further inspection, some of them appeared to be a little on the short side (in my limited experience, the bard is not known for brevity). As it turns out, the short documents were the <a href="http://en.wikipedia.org/wiki/Dramatis_person%C3%A6" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://en.wikipedia.org&#39;]);">dramatis personae</a> for his plays. I removed them as well.</p>
+<div><div id="highlighter_957529" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; (dramatis.personae &lt;- </code><code class="r functions">grep</code><code class="r plain">(</code><code class="r string">"Dramatis Personae"</code><code class="r plain">, shakespeare, ignore.case = </code><code class="r keyword">TRUE</code><code class="r plain">))</code></div><div class="line number2 index1 alt1"><code class="r spaces">&nbsp;</code><code class="r plain">[1]&nbsp;&nbsp; 2&nbsp;&nbsp; 8&nbsp; 11&nbsp; 17&nbsp; 23&nbsp; 28&nbsp; 33&nbsp; 43&nbsp; 49&nbsp; 55&nbsp; 62&nbsp; 68&nbsp; 74&nbsp; 81&nbsp; 87&nbsp; 93&nbsp; 99 105 111 117 122 126 134 140 146 152 158</code></div><div class="line number3 index2 alt2"><code class="r plain">[28] 164 170 176 182 188 194 200 206 212</code></div><div class="line number4 index3 alt1"><code class="r plain">&gt; </code><code class="r functions">length</code><code class="r plain">(shakespeare)</code></div><div class="line number5 index4 alt2"><code class="r plain">[1] 218</code></div><div class="line number6 index5 alt1"><code class="r plain">&gt; shakespeare = shakespeare[-dramatis.personae]</code></div><div class="line number7 index6 alt2"><code class="r plain">&gt; </code><code class="r functions">length</code><code class="r plain">(shakespeare)</code></div><div class="line number8 index7 alt1"><code class="r plain">[1] 182</code></div></div></td></tr></tbody></table></div></div>
+<p>Down to 182 documents, each of which is a complete work.</p>
+<p>The next task was to convert these documents into a <a href="http://en.wikipedia.org/wiki/Text_corpus" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://en.wikipedia.org&#39;]);">corpus</a>.</p>
+<div><div id="highlighter_763512" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">library</code><code class="r plain">(tm)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; </code></div><div class="line number3 index2 alt2"><code class="r plain">&gt; doc.vec &lt;- </code><code class="r functions">VectorSource</code><code class="r plain">(shakespeare)</code></div><div class="line number4 index3 alt1"><code class="r plain">&gt; doc.corpus &lt;- </code><code class="r functions">Corpus</code><code class="r plain">(doc.vec)</code></div><div class="line number5 index4 alt2"><code class="r plain">&gt; </code><code class="r functions">summary</code><code class="r plain">(doc.corpus)</code></div><div class="line number6 index5 alt1"><code class="r plain">A corpus with 182 text documents</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="r plain">The metadata consists of 2 tag-value pairs and a data frame</code></div><div class="line number9 index8 alt2"><code class="r plain">Available tags are:</code></div><div class="line number10 index9 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">create_date creator </code></div><div class="line number11 index10 alt2"><code class="r plain">Available variables </code><code class="r keyword">in</code> <code class="r plain">the data frame are:</code></div><div class="line number12 index11 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">MetaID</code></div></div></td></tr></tbody></table></div></div>
+<p>There is a lot of information in those documents which is not particularly useful for text mining. So before proceeding any further, we will clean things up a bit. First we convert all of the text to lowercase and then remove punctuation, numbers and common English stopwords. Possibly the list of English stop words is not entirely appropriate for Shakespearean English, but it is a reasonable starting point.</p>
+<div><div id="highlighter_776088" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; doc.corpus &lt;- </code><code class="r functions">tm_map</code><code class="r plain">(doc.corpus, </code><code class="r functions">content_transformer</code><code class="r plain">(tolower))</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; doc.corpus &lt;- </code><code class="r functions">tm_map</code><code class="r plain">(doc.corpus, removePunctuation)</code></div><div class="line number3 index2 alt2"><code class="r plain">&gt; doc.corpus &lt;- </code><code class="r functions">tm_map</code><code class="r plain">(doc.corpus, removeNumbers)</code></div><div class="line number4 index3 alt1"><code class="r plain">&gt; doc.corpus &lt;- </code><code class="r functions">tm_map</code><code class="r plain">(doc.corpus, removeWords, </code><code class="r functions">stopwords</code><code class="r plain">(</code><code class="r string">"english"</code><code class="r plain">))</code></div></div></td></tr></tbody></table></div></div>
+<p>Next we perform <a href="http://en.wikipedia.org/wiki/Word_stem" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://en.wikipedia.org&#39;]);">stemming</a>, which removes affixes from words (so, for example, "run", "runs" and "running" all become "run").</p>
+<div><div id="highlighter_472841" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">library</code><code class="r plain">(SnowballC)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="r plain">&gt; doc.corpus &lt;- </code><code class="r functions">tm_map</code><code class="r plain">(doc.corpus, stemDocument)</code></div></div></td></tr></tbody></table></div></div>
+<p>All of these transformations have resulted in a lot of whitespace, which is then removed.</p>
+<div><div id="highlighter_409936" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; doc.corpus &lt;- </code><code class="r functions">tm_map</code><code class="r plain">(doc.corpus, stripWhitespace)</code></div></div></td></tr></tbody></table></div></div>
+<p>If we have a look at what's left, we find that it's just the lowercase, stripped down version of the text (which I have truncated here).</p>
+<div><div id="highlighter_734638" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">inspect</code><code class="r plain">(doc.corpus[8])</code></div><div class="line number2 index1 alt1"><code class="r plain">A corpus with 1 text document</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="r plain">The metadata consists of 2 tag-value pairs and a data frame</code></div><div class="line number5 index4 alt2"><code class="r plain">Available tags are:</code></div><div class="line number6 index5 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">create_date creator </code></div><div class="line number7 index6 alt2"><code class="r plain">Available variables </code><code class="r keyword">in</code> <code class="r plain">the data frame are:</code></div><div class="line number8 index7 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">MetaID </code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="r plain">[[1]]</code></div><div class="line number11 index10 alt2"><code class="r spaces">&nbsp;</code><code class="r plain">act ii scene messina pompey hous enter pompey menecr mena warlik manner pompey great god just shall</code></div><div class="line number12 index11 alt1"><code class="r spaces">&nbsp;</code><code class="r plain">assist deed justest men menecr know worthi pompey delay deni pompey </code><code class="r keyword">while</code> <code class="r plain">suitor throne decay thing</code></div><div class="line number13 index12 alt2"><code class="r spaces">&nbsp;</code><code class="r plain">sue menecr ignor beg often harm wise powr deni us good find profit lose prayer pompey shall well</code></div><div class="line number14 index13 alt1"><code class="r spaces">&nbsp;</code><code class="r plain">peopl love sea mine power crescent augur hope say will come th full mark antoni egypt sit dinner</code></div><div class="line number15 index14 alt2"><code class="r spaces">&nbsp;</code><code class="r plain">will make war without door caesar get money lose heart lepidus flatter flatterd neither love either</code></div></div></td></tr></tbody></table></div></div>
+<p>This is where things start to get interesting. Next we create a <a href="http://en.wikipedia.org/wiki/Document-term_matrix" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://en.wikipedia.org&#39;]);">Term Document Matrix</a> (TDM) which reflects the number of times each word in the corpus is found in each of the documents.</p>
+<div><div id="highlighter_88673" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; TDM &lt;- </code><code class="r functions">TermDocumentMatrix</code><code class="r plain">(doc.corpus)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; TDM</code></div><div class="line number3 index2 alt2"><code class="r plain">A term-document </code><code class="r functions">matrix </code><code class="r plain">(18651 terms, 182 documents)</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="r plain">Non-/sparse entries: 182898/3211584</code></div><div class="line number6 index5 alt1"><code class="r plain">Sparsity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 95%</code></div><div class="line number7 index6 alt2"><code class="r plain">Maximal term length: 31 </code></div><div class="line number8 index7 alt1"><code class="r plain">Weighting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : term </code><code class="r functions">frequency </code><code class="r plain">(tf)</code></div><div class="line number9 index8 alt2"><code class="r plain">&gt; </code><code class="r functions">inspect</code><code class="r plain">(TDM[1:10,1:10])</code></div><div class="line number10 index9 alt1"><code class="r plain">A term-document </code><code class="r functions">matrix </code><code class="r plain">(10 terms, 10 documents)</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="r plain">Non-/sparse entries: 1/99</code></div><div class="line number13 index12 alt2"><code class="r plain">Sparsity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 99%</code></div><div class="line number14 index13 alt1"><code class="r plain">Maximal term length: 9 </code></div><div class="line number15 index14 alt2"><code class="r plain">Weighting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : term </code><code class="r functions">frequency </code><code class="r plain">(tf)</code></div><div class="line number16 index15 alt1">&nbsp;</div><div class="line number17 index16 alt2"><code class="r spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="r plain">Docs</code></div><div class="line number18 index17 alt1"><code class="r plain">Terms&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 2 3 4 5 6 7 8 9 10</code></div><div class="line number19 index18 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">aaron&nbsp;&nbsp;&nbsp;&nbsp; 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number20 index19 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abaissiez 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number21 index20 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abandon&nbsp;&nbsp; 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number22 index21 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abandond&nbsp; 0 1 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number23 index22 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number24 index23 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abashd&nbsp;&nbsp;&nbsp; 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number25 index24 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number26 index25 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abatfowl&nbsp; 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number27 index26 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abbess&nbsp;&nbsp;&nbsp; 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div><div class="line number28 index27 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">abbey&nbsp;&nbsp;&nbsp;&nbsp; 0 0 0 0 0 0 0 0 0&nbsp; 0</code></div></div></td></tr></tbody></table></div></div>
+<p>The extract from the TDM shows, for example, that the word "abandond" occurred once in document number 2 but was not present in any of the other first ten documents. We could have generated the transpose of the DTM as well.</p>
+<div><div id="highlighter_450244" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; DTM &lt;- </code><code class="r functions">DocumentTermMatrix</code><code class="r plain">(doc.corpus)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; </code><code class="r functions">inspect</code><code class="r plain">(DTM[1:10,1:10])</code></div><div class="line number3 index2 alt2"><code class="r plain">A document-term </code><code class="r functions">matrix </code><code class="r plain">(10 documents, 10 terms)</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="r plain">Non-/sparse entries: 1/99</code></div><div class="line number6 index5 alt1"><code class="r plain">Sparsity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 99%</code></div><div class="line number7 index6 alt2"><code class="r plain">Maximal term length: 9 </code></div><div class="line number8 index7 alt1"><code class="r plain">Weighting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : term </code><code class="r functions">frequency </code><code class="r plain">(tf)</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="r spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="r plain">Terms</code></div><div class="line number11 index10 alt2"><code class="r plain">Docs aaron abaissiez abandon abandond abas abashd abat abatfowl abbess abbey</code></div><div class="line number12 index11 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number13 index12 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number14 index13 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number15 index14 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number16 index15 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number17 index16 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number18 index17 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number19 index18 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number20 index19 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div><div class="line number21 index20 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">10&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0&nbsp;&nbsp;&nbsp;&nbsp; 0</code></div></div></td></tr></tbody></table></div></div>
+<p>Which of these proves to be most convenient will depend on the relative number of documents and terms in your data.</p>
+<p>Now we can start asking questions like: what are the most frequently occurring terms?</p>
+<div><div id="highlighter_280147" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">findFreqTerms</code><code class="r plain">(TDM, 2000)</code></div><div class="line number2 index1 alt1"><code class="r spaces">&nbsp;</code><code class="r plain">[1] </code><code class="r string">"come"</code>&nbsp; <code class="r string">"enter"</code> <code class="r string">"good"</code>&nbsp; <code class="r string">"king"</code>&nbsp; <code class="r string">"let"</code>&nbsp;&nbsp; <code class="r string">"lord"</code>&nbsp; <code class="r string">"love"</code>&nbsp; <code class="r string">"make"</code>&nbsp; <code class="r string">"man"</code>&nbsp;&nbsp; <code class="r string">"now"</code>&nbsp;&nbsp; <code class="r string">"shall"</code> <code class="r string">"sir"</code>&nbsp;&nbsp; <code class="r string">"thee"</code></div><div class="line number3 index2 alt2"><code class="r plain">[14] </code><code class="r string">"thi"</code>&nbsp;&nbsp; <code class="r string">"thou"</code>&nbsp; <code class="r string">"well"</code>&nbsp; <code class="r string">"will"</code></div></div></td></tr></tbody></table></div></div>
+<p>Each of these words occurred more that 2000 times.</p>
+<p>What about associations between words? Let's have a look at what other words had a high association with "love".</p>
+<div><div id="highlighter_52657" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">findAssocs</code><code class="r plain">(TDM, </code><code class="r string">"love"</code><code class="r plain">, 0.8)</code></div><div class="line number2 index1 alt1"><code class="r plain">beauti&nbsp;&nbsp;&nbsp; eye</code></div><div class="line number3 index2 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">0.83&nbsp;&nbsp; 0.80</code></div></div></td></tr></tbody></table></div></div>
+<p>Well that's not too surprising!</p>
+<p>From our first look at the TDM we know that there are many terms which do not occur very often. It might make sense to simply remove these sparse terms from the analysis.</p>
+<div><div id="highlighter_20413" class="syntaxhighlighter nogutter  r "><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; TDM.common = </code><code class="r functions">removeSparseTerms</code><code class="r plain">(TDM, 0.1)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; </code><code class="r functions">dim</code><code class="r plain">(TDM)</code></div><div class="line number3 index2 alt2"><code class="r plain">[1] 18651&nbsp;&nbsp; 182</code></div><div class="line number4 index3 alt1"><code class="r plain">&gt; </code><code class="r functions">dim</code><code class="r plain">(TDM.common)</code></div><div class="line number5 index4 alt2"><code class="r plain">[1]&nbsp; 71 182</code></div></div></td></tr></tbody></table></div></div>
+<p>From the 18651 terms that we started with, we are now left with a TDM which considers on 71 commonly occurring terms.</p>
+<div><div id="highlighter_802184" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">inspect</code><code class="r plain">(TDM.common[1:10,1:10])</code></div><div class="line number2 index1 alt1"><code class="r plain">A term-document </code><code class="r functions">matrix </code><code class="r plain">(10 terms, 10 documents)</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="r plain">Non-/sparse entries: 94/6</code></div><div class="line number5 index4 alt2"><code class="r plain">Sparsity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 6%</code></div><div class="line number6 index5 alt1"><code class="r plain">Maximal term length: 6</code></div><div class="line number7 index6 alt2"><code class="r plain">Weighting&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : term </code><code class="r functions">frequency </code><code class="r plain">(tf)</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="r spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="r plain">Docs</code></div><div class="line number10 index9 alt1"><code class="r plain">Terms&nbsp;&nbsp;&nbsp;&nbsp; 1 2&nbsp; 3&nbsp; 4&nbsp; 5&nbsp; 6&nbsp; 7&nbsp; 8 9 10</code></div><div class="line number11 index10 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">act&nbsp;&nbsp;&nbsp;&nbsp; 1 4&nbsp; 7&nbsp; 9&nbsp; 6&nbsp; 3&nbsp; 2 14 1&nbsp; 0</code></div><div class="line number12 index11 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">art&nbsp;&nbsp;&nbsp; 53 0&nbsp; 9&nbsp; 3&nbsp; 5&nbsp; 3&nbsp; 2 17 0&nbsp; 6</code></div><div class="line number13 index12 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">away&nbsp;&nbsp; 18 5&nbsp; 8&nbsp; 4&nbsp; 2 10&nbsp; 5 13 1&nbsp; 7</code></div><div class="line number14 index13 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">call&nbsp;&nbsp; 17 1&nbsp; 4&nbsp; 2&nbsp; 2&nbsp; 1&nbsp; 6 17 3&nbsp; 7</code></div><div class="line number15 index14 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">can&nbsp;&nbsp;&nbsp; 44 8 12&nbsp; 5 10&nbsp; 6 10 24 1&nbsp; 5</code></div><div class="line number16 index15 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">come&nbsp;&nbsp; 19 9 16 17 12 15 14 89 9 15</code></div><div class="line number17 index16 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">day&nbsp;&nbsp;&nbsp; 43 2&nbsp; 2&nbsp; 4&nbsp; 1&nbsp; 5&nbsp; 3 17 2&nbsp; 3</code></div><div class="line number18 index17 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">enter&nbsp;&nbsp; 0 7 12 11 10 10 14 87 4&nbsp; 6</code></div><div class="line number19 index18 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">exeunt&nbsp; 0 3&nbsp; 8&nbsp; 8&nbsp; 5&nbsp; 4&nbsp; 7 49 1&nbsp; 4</code></div><div class="line number20 index19 alt1"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">exit&nbsp;&nbsp;&nbsp; 0 6&nbsp; 8&nbsp; 5&nbsp; 6&nbsp; 5&nbsp; 3 31 3&nbsp; 2</code></div></div></td></tr></tbody></table></div></div>
+<p>Finally we are going to put together a visualisation. The TDM is stored as a <a href="http://en.wikipedia.org/wiki/Sparse_matrix" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://en.wikipedia.org&#39;]);">sparse matrix</a>. This was an apt representation for the initial TDM, but the reduced TDM containing only frequently occurring words is probably better stored as a normal matrix. We'll make the conversion and see.</p>
+<div><div id="highlighter_54438" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">library</code><code class="r plain">(slam)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="r plain">&gt; TDM.dense &lt;- </code><code class="r functions">as.matrix</code><code class="r plain">(TDM.common)</code></div><div class="line number4 index3 alt1"><code class="r plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="r plain">&gt; TDM.dense</code></div><div class="line number6 index5 alt1"><code class="r plain">&gt; </code><code class="r functions">object.size</code><code class="r plain">(TDM.common)</code></div><div class="line number7 index6 alt2"><code class="r plain">207872 bytes</code></div><div class="line number8 index7 alt1"><code class="r plain">&gt; </code><code class="r functions">object.size</code><code class="r plain">(TDM.dense)</code></div><div class="line number9 index8 alt2"><code class="r plain">112888 bytes</code></div></div></td></tr></tbody></table></div></div>
+<p>So, as it turns out the sparse representation was actually wasting space! (This will generally not be true though: it will only apply for a matrix consisting of just the common terms).</p>
+<p>There are numerous options for visualising these data, of which we will look at only two. Let's start with a simple word cloud.</p>
+<div><div id="highlighter_788350" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">library</code><code class="r plain">(wordcloud)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt; </code></div><div class="line number3 index2 alt2"><code class="r plain">&gt; </code><code class="r functions">library</code><code class="r plain">(RColorBrewer)</code></div><div class="line number4 index3 alt1"><code class="r plain">&gt; palette &lt;- </code><code class="r functions">brewer.pal</code><code class="r plain">(9,</code><code class="r string">"BuGn"</code><code class="r plain">)[-(1:4)]</code></div><div class="line number5 index4 alt2"><code class="r plain">&gt; </code></div><div class="line number6 index5 alt1"><code class="r plain">&gt; </code><code class="r functions">wordcloud</code><code class="r plain">(</code><code class="r functions">rownames</code><code class="r plain">(TDM.dense), </code><code class="r functions">rowSums</code><code class="r plain">(TDM.dense), min.freq = 1, color = palette)</code></div></div></td></tr></tbody></table></div></div>
+<p><a href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shakespeare-word-cloud.png"><img src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shakespeare-word-cloud.png" alt="shakespeare-word-cloud" width="600" height="600" class="aligncenter size-full wp-image-449" scale="0"></a></p>
+<p>To produce the other plot we first need to convert the data into a tidier format.</p>
+<div><div id="highlighter_449510" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">library</code><code class="r plain">(reshape2)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="r plain">&gt; TDM.dense = </code><code class="r functions">melt</code><code class="r plain">(TDM.dense, value.name = </code><code class="r string">"count"</code><code class="r plain">)</code></div><div class="line number4 index3 alt1"><code class="r plain">&gt; </code><code class="r functions">head</code><code class="r plain">(TDM.dense)</code></div><div class="line number5 index4 alt2"><code class="r spaces">&nbsp;&nbsp;</code><code class="r plain">Terms Docs count</code></div><div class="line number6 index5 alt1"><code class="r plain">1&nbsp;&nbsp; act&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp; 1</code></div><div class="line number7 index6 alt2"><code class="r plain">2&nbsp;&nbsp; art&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; 53</code></div><div class="line number8 index7 alt1"><code class="r plain">3&nbsp; away&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; 18</code></div><div class="line number9 index8 alt2"><code class="r plain">4&nbsp; call&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; 17</code></div><div class="line number10 index9 alt1"><code class="r plain">5&nbsp;&nbsp; can&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; 44</code></div><div class="line number11 index10 alt2"><code class="r plain">6&nbsp; come&nbsp;&nbsp;&nbsp; 1&nbsp;&nbsp;&nbsp; 19</code></div></div></td></tr></tbody></table></div></div>
+<p>It's then an easy matter to use ggplot2 to make up an attractive heat map.</p>
+<div><div id="highlighter_91682" class="syntaxhighlighter nogutter  r"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="r plain">&gt; </code><code class="r functions">library</code><code class="r plain">(ggplot2)</code></div><div class="line number2 index1 alt1"><code class="r plain">&gt;</code></div><div class="line number3 index2 alt2"><code class="r plain">&gt; </code><code class="r functions">ggplot</code><code class="r plain">(TDM.dense, </code><code class="r functions">aes</code><code class="r plain">(x = Docs, y = Terms, fill = </code><code class="r functions">log10</code><code class="r plain">(count))) +</code></div><div class="line number4 index3 alt1"><code class="r plain">+&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="r functions">geom_tile</code><code class="r plain">(colour = </code><code class="r string">"white"</code><code class="r plain">) +</code></div><div class="line number5 index4 alt2"><code class="r plain">+&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="r functions">scale_fill_gradient</code><code class="r plain">(high=</code><code class="r string">"#FF0000"</code> <code class="r plain">, low=</code><code class="r string">"#FFFFFF"</code><code class="r plain">)+</code></div><div class="line number6 index5 alt1"><code class="r plain">+&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="r functions">ylab</code><code class="r plain">(</code><code class="r string">""</code><code class="r plain">) +</code></div><div class="line number7 index6 alt2"><code class="r plain">+&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="r functions">theme</code><code class="r plain">(panel.background = </code><code class="r functions">element_blank</code><code class="r plain">()) +</code></div><div class="line number8 index7 alt1"><code class="r plain">+&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="r functions">theme</code><code class="r plain">(axis.text.x = </code><code class="r functions">element_blank</code><code class="r plain">(), axis.ticks.x = </code><code class="r functions">element_blank</code><code class="r plain">())</code></div></div></td></tr></tbody></table></div></div>
+<p><a href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shakespeare-common-tdm.png"><img class="aligncenter size-full wp-image-441" alt="shakespeare-common-tdm" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shakespeare-common-tdm.png" width="800" height="1000" scale="0"></a></p>
+<p>The colour scale indicates the number of times that each of the terms cropped up in each of the documents. I applied a logarithmic transform to the counts since there was a very large disparity in the numbers across terms and documents. The grey tiles correspond to terms which are not found in the corresponding document.</p>
+<p>One can see that some terms, like "will" turn up frequently in most documents, while "love" is common in some and rare or absent in others.</p>
+<p>That was interesting. Not sure that I would like to make any conclusions on the basis of the results above (Shakespeare is well outside my field of expertise!), but I now have a pretty good handle on how the tm package works. As always, feedback will be appreciated!</p>
+<h1>References</h1>
+<ul>
+<li><a href="http://anythingbutrbitrary.blogspot.com/2013/03/build-search-engine-in-20-minutes-or.html" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;http://anythingbutrbitrary.blogspot.com&#39;]);">Build a search engine in 20 minutes or less</a></li>
+<li>Feinerer, I. (2013). Introduction to the tm Package: Text Mining in R.</li>
+<li>Feinerer, I., Hornik, K., &amp; Meyer, D. (2008). Text Mining Infrastructure in R. Journal of Statistical Software, 25(5).</li>
+</ul>
+					</div><!-- .entry-content -->
+		
+		<footer class="entry-meta">
+			This entry was posted in <a href="http://www.exegetic.biz/blog/category/r/" rel="category tag">R</a> and tagged <a href="http://www.exegetic.biz/blog/tag/ggplot2/" rel="tag">ggplot2</a>, <a href="http://www.exegetic.biz/blog/tag/heat-map/" rel="tag">heat map</a>, <a href="http://www.exegetic.biz/blog/tag/melt/" rel="tag">melt</a>, <a href="http://www.exegetic.biz/blog/tag/r/" rel="tag">R</a>, <a href="http://www.exegetic.biz/blog/tag/reshape2/" rel="tag">reshape2</a>, <a href="http://www.exegetic.biz/blog/tag/text-mining/" rel="tag">text mining</a>, <a href="http://www.exegetic.biz/blog/tag/word-cloud/" rel="tag">word cloud</a> on <a href="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/Text Mining the Complete Works of William Shakespeare   Exegetic Analytics.html" title="11:41" rel="bookmark"><time class="entry-date" datetime="2013-09-05T11:41:41+00:00">2013/09/05</time></a><span class="by-author"> by <span class="author vcard"><a class="url fn n" href="http://www.exegetic.biz/blog/author/admin/" title="View all posts by Andrew" rel="author">Andrew</a></span></span>.								</footer><!-- .entry-meta -->
+	</article><!-- #post -->
+
+				<nav class="nav-single">
+					<h3 class="assistive-text">Post navigation</h3>
+					<span class="nav-previous"><a href="http://www.exegetic.biz/blog/2013/08/what-can-be-learned-from-5-million-books/" rel="prev"><span class="meta-nav">←</span> What can be learned from 5 million books</a></span>
+					<span class="nav-next"><a href="http://www.exegetic.biz/blog/2013/09/metatrader-time-zones/" rel="next">MetaTrader Time Zones <span class="meta-nav">→</span></a></span>
+				</nav><!-- .nav-single -->
+
+				
+<div id="comments" class="comments-area">
+
+	
+			<h2 class="comments-title">
+			23 thoughts on “<span>Text Mining the Complete Works of William Shakespeare</span>”		</h2>
+
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="li-comment-660">
+		<article id="comment-660" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/03d8a6557109a6179386e66ba73dc009" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/03d8a6557109a6179386e66ba73dc009?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-03d8a6557109a6179386e66ba73dc009-0"><cite class="fn">pp </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-660"><time datetime="2013-09-06T10:37:33+00:00">2013/09/06 at 10:37</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Hi, </p>
+<p>Nice article - can you please give me some pointers as to how to analyse "Job Descriptions", clean up removing all the unnecessary terms, and then create a table of important terms along with frequency.  </p>
+<p>Regards /</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=660#respond" onclick="return addComment.moveForm(&quot;comment-660&quot;, &quot;660&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-661">
+		<article id="comment-661" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-0"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-661"><time datetime="2013-09-06T10:58:23+00:00">2013/09/06 at 10:58</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Hi, thanks for the comment. Well, my first suggestion would be to load up these job descriptions into R and follow through the steps in the analysis that I did. That should at least give you a flavour for how it should be done. This is certainly an interesting application and something that I had not previously considered. Best regards, Andrew.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=661#respond" onclick="return addComment.moveForm(&quot;comment-661&quot;, &quot;661&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-668">
+		<article id="comment-668" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/0b0f8bd52c48cb3ee94795f7064e6b5b" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/0b0f8bd52c48cb3ee94795f7064e6b5b?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-0b0f8bd52c48cb3ee94795f7064e6b5b-0"><cite class="fn"><a href="http://tweetsent.wordpress.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;http://tweetsent.wordpress.com&#39;]);" rel="external nofollow" class="url">Nikunj</a> </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-668"><time datetime="2013-09-06T17:31:39+00:00">2013/09/06 at 17:31</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Hey, I also do some text mining stuff on R largely by pulling data from Twitter. I was planning to do something on Shakespeare as well anyway. It would have been great if you did some basic clustering on terms or created word clouds. I tend to do that for Tweets about Bollywood movies (Indian Cinema). If you have time do visit my blog : <a href="http://tweetsent.wordpress.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-comment&#39;,&#39;http://tweetsent.wordpress.com&#39;]);" rel="nofollow">http://tweetsent.wordpress.com/</a></p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=668#respond" onclick="return addComment.moveForm(&quot;comment-668&quot;, &quot;668&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-690">
+		<article id="comment-690" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-1"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-690"><time datetime="2013-09-07T08:26:32+00:00">2013/09/07 at 08:26</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Good suggestion about the word cloud: I have added one in. Clustering will have to wait for another day.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=690#respond" onclick="return addComment.moveForm(&quot;comment-690&quot;, &quot;690&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-672">
+		<article id="comment-672" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/baf9d6714c7d69470cce61c1496249bb" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://1.gravatar.com/avatar/baf9d6714c7d69470cce61c1496249bb?s=44&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-baf9d6714c7d69470cce61c1496249bb-0"><cite class="fn">Andy </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-672"><time datetime="2013-09-06T19:20:48+00:00">2013/09/06 at 19:20</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Cool!  I think it would be really interesting to order the 'Docs' by year of publication, to see how his use of words changed over time.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=672#respond" onclick="return addComment.moveForm(&quot;comment-672&quot;, &quot;672&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+	<li class="pingback odd alt thread-odd thread-alt depth-1" id="comment-740">
+		<p>Pingback: <a href="http://www.exegetic.biz/blog/2013/09/clustering-the-words-of-william-shakespeare/" rel="external nofollow" class="url">Clustering the Words of William Shakespeare | Exegetic Analytics</a> </p>
+	</li><!-- #comment-## -->
+	<li class="pingback even thread-even depth-1" id="comment-930">
+		<p>Pingback: <a href="http://irregulartimes.com/2013/09/16/no-need-to-sit-through-shakespeare-thanks-to-statistical-exegesis/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;http://irregulartimes.com&#39;]);" rel="external nofollow" class="url">No Need To Sit Through Shakespeare, Thanks To Statistical Exegesis « Irregular Times</a> </p>
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-974">
+		<article id="comment-974" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-2"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-974"><time datetime="2013-09-17T06:40:10+00:00">2013/09/17 at 06:40</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Sadly, it seems like Rowan didn't really grasp the intention of the article, which was to have a bit of fun while learning about a new technology, while documenting the process for the general edification of anybody who might be interested.</p>
+<p>The objective of any statistical analysis is to reduce a large body of information into a few concise summary measures. So, yes, the word cloud may not come close to doing justice to the breadth of the writings of William Shakespeare, but it does summarise those words which he used most frequently.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=974#respond" onclick="return addComment.moveForm(&quot;comment-974&quot;, &quot;974&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-2035">
+		<article id="comment-2035" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/d900b0efd3c87a2d9a76712f5cb9ae86" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://1.gravatar.com/avatar/d900b0efd3c87a2d9a76712f5cb9ae86?s=44&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-d900b0efd3c87a2d9a76712f5cb9ae86-0"><cite class="fn">Madhavan Ramani </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-2035"><time datetime="2013-10-07T04:54:13+00:00">2013/10/07 at 04:54</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Nice job, Andrew. It really was explained well and I feel up to more complex tasks. Thanks a lot!</p>
+<p>BTW, I have a task to do the opposite of stemming. e.g. Given a root word, I would like to create ontological words and also build a list of affixed words. Are you aware of a way to do this with tm or any of the related R packages? Also can you recommend an Ontology Editor that interfaces with R?</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=2035#respond" onclick="return addComment.moveForm(&quot;comment-2035&quot;, &quot;2035&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-2065">
+		<article id="comment-2065" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-3"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-2065"><time datetime="2013-10-08T03:50:51+00:00">2013/10/08 at 03:50</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Thanks for the feedback, Madhavan. In answer to your questions: 1. No, I don't but I suspect that you might be able to brute force this with a dictionary file. There must be a more elegant solution though! 2. I'm afraid not. Probably find a bit of Google will show up some answers though.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=2065#respond" onclick="return addComment.moveForm(&quot;comment-2065&quot;, &quot;2065&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-3614">
+		<article id="comment-3614" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/4a0ac354e33c71687f79209b25905207" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/4a0ac354e33c71687f79209b25905207?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-4a0ac354e33c71687f79209b25905207-0"><cite class="fn">Fabsi10 </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-3614"><time datetime="2013-11-04T12:15:07+00:00">2013/11/04 at 12:15</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Just wanted to thank you for that tutorial! The best I read about textmining in R so far!</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=3614#respond" onclick="return addComment.moveForm(&quot;comment-3614&quot;, &quot;3614&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-3629">
+		<article id="comment-3629" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-4"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-3629"><time datetime="2013-11-04T15:14:51+00:00">2013/11/04 at 15:14</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Thank you! I am very happy that you found it useful.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=3629#respond" onclick="return addComment.moveForm(&quot;comment-3629&quot;, &quot;3629&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1" id="li-comment-5804">
+		<article id="comment-5804" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/8a4b2d39b2b3a0cd570677959f2b4831" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/8a4b2d39b2b3a0cd570677959f2b4831?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-8a4b2d39b2b3a0cd570677959f2b4831-0"><cite class="fn">JM THeler </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-5804"><time datetime="2013-11-14T09:34:34+00:00">2013/11/14 at 09:34</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Superb article, I am reproducing the code while installing the needed packages works great up to the last ggplot graph where I get the following error:</p>
+<p> ggplot(TDM.dense, aes(x = Docs, y = Terms, fill = log10(count))) +<br>
++        geom_tile(colour = "white") +<br>
++        scale_fill_gradient(high="#FF0000" , low="#FFFFFF")+<br>
++        ylab("") +<br>
++        theme(panel.background = element_blank()) +<br>
++        theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())<br>
+Don't know how to automatically pick scale for object of type function. Defaulting to continuous<br>
+Don't know how to automatically pick scale for object of type function. Defaulting to continuous<br>
+Erreur dans Math.factor(count) :<br>
+  log10 ceci n'est pas pertinent pour des variables facteurs</p>
+<p>run in rstudio on ubuntu 13.10 </p>
+<p>Thank you for this outstanding tutorial</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=5804#respond" onclick="return addComment.moveForm(&quot;comment-5804&quot;, &quot;5804&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor odd alt depth-2" id="li-comment-6042">
+		<article id="comment-6042" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-5"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-6042"><time datetime="2013-11-15T16:22:29+00:00">2013/11/15 at 16:22</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Hi! Thanks for the positive comment. Not quite sure what the problem is there. Using my almost non-existent knowledge of French though, it seems that your TDM.dense$count is a factor variable... that's not right. See the extract from my TDM.dense just a little further up the post. Does yours look like that? Should have three columns (Terms, Docs and count) with types factor, integer and numeric. Best regards, Andrew.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=6042#respond" onclick="return addComment.moveForm(&quot;comment-6042&quot;, &quot;6042&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-12961">
+		<article id="comment-12961" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-6"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-12961"><time datetime="2013-12-13T03:39:45+00:00">2013/12/13 at 03:39</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Have a look at <a href="http://pirategrunt.com/2013/12/11/24-days-of-r-day-11/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-comment&#39;,&#39;http://pirategrunt.com&#39;]);" rel="nofollow">24 Days of R</a> for an analysis of King Lear.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=12961#respond" onclick="return addComment.moveForm(&quot;comment-12961&quot;, &quot;12961&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-78902">
+		<article id="comment-78902" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/397bdf0802c2237a91f7a0a658f36fea" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://1.gravatar.com/avatar/397bdf0802c2237a91f7a0a658f36fea?s=44&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-397bdf0802c2237a91f7a0a658f36fea-0"><cite class="fn">Bastian </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-78902"><time datetime="2014-07-01T22:37:35+00:00">2014/07/01 at 22:37</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>The TextDocumentMatrix function causes an error. This is my code:<br>
+TEXTFILE = "data/pg100.txt"<br>
+shakespeare = readLines(TEXTFILE)<br>
+length(shakespeare)<br>
+head(shakespeare)<br>
+tail(shakespeare)<br>
+shakespeare = shakespeare[-(1:173)]<br>
+shakespeare = shakespeare[-(124195:length(shakespeare))]<br>
+shakespeare = paste(shakespeare, collapse = " ")<br>
+nchar(shakespeare)<br>
+summary(shakespeare)<br>
+shakespeare = strsplit(shakespeare, "&lt;]*&gt;&gt;")[[1]]<br>
+length(shakespeare)<br>
+(dramatis.personae &lt;- grep("Dramatis Personae", shakespeare, ignore.case = TRUE))<br>
+length(shakespeare)<br>
+shakespeare = shakespeare[-dramatis.personae]<br>
+length(shakespeare)<br>
+library(tm)<br>
+VCorpus(VectorSource(shakespeare))<br>
+doc.vec &lt;- VectorSource(shakespeare)<br>
+doc.corpus &lt;- VCorpus(doc.vec)<br>
+summary(doc.corpus)<br>
+doc.corpus &lt;- tm_map(doc.corpus, tolower)<br>
+doc.corpus &lt;- tm_map(doc.corpus, removePunctuation)<br>
+doc.corpus &lt;- tm_map(doc.corpus, removeNumbers)<br>
+doc.corpus &lt;- tm_map(doc.corpus, removeWords, stopwords("english"))<br>
+library(SnowballC)<br>
+doc.corpus &lt;- tm_map(doc.corpus, stemDocument)<br>
+doc.corpus &lt;- tm_map(doc.corpus, stripWhitespace)<br>
+inspect(doc.corpus)<br>
+TDM &lt;- TermDocumentMatrix(doc.corpus)<br>
+The Error:<br>
+Fehler in UseMethod("meta", x) :<br>
+  nicht anwendbare Methode für 'meta' auf Objekt der Klasse "character" angewendet<br>
+Zusätzlich: Warnmeldung:<br>
+In mclapply(unname(content(x)), termFreq, control) :<br>
+  all scheduled cores encountered errors in user code</p>
+<p>I am a bit frustrated. I did everything step by step.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=78902#respond" onclick="return addComment.moveForm(&quot;comment-78902&quot;, &quot;78902&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-79005">
+		<article id="comment-79005" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-7"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-79005"><time datetime="2014-07-02T04:01:57+00:00">2014/07/02 at 04:01</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Hi Bastian,</p>
+<p>Hmmm. My German is not great, but I gather that the error message is complaining that TermDocumentMatrix() does not have a method to handle data of type "character". What is the class of your doc.corpus variable? Here is what I have</p>
+<p>&gt; class(doc.corpus)<br>
+[1] "VCorpus" "Corpus"  "list" </p>
+<p>Would it be helpful if I emailed you the complete script that I compiled for this article?</p>
+<p>Best regards,<br>
+Andrew.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=79005#respond" onclick="return addComment.moveForm(&quot;comment-79005&quot;, &quot;79005&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment odd alt depth-3" id="li-comment-79096">
+		<article id="comment-79096" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/397bdf0802c2237a91f7a0a658f36fea" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://1.gravatar.com/avatar/397bdf0802c2237a91f7a0a658f36fea?s=44&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-397bdf0802c2237a91f7a0a658f36fea-1"><cite class="fn">Bastian </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-79096"><time datetime="2014-07-02T09:11:06+00:00">2014/07/02 at 09:11</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Ok there is the error my output is<br>
+&gt; class(doc.corpus)<br>
+[1] "VCorpus" "Corpus"<br>
+I cant figure out how the "List" was dropped or never created. I followed your steps precisely.<br>
+The funny thin is, when I do this<br>
+doc.corpusclean &lt;- tm_map(doc.corpus,PlainTextDocument)<br>
+TDM &lt;- TermDocumentMatrix(doc.corpusclean)<br>
+it works, but the doc-structure is destroyed (clear). I came to this conclusion after I read this info:<br>
+"It seems this would have worked just fine in tm 0.5.10 but changes in tm 0.6.0 seems to have broken it. The problem is that the functions tolower and trim won't necessarily return TextDocuments (it looks like the older version may have automatically done the conversion). They instead return characters and the DocumentTermMatrix isn't sure how to handle a corpus of characters."<br>
+Actually I run R 3.1.0 on the actual RStudio with the latest packages installed. </p>
+<p>If you send me the whole source it would be great, maybe I can figure out where the break is. Thanks!</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=79096#respond" onclick="return addComment.moveForm(&quot;comment-79096&quot;, &quot;79096&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-79103">
+		<article id="comment-79103" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/397bdf0802c2237a91f7a0a658f36fea" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://1.gravatar.com/avatar/397bdf0802c2237a91f7a0a658f36fea?s=44&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-397bdf0802c2237a91f7a0a658f36fea-2"><cite class="fn">Bastian </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-79103"><time datetime="2014-07-02T09:20:05+00:00">2014/07/02 at 09:20</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>HA!! On my Windows machine it works now.<br>
+I left out the line<br>
+doc.corpus &lt;- tm_map(doc.corpus, tolower)<br>
+and now I have a TDM.<br>
+inspect(TDM[1:10,1:10])<br>
+looks like yours.<br>
+Now... how can we get the tolower function to work as desired? Maybe the new version is a problem? Is there a possible workaround?</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=79103#respond" onclick="return addComment.moveForm(&quot;comment-79103&quot;, &quot;79103&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment odd alt depth-2" id="li-comment-86085">
+		<article id="comment-86085" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/154d7959e50b88bf51c841da25b06249" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://1.gravatar.com/avatar/154d7959e50b88bf51c841da25b06249?s=44&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-154d7959e50b88bf51c841da25b06249-0"><cite class="fn">Piyush Bansal </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-86085"><time datetime="2014-07-23T05:35:04+00:00">2014/07/23 at 05:35</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Got the same problem, you can do it as follows ....</p>
+<p>doc.corpus &lt;- tm_map(doc.corpus, content_transformer(tolower))</p>
+<p>Reason: This problem appears in tm 0.6 and has to do with using functions that are not in the list of getTransformation() from tm. The problem is that tolower just returns a character vector, and not a "PlainTextDocument" like tm_map would like. The tm packages provides the content_transformer function to take care of managing the PlainTextDocument.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=86085#respond" onclick="return addComment.moveForm(&quot;comment-86085&quot;, &quot;86085&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-3" id="li-comment-92400">
+		<article id="comment-92400" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-8"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-92400"><time datetime="2014-08-13T03:44:46+00:00">2014/08/13 at 03:44</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Hi Piyush,</p>
+<p>Your feedback is greatly appreciated and apologies for taking so long to get back to you. I have updated my post to reflect the changes you suggest. Thanks again!</p>
+<p>Best regards,<br>
+Andrew.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=92400#respond" onclick="return addComment.moveForm(&quot;comment-92400&quot;, &quot;92400&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-92020">
+		<article id="comment-92020" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/1ee284b3121ea03ee28c841f3f086a77" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://1.gravatar.com/avatar/1ee284b3121ea03ee28c841f3f086a77?s=44&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-1ee284b3121ea03ee28c841f3f086a77-0"><cite class="fn">Thomas </cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-92020"><time datetime="2014-08-12T06:47:48+00:00">2014/08/12 at 06:47</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Hey there. Great tutorial. I am just starting with R and i run into some difficulties when trying to execute your code fragments. Is there any way that you can provide me your full source code? It would be great to have a working code base to start off with this. Thanks in advance.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=92020#respond" onclick="return addComment.moveForm(&quot;comment-92020&quot;, &quot;92020&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	<ol class="children">
+	<li class="comment byuser comment-author-admin bypostauthor even depth-2" id="li-comment-128164">
+		<article id="comment-128164" class="comment">
+			<header class="comment-meta comment-author vcard">
+				<img alt="" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/ee78d71d8c39eaf0880a1e9ed7187a95" class="avatar avatar-44 photo grav-hashed grav-hijack" height="44" width="44" originals="44" src-orig="http://0.gravatar.com/avatar/ee78d71d8c39eaf0880a1e9ed7187a95?s=44&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D44&amp;r=G" scale="1.5" id="grav-ee78d71d8c39eaf0880a1e9ed7187a95-9"><cite class="fn"><a href="http://www.exegetic.biz/" rel="external nofollow" class="url">Andrew</a> <span> Post author</span></cite><a href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#comment-128164"><time datetime="2014-10-16T09:53:56+00:00">2014/10/16 at 09:53</time></a>			</header><!-- .comment-meta -->
+
+			
+			<section class="comment-content comment">
+				<p>Hi! Sure, I would be happy to provide you with the source. Best regards, Andrew.</p>
+							</section><!-- .comment-content -->
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/?replytocom=128164#respond" onclick="return addComment.moveForm(&quot;comment-128164&quot;, &quot;128164&quot;, &quot;respond&quot;, &quot;436&quot;)">Reply</a> <span>↓</span>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+	</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		</ol><!-- .commentlist -->
+
+		
+		
+	
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.exegetic.biz/blog/2013/09/text-mining-the-complete-works-of-william-shakespeare/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="http://www.exegetic.biz/blog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																			<p class="comment-notes">Your email address will not be published. Required fields are marked <span class="required">*</span></p>							<p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required="true" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">Website</label> <input id="url" name="url" type="text" value="" size="30"></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes:  <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="436" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="3ac4d968f9"></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1415228304645"></form>
+							</div><!-- #respond -->
+			        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#commentform').submit(function () {
+                    _gaq.push(
+                            ['_setAccount', 'UA-40073522-1'],
+                            ['_trackEvent', 'comment', 'submit']
+                    );
+                });
+            });
+        </script>
+		
+</div><!-- #comments .comments-area -->
+			
+		</div><!-- #content -->
+	</div><!-- #primary -->
+
+
+			<div id="secondary" class="widget-area" role="complementary">
+			<aside id="text-3" class="widget widget_text">			<div class="textwidget"><a href="http://www.exegetic.biz/"><img src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/exegetic-emblem-web.gif" scale="0"></a>
+
+Visit the <a href="http://www.exegetic.biz/">Exegetic Analytics home page</a>.</div>
+		</aside><aside id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" class="searchform" action="http://www.exegetic.biz/blog/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input type="text" value="" name="s" id="s">
+					<input type="submit" id="searchsubmit" value="Search">
+				</div>
+			</form></aside><style scoped="" type="text/css">.utcw-29gp8qn {word-wrap:break-word}.utcw-29gp8qn span,.utcw-29gp8qn a{border-width:0px}.utcw-29gp8qn span:hover,.utcw-29gp8qn a:hover{border-width:0px}</style><aside id="utcw-2" class="widget widget_utcw widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="utcw-29gp8qn tagcloud"><a class="tag-link-8 utcw-tag utcw-tag-algorithmic-trading" href="http://www.exegetic.biz/blog/tag/algorithmic-trading/" style="font-size:11.090909090909px" title="4 topics">Algorithmic Trading</a> | <a class="tag-link-119 utcw-tag utcw-tag-anova" href="http://www.exegetic.biz/blog/tag/anova/" style="font-size:10px" title="1 topic">ANOVA</a> | <a class="tag-link-87 utcw-tag utcw-tag-automatic-repeat-request" href="http://www.exegetic.biz/blog/tag/automatic-repeat-request/" style="font-size:10px" title="1 topic">Automatic Repeat-reQuest</a> | <a class="tag-link-35 utcw-tag utcw-tag-bar-plot" href="http://www.exegetic.biz/blog/tag/bar-plot/" style="font-size:10px" title="1 topic">bar plot</a> | <a class="tag-link-91 utcw-tag utcw-tag-bash" href="http://www.exegetic.biz/blog/tag/bash/" style="font-size:10px" title="1 topic">bash</a> | <a class="tag-link-42 utcw-tag utcw-tag-bootstrap" href="http://www.exegetic.biz/blog/tag/bootstrap/" style="font-size:10px" title="1 topic">bootstrap</a> | <a class="tag-link-67 utcw-tag utcw-tag-bubble-plot" href="http://www.exegetic.biz/blog/tag/bubble-plot/" style="font-size:10px" title="1 topic">bubble plot</a> | <a class="tag-link-79 utcw-tag utcw-tag-cantor-set" href="http://www.exegetic.biz/blog/tag/cantor-set/" style="font-size:10px" title="1 topic">Cantor Set</a> | <a class="tag-link-9 utcw-tag utcw-tag-categorical-data" href="http://www.exegetic.biz/blog/tag/categorical-data/" style="font-size:10.727272727273px" title="3 topics">Categorical Data</a> | <a class="tag-link-19 utcw-tag utcw-tag-classification" href="http://www.exegetic.biz/blog/tag/classification/" style="font-size:10px" title="1 topic">classification</a> | <a class="tag-link-49 utcw-tag utcw-tag-cluster" href="http://www.exegetic.biz/blog/tag/cluster/" style="font-size:10.727272727273px" title="3 topics">cluster</a> | <a class="tag-link-111 utcw-tag utcw-tag-commitments-of-traders" href="http://www.exegetic.biz/blog/tag/commitments-of-traders/" style="font-size:11.454545454545px" title="5 topics">Commitments of Traders</a> | <a class="tag-link-30 utcw-tag utcw-tag-comrades-marathon" href="http://www.exegetic.biz/blog/tag/comrades-marathon/" style="font-size:15.454545454545px" title="16 topics">Comrades Marathon</a> | <a class="tag-link-95 utcw-tag utcw-tag-conception" href="http://www.exegetic.biz/blog/tag/conception/" style="font-size:10px" title="1 topic">Conception</a> | <a class="tag-link-18 utcw-tag utcw-tag-conditional-inference-tree" href="http://www.exegetic.biz/blog/tag/conditional-inference-tree/" style="font-size:10.727272727273px" title="3 topics">Conditional Inference Tree</a> | <a class="tag-link-10 utcw-tag utcw-tag-contingency-table" href="http://www.exegetic.biz/blog/tag/contingency-table/" style="font-size:10.363636363636px" title="2 topics">contingency table</a> | <a class="tag-link-41 utcw-tag utcw-tag-correlation" href="http://www.exegetic.biz/blog/tag/correlation/" style="font-size:10.363636363636px" title="2 topics">correlation</a> | <a class="tag-link-112 utcw-tag utcw-tag-cot" href="http://www.exegetic.biz/blog/tag/cot/" style="font-size:11.454545454545px" title="5 topics">COT</a> | <a class="tag-link-70 utcw-tag utcw-tag-count-data" href="http://www.exegetic.biz/blog/tag/count-data/" style="font-size:10px" title="1 topic">Count Data</a> | <a class="tag-link-116 utcw-tag utcw-tag-data-table" href="http://www.exegetic.biz/blog/tag/data-table/" style="font-size:10px" title="1 topic">data.table</a> | <a class="tag-link-99 utcw-tag utcw-tag-daylight-saving-time" href="http://www.exegetic.biz/blog/tag/daylight-saving-time/" style="font-size:10px" title="1 topic">Daylight Saving Time</a> | <a class="tag-link-27 utcw-tag utcw-tag-decision-tree" href="http://www.exegetic.biz/blog/tag/decision-tree/" style="font-size:10px" title="1 topic">decision tree</a> | <a class="tag-link-60 utcw-tag utcw-tag-dendrogram" href="http://www.exegetic.biz/blog/tag/dendrogram/" style="font-size:10.363636363636px" title="2 topics">dendrogram</a> | <a class="tag-link-37 utcw-tag utcw-tag-differential-evolution" href="http://www.exegetic.biz/blog/tag/differential-evolution/" style="font-size:10px" title="1 topic">differential evolution</a> | <a class="tag-link-5 utcw-tag utcw-tag-ea" href="http://www.exegetic.biz/blog/tag/ea/" style="font-size:12.181818181818px" title="7 topics">EA</a> | <a class="tag-link-100 utcw-tag utcw-tag-earthquake" href="http://www.exegetic.biz/blog/tag/earthquake/" style="font-size:10.363636363636px" title="2 topics">Earthquake</a> | <a class="tag-link-114 utcw-tag utcw-tag-excel" href="http://www.exegetic.biz/blog/tag/excel/" style="font-size:10px" title="1 topic">Excel</a> | <a class="tag-link-93 utcw-tag utcw-tag-exif" href="http://www.exegetic.biz/blog/tag/exif/" style="font-size:10px" title="1 topic">EXIF</a> | <a class="tag-link-7 utcw-tag utcw-tag-expert-advisor" href="http://www.exegetic.biz/blog/tag/expert-advisor/" style="font-size:12.545454545455px" title="8 topics">Expert Advisor</a> | <a class="tag-link-72 utcw-tag utcw-tag-exponential-distribution" href="http://www.exegetic.biz/blog/tag/exponential-distribution/" style="font-size:10px" title="1 topic">Exponential Distribution</a> | <a class="tag-link-83 utcw-tag utcw-tag-fibonacci" href="http://www.exegetic.biz/blog/tag/fibonacci/" style="font-size:10px" title="1 topic">Fibonacci</a> | <a class="tag-link-82 utcw-tag utcw-tag-filtering" href="http://www.exegetic.biz/blog/tag/filtering/" style="font-size:10px" title="1 topic">filtering</a> | <a class="tag-link-50 utcw-tag utcw-tag-foreach" href="http://www.exegetic.biz/blog/tag/foreach/" style="font-size:10.363636363636px" title="2 topics">foreach</a> | <a class="tag-link-21 utcw-tag utcw-tag-forex" href="http://www.exegetic.biz/blog/tag/forex/" style="font-size:15.818181818182px" title="17 topics">FOREX</a> | <a class="tag-link-78 utcw-tag utcw-tag-fractal" href="http://www.exegetic.biz/blog/tag/fractal/" style="font-size:10px" title="1 topic">Fractal</a> | <a class="tag-link-62 utcw-tag utcw-tag-ggmap" href="http://www.exegetic.biz/blog/tag/ggmap/" style="font-size:10.363636363636px" title="2 topics">ggmap</a> | <a class="tag-link-11 utcw-tag utcw-tag-ggplot2" href="http://www.exegetic.biz/blog/tag/ggplot2/" style="font-size:19.818181818182px" title="28 topics">ggplot2</a> | <a class="tag-link-129 utcw-tag utcw-tag-graph" href="http://www.exegetic.biz/blog/tag/graph/" style="font-size:10px" title="1 topic">graph</a> | <a class="tag-link-101 utcw-tag utcw-tag-gutenberg-richter-law" href="http://www.exegetic.biz/blog/tag/gutenberg-richter-law/" style="font-size:10px" title="1 topic">Gutenberg–Richter law</a> | <a class="tag-link-51 utcw-tag utcw-tag-heat-map" href="http://www.exegetic.biz/blog/tag/heat-map/" style="font-size:10.727272727273px" title="3 topics">heat map</a> | <a class="tag-link-14 utcw-tag utcw-tag-hexbin" href="http://www.exegetic.biz/blog/tag/hexbin/" style="font-size:10px" title="1 topic">hexbin</a> | <a class="tag-link-47 utcw-tag utcw-tag-high-performance-computing" href="http://www.exegetic.biz/blog/tag/high-performance-computing/" style="font-size:10px" title="1 topic">High Performance Computing</a> | <a class="tag-link-12 utcw-tag utcw-tag-histogram" href="http://www.exegetic.biz/blog/tag/histogram/" style="font-size:11.090909090909px" title="4 topics">histogram</a> | <a class="tag-link-97 utcw-tag utcw-tag-index" href="http://www.exegetic.biz/blog/tag/index/" style="font-size:10px" title="1 topic">Index</a> | <a class="tag-link-24 utcw-tag utcw-tag-indicator" href="http://www.exegetic.biz/blog/tag/indicator/" style="font-size:11.818181818182px" title="6 topics">Indicator</a> | <a class="tag-link-81 utcw-tag utcw-tag-iterator" href="http://www.exegetic.biz/blog/tag/iterator/" style="font-size:10px" title="1 topic">Iterator</a> | <a class="tag-link-33 utcw-tag utcw-tag-kagi-chart" href="http://www.exegetic.biz/blog/tag/kagi-chart/" style="font-size:10px" title="1 topic">Kagi Chart</a> | <a class="tag-link-76 utcw-tag utcw-tag-lattice" href="http://www.exegetic.biz/blog/tag/lattice/" style="font-size:10.363636363636px" title="2 topics">Lattice</a> | <a class="tag-link-61 utcw-tag utcw-tag-lightning" href="http://www.exegetic.biz/blog/tag/lightning/" style="font-size:11.454545454545px" title="5 topics">Lightning</a> | <a class="tag-link-117 utcw-tag utcw-tag-linear-model" href="http://www.exegetic.biz/blog/tag/linear-model/" style="font-size:10px" title="1 topic">linear model</a> | <a class="tag-link-68 utcw-tag utcw-tag-linux" href="http://www.exegetic.biz/blog/tag/linux/" style="font-size:10px" title="1 topic">Linux</a> | <a class="tag-link-118 utcw-tag utcw-tag-lm" href="http://www.exegetic.biz/blog/tag/lm/" style="font-size:10px" title="1 topic">lm</a> | <a class="tag-link-77 utcw-tag utcw-tag-logistic" href="http://www.exegetic.biz/blog/tag/logistic/" style="font-size:10.363636363636px" title="2 topics">logistic</a> | <a class="tag-link-80 utcw-tag utcw-tag-mandelbrot-set" href="http://www.exegetic.biz/blog/tag/mandelbrot-set/" style="font-size:10px" title="1 topic">Mandelbrot Set</a> | <a class="tag-link-127 utcw-tag utcw-tag-market-research" href="http://www.exegetic.biz/blog/tag/market-research/" style="font-size:10px" title="1 topic">Market Research</a> | <a class="tag-link-26 utcw-tag utcw-tag-matchit" href="http://www.exegetic.biz/blog/tag/matchit/" style="font-size:10px" title="1 topic">MatchIt</a> | <a class="tag-link-44 utcw-tag utcw-tag-maximum-likelihood-estimation" href="http://www.exegetic.biz/blog/tag/maximum-likelihood-estimation/" style="font-size:10px" title="1 topic">maximum-likelihood estimation</a> | <a class="tag-link-54 utcw-tag utcw-tag-melt" href="http://www.exegetic.biz/blog/tag/melt/" style="font-size:10.363636363636px" title="2 topics">melt</a> | <a class="tag-link-28 utcw-tag utcw-tag-metatrader" href="http://www.exegetic.biz/blog/tag/metatrader/" style="font-size:12.181818181818px" title="7 topics">MetaTrader</a> | <a class="tag-link-107 utcw-tag utcw-tag-meteor" href="http://www.exegetic.biz/blog/tag/meteor/" style="font-size:10.727272727273px" title="3 topics">Meteor</a> | <a class="tag-link-45 utcw-tag utcw-tag-mle" href="http://www.exegetic.biz/blog/tag/mle/" style="font-size:10px" title="1 topic">MLE</a> | <a class="tag-link-32 utcw-tag utcw-tag-mosaic-plot" href="http://www.exegetic.biz/blog/tag/mosaic-plot/" style="font-size:10.363636363636px" title="2 topics">mosaic plot</a> | <a class="tag-link-6 utcw-tag utcw-tag-mql4" href="http://www.exegetic.biz/blog/tag/mql4/" style="font-size:12.909090909091px" title="9 topics">MQL4</a> | <a class="tag-link-48 utcw-tag utcw-tag-multicore" href="http://www.exegetic.biz/blog/tag/multicore/" style="font-size:10px" title="1 topic">multicore</a> | <a class="tag-link-105 utcw-tag utcw-tag-myfxbook" href="http://www.exegetic.biz/blog/tag/myfxbook/" style="font-size:10px" title="1 topic">Myfxbook</a> | <a class="tag-link-108 utcw-tag utcw-tag-near-earth-object" href="http://www.exegetic.biz/blog/tag/near-earth-object/" style="font-size:10.727272727273px" title="3 topics">Near Earth Object</a> | <a class="tag-link-40 utcw-tag utcw-tag-nelder-mead" href="http://www.exegetic.biz/blog/tag/nelder-mead/" style="font-size:10px" title="1 topic">nelder-mead</a> | <a class="tag-link-65 utcw-tag utcw-tag-neural-network" href="http://www.exegetic.biz/blog/tag/neural-network/" style="font-size:10px" title="1 topic">Neural Network</a> | <a class="tag-link-104 utcw-tag utcw-tag-object-oriented" href="http://www.exegetic.biz/blog/tag/object-oriented/" style="font-size:10px" title="1 topic">Object Oriented</a> | <a class="tag-link-29 utcw-tag utcw-tag-optimisation" href="http://www.exegetic.biz/blog/tag/optimisation/" style="font-size:11.454545454545px" title="5 topics">optimisation</a> | <a class="tag-link-113 utcw-tag utcw-tag-pacing-chart" href="http://www.exegetic.biz/blog/tag/pacing-chart/" style="font-size:10px" title="1 topic">Pacing Chart</a> | <a class="tag-link-46 utcw-tag utcw-tag-parallel" href="http://www.exegetic.biz/blog/tag/parallel/" style="font-size:10.727272727273px" title="3 topics">parallel</a> | <a class="tag-link-38 utcw-tag utcw-tag-particle-swarm-optimisation" href="http://www.exegetic.biz/blog/tag/particle-swarm-optimisation/" style="font-size:10px" title="1 topic">particle swarm optimisation</a> | <a class="tag-link-17 utcw-tag utcw-tag-party" href="http://www.exegetic.biz/blog/tag/party/" style="font-size:10px" title="1 topic">party</a> | <a class="tag-link-75 utcw-tag utcw-tag-percolation" href="http://www.exegetic.biz/blog/tag/percolation/" style="font-size:10.363636363636px" title="2 topics">Percolation</a> | <a class="tag-link-130 utcw-tag utcw-tag-plot" href="http://www.exegetic.biz/blog/tag/plot/" style="font-size:10px" title="1 topic">plot</a> | <a class="tag-link-52 utcw-tag utcw-tag-plyr" href="http://www.exegetic.biz/blog/tag/plyr/" style="font-size:10.363636363636px" title="2 topics">plyr</a> | <a class="tag-link-71 utcw-tag utcw-tag-poisson-process" href="http://www.exegetic.biz/blog/tag/poisson-process/" style="font-size:10px" title="1 topic">Poisson Process</a> | <a class="tag-link-84 utcw-tag utcw-tag-prime-numbers" href="http://www.exegetic.biz/blog/tag/prime-numbers/" style="font-size:10px" title="1 topic">prime numbers</a> | <a class="tag-link-89 utcw-tag utcw-tag-priority-queue" href="http://www.exegetic.biz/blog/tag/priority-queue/" style="font-size:10px" title="1 topic">priority queue</a> | <a class="tag-link-98 utcw-tag utcw-tag-quandl" href="http://www.exegetic.biz/blog/tag/quandl/" style="font-size:10px" title="1 topic">Quandl</a> | <a class="tag-link-86 utcw-tag utcw-tag-queue" href="http://www.exegetic.biz/blog/tag/queue/" style="font-size:10.363636363636px" title="2 topics">queue</a> | <a class="tag-link-4 utcw-tag utcw-tag-r" href="http://www.exegetic.biz/blog/tag/r/" style="font-size:30px" title="56 topics">R</a> | <a class="tag-link-63 utcw-tag utcw-tag-random-forest" href="http://www.exegetic.biz/blog/tag/random-forest/" style="font-size:10px" title="1 topic">Random Forest</a> | <a class="tag-link-85 utcw-tag utcw-tag-reference-class" href="http://www.exegetic.biz/blog/tag/reference-class/" style="font-size:10.727272727273px" title="3 topics">Reference Class</a> | <a class="tag-link-96 utcw-tag utcw-tag-regularisation" href="http://www.exegetic.biz/blog/tag/regularisation/" style="font-size:10.363636363636px" title="2 topics">regularisation</a> | <a class="tag-link-53 utcw-tag utcw-tag-reshape2" href="http://www.exegetic.biz/blog/tag/reshape2/" style="font-size:10.363636363636px" title="2 topics">reshape2</a> | <a class="tag-link-124 utcw-tag utcw-tag-riverplot" href="http://www.exegetic.biz/blog/tag/riverplot/" style="font-size:10px" title="1 topic">riverplot</a> | <a class="tag-link-109 utcw-tag utcw-tag-runn" href="http://www.exegetic.biz/blog/tag/runn/" style="font-size:10px" title="1 topic">Runn</a> | <a class="tag-link-125 utcw-tag utcw-tag-sankey-plot" href="http://www.exegetic.biz/blog/tag/sankey-plot/" style="font-size:10px" title="1 topic">Sankey Plot</a> | <a class="tag-link-13 utcw-tag utcw-tag-scatter-plot" href="http://www.exegetic.biz/blog/tag/scatter-plot/" style="font-size:11.090909090909px" title="4 topics">scatter plot</a> | <a class="tag-link-92 utcw-tag utcw-tag-shell" href="http://www.exegetic.biz/blog/tag/shell/" style="font-size:10px" title="1 topic">shell</a> | <a class="tag-link-39 utcw-tag utcw-tag-simulated-annealing" href="http://www.exegetic.biz/blog/tag/simulated-annealing/" style="font-size:10px" title="1 topic">simulated annealing</a> | <a class="tag-link-88 utcw-tag utcw-tag-simulation" href="http://www.exegetic.biz/blog/tag/simulation/" style="font-size:10.363636363636px" title="2 topics">simulation</a> | <a class="tag-link-31 utcw-tag utcw-tag-spine-plot" href="http://www.exegetic.biz/blog/tag/spine-plot/" style="font-size:10.363636363636px" title="2 topics">spine plot</a> | <a class="tag-link-73 utcw-tag utcw-tag-spiral-plot" href="http://www.exegetic.biz/blog/tag/spiral-plot/" style="font-size:10px" title="1 topic">Spiral Plot</a> | <a class="tag-link-115 utcw-tag utcw-tag-spreadsheet" href="http://www.exegetic.biz/blog/tag/spreadsheet/" style="font-size:10px" title="1 topic">Spreadsheet</a> | <a class="tag-link-69 utcw-tag utcw-tag-sshfs" href="http://www.exegetic.biz/blog/tag/sshfs/" style="font-size:10px" title="1 topic">sshfs</a> | <a class="tag-link-126 utcw-tag utcw-tag-standard-bank" href="http://www.exegetic.biz/blog/tag/standard-bank/" style="font-size:10px" title="1 topic">Standard Bank</a> | <a class="tag-link-56 utcw-tag utcw-tag-subset" href="http://www.exegetic.biz/blog/tag/subset/" style="font-size:10px" title="1 topic">subset</a> | <a class="tag-link-64 utcw-tag utcw-tag-support-vector-machine" href="http://www.exegetic.biz/blog/tag/support-vector-machine/" style="font-size:10px" title="1 topic">Support Vector Machine</a> | <a class="tag-link-74 utcw-tag utcw-tag-ted-talk" href="http://www.exegetic.biz/blog/tag/ted-talk/" style="font-size:10.363636363636px" title="2 topics">TED Talk</a> | <a class="tag-link-57 utcw-tag utcw-tag-text-mining" href="http://www.exegetic.biz/blog/tag/text-mining/" style="font-size:10.363636363636px" title="2 topics">text mining</a> | <a class="tag-link-59 utcw-tag utcw-tag-time-zone" href="http://www.exegetic.biz/blog/tag/time-zone/" style="font-size:10px" title="1 topic">time zone</a> | <a class="tag-link-55 utcw-tag utcw-tag-transform" href="http://www.exegetic.biz/blog/tag/transform/" style="font-size:10px" title="1 topic">transform</a> | <a class="tag-link-110 utcw-tag utcw-tag-ultramarathon" href="http://www.exegetic.biz/blog/tag/ultramarathon/" style="font-size:10.363636363636px" title="2 topics">Ultramarathon</a> | <a class="tag-link-43 utcw-tag utcw-tag-uncertainty" href="http://www.exegetic.biz/blog/tag/uncertainty/" style="font-size:10.363636363636px" title="2 topics">uncertainty</a> | <a class="tag-link-2 utcw-tag utcw-tag-visualisation" href="http://www.exegetic.biz/blog/tag/visualisation/" style="font-size:12.181818181818px" title="7 topics">Visualisation</a> | <a class="tag-link-103 utcw-tag utcw-tag-volcanic-explosivity-index" href="http://www.exegetic.biz/blog/tag/volcanic-explosivity-index/" style="font-size:10px" title="1 topic">Volcanic Explosivity Index</a> | <a class="tag-link-102 utcw-tag utcw-tag-volcano" href="http://www.exegetic.biz/blog/tag/volcano/" style="font-size:10.363636363636px" title="2 topics">Volcano</a> | <a class="tag-link-3 utcw-tag utcw-tag-web-scraping" href="http://www.exegetic.biz/blog/tag/web-scraping/" style="font-size:10.363636363636px" title="2 topics">Web Scraping</a> | <a class="tag-link-120 utcw-tag utcw-tag-whistler" href="http://www.exegetic.biz/blog/tag/whistler/" style="font-size:10px" title="1 topic">Whistler</a> | <a class="tag-link-58 utcw-tag utcw-tag-word-cloud" href="http://www.exegetic.biz/blog/tag/word-cloud/" style="font-size:10px" title="1 topic">word cloud</a> | <a class="tag-link-121 utcw-tag utcw-tag-youtube" href="http://www.exegetic.biz/blog/tag/youtube/" style="font-size:10px" title="1 topic">YouTube</a></div></aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="http://www.exegetic.biz/blog/2014/11/creating-more-effective-graphs/">Creating More Effective Graphs</a>
+						</li>
+					<li>
+				<a href="http://www.exegetic.biz/blog/2014/10/standard-bank-striving-for-mediocrity/">Standard Bank: Striving for Mediocrity</a>
+						</li>
+					<li>
+				<a href="http://www.exegetic.biz/blog/2014/08/commitments-of-traders-update-19-august-2014/">Commitments of Traders: Update 19 August 2014</a>
+						</li>
+					<li>
+				<a href="http://www.exegetic.biz/blog/2014/08/commitments-of-traders-update-12-august-2014/">Commitments of Traders: Update 12 August 2014</a>
+						</li>
+					<li>
+				<a href="http://www.exegetic.biz/blog/2014/08/plotting-flows-with-riverplot/">Plotting Flows with riverplot</a>
+						</li>
+				</ul>
+		</aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+	<li><a href="http://www.exegetic.biz/blog/2014/11/">November 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2014/10/">October 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2014/08/">August 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2014/07/">July 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2014/06/">June 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2014/05/">May 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2014/04/">April 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2014/03/">March 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2014/01/">January 2014</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/12/">December 2013</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/11/">November 2013</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/10/">October 2013</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/09/">September 2013</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/08/">August 2013</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/07/">July 2013</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/06/">June 2013</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/05/">May 2013</a></li>
+	<li><a href="http://www.exegetic.biz/blog/2013/04/">April 2013</a></li>
+		</ul>
+</aside><aside id="text-5" class="widget widget_text">			<div class="textwidget"><a href="http://www.r-bloggers.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-widget&#39;,&#39;http://www.r-bloggers.com&#39;]);"><img src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/r-bloggers.png" width="50%" scale="0"></a></div>
+		</aside><aside id="text-2" class="widget widget_text"><h3 class="widget-title">#rstats</h3>			<div class="textwidget" data-twttr-id="twttr-sandbox-0"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-timeline twitter-timeline-rendered" allowfullscreen="" style="border: none; max-width: 100%; min-width: 180px; width: 193px;" title="Twitter Timeline" height="600"></iframe>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
+		</aside>		</div><!-- #secondary -->
+		</div><!-- #main .wrapper -->
+	<footer id="colophon" role="contentinfo">
+		<div class="site-info">
+						<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress</a>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+	<div style="display:none">
+	<div class="grofile-hash-map-03d8a6557109a6179386e66ba73dc009">
+	</div>
+	<div class="grofile-hash-map-ee78d71d8c39eaf0880a1e9ed7187a95">
+	</div>
+	<div class="grofile-hash-map-0b0f8bd52c48cb3ee94795f7064e6b5b">
+	</div>
+	<div class="grofile-hash-map-baf9d6714c7d69470cce61c1496249bb">
+	</div>
+	<div class="grofile-hash-map-d900b0efd3c87a2d9a76712f5cb9ae86">
+	</div>
+	<div class="grofile-hash-map-4a0ac354e33c71687f79209b25905207">
+	</div>
+	<div class="grofile-hash-map-8a4b2d39b2b3a0cd570677959f2b4831">
+	</div>
+	<div class="grofile-hash-map-397bdf0802c2237a91f7a0a658f36fea">
+	</div>
+	<div class="grofile-hash-map-154d7959e50b88bf51c841da25b06249">
+	</div>
+	<div class="grofile-hash-map-1ee284b3121ea03ee28c841f3f086a77">
+	</div>
+	</div>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/form.js"></script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shCore.js"></script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shBrushR.js"></script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/shBrushPlain.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.exegetic.biz/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.exegetic.biz/blog/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/wpgroho.js"></script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/navigation.js"></script>
+
+	<script src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/e-201445.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.0.2',blog:'50423132',post:'436',tz:'0'});
+	var load_cmc = function(){linktracker_init(50423132,436,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img id="wpstats" src="./Text Mining the Complete Works of William Shakespeare   Exegetic Analytics_files/g.gif" alt="" scale="0">
+<iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" style="display: none;"></iframe><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>
