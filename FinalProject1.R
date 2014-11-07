@@ -56,23 +56,3 @@ tdm<- TermDocumentMatrix(corpus6)
 dtm<- DocumentTermMatrix(corpus6)
 dtm
 
-## WHAT NEXT?
-#SOME COMMANDS:
-#findFreqTerms(x = tdm, lowfreq=58, highfreq=Inf)
-#findAssocs(x=tdm,term="also",corlimit=0.1)
-
-# 1. take a sentence and iterate through the words
-
-# 2. Look up associated words 
-
-# 3. Give a score to each association with higher score to the words near the blank. 
-
-## POSSIBILITIES:
-
-# 1. REMOVE SPARSE TERMS
-# TDM.common = removeSparseTerms(TDM, 0.1)
-# dim(TDM)
-# [1] 18651   182
-# dim(TDM.common)
-# [1]  71 182
-
