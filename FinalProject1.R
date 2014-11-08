@@ -49,8 +49,6 @@ corpus6<- tm_map(corpus5,removeNumbers)
 
 ## END TOKENIZATION ##
 
-## Memory clean up
-rm(corpus1,corpus2,corpus3,corpus4,corpus5,corpus)
 ## TOKEN ANALYSIS ##
 
 # MAKE TERM DOCUMENT MATRIX (TDM) - a matrix of frequency counts for each word used in the corpus.
@@ -58,7 +56,23 @@ tdm<- TermDocumentMatrix(corpus6)
 dtm<- DocumentTermMatrix(corpus6)
 dtm
 
+# Bigrams
+library(RWeka)
+BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+txtTdmBi <- TermDocumentMatrix(corpus6, control = list(tokenize = BigramTokenizer))
+
+## Memory clean up
+rm(corpus1,corpus2,corpus3,corpus4,corpus5,corpus)
+
+# Only after sure you are done making TDMs
+rm(corpus6)
+
+###--REFERENCE--###
+
 ## Tester ##
 # sink('analysis-output.txt')
 # inspect(dtm[,1:10])
 # sink()
+
+## Check if word exists ##
+# 'hello' %in% Terms(dtm)

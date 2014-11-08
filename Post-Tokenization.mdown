@@ -1,5 +1,56 @@
 Post-Tokenization
 ====
+# large corpus finding nothing...
+
+```r
+findFreqTerms(x = tdm, lowfreq=1758, highfreq=Inf)
+ [1] "also"    "back"    "call"    "can"     "citi"    "come"   
+ [7] "compani" "counti"  "day"     "even"    "first"   "game"   
+[13] "get"     "good"    "help"    "high"    "home"    "includ" 
+[19] "just"    "know"    "last"    "like"    "look"    "made"   
+[25] "make"    "mani"    "may"     "million" "month"   "much"   
+[31] "need"    "new"     "now"     "one"     "open"    "peopl"  
+[37] "percent" "plan"    "play"    "point"   "polic"   "public" 
+[43] "report"  "right"   "run"     "said"    "say"     "school" 
+[49] "season"  "see"     "show"    "sinc"    "start"   "state"  
+[55] "still"   "take"    "team"    "think"   "three"   "time"   
+[61] "tri"     "two"     "use"     "want"    "way"     "week"   
+[67] "well"    "will"    "work"    "year"
+
+findAssocs(tdm,"first",corlimit=0.5)
+# how can this be 0... too many words?
+findAssocs(tdm,"first",corlimit=0.95)
+# nope
+findAssocs(tdm,"first",corlimit=0.01)
+# a ha, ok it's just that i have 77,000 documents and nothing shows up more than maybe 1758 times...
+findAssocs(tdm,"first",corlimit=0.02)
+
+#let's try this with "case"
+findAssocs(tdm,"case",corlimit=0.03)
+# everything is legal related. looks like bigrams will be needed.
+```
+
+# bigram
+RWeka package
+bigram tokenizer...
+
+```r
+#Tokenizer for n-grams and passed on to the term-document matrix constructor
+BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+txtTdmBi <- TermDocumentMatrix(crude, control = list(tokenize = BigramTokenizer))
+```
+
+# SPEED ISSUES
+
+```r
+findAssocsBig <- function(u, term, corlimit){
+  suppressWarnings(x.cor <-  gamlr::corr(t(u[ !u$dimnames$Terms == term, ]),        
+                                         as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
+  x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
+  return(x)
+}
+```
+
 # Idea
 Load the test sentence as a TDM.
 Use findAssoc to get words?

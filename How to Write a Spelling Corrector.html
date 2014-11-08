@@ -1,0 +1,574 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN">
+<!-- saved from url=(0036)http://norvig.com/spell-correct.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="./How to Write a Spelling Corrector_files/prettify.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="./How to Write a Spelling Corrector_files/prettify.js"></script>
+<title>How to Write a Spelling Corrector</title>
+<style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+
+<body onload="prettyPrint()" style="max-width: 52em">
+<h1>How to Write a Spelling Corrector</h1>
+
+In the past week, two friends (Dean and Bill) independently told me
+they were amazed at how Google does spelling correction so well and
+quickly.  Type in a search like <a href="http://www.google.com/search?q=speling">[speling]</a> and Google
+comes back in 0.1 seconds or so with <font color="red">Did you mean:
+<b><i><a href="http://www.google.com/search?q=spelling">spelling</a></i></b></font>.
+(Yahoo and Microsoft are similar.)
+What surprised me is that I thought Dean and Bill, being highly
+accomplished engineers and mathematicians, would have good intuitions
+about statistical language processing problems such as spelling
+correction.  But they didn't, and come to think of it, there's no
+reason they should: it was my expectations that were faulty, not their knowledge.
+<p>
+I figured they and many others could benefit from an explanation.  The
+full details of an industrial-strength spell corrector are quite complex (you
+con read a little about it <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/research.google.com/en/us/pubs/archive/36180.pdf">here</a> or <a href="http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=52A3B869596656C9DA285DCE83A0339F?doi=10.1.1.146.4390&rep=rep1&type=pdf">here</a>).
+What I wanted to do here is to develop, in less than a page of code, a toy
+spelling corrector that achieves 80 or 90% accuracy at a processing
+speed of at least 10 words per second.
+
+
+</p><p>So here, in 21 lines of <a href="http://python.org/">Python 2.5</a> code, is the complete spelling
+corrector:
+
+</p><pre class="prettyprint"><span class="kwd">import</span><span class="pln"> re</span><span class="pun">,</span><span class="pln"> collections<br><br></span><span class="kwd">def</span><span class="pln"> words</span><span class="pun">(</span><span class="pln">text</span><span class="pun">):</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> re</span><span class="pun">.</span><span class="pln">findall</span><span class="pun">(</span><span class="str">'[a-z]+'</span><span class="pun">,</span><span class="pln"> text</span><span class="pun">.</span><span class="pln">lower</span><span class="pun">())</span><span class="pln"> <br><br></span><span class="kwd">def</span><span class="pln"> train</span><span class="pun">(</span><span class="pln">features</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; model </span><span class="pun">=</span><span class="pln"> collections</span><span class="pun">.</span><span class="pln">defaultdict</span><span class="pun">(</span><span class="kwd">lambda</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> f </span><span class="kwd">in</span><span class="pln"> features</span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; model</span><span class="pun">[</span><span class="pln">f</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> model<br><br>NWORDS </span><span class="pun">=</span><span class="pln"> train</span><span class="pun">(</span><span class="pln">words</span><span class="pun">(</span><span class="pln">file</span><span class="pun">(</span><span class="str">'big.txt'</span><span class="pun">).</span><span class="pln">read</span><span class="pun">()))</span><span class="pln"><br><br>alphabet </span><span class="pun">=</span><span class="pln"> </span><span class="str">'abcdefghijklmnopqrstuvwxyz'</span><span class="pln"><br><br></span><span class="kwd">def</span><span class="pln"> edits1</span><span class="pun">(</span><span class="pln">word</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp;splits &nbsp; &nbsp; </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[(</span><span class="pln">word</span><span class="pun">[:</span><span class="pln">i</span><span class="pun">],</span><span class="pln"> word</span><span class="pun">[</span><span class="pln">i</span><span class="pun">:])</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> range</span><span class="pun">(</span><span class="pln">len</span><span class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)]</span><span class="pln"><br>&nbsp; &nbsp;deletes &nbsp; &nbsp;</span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">1</span><span class="pun">:]</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b </span><span class="kwd">in</span><span class="pln"> splits </span><span class="kwd">if</span><span class="pln"> b</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp;transposes </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">2</span><span class="pun">:]</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b </span><span class="kwd">in</span><span class="pln"> splits </span><span class="kwd">if</span><span class="pln"> len</span><span class="pun">(</span><span class="pln">b</span><span class="pun">)</span>&gt;<span class="lit">1</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp;replaces &nbsp; </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> c </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">1</span><span class="pun">:]</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b </span><span class="kwd">in</span><span class="pln"> splits </span><span class="kwd">for</span><span class="pln"> c </span><span class="kwd">in</span><span class="pln"> alphabet </span><span class="kwd">if</span><span class="pln"> b</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp;inserts &nbsp; &nbsp;</span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> c </span><span class="pun">+</span><span class="pln"> b &nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b </span><span class="kwd">in</span><span class="pln"> splits </span><span class="kwd">for</span><span class="pln"> c </span><span class="kwd">in</span><span class="pln"> alphabet</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp;</span><span class="kwd">return</span><span class="pln"> set</span><span class="pun">(</span><span class="pln">deletes </span><span class="pun">+</span><span class="pln"> transposes </span><span class="pun">+</span><span class="pln"> replaces </span><span class="pun">+</span><span class="pln"> inserts</span><span class="pun">)</span><span class="pln"><br><br></span><span class="kwd">def</span><span class="pln"> known_edits2</span><span class="pun">(</span><span class="pln">word</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> set</span><span class="pun">(</span><span class="pln">e2 </span><span class="kwd">for</span><span class="pln"> e1 </span><span class="kwd">in</span><span class="pln"> edits1</span><span class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> e2 </span><span class="kwd">in</span><span class="pln"> edits1</span><span class="pun">(</span><span class="pln">e1</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> e2 </span><span class="kwd">in</span><span class="pln"> NWORDS</span><span class="pun">)</span><span class="pln"><br><br></span><span class="kwd">def</span><span class="pln"> known</span><span class="pun">(</span><span class="pln">words</span><span class="pun">):</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> set</span><span class="pun">(</span><span class="pln">w </span><span class="kwd">for</span><span class="pln"> w </span><span class="kwd">in</span><span class="pln"> words </span><span class="kwd">if</span><span class="pln"> w </span><span class="kwd">in</span><span class="pln"> NWORDS</span><span class="pun">)</span><span class="pln"><br><br></span><span class="kwd">def</span><span class="pln"> correct</span><span class="pun">(</span><span class="pln">word</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; candidates </span><span class="pun">=</span><span class="pln"> known</span><span class="pun">([</span><span class="pln">word</span><span class="pun">])</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> known</span><span class="pun">(</span><span class="pln">edits1</span><span class="pun">(</span><span class="pln">word</span><span class="pun">))</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> known_edits2</span><span class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="pun">[</span><span class="pln">word</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> max</span><span class="pun">(</span><span class="pln">candidates</span><span class="pun">,</span><span class="pln"> key</span><span class="pun">=</span><span class="pln">NWORDS</span><span class="pun">.</span><span class="pln">get</span><span class="pun">)</span></pre>
+<p>
+The code defines the function <tt>correct</tt>, which takes a word as input and returns
+a likely correction of that word.  For example:
+</p><p></p><pre class="prettyprint">&gt;&gt;&gt;<span class="pln"> correct</span><span class="pun">(</span><span class="str">'speling'</span><span class="pun">)</span><span class="pln"><br></span><span class="str">'spelling'</span><span class="pln"><br></span>&gt;&gt;&gt;<span class="pln"> correct</span><span class="pun">(</span><span class="str">'korrecter'</span><span class="pun">)</span><span class="pln"><br></span><span class="str">'corrector'</span></pre>
+
+The version of <tt>edits1</tt> shown here is a variation on one proposed by <a href="http://wry.me/~darius/">Darius Bacon</a>; I think
+this is clearer than the version I originally had.  Darius also fixed
+a bug in the function <tt>correct</tt>.
+
+<h2>How It Works: Some Probability Theory</h2>
+
+<p> How does it work?  First, a little theory. Given a word, we are
+trying to choose the most likely spelling correction for that word
+(the "correction" may be the original word itself). There is no way to
+know for sure (for example, should "lates" be corrected to "late" or
+"latest"?), which suggests we use probabilities.  We will say that we
+are trying to find the correction <i>c</i>, out of all possible
+corrections, that maximizes the probability of <i>c</i> given the
+original word <i>w</i>:
+</p><blockquote>
+argmax<sub><i>c</i></sub> P(<i>c</i>|<i>w</i>)
+</blockquote>
+By <a href="http://en.wikipedia.org/wiki/Bayes'_theorem">Bayes' Theorem</a> this is equivalent 
+to:
+<blockquote>
+argmax<sub><i>c</i></sub> P(<i>w</i>|<i>c</i>) P(<i>c</i>) / P(<i>w</i>)
+</blockquote>
+Since P(<i>w</i>) is the same for every possible <i>c</i>, we can ignore it, giving:
+<blockquote>
+argmax<sub><i>c</i></sub> P(<i>w</i>|<i>c</i>) P(<i>c</i>)
+</blockquote>
+There are three parts of this expression.  From right to left, we have:
+<ol>
+  <li> P(<i>c</i>), the probability
+that a proposed correction <i>c</i> stands on its own.  This is called the <b>language model</b>:
+think of it as answering the question "how likely is <i>c</i> to appear in an English text?"  So 
+ P("the") would have a relatively high probability, while P("zxzxzxzyyy") would be near zero.
+
+  <p></p></li><li>  P(<i>w</i>|<i>c</i>), the probability that <i>w</i> would be typed in a text when the
+  author meant <i>c</i>. This is the <b>error model</b>: think of it as answering "how likely
+  is it that the author would type <i>w</i> by mistake when <i>c</i> was intended?"
+
+  <p></p></li><li>argmax<sub><i>c</i></sub>, the control mechanism, which says to enumerate all feasible
+  values of <i>c</i>, and then choose the one that gives the best combined probability score.
+  </li></ol>
+
+<p>One obvious question is: why take a simple expression like P(<i>c</i>|<i>w</i>) and replace
+  it with a more complex expression involving two models rather than one? The answer is that
+  P(<i>c</i>|<i>w</i>) is <i>already</i> conflating two factors, and it is
+  easier to separate the two out and deal with them explicitly. Consider the misspelled word
+  <i>w</i>="thew" and the two candidate corrections <i>c</i>="the" and <i>c</i>="thaw".
+  Which has a higher P(<i>c</i>|<i>w</i>)?  Well, "thaw" seems good because the only change
+  is "a" to "e", which is a small change.  On the other hand, "the" seems good because "the" is a very
+  common word, and perhaps the typist's finger slipped off the "e" onto the "w".  The point is that to
+  estimate P(<i>c</i>|<i>w</i>) we have to consider both the probability of <i>c</i> and the
+  probability of the change from <i>c</i> to <i>w</i> anyway, so it is cleaner to formally separate the
+  two factors.
+
+ </p><p>Now we are ready to show how the program works.  First
+  P(<i>c</i>). We will read a big text file, <a href="http://norvig.com/big.txt">big.txt</a>, which consists of about a million words.
+  The file is a concatenation of several public domain books from <a href="http://www.gutenberg.org/wiki/Main_Page">Project Gutenberg</a>
+  and lists of most frequent words from <a href="http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists">Wiktionary</a>
+  and the <a href="http://www.kilgarriff.co.uk/bnc-readme.html">British
+  National Corpus</a>.
+  (On the plane home when I was writing the first version of the code
+  all I had was a collection of Sherlock Holmes stories that
+  happened to be on my laptop; I added the other sources later and stopped 
+  adding texts when they stopped helping, as we shall
+  see in the Evaluation section.)  
+
+</p><p>We then extract the individual words from the file (using the
+  function <tt>words</tt>, which converts everything to lowercase, so
+  that "the" and "The" will be the same and then defines a word as a
+  sequence of alphabetic characters, so "don't" will be seen as the
+  two words "don" and "t").  Next we train a probability model, which
+  is a fancy way of saying we count how many times each word occurs,
+  using the function <tt>train</tt>. It looks like this:
+
+</p><pre class="prettyprint"><span class="kwd">def</span><span class="pln"> words</span><span class="pun">(</span><span class="pln">text</span><span class="pun">):</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> re</span><span class="pun">.</span><span class="pln">findall</span><span class="pun">(</span><span class="str">'[a-z]+'</span><span class="pun">,</span><span class="pln"> text</span><span class="pun">.</span><span class="pln">lower</span><span class="pun">())</span><span class="pln"> <br><br></span><span class="kwd">def</span><span class="pln"> train</span><span class="pun">(</span><span class="pln">features</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; model </span><span class="pun">=</span><span class="pln"> collections</span><span class="pun">.</span><span class="pln">defaultdict</span><span class="pun">(</span><span class="kwd">lambda</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> f </span><span class="kwd">in</span><span class="pln"> features</span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; model</span><span class="pun">[</span><span class="pln">f</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> model<br><br>NWORDS </span><span class="pun">=</span><span class="pln"> train</span><span class="pun">(</span><span class="pln">words</span><span class="pun">(</span><span class="pln">file</span><span class="pun">(</span><span class="str">'big.txt'</span><span class="pun">).</span><span class="pln">read</span><span class="pun">()))</span></pre>
+
+<p>At this point, <tt>NWORDS[w]</tt> holds a count of how many times the
+  word <tt>w</tt> has been seen.  There is one complication: novel
+  words. What happens with a perfectly good word of English that
+  wasn't seen in our training data?  It would be bad form to say the
+  probability of a word is zero just because we haven't seen it yet.
+  There are several standard approaches to this problem; we take the
+  easiest one, which is to treat novel words as if we had seen them
+  once.  This general process is called <b>smoothing</b>, because we are smoothing
+  over the parts of the probability distribution that would have been
+  zero, bumping them up to the smallest possible count.  This is
+  achieved through the class <tt>collections.defaultdict</tt>, which is like a
+  regular Python dict (what other languages call hash tables) except
+  that we can specify the default value of any key; here we use 1.
+
+
+</p><p>Now let's look at the problem of enumerating the possible corrections <i>c</i>
+of a given word <i>w</i>. It is common to talk of the <b>edit distance</b>
+between two words: the number of edits it would take to turn one into the other.
+An edit can be a deletion (remove one letter), a transposition (swap adjacent letters),
+an alteration (change one letter to another) or an insertion (add a letter).  Here's a function
+that returns a set of all words <i>c</i> that are one edit away from <i>w</i>:
+</p><pre class="prettyprint"><span class="kwd">def</span><span class="pln"> edits1</span><span class="pun">(</span><span class="pln">word</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp;splits &nbsp; &nbsp; </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[(</span><span class="pln">word</span><span class="pun">[:</span><span class="pln">i</span><span class="pun">],</span><span class="pln"> word</span><span class="pun">[</span><span class="pln">i</span><span class="pun">:])</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> i </span><span class="kwd">in</span><span class="pln"> range</span><span class="pun">(</span><span class="pln">len</span><span class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)]</span><span class="pln"><br>&nbsp; &nbsp;deletes &nbsp; &nbsp;</span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">1</span><span class="pun">:]</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b </span><span class="kwd">in</span><span class="pln"> splits </span><span class="kwd">if</span><span class="pln"> b</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp;transposes </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">2</span><span class="pun">:]</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b </span><span class="kwd">in</span><span class="pln"> splits </span><span class="kwd">if</span><span class="pln"> len</span><span class="pun">(</span><span class="pln">b</span><span class="pun">)</span>&gt;<span class="lit">1</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp;replaces &nbsp; </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> c </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">[</span><span class="lit">1</span><span class="pun">:]</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b </span><span class="kwd">in</span><span class="pln"> splits </span><span class="kwd">for</span><span class="pln"> c </span><span class="kwd">in</span><span class="pln"> alphabet </span><span class="kwd">if</span><span class="pln"> b</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp;inserts &nbsp; &nbsp;</span><span class="pun">=</span><span class="pln"> </span><span class="pun">[</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> c </span><span class="pun">+</span><span class="pln"> b &nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b </span><span class="kwd">in</span><span class="pln"> splits </span><span class="kwd">for</span><span class="pln"> c </span><span class="kwd">in</span><span class="pln"> alphabet</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp;</span><span class="kwd">return</span><span class="pln"> set</span><span class="pun">(</span><span class="pln">deletes </span><span class="pun">+</span><span class="pln"> transposes </span><span class="pun">+</span><span class="pln"> replaces </span><span class="pun">+</span><span class="pln"> inserts</span><span class="pun">)</span></pre>
+
+<p>This can be a big set.  For a word of length <i>n</i>, there will
+be <i>n</i> deletions, <i>n</i>-1 transpositions, 26<i>n</i>
+alterations, and 26(<i>n</i>+1) insertions, for a total of
+54<i>n</i>+25 (of which a few are typically duplicates).  For example,
+len(edits1('something')) -- that is, the number of elements in the
+result of edits1('something') -- is 494.
+
+</p><p>The literature on spelling correction claims that 80 to 95% of
+spelling errors are an edit distance of 1 from the target.  As we
+shall see shortly, I put together a development corpus of 270 spelling
+errors, and found that only 76% of them have edit distance 1.  Perhaps
+the examples I found are harder than typical errors. Anyway, I thought
+this was not good enough, so we'll need to consider edit distance 2.
+That's easy: just apply <tt>edits1</tt> to all the results of
+<tt>edits1</tt>:
+
+</p><pre class="prettyprint"><span class="kwd">def</span><span class="pln"> edits2</span><span class="pun">(</span><span class="pln">word</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> set</span><span class="pun">(</span><span class="pln">e2 </span><span class="kwd">for</span><span class="pln"> e1 </span><span class="kwd">in</span><span class="pln"> edits1</span><span class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> e2 </span><span class="kwd">in</span><span class="pln"> edits1</span><span class="pun">(</span><span class="pln">e1</span><span class="pun">))</span></pre>
+
+<p>This is easy to write, but we're starting to get into some serious
+computation: len(edits2('something')) is 114,324. However, we do get
+good coverage: of the 270 test cases, only 3 have an edit distance
+greater than 2. That is, edits2 will cover 98.9% of the cases; that's
+good enough for me. Since we aren't going beyond edit distance 2, we
+can do a small optimization: only keep the candidates that are
+actually known words. We still have to consider all the possibilities,
+but we don't have to build up a big set of them. The function
+<tt>known_edits2</tt> does this:
+
+</p><pre class="prettyprint"><span class="kwd">def</span><span class="pln"> known_edits2</span><span class="pun">(</span><span class="pln">word</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> set</span><span class="pun">(</span><span class="pln">e2 </span><span class="kwd">for</span><span class="pln"> e1 </span><span class="kwd">in</span><span class="pln"> edits1</span><span class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">for</span><span class="pln"> e2 </span><span class="kwd">in</span><span class="pln"> edits1</span><span class="pun">(</span><span class="pln">e1</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> e2 </span><span class="kwd">in</span><span class="pln"> NWORDS</span><span class="pun">)</span></pre>
+
+<p>Now, for example, known_edits2('something') is a set of just 4 words:
+{'smoothing', 'seething', 'something', 'soothing'}, rather than the set of
+114,324 words generated by edits2. That speeds things up by about 10%.
+
+</p><p>Now the only part left is the error model,
+P(<i>w</i>|<i>c</i>). Here's where I ran into difficulty. Sitting on
+the plane, with no internet connection, I was stymied: I had no
+training data to build a model of spelling errors. I had some
+intuitions: mistaking one vowel for another is more probable than
+mistaking two consonants; making an error on the first letter of a
+word is less probable, etc. But I had no numbers to back that
+up.  So I
+took a shortcut: I defined a trivial model that says all known words
+of edit distance 1 are infinitely more probable than known words of
+edit distance 2, and infinitely less probable than a known word of
+edit distance 0. By "known word" I mean a word that we have seen in
+the language model training data -- a word in the dictionary. We can
+implement this strategy as follows:
+
+</p><pre class="prettyprint"><span class="kwd">def</span><span class="pln"> known</span><span class="pun">(</span><span class="pln">words</span><span class="pun">):</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> set</span><span class="pun">(</span><span class="pln">w </span><span class="kwd">for</span><span class="pln"> w </span><span class="kwd">in</span><span class="pln"> words </span><span class="kwd">if</span><span class="pln"> w </span><span class="kwd">in</span><span class="pln"> NWORDS</span><span class="pun">)</span><span class="pln"><br><br></span><span class="kwd">def</span><span class="pln"> correct</span><span class="pun">(</span><span class="pln">word</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; candidates </span><span class="pun">=</span><span class="pln"> known</span><span class="pun">([</span><span class="pln">word</span><span class="pun">])</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> known</span><span class="pun">(</span><span class="pln">edits1</span><span class="pun">(</span><span class="pln">word</span><span class="pun">))</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> known_edits2</span><span class="pun">(</span><span class="pln">word</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">or</span><span class="pln"> </span><span class="pun">[</span><span class="pln">word</span><span class="pun">]</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> max</span><span class="pun">(</span><span class="pln">candidates</span><span class="pun">,</span><span class="pln"> key</span><span class="pun">=</span><span class="pln">NWORDS</span><span class="pun">.</span><span class="pln">get</span><span class="pun">)</span></pre>
+
+<p>The function <tt>correct</tt> chooses as the set of candidate words
+the set with the shortest edit distance to the original word, as long
+as the set has some known words. Once it identifies the candidate set to
+consider, it chooses the element with the highest P(<i>c</i>) value, as
+estimated by the <tt>NWORDS</tt> model.
+
+</p><h2>Evaluation</h2>
+
+Now it is time to evaluate how well this program does. On the plane I
+tried a few examples, and it seemed okay. After my plane landed, I
+downloaded Roger Mitton's <a href="http://ota.ahds.ac.uk/texts/0643.html">Birkbeck spelling error
+corpus</a> from the Oxford Text Archive. From that I extracted two
+test sets of corrections. The first is for development, meaning I get
+to look at it while I'm developing the program. The second is a final
+test set, meaning I'm not allowed to look at it, nor change my program
+after evaluating on it. This practice of having two sets is good
+hygiene; it keeps me from fooling myself into thinking I'm doing
+better than I am by tuning the program to one specific set of
+tests. Here I show an excerpt of the two tests and the function to run
+them; to see the complete set of tests (along with the rest of the
+program), see the file <a href="http://norvig.com/spell.py">spell.py</a>.
+
+<pre class="prettyprint"><span class="pln">tests1 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> </span><span class="str">'access'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'acess'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'accessing'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'accesing'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'accommodation'</span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'accomodation acommodation acomodation'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'account'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'acount'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...}</span><span class="pln"><br><br>tests2 </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="str">'forbidden'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'forbiden'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'decisions'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'deciscions descisions'</span><span class="pun">,</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="str">'supposedly'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'supposidly'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'embellishing'</span><span class="pun">:</span><span class="pln"> </span><span class="str">'embelishing'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...}</span><span class="pln"><br><br></span><span class="kwd">def</span><span class="pln"> spelltest</span><span class="pun">(</span><span class="pln">tests</span><span class="pun">,</span><span class="pln"> bias</span><span class="pun">=</span><span class="kwd">None</span><span class="pun">,</span><span class="pln"> verbose</span><span class="pun">=</span><span class="kwd">False</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">import</span><span class="pln"> time<br>&nbsp; &nbsp; n</span><span class="pun">,</span><span class="pln"> bad</span><span class="pun">,</span><span class="pln"> unknown</span><span class="pun">,</span><span class="pln"> start </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> time</span><span class="pun">.</span><span class="pln">clock</span><span class="pun">()</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">if</span><span class="pln"> bias</span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> target </span><span class="kwd">in</span><span class="pln"> tests</span><span class="pun">:</span><span class="pln"> NWORDS</span><span class="pun">[</span><span class="pln">target</span><span class="pun">]</span><span class="pln"> </span><span class="pun">+=</span><span class="pln"> bias<br>&nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> target</span><span class="pun">,</span><span class="pln">wrongs </span><span class="kwd">in</span><span class="pln"> tests</span><span class="pun">.</span><span class="pln">items</span><span class="pun">():</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">for</span><span class="pln"> wrong </span><span class="kwd">in</span><span class="pln"> wrongs</span><span class="pun">.</span><span class="pln">split</span><span class="pun">():</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; w </span><span class="pun">=</span><span class="pln"> correct</span><span class="pun">(</span><span class="pln">wrong</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">if</span><span class="pln"> w</span><span class="pun">!=</span><span class="pln">target</span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bad </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; unknown </span><span class="pun">+=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">target </span><span class="kwd">not</span><span class="pln"> </span><span class="kwd">in</span><span class="pln"> NWORDS</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">if</span><span class="pln"> verbose</span><span class="pun">:</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span class="kwd">print</span><span class="pln"> </span><span class="str">'%r =&gt; %r (%d); expected %r (%d)'</span><span class="pln"> </span><span class="pun">%</span><span class="pln"> </span><span class="pun">(</span><span class="pln"><br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; wrong</span><span class="pun">,</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> NWORDS</span><span class="pun">[</span><span class="pln">w</span><span class="pun">],</span><span class="pln"> target</span><span class="pun">,</span><span class="pln"> NWORDS</span><span class="pun">[</span><span class="pln">target</span><span class="pun">])</span><span class="pln"><br>&nbsp; &nbsp; </span><span class="kwd">return</span><span class="pln"> dict</span><span class="pun">(</span><span class="pln">bad</span><span class="pun">=</span><span class="pln">bad</span><span class="pun">,</span><span class="pln"> n</span><span class="pun">=</span><span class="pln">n</span><span class="pun">,</span><span class="pln"> bias</span><span class="pun">=</span><span class="pln">bias</span><span class="pun">,</span><span class="pln"> pct</span><span class="pun">=</span><span class="kwd">int</span><span class="pun">(</span><span class="lit">100</span><span class="pun">.</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">100</span><span class="pun">.*</span><span class="pln">bad</span><span class="pun">/</span><span class="pln">n</span><span class="pun">),</span><span class="pln"> <br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; unknown</span><span class="pun">=</span><span class="pln">unknown</span><span class="pun">,</span><span class="pln"> secs</span><span class="pun">=</span><span class="kwd">int</span><span class="pun">(</span><span class="pln">time</span><span class="pun">.</span><span class="pln">clock</span><span class="pun">()-</span><span class="pln">start</span><span class="pun">)</span><span class="pln"> </span><span class="pun">)</span><span class="pln"><br><br></span><span class="kwd">print</span><span class="pln"> spelltest</span><span class="pun">(</span><span class="pln">tests1</span><span class="pun">)</span><span class="pln"><br></span><span class="kwd">print</span><span class="pln"> spelltest</span><span class="pun">(</span><span class="pln">tests2</span><span class="pun">)</span><span class="pln"> </span><span class="com">## only do this after everything is debugged</span></pre>
+
+<p>This gives the following output:
+
+</p><pre class="prettyprint"><span class="pun">{</span><span class="str">'bad'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">68</span><span class="pun">,</span><span class="pln"> </span><span class="str">'bias'</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">,</span><span class="pln"> </span><span class="str">'unknown'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">15</span><span class="pun">,</span><span class="pln"> </span><span class="str">'secs'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16</span><span class="pun">,</span><span class="pln"> </span><span class="str">'pct'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">74</span><span class="pun">,</span><span class="pln"> </span><span class="str">'n'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">270</span><span class="pun">}</span><span class="pln"><br></span><span class="pun">{</span><span class="str">'bad'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">130</span><span class="pun">,</span><span class="pln"> </span><span class="str">'bias'</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">None</span><span class="pun">,</span><span class="pln"> </span><span class="str">'unknown'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">43</span><span class="pun">,</span><span class="pln"> </span><span class="str">'secs'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">26</span><span class="pun">,</span><span class="pln"> </span><span class="str">'pct'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">67</span><span class="pun">,</span><span class="pln"> </span><span class="str">'n'</span><span class="pun">:</span><span class="pln"> </span><span class="lit">400</span><span class="pun">}</span></pre>
+
+<p>So on the development set of 270 cases, we get 74% correct in 13
+seconds (a rate of 17 Hz), and on the final test set we get 67%
+correct (at 15 Hz).  
+
+</p><p>
+</p><blockquote>
+<b>Update:</b><i> In the original version of this essay I incorrectly
+reported a higher score on both test sets, due to a bug.  The bug was
+subtle, but I should have caught it, and I apologize for misleading
+those who read the earlier version.  In the original version of
+<tt>spelltest</tt>, I left out the <tt>if bias:</tt> in the fourth
+line of the function (and the default value was bias=0, not
+bias=None).  I figured that when bias = 0, the statement
+<tt>NWORDS[target] += bias</tt> would have no effect.  In fact it does
+not change the value of <tt>NWORDS[target]</tt>, but it does have an
+effect: it makes <tt>(target in NWORDS)</tt> true.  So in effect the
+<tt>spelltest</tt> routine was cheating by making all the unknown
+words known.  This was a humbling error, and I have to admit that much
+as I like <tt>defaultdict</tt> for the brevity it adds to programs, I
+think I would not have had this bug if I had used regular dicts.
+</i><p><i>
+<b>Update 2:</b> defaultdict strikes again.  <a href="http://wry.me/~darius/">Darius Bacon</a>
+pointed out that in the function <tt>correct</tt>, I had accessed <tt>NWORDS[w]</tt>.  This has the
+unfortunate side-effect of adding <tt>w</tt> to the defaultdict, if <tt>w</tt> was not already there
+(i.e., if it was an unknown word).  Then the next time, it <i>would</i> be present, and we would get
+the wrong answer.  Darius correctly suggested changing to <tt>NWORDS.get</tt>.  (This works because
+<tt>max(None, i)</tt> is <tt>i</tt> for any integer <tt>i</tt>.)
+
+</i>
+</p></blockquote>
+
+<p>In conclusion, I met my goals for brevity, development time, and runtime speed, but not for accuracy.
+
+</p><h2>Future Work</h2>
+Let's think about how we
+could do better. (I've done some more in a <a href="http://norvig.com/ngrams/">separate chapter</a> for a book.)  We'll again look at all three factors of
+the probability model: (1) P(<i>c</i>);
+(2) P(<i>w</i>|<i>c</i>); and (3) argmax<sub<i>c.  We'll look at
+examples of what we got wrong. Then we'll
+look at some factors beyond the three...
+
+<ol>
+
+<li>P(<i>c</i>), the language model.  We can distinguish two sources
+of error in the language model.  The more serious is unknown words. In
+the development set, there are 15 unknown words, or 5%, and in the
+final test set, 43 unknown words or 11%. Here are some examples
+of the output of <tt>spelltest</tt> with <tt>verbose=True</tt>:
+
+<pre class="prettyprint"><span class="pln">correct</span><span class="pun">(</span><span class="str">'economtric'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'economic'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">121</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'econometric'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'embaras'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'embargo'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">8</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'embarrass'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'colate'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'coat'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">173</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'collate'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'orentated'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'orentated'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'orientated'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'unequivocaly'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'unequivocal'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'unequivocally'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'generataed'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'generate'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'generated'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'guidlines'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'guideline'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'guidelines'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span></pre>
+
+<p>In this output we show the call to <tt>correct</tt> and the result
+(with the <tt>NWORDS</tt> count for the result in parentheses), and
+then the word expected by the test set (again with the count in
+parentheses).  What this shows is that if you don't know that
+'econometric' is a word, you're not going to be able to correct
+'economtric'.  We could mitigate by adding more text to the training
+corpus, but then we also add words that might turn out to be the wrong
+answer.  Note the last four lines above are inflections of words that
+do appear in the dictionary in other forms.  So we might want a model
+that says it is okay to add '-ed' to a verb or '-s' to a noun.
+
+</p><p>The second potential source of error in the language model is bad
+probabilities: two words appear in the dictionary, but the wrong one
+appears more frequently.  I must say that I couldn't find cases where
+this is the only fault; other problems seem much more serious.
+
+
+</p><p>
+We can simulate how much better we might do with a better language
+model by cheating on the tests: pretending that we have seen the
+correctly spelled word 1, 10, or more times.  This simulates having
+more text (and just the right text) in the language model.  The
+function <tt>spelltest</tt> has a parameter, <tt>bias</tt>, that does
+this.  Here's what happens on the development and final test sets when
+we add more bias to the correctly-spelled words:
+
+</p><p>
+<table border="1">
+<tbody><tr><th>Bias</th><th>Dev.</th><th>Test
+</th></tr><tr><td>0   </td><td>74%</td><td>67%
+</td></tr><tr><td>1   </td><td>74%</td><td>70%
+</td></tr><tr><td>10  </td><td>76%</td><td>73%
+</td></tr><tr><td>100 </td><td>82%</td><td>77%
+</td></tr><tr><td>1000</td><td>89%</td><td>80%
+</td></tr></tbody></table>
+
+</p><p>On both test sets we get significant gains, approaching 80-90%.
+This suggests that it is possible that if we had a good enough language model we 
+might get to our accuracy goal.  On the other hand, this is probably optimistic,
+because as we build a bigger language model we would also introduce words that 
+are the wrong answer, which this method does not do.
+
+</p><p>Another way to deal with unknown words is to allow the result of
+<tt>correct</tt> to be a word we have not seen. For example, if the
+input is "electroencephalographicallz", a good correction would be to
+change the final "z" to an "y", even though
+"electroencephalographically" is not in our dictionary.  We could
+achieve this with a language model based on components of words:
+perhaps on syllables or suffixes (such as "-ally"), but it is far
+easier to base it on sequences of characters: 2-, 3- and 4-letter
+sequences.
+
+</p><p></p></li><li>P(<i>w</i>|<i>c</i>), the error model. So far, the error model
+has been trivial: the smaller the edit distance, the smaller the
+error.  This causes some problems, as the examples below show.  First,
+some cases where <tt>correct</tt> returns a word at edit distance 1
+when it should return one at edit distance 2:
+
+<pre class="prettyprint"><span class="pln">correct</span><span class="pun">(</span><span class="str">'reciet'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'recite'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">5</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'receipt'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">14</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'adres'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'acres'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">37</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'address'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">77</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'rember'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'member'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">51</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'remember'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">162</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'juse'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'just'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">768</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'juice'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">6</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'accesing'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'acceding'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'assessing'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span></pre>
+
+<p>Here, for example, the alteration of 'd' to 'c' to get from 'adres'
+to 'acres' should count more than the sum of the two changes 'd' to
+'dd' and 's' to 'ss'.
+
+</p><p>Also, some cases where we choose the wrong word at the same edit distance:
+
+</p><pre class="prettyprint"><span class="pln">correct</span><span class="pun">(</span><span class="str">'thay'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'that'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">12513</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'they'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">4939</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'cleark'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'clear'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">234</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'clerk'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">26</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'wer'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'her'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">5285</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'were'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">4290</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'bonas'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'bones'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">263</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'bonus'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'plesent'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'present'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">330</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'pleasant'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">97</span><span class="pun">)</span></pre>
+
+<p>The same type of lesson holds: In 'thay', changing an 'a' to an 'e'
+should count as a smaller change than changing a 'y' to a 't'.  How
+much smaller? It must be a least a factor of 2.5 to overcome the prior
+probability advantage of 'that' over 'they'.
+
+</p><p>Clearly we could use a better model of the cost of edits.  We could
+use our intuition to assign lower costs for doubling letters and
+changing a vowel to another vowel (as compared to an arbitrary letter
+change), but it seems better to gather data: to get a corpus of
+spelling errors, and count how likely it is to make each insertion,
+deletion, or alteration, given the surrounding characters.  We need a
+lot of data to do this well.  If we want to look at the change of one
+character for another, given a window of two characters on each side,
+that's 26<sup>6</sup>, which is over 300 million characters.  You'd
+want several examples of each, on average, so we need at least a
+billion characters of correction data; probably safer with at least 10
+billion.
+
+</p><p>Note there is a connection between the language model and the error model.
+The current program has such a simple error model (all edit distance 1 words
+before any edit distance 2 words) that it handicaps the language model: we are
+afraid to add obscure words to the model, because if one of those obscure words
+happens to be edit distance 1 from an input word, then it will be chosen, even if
+there is a very common word at edit distance 2.  With a better error model we
+can be more aggressive about adding obscure words to the dictionary.  Here are some
+examples where the presence of obscure words in the dictionary hurts us:
+
+</p><pre class="prettyprint"><span class="pln">correct</span><span class="pun">(</span><span class="str">'wonted'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'wonted'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'wanted'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">214</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'planed'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'planed'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'planned'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">16</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'forth'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'forth'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">83</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'fourth'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">79</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'et'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'et'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">20</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'set'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">325</span><span class="pun">)</span></pre>
+
+<p></p></li><li>The enumeration of possible
+corrections, argmax<sub><i>c</i></sub>.  Our program enumerates all corrections within
+edit distance 2.  In the development set, only 3 words out of 270 are
+beyond edit distance 2, but in the final test set, there were 23 out
+of 400.  Here they are:
+
+<blockquote><pre>purple perpul
+curtains courtens
+minutes muinets
+
+successful sucssuful
+hierarchy heiarky
+profession preffeson
+weighted wagted
+inefficient ineffiect
+availability avaiblity
+thermawear thermawhere
+nature natior
+dissension desention
+unnecessarily unessasarily
+disappointing dissapoiting
+acquaintances aquantences
+thoughts thorts
+criticism citisum
+immediately imidatly
+necessary necasery
+necessary nessasary
+necessary nessisary
+unnecessary unessessay
+night nite
+minutes muiuets
+assessing accesing
+necessitates nessisitates
+</pre></blockquote>
+
+<p>We could consider extending the model by allowing a limited set of
+edits at edit distance 3. For example, allowing only the insertion of
+a vowel next to another vowel, or the replacement of a vowel for
+another vowel, or replacing close consonants like "c" to "s" would
+handle almost all these cases.
+
+</p><p></p></li><li>There's actually a fourth (and best) way to improve: change the
+interface to <tt>correct</tt> to look at more context. So far,
+<tt>correct</tt> only looks at one word at a time.  It turns out that
+in many cases it is difficult to make a decision based only on a
+single word.  This is most obvious when there is a word that appears
+in the dictionary, but the test set says it should be corrected to
+another word anyway:
+
+<pre class="prettyprint"><span class="pln">correct</span><span class="pun">(</span><span class="str">'where'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'where'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">123</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'were'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">452</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'latter'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'latter'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">11</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'later'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">116</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'advice'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'advice'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">64</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'advise'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">20</span><span class="pun">)</span></pre>
+
+<p>We can't possibly know that <tt>correct('where')</tt> should be
+'were' in at least one case, but should remain 'where' in other cases.
+But if the query had been <tt>correct('They where going')</tt> then it
+seems likely that "where" should be corrected to "were".
+</p><p>
+The context of the surrounding words can help when there are obvious errors,
+but two or more good candidate corrections.  Consider:
+
+</p><pre class="prettyprint"><span class="pln">correct</span><span class="pun">(</span><span class="str">'hown'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'how'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1316</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'shown'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">114</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'ther'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'the'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">81031</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'their'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3956</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'quies'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'quiet'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">119</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'queries'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'natior'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'nation'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">170</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'nature'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">171</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'thear'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'their'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">3956</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'there'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">4973</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'carrers'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'carriers'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">7</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'careers'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">2</span><span class="pun">)</span></pre>
+
+<p>Why should 'thear' be corrected as 'there' rather than 'their'?  It is
+difficult to tell by the single word alone, but if the query were
+<tt>correct('There's no there thear')</tt> it would be clear.
+
+</p><p>
+To build a model that looks at multiple words at a time, we will need a lot of data.
+Fortunately, Google has released
+a <a href="http://googleresearch.blogspot.com/2006/08/all-our-n-gram-are-belong-to-you.html">database
+of word counts</a> for all sequences up to five words long,
+gathered from a corpus of a <i>trillion</i> words.
+
+</p><p>I believe that a spelling corrector that scores 90% accuracy will
+<i>need</i> to use the context of the surrounding words to make a
+choice.  But we'll leave that for another day...
+
+</p></li><li>We could improve our accuracy scores by improving the training
+data and the test data. We grabbed a million words of text and assumed
+they were all spelled correctly; but it is very likely that the
+training data contains several errors.  We could try to identify and
+fix those.  Less daunting a task is to fix the test sets.  I noticed
+at least three cases where the test set says our program got the wrong
+answer, but I believe the program's answer is better than the expected
+answer:
+
+<pre class="prettyprint"><span class="pln">correct</span><span class="pun">(</span><span class="str">'aranging'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'arranging'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">20</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'arrangeing'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'sumarys'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'summary'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">17</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'summarys'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'aurgument'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'argument'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">33</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'auguments'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">)</span></pre>
+
+<p>We could also decide what dialect we are trying to train for.  The
+following three errors are due to confusion about American versus
+British spelling (our training data contains both):
+
+</p><pre class="prettyprint"><span class="pln">correct</span><span class="pun">(</span><span class="str">'humor'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'humor'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">17</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'humour'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">5</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'oranisation'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'organisation'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">8</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'organization'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">43</span><span class="pun">)</span><span class="pln"><br>correct</span><span class="pun">(</span><span class="str">'oranised'</span><span class="pun">)</span><span class="pln"> </span><span class="pun">=</span>&gt;<span class="pln"> </span><span class="str">'organised'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">11</span><span class="pun">);</span><span class="pln"> expected </span><span class="str">'organized'</span><span class="pln"> </span><span class="pun">(</span><span class="lit">70</span><span class="pun">)</span></pre>
+
+</li><li>Finally, we could improve the implementation by making it much
+faster, without changing the results.  We could re-implement in a
+compiled language rather than an interpreted one.  We could have a
+lookup table that is specialized to strings rather than Python's
+general-purpose dict. We could cache the results of computations so
+that we don't have to repeat them multiple times.  One word of advice:
+before attempting any speed optimizations, profile carefully to see
+where the time is actually going.
+</li></ol>
+
+<h2>Further Reading</h2>
+
+<ul>
+<li>Roger Mitton has a <a href="http://www.dcs.bbk.ac.uk/~roger/spellchecking.html">survey article</a>
+on spell checking.
+
+</li><li>Jurafsky and Martin cover spelling correction well in their text 
+<i><a href="http://www.cs.colorado.edu/~martin/slp.html">Speech and Language Processing</a></i>.
+</li><li>Manning and Schutze
+cover statistical language models very well in their text
+<i><a href="http://nlp.stanford.edu/fsnlp/">Foundations of Statistical Natural Language Processing</a></i>,
+but they don't seem to cover spelling (at least it is not in the index).
+</li><li> The <a href="http://aspell.net/">aspell</a> project has a lot of interesting material,
+including some <a href="http://aspell.net/test/">test data</a> that seems better than what I used.
+</li><li> The <a href="http://alias-i.com/lingpipe">LingPipe</a> project has a <a href="http://alias-i.com/lingpipe/demos/tutorial/querySpellChecker/read-me.html">spelling tutorial</a>.
+</li></ul>
+
+<h2>Errata</h2>
+Originally my program was 20 lines, but Ivan Peev pointed out that I had used 
+<tt>string.lowercase</tt>, which in some locales in some versions of Python, has more
+characters than just the <tt>a-z</tt> I intended.  So I added the variable 
+<tt>alphabet</tt> to make sure.  I could have used <tt>string.ascii_lowercase</tt>.
+<p>
+Thanks to Jay Liang for pointing out there are only 54n+25 distance 1 edits, not 55n+25 as I originally wrote.
+</p><p>
+Thanks to Dmitriy Ryaboy for pointing out there was a problem with unknown words; this allowed me to
+find the <tt>NWORDS[target] += bias</tt> bug.
+
+</p><h2>Other Computer Languages</h2>
+
+After I posted this article, various people wrote versions in
+different programming languages.  While the purpose of this article
+was to show the algorithms, not to highlight Python (and certainly not
+to play "code golf" in an attempt to find the shortest program), the
+other examples may be interesting for those who like comparing
+languages, or for those who want to borrow an implementation in their
+desired language:
+
+<p>
+<table border="1">
+<tbody><tr><th>Language</th><th>Lines<br>Code</th><th>Author<br>(and link to implementation)
+</th></tr><tr><td>Awk</td><td>15</td><td><a href="http://pacman.blog.br/wiki/index.php?title=Um_Corretor_Ortogr%C3%A1fico_em_GAWK">Tiago "PacMan" Peczenyj</a>
+</td></tr><tr><td>Awk</td><td>28</td><td><a href="http://feedback.exalead.com/feedbacks/191466-spell-checking">Gregory Grefenstette</a>
+</td></tr><tr><td>C</td><td>184</td><td><a href="http://blog.marcelotoledo.org/2007/08/10/how-to-write-a-spelling-corrector/">Marcelo Toledo</a>
+</td></tr><tr><td>C++</td><td>98</td><td><a href="http://scarvenger.wordpress.com/2007/12/11/how-to-write-a-spelling-corrector/">Felipe Farinon</a>
+</td></tr><tr><td>C#</td><td>43</td><td><a href="https://github.com/lorenzo-stoakes/spell-correct">Lorenzo Stoakes</a>
+</td></tr><tr><td>C#</td><td>69</td><td><a href="http://frederictorres.blogspot.com/2011/04/how-to-write-spelling-corrector-from.html">Frederic Torres</a>
+</td></tr><tr><td>C#</td><td>160</td><td><a href="http://www.anotherchris.net/csharp/how-to-write-a-spelling-corrector-in-csharp/">Chris Small</a>
+</td></tr><tr><td>Clojure</td><td>18</td><td><a href="http://en.wikibooks.org/wiki/Clojure_Programming/Examples#Norvig.27s_Spelling_Corrector">Rich Hickey</a>
+</td></tr><tr><td>D</td><td>23</td><td><a href="http://leonardo-m.livejournal.com/59589.html">Leonardo M</a>
+</td></tr><tr><td>Erlang</td><td>87</td><td><a href="http://www.pixzone.com/blog/223/spell-corrector-aka-google-suggest-in-erlang-first-part/">Federico Feroldi</a>
+</td></tr><tr><td>F#</td><td>16</td><td><a href="http://www.jelovic.com/weblog/?p=201">Dejan Jelovic</a>
+</td></tr><tr><td>F#</td><td>34</td><td><a href="http://cs.hubfs.net/forums/thread/3085.aspx">Sebastian G</a>
+</td></tr><tr><td>Go</td><td>57</td><td><a href="http://cxwangyi.wordpress.com/2012/02/15/peter-norvigs-spelling-corrector-in-go/">Yi Wang</a>
+</td></tr><tr><td>Groovy</td><td>22</td><td><a href="http://raelcunha.com/spell-correct.php#groovy">Rael Cunha</a>
+</td></tr><tr><td>Haskell</td><td>24</td><td><a href="http://pithekos.net/brainwave/">Grzegorz</a>
+</td></tr><tr><td>Java</td><td>35</td><td><a href="http://raelcunha.com/spell-correct.php">Rael Cunha</a>
+</td></tr><tr><td>Java</td><td>372</td><td><a href="http://developer.gauner.org/jspellcorrect/">Dominik Schulz</a>
+</td></tr><tr><td>Javascript</td><td>92</td><td><a href="http://stoi.wordpress.com/2012/12/31/jspell/">Shine Xavier</a>
+</td></tr><tr><td>Javascript</td><td>53</td><td><a href="http://astithas.blogspot.com/2009/08/spell-checking-in-javascript.html">Panagiotis Astithas</a>
+</td></tr><tr><td>Lisp</td><td>26</td><td> <a href="https://github.com/mikaelj/snippets/blob/master/lisp/spellcheck/spellcheck.lisp">Mikael Jansson</a>
+</td></tr><tr><td>Perl</td><td>63</td><td><a href="http://www.riffraff.info/2007/5/20/a-spell-corrector-in-perl6-part-3">riffraff</a>
+</td></tr><tr><td>PHP</td><td>68</td><td><a href="http://www.phpclasses.org/browse/package/4859.html">Felipe Ribeiro</a>
+</td></tr><tr><td>PHP</td><td>103</td><td><a href="http://soundofemotion.com/spellcorrect.txt">Joe Sanders</a>
+</td></tr><tr><td>Python</td><td>21</td><td>Peter Norvig
+</td></tr><tr><td>Rebol</td><td>133</td><td><a href="http://www.rebol.cz/~cyphre/spell.r">Cyphre</a>
+</td></tr><tr><td>Ruby</td><td>34</td><td><a href="http://lojic.com/blog/2008/09/04/how-to-write-a-spelling-corrector-in-ruby/">Brian Adkins</a>
+</td></tr><tr><td>Scala</td><td>23</td><td><a href="http://theyougen.blogspot.com/2009/12/peter-norvigs-spelling-corrector-in.html">Thomas Jung</a>
+</td></tr><tr><td>Scheme</td><td>45</td><td><a href="http://practical-scheme.net/wiliki/wiliki.cgi?Gauche%3aSpellingCorrection&l=en">Shiro</a> 
+</td></tr><tr><td>Scheme</td><td>89</td><td><a href="http://scheme.dk/blog/2007/04/writing-spelling-corrector-in-plt.html">Jens Axel</a>
+</td></tr></tbody></table>
+
+</p><h2>Other Natural Languages</h2>
+
+This essay has been translated into:
+
+<ul>
+<li> <a href="http://blog.youxu.info/spell-correct.html">Simplified Chinese</a>
+by Eric You XU
+</li><li> <a href="http://www.aoky.net/articles/peter_norvig/spell-correct.htm">Japanese</a> by Yasushi Aoki
+</li><li> <a href="http://theyearlyprophet.com/spell-correct.html">Korean</a> by JongMan Koo
+</li><li> <a href="http://gmdidro.googlepages.com/Ru_HowtoWriteaSpellingCorrector.html">Russian</a> by Petrov Alexander
+</li><li> 60 languages by Google Translate:
+<script src="./How to Write a Spelling Corrector_files/ifr"></script><style>table.gadget{background-position:0%;background:transparent none;border-collapse:collapse;border:0;clear:none;float:none;font-family:arial,sans-serif;font-style:normal;font-variant:normal;height:auto;letter-spacing:normal;line-height:normal;margin:0;padding:0;text-indent:0;text-transform:none;top:auto;vertical-align:middle;white-space:normal;width:auto;word-spacing:normal;}table.gadget span.title a:hover,table.gadget span.title a:visited,table.gadget span.title a:active,table.gadget span.title{font-size:12px;color:#0000cc}table.gadget span.powered a:hover,table.gadget span.powered a:visited,table.gadget span.powered a:active,table.gadget span.powered{font-size:10px;color:#0000cc}</style><table class="gadget" cellspacing="0" cellpadding="0" width="160"><tbody><tr></tr><tr><td colspan="2"></td></tr><tr><td colspan="2"><iframe src="./How to Write a Spelling Corrector_files/ifr.html" width="160" height="60" style="display:block;" frameborder="0" scrolling="no"></iframe></td></tr><tr><td style="text-align:left;vertical-align:middle;height:28px;"><a href="http://fusion.google.com/ig/add?synd=open&source=ggyp&moduleurl=http://www.google.com/ig/modules/translatemypage.xml" target="_top"><img style="border:0;" src="./How to Write a Spelling Corrector_files/plus_google.gif"></a></td><td style="text-align:right;vertical-align:middle;height:28px;"><span class="powered"><a href="http://www.google.com/webmasters/gadgets.html" target="_top">Gadgets</a> powered by Google</span></td></tr></tbody></table>
+</li></ul>
+<p>
+Thanks to all the authors for creating these implementations and translations.
+</p><p></p><hr>
+<address><a href="http://norvig.com/"><i>Peter Norvig</i></a></address><a href="http://norvig.com/">
+
+
+ 
+
+</a></sub<i></body></html>

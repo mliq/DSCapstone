@@ -1,0 +1,1 @@
+;(function(b){var a=window.jQuery;a("<img>").attr("src",b).appendTo(document).hide()}).apply(null, ["//clc.stackoverflow.com/j/i/6BkBAKCz4T4eACsABQ-qxkBAHGAaT0AACsBBQ-xhsBACEfHT8AACsCAQ-lh0BANXU2j4AACsDBQ"]);

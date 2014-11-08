@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/css" rel="stylesheet" type="text/css"> 
+
+    
+    
+    <title>Description - Sentiment Analysis on Movie Reviews | Kaggle</title>
+    
+    <meta name="robots" content="index, follow">
+    <link href="http://www.kaggle.com/content/v/4e3f994e938b/kaggle/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    
+        <meta name="keywords" content="Kaggle, data science, big analytics, data mining, forecasting, statistics, prediction, bioinformatics, competitions, contests, crowdsourced analytics">
+            <meta name="description" content="Kaggle is a platform for data prediction competitions. Companies, organizations and researchers post their data and have it scrutinized by the world&#39;s best statisticians.">
+
+            <link rel="stylesheet" href="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/base.less" type="text/css">
+        <link rel="stylesheet" href="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/kaggle-site.less" type="text/css">
+
+        <script type="text/javascript" async="" src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/ga.js"></script><script type="text/javascript" src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/jquery-1.7.2.min.js"></script>
+            <script type="text/javascript" src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/jquery-ui-1.9.2.min.js"></script>
+
+    
+        <script type="text/javascript" src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/kaggle.min.js"></script>
+        <script type="text/javascript">
+            
+            Kaggle.Current.siteId = 1;
+                Kaggle.Current.competitionId = 3810;
+                    </script>
+
+    
+    <!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="/content/v/25d27cd7f061/shared/js/ie/selectivizr.min.js"></script>
+    <![endif]-->
+
+    
+                                        
+                                                                        <link rel="apple-touch-icon" href="http://www.kaggle.com/content/v/1e4cdaa83f46/kaggle/img/apple-touch-icon.png">
+
+
+    
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+
+<body class="logged-out    kaggle"><div id="MathJax_Message" style="display: none;"></div>
+    <div id="wrap"><!-- needed for sticky footer -->
+<div id="menu-open-overlay"></div>
+
+<div id="header2">
+    <div id="header2-inside">    
+        <a id="logo" href="http://www.kaggle.com/"><img alt="Kaggle" height="86" src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/site-logo.png" width="240"></a>
+
+            <ul id="header-ul">
+                <li>
+  <a href="http://www.kaggle.com/home">Customer Solutions</a>
+</li>
+<li>
+  <a href="http://www.kaggle.com/competitions">Competitions</a>
+</li>
+<li>
+<a href="">Community ▾</a>
+<ul>
+  <li><a href="http://www.kaggle.com/users">User Rankings</a></li>
+  <li><a href="http://www.kaggle.com/forums">Forum</a></li>
+  <li><a href="http://www.kaggle.com/datasciencejobs">Jobs Board</a></li>
+  <li><a href="http://blog.kaggle.com/" target="_blank">Blog</a></li>
+  <li><a href="http://www.kaggle.com/Wiki">Wiki</a></li>
+</ul>
+</li><!-- <script>
+  $(function(){
+    if (!$('body.logged-in').length) {
+      $('a.logged-in-only').hide().parent().next().find('a').css('padding-top','10px');
+    }
+  });
+</script> -->
+            </ul>
+
+        <script>
+            jQuery(function () {
+                jQuery('#header-ul li:has(ul) > a').click(function(e) {
+                    e.preventDefault();
+                    
+                    jQuery('#header-ul li').not(jQuery(this).parent()).find('ul').removeClass('open');
+                    jQuery(this).parent().find('ul').toggleClass('open');
+                    jQuery('#menu-open-overlay').show();
+                });
+
+                jQuery('#menu-open-overlay').click( function() {
+                    jQuery('#header-ul ul').removeClass('open');
+                    jQuery('#top-bar-signin').hide();
+                    jQuery(this).hide();
+                });
+
+            });
+        </script>
+    
+        <ul id="header-control">
+                <li id="header-signup"><a href="http://www.kaggle.com/account/register"><strong>
+                        Sign up
+                    </strong></a></li>  
+                <li id="header-login">
+                    <a href="http://www.kaggle.com/account/login?returnUrl=%2Fc%2Fsentiment-analysis-on-movie-reviews" class="login-link">Login</a>
+                </li>      
+        </ul>
+            <div id="top-bar-signin">    
+                <div id="social-authentication-top">
+    <div id="social-authentication-top-head">
+        Log in<br>
+        with —
+    </div>
+    <div id="social-authentication-top-buttons">
+        <a href="http://www.kaggle.com/account/authenticate/facebook?js=1" class="socialSignIn facebook" title="Log in with Facebook"><img src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/auth-facebook.png" width="36" height="36" alt="Sign up with Facebook" title="Sign up with Facebook"></a>
+        <a href="http://www.kaggle.com/account/authenticate/google?js=1" class="socialSignIn google" title="Log in with Google"><img src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/auth-google.png" width="36" height="36" alt="Sign up with Google" title="Sign up with Google"></a>
+        <a href="http://www.kaggle.com/account/authenticate/yahoo?js=1" class="socialSignIn yahoo" title="Log in with Yahoo"><img src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/auth-yahoo.png" width="36" height="36" alt="Sign up with Yahoo" title="Sign up with Yahoo"></a>
+    </div>
+    
+    <script type="text/javascript">
+        var socialSignInLinks = $('a.socialSignIn');
+        socialSignInLinks.attr("href", function(i,v){
+            return v + '?js=1';
+        });
+        socialSignInLinks.click(function(){
+            _gaq.push(['_trackEvent', 'action', 'login', 'top-bar']);
+            return true;
+        });
+    </script>
+</div>
+    
+
+<form action="https://www.kaggle.com/account/login" id="signin" method="post"><input id="returnUrl" name="returnUrl" type="hidden" value="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews"><input data-val="true" data-val-length="The field User name must be a string with a minimum length of 2 and a maximum length of 255." data-val-length-max="255" data-val-length-min="2" data-val-required="The User name field is required." id="UserName" name="UserName" placeholder="Email / username" type="text" value="" autocomplete="off" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QsPDiEFu6xIcAAAAXhJREFUOMvNk8FLVFEUxn/ffRdmIAla1CbBFDGCpoiQWYlBLty7UHAvEq2HYLhveDMws2/TIly6E9SdIEj+AVYgRaTgXhe2C968x2nhTOjow8pNZ/ede/ide893Lvx3UavVhkMIk30dQqiGECpF9e68CCG8LpfL3yStAAIk6Z2kT3Ect68C+AGdSroFVEII82aWSXoGYGYHVwE0qOM43pU0BXw3s1zSI2AnSZKXhYB6vT7inLvd7XZ/eu8fOOe2JEW9zjkwZ2bHkoayLDtpt9ufLzzBe/8GWC6VSpc7nIE2pLPLeu/fA0uDQ3T/6pp6039uZnfN7Ieke1EUrQOu3/VawPloNBrbwIyZ7TvnLvg/+mKOJ3xk88NR4R4sADM92fp9MDRMdXaRxenHVMbuFy8SMAFkZval2Wyu9ZN3Hk4zWx0nAtKsWwxotVrNNE2f5nn+CrB+/nRvlSR5y2EK0TWbSKfT+fo3Lribfr4bA/yfl56y2kkuZX8BjXVyqMs8oFcAAAAASUVORK5CYII=); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"><span class="field-validation-valid" data-valmsg-for="UserName" data-valmsg-replace="true"></span><input data-val="true" data-val-length="The field Password must be a string with a minimum length of 1 and a maximum length of 255." data-val-length-max="255" data-val-length-min="1" data-val-required="The Password field is required." id="Password" name="Password" placeholder="Password" type="password" autocomplete="off" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QsPDiEFu6xIcAAAAXhJREFUOMvNk8FLVFEUxn/ffRdmIAla1CbBFDGCpoiQWYlBLty7UHAvEq2HYLhveDMws2/TIly6E9SdIEj+AVYgRaTgXhe2C968x2nhTOjow8pNZ/ede/ide893Lvx3UavVhkMIk30dQqiGECpF9e68CCG8LpfL3yStAAIk6Z2kT3Ect68C+AGdSroFVEII82aWSXoGYGYHVwE0qOM43pU0BXw3s1zSI2AnSZKXhYB6vT7inLvd7XZ/eu8fOOe2JEW9zjkwZ2bHkoayLDtpt9ufLzzBe/8GWC6VSpc7nIE2pLPLeu/fA0uDQ3T/6pp6039uZnfN7Ieke1EUrQOu3/VawPloNBrbwIyZ7TvnLvg/+mKOJ3xk88NR4R4sADM92fp9MDRMdXaRxenHVMbuFy8SMAFkZval2Wyu9ZN3Hk4zWx0nAtKsWwxotVrNNE2f5nn+CrB+/nRvlSR5y2EK0TWbSKfT+fo3Lribfr4bA/yfl56y2kkuZX8BjXVyqMs8oFcAAAAASUVORK5CYII=); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"><span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>    <div id="remember-me">
+        <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true"><input name="RememberMe" type="hidden" value="false">            
+        <label for="RememberMe">Remember me?</label>
+    </div>   
+    <input type="submit" value="Login">
+<input name="__RequestVerificationToken" type="hidden" value="YFpgQogGslFb-B28LOgBSTFJobjSBlKGJ3YGryB9ORLFgqeLf25JNiixCMozBLzj_Af1WHg6oDw6mDhROuLdAyhVrkg1">    <input id="signinjs" type="hidden" name="JavaScriptEnabled" value="true">    
+</form>
+<script type="text/javascript">
+    $('#signinjs').attr('value', 'true');
+    $('#signin').submit(function () { _gaq.push(['_trackEvent', 'action', 'login', 'top-bar']); });
+</script>
+
+<div id="forgot-links">        
+    Forgot your <a href="http://www.kaggle.com/forgot/username">Username</a> 
+    / 
+    <a href="http://www.kaggle.com/forgot/password">Password</a>?
+</div>
+
+            </div>
+            <script>
+                jQuery(function () {
+                    jQuery('.login-link').click(function (e) {
+                        e.preventDefault();
+                        jQuery('#top-bar-signin').toggle();
+                        jQuery('#menu-open-overlay').toggle();
+                        if (jQuery('#top-bar-signin').is(":visible")) {
+                            jQuery('#UserName').focus();
+                        }
+                    });
+                });
+            </script>
+    </div>
+</div>
+
+
+
+                
+        
+         
+
+        <!-- header-inside and header -->
+            <div id="main">
+                
+
+
+
+
+<div id="competition">
+        <header id="comp-header">
+            <a href="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/Description - Sentiment Analysis on Movie Reviews   Kaggle.html"><img id="comp-image" src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/front_page.png" alt=""></a>
+            <div id="comp-header-details">
+                <h2>
+                    Knowledge • 
+                    <a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/leaderboard">520 teams</a>
+                </h2>
+                <h1><a href="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/Description - Sentiment Analysis on Movie Reviews   Kaggle.html" style="font-size: 26px;">Sentiment Analysis on Movie Reviews</a>
+                </h1>
+
+                
+
+                    <div id="comp-header-stats">
+                            <div id="comp-header-stats-progress-section">
+                                <div id="comp-header-stats-progress">
+                                    <div id="comp-header-stats-teams" style="width:69%">
+                                    </div>
+                                </div>
+                                <div id="comp-progress-start"></div>
+                                <div id="comp-progress-end"></div>
+
+                                
+                                
+
+
+                            </div>
+
+                        <div id="comp-header-stats-start">
+                            Fri 28 Feb 2014
+                        </div>
+                        <div id="comp-header-stats-end">
+                            Sat 28 Feb 2015
+                                <span class="to-go-note">
+                                    (3 months to go)
+                                </span>
+                        </div>
+                    </div>
+            </div>
+        </header>
+        <script type="text/javascript">
+            jQuery(function ($) {
+                $('#comp-header-details h1').textfill({ maxFontPixels: 26, innerTag: 'a' });
+            });
+        </script>
+
+        <div class="comp-sidebar">
+            
+
+<div class="_panel" id="competition-dashboard">
+    <header>
+        <h1>Dashboard</h1>
+    </header>
+    <ul id="competition-dashboard-dropdown">
+        <li class="cd-home selected"><a href="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/Description - Sentiment Analysis on Movie Reviews   Kaggle.html">Home</a>
+            <ul>
+                <li class="cd-data"><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/data">Data</a></li>
+
+                    <li class="cd-submit submission-link">
+                        <a class="comp-link" href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/submit">Make a submission</a>
+                    </li>
+                            </ul>
+        </li>
+        
+        <li class="cd-info">
+            <a id="open-info">Information</a>
+            <ul id="pages-flyout">
+                    <li>
+<a href="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/Description - Sentiment Analysis on Movie Reviews   Kaggle.html">Description</a>                    </li>
+                    <li>
+<a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/details/evaluation">Evaluation</a>                    </li>
+                    <li>
+<a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/rules">Rules</a>                    </li>
+
+            </ul>
+        </li>
+
+            <li class="cd-forum"><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/forums">Forum</a></li>
+
+            <li class="cd-leaderboard">
+                <a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/leaderboard">Leaderboard</a>
+            </li>
+
+
+        
+        
+    </ul>
+</div>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".cd-home").addClass("selected");
+        });
+    </script>
+
+            
+                    <div id="partial-mini-leaderboard">    <div class="widget _panel" id="compside-leaderboard">
+        <header>
+            <h1><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/leaderboard">Leaderboard</a></h1>
+        </header>
+
+        <ol>
+                <li value="1">Armineh Nourbakhsh</li>
+                <li value="2">Merlion</li>
+                <li value="3">Yoon</li>
+                <li value="4">pritam</li>
+                <li value="5">Mihir Joshi</li>
+                <li value="6">CeShine Lee</li>
+                <li value="7">ll0816 2</li>
+                <li value="8">divyenduz</li>
+                <li value="9">Erin McMahon</li>
+                <li value="10">lewissk</li>
+        </ol>
+    </div>
+</div>
+                    <script type="text/javascript">
+                        jQuery(function($) {
+                            $("#partial-mini-leaderboard").load("/c/3810/partial/mini-leaderboard");
+                        });
+                    </script>
+
+
+    <div class="widget _panel" id="compside-discussions">
+        <header>
+            <h1><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/forums">Forum (22 topics)</a></h1>
+        </header>
+
+        <ul>
+                <li>
+                    <div class="post-title"><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/forums/t/10696/bag-of-words-model/57054#post57054">'Bag of words' model </a></div>
+                    <div class="post-time">9 days ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/forums/t/10703/how-dose-the-phrases-get-their-own-sentiment-score-against-sentence/56651#post56651">How dose the phrases get their own sentiment score (against sentence)?</a></div>
+                    <div class="post-time">15 days ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/forums/t/7420/looking-for-teammates/56313#post56313">Looking for teammates</a></div>
+                    <div class="post-time">18 days ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/forums/t/10170/r-s-read-table-failing-to-read-the-training-data/56304#post56304">R's read.table() failing to read the training data.</a></div>
+                    <div class="post-time">18 days ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/forums/t/7353/sentiment-analysis-with-vowpal-wabbit/54101#post54101">Sentiment Analysis with Vowpal Wabbit</a></div>
+                    <div class="post-time">52 days ago</div>
+                </li>
+                <li>
+                    <div class="post-title"><a href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/forums/t/9856/get-to-0-65-with-code-on-github/53594#post53594">Get to 0.65, with code on Github</a></div>
+                    <div class="post-time">56 days ago</div>
+                </li>
+        </ul>
+
+    </div> 
+                <div id="partial-stats-ticker">
+
+    <div id="stats-ticker">
+        <div id="teams" class="ticker">
+                <div class="numbers converted"><div class="ticker-number ticker-5"></div><div class="ticker-number ticker-2"></div><div class="ticker-number ticker-0"></div></div>
+                <div class="ticker-caption">teams</div>
+        </div>
+        
+        <div id="players" class="ticker">
+            <div class="numbers converted"><div class="ticker-number ticker-5"></div><div class="ticker-number ticker-9"></div><div class="ticker-number ticker-7"></div></div>
+            <div class="ticker-caption">players</div>
+        </div>
+
+        <div id="entries" class="ticker">
+            <div class="numbers converted"><div class="ticker-number ticker-3"></div><div class="ticker-number ticker-4"></div><div class="ticker-number ticker-2"></div><div class="ticker-number ticker-4"></div></div>
+            <div class="ticker-caption">entries</div>
+        </div>
+    </div>
+    
+</div>
+                <script type="text/javascript">
+                    jQuery(function($) {
+                        $("#partial-stats-ticker").load("/c/3810/partial/stats");
+                    });
+                </script>
+        </div>
+
+    <div class="description comp-content with-sidebar _panel">
+            <header class="info">
+                <div class="simple-steps">
+                    <a class="info" href="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/Description - Sentiment Analysis on Movie Reviews   Kaggle.html">Competition Details</a>
+                    »
+                    <a class="data" href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/data">Get the Data</a>
+                        »
+                        <a class="submit" href="http://www.kaggle.com/c/sentiment-analysis-on-movie-reviews/submit">Make a submission</a>
+                </div>
+            </header>
+        
+        <div class="comp-content-inside">
+            <div id="competition-intro">
+                
+            </div>
+
+                <div id="comp-homepage-content" class="cms-page _buttons">
+                    
+
+
+<h1 class="page-name">
+    Classify the sentiment of sentences from the Rotten Tomatoes dataset
+</h1>
+
+
+<p>"There's a thin line between likably old-fashioned and fuddy-duddy, and The Count of Monte Cristo ... never quite settles on either side."</p>
+<p>The Rotten Tomatoes movie review dataset is a corpus of movie reviews used for sentiment analysis, originally collected by Pang and Lee [1]. In their work on sentiment treebanks, Socher et al. [2] used Amazon's Mechanical Turk to create fine-grained labels for all parsed phrases in the corpus. This competition presents a chance to benchmark your sentiment-analysis ideas on the Rotten Tomatoes dataset. You are asked to label phrases&nbsp;on a scale of five values: negative, somewhat negative, neutral, somewhat positive, positive. Obstacles like sentence negation, sarcasm, terseness, language ambiguity, and many others make this task very challenging.</p>
+<p><img src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/treebank.png" alt="Treebank" width="600" height="302"></p>
+<p>Kaggle is hosting this competition for the machine learning community to use for fun and practice. This competition was inspired by the work of <a href="http://www.socher.org/">Socher</a> et al [2].&nbsp;We encourage participants to explore the accompanying (and dare we say, fantastic) website that accompanies the paper:</p>
+<p><a href="http://nlp.stanford.edu/sentiment/">http://nlp.stanford.edu/sentiment/</a></p>
+<p>There you will find have source code, a live demo, and even an online interface to help train the model.</p>
+<p>[1]&nbsp;Pang and L. Lee. 2005. <em>Seeing stars: Exploiting class&nbsp;relationships for sentiment categorization with respect&nbsp;to rating scales</em>. In ACL, pages 115–124.</p>
+<p>[2]&nbsp;<em>Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank</em>, Richard Socher, Alex Perelygin, Jean Wu, Jason Chuang, Chris Manning, Andrew Ng and Chris Potts. Conference on Empirical Methods in Natural Language Processing (EMNLP 2013).</p>
+<p><sub>Image credits: Popcorn - Maura Teague,&nbsp;http://www.flickr.com/photos/93496438@N06/</sub></p>
+
+        <p id="end-time-note">
+                    <strong>Started:</strong> 4:54 pm, Friday 28 February 2014 UTC                    <br>
+                <strong>Ends:</strong> 11:59 pm, Saturday 28 February 2015 UTC (365 total days)                    <br>
+                <strong>Points: </strong>
+                    this competition does not award <a href="http://www.kaggle.com/wiki/UserRankingAndTierSystem">ranking points</a>
+                <br>
+                <strong>Tiers: </strong>
+                    this competition does not count towards <a href="http://www.kaggle.com/wiki/UserRankingAndTierSystem">tiers</a>
+        </p>
+
+                </div>
+        </div>
+    </div>
+</div>
+
+            </div>
+    </div> <!-- wrap -->   
+    <div id="footer">
+        <div id="footer-inside">
+            <div id="footer-social">
+                    <div id="social-links">
+            <a class="twitter" href="http://www.twitter.com/kaggle" title="Follow Kaggle on Twitter"></a>     
+                    <a class="facebook" href="http://www.facebook.com/kaggle" title="Follow Kaggle on Facebook"></a>           
+                    <a class="linkedin" href="http://www.linkedin.com/companies/kaggle" title="Follow Kaggle on LinkedIn"></a>        
+    </div><!-- social-links -->
+
+            </div>
+            <div id="footer-copyright">
+                
+
+
+© 2014 Kaggle Inc            </div>
+            <div id="footer-links">
+                <a href="http://www.kaggle.com/about">About</a>
+<a href="http://www.kaggle.com/team">Our Team</a>
+<a href="http://www.kaggle.com/careers">Careers</a>
+<a href="http://www.kaggle.com/terms">Terms</a>
+<a href="http://www.kaggle.com/privacy">Privacy</a> 
+<!--<a href="/contact/press">Press</a>-->
+<a href="http://www.kaggle.com/papers">Papers</a>
+<a href="http://www.kaggle.com/Home/contact">Contact/Support</a>
+            </div> <!-- footer-links -->
+        </div> <!-- footer-inside -->
+    </div> <!--footer-->
+    
+        <script type="text/x-mathjax-config;executed=true">
+            MathJax.Hub.Config({
+                "HTML-CSS": {
+                    preferredFont: "TeX",
+                    availableFonts: ["STIX","TeX"],
+                    linebreaks: {
+                        automatic: true
+                    },
+                    EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+                },
+                tex2jax: {
+                    inlineMath: [ ["\\\\(","\\\\)"] ],
+                    displayMath: [ ["$$","$$"], ["\\[", "\\]"] ],
+                    processEscapes: true,
+                    ignoreClass: "tex2jax_ignore|dno"
+                },
+                TeX: {
+                    noUndefined: {
+                        attributes: {
+                            mathcolor: "red",
+                            mathbackground: "#FFEEEE",
+                            mathsize: "90%"
+                        }
+                    }
+                },
+                messageStyle: "none"
+            });
+        </script>
+                <script type="text/javascript" src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/head.load-0.96.min.js"></script>
+            <script type="text/javascript">
+                head.js("http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML");
+            </script><script type="text/javascript" src="./Description - Sentiment Analysis on Movie Reviews   Kaggle_files/MathJax.js"></script>
+    
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-12629138-1']);
+            _gaq.push(['_trackPageview']);
+            _gaq.push(['_trackPageLoadTime']);
+            _gaq.push(['_setCustomVar', 1, 'usertype', 'anonymous', 2]);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+
+    
+
+    <!-- Hiya 75.73.6.62! Cheers, RD00155D487E21p -->
+
+
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>
