@@ -8,8 +8,8 @@ testData <- readLines(fileName)
 # Replace unicode characters with spaces.
 TcleanData<-iconv(testData, to='ASCII', sub=' ')
 # Replace numbers and ''
-TcleanData2 <- gsub("'{2}", " ", cleanData)
-TcleanData3 <- gsub("[0-9]", " ", cleanData2)
+TcleanData2 <- gsub("'{2}", " ", TcleanData)
+TcleanData3 <- gsub("[0-9]", " ", TcleanData2)
 
 ## MAKE CORPUS ##
 require(tm)
@@ -44,6 +44,28 @@ Tcorpus6<- tm_map(Tcorpus5,removeNumbers)
 ## TOKEN ANALYSIS ##
 
 # MAKE TERM DOCUMENT MATRIX (TDM) - a matrix of frequency counts for each word used in the Tcorpus.
-tdm<- TermDocumentMatrix(Tcorpus6)
-dtm<- DocumentTermMatrix(Tcorpus6)
-dtm
+Ttdm<- TermDocumentMatrix(Tcorpus6)
+Tdtm<- DocumentTermMatrix(Tcorpus6)
+Tdtm
+
+# Compare
+# Ah, findAssocs does take char vector, NOT another TDM.
+# findAssocs(x, terms, corlimit)
+# x	
+# A DocumentTermMatrix or a TermDocumentMatrix.
+# terms	
+# a character vector holding terms.
+# corlimit	
+# a numeric vector (of the same length as terms; recycled otherwise) for the (inclusive) lower correlation limits of each term in the range from zero to one.
+
+findAssocs(tdm,TcleanData3,corlimit=0.5)
+#numeric 0 is returned...
+# Let's try with something from the dataset
+cleanData[1]
+findAssocs(dtm,cleanData[1],.5)
+
+#None of that works, but this does:
+findAssocs(tdm,"dog",corlimit=0.5)
+#So the problem may be that I'm feeding it a vector where the words are not broken up.
+TSplit<-strsplit(TcleanData3," ")
+findAssocs(tdm,TSplit,corlimit=0.5)

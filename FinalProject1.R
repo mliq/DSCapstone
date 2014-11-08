@@ -56,3 +56,7 @@ tdm<- TermDocumentMatrix(corpus6)
 dtm<- DocumentTermMatrix(corpus6)
 dtm
 
+## Tester ##
+sink('analysis-output.txt')
+inspect(dtm[,1:10])
+sink()
