@@ -67,5 +67,21 @@ findAssocs(dtm,cleanData[1],.5)
 #None of that works, but this does:
 findAssocs(tdm,"dog",corlimit=0.5)
 #So the problem may be that I'm feeding it a vector where the words are not broken up.
-TSplit<-strsplit(TcleanData3," ")
-findAssocs(tdm,TSplit,corlimit=0.5)
+TSplit<-unlist(strsplit(TcleanData3," "))
+TResults<-findAssocs(tdm,TSplit,corlimit=0.5)
+# Eliminate numeric(0) results
+TResults2 <- TResults[sapply(TResults, length) > 0] 
+# TResults2
+# $front
+# camper    doe encamp sproul   tent 
+#   0.52   0.52   0.52   0.52   0.52 
+
+# $pound
+#   donkey    humve     mule onethird 
+#      0.6      0.6      0.6      0.6 
+# Test sentence:
+# "The guy in front of me just bought a pound of bacon, a bouquet, and a case of"
+
+# of course, the right answer should be beer. 
+# What is the problem? Well my data may be too small, let's go ahead and load in the fuller dataset...
+# it could also be that i need to incorporate n-grams or focus on "case". But now I simply don't have any case in my testdata so that is a bigger problem.

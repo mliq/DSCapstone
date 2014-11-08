@@ -8,7 +8,7 @@
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 
 fileName="en_US.news.txt"
-lineNews <- readLines(fileName, n=2000)
+lineNews <- readLines(fileName)
 
 ### NOTE: I SHOULD REMOVE PROFANITY AS WELL SOMEWHERE ###
 
@@ -49,6 +49,8 @@ corpus6<- tm_map(corpus5,removeNumbers)
 
 ## END TOKENIZATION ##
 
+## Memory clean up
+rm(corpus1,corpus2,corpus3,corpus4,corpus5,corpus)
 ## TOKEN ANALYSIS ##
 
 # MAKE TERM DOCUMENT MATRIX (TDM) - a matrix of frequency counts for each word used in the corpus.
@@ -57,6 +59,6 @@ dtm<- DocumentTermMatrix(corpus6)
 dtm
 
 ## Tester ##
-sink('analysis-output.txt')
-inspect(dtm[,1:10])
-sink()
+# sink('analysis-output.txt')
+# inspect(dtm[,1:10])
+# sink()
