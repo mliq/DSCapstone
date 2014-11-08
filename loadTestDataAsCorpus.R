@@ -20,8 +20,21 @@ TResults2 <- TResults[sapply(TResults, length) > 0]
 
 findAssocs(tdm,"front",corlimit=0.5)
 
+# Bigrams
+library(RWeka)
+BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+txtTdmBi <- TermDocumentMatrix(corpus6, control = list(tokenize = BigramTokenizer))
+library(slam)
+txtTdmBi2 <- rollup(txtTdmBi, 2, na.rm=TRUE, FUN = sum)
+
 # Bigram test
-findAssocs(txtTdmBi,"case of",corlimit=0.1)
+findAssocs(txtTdmBi2,"case of",corlimit=0.01)
+
+'added today' %in% Terms(txtTdmBi)
+TRUE
+'case of' %in% Terms(txtTdmBi)
+FALSE
+
 ##----##
 
 # FIRST RUN (2000 lines of news only.)

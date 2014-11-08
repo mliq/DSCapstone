@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)https://public-api.wordpress.com/wp-admin/rest-proxy/#http://widgets.wp.com -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="saved_resource(5)"></script>
+
+<script>
+(function() {
+var receiveMessage, sendMessage, sendError, cookies, cookie = '', i, ajaxSetup = { dataType: 'json' },
+    bufferMessage = true, emptyBuffer, buffer = [],
+    origin = window.location.hash.replace( '#', '' ).split( '/', 3 ).join( '/' ),
+    giveMeAccessToAllUsersBlogs = false,
+    usePM = false,
+    headersWhiteList = ['Date', 'Content-Type'], // headers provided to the proxied callback
+    getResponseHeaders;
+
+var originWhitelist = [
+	// widgets.wp.com hosts the Like button
+	'http://widgets.wp.com',
+	'https://widgets.wp.com',
+	'http://wpeditor.org',
+	'https://dev-mc.a8c.com',
+	'https://mc.a8c.com',
+	'https://wpeditor.org',
+	'http://calypso.local:3000',
+	'https://calypso.local:3000',
+	'http://calypso.dev:3000',
+	'https://calypso.dev:3000',
+	'http://notifications.dev:3000',
+	'https://notifications.dev:3000',
+	'https://wpnotificationsv2.wordpress.com'
+];
+
+if ( !origin ) {
+	return;
+}
+
+receiveMessage = function( event ) {
+	var data, i, url, acceptsVariableArgs, opts, sendAsString = false;
+
+	if ( !usePM ) {
+		if ( 'string' === typeof event ) {
+			event = JSON.parse( event );
+		}
+
+		if ( origin !== event.origin ) {
+			return;
+		}
+
+		if ( bufferMessage ) {
+			buffer.push( { data: event.data, origin: event.origin } );
+			return;
+		}
+
+		if ( 'string' === typeof event.data ) {
+			data = JSON.parse( event.data );
+			sendAsString = true;
+		} else {
+			data = event.data;
+		}
+	} else {
+		if ( bufferMessage ) {
+			buffer.push( event );
+			return;
+		}
+
+		data = event;
+	}
+
+	if ( 'undefined' !== typeof data.metaAPI && data.metaAPI ) {
+		if ( 'undefined' !== typeof data.metaAPI.accessAllUsersBlogs ) {
+			giveMeAccessToAllUsersBlogs = !!data.metaAPI.accessAllUsersBlogs; // (bool)
+		}
+
+		sendMessage( data.callback, sendAsString )( data.metaAPI );
+		return;
+	}
+
+	if ( 'string' !== typeof data.apiVersion ) {
+		// default to api v1
+		data.apiVersion = '1';
+		
+		if ( data.version ) {
+		// legacy support for specifying api version
+			data.apiVersion = data.version.replace(/[^0-9\.]/,'');
+		}
+	}
+
+	url = window.location.protocol + '//public-api.wordpress.com/rest/v' + data.apiVersion + data.path + '?http_envelope=1';
+	if ( data.query ) {
+		if ( 'string' === typeof data.query ) {
+			url += '&' + data.query.replace( /^&/, '' );
+		} else {
+			url += '&' + jQuery.param( data.query );
+		}
+	}
+	acceptsVariableArgs = data.supports_args;
+	opts = {
+		url : url,
+		type : data.method,
+		success : sendMessage( data.callback, sendAsString, acceptsVariableArgs ),
+		error : sendError( data.callback, sendAsString )
+	};
+
+	if ( data.body ) {
+		opts.data = data.body;
+	} else if ( data.formData && data.formData.length > 0 ) {
+		// FormData instances cannot be passed over the <iframe> postMessage machinery,
+		// so instead the host page needs to pass over a 2D `formData` array of fields
+		// to append to the request. This makes it possible to do client-side uploads.
+		opts.data = new FormData();
+		opts.cache = false;
+		opts.contentType = false;
+		opts.processData = false;
+		for ( i = 0; i < data.formData.length; i++ ) {
+
+			// For browsers that don't like sending `File` instances cross-domain (looking at you Firefox)
+			// we implement this workaround by sending the File as an `ArrayBuffer` and recreating the blob instead
+			if ( 'object' == typeof data.formData[i][1] && 'undefined' != typeof data.formData[i][1].fileContents ) {
+				var key = data.formData[i][0],
+					name = data.formData[i][1].fileName,
+					blob = new Blob( [ data.formData[i][1].fileContents ], { type: data.formData[i][1].mimeType });
+				opts.data.append( key, blob, name );
+			} else {
+				opts.data.append( data.formData[i][0], data.formData[i][1] );
+			}
+		}
+	}
+
+	function onuploadprogress( e ) {
+		var c = {
+			upload: true,
+			lengthComputable: e.lengthComputable,
+			loaded: e.loaded,
+			total: e.total,
+			callbackId: data.callback
+		};
+		window.parent.postMessage( c, origin );
+	}
+
+	function ondownloadprogress( e ) {
+		var c = {
+			download: true,
+			lengthComputable: e.lengthComputable,
+			loaded: e.loaded,
+			total: e.total,
+			callbackId: data.callback
+		};
+		window.parent.postMessage( c, origin );
+	}
+
+	if ( data.supports_progress ) {
+		// http://stackoverflow.com/a/19127053/376773
+		opts.xhr = function() {
+			var xhr = new XMLHttpRequest();
+
+			// upload "progress" events
+			xhr.upload.onprogress = onuploadprogress;
+
+			// download "progress" events
+			xhr.onprogress = ondownloadprogress;
+
+			return xhr;
+		};
+	}
+
+	// fire off the ajax call
+	jQuery.ajax( opts );
+};
+
+// IE 8 has postMessage, but uses attachEvent instead of addEventListener
+if ( window.postMessage && ( window.addEventListener || window.attachEvent ) ) {
+	// jQuery abstracts this away for us
+	jQuery(window).on( 'message', function( e ) { receiveMessage( e.originalEvent ); } );
+} else {
+	usePM = true;
+	pm.bind( 'proxy', receiveMessage );
+}
+
+cookies = document.cookie.split( /;\s*/ );
+for ( i = 0; i < cookies.length; i++ ) {
+	if ( cookies[i].match( /^wp_api=/ ) ) {
+		cookies = cookies[i].split( '=' );
+		cookie = cookies[1];
+		break;
+	}
+}
+
+if ( cookie ) {
+	ajaxSetup['beforeSend'] = function( jqXHR ) {
+		if ( giveMeAccessToAllUsersBlogs ) {
+			jqXHR.setRequestHeader( 'Authorization', 'X-WPCOOKIE ' + cookie + ':1:' + origin );
+		} else {
+			jqXHR.setRequestHeader( 'Authorization', 'X-WPCOOKIE ' + cookie + ':0:' + origin );
+		}
+	};
+}
+
+jQuery.ajaxSetup( ajaxSetup );
+
+emptyBuffer = function(){
+	var event;
+	while(event = buffer.shift()){
+		receiveMessage( event );
+	}
+}
+
+if ( jQuery.inArray( origin, originWhitelist ) > -1 ) {
+	bufferMessage = false;
+	emptyBuffer();
+}
+else {
+	jQuery.get( window.location.protocol + '//public-api.wordpress.com/rest/v1/sites/' + encodeURIComponent( origin ) + '?http_envelope=1&check_wpcom=1' ).done( function( response ) {
+		if ( 'undefined' === typeof response.code || 200 !== response.code || 'undefined' === typeof response.body.isWPcom || true !== response.body.isWPcom ) {
+			window.removeEventListener( 'message', receiveMessage );
+			buffer = [];
+			return;
+		}
+		bufferMessage = false;
+		emptyBuffer();
+	} );
+}
+
+sendMessage = function( callback, sendAsString, acceptsVariableArgs ) {
+	return function( data, textStatus, jqXHR ) {
+		var headers = getResponseHeaders(data, jqXHR), 
+		    info = [ data.body, data.code, headers, callback ];
+		// For older versions of wpcom-proxy-request that only accept 2 args and callback
+		if ( !acceptsVariableArgs ) {
+			info = [ data.body, data.code, callback ];
+		};
+		if ( sendAsString ) {
+			info = JSON.stringify( info );
+		}
+		if ( !usePM ) {
+			window.parent.postMessage( info, origin );
+		} else {
+			pm( {
+				data:   info,
+				type:   'proxy',
+				target: window.parent,
+				origin: origin
+			} );
+		}
+	}
+};
+
+getResponseHeaders = function( data, jqXHR ){
+	var envelopeHeaders = [],
+		headers = {},
+		whiteListed = {},
+		hasXHR = jqXHR && 'function' === typeof(jqXHR.getResponseHeader);
+	if ( data && data.headers ) {
+		envelopeHeaders = data.headers;
+	};
+	// first pull out any of the envelope headers with a case-insensitive match
+	jQuery.each(envelopeHeaders, function(i, header){
+		headers[header.name.toUpperCase()] = header.value;
+	});
+	// loop through the white-listed headers and grab the enveloped headers if available,
+	// otherwise getResponseHeader if we can
+	jQuery.each(headersWhiteList, function(i, headerName){
+		var headerNameUpper = headerName.toUpperCase();
+		if ( headers[headerNameUpper]) {
+			whiteListed[headerName] = headers[headerNameUpper];
+		} else if (hasXHR) {
+			whiteListed[headerName] = jqXHR.getResponseHeader(headerName);
+		}
+	});
+	return whiteListed;
+}
+
+sendError = function( callback, sendAsString ) {
+	return function() {
+		var info;
+		if ( sendAsString ) {
+			info = JSON.stringify( [ 'error', 0, callback ] );
+		} else {
+			info = [ 'error', 0, callback ];
+		}
+
+		if ( !usePM ) {
+			window.parent.postMessage( info, origin );
+		} else {
+			pm( {
+				data:   info,
+				type:   'proxy',
+				target: window.parent,
+				origin: origin
+			} );
+		}
+	}
+};
+
+})();
+</script>
+<style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body>
+</body></html>
