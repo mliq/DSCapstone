@@ -27,40 +27,43 @@ corpus <- Corpus(VectorSource(cleanData3))
 
 # REMOVE WHITESPACE:
 corpus1 <- tm_map(corpus, stripWhitespace)
-inspect(corpus1) #don't see a big difference
-
+# inspect(corpus1) #don't see a big difference
+rm(corpus)
 # LOWERCASE:
 corpus2 <- tm_map(corpus1, content_transformer(tolower))
-inspect(corpus2) #works
-
+# inspect(corpus2) #works
+rm(corpus1)
 # REMOVE STOPWORDS
 corpus3 <- tm_map(corpus2, removeWords, stopwords("english"))
-inspect(corpus3) # ok the has been removed...
-
+# inspect(corpus3) # ok the has been removed...
+rm(corpus2)
 # STEMMING
 corpus4 <- tm_map(corpus3, stemDocument)
-inspect(corpus4) # Looks stemmed.
-
+# inspect(corpus4) # Looks stemmed.
+rm(corpus3)
 # REMOVE PUNCTUATION
 corpus5<- tm_map(corpus4,removePunctuation)
-
+rm(corpus4)
 # REMOVE NUMBERS
 corpus6<- tm_map(corpus5,removeNumbers)
-
+rm(corpus5)
 ## END TOKENIZATION ##
 
 ## TOKEN ANALYSIS ##
 
 # MAKE TERM DOCUMENT MATRIX (TDM) - a matrix of frequency counts for each word used in the corpus.
-tdm<- TermDocumentMatrix(corpus6)
-dtm<- DocumentTermMatrix(corpus6)
-dtm
+#tdm<- TermDocumentMatrix(corpus6)
+#dtm<- DocumentTermMatrix(corpus6)
+#dtm
 
 # Bigrams
 library(RWeka)
 BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
-txtTdmBi <- TermDocumentMatrix(corpus6, control = list(tokenize = BigramTokenizer))
+biTDM <- TermDocumentMatrix(corpus6, control = list(tokenize = BigramTokenizer))
 
+rm(corpus6)
+
+##----##
 # shrink, needed? #
 # library(slam)
 # txtTdmBi2 <- rollup(txtTdmBi, 2, na.rm=TRUE, FUN = sum)
@@ -70,16 +73,12 @@ txtTdmBi <- TermDocumentMatrix(corpus6, control = list(tokenize = BigramTokenize
 # Now use a lapply function to calculate the associated words for every item in the vector of terms in the term-document matrix. The vector of terms is most simply accessed with txtTdmBi$dimnames$Terms. For example txtTdmBi$dimnames$Terms[[1005]] is "foreign investment".
 
 # Here I've used llply from the plyr package so we can have a progress bar (comforting for big jobs), but it's basically the same as the base lapply function.
-findAssocs(txtTdmBi2, "case of", 0.5), .progress = "text" )
+findAssocs(txtTdmBi2, "case of", 0.5))
+findAssocs(txtTdmBi2, "added today", 0.5)
 
 # library(plyr)
 # dat <- llply(txtTdmBi$dimnames$Terms, function(i) findAssocs(txtTdmBi, i, 0.5), .progress = "text" )
 
-## Memory clean up
-rm(corpus1,corpus2,corpus3,corpus4,corpus5,corpus)
-
-# Only after sure you are done making TDMs
-rm(corpus6)
 
 ###--REFERENCE--###
 

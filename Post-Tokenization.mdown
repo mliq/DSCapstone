@@ -1,7 +1,29 @@
 Post-Tokenization
 ====
 
+# Modeling problem.
+[Main forum](https://class.coursera.org/dsscapstone-002/forum/list?forum_id=10010)
 
+## [Stanford NLP Lectures](https://class.coursera.org/nlp/lecture)
+
+### Conditional Probability definition
+P(A|B) = P(A,B)/P(B)
+
+### Chain rule of conditional probability
+P(x1,x2,x3,xn) = P(x1)P(x2|x1)P(x3|x1,x2)...P(xn|x1,...,xn-1)
+
+
+
+LM = language modeling
+
+
+## Most helpful thread: [](https://class.coursera.org/dsscapstone-002/forum/thread?thread_id=93#post-461)
+-Right now, I am using grep() to search all matched tokens and print out corresponding frequency in decreasing order.
+-The Stanford NLP video lectures were very helpful on tokenisation and creating ngrams. Think I'll take a look at the modelling ones.
+-I just went through the Language Modeling lectures from the Natural Language Processing course by Dan Jurafsky, Christopher Manning. They are VERY helpful. I suggest watching the entire week's worth.  
+
+## This? [Build a search engine in 20 minutes or less](http://anythingbutrbitrary.blogspot.com/2013/03/build-search-engine-in-20-minutes-or.html)
+## Trying rtexttools instead of tm to make TDM
 ```r
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 
@@ -24,6 +46,11 @@ myTDM <- create_matrix(cleanData3, language="english",
                     removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
 #creates a matrix where terms are columns, documents are rows.
 colnames(myTDM) #lists all terms
+# ok above results in only 32 words!
+myTDM <- create_matrix(cleanData3, language="english", 
+                    removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
+                    removePunctuation=TRUE, removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
+
 
 #--#
 'added today' %in% Terms(myTDM)
