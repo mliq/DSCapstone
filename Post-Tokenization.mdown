@@ -6,20 +6,95 @@ Post-Tokenization
 
 ## [Stanford NLP Lectures](https://class.coursera.org/nlp/lecture)
 
-### Conditional Probability definition
-P(A|B) = P(A,B)/P(B)
+What I'm learning:
+my original corpus might be okay, but I need a way to call out by a number each word in a sentence.
+Then, add up all the probabilities of unigrams, 
+but also check the n-1
 
-### Chain rule of conditional probability
-P(x1,x2,x3,xn) = P(x1)P(x2|x1)P(x3|x1,x2)...P(xn|x1,...,xn-1)
+### -Maybe I should examine the code of tm package or rtexttools
+[](https://code.google.com/p/rtexttools/source/browse/RTextTools/R/create_matrix.R?r=02bd8e07c0df54e44aff83a05dff1cc74d82c4de)
+Looks like it's just a wrapper for tm anyway!
 
+[](http://stackoverflow.com/questions/8898521/finding-2-3-word-phrases-using-r-tm-package?lq=1)
 
+```r
+library(tm); library(tau);
+
+tokenize_ngrams <- function(x, n=3) return(rownames(as.data.frame(unclass(textcnt(x,method="string",n=n)))))
+
+texts <- c("This is the first document.", "This is the second file.", "This is the third text.")
+corpus <- Corpus(VectorSource(texts))
+matrix <- DocumentTermMatrix(corpus,control=list(tokenize=tokenize_ngrams))
+```
+
+### Intro to N-grams
 
 LM = language modeling
 
+What we are doing is assigning probabilities to different sentences, words.
+
+#### Conditional Probability definition
+P(A|B) = P(A,B)/P(B)
+
+#### Chain rule of conditional probability
+P(x1,x2,x3,xn) = P(x1)P(x2|x1)P(x3|x1,x2)...P(xn|x1,...,xn-1)
+
+#### Markov Assumption
+P("the" | "its water is so transparent that") ≈ P(the|that) or maybe (the|"transparent that")
+
+#### Unigram model
+Since it simply assigns probability to each word, the nonsense sentence "the the the the" would be highest probability.
+
+#### N-grams 
+
+language has long-distance dependencies, the verb can come very far after the subject which really is an important predictor "the computer which I had just placed on the fifth floor *crashed*"
+
+Yet, 2-5-gram models will do pretty well anyway.
+
+### Bigram model
+
+P(wi|wi-1) = count(wi-1,wi)/count(wi-1)
+
+#### Types of knowledge that cause bigram probabilities
+World knowledge (chinese food more popular then english food)
+Grammar knowledge ("want" often followed by infinitive like "to")
+
+Structural - something really is that probability
+Contingent - result of the particular corpus sample
+
+#### Practical Issues
+
+adding log probabilities is faster than multiplying regular probabilities.
+
+Toolkits:
+SRILM
+Google N-gram release
+
+### Evaluation and Perplexity
+
+training set, test set, evaluation metric
+A task is the best evaluation for comparing multiple models:
+	-spelling corrector, speech recognizer, MT system
+Accuracy measure	
+	-how many misspelled words corrected properly
+	-how many words translated correctly
+
+Above is extrinsic or in-vivo evaluation. Problem is, time-consuming slow.
+
+#### Intrinsic evaluation - perplexity
+
+unless test data very similar to training data, not very useful, still need to do extrinsic.
+
+#### The Shannon Game - how well can we predict the next word.
+
+
 
 ## Most helpful thread: [](https://class.coursera.org/dsscapstone-002/forum/thread?thread_id=93#post-461)
+
 -Right now, I am using grep() to search all matched tokens and print out corresponding frequency in decreasing order.
+
 -The Stanford NLP video lectures were very helpful on tokenisation and creating ngrams. Think I'll take a look at the modelling ones.
+
 -I just went through the Language Modeling lectures from the Natural Language Processing course by Dan Jurafsky, Christopher Manning. They are VERY helpful. I suggest watching the entire week's worth.  
 
 ## This? [Build a search engine in 20 minutes or less](http://anythingbutrbitrary.blogspot.com/2013/03/build-search-engine-in-20-minutes-or.html)
@@ -51,6 +126,85 @@ myTDM <- create_matrix(cleanData3, language="english",
                     removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
                     removePunctuation=TRUE, removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
 
+# Could problem be that I did not load tm or tau?
+# okay, that worked and produced 48399 columns
+
+## VIEW ##
+options(max.print=100000)
+sink("myTDM.txt")
+findFreqTerms(x = myTDM, lowfreq=1, highfreq=Inf)
+sink()
+
+# so it seems i have only unigrams, and that the reason may be that words have been mashed together for some reason. I will try again without all the other options.
+
+myTDM <- create_matrix(cleanData3, language="english", 
+                    removeNumbers=FALSE, stemWords=FALSE, ngramLength=c(2),  
+                    removePunctuation=FALSE, removeStopwords=FALSE, stripWhitespace=FALSE, toLower=TRUE)
+# Error in FUN(X[[2L]], ...) : non-character argument
+
+debug(create_matrix)
+undebug(create_matrix)
+#OR debugonce(create_matrix)
+
+capture.output(create_matrix(cleanData3, language="english", 
+                    removeNumbers=FALSE, stemWords=FALSE, ngramLength=c(2),  
+                    removePunctuation=FALSE, removeStopwords=FALSE, stripWhitespace=FALSE, toLower=TRUE), file='source_create_matrix.r')
+```
+
+```r
+tokenize_ngrams <- function(x, n=3) return(rownames(as.data.frame(unclass(textcnt(x,method="string",n=n)))))
+
+texts <- c("This is the first document.", "This is the second file.", "This is the third text.")
+corpus <- Corpus(VectorSource(texts))
+matrix <- DocumentTermMatrix(corpus,control=list(tokenize=tokenize_ngrams))
+```
+This creates the same error, therefore, the problem is within this, since create_matrix calls this.
+
+```r
+tokenize_ngrams("This is the first document.")
+# [1] "is the first"       "the first document" "this is the"
+```
+so that works... 
+ so the error is in the control= or tokenize= thing.
+SO, the easiest way for me to work this i guess would be to simply tokenize ahead of time? 
+I could create separate matrix for bigrams. But how to keep documents together.
+
+# LET"S READ THE DOCS FOR tm CONTROL=
+```r
+matrix <- TermDocumentMatrix(corpus)
+```
+So the problem seems to be that a custom function for tokenize... well i guess it is allowed but perhaps this one doesn't do it right.
+
+```r
+library(rJava)
+library(RWeka)
+library(tm)
+
+bigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+tdm <- TermDocumentMatrix(corpus, control = list(tokenize = bigramTokenizer))
+```
+Woot! that worked...
+
+```r
+library(RTextTools)
+TDM2 <- create_matrix(corpus, language="english", 
+                    removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
+                    removePunctuation=TRUE, removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
+#Warning message:
+#In if (ngramLength > 1) { :
+  #the condition has length > 1 and only the first element will be used
+```
+So, that way does not work.
+
+```r
+library(rJava)
+library(RWeka)
+library(tm)
+
+TrigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 3))
+tdm <- TermDocumentMatrix(corpus, control = list(tokenize = TrigramTokenizer))
+```
+#*Sweet! That seems to do it.*#
 
 #--#
 'added today' %in% Terms(myTDM)
@@ -58,7 +212,7 @@ FALSE
 findAssocs(myTDM,'know',0)
 
 options(max.print=100000)
-sink("myTDM.txt")
+sink("myTDM.txt")		
 inspect(myTDM)
 sink()
 
