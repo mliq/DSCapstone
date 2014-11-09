@@ -1,5 +1,76 @@
 Post-Tokenization
 ====
+
+
+```r
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+
+fileName="en_US.twitter.txt"
+lineNews <- readLines(fileName, n=100000)
+
+### NOTE: I SHOULD REMOVE PROFANITY AS WELL SOMEWHERE ###
+
+## REMOVAL OF STRANGE CHARACTERS##
+# Replace unicode characters with spaces.
+cleanData<-iconv(lineNews, to='ASCII', sub=' ')
+# Replace numbers and ''
+cleanData2 <- gsub("'{2}", " ", cleanData)
+cleanData3 <- gsub("[0-9]", " ", cleanData2)
+
+require(RTextTools)
+myTDM <- create_matrix(cleanData3, language="english", 
+                    removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
+                    removePunctuation=TRUE, removeSparseTerms=0.60, 
+                    removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
+#creates a matrix where terms are columns, documents are rows.
+colnames(myTDM) #lists all terms
+
+#--#
+'added today' %in% Terms(myTDM)
+FALSE
+findAssocs(myTDM,'know',0)
+
+options(max.print=100000)
+sink("myTDM.txt")
+inspect(myTDM)
+sink()
+
+```
+
+
+# "case of" is not in the dataset en_US.news.txt
+
+```r
+'case of' %in% Terms(txtTdmBi)
+FALSE
+'added today' %in% Terms(txtTdmBi)
+TRUE
+findAssocs(txtTdmBi2, "added today", 0)
+
+rowSums(as.matrix(txtTdmBi))
+```
+
+#OK let's see the top bigrams;
+
+```r
+findFreqTerms(x = txtTdmBi2, lowfreq=158, highfreq=Inf)
+findAssocs(txtTdmBi2, "barack obama", 0.1)
+```
+
+# SPEED ISSUES
+
+```r
+require(gamlr)
+findAssocsBig <- function(u, term, corlimit){
+  suppressWarnings(x.cor <-  gamlr:corr(t(u[ !u$dimnames$Terms == term, ]),        
+                                         as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
+  x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
+  return(x)
+}
+findAssocsBig(txtTdmBi, "added today", 0.01)
+#Error in get(name, envir = asNamespace(pkg), inherits = FALSE) : 
+#  object 'corr' not found
+```
 # large corpus finding nothing...
 
 ```r
@@ -28,6 +99,7 @@ findAssocs(tdm,"first",corlimit=0.02)
 #let's try this with "case"
 findAssocs(tdm,"case",corlimit=0.03)
 # everything is legal related. looks like bigrams will be needed.
+
 ```
 
 # bigram
@@ -38,17 +110,6 @@ bigram tokenizer...
 #Tokenizer for n-grams and passed on to the term-document matrix constructor
 BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
 txtTdmBi <- TermDocumentMatrix(crude, control = list(tokenize = BigramTokenizer))
-```
-
-# SPEED ISSUES
-
-```r
-findAssocsBig <- function(u, term, corlimit){
-  suppressWarnings(x.cor <-  gamlr::corr(t(u[ !u$dimnames$Terms == term, ]),        
-                                         as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
-  x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
-  return(x)
-}
 ```
 
 # Idea

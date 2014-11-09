@@ -7,7 +7,7 @@
 #Set working directory
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 
-fileName="en_US.news.txt"
+fileName="en_US.twitter.txt"
 lineNews <- readLines(fileName)
 
 ### NOTE: I SHOULD REMOVE PROFANITY AS WELL SOMEWHERE ###
@@ -60,6 +60,20 @@ dtm
 library(RWeka)
 BigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
 txtTdmBi <- TermDocumentMatrix(corpus6, control = list(tokenize = BigramTokenizer))
+
+# shrink, needed? #
+# library(slam)
+# txtTdmBi2 <- rollup(txtTdmBi, 2, na.rm=TRUE, FUN = sum)
+# ALSO:
+# ph.DTM2 <- removeSparseTerms(ph.DTM, 0.99999)
+
+# Now use a lapply function to calculate the associated words for every item in the vector of terms in the term-document matrix. The vector of terms is most simply accessed with txtTdmBi$dimnames$Terms. For example txtTdmBi$dimnames$Terms[[1005]] is "foreign investment".
+
+# Here I've used llply from the plyr package so we can have a progress bar (comforting for big jobs), but it's basically the same as the base lapply function.
+findAssocs(txtTdmBi2, "case of", 0.5), .progress = "text" )
+
+# library(plyr)
+# dat <- llply(txtTdmBi$dimnames$Terms, function(i) findAssocs(txtTdmBi, i, 0.5), .progress = "text" )
 
 ## Memory clean up
 rm(corpus1,corpus2,corpus3,corpus4,corpus5,corpus)
