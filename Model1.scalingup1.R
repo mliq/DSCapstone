@@ -2,6 +2,7 @@
 
 # 1. Corpus, transformations, and TDM Creation
 #=============================================#
+gc()
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 fileName="en_US.twitter.txt"
 lineNews <- readLines(fileName, n=20000)
@@ -94,3 +95,4 @@ predFreq <- data.frame(gram=names(predCount),count=predCount,stringsAsFactors=FA
 predFreq<-predFreq[order(-predFreq$count),]
 
 predFreq
+gc()

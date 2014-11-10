@@ -1,5 +1,53 @@
 Post-Tokenization
 ====
+
+# Model1 debugging
+Using 20,000 lines of twitter, I get:
+> gramCount<-rowSums(as.matrix(myTDM))
+Error: cannot allocate vector of size 15.7 Gb
+In addition: Warning messages:
+1: In vector(typeof(x$v), nr * nc) :
+  Reached total allocation of 12220Mb: see help(memory.size)
+
+Solutions proposed:
+
+- use library("Matrix")
+
+Will not be soo simple...
+Why do I need to do this?
+can I get the counts another way?
+
+- in tm package?
+
+termFreq(myTDM)
+
+dictionary?
+
+- qdap package?
+
+library(qdap)
+wfm<-as.wfm(myTDM)
+
+- can I just rowsums the TDM?
+
+- slam package?
+ph.DTM3 <- rollup(ph.DTM, 2, na.rm=TRUE, FUN = sum)
+
+- http://stackoverflow.com/questions/18101047/list-of-word-frequencies-using-r
+temp <- inspect(myTDM)
+FreqMat <- data.frame(apply(temp, 1, sum))
+FreqMat <- data.frame(ST = row.names(FreqMat), Freq = FreqMat[, 1])
+FreqMat <- FreqMat[order(FreqMat$Freq, decreasing = T), ]
+row.names(FreqMat) <- NULL
+View(FreqMat)
+
+- http://stackoverflow.com/questions/20004493/convert-simple-triplet-matrixslam-to-sparse-matrixmatrix-in-r
+
+
+
+# Stem Completion?
+See stemCompletion in tm package
+
 # NEXT STEPS
 
 1. Probably should work on fine-tuning the model before loading so much data? Not sure of this...
@@ -130,9 +178,10 @@ predCount<-rowSums(as.matrix(matchTDM))
 
 # Create dataframe frequency table
 predFreq <- data.frame(gram=names(predCount),count=predCount,stringsAsFactors=FALSE)
-
-
+predFreq<-predFreq[order(-predFreq$count),]
 ```
+
+
 # TO DO NEXT:
 
 ## Unstem? most frequent versions of that stem?
