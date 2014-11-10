@@ -59,22 +59,37 @@ freqTable$biquery <- sapply(words,FUN=function(x) paste(x[1],x[2]))
 
 # A unigram query word may be either the first or second word of the trigram, depending on where in the trigram the last word of our input is. 
 
-freqTable$uniquery <- sapply(words, FUN=function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}})
+# Set the predicted by bigram as an attribute of our data.frame freqTable
+freqTable$bipredicted <- sapply(words, FUN=function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}})
 
-# Set biquery predicted word as an attribute
-freqTable$bipredicted <- sapply(words,FUN=function(x) x[3])
+# Set trigram predicted word as an attribute of our data.frame freqTable
+freqTable$tripredicted <- sapply(words,FUN=function(x) x[3])
 
-#uniTest<- function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}}
+# 3. Find matches to query words
 
-#freqTable$uniquery <- sapply(words, FUN=uniTest(x))
+# Find trigrams where first two words match and put in matches list
+trimatches <- freqTable[freqTable$biquery == bigram,]
 
-
-uniTable<-freqTable[freqTable$uniquery == unigram,]
-#freqTable$uniquery <- sapply(words,FUN=function(x) paste(x[2]))
-
-
+# If matches were found, print these, otherwise move on to bigram matches
+if (nrow(trimatches)>0) {paste("trigram matches:", trimatches)}
+bimatches<- freqTable[freqTable$bipredicted != "NA",] 
+if (nrow(bimatches)>0) {paste("bigram matches:", bimatches$gram)}
 
 ```
+
+CUT:
+
+	#uniTest<- function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}}
+
+	#freqTable$uniquery <- sapply(words, FUN=uniTest(x))
+
+
+	# uniTable<-freqTable[freqTable$uniquery == unigram,]
+	#freqTable$uniquery <- sapply(words,FUN=function(x) paste(x[2]))
+
+#*OK at this point I have done the lookup to query earlier, before making the freqTable with uniquery, why not also with biquery?* 
+* Perhaps because building the freqtable again will be laborious?
+
 # Next: The lookup, and, Good-Turing?
 *For the unigram it will not always be the second word of the trigram, it will be whichever matches the last word of the query bigram.*
 
@@ -88,7 +103,7 @@ if nrows(matches>0) {
 	# do something
 }
 else {
-	matches<- freqTable[freqTable$uniquery == unigram,]
+	matches<- freqTable[freqTable$uniquery != NA,]
 	print("bigram matches:")
 	print(matches$predicted)
 }
