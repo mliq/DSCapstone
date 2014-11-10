@@ -1,6 +1,39 @@
 Post-Tokenization
 ====
 
+# Reading in large files 
+
+The error comes not with readLines but with the corpus work...
+so really i just need to iterate I Think....
+then combine...
+
+## let's test first by combining two small TDMs and ensuring this works.
+
+Ok works (see Combining Corpus Test.r)
+
+## Now BASH is easiest way to split the file.
+
+	split --lines=20000 en_US.twitter.txt twitter
+outputs:
+	twitteraa
+	twitterab
+etc.
+
+[](https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html)
+
+Downloaded the latest version of coreutils first in order to use the -d numeric option.
+
+	split --numeric-suffixes -a 4 --lines=20000 en_US.twitter.txt twitter
+
+```r
+for (i in 1:118) {
+i4<-formatC(i,width=4,flag=0)
+fileName=paste0("twitter",i4,".txt")
+varName = paste0("twit",i)
+varName <- readLines(fileName)
+}
+```
+
 # Model1 debugging
 Using 20,000 lines of twitter, I get:
 > gramCount<-rowSums(as.matrix(myTDM))
@@ -31,7 +64,13 @@ wfm<-as.wfm(myTDM)
 - can I just rowsums the TDM?
 
 - slam package?
-ph.DTM3 <- rollup(ph.DTM, 2, na.rm=TRUE, FUN = sum)
+	
+	X ph.DTM3 <- rollup(ph.DTM, 2, na.rm=TRUE, FUN = sum)
+
+library(slam)
+row_sums(myTDM)
+
+*works!*
 
 - http://stackoverflow.com/questions/18101047/list-of-word-frequencies-using-r
 temp <- inspect(myTDM)

@@ -38,11 +38,11 @@ myTDM <- TermDocumentMatrix(corpus, control = list(tokenize = TrigramTokenizer))
 #=============================================#
 
 # Get total frequency in corpus of each trigram
-gramCount<-rowSums(as.matrix(myTDM))
+library(slam)
+gramCount<-as.matrix(row_sums(myTDM))
 
 # Create dataframe frequency table
-freqTable <- data.frame(gram=names(gramCount),count=gramCount,stringsAsFactors=FALSE)
-
+freqTable <- data.frame(gram=dimnames(gramCount)[[1]],count=gramCount,stringsAsFactors=FALSE)
 # Split corpus trigrams up to words
 words <- strsplit(freqTable$gram," ")
 

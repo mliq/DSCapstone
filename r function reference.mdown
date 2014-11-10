@@ -15,3 +15,6 @@ accessing parts of list: myList[[2]][3]
 nrow() ncol()
 
 rowSums()
+
+paste() concatenate
+paste0() no space in between
