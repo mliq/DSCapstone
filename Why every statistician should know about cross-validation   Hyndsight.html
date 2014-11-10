@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://robjhyndman.com/hyndsight/crossvalidation/ -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why every statistician should know about cross-validation | Hyndsight</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://robjhyndman.com/hyndsight/xmlrpc.php">
+
+<link rel="alternate" type="application/rss+xml" title="Hyndsight » Feed" href="http://robjhyndman.com/hyndsight/feed/">
+<link rel="alternate" type="application/rss+xml" title="Hyndsight » Comments Feed" href="http://robjhyndman.com/hyndsight/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Hyndsight » Why every statistician should know about cross-​​validation Comments Feed" href="http://robjhyndman.com/hyndsight/crossvalidation/feed/">
+<link rel="stylesheet" id="tfg_style-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/tfg_style.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-quicklatex-format-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex-format.css" type="text/css" media="all">
+<link rel="stylesheet" id="otw_grid_manager-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/otw-grid.css" type="text/css" media="all">
+<link rel="stylesheet" id="general_foundicons-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/general_foundicons.css" type="text/css" media="all">
+<link rel="stylesheet" id="social_foundicons-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/social_foundicons.css" type="text/css" media="all">
+<link rel="stylesheet" id="otw_shortocde-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/otw_shortcode.css" type="text/css" media="all">
+<link rel="stylesheet" id="editor-style-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="editor-font-awesome-css-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/font-awesome.css" type="text/css" media="screen">
+<!--[if IE]>
+<link rel='stylesheet' id='ie7-style-css'  href='http://robjhyndman.com/hyndsight/wp-content/themes/editor/inc/styles/ie.css?ver=4.0' type='text/css' media='all' />
+<![endif]-->
+<link rel="stylesheet" id="editor-fonts-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="easy_table_style-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/jetpack.css" type="text/css" media="all">
+<link rel="stylesheet" id="codebox-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/codebox.css" type="text/css" media="screen">
+<link rel="stylesheet" id="lightboxStyle-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/colorbox.css" type="text/css" media="screen">
+<script src="./Why every statistician should know about cross-validation   Hyndsight_files/cb=gapi.loaded_1" async=""></script><script src="./Why every statistician should know about cross-validation   Hyndsight_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Why every statistician should know about cross-validation   Hyndsight_files/ga.js"></script><script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/jquery.js"></script><script>jQueryWP = jQuery;</script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/codebox.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/wp-quicklatex-frontend.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/external-tracking.min.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://robjhyndman.com/hyndsight/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://robjhyndman.com/hyndsight/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="That syncing feeling" href="http://robjhyndman.com/hyndsight/syncing/">
+<link rel="next" title="The ARIMAX model muddle" href="http://robjhyndman.com/hyndsight/arimax/">
+<meta name="generator" content="WordPress 4.0">
+<link rel="canonical" href="./Why every statistician should know about cross-validation   Hyndsight_files/Why every statistician should know about cross-validation   Hyndsight.html">
+<link rel="shortlink" href="http://robjhyndman.com/hyndsight/?p=991">
+<style type="text/css">
+* {
+	text-rendering: optimizeLegibility;
+}
+sup {
+	vertical-align: 60%;
+	font-size: 75%;
+	line-height: 100%;
+}
+sub {
+	vertical-align: -10%;
+	font-size: 75%;
+	line-height: 100%;
+}
+.amp {
+	font-family: Baskerville, "Goudy Old Style", "Palatino", "Book Antiqua", "Warnock Pro", serif;
+	font-weight: normal;
+	font-style: italic;
+	font-size: 1.1em;
+	line-height: 1em;
+}
+.caps {
+	font-size: 90%;
+}
+.dquo {
+	margin-left:-.40em;
+}
+.quo {
+	margin-left:-.2em;
+}
+/* because formatting .numbers should consider your current font settings, we will not style it here */
+</style>
+<style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why every statistician should know about cross-validation">
+<meta property="og:url" content="http://robjhyndman.com/hyndsight/crossvalidation/">
+<meta property="og:description" content="Surprisingly, many statisticians see cross-validation as something data miners do, but not a core statistical technique. I thought it might be helpful to summarize the role of cross-validation in s...">
+<meta property="article:published_time" content="2010-10-04T10:21:11+00:00">
+<meta property="article:modified_time" content="2012-03-16T23:55:09+00:00">
+<meta property="og:site_name" content="Hyndsight">
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg">
+<meta name="twitter:site" content="@jetpack">
+<meta name="twitter:card" content="summary">
+<!-- Google Analytics Tracking by Google Analyticator 6.4.8: http://www.videousermanuals.com/google-analyticator/ -->
+<script type="text/javascript">
+    var analyticsFileTypes = [''];
+    var analyticsSnippet = 'enabled';
+    var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+  
+	_gaq.push(['_setAccount', 'UA-5004894-1']);
+    _gaq.push(['_addDevId', 'i9k95']); // Google Analyticator App ID with Google
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+		<link rel="stylesheet" id="custom-css-css" type="text/css" href="./Why every statistician should know about cross-validation   Hyndsight_files/saved_resource">
+		<script src="./Why every statistician should know about cross-validation   Hyndsight_files/secureAnonymousFramework"></script><script type="text/javascript" async="" src="./Why every statistician should know about cross-validation   Hyndsight_files/embed.js"></script><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./Why every statistician should know about cross-validation   Hyndsight_files/services.css"><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style><style type="text/css">* html #li_ui_li_gen_1415590912841_0 a#li_ui_li_gen_1415590912841_0-link{height:1% !important;}#li_ui_li_gen_1415590912841_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1415590912841_0 span{-webkit-box-sizing:content-box !important;-moz-box-sizing:content-box !important;box-sizing:content-box !important;}#li_ui_li_gen_1415590912841_0 a#li_ui_li_gen_1415590912841_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1415590912841_0 a#li_ui_li_gen_1415590912841_0-link:link, #li_ui_li_gen_1415590912841_0 a#li_ui_li_gen_1415590912841_0-link:visited, #li_ui_li_gen_1415590912841_0 a#li_ui_li_gen_1415590912841_0-link:hover, #li_ui_li_gen_1415590912841_0 a#li_ui_li_gen_1415590912841_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1415590912841_0 a#li_ui_li_gen_1415590912841_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-logo{background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-position:0px -276px !important;background-repeat:no-repeat !important;background-size:initial !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;}#li_ui_li_gen_1415590912841_0.hovered #li_ui_li_gen_1415590912841_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-logo, #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-logo{}#li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-webkit-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-webkit-border-top-right-radius:2px !important;-webkit-border-bottom-right-radius:2px !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1415590912841_0.hovered #li_ui_li_gen_1415590912841_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-title, #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title{}.IN-shadowed #li_ui_li_gen_1415590912841_0.hovered #li_ui_li_gen_1415590912841_0-title{}.IN-shadowed #li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-title, .IN-shadowed #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-title{}#li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title-text, #li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;-webkit-font-smoothing:antialiased !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1415590912841_0.hovered #li_ui_li_gen_1415590912841_0-title-text, #li_ui_li_gen_1415590912841_0.hovered #li_ui_li_gen_1415590912841_0-title-text *{color:#000 !important;}#li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-title-text, #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-title-text, #li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-title-text *, #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-title-text *{color:#666 !important;}#li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title #li_ui_li_gen_1415590912841_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#ECECEC)) !important; background-image: -webkit-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title-text, .success #li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1415590912841_0 #li_ui_li_gen_1415590912841_0-title{}.success #li_ui_li_gen_1415590912841_0.hovered #li_ui_li_gen_1415590912841_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#EDEDED), color-stop(100%,#DEDEDE)) !important; background-image: -webkit-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1415590912841_0.hovered #li_ui_li_gen_1415590912841_0-title-text, .success #li_ui_li_gen_1415590912841_0.hovered #li_ui_li_gen_1415590912841_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-title, .success #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#E3E3E3), color-stop(100%,#EDEDED)) !important; background-image: -webkit-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-title-text, .success #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-title-text, .success #li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-title-text *, .success #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1415590912841_0.clicked #li_ui_li_gen_1415590912841_0-title, .IN-shadowed .success #li_ui_li_gen_1415590912841_0.down #li_ui_li_gen_1415590912841_0-title{}#li_ui_li_gen_1415590912857_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1415590912857_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:right -100px !important;}#li_ui_li_gen_1415590912857_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background-image:url(https://static.licdn.com/scds/common/u/images/apps/connect/sprites/sprite_connect_v14.png) !important;background-color:transparent !important;background-repeat:no-repeat !important;background-position:0px -60px !important;}#li_ui_li_gen_1415590912857_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1415590912857_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1415590912857_1-container.IN-hidden #li_ui_li_gen_1415590912857_1 {display:none !important;}</style></head>
+
+<body class="single single-post postid-991 single-format-standard custom-background" data-twttr-rendered="true">
+
+<div id="page" class="hfeed site container">
+
+	<!-- Get sidebar color option (Appearance -> Customize -> Theme Options) -->
+		<header id="masthead" class="site-header dark" role="banner">
+		<!-- Tab navigation -->
+		<ul class="toggle-bar">
+		    <!-- Main navigation -->
+		    <li>
+		    	<a href="http://robjhyndman.com/hyndsight/crossvalidation/#tabs-1" class="current nav-toggle" data-tab="tab-1"><i class="fa fa-bars"></i></a>
+		    </li>
+
+		    <!-- Featured Posts navigation -->
+		    
+		    <!-- Sidebar widgets navigation -->
+		    <li>
+		    	<a href="http://robjhyndman.com/hyndsight/crossvalidation/#tab-3" class="folder-toggle" data-tab="tab-3"><i class="fa fa-folder"></i><i class="fa fa-folder-open"></i></a>
+		    </li>
+		</ul>
+
+		<div id="tabs" class="toggle-tabs">
+			<div class="site-header-inside">
+				<!-- Logo, description and main navigation -->
+				<div id="tab-1" class="tab-content current animated fadeIn">
+					<div class="site-branding">
+						<!-- Get the site branding -->
+													<h1 class="site-title"><a href="http://robjhyndman.com/hyndsight/" rel="home">Hyndsight</a></h1>
+							<h2 class="site-description">A blog by Rob J Hyndman</h2>
+											</div>
+
+					<nav id="site-navigation" class="main-navigation" role="navigation">
+						<div class="menu-main-container"><ul id="menu-main" class="menu"><li id="menu-item-1637" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1637"><a href="http://robjhyndman.com/hyndsight/">Home</a></li>
+<li id="menu-item-2937" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2937"><a href="http://robjhyndman.com/hyndsight/forecasting/">Forecasting</a></li>
+<li id="menu-item-1631" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1631"><a href="http://robjhyndman.com/hyndsight/r/">R</a></li>
+<li id="menu-item-1627" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1627"><a href="http://robjhyndman.com/hyndsight/latex/">LaTeX</a></li>
+<li id="menu-item-1635" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1635"><a href="http://robjhyndman.com/hyndsight/about/">About</a></li>
+<li id="menu-item-1621" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1621"><a href="http://robjhyndman.com/">Main site</a></li>
+</ul></div>					</nav><!-- #site-navigation -->
+
+<p>&nbsp;<br></p><p></p><form role="search" method="get" class="search-form" action="http://robjhyndman.com/hyndsight/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form>				</div><!-- #tab-1 -->
+
+				<!-- Featured Posts template (template-featured-posts.php) -->
+				
+				
+				<!-- Sidebar widgets -->
+				<div id="tab-3" class="tab-content animated fadeIn">
+						<div id="secondary" class="widget-area" role="complementary">
+		<aside id="text-12" class="widget widget_text">			<div class="textwidget"><p><img class="alignright" src="./Why every statistician should know about cross-validation   Hyndsight_files/RJHhead2.png" width="90" style="margin-bottom: -10px;" scale="0">Rob J&nbsp;Hyn­d­man is<br> Pro­fes­sor of Sta­tis­tics at <a href="http://monash.edu/">Monash Uni­ver­sity</a>,<br>Aus­tralia, and Editor-​​​​in-​​​​Chief of the <a href="http://www.forecasters.org/ijf">Inter­na­tional Jour­nal of Fore­cast­ing</a>.<br><br><br>
+Twit­ter: <a href="http://twitter.com/robjhyndman">@robjhyndman</a><br>
+Google+: <a href="https://plus.google.com/+RobJHyndman/">+Rob­JHyn­d­man</a><br>
+Email: <a href="mailto:Rob.Hyndman@monash.edu">Rob.​Hyndman@​monash.​edu</a></p>
+<p><a href="http://feeds.feedburner.com/Hyndsight"><img src="./Why every statistician should know about cross-validation   Hyndsight_files/rss-32.png" scale="0"><span class="caps">RSS</span> feed</a></p>
+<p>
+</p></div>
+		</aside><aside id="tag_cloud-7" class="widget widget_tag_cloud"><h2 class="widget-title">Tags</h2><div class="tagcloud"><a href="http://robjhyndman.com/hyndsight/tag/beamer/" class="tag-link-4" title="6 topics" style="font-size: 11.217391304348pt;">beamer</a>
+<a href="http://robjhyndman.com/hyndsight/tag/computing/" class="tag-link-5" title="80 topics" style="font-size: 20.434782608696pt;">computing</a>
+<a href="http://robjhyndman.com/hyndsight/tag/conferences/" class="tag-link-45" title="7 topics" style="font-size: 11.652173913043pt;">conferences</a>
+<a href="http://robjhyndman.com/hyndsight/tag/consulting/" class="tag-link-41" title="9 topics" style="font-size: 12.521739130435pt;">consulting</a>
+<a href="http://robjhyndman.com/hyndsight/tag/data-science/" class="tag-link-53" title="5 topics" style="font-size: 10.608695652174pt;">data science</a>
+<a href="http://robjhyndman.com/hyndsight/tag/demography/" class="tag-link-48" title="3 topics" style="font-size: 9.0434782608696pt;">demography</a>
+<a href="http://robjhyndman.com/hyndsight/tag/econometrics/" class="tag-link-51" title="7 topics" style="font-size: 11.652173913043pt;">econometrics</a>
+<a href="http://robjhyndman.com/hyndsight/tag/energy/" class="tag-link-55" title="5 topics" style="font-size: 10.608695652174pt;">energy</a>
+<a href="http://robjhyndman.com/hyndsight/tag/forecasting/" class="tag-link-6" title="121 topics" style="font-size: 22pt;">forecasting</a>
+<a href="http://robjhyndman.com/hyndsight/tag/fpp/" class="tag-link-43" title="20 topics" style="font-size: 15.304347826087pt;">fpp</a>
+<a href="http://robjhyndman.com/hyndsight/tag/grants/" class="tag-link-54" title="2 topics" style="font-size: 8pt;">grants</a>
+<a href="http://robjhyndman.com/hyndsight/tag/graphics/" class="tag-link-31" title="10 topics" style="font-size: 12.869565217391pt;">graphics</a>
+<a href="http://robjhyndman.com/hyndsight/tag/hts/" class="tag-link-57" title="3 topics" style="font-size: 9.0434782608696pt;">hts</a>
+<a href="http://robjhyndman.com/hyndsight/tag/humour/" class="tag-link-32" title="2 topics" style="font-size: 8pt;">humour</a>
+<a href="http://robjhyndman.com/hyndsight/tag/ijf/" class="tag-link-49" title="22 topics" style="font-size: 15.652173913043pt;">IJF</a>
+<a href="http://robjhyndman.com/hyndsight/tag/jobs/" class="tag-link-7" title="16 topics" style="font-size: 14.521739130435pt;">jobs</a>
+<a href="http://robjhyndman.com/hyndsight/tag/journals/" class="tag-link-9" title="38 topics" style="font-size: 17.652173913043pt;">journals</a>
+<a href="http://robjhyndman.com/hyndsight/tag/kaggle/" class="tag-link-36" title="10 topics" style="font-size: 12.869565217391pt;">kaggle</a>
+<a href="http://robjhyndman.com/hyndsight/tag/latex/" class="tag-link-10" title="42 topics" style="font-size: 18pt;">LaTeX</a>
+<a href="http://robjhyndman.com/hyndsight/tag/mathematics/" class="tag-link-11" title="7 topics" style="font-size: 11.652173913043pt;">mathematics</a>
+<a href="http://robjhyndman.com/hyndsight/tag/maxima/" class="tag-link-46" title="2 topics" style="font-size: 8pt;">maxima</a>
+<a href="http://robjhyndman.com/hyndsight/tag/monash-university/" class="tag-link-47" title="10 topics" style="font-size: 12.869565217391pt;">Monash University</a>
+<a href="http://robjhyndman.com/hyndsight/tag/obituary/" class="tag-link-42" title="3 topics" style="font-size: 9.0434782608696pt;">obituary</a>
+<a href="http://robjhyndman.com/hyndsight/tag/organization/" class="tag-link-12" title="11 topics" style="font-size: 13.217391304348pt;">organization</a>
+<a href="http://robjhyndman.com/hyndsight/tag/otexts/" class="tag-link-44" title="14 topics" style="font-size: 14.086956521739pt;">otexts</a>
+<a href="http://robjhyndman.com/hyndsight/tag/phd/" class="tag-link-33" title="6 topics" style="font-size: 11.217391304348pt;">phd</a>
+<a href="http://robjhyndman.com/hyndsight/tag/productivity/" class="tag-link-13" title="27 topics" style="font-size: 16.434782608696pt;">productivity</a>
+<a href="http://robjhyndman.com/hyndsight/tag/progress/" class="tag-link-14" title="5 topics" style="font-size: 10.608695652174pt;">progress</a>
+<a href="http://robjhyndman.com/hyndsight/tag/r/" class="tag-link-15" title="122 topics" style="font-size: 22pt;">R</a>
+<a href="http://robjhyndman.com/hyndsight/tag/refereeing/" class="tag-link-16" title="12 topics" style="font-size: 13.478260869565pt;">refereeing</a>
+<a href="http://robjhyndman.com/hyndsight/tag/references/" class="tag-link-17" title="39 topics" style="font-size: 17.739130434783pt;">references</a>
+<a href="http://robjhyndman.com/hyndsight/tag/reproducible-research/" class="tag-link-18" title="10 topics" style="font-size: 12.869565217391pt;">reproducible research</a>
+<a href="http://robjhyndman.com/hyndsight/tag/research-team/" class="tag-link-19" title="10 topics" style="font-size: 12.869565217391pt;">research team</a>
+<a href="http://robjhyndman.com/hyndsight/tag/seasonality/" class="tag-link-56" title="4 topics" style="font-size: 9.9130434782609pt;">seasonality</a>
+<a href="http://robjhyndman.com/hyndsight/tag/seminars/" class="tag-link-20" title="19 topics" style="font-size: 15.130434782609pt;">seminars</a>
+<a href="http://robjhyndman.com/hyndsight/tag/stackexchange/" class="tag-link-30" title="17 topics" style="font-size: 14.782608695652pt;">StackExchange</a>
+<a href="http://robjhyndman.com/hyndsight/tag/statistics/" class="tag-link-21" title="120 topics" style="font-size: 21.913043478261pt;">statistics</a>
+<a href="http://robjhyndman.com/hyndsight/tag/supervision/" class="tag-link-22" title="8 topics" style="font-size: 12.086956521739pt;">supervision</a>
+<a href="http://robjhyndman.com/hyndsight/tag/tables/" class="tag-link-39" title="2 topics" style="font-size: 8pt;">tables</a>
+<a href="http://robjhyndman.com/hyndsight/tag/teaching/" class="tag-link-23" title="16 topics" style="font-size: 14.521739130435pt;">teaching</a>
+<a href="http://robjhyndman.com/hyndsight/tag/technology/" class="tag-link-24" title="10 topics" style="font-size: 12.869565217391pt;">technology</a>
+<a href="http://robjhyndman.com/hyndsight/tag/video/" class="tag-link-25" title="4 topics" style="font-size: 9.9130434782609pt;">video</a>
+<a href="http://robjhyndman.com/hyndsight/tag/welfare/" class="tag-link-26" title="3 topics" style="font-size: 9.0434782608696pt;">welfare</a>
+<a href="http://robjhyndman.com/hyndsight/tag/writing/" class="tag-link-27" title="24 topics" style="font-size: 16pt;">writing</a>
+<a href="http://robjhyndman.com/hyndsight/tag/ysc2013/" class="tag-link-40" title="3 topics" style="font-size: 9.0434782608696pt;">ysc2013</a></div>
+</aside><aside id="search-5" class="widget widget_search"><form role="search" method="get" class="search-form" action="http://robjhyndman.com/hyndsight/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+				</label>
+				<input type="submit" class="search-submit" value="Search">
+			</form></aside><aside id="wppp-2" class="widget widget_wppp"><h2 class="widget-title">Popular Posts</h2>
+<ul class="wppp_list">
+	<li><a href="http://robjhyndman.com/hyndsight/cv/" title="A LaTeX template for a CV">A LaTeX template for a CV</a></li>
+	<li><a href="http://robjhyndman.com/hyndsight/latex-floats/" title="Controlling figure and table placement in LaTeX">Controlling figure and table placement in LaTeX</a></li>
+	<li><a href="http://robjhyndman.com/hyndsight/beamer-poster/" title="Making a poster in beamer">Making a poster in beamer</a></li>
+	<li><a href="./Why every statistician should know about cross-validation   Hyndsight_files/Why every statistician should know about cross-validation   Hyndsight.html" title="Why every statistician should know about cross-validation">Why every statistician should know about cross-validation</a></li>
+	<li><a href="http://robjhyndman.com/hyndsight/r-graph-with-two-y-axes/" title="R graph with two y-axes">R graph with two y-axes</a></li>
+	<li><a href="http://robjhyndman.com/hyndsight/texstudio/" title="I&#39;m switching to TeXstudio">I'm switching to TeXstudio</a></li>
+	<li><a href="http://robjhyndman.com/hyndsight/phdfail/" title="How to fail a PhD">How to fail a&nbsp;PhD</a></li>
+	<li><a href="http://robjhyndman.com/hyndsight/synchronizing-winedt-and-pdf-files/" title="Synchronizing WinEdt and pdf files">Synchronizing WinEdt and pdf files</a></li>
+</ul>
+</aside><aside id="text-8" class="widget widget_text"><h2 class="widget-title">Recent comments</h2>			<div class="textwidget"><div id="recentcomments" class="dsq-widget"><script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/recent_comments_widget.js"></script> <style type="text/css" media="screen">	 .dsq-widget ul.dsq-widget-list {	 padding: 0;	 margin: 0;	 text-align: left;	 }	 img.dsq-widget-avatar {	 width: 24px;	 height: 24px;	 border: 0px;	 margin: 0px;	 padding: 0px 3px 3px 0px;	 float: left;	 }	 a.dsq-widget-user {	 font-weight: bold;	 }	 a.dsq-widget-thread {	 font-weight: bold;	 }	 p.dsq-widget-meta {	 clear: both;	 font-size: 80%;	 padding: 0;	 margin: 0;	 }	 li.dsq-widget-item {	 margin: 15px 0;	 list-style-type: none;	 clear: both;	 }	 span.dsq-widget-clout {	 padding: 0 2px;	 background-color: #ff7300;	 color: #fff;	 }	 table.dsq-widget-horiz td {	 padding-right: 15px;	 }	 .dsq-widget-comment p {	 display: inline;	 }	 </style>	 <ul class="dsq-widget-list">	 <li class="dsq-widget-item">	 <a href="http://disqus.com/robjhyndman/"><img class="dsq-widget-avatar" src="./Why every statistician should know about cross-validation   Hyndsight_files/avatar92.jpg" scale="0"></a>	 <a class="dsq-widget-user" href="http://disqus.com/robjhyndman/">Rob J Hyndman</a>	 <span class="dsq-widget-comment"><p>You need to define what you mean by "linear". I suspect you mean "is each time series better...</p></span>	 <p class="dsq-widget-meta"><a href="http://robjhyndman.com/hyndsight/tsdl/">Time Series Data Library now on DataMarket</a>&nbsp;·&nbsp;<a href="http://robjhyndman.com/hyndsight/tsdl/#comment-1683394413">1 day ago</a></p>	 </li>	 <li class="dsq-widget-item">	 <img class="dsq-widget-avatar" src="./Why every statistician should know about cross-validation   Hyndsight_files/noavatar92.png" scale="0">	 Din Vadhia	 <span class="dsq-widget-comment"><p>Hi! Has the Time-Series Data Library been categorised by linear and non-linear?</p></span>	 <p class="dsq-widget-meta"><a href="http://robjhyndman.com/hyndsight/tsdl/">Time Series Data Library now on DataMarket</a>&nbsp;·&nbsp;<a href="http://robjhyndman.com/hyndsight/tsdl/#comment-1683129514">1 day ago</a></p>	 </li>	 <li class="dsq-widget-item">	 <a href="http://disqus.com/disqus_xhgy04bLVK/"><img class="dsq-widget-avatar" src="./Why every statistician should know about cross-validation   Hyndsight_files/avatar92(1).jpg" scale="0"></a>	 <a class="dsq-widget-user" href="http://disqus.com/disqus_xhgy04bLVK/">A.D</a>	 <span class="dsq-widget-comment"><p>Thank you very much! your post was very helpful!!</p></span>	 <p class="dsq-widget-meta"><a href="http://robjhyndman.com/hyndsight/longseasonality/">Forecasting with long seasonal periods</a>&nbsp;·&nbsp;<a href="http://robjhyndman.com/hyndsight/longseasonality/#comment-1682643345">1 day ago</a></p>	 </li>	 <li class="dsq-widget-item">	 <a href="http://disqus.com/robjhyndman/"><img class="dsq-widget-avatar" src="./Why every statistician should know about cross-validation   Hyndsight_files/avatar92.jpg" scale="0"></a>	 <a class="dsq-widget-user" href="http://disqus.com/robjhyndman/">Rob J Hyndman</a>	 <span class="dsq-widget-comment"><p>See <a href="http://robjhyndman.com/hyndsight/seasonal-periods/" rel="nofollow">http://robjhyndman.com/hyndsig...</a></p></span>	 <p class="dsq-widget-meta"><a href="http://robjhyndman.com/hyndsight/longseasonality/">Forecasting with long seasonal periods</a>&nbsp;·&nbsp;<a href="http://robjhyndman.com/hyndsight/longseasonality/#comment-1680666250">3 days ago</a></p>	 </li>	 <li class="dsq-widget-item">	 <img class="dsq-widget-avatar" src="./Why every statistician should know about cross-validation   Hyndsight_files/noavatar92.png" scale="0">	 A.D	 <span class="dsq-widget-comment"><p>Dear Prof. Hyndman, I have two large time series data. One is separated by seconds intervals and...</p></span>	 <p class="dsq-widget-meta"><a href="http://robjhyndman.com/hyndsight/longseasonality/">Forecasting with long seasonal periods</a>&nbsp;·&nbsp;<a href="http://robjhyndman.com/hyndsight/longseasonality/#comment-1678631547">4 days ago</a></p>	 </li>	 </ul></div></div>
+		</aside>	</div><!-- #secondary -->
+				</div><!-- #tab-3 -->
+			</div><!-- .site-header-inside -->
+		</div><!-- #tabs -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content animated-faster fadeIn">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-991" class="post-991 post type-post status-publish format-standard hentry category-uncategorized tag-forecasting tag-stackexchange tag-statistics">
+	<!-- Grab the featured image -->
+	
+	<header class="entry-header">
+				<div class="entry-date">
+			<span class="posted-on"><a href="./Why every statistician should know about cross-validation   Hyndsight_files/Why every statistician should know about cross-validation   Hyndsight.html" rel="bookmark"><time class="entry-date published" datetime="2010-10-04T21:21:11+00:00">4 October 2010</time><time class="updated" datetime="2012-03-17T10:55:09+00:00">17 March 2012</time></a></span><span class="byline"> by </span> <span class="author vcard"><a class="url fn n" href=""></a></span>		</div><!-- .entry-meta -->
+		
+		<h1 class="entry-title"><a href="./Why every statistician should know about cross-validation   Hyndsight_files/Why every statistician should know about cross-validation   Hyndsight.html" rel="bookmark">Why every statistician should know about cross-​​validation</a></h1>
+	</header><!-- .entry-header -->
+
+	
+<div class="entry-meta">
+	
+	<ul class="meta-list">
+					<li class="meta-tag"><a href="http://robjhyndman.com/hyndsight/tag/forecasting/" rel="tag">forecasting</a>, <a href="http://robjhyndman.com/hyndsight/tag/stackexchange/" rel="tag">StackExchange</a>, <a href="http://robjhyndman.com/hyndsight/tag/statistics/" rel="tag">statistics</a></li>
+						<li class="meta-comment">
+			<span class="comments-link"><a href="http://robjhyndman.com/hyndsight/crossvalidation/#comments" title="Comment on Why every statistician should know about cross-​​validation"><span class="dsq-postid" data-dsqidentifier="991 http://robjhyndman.com/researchtips/?p=991">39 Comments</span></a></span>
+		</li>
+					</ul>
+</div>
+	<div class="entry-content">
+		<p>Sur­pris­ingly, many sta­tis­ti­cians see cross-​​validation as some­thing data min­ers do, but not a&nbsp;core sta­tis­ti­cal tech­nique. I&nbsp;thought it might be help­ful to sum­ma­rize the role of cross-​​validation in sta­tis­tics, espe­cially as it is pro­posed that the Q&amp;A site at <a class="vt-p" href="http://stats.stackexchange.com/">stats​.stack​ex​change​.com</a> should be renamed Cross​Val​i​dated​.com.</p>
+<p>Cross-​​validation is pri­mar­ily a&nbsp;way of&nbsp;mea­sur­ing the pre­dic­tive per­for­mance of a&nbsp;sta­tis­ti­cal model. Every sta­tis­ti­cian knows that the model fit sta­tis­tics are not a&nbsp;good guide to how well a&nbsp;model will pre­dict: high <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-347477ec8d485383fefad2885a623e7b_l3.png" class="ql-img-inline-formula" alt="R^2" title="Rendered by QuickLaTeX.com" height="15" width="21" style="vertical-align: 0px;" scale="0"> does not nec­es­sar­ily mean a&nbsp;good model. It is easy to over-​​fit the data by includ­ing too many degrees of free­dom and so inflate <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-347477ec8d485383fefad2885a623e7b_l3.png" class="ql-img-inline-formula" alt="R^2" title="Rendered by QuickLaTeX.com" height="15" width="21" style="vertical-align: 0px;" scale="0"> and other fit sta­tis­tics. For exam­ple, in a&nbsp;sim­ple poly­no­mial regres­sion I&nbsp;can just keep adding higher order terms and so get bet­ter and bet­ter fits to the data. But the pre­dic­tions from the model on new data will usu­ally get worse as higher order terms are&nbsp;added.</p>
+<p>One way to mea­sure the pre­dic­tive abil­ity of a&nbsp;model is to test it on a&nbsp;set of data not used in esti­ma­tion. Data min­ers call this a “test set” and the data used for esti­ma­tion is the “train­ing set”. For exam­ple, the pre­dic­tive accu­racy of a&nbsp;model can be mea­sured by the mean squared error on the test set. This will gen­er­ally be larger than the <span class="caps">MSE</span> on the train­ing set because the test data were not used for estimation.</p>
+<p>How­ever, there is often not enough data to allow some of it to be kept back for test­ing.&nbsp;A&nbsp;more sophis­ti­cated ver­sion of training/​​test sets is <strong>leave-​​one-​​out cross-​​​​validation</strong> (<span class="caps">LOOCV</span>) in which the accu­racy mea­sures are obtained as fol­lows. Sup­pose there are <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-285120f6b59608f77c99e4e728ea9851_l3.png" class="ql-img-inline-formula" alt="n" title="Rendered by QuickLaTeX.com" height="8" width="11" style="vertical-align: 0px;" scale="0"> inde­pen­dent obser­va­tions, <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-1eb29f725a10795b7751a283cd3f3b5b_l3.png" class="ql-img-inline-formula" alt="y_1,\dots,y_n" title="Rendered by QuickLaTeX.com" height="12" width="73" style="vertical-align: -4px;" scale="0">.</p>
+<ol>
+<li>Let obser­va­tion <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-a3addae1df300a306a4fab58032c7034_l3.png" class="ql-img-inline-formula" alt="i" title="Rendered by QuickLaTeX.com" height="12" width="6" style="vertical-align: 0px;" scale="0"> form the test set, and fit the model using the remain­ing data. Then com­pute the error <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-e9d9eb89c53c67d808f98245d4d534b4_l3.png" class="ql-img-inline-formula" alt="(e_{i}^*=y_{i}-\hat{y}_{i})" title="Rendered by QuickLaTeX.com" height="19" width="102" style="vertical-align: -5px;" scale="0"> for the omit­ted obser­va­tion. This is some­times called a “pre­dicted resid­ual” to dis­tin­guish it from an ordi­nary residual.</li>
+<li>Repeat step 1&nbsp;for <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-ed1e1a80a5054acbefaa141ad92da5d5_l3.png" class="ql-img-inline-formula" alt="i=1,\dots,n" title="Rendered by QuickLaTeX.com" height="16" width="89" style="vertical-align: -4px;" scale="0">.</li>
+<li>Com­pute the <span class="caps">MSE</span> from <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-8b1eb1efc7a38260ac108033c0a34aff_l3.png" class="ql-img-inline-formula" alt="e_{1}^*,\dots,e_{n}^*" title="Rendered by QuickLaTeX.com" height="19" width="71" style="vertical-align: -6px;" scale="0">. We shall call this the&nbsp;<span class="caps">CV</span>.</li>
+</ol>
+<p>This is a&nbsp;much more effi­cient use of the avail­able data, as you only omit one obser­va­tion at each step. How­ever, it can be very time con­sum­ing to imple­ment (except for lin­ear mod­els — see&nbsp;below).</p>
+<p>Other sta­tis­tics (e.g., the <span class="caps">MAE</span>) can be com­puted sim­i­larly. A&nbsp;related mea­sure is the <span class="caps">PRESS</span> sta­tis­tic (pre­dicted resid­ual sum of squares) equal to <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-8d9248bb73f1bdd5af5bf78a817cce3f_l3.png" class="ql-img-inline-formula" alt="n\times" title="Rendered by QuickLaTeX.com" height="9" width="23" style="vertical-align: 0px;" scale="0"><span class="caps">MSE</span>.</p>
+<p>Vari­a­tions on cross-​​validation include <strong>leave-​​k-​​out cross-​​validation</strong> (in which k&nbsp;obser­va­tions are left out at each step) and <strong>k-​​fold cross-​​validation</strong> (where the orig­i­nal sam­ple is ran­domly par­ti­tioned into&nbsp;k&nbsp;sub­sam­ples and one is left out in each iter­a­tion). Another pop­u­lar vari­ant is the .632+bootstrap of <a class="vt-p" href="http://www.jstor.org/stable/2965703">Efron &amp; Tib­shi­rani (1997)</a> which has bet­ter prop­er­ties but is more com­pli­cated to implement.</p>
+<p>Min­i­miz­ing a&nbsp;<span class="caps">CV</span> sta­tis­tic is a&nbsp;use­ful way to do model selec­tion such as choos­ing vari­ables in a&nbsp;regres­sion or choos­ing the degrees of free­dom of a&nbsp;non­para­met­ric smoother. It is cer­tainly far bet­ter than pro­ce­dures based on sta­tis­ti­cal tests and pro­vides a&nbsp;nearly unbi­ased mea­sure of the true <span class="caps">MSE</span> on new observations.</p>
+<p>How­ever,&nbsp;as with any vari­able selec­tion pro­ce­dure, it can be mis­used. Beware of look­ing at sta­tis­ti­cal tests after select­ing vari­ables using cross-​​validation — the tests do not take account of the vari­able selec­tion that has taken place and so the p-​​values can mislead.</p>
+<p>It is also impor­tant to realise that it doesn’t always work. For exam­ple, if there are exact dupli­cate obser­va­tions (i.e., two or more obser­va­tions with equal val­ues for all covari­ates and for the <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-05d340e5b780b0ab91da97d425cf8f44_l3.png" class="ql-img-inline-formula" alt="y" title="Rendered by QuickLaTeX.com" height="12" width="9" style="vertical-align: -4px;" scale="0"> vari­able) then leav­ing one obser­va­tion out will not be effective.</p>
+<p>Another prob­lem is that a&nbsp;small change in the data can cause a&nbsp;large change in the model selected. Many authors have found that k-​​fold cross-​​validation works bet­ter in this respect.</p>
+<p>In a&nbsp;famous paper, <a class="vt-p" href="http://www.jstor.org/stable/2290328">Shao (1993)</a> showed that leave-​​one-​​out cross val­i­da­tion does not lead to a&nbsp;con­sis­tent esti­mate of the model. That is, if there is a&nbsp;true model, then <span class="caps">LOOCV</span> will not always find it, even with very large sam­ple sizes. In con­trast, cer­tain kinds of leave-​​k-​​out cross-​​validation, where k&nbsp;increases with n, will be con­sis­tent. Frankly, I&nbsp;don’t con­sider this is a&nbsp;very impor­tant result as there is never a&nbsp;true model. In real­ity, every model is wrong, so con­sis­tency is not really an inter­est­ing property.</p>
+<h3>Cross-​​validation for lin­ear models</h3>
+<p>While cross-​​validation can be com­pu­ta­tion­ally expen­sive in gen­eral, it is very easy and fast to com­pute <span class="caps">LOOCV</span> for lin­ear mod­els. A&nbsp;lin­ear model can be writ­ten&nbsp;as</p>
+<p class="ql-center-displayed-equation" style="line-height: 16px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-415ef17b58d91313c6311564f177c213_l3.png" height="16" width="102" class="ql-img-displayed-equation" alt="\[ \mathbf{Y} = \mathbf{X}\mbox{\boldmath$\beta$} + \mathbf{e}. \]" title="Rendered by QuickLaTeX.com" scale="0"></p>
+<p>Then</p>
+<p class="ql-center-displayed-equation" style="line-height: 22px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-9b47a80c24884a3665b878f14e07971d_l3.png" height="22" width="140" class="ql-img-displayed-equation" alt="\[ \hat{\mbox{\boldmath$\beta$}} = (\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{Y} \]" title="Rendered by QuickLaTeX.com" scale="0"></p>
+<p>and the fit­ted val­ues can be cal­cu­lated&nbsp;using</p>
+<p class="ql-center-displayed-equation" style="line-height: 22px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-7f31e0f5c9eb4b3b439b85ad15d398fb_l3.png" height="22" width="269" class="ql-img-displayed-equation" alt="\[ \mathbf{\hat{Y}} = \mathbf{X}\hat{\mbox{\boldmath$\beta$}} = \mathbf{X}(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;\mathbf{Y} = \mathbf{H}\mathbf{Y}, \]" title="Rendered by QuickLaTeX.com" scale="0"></p>
+<p>where <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-9aeae93e6b781bb12e311794de886ef5_l3.png" class="ql-img-inline-formula" alt="\mathbf{H} = \mathbf{X}(\mathbf{X}&#39;\mathbf{X})^{-1}\mathbf{X}&#39;" title="Rendered by QuickLaTeX.com" height="19" width="142" style="vertical-align: -4px;" scale="0"> is known as the “hat-​​matrix” because it is used to com­pute <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-2e5b7c7445a82de1fea2a5904e9d1f01_l3.png" class="ql-img-inline-formula" alt="\mathbf{\hat{Y}}" title="Rendered by QuickLaTeX.com" height="18" width="16" style="vertical-align: -1px;" scale="0"> (“Y-​​hat”).</p>
+<p>If the diag­o­nal val­ues of <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-6f5486e6ff3430520577274054ab41fd_l3.png" class="ql-img-inline-formula" alt="\mathbf{H}" title="Rendered by QuickLaTeX.com" height="14" width="16" style="vertical-align: -1px;" scale="0"> are denoted by <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-2726674b26a0f993691ddb902673187b_l3.png" class="ql-img-inline-formula" alt="h_{1},\dots,h_{n}" title="Rendered by QuickLaTeX.com" height="17" width="75" style="vertical-align: -4px;" scale="0">, then the cross-​​validation sta­tis­tic can be com­puted&nbsp;using</p>
+<p class="ql-center-displayed-equation" style="line-height: 50px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-f9c15d99a821ebd6d2220edddbc1d453_l3.png" height="50" width="197" class="ql-img-displayed-equation" alt="\[ \text{CV} = \frac{1}{n}\sum_{i=1}^n [e_{i}/(1-h_{i})]^2, \]" title="Rendered by QuickLaTeX.com" scale="0"></p>
+<p>where <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-9f45314c28e2a917f55a903912a9281a_l3.png" class="ql-img-inline-formula" alt="e_{i}" title="Rendered by QuickLaTeX.com" height="11" width="13" style="vertical-align: -3px;" scale="0"> is the resid­ual obtained from fit­ting the model to all <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-285120f6b59608f77c99e4e728ea9851_l3.png" class="ql-img-inline-formula" alt="n" title="Rendered by QuickLaTeX.com" height="8" width="11" style="vertical-align: 0px;" scale="0"> obser­va­tions. See Christensen’s book <a class="vt-p" href="http://www.amazon.com/gp/product/0387953612?ie=UTF8&tag=prorobjhyn-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0387953612">Plane Answers to Com­plex Ques­tions</a> for a&nbsp;proof. Thus, it is not nec­es­sary to actu­ally fit <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-285120f6b59608f77c99e4e728ea9851_l3.png" class="ql-img-inline-formula" alt="n" title="Rendered by QuickLaTeX.com" height="8" width="11" style="vertical-align: 0px;" scale="0"> sep­a­rate mod­els when com­put­ing the <span class="caps">CV</span> sta­tis­tic for lin­ear mod­els. This remark­able result allows cross-​​validation to be used while only fit­ting the model once to all avail­able observations.</p>
+<h3>Rela­tion­ships with other quantities</h3>
+<p>Cross-​​validation sta­tis­tics and related quan­ti­ties are widely used in sta­tis­tics, although it has not always been clear that these are all con­nected with cross-​​validation.</p>
+<h4>Jack­knife</h4>
+<p>A jack­knife esti­ma­tor is obtained by recom­put­ing an esti­mate leav­ing out one obser­va­tion at a&nbsp;time from the esti­ma­tion sam­ple. The <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-285120f6b59608f77c99e4e728ea9851_l3.png" class="ql-img-inline-formula" alt="n" title="Rendered by QuickLaTeX.com" height="8" width="11" style="vertical-align: 0px;" scale="0"> esti­mates allow the bias and vari­ance of the sta­tis­tic to be calculated.</p>
+<h4>Akaike’s Infor­ma­tion Criterion</h4>
+<p>Akaike’s Infor­ma­tion Cri­te­rion is defined as</p>
+<p class="ql-center-displayed-equation" style="line-height: 17px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-62d3bf0e5423d4d7fd76e9812de5a591_l3.png" height="17" width="163" class="ql-img-displayed-equation" alt="\[ \text{AIC} = -2\log {\cal L}+ 2p, \]" title="Rendered by QuickLaTeX.com" scale="0"></p>
+<p>where <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-632daa6842517ea073aeae3b1b854422_l3.png" class="ql-img-inline-formula" alt="{\cal L}" title="Rendered by QuickLaTeX.com" height="12" width="12" style="vertical-align: 0px;" scale="0"> is the max­i­mized like­li­hood using all avail­able data for esti­ma­tion and <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-990f1def285ae086f76605fa22f261bc_l3.png" class="ql-img-inline-formula" alt="p" title="Rendered by QuickLaTeX.com" height="12" width="10" style="vertical-align: -4px;" scale="0"> is the num­ber of free para­me­ters in the model. Asymp­tot­i­cally, min­i­miz­ing the <span class="caps">AIC</span> is equiv­a­lent to min­i­miz­ing the <span class="caps">CV</span> value. This is true for any model <a class="vt-p" href="http://www.jstor.org/stable/2984877">(Stone 1977)</a>, not just lin­ear mod­els. It is this prop­erty that makes the <span class="caps">AIC</span> so use­ful in model selec­tion when the pur­pose is prediction.</p>
+<h4>Schwarz Bayesian Infor­ma­tion Criterion</h4>
+<p>A related mea­sure is Schwarz’s Bayesian Infor­ma­tion Criterion:</p>
+<p class="ql-center-displayed-equation" style="line-height: 18px;"><span class="ql-right-eqno"> &nbsp; </span><span class="ql-left-eqno"> &nbsp; </span><img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-8b3c755bb0b5a13b2c1a3b3653562c84_l3.png" height="18" width="205" class="ql-img-displayed-equation" alt="\[ \text{BIC} = -2\log {\cal L}+ p\log(n), \]" title="Rendered by QuickLaTeX.com" scale="0"></p>
+<p>where <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-285120f6b59608f77c99e4e728ea9851_l3.png" class="ql-img-inline-formula" alt="n" title="Rendered by QuickLaTeX.com" height="8" width="11" style="vertical-align: 0px;" scale="0"> is the num­ber of obser­va­tions used for esti­ma­tion. Because of the heav­ier penalty, the model cho­sen by <span class="caps">BIC</span> is either the same as that cho­sen by <span class="caps">AIC</span>, or one with fewer terms. Asymp­tot­i­cally, for lin­ear mod­els min­i­miz­ing <span class="caps">BIC</span> is equiv­a­lent to leave–<img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-1c9bce15e851a428a0531afe3bf82873_l3.png" class="ql-img-inline-formula" alt="v" title="Rendered by QuickLaTeX.com" height="8" width="9" style="vertical-align: 0px;" scale="0">–out cross-​​validation when <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-e379defcc87f26fdc54a02fb05058ecb_l3.png" class="ql-img-inline-formula" alt="v = n[1-1/(\log(n)-1)]" title="Rendered by QuickLaTeX.com" height="19" width="192" style="vertical-align: -5px;" scale="0"> <a class="vt-p" href="http://www3.stat.sinica.edu.tw/statistica/oldpdf/A7n21.pdf">(Shao 1997)</a>.</p>
+<p>Many sta­tis­ti­cians like to use <span class="caps">BIC</span> because it is con­sis­tent — if there is a&nbsp;true under­ly­ing model, then with enough data the <span class="caps">BIC</span> will select that model. How­ever, in real­ity there is rarely if ever a&nbsp;true under­ly­ing model, and even if there was a&nbsp;true under­ly­ing model, select­ing that model will not nec­es­sar­ily give the best fore­casts (because the para­me­ter esti­mates may not be accurate).</p>
+<h3>Cross-​​validation for time series</h3>
+<p>When the data are not inde­pen­dent cross-​​validation becomes more dif­fi­cult as leav­ing out an obser­va­tion does not remove all the asso­ci­ated infor­ma­tion due to the cor­re­la­tions with other obser­va­tions. For time series fore­cast­ing, a&nbsp;cross-​​validation sta­tis­tic is obtained as follows</p>
+<ol>
+<li>Fit the model to the data <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-b69209a2941d87e5b90b3a14f2cccf7a_l3.png" class="ql-img-inline-formula" alt="y_1,\dots,y_t" title="Rendered by QuickLaTeX.com" height="12" width="70" style="vertical-align: -4px;" scale="0"> and let <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-959992762cb64667c54988b11878980a_l3.png" class="ql-img-inline-formula" alt="\hat{y}_{t+1}" title="Rendered by QuickLaTeX.com" height="17" width="31" style="vertical-align: -4px;" scale="0"> denote the fore­cast of the next obser­va­tion. Then com­pute the error <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-44360446c9ef19f8ed0d1439dc7fccef_l3.png" class="ql-img-inline-formula" alt="(e_{t+1}^*=y_{t+1}-\hat{y}_{t+1})" title="Rendered by QuickLaTeX.com" height="20" width="153" style="vertical-align: -6px;" scale="0"> for the fore­cast observation.</li>
+<li>Repeat step 1&nbsp;for <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-2b28513628163b71b8471cd0933d9f3d_l3.png" class="ql-img-inline-formula" alt="t=m,\dots,n-1" title="Rendered by QuickLaTeX.com" height="16" width="125" style="vertical-align: -4px;" scale="0"> where <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-9df6ff82b7585fa50493fd385e6fdd00_l3.png" class="ql-img-inline-formula" alt="m" title="Rendered by QuickLaTeX.com" height="8" width="15" style="vertical-align: 0px;" scale="0"> is the min­i­mum num­ber of obser­va­tions needed for fit­ting the&nbsp;model.</li>
+<li>Com­pute the <span class="caps">MSE</span> from <img src="./Why every statistician should know about cross-validation   Hyndsight_files/quicklatex.com-b2c81299427fa13173da9b9e5948c901_l3.png" class="ql-img-inline-formula" alt="e_{m+1}^*,\dots,e_{n}^*" title="Rendered by QuickLaTeX.com" height="19" width="94" style="vertical-align: -6px;" scale="0">.</li>
+</ol>
+<h3>Ref­er­ences</h3>
+<p>An excel­lent and com­pre­hen­sive recent sur­vey of cross-​​validation results is <a class="vt-p" href="http://dx.doi.org/10.1214/09-SS054">Arlot and Celisse (2010)</a><br>
+</p><hr style="background-color:#022350; height:2px;">
+<h3>Related Posts:</h3>
+<ul class="similar-posts">
+<li><a href="http://robjhyndman.com/hyndsight/loocv-linear-models/" rel="bookmark" title="17 March 2014">Fast com­pu­ta­tion of cross-​​​​validation in lin­ear models</a></li>
+<li><a href="http://robjhyndman.com/hyndsight/aic/" rel="bookmark" title="4 July 2013">Facts and fal­lac­ies of the&nbsp;<span class="caps">AIC</span></a></li>
+<li><a href="http://robjhyndman.com/hyndsight/tscvexample/" rel="bookmark" title="26 August 2011">Time series cross-​​​​validation: an R&nbsp;example</a></li>
+<li><a href="http://robjhyndman.com/hyndsight/to-explain-or-predict/" rel="bookmark" title="19 May 2014">To explain or predict?</a></li>
+<li><a href="http://robjhyndman.com/hyndsight/rolling-forecasts/" rel="bookmark" title="16 July 2014">Vari­a­tions on rolling forecasts</a></li>
+</ul>
+<hr style="background-color:#022350; height:2px;"><!-- Similar Posts took 13.502 ms --><p></p>
+<div class="bottomcontainerBox" style="background-color:#F0F0F0;">
+			<div style="float:left; width:85px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;">
+			<div class="fitvid"><iframe src="./Why every statistician should know about cross-validation   Hyndsight_files/like.html" scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; width:85px; height:21px;"></iframe></div></div>
+			<div style="float:left; width:80px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;">
+			<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><div class="fitvid" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1415590907650" name="I0_1415590907650" src="./Why every statistician should know about cross-validation   Hyndsight_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div></div>
+			</div>
+			<div style="float:left; width:95px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;">
+			<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./Why every statistician should know about cross-validation   Hyndsight_files/tweet_button.d58098f8a7f0ff5a206e7f15442a6b30.en.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 108px; height: 20px;"></iframe>
+			</div><div style="float:left; width:105px;padding-right:10px; margin:4px 4px 4px 4px;height:30px;"><span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1415590912841_0"><a id="li_ui_li_gen_1415590912841_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1415590912841_0-logo">in</span><span id="li_ui_li_gen_1415590912841_0-title"><span id="li_ui_li_gen_1415590912841_0-mark"></span><span id="li_ui_li_gen_1415590912841_0-title-text">Share</span></span></a></span></span><span style="padding: 0px !important; margin: 0px !important; text-indent: 0px !important; display: inline-block !important; vertical-align: baseline !important; font-size: 1px !important;"><span id="li_ui_li_gen_1415590912857_1-container" class="IN-right"><span id="li_ui_li_gen_1415590912857_1" class="IN-right"><span id="li_ui_li_gen_1415590912857_1-inner" class="IN-right"><span id="li_ui_li_gen_1415590912857_1-content" class="IN-right">15</span></span></span></span></span></span><script type="in/share+init" data-url="http://robjhyndman.com/hyndsight/crossvalidation/" data-counter="right"></script></div>			
+			</div><div style="clear:both"></div><div style="padding-bottom:4px;"></div> 			</div><!-- .entry-content -->
+
+</article><!-- #post-## -->
+
+				<nav class="navigation post-navigation" role="navigation">
+		<h1 class="screen-reader-text">Post navigation</h1>
+		<div class="nav-links">
+			<div class="nav-previous"><a href="http://robjhyndman.com/hyndsight/syncing/" rel="prev"><span class="meta-nav">← Previous Post</span> That syncing feeling</a></div><div class="nav-next"><a href="http://robjhyndman.com/hyndsight/arimax/" rel="next"><span class="meta-nav">Next Post →</span> The <span class="caps">ARIMAX</span> model muddle</a></div>		</div><!-- .nav-links -->
+	</nav><!-- .navigation -->
+	
+			
+<div id="disqus_thread"><iframe id="dsq-203" data-disqus-uid="203" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Why every statistician should know about cross-validation   Hyndsight_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 0px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+
+
+		
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+	</div><!-- #content -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+			<a class="powered-by" href="http://wordpress.org/">Proudly powered by WordPress</a>
+			<span class="sep"> | </span>
+			Theme: editor by <a href="https://array.is/">Array</a>		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+
+</div><!-- #page -->
+
+	<div style="display:none">
+	</div>
+	<script>
+			// List of Themes, Classes and Regular expressions
+		var template_name = 'editor';
+		switch(template_name) {
+			case 'twentyeleven' :
+					var classes = ['entry-meta'];
+					var regex = ' by <a(.*?)\/a>;<span class="sep"> by <\/span>';
+					break;
+			case 'twentyten' :
+					var classes = ['entry-meta'];
+					var regex = ' by <a(.*?)\/a>;<span class="meta-sep">by<\/span>';
+					break;
+			case 'object' :
+					var classes = ['post-details', 'post'];
+					var regex = ' by <span(.*?)\/span>;<p class="post-details">by';
+					break;
+			case 'theme-revenge' :
+					var classes = ['post-entry-meta'];
+					var regex = 'By <a(.*?)\/a> on';
+					break;
+			case 'Magnificent' :
+					var classes = ['meta-info'];
+					var regex = '<span>by<\/span> <a(.*?)\/a>;Posted by <a(.*?)\/a> on ';
+					break;
+			case 'wp-clearphoto' :
+					var classes = ['meta'];
+					var regex = '\\|\\s*<\/span>\\s*<span class="meta-author">\\s*<a(.*?)\/a>';
+					break;
+			case 'wp-clearphoto1' :
+					var classes = ['meta'];
+					var regex = '\\|\\s*<\/span>\\s*<span class="meta-author">\\s*<a(.*?)\/a>';
+					break;
+			default:
+					var classes = ['entry-meta'];
+					var regex = ' by <a(.*?)\/a>;<span class="sep"> by <\/span>; <span class="meta-sep">by<\/span>;<span class="meta-sep"> by <\/span>';
+		}
+				if (typeof classes[0] !== 'undefined' && classes[0] !== null) {
+				for(var i = 0; i < classes.length; i++) {
+					var elements = document.querySelectorAll('.'+classes[i]);
+					for (var j = 0; j < elements.length; j++) {
+						var regex_array = regex.split(";");
+						for(var k = 0; k < regex_array.length; k++) {
+							 if (elements[j].innerHTML.match(new RegExp(regex_array[k], "i"))) {
+								 var replaced_txt = elements[j].innerHTML.replace(new RegExp(regex_array[k], "i"), '');
+								 elements[j].innerHTML = replaced_txt;
+							 }
+						}
+					}			
+				}
+			}
+						
+		</script>
+	<!-- Lightbox Plus Colorbox v2.7/1.5.9 - 2013.01.24 - Message: 0-->
+<script type="text/javascript">
+jQuery(document).ready(function($){
+  $("a[rel*=lightbox]").colorbox({speed:350,initialWidth:"300",initialHeight:"100",opacity:0.8,loop:false,scrolling:false,escKey:false,arrowKey:false,top:false,right:false,bottom:false,left:false});
+});
+</script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/widgets.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/in.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/wpgroho.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/jquery.fitvids.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/editor.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/jquery.colorbox.1.5.9.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"platform":"wordpress@4.0","language":""},"disqusIdentifier":"991 http:\/\/robjhyndman.com\/researchtips\/?p=991","disqusShortname":"researchtips","disqusTitle":"Why every statistician should know about cross-\u200b\u200bvalidation","disqusUrl":"http:\/\/robjhyndman.com\/hyndsight\/crossvalidation\/","options":{"manualSync":false},"postId":"991"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Why every statistician should know about cross-validation   Hyndsight_files/disqus.js"></script>
+
+	<script src="./Why every statistician should know about cross-validation   Hyndsight_files/e-201446.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.2',blog:'14699697',post:'991',tz:'11'});
+	var load_cmc = function(){linktracker_init(14699697,991,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img id="wpstats" src="./Why every statistician should know about cross-validation   Hyndsight_files/g.gif" alt="" scale="0">
+
+
+<div id="cboxOverlay" style="display: none;"></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><iframe name="oauth2relay287049545" id="oauth2relay287049545" src="./Why every statistician should know about cross-validation   Hyndsight_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

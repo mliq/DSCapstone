@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)http://setosa.io/markov/transition-matrix.html#%7B%22tm%22%3A%5B%5B0.5%2C0.5%5D%2C%5B0.5%2C0.5%5D%5D%7D -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-animate){display:none !important;}ng\:form{display:block;}</style>
+    <title>Markov Chains</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <link href="css(1)" rel="stylesheet" type="text/css">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <script src="d3.min.js"></script>
+    <script src="vector.js"></script>
+    <script src="angular.min.js" charset="utf-8"></script>
+<style>
+.controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.st-diagram {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.st-diagram .nodes {
+  pointer-events: all;
+}
+.matrix {
+  width: 30%;
+  height: 100%;
+  right: 0;
+  position: absolute;
+  color: white;
+}
+@media only screen and (max-width: 768px) {
+  .st-diagram {
+    width: 100%;
+    height: 50%;
+  }
+  .matrix {
+    width: 100%;
+    height: 50%;
+    bottom: 0;
+  }
+}
+.matrix .cell {
+  position: relative;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  border: 1px solid #f3f3f3;
+}
+.matrix .cell .desc {
+  position: relative;
+}
+.matrix .cell .control input {
+  text-align: center;
+  width: 70%;
+}
+</style>
+<style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body ng-app="myApp" ng-controller="MainCtrl" class="ng-scope">
+  <div class="st-diagram ng-isolate-scope" center="diagramCenter" states="states" transition-matrix="transitionMatrix" duration="duration" selected-transition="selected.transition"><svg width="960" height="230"><g transform="translate(384,115)"><g transform="translate(-480,-115)"><g class="links"><path marker-end="url(#linkMarker-0-0)" class="link" style="stroke: rgb(31, 119, 180); stroke-width: 7.07106781186548px;" d="M429.1305934194008,57.193410320359234 C475.3245700449651,38.05923870210475 473.15684253171776,107.8560866742902 436.20166123126626,92.54874937968661"></path><path marker-end="url(#linkMarker-0-1)" class="link" style="stroke: rgb(31, 119, 180); stroke-width: 7.07106781186548px;" d="M430.9746733452823,108.0021644465009S452.12219724378724,156.50696463830664 505.02232719741573,157.7356466858898"></path><path marker-end="url(#linkMarker-1-0)" class="link" style="stroke: rgb(255, 127, 14); stroke-width: 7.07106781186548px;" d="M529.0253266547197,121.99783555349904S507.8778027562148,73.4930353616933 454.9776728025863,72.26435331411012"></path><path marker-end="url(#linkMarker-1-1)" class="link" style="stroke: rgb(255, 127, 14); stroke-width: 7.07106781186548px;" d="M559.1536778280632,144.5223184321788 C605.3476544536276,125.38814681392431 603.1799269403801,195.18499478610977 566.2247456399286,179.87765749150617"></path></g><g class="nodes"><g class="node" style="fill: rgb(31, 119, 180);" transform="translate(414.98845779566983,71.33554594409019)"><circle r="20"></circle><text transform="translate(0,5)">A</text></g><g class="node" style="fill: rgb(255, 127, 14);" transform="translate(545.0115422043323,158.66445405590974)"><circle r="20"></circle><text transform="translate(0,5)">B</text></g></g><g class="currentState" transform="translate(460.4101257324219,142.97808837890625) scale(1)" style="opacity: 1;"><circle r="10"></circle></g></g></g><defs><marker class="linkMarker" id="linkMarker-0-0" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(31, 119, 180);"></path></marker><marker class="linkMarker" id="linkMarker-0-1" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(31, 119, 180);"></path></marker><marker class="linkMarker" id="linkMarker-1-0" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(255, 127, 14);"></path></marker><marker class="linkMarker" id="linkMarker-1-1" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(255, 127, 14);"></path></marker></defs></svg></div>
+  <div style="overflow:hidden;overflow:hidden" class="matrix grid"><div ng-transclude="">
+    <div class="row ng-scope" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" style="width: 288px; height: 76.6666666666667px;">
+      <div class="cell ng-scope" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" style="width: 96px; height: 76.6666666666667px;"></div>
+      <div class="cell ng-scope" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" style="line-height: 76.6666666666667px; width: 96px; height: 76.6666666666667px; background-color: rgb(31, 119, 180);"><span class="ng-scope">A</span></div>
+      <div class="cell ng-scope" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" style="line-height: 76.6666666666667px; width: 96px; height: 76.6666666666667px; background-color: rgb(255, 127, 14);"><span class="ng-scope">B</span></div>
+    </div>
+    <div class="row ng-scope" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" style="width: 288px; height: 76.6666666666667px;">
+    <div ng-style="{&#39;background-color&#39;: color(&#39;A&#39;)}" style="width: 100%; height: 100%; background-color: rgb(31, 119, 180);" class="ng-scope">
+        <div class="cell" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" style="width: 96px; height: 76.6666666666667px;">
+          <div style="text-align: center; line-height:76.66666666666667px" class="ng-scope"> A </div>
+        </div>
+        <div class="cell" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" ng-mouseover="selected.transition = [0, 0]" ng-mouseout="selected.transition = null" style="width: 96px; height: 76.6666666666667px;">
+          <div class="desc ng-binding ng-scope">
+            P(A|A): 0.50
+          </div>
+          <div class="control ng-scope">
+            <input type="range" min="0" max="1" step="0.01" ng-change="onChangeMatrixValue(0, 0)" ng-model="transitionMatrix[0][0]" class="ng-pristine ng-untouched ng-valid">
+          </div>
+        </div>
+        <div class="cell" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" ng-mouseover="selected.transition = [0, 1]" ng-mouseout="selected.transition = null" style="width: 96px; height: 76.6666666666667px;">
+          <div class="desc ng-binding ng-scope">
+            P(B|A): 0.50
+          </div>
+          <div class="control ng-scope">
+            <input type="range" min="0" max="1" step="0.01" ng-change="onChangeMatrixValue(0, 1)" ng-model="transitionMatrix[0][1]" class="ng-pristine ng-untouched ng-valid">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row ng-scope" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" style="width: 288px; height: 76.6666666666667px;">
+      <div ng-style="{&#39;background-color&#39;: color(&#39;B&#39;)}" style="width: 100%; height: 100%; background-color: rgb(255, 127, 14);" class="ng-scope">
+        <div class="cell" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" style="width: 96px; height: 76.6666666666667px;">
+          <div style="text-align: center; line-height:76.66666666666667px" class="ng-scope"> B </div>
+        </div>
+        <div class="cell" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" ng-mouseover="selected.transition = [1, 0]" ng-mouseout="selected.transition = null" style="width: 96px; height: 76.6666666666667px;">
+          <div class="desc ng-binding ng-scope">
+            P(A|B): 0.50
+          </div>
+          <div class="control ng-scope">
+            <input type="range" min="0" max="1" step="0.01" ng-change="onChangeMatrixValue(1, 0)" ng-model="transitionMatrix[1][0]" class="ng-pristine ng-untouched ng-valid">
+          </div>
+        </div>
+        <div class="cell" ng-style="{width: width + &#39;px&#39;, height: height + &#39;px&#39;}" ng-transclude="" ng-mouseover="selected.transition = [1, 1]" ng-mouseout="selected.transition = null" style="width: 96px; height: 76.6666666666667px;">
+          <div class="desc ng-binding ng-scope">
+            P(B|B): 0.50
+          </div>
+          <div class="control ng-scope">
+            <input type="range" min="0" max="1" step="0.01" ng-change="onChangeMatrixValue(1, 1)" ng-model="transitionMatrix[1][1]" class="ng-pristine ng-untouched ng-valid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <div class="controls">
+    <input class="speedRange ng-pristine ng-untouched ng-valid" type="range" ng-model="speedRange" min="1" max="20" step="1">
+    <label> speed </label>
+  </div>
+
+<script>
+
+var myApp = angular.module('myApp', []);
+
+myApp.controller('MainCtrl', function($scope, utils, $window) {
+  angular.element($window).on('resize', function() { $scope.$apply(); });
+  $scope.diagramCenter = [0.40, 0.5];
+  $scope.selected = { transition: null };
+  $scope.color = d3.scale.category10();
+  $scope.isSelectedTransition = function(i, j) {
+    return !!$scope.selected.transition;
+  };
+  $scope.states = [
+    { label: 'A', index: 0 },
+    { label: 'B', index: 1 }
+  ];
+  $scope.speedRange = 2;
+  $scope.$watch('speedRange', function(speed) {
+    $scope.duration = 2000 / +speed;
+  });
+
+  $scope.transitionMatrix = [
+    [0.5, 0.5],
+    [0.5, 0.5]
+  ];
+
+  $scope.onChangeMatrixValue = function(idx1, idx2) {
+    utils.normalizeTransitionMatrix($scope.transitionMatrix, idx1, idx2);
+  };
+});
+</script>
+<script src="common.js" charset="utf-8"></script>
+
+</body></html>

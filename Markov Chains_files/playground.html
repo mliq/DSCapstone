@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!-- saved from url=(0146)http://setosa.io/markov/playground.html?1415591120104#%7B%22tm%22%3A%5B%5B0.3%2C0.3%2C0.4%5D%2C%5B0.3%2C0.5%2C0.2%5D%2C%5B0.4%2C0.4%2C0.2%5D%5D%7D -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-animate){display:none !important;}ng\:form{display:block;}</style>
+    <title>Markov Chains</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <link href="css(1)" rel="stylesheet" type="text/css">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <script src="d3.min.js"></script>
+    <script src="vector.js"></script>
+    <script src="angular.min.js" charset="utf-8"></script>
+    <style>
+body {
+  background-color: none;
+  color: #333;
+}
+.controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.st-diagram {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.st-diagram .nodes {
+  pointer-events: all;
+}
+.matrixInput {
+  display: block;
+  height: 100%;
+  width: 50%;
+  right: 0;
+  position: absolute;
+}
+.matrixInput textarea{
+  border: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: red;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  outline: none;
+}
+.matrixInput textarea.valid {
+  color: inherit;
+}
+.matrix table {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  table-layout: fixed;
+}
+.matrix table td {
+  width: 33.33%;
+}
+.matrix table td input {
+  pointer-events: all;
+  width: 80%;
+}
+</style>
+<style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body ng-app="myApp" ng-controller="MainCtrl" class="ng-scope">
+  <div class="st-diagram ng-isolate-scope" center="diagramCenter" states="states" transition-matrix="transitionMatrix" duration="duration" selected-transition="selectedTransition"><svg width="960" height="500"><g transform="translate(384,250)"><g transform="translate(-480,-250)"><g class="links"><path marker-end="url(#linkMarker-0-0)" class="link" style="stroke: rgb(31, 119, 180); stroke-width: 5.47722557505166px;" d="M543.3588674236001,325.9161318617061 C589.5528440491645,306.78196024345164 587.3851165359171,376.5788082156371 550.4299352354656,361.2714709210335"></path><path marker-end="url(#linkMarker-0-1)" class="link" style="stroke: rgb(31, 119, 180); stroke-width: 5.47722557505166px;" d="M508.97687658043037,305.5568434467665S475.6073790203027,248.67426336913726 409.7675331272094,244.8972306082273"></path><path marker-end="url(#linkMarker-0-2)" class="link" style="stroke: rgb(31, 119, 180); stroke-width: 6.32455532033676px;" d="M551.5255417564548,306.85710789242063S584.9684348296462,257.0856125802093 558.5638385382641,203.2485794393729"></path><path marker-end="url(#linkMarker-1-0)" class="link" style="stroke: rgb(255, 127, 14); stroke-width: 5.47722557505166px;" d="M390.07304572895634,277.1077422319852S423.442543289084,333.9903223096144 489.2823891821773,337.7673550705244"></path><path marker-end="url(#linkMarker-1-1)" class="link" style="stroke: rgb(255, 127, 14); stroke-width: 7.07106781186548px;" d="M383.9753261332485,228.46418256958367 C430.1693027588128,209.33001095132917 428.0015752455654,279.12685892351465 391.04639394511395,263.81952162891105"></path><path marker-end="url(#linkMarker-1-2)" class="link" style="stroke: rgb(255, 127, 14); stroke-width: 4.47213595499958px;" d="M409.7153045990752,245.67502732705583S475.5239650831035,250.7386414838462 516.2617196198496,198.80738559363317"></path><path marker-end="url(#linkMarker-2-0)" class="link" style="stroke: rgb(44, 160, 44); stroke-width: 6.32455532033676px;" d="M518.641267734026,200.53657391426444S485.19837466083465,250.30806922647574 511.6029709522167,304.1451023673121"></path><path marker-end="url(#linkMarker-2-1)" class="link" style="stroke: rgb(44, 160, 44); stroke-width: 6.32455532033676px;" d="M501.0679636010539,164.26670518750677S435.2593031170256,159.2030910307164 394.52154858027956,211.13434692092943"></path><path marker-end="url(#linkMarker-2-2)" class="link" style="stroke: rgb(44, 160, 44); stroke-width: 4.47213595499958px;" d="M555.0922133143425,153.19327869751703 C601.2861899399069,134.05910707926253 599.1184624266594,203.855955051448 562.163281126208,188.5486177568444"></path></g><g class="nodes"><g class="node" style="fill: rgb(31, 119, 180);" transform="translate(529.2167317998692,340.05826748543706)"><circle r="20"></circle><text transform="translate(0,5)">A</text></g><g class="node" style="fill: rgb(255, 127, 14);" transform="translate(369.8331905095175,242.60631819331462)"><circle r="20"></circle><text transform="translate(0,5)">B</text></g><g class="node" style="fill: rgb(44, 160, 44);" transform="translate(540.9500776906116,167.33541432124798)"><circle r="20"></circle><text transform="translate(0,5)">C</text></g></g><g class="currentState" transform="translate(508.3962707519531,221.95272827148438) scale(1)" style="opacity: 1;"><circle r="10"></circle></g></g></g><defs><marker class="linkMarker" id="linkMarker-0-0" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(31, 119, 180);"></path></marker><marker class="linkMarker" id="linkMarker-0-1" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(31, 119, 180);"></path></marker><marker class="linkMarker" id="linkMarker-0-2" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(31, 119, 180);"></path></marker><marker class="linkMarker" id="linkMarker-1-0" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(255, 127, 14);"></path></marker><marker class="linkMarker" id="linkMarker-1-1" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(255, 127, 14);"></path></marker><marker class="linkMarker" id="linkMarker-1-2" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(255, 127, 14);"></path></marker><marker class="linkMarker" id="linkMarker-2-0" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(44, 160, 44);"></path></marker><marker class="linkMarker" id="linkMarker-2-1" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(44, 160, 44);"></path></marker><marker class="linkMarker" id="linkMarker-2-2" orient="auto" markerWidth="2" markerHeight="4" refX="0" refY="2"><path d="M0,0 V4 L2,2 Z" style="fill: rgb(44, 160, 44);"></path></marker></defs></svg></div>
+  
+  <div class="matrixInput">
+    <p> edit below this line </p>
+    <textarea ng-class="{ &#39;valid&#39; : validTransitionMatrix }" ng-model="transitionMatrixJSON" class="ng-binding ng-pristine ng-untouched ng-valid valid">[
+  [
+    0.3,
+    0.3,
+    0.4
+  ],
+  [
+    0.3,
+    0.5,
+    0.2
+  ],
+  [
+    0.4,
+    0.4,
+    0.2
+  ]
+]</textarea>
+  </div>
+  <div class="controls">
+    <input class="speedRange ng-pristine ng-untouched ng-valid" type="range" ng-model="speedRange" min="1" max="20" step="1">
+    <label> speed </label>
+  </div>
+
+<script>
+
+var myApp = angular.module('myApp', []);
+
+myApp.controller('MainCtrl', function($scope, utils, $window) {
+  angular.element($window).on('resize', function() { $scope.$apply(); });
+  $scope.diagramCenter = [0.40, 0.5];
+  $scope.isSelectedTransition = function(i, j) {
+    return !!$scope.selectedTransition;
+    if (!$scope.selectedTransition) return false;
+    return $scope.selectedTransition[0] === i
+      && $scope.selectedTransition[1] === j;
+  };
+  $scope.speedRange = 2;
+  $scope.$watch('speedRange', function(speed) {
+    $scope.duration = 2000 / +speed;
+  });
+  $scope.updateTransitionMatrix = function(matrix) {
+    var prev = $scope.transitionMatrix;
+    $scope.transitionMatrix = matrix;
+    if($scope.states && matrix.length === prev.length) return;
+    $scope.states = matrix.map(function(d, i) {
+      return { label: String.fromCharCode(65 + i), index: i };
+    });
+    utils.setHash({ tm: matrix });
+  };
+  var hash = utils.getHash();
+  if(hash && hash.tm) $scope.updateTransitionMatrix(hash.tm);
+  else $scope.updateTransitionMatrix([
+    [0.5, 0.5],
+    [0.5, 0.5]
+  ]);
+
+  $scope.transitionMatrixJSON = JSON.stringify($scope.transitionMatrix)
+    .replace(',[', ',\n[');
+  $scope.$watch('transitionMatrixJSON', function(str) {
+    var valid = false;
+    try{ 
+      var matrix = JSON.parse(str);
+      valid = matrix[0].length === matrix.length;
+      var sum = matrix.reduce(function(c, row) {
+        return c + row.reduce(function(p, c){ return p + c; }, 0);
+      }, 0);
+      var r = sum / matrix.length;
+      valid = valid && r < (1 + 1e-9) && r > (1 - 1e-9);
+      if (valid) {
+        $scope.updateTransitionMatrix(matrix);
+      }
+    }catch(e) {}
+    $scope.validTransitionMatrix = valid;
+  });
+});
+</script>
+<script src="common.js" charset="utf-8"></script>
+
+</body></html>

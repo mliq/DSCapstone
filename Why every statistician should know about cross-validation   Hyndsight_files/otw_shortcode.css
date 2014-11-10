@@ -1,0 +1,212 @@
+
+.otw-button {
+  background-color: #00aeef;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  color: white !important;
+  cursor: pointer;
+  display: inline-block !important;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1em;
+  margin: 0 0 5px 0;
+  outline: none;
+  padding: 8px 16px 9px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0.2)), color-stop(100%, rgba(0, 0, 0, 0.25)));
+  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.25));
+  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.25));
+  background-image: -o-linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.25));
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.25));
+  background-repeat: repeat-x;
+  /* Hovers */
+  /* IE Filters for IE8 */
+  /* SVG + opacity for IE9 */
+  /* Sizes */
+  /* Radii */
+  /* Icon buttons */
+}
+.otw-button:hover {
+  color: white;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0.1)), color-stop(100%, rgba(0, 0, 0, 0.05)));
+  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
+  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
+  background-image: -o-linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.05));
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(128, 128, 128, 0.6);
+}
+.otw-button:active {
+  color: #ebebeb;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(0, 0, 0, 0.1)), color-stop(100%, rgba(0, 0, 0, 0.4)));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25) inset;
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25) inset;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25) inset;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(128, 128, 128, 0.75);
+}
+.ie8 .otw-button {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#33ffffff', endColorstr='#40000000',GradientType=0 );
+}
+.ie8 .otw-button:hover {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1affffff', endColorstr='#0d000000',GradientType=0 );
+}
+.ie8 .otw-button:active {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1affffff', endColorstr='#66000000',GradientType=0 );
+}
+.ie9 .otw-button {
+  position: relative;
+}
+.ie9 .otw-button:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.12;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9ImczOTEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGRkZGRkYiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMxMTExMTEiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2czOTEpIiAvPgo8L3N2Zz4=);
+}
+.ie9 .otw-button:hover:after {
+  opacity: 0.05;
+}
+.ie9 .otw-button:active:after {
+  opacity: 0.2;
+}
+.otw-button.large {
+  font-size: 18px;
+}
+.otw-button.large img {
+  max-height: 19px;
+}
+.otw-button.medium {
+  font-size: 14px;
+}
+.otw-button.medium img {
+  max-height: 15px;
+}
+.otw-button.small {
+  font-size: 12px;
+  padding: 5px 10px 6px;
+}
+.otw-button.small img {
+  max-height: 13px;
+}
+.otw-button.tiny {
+  font-size: 11px;
+  padding: 4px 8px 5px;
+}
+.otw-button.tiny img {
+  max-height: 12px;
+}
+.otw-button.expand {
+  width: 100%;
+  text-align: center;
+}
+.otw-button.radius, .otw-button.radius:after {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+.otw-button.round, .otw-button.round:after {
+  -webkit-border-radius: 1000px;
+  -moz-border-radius: 1000px;
+  -ms-border-radius: 1000px;
+  -o-border-radius: 1000px;
+  border-radius: 1000px;
+}
+.otw-button i {
+  display: block;
+  float: left;
+  margin: 1px 6px 0 0;
+}
+.otw-button img {
+  margin-right: 8px;
+}
+.otw-button.right-icon i {
+  float: right;
+  margin: 1px 0 0 6px;
+}
+.otw-button.right-icon img {
+  float: right;
+  margin: 0 0 0 8px;
+}
+.red {
+  background-color: #ff1d25;
+}
+
+.orange {
+  background-color: #ff931e;
+}
+
+.green {
+  background-color: #8cc63f;
+}
+
+.greenish {
+  background-color: #23d7af;
+}
+
+.aqua {
+  background-color: #3fa9f5;
+}
+
+.blue {
+  background-color: #2356d7;
+}
+
+.pink {
+  background-color: #ff7bac;
+}
+
+.silver {
+  background-color: #d8d8d8;
+}
+
+.brown {
+  background-color: #c69c6d;
+}
+
+.black {
+  background-color: #1c1c1c;
+}
+
+.white {
+  background-color: white;
+}
+
+.otw-sc-link a {
+  padding-right: 3px;
+}
+.otw-sc-link a i {
+  display: block;
+  float: left;
+  margin: 0 3px 0 0;
+}
+.otw-sc-link a img {
+  max-height: 13px;
+  margin-right: 4px;
+}
+.otw-sc-link a.right-icon {
+  padding: 0 0 0 3px;
+}
+.otw-sc-link a.right-icon i {
+  float: right;
+  margin: 0 0 0 3px;
+}
+.otw-sc-link a.right-icon img {
+  margin: 0 0 0 4px;
+}
+[class*="general foundicon-"]:before {
+    font-family: "GeneralFoundicons";
+}

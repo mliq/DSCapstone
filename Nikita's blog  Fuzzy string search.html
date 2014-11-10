@@ -1,0 +1,1099 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0064)http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html -->
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="./Nikita's blog  Fuzzy string search_files/cb=gapi.loaded_4" async=""></script><script src="./Nikita's blog  Fuzzy string search_files/cb=gapi.loaded_3" async=""></script><script src="./Nikita's blog  Fuzzy string search_files/cb=gapi.loaded_2" async=""></script><script type="text/javascript" async="" src="./Nikita's blog  Fuzzy string search_files/ga.js"></script><script src="./Nikita's blog  Fuzzy string search_files/cb=gapi.loaded_1" async=""></script><script src="./Nikita's blog  Fuzzy string search_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript">(function() { var b=window,f="chrome",g="tick",k="jstiming";(function(){function d(a){this.t={};this.tick=function(a,d,c){var e=void 0!=c?c:(new Date).getTime();this.t[a]=[e,d];if(void 0==c)try{b.console.timeStamp("CSI/"+a)}catch(h){}};this[g]("start",null,a)}var a;b.performance&&(a=b.performance.timing);var n=a?new d(a.responseStart):new d;b.jstiming={Timer:d,load:n};if(a){var c=a.navigationStart,h=a.responseStart;0<c&&h>=c&&(b[k].srt=h-c)}if(a){var e=b[k].load;0<c&&h>=c&&(e[g]("_wtsrt",void 0,c),e[g]("wtsrt_","_wtsrt",h),e[g]("tbsd_","wtsrt_"))}try{a=null,
+b[f]&&b[f].csi&&(a=Math.floor(b[f].csi().pageT),e&&0<c&&(e[g]("_tbnd",void 0,b[f].csi().startE),e[g]("tbnd_","_tbnd",c))),null==a&&b.gtbExternal&&(a=b.gtbExternal.pageT()),null==a&&b.external&&(a=b.external.pageT,e&&0<c&&(e[g]("_tbnd",void 0,b.external.startE),e[g]("tbnd_","_tbnd",c))),a&&(b[k].pt=a)}catch(p){}})();b.tickAboveFold=function(d){var a=0;if(d.offsetParent){do a+=d.offsetTop;while(d=d.offsetParent)}d=a;750>=d&&b[k].load[g]("aft")};var l=!1;function m(){l||(l=!0,b[k].load[g]("firstScrollTime"))}b.addEventListener?b.addEventListener("scroll",m,!1):b.attachEvent("onscroll",m);
+ })();</script>
+<meta content="blogger" name="generator">
+<link href="http://ntz-develop.blogspot.com/favicon.ico" rel="icon" type="image/x-icon">
+<link href="./Nikita's blog  Fuzzy string search_files/Nikita's blog  Fuzzy string search.html" rel="canonical">
+<link rel="alternate" type="application/atom+xml" title="Nikita&#39;s blog - Atom" href="http://ntz-develop.blogspot.com/feeds/posts/default">
+<link rel="alternate" type="application/rss+xml" title="Nikita&#39;s blog - RSS" href="http://ntz-develop.blogspot.com/feeds/posts/default?alt=rss">
+<link rel="service.post" type="application/atom+xml" title="Nikita&#39;s blog - Atom" href="http://www.blogger.com/feeds/885300322566276441/posts/default">
+
+<link rel="alternate" type="application/atom+xml" title="Nikita&#39;s blog - Atom" href="http://ntz-develop.blogspot.com/feeds/1887965468830630556/comments/default">
+<link href="./Nikita's blog  Fuzzy string search_files/88552e8ee013623e2ef7bfd747375ae9.png" rel="image_src">
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>Nikita's blog: Fuzzy string search</title>
+<link type="text/css" rel="stylesheet" href="./Nikita's blog  Fuzzy string search_files/3841957138-widget_css_bundle.css">
+<link type="text/css" rel="stylesheet" href="./Nikita's blog  Fuzzy string search_files/authorization.css">
+<style id="page-skin-1" type="text/css"><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Minima
+Date:     26 Feb 2004
+Updated by: Blogger Team
+----------------------------------------------- */
+/* Variable definitions
+====================
+<Variable name="bgcolor" description="Page Background Color"
+type="color" default="#fff">
+<Variable name="textcolor" description="Text Color"
+type="color" default="#333">
+<Variable name="linkcolor" description="Link Color"
+type="color" default="#58a">
+<Variable name="pagetitlecolor" description="Blog Title Color"
+type="color" default="#666">
+<Variable name="descriptioncolor" description="Blog Description Color"
+type="color" default="#999">
+<Variable name="titlecolor" description="Post Title Color"
+type="color" default="#c60">
+<Variable name="bordercolor" description="Border Color"
+type="color" default="#ccc">
+<Variable name="sidebarcolor" description="Sidebar Title Color"
+type="color" default="#999">
+<Variable name="sidebartextcolor" description="Sidebar Text Color"
+type="color" default="#666">
+<Variable name="visitedlinkcolor" description="Visited Link Color"
+type="color" default="#999">
+<Variable name="bodyfont" description="Text Font"
+type="font" default="normal normal 100% Georgia, Serif">
+<Variable name="headerfont" description="Sidebar Title Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS',Trebuchet,Arial,Verdana,Sans-serif">
+<Variable name="pagetitlefont" description="Blog Title Font"
+type="font"
+default="normal normal 200% Georgia, Serif">
+<Variable name="descriptionfont" description="Blog Description Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif">
+<Variable name="postfooterfont" description="Post Footer Font"
+type="font"
+default="normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif">
+<Variable name="startSide" description="Side where text starts in blog language"
+type="automatic" default="left">
+<Variable name="endSide" description="Side where text ends in blog language"
+type="automatic" default="right">
+*/
+/* Use this with templates/template-twocol.html */
+body {
+background:#ffffff;
+margin:0;
+color:#333333;
+font:x-small Georgia Serif;
+font-size/* */:/**/small;
+font-size: /**/small;
+text-align: center;
+}
+a:link {
+color:#5588aa;
+text-decoration:none;
+}
+a:visited {
+color:#999999;
+text-decoration:none;
+}
+a:hover {
+color:#cc6600;
+text-decoration:underline;
+}
+a img {
+border-width:0;
+}
+/* Header
+-----------------------------------------------
+*/
+#header-wrapper {
+width:970px;
+margin:0 auto 10px;
+border:1px solid #cccccc;
+}
+#header-inner {
+background-position: center;
+margin-left: auto;
+margin-right: auto;
+}
+#header {
+margin: 5px;
+border: 1px solid #cccccc;
+text-align: center;
+color:#666666;
+}
+#header h1 {
+margin:5px 5px 0;
+padding:15px 20px .25em;
+line-height:1.2em;
+text-transform:uppercase;
+letter-spacing:.2em;
+font: normal normal 200% Georgia, Serif;
+}
+#header a {
+color:#666666;
+text-decoration:none;
+}
+#header a:hover {
+color:#666666;
+}
+#header .description {
+margin:0 5px 5px;
+padding:0 20px 15px;
+max-width:1010px;
+text-transform:uppercase;
+letter-spacing:.2em;
+line-height: 1.4em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+color: #999999;
+}
+#header img {
+margin-left: auto;
+margin-right: auto;
+}
+/* Outer-Wrapper
+----------------------------------------------- */
+#outer-wrapper {
+width: 970px;
+margin:0 auto;
+padding:10px;
+text-align:left;
+font: normal normal 100% Georgia, Serif;
+}
+#main-wrapper {
+width: 720px;
+float: left;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;     /* fix for long non-text content breaking IE sidebar float */
+}
+#sidebar-wrapper {
+width: 220px;
+float: right;
+word-wrap: break-word; /* fix for long text breaking sidebar float in IE */
+overflow: hidden;      /* fix for long non-text content breaking IE sidebar float */
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+margin:1.5em 0 .75em;
+font:normal normal 78% 'Trebuchet MS',Trebuchet,Arial,Verdana,Sans-serif;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.2em;
+color:#999999;
+}
+/* Posts
+-----------------------------------------------
+*/
+h2.date-header {
+margin:1.5em 0 .5em;
+}
+.post {
+margin:.5em 0 1.5em;
+border-bottom:1px dotted #cccccc;
+padding-bottom:1.5em;
+}
+.post h3 {
+margin:.25em 0 0;
+padding:0 0 4px;
+font-size:140%;
+font-weight:normal;
+line-height:1.4em;
+color:#cc6600;
+}
+.post h3 a, .post h3 a:visited, .post h3 strong {
+display:block;
+text-decoration:none;
+color:#cc6600;
+font-weight:normal;
+}
+.post h3 strong, .post h3 a:hover {
+color:#333333;
+}
+.post-body {
+margin:0 0 .75em;
+line-height:1.6em;
+}
+.post-body blockquote {
+line-height:1.3em;
+}
+.post-body table {
+border-style: solid;
+border-spacing: 0px;
+border-collapse: collapse;
+margin: 10px 0px 10px 0px;
+word-wrap: normal;
+}
+.post-body table td {
+padding: 0px 4px 0px 4px;
+}
+.post-footer {
+margin: .75em 0;
+color:#999999;
+text-transform:uppercase;
+letter-spacing:.1em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+line-height: 1.4em;
+}
+.comment-link {
+margin-left:.6em;
+}
+.post img {
+padding:4px;
+}
+table.tr-caption-container {
+padding:4px;
+border:1px solid #cccccc;
+}
+.tr-caption-container img {
+border: none;
+padding: 0;
+}
+.post blockquote {
+margin:1em 20px;
+}
+.post blockquote p {
+margin:.75em 0;
+}
+/* Comments
+----------------------------------------------- */
+#comments h4 {
+margin:1em 0;
+font-weight: bold;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.2em;
+color: #999999;
+}
+#comments-block {
+margin:1em 0 1.5em;
+line-height:1.6em;
+}
+#comments-block .comment-author {
+margin:.5em 0;
+}
+#comments-block .comment-body {
+margin:.25em 0 0;
+}
+#comments-block .comment-footer {
+margin:-.25em 0 2em;
+line-height: 1.4em;
+text-transform:uppercase;
+letter-spacing:.1em;
+}
+#comments-block .comment-body p {
+margin:0 0 .75em;
+}
+.deleted-comment {
+font-style:italic;
+color:gray;
+}
+#blog-pager-newer-link {
+float: left;
+}
+#blog-pager-older-link {
+float: right;
+}
+#blog-pager {
+text-align: center;
+}
+.feed-links {
+clear: both;
+line-height: 2.5em;
+}
+/* Sidebar Content
+----------------------------------------------- */
+.sidebar {
+color: #666666;
+line-height: 1.5em;
+}
+.sidebar ul {
+list-style:none;
+margin:0 0 0;
+padding:0 0 0;
+}
+.sidebar li {
+margin:0;
+padding-top:0;
+padding-right:0;
+padding-bottom:.25em;
+padding-left:15px;
+text-indent:-15px;
+line-height:1.5em;
+}
+.sidebar .widget, .main .widget {
+border-bottom:1px dotted #cccccc;
+margin:0 0 1.5em;
+padding:0 0 1.5em;
+}
+.main .Blog {
+border-bottom-width: 0;
+}
+/* Profile
+----------------------------------------------- */
+.profile-img {
+float: left;
+margin-top: 0;
+margin-right: 5px;
+margin-bottom: 5px;
+margin-left: 0;
+padding: 4px;
+border: 1px solid #cccccc;
+}
+.profile-data {
+margin:0;
+text-transform:uppercase;
+letter-spacing:.1em;
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+color: #999999;
+font-weight: bold;
+line-height: 1.6em;
+}
+.profile-datablock {
+margin:.5em 0 .5em;
+}
+.profile-textblock {
+margin: 0.5em 0;
+line-height: 1.6em;
+}
+.profile-link {
+font: normal normal 78% 'Trebuchet MS', Trebuchet, Arial, Verdana, Sans-serif;
+text-transform: uppercase;
+letter-spacing: .1em;
+}
+/* Footer
+----------------------------------------------- */
+#footer {
+width:660px;
+clear:both;
+margin:0 auto;
+padding-top:15px;
+line-height: 1.6em;
+text-transform:uppercase;
+letter-spacing:.1em;
+text-align: center;
+}
+
+--></style>
+<script type="text/javascript">var a="indexOf",b="&m=1",e="(^|&)m=",f="?",g="?m=1";function h(){var c=window.location.href,d=c.split(f);switch(d.length){case 1:return c+g;case 2:return 0<=d[1].search(e)?null:c+b;default:return null}}var k=navigator.userAgent;if(-1!=k[a]("Mobile")&&-1!=k[a]("WebKit")&&-1==k[a]("iPad")||-1!=k[a]("Opera Mini")||-1!=k[a]("IEMobile")){var l=h();l&&window.location.replace(l)};
+</script><script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('headEnd');
+</script><script type="text/javascript" src="./Nikita's blog  Fuzzy string search_files/google_top_exp.js"></script><style>.gc-bubbleDefault{background-color:transparent !important;text-align:left;padding:0 !important;margin:0 !important;border:0 !important;table-layout:auto !important}.gc-reset{background-color:transparent !important;border:0 !important;padding:0 !important;margin:0 !important;text-align:left}.pls-bubbleTop{border-bottom:1px solid #ccc !important}.pls-topTail,.pls-vertShimLeft,.pls-contentLeft{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/border_3.gif) !important}.pls-topTail{background-repeat:repeat-x !important;background-position:bottom !important}.pls-vertShim{background-color:#fff !important;text-align:right}.tbl-grey .pls-vertShim{background-color:#f5f5f5 !important}.pls-vertShimLeft{background-repeat:repeat-y !important;background-position:right !important;height:4px}.pls-vertShimRight{height:4px}.pls-confirm-container .pls-vertShim{background-color:#fff3c2 !important}.pls-contentWrap{background-color:#fff !important;position:relative !important;vertical-align:top}.pls-contentLeft{background-repeat:repeat-y;background-position:right;vertical-align:top}.pls-dropRight{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropR_3.png) !important;background-repeat:repeat-y !important;vertical-align:top}.pls-vert,.pls-tailleft,.pls-dropTR .pls-dropBR,.pls-dropBL,.pls-vert img{vertical-align:top}.pls-dropBottom{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleDropB_3.png) !important;background-repeat:repeat-x !important;width:100%;vertical-align:top}.pls-topLeft{background:inherit !important;text-align:right;vertical-align:bottom}.pls-topRight{background:inherit !important;text-align:left;vertical-align:bottom}.pls-bottomLeft{background:inherit !important;text-align:right}.pls-bottomRight{background:inherit !important;text-align:left;vertical-align:top}.pls-tailtop,.pls-tailright,.pls-tailbottom,.pls-tailleft{display:none;position:relative}.pls-tailbottom,.pls-tailtop,.pls-tailright,.pls-tailleft,.pls-dropTR,.pls-dropBR,.pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite_3.png) !important;background-repeat:no-repeat}.tbl-grey .pls-tailbottom,.tbl-grey .pls-tailtop,.tbl-grey .pls-tailright,.tbl-grey .pls-tailleft,.tbl-grey .pls-dropTR,.tbl-grey .pls-dropBR,.tbl-grey .pls-dropBL{background-image:url(//ssl.gstatic.com/s2/oz/images/stars/po/bubblev1/bubbleSprite-grey.png) !important}.pls-tailbottom{background-position:-23px 0}.pls-confirm-container .pls-tailbottom{background-position:-23px -10px}.pls-tailtop{background-position:-19px -20px}.pls-tailright{background-position:0 0}.pls-tailleft{background-position:-10px 0}.pls-tailtop{vertical-align:top}.gc-bubbleDefault td{line-height:0;font-size:0}.pls-topLeft img,.pls-topRight img,.pls-tailbottom{vertical-align:bottom}.pls-bottomLeft img,.bubbleDropTR,.pls-dropBottomL img,.pls-dropBottom img,.pls-dropBottomR img,.pls-bottomLeft{vertical-align:top}.pls-dropTR{background-position:0 -22px}.pls-dropBR{background-position:0 -27px}.pls-dropBL{background-position:0 -16px}.pls-spacertop,.pls-spacerright,.pls-spacerbottom,.pls-spacerleft{position:static !important}.pls-spinner{bottom:0;position:absolute;left:0;margin:auto;right:0;top:0}</style><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body>
+<div class="navbar section" id="navbar"><div class="widget Navbar" id="Navbar1"><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="" tabindex="0" vspace="0" width="100%" id="navbar-iframe" name="navbar-iframe" src="./Nikita's blog  Fuzzy string search_files/navbar.html"></iframe></div>
+<script type="text/javascript" src="./Nikita's blog  Fuzzy string search_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+        gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+          if (gapi.iframes && gapi.iframes.getContext) {
+            gapi.iframes.getContext().openChild({
+                url: 'https://www.blogger.com/navbar.g?targetBlogID\75885300322566276441\46blogName\75Nikita\47s+blog\46publishMode\75PUBLISH_MODE_BLOGSPOT\46navbarType\75BLUE\46layoutType\75LAYOUTS\46searchRoot\75http://ntz-develop.blogspot.com/search\46blogLocale\75en\46v\0752\46homepageUrl\75http://ntz-develop.blogspot.com/\46targetPostID\0751887965468830630556\46blogPostOrPageUrl\75http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html\46vt\758273528940936691007',
+                where: document.getElementById("navbar-iframe-container"),
+                id: "navbar-iframe"
+            });
+          }
+        });
+      </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div id="outer-wrapper"><div id="wrap2">
+<!-- skip links for text browsers -->
+<span id="skiplinks" style="display:none;">
+<a href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html#main">skip to main </a> |
+      <a href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html#sidebar">skip to sidebar</a>
+</span>
+<div id="header-wrapper">
+<div class="header section" id="header"><div class="widget Header" id="Header1">
+<div id="header-inner">
+<div class="titlewrapper">
+<h1 class="title">
+<a href="http://ntz-develop.blogspot.com/">Nikita's blog</a>
+</h1>
+</div>
+<div class="descriptionwrapper">
+<p class="description"><span>Search algorithms, software development and so on.</span></p>
+</div>
+</div>
+</div></div>
+</div>
+<div id="content-wrapper">
+<div id="crosscol-wrapper" style="text-align:center">
+<div class="crosscol section" id="crosscol"></div>
+</div>
+<div id="main-wrapper">
+<div class="main section" id="main"><div class="widget Blog" id="Blog1">
+<div class="blog-posts hfeed">
+<!-- google_ad_section_start(name=default) -->
+
+          <div class="date-outer">
+        
+<h2 class="date-header"><span>Thursday, March 24, 2011</span></h2>
+
+          <div class="date-posts">
+        
+<div class="post-outer">
+<div class="post hentry">
+<a name="1887965468830630556"></a>
+<h3 class="post-title entry-title">
+Fuzzy string search
+</h3>
+<div class="post-header">
+<div class="post-header-line-1"></div>
+</div>
+<div class="post-body entry-content">
+<h4>Intro</h4>Fuzzy search algorithms (also known as similarity search algorithms) are a basis of spell-checkers and full-fledged search engines like Google or Yandex. For example, these algorithms are used to provide the "Did you mean ..." function.<br>
+<br>
+In this article I'll discuss the following concepts, methods and algorithms:<br>
+<ul><li>Levenshtein distance</li>
+<li>Damerau-Levenshtein distance</li>
+<li>Bitap algorithm with modifications by Wu and Manber</li>
+<li>Spell-checker method</li>
+<li>N-gram method</li>
+<li>Signature hashing method</li>
+<li>BK-trees</li>
+</ul>I'll also perform a comparative test of the quality and efficiency of algorithms.<br>
+<br>
+<h4>So...</h4>Fuzzy search is a very useful feature of any search engine. However, its effective implementation is much more complicated than implementing a simple search for an exact match.<br>
+<br>
+The problem of fuzzy string searching can be formulated as follows:<br>
+"Find in the text or dictionary of size <b>n</b> all the words that match the given word (or start with the given word), taking into account <b>k</b> possible differences (errors)."<br>
+<br>
+For example, if you're requested for "machine" with two possible errors, find the words "marine", "lachine", "martine", and so on.<br>
+<br>
+Fuzzy search algorithms are characterized by <i>metric</i> - a function of distance between two words, which provides a measure of their similarity. A strict mathematical definition of <i>metric</i> includes a requirement to meet triangle inequality (X - a set of words, p - metric):<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/88552e8ee013623e2ef7bfd747375ae9.png" alt="Triangle inequality"><br>
+<br>
+Meanwhile, in most cases a metric is understood as a more general concept that does not meet the condition above, this concept can also be called <i>distance</i>.<br>
+<br>
+Among the most well-known metrics are <i>Hamming</i>, <i>Levenshtein</i> and <i>Damerau-Levenshtein</i> distances. Note that the Hamming distance is a metric only on a set of words of equal length, and that greatly limits the scope of its application.<br>
+<br>
+However, in practice, the Hamming distance is useless, yielding more natural from the human point of view metrics, which will be discussed below.<br>
+<br>
+<h4>Levenshtein distance</h4>The Levenshtein distance, also known as "edit distance", is the most commonly used metric, the algorithms of its computation can be found at every turn.<br>
+Nevertheless, it is necessary to make some comments about the most popular algorithm of calculation - <a href="http://algolist.manual.ru/search/lcs/vagner.php">Wagner-Fischer</a> method.<br>
+The original version of this algorithm has time complexity of <b>O(mn)</b> and consume <b>O(mn)</b> memory, where <b>m</b> and <b>n</b> are the lengths of the compared strings. The whole process can be represented by the following matrix:<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/74bc0fa858652701ff47bfd125c83eeb.png" alt="Levenshtein distance matrix"><br>
+<br>
+If you look at the algorithm's work process, it is easy to see that at each step only the last two rows of the matrix are used, hence, memory consumption can be reduced to <b>O(min(m, n))</b>.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/d100eae78aadf21ed3c97a88ad4d0278.png" alt="Levenshtein algorithm&#39;s work process"><br>
+<br>
+But that's not all - the algorithm can be optimized further, if no more than k differences should be found. In this case it is necessary to calculate only the diagonal band of width <b>2k+1</b> in matrix (Ukkonen cut-off), which reduces the time complexity to <b>O (k min (m, n))</b>.<br>
+<br>
+<h5>Prefix distance</h5>Usually it is necessary to calculate the distance between the prefix pattern and a string - ie, to find the distance between the specified prefix and nearest string prefix. In this case, you must take the smallest of the distances from the prefix pattern to all the prefixes of the string. Obviously, the prefix length can not be considered as a metric in the strict mathematical sense, what limits its application.<br>
+<br>
+Often, the specific value of a distance is not as important as fact that it exceeds a certain value.<br>
+<br>
+<h4>Damerau-Levenshtein distance</h4>This variation contributes to the definition of the Levenshtein distance one more rule - <i> transposition</i> of two adjacent letters are also counted as one operation, along with insertions, deletions, and substitutions.<br>
+A couple of years ago, Frederick Damerau would ensure that most typing errors - transpositions. Therefore, this metric gives the best results in practice.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/3d537e8ed3cdfd5f24264f3a94267052.png" alt="Damerau-Levenshtein algorithm&#39;s work process"><br>
+<br>
+To calculate this distance, it suffices to slightly modify the regular Levenshtein algorithm as follows: hold not two, but the last three rows, and add an appropriate additional condition - in the case of transposition take into account its cost.<br>
+<br>
+In addition to the above, there are many others sometimes used in practice distances, such as <a href="http://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance">Jaro–Winkler metric</a>, many of which are available in <a href="http://staffwww.dcs.shef.ac.uk/people/S.Chapman/simmetrics.html">SimMetrics</a> and <a href="http://sourceforge.net/projects/secondstring/">SecondString</a> libraries.<br>
+<br>
+<h4>Fuzzy search algorithms without indexing (Online)</h4>These algorithms are designed to search against previously unknown text, and can be used, for example, in a text editor, document viewers or web browsers to search the page. They do not require text pre-processing and can operate with a continuous stream of data.<br>
+<br>
+<h4>Linear search</h4>A simple one-by-one metric computation (eg, Levenshtein metric) for words of the input text. When you use metric limitation, this method allows to achieve optimum speed.<br>
+But at the same time, than more <b>k</b>, than more time grows. Asymptotic time complexity - <b>O (kn)</b>.<br>
+<br>
+<h4>Bitap (also known as Shift-Or or Baeza-Yates-Gonnet, and it's modifications by Wu and Manber)</h4><i>Bitap</i> algorithm and its various modifications are most often used for fuzzy search without indexing. Its variation is used, for example, in unix-utility <a href="http://en.wikipedia.org/wiki/Agrep">agrep</a>, which one functions like the standard <a href="http://en.wikipedia.org/wiki/Grep">grep</a>, but it supports errors in the search query, and even provides a limited ability to use regular expressions.<br>
+<br>
+For the first time the idea of this algorithm is proposed by <b>Ricardo Baeza-Yates</b> and <b>Gaston Gonnet</b>, the relevant article published in 1992.<br>
+The original version of the algorithm deals only with letter substitutions, and, in fact, computes the <i>Hamming</i> distance. But later <b>Sun Wu</b> and <b>Udi Manber</b> suggested a modification of this algorithm for computing the <i>Levenshtein</i> distance, ie brought support insertions and deletions, and developed the first version of agrep utility.<br>
+<br>
+<b>Bitshift operation</b><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="./Nikita's blog  Fuzzy string search_files/ce5c71b654ac09e52536df09b0a9b30e.png" alt="Bitshift operation"><br>
+<br>
+<b>Insertions</b><br>
+<img src="./Nikita's blog  Fuzzy string search_files/e88b50362f575d8c0aa7d5cf6fb7b72c.png" alt="Insertions"><br>
+<b>Deletions</b><br>
+<img src="./Nikita's blog  Fuzzy string search_files/2b85db5a69120fe3e6a2c0a80f6466e3.png" alt="Deletions"><br>
+<b>Substitutions</b><br>
+<img src="./Nikita's blog  Fuzzy string search_files/ce84978ae3bf60937dc737e983c8d192.png" alt="Substitutions"><br>
+<b>Result value</b><br>
+<img src="./Nikita's blog  Fuzzy string search_files/661ab5c472389db2386b7c44c9383fe2.png" alt="Result value"><br>
+<br>
+Where <b>k</b> - error count, <b>j</b> - letter index, <b>s</b><sub>x</sub> - letter mask (in mask one bits are placed at positions corresponding to the positions of this letter in the query).<br>
+Query match or mismatch is determined by the last bit of the result vector R.<br>
+<br>
+High speed of this algorithm is ensured by the bit parallelism - calculations can be performed on 32 or more bits in a single operation.<br>
+In this case, a trivial implementation supports the search for the words shorten than 32 symbols. This restriction is caused by the width of a standard type <i>int</i> (32-bit architectures). We can use wider types, but it's usage may slow down the algorithm's work.<br>
+<br>
+Despite the fact that the asymptotic time of this algorithm <b>O (kn)</b> equals linear method's time, it is much faster when the query is long and number of errors <b>k</b> more than 2.<br>
+<br>
+<h4>Testing</h4>Testing was performed on the text of 3.2 million words, average word length - 10.<br>
+<br>
+<h5>Exact search</h5>Search time: 3562 ms<br>
+<br>
+<h5>Linear search using Levenshtein metric</h5>Search time with <i>k = 2</i>: 5728 ms<br>
+Search time with <i>k = 5</i>: 8385 ms<br>
+<br>
+<h5>Bitap with Wu-Manber modifications search</h5>Search time with <i>k = 2</i>: 5499 ms<br>
+Search time with <i>k = 5</i>: 5928 ms<br>
+<br>
+It is obvious that a simple iteration using the metric, in contrast to the Bitap algorithm, highly depends on the number of errors <b>k</b>.<br>
+<br>
+At the same time, if we should search in constant large text, the search time can be greatly reduced by making text preprocessing (<i>indexing</i>).<br>
+<br>
+<h4>Fuzzy search algorithms with indexing (Offline)</h4>Feature of all fuzzy search algorithms with indexing is that the index is based on the dictionary compiled by the original text or list of records in a database.<br>
+<br>
+These algorithms use different approaches to solve problem - some of them use reduction to exact search, while others use properties of metrics to construct various spatial structures and so on.<br>
+<br>
+At the first step, we construct a dictionary using the original text, which would contain words and their position in text. Also, it is possible to calculate the frequency of words and phrases to improve search results.<br>
+<br>
+It is assumed that the index, as well as dictionary, entirely loaded into memory.<br>
+<br>
+Dictionary specifications:<ul><li>Source text — 8.2 Gb Moshkow's library (<a href="http://lib.ru/">lib.ru</a>), 680 millions of words;</li>
+<li>Dictionary size — 65 Mb;</li>
+<li>Word count - 3.2 million;</li>
+<li>Average word length — 9.5 letters;</li>
+<li>Average word square length — 10.0 letters;</li>
+<li>Russian alphabet (32 letters). Words that contain characters not in the alphabet, are not included in the dictionary.</li>
+</ul>Dependence of the dictionary size from the text size is not strictly linear - to a certain volume base word set is formed, between 15% on 500 thousand words and 5% on 5 million words, and then approaches a linear dependence, slowly decreasing and reaching 0.5% at 680 million words. Subsequent growth is ensured due to rare words.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/0b0088851974e466092cb9f284eaa445.png" alt="Growth of dictionary size"><br>
+<br>
+<h4>Spell-checker method</h4>As the name implies, this algorithm is often used in spelling correction systems (ie, spell-checker systems), when the size of the dictionary is small, or else when speed is not the main criterion.<br>
+It is based on reducing the problem of fuzzy search to the problem of exact search.<br>
+<br>
+A set of "mistaken" words is built from original query. Then every word from this set is searched in the dictionary for exact match.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/9541c998df7f4733c9ea0d7b64ff8405.png" alt="Spell-checker method"><br>
+<br>
+Its time complexity is strongly dependent on the number of errors k and the alphabet size |A|, and for a binary search over the dictionary is: <br>
+<img src="./Nikita's blog  Fuzzy string search_files/6ccefb0215a2ed63e8e532b2a76c48e0.png" alt="image"><br>
+<br>
+For example, in case of error count <i>k = 1</i> and word length of 7 in the English alphabet set of misspelled words will have about 370 words, so we need to make 370 queries in the dictionary, which is quite acceptable. <br>
+But even at <i>k = 2</i> the size of this set will be more than 75,000 words, which corresponds to a complete iteration over a small dictionary and, therefore, time is sufficiently large. In this case, we should not forget also that for each of such words are necessary to search for an exact match in the dictionary.<br>
+<br>
+<h5>Specialties:</h5>The algorithm can be easily modified to generate "mistaken" words using arbitrary rules and, moreover, does not require any dictionary preprocessing or additional memory.<br>
+<br>
+<h5>Possible improvements:</h5>We can generate not a whole set of "mistaken" words, but only those that are most likely to occur in real situations, like words with common spelling mistakes or typos.<br>
+<br>
+<h4>N-gram method</h4>This method was invented long ago, and is the most widely used because its implementation is relatively simple and it provides a reasonably good performance. This algorithm is based on the principle:<br>
+<br>
+"If the word A matches with the word B considering several errors, then they will most likely have at least one common substring of length N".<br>
+<br>
+These substrings of length N are named "N-grams".<br>
+At indexing step, the word is partitioned into N-grams, and then the word is added to lists that correspond each of these N-grams. At search step, the query is also partitioned into N-grams, and for each of them corresponding lists are scanned using the metric.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/239d066bfe2638abf06762b91b069644.png" alt="N-gram method"><br>
+<br>
+The most frequently used in practice are trigrams - substrings of length 3. Choosing a larger value of N leads to a limitation on the minimum length of words at which error detection is still possible.<br>
+<br>
+<h5>Specialties:</h5>N-gram algorithm doesn't find all possible spelling errors. Take, for instance, the word VOTKA (which must be corrected to VODKA, of course), and divide it into trigrams: VO<b>T</b>KA &gt; VO<b>T</b> O<b>T</b>K <b>T</b>KA - we can see that all of these trigrams contain an error T. Thus, the word "VODKA" will not be found because it does not contain any of the trigrams, and will not get into their lists. The shorter the word and more errors in it, the higher chance that it won't contains in corresponding to query N-grams lists and will not appear in the result set.<br>
+<br>
+Meanwhile, N-gram method leaves ample scope for using custom metrics with arbitrary properties and complexity, but there remains a need for brute force of about 15% of the dictionary.<br>
+<br>
+We can separate N-gram hash tables by position of N-gram in the word (first modification M1). As the length of a word and the query can't differ by more than <b>k</b>, and the position of N-grams in the word can't differ by more than k. Thus, we should check only table that corresponds to the N-gram position in the word, and k tables to the left and to the right, total <b>2k+1</b> neighboring tables.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/f1c014ce3a5d23821a766123cf63e36a.png" alt="First modification of N-gram method"><br>
+<br>
+We can even slightly reduce the size of iterating set by separating tables by word length, and, similarly, scanning only the neighboring <b>2k+1</b> tables (second modification M2).<br>
+<br>
+<h4>Signature hashing</h4>This algorithm is described in L. M. Boytsov's article "Signature hashing". It is based on a fairly obvious representation of the "structure" of the word as a bit word, used as a hash (signature) in the hash table.<br>
+<br>
+When indexing, such hashes are calculated for each word and this word is added in the corresponding table row. Then, during the search the hash is computed for a query and set of adjacent hashes that differ from the query's hash with no more than k bits is generated. For each of these hashes we iterate over corresponding list of words using the metric.<br>
+<br>
+The hash computing process - for each bit of the hash a group of characters from the alphabet is matched. Bit 1 at position <i>i</i> in the hash means that there is a symbol of <i>i-th</i> group of the alphabet in the word. Order of the letters in the word is absolutely does not matter.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/8a9958b45bf957e1e85475318e12a20b.png" alt="Signature hashing"><br>
+<br>
+Single character deletion either does not change the hash value (if the word still have characters from the same group of the alphabet), or bit of corresponding group will be changed to 0. When you insert a similar manner or a bit of get up at 1 or no changes will be. Single character substitution a bit more complicated - the hash can either remain unchanged or will change in 1 or 2 bits. In case of transpositions there are no changes in the hash because the order of symbols at the hash construction does not matter as noted earlier. Thus, to fully cover the k errors we need to change at least <b>2k</b> bits in the hash.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/46399b1a05461c6e0ceeabe2196a8885.png" alt="List of hashes with one error"><br>
+<br>
+Average time complexity with k "incomplete" (insertions, deletions and transpositions, as well as a part of substitutions) errors:<br>
+<img src="./Nikita's blog  Fuzzy string search_files/49a92aa655ca8e0e2096763453baa67e.png" alt="Signature hashing time complexity"><br>
+<br>
+<h5>Specialties:</h5>The fact that the replacement of one character can change two bits at a time, the algorithm that works with, for example, changing of 2 bits in hash, in reality won't return the full set of results because of lack of significant (depending on the ratio of the hash size to the alphabet size) amount of the words with two substitutions (and the wider the hash, the more frequently two bits will be changed at the same and the more incomplete set will be returned). In addition, this algorithm does not allow for prefix search.<br>
+<br>
+<h4>BK-trees</h4><i>Burkhard-Keller</i> trees are metric trees, algorithms for constructing such trees based on the ability of the metrics to meet the triangle inequality:<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/88552e8ee013623e2ef7bfd747375ae9.png" alt="Triangle inequality"><br>
+<br>
+This property allows metrics to form the metric spaces of arbitrary dimension. These metric spaces are not necessarily <i>Euclidean</i>, for example, the <i>Levenshtein</i> and <i>Damerau-Levenshtein</i> metrics form a <i>non-Euclidean</i> space. Based on these properties, we can construct a data structure for searching in a metric space, which is Barkhard-Keller tree.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/eb56ab8100b3d84c80c3152e33dd127c.png" alt="BK-tree"><br>
+<br>
+<h5>Improvements:</h5>We can use the ability of some metrics to calculate the limited distance, setting an upper limit to the sum of the maximum distance to the node descendants and the resulting distance, which will speed up the process a bit:<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/85522476adb77f970a6029636fd94386.png" alt="BK-trees metric limitations"><br>
+<br>
+<h4>Testing</h4>Testing was performed on a laptop with Intel Core Duo T2500 (2GHz/667MHz FSB/2MB), 2Gb RAM, OS — Ubuntu 10.10 Desktop i686, JRE — OpenJDK 6 Update 20.<br>
+<br>
+<img src="./Nikita's blog  Fuzzy string search_files/56bdd7312380aceeb1297354b65b077e.png" alt="Time comparison"><br>
+<br>
+Testing was performed using Damerau-Levenshtein distance with error count <i>k = 2</i>. Index size is specified including dictionary size (65 Mb).<br>
+<br>
+<h5>Spell-checker method</h5>Index size: 65 Mb<br>
+Search time: 320 ms / 330 ms<br>
+Result recall: 100%<br>
+<br>
+<h5>N-gram (original)</h5>Index size: 170 Mb<br>
+Index creation time: 32 s<br>
+Search time: 71 ms / 110 ms<br>
+Result recall: 65%<br>
+<br>
+<h5>N-gram (first modification)</h5>Index size: 170 Mb<br>
+Index creation time: 32 s<br>
+Search time: 39 ms / 46 ms<br>
+Result recall: 63%<br>
+<br>
+<h5>N-gram (second modification)</h5>Index size: 170 Mb<br>
+Index creation time: 32 s<br>
+Search time: 37 ms / 45 ms<br>
+Result recall: 62%<br>
+<br>
+<h5>Signature hashing</h5>Index size: 85 Mb<br>
+Index creation time: 0.6 s<br>
+Search time: 55 ms<br>
+Result recall: 56.5%<br>
+<br>
+<h5>BK-trees</h5>Index size: 150 Mb<br>
+Index creation time: 120 s<br>
+Search time: 540 ms<br>
+Result recall: 63%<br>
+<br>
+<h4>Conclusion</h4>Most of fuzzy search algorithms with indexing are not truly sublinear (i.e., having an asymptotic time of <b>O (log n) </b> or below), and their performance usually depends on <b>N</b>. Nevertheless, multiple enhancements and improvements make it possible to achieve sufficiently small operational time, even with very large dictionaries.<br>
+<br>
+There is also another set of various and inefficient methods, based on adaptations of techniques and methods from other subject areas to the current. Among these methods is the <a href="http://www.cs.mcgill.ca/~tim/tries/tries.html">prefix tree (Trie) adaptation to fuzzy search problems</a>, which I left neglected due to its low efficiency. But there are also algorithms based on the original approaches, for example, the <a href="http://yury.name/internet/09ia-seminar.ppt"><i>Maass-Novak algorithm</i></a>, it has sublinear asymptotic time, but it is highly inefficient because of the huge constants hidden behind asymptotic time estimation, which leads to a huge index.<br>
+<br>
+The use of fuzzy search algorithms in real search engines is closely related to the phonetic algorithms, lexical stemming algorithms, which extract base part from different forms of the same word (for example, that functionality provided by <a href="http://snowball.tartarus.org/">Snowball</a>), statistic-based ranking or the use of some complex sophisticated metrics.<br>
+<br>
+This link <a href="http://code.google.com/p/fuzzy-search-tools">http://code.google.com/p/fuzzy-search-tools</a> takes you to my Java implementation of the following stuff:<ul><li>Levenshtein Distance (with cutoff and prefix version);</li>
+<li>Damerau-Levenshtein Distance (with cutoff and prefix version);</li>
+<li>Bitap (Shift-Or with Wu-Manber modifications);</li>
+<li>Spell-checker Method;</li>
+<li>N-Gram Method (with some modifications);</li>
+<li>Signature Hashing Method;</li>
+<li>Burkhard-Keller (BK) Trees.</li>
+</ul>I tried to make this code easy to understand, but effective enough for practical application. So enjoy.<br>
+<br>
+It is worth noting that in the process of researching this subject I've made some own work, which allows to reduce the search time significantly due to a moderate increase in the index size and some restrictions on freedom of used metrics. But that's another cool story.<br>
+<br>
+<h4>Links:</h4><ol><li>Java source codes for this article. <a href="http://code.google.com/p/fuzzy-search-tools">http://code.google.com/p/fuzzy-search-tools</a></li>
+<li>Levenshtein distance. <a href="http://en.wikipedia.org/wiki/Levenshtein_distance">http://en.wikipedia.org/wiki/Levenshtein_distance</a></li>
+<li>Damerau-Levenshtein distance. <a href="http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance">http://en.wikipedia.org/wiki/Damerau–Levenshtein_distance</a></li>
+<li>Shift-Or description with Wu-Manber modifications, in Deutsch. <a href="http://de.wikipedia.org/wiki/Baeza-Yates-Gonnet-Algorithmus">http://de.wikipedia.org/wiki/Baeza-Yates-Gonnet-Algorithmus</a></li>
+<li>N-gram method. <a href="http://www.cs.helsinki.fi/u/ukkonen/TCS92.pdf">http://www.cs.helsinki.fi/u/ukkonen/TCS92.pdf</a></li>
+<li>Signature hashing. <a href="http://www.springerlink.com/content/1aahunb7n41j32ne/">http://www.springerlink.com/content/1aahunb7n41j32ne/</a></li>
+<li>Signature hashing in Russian. <a href="http://itman.narod.ru/articles/rtf/confart.zip">http://itman.narod.ru/articles/rtf/confart.zip</a></li>
+<li>Information retrieval and fuzzy string searching. <a href="http://itman.narod.ru/english/index.htm">http://itman.narod.ru/english/index.htm</a></li>
+<li>Shift-Or and some other algorithms implementation. <a href="http://johannburkard.de/software/stringsearch/">http://johannburkard.de/software/stringsearch/</a></li>
+<li>Fast Text Searching with Agrep (Wu &amp; Manber). <a href="http://www.at.php.net/utils/admin-tools/agrep/agrep.ps.1">http://www.at.php.net/utils/admin-tools/agrep/agrep.ps.1</a></li>
+<li>Damn Cool Algorithms - Levenshtein automata, BK-tree, and some others. <a href="http://blog.notdot.net/2007/4/Damn-Cool-Algorithms-Part-1-BK-Trees">http://blog.notdot.net/2007/4/Damn-Cool-Algorithms-Part-1-BK-Trees</a></li>
+<li>BK-tree Java implementation. <a href="http://code.google.com/p/java-bk-tree/">http://code.google.com/p/java-bk-tree/</a></li>
+<li>Maass-Novak algorithm. <a href="http://yury.name/internet/09ia-seminar.ppt">http://yury.name/internet/09ia-seminar.ppt</a></li>
+<li>SimMetrics metric library. <a href="http://staffwww.dcs.shef.ac.uk/people/S.Chapman/simmetrics.html">http://staffwww.dcs.shef.ac.uk/people/S.Chapman/simmetrics.html</a></li>
+<li>SecondString metric library. <a href="http://sourceforge.net/projects/secondstring/">http://sourceforge.net/projects/secondstring/</a></li>
+</ol>
+<div style="clear: both;"></div>
+</div>
+<div class="post-footer">
+<div class="post-footer-line post-footer-line-1"><span class="post-author vcard">
+Posted by
+<span class="fn">Nikita Smetanin</span>
+</span>
+<span class="post-timestamp">
+at
+<a class="timestamp-link" href="./Nikita's blog  Fuzzy string search_files/Nikita's blog  Fuzzy string search.html" rel="bookmark" title="permanent link"><abbr class="published" title="2011-03-24T00:48:00+05:00">12:48 AM</abbr></a>
+</span>
+<span class="post-comment-link">
+</span>
+<span class="post-icons">
+</span>
+<div class="post-share-buttons">
+<a class="goog-inline-block share-button sb-email" href="http://www.blogger.com/share-post.g?blogID=885300322566276441&postID=1887965468830630556&target=email" target="_blank" title="Email This"><span class="share-button-link-text">Email This</span></a><a class="goog-inline-block share-button sb-blog" href="http://www.blogger.com/share-post.g?blogID=885300322566276441&postID=1887965468830630556&target=blog" onclick="window.open(this.href, &quot;_blank&quot;, &quot;height=270,width=475&quot;); return false;" target="_blank" title="BlogThis!"><span class="share-button-link-text">BlogThis!</span></a><a class="goog-inline-block share-button sb-twitter" href="http://www.blogger.com/share-post.g?blogID=885300322566276441&postID=1887965468830630556&target=twitter" target="_blank" title="Share to Twitter"><span class="share-button-link-text">Share to Twitter</span></a><a class="goog-inline-block share-button sb-facebook" href="http://www.blogger.com/share-post.g?blogID=885300322566276441&postID=1887965468830630556&target=facebook" onclick="window.open(this.href, &quot;_blank&quot;, &quot;height=430,width=640&quot;); return false;" target="_blank" title="Share to Facebook"><span class="share-button-link-text">Share to Facebook</span></a><a class="goog-inline-block share-button sb-pinterest" href="http://www.blogger.com/share-post.g?blogID=885300322566276441&postID=1887965468830630556&target=pinterest" target="_blank" title="Share to Pinterest"><span class="share-button-link-text">Share to Pinterest</span></a><div class="goog-inline-block dummy-container"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 300px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 300px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1415591203280" name="I0_1415591203280" src="./Nikita's blog  Fuzzy string search_files/fastbutton(1).html" data-gapiattached="true" title="+1"></iframe></div></div>
+</div>
+</div>
+<div class="post-footer-line post-footer-line-2"><span class="post-labels">
+Labels:
+<a href="http://ntz-develop.blogspot.com/search/label/approximate%20string%20search" rel="tag">approximate string search</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/bitap" rel="tag">bitap</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/bktree" rel="tag">bktree</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/damerau-levenstein" rel="tag">damerau-levenstein</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/fuzzy%20search" rel="tag">fuzzy search</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/java" rel="tag">java</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/levenstein" rel="tag">levenstein</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/ngram" rel="tag">ngram</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/search" rel="tag">search</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/signature%20hashing" rel="tag">signature hashing</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/similarity%20search" rel="tag">similarity search</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/spelling%20correction" rel="tag">spelling correction</a>,
+<a href="http://ntz-develop.blogspot.com/search/label/wu-manber" rel="tag">wu-manber</a>
+</span>
+</div>
+<div class="post-footer-line post-footer-line-3"><span class="post-location">
+</span>
+</div>
+</div>
+</div>
+<div class="comments" id="comments">
+<a name="comments"></a>
+<h4>44 comments:</h4>
+<div class="comments-content">
+<script async="async" src="./Nikita's blog  Fuzzy string search_files/comments.js" type="text/javascript"></script>
+<script type="text/javascript">
+    (function() {
+      var items = [{'id': '2893531161729933238', 'body': '\74span class\75\47deleted-comment\47\76This comment has been removed by the author.\74/span\076', 'timestamp': '1309672370518', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751309672370518#c2893531161729933238', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'July 3, 2011 at 11:52 AM', 'deleteclass': 'item-control blog-admin '}, {'id': '7323942127224878608', 'body': '\74span class\75\47deleted-comment\47\76This comment has been removed by the author.\74/span\076', 'timestamp': '1309672411921', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751309672411921#c7323942127224878608', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'July 3, 2011 at 11:53 AM', 'deleteclass': 'item-control blog-admin '}, {'id': '508088373257448808', 'body': 'Hrm, is there any reason you decided not to test suffix arrays/trees? It seems like they are one of the most popular approaches to fuzzy search.\74br /\76\74br /\76Another fairly new technique is called canopy clustering. It\46#39;s beholden to the triangle inequality, but it\46#39;s a great initial blocking method.', 'timestamp': '1322550520393', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322550520393#c508088373257448808', 'author': {'name': 'Richard Minerich', 'avatarUrl': 'http://3.bp.blogspot.com/_5tD9PQQf9KQ/Sg9QGPWlfHI/AAAAAAAAAFM/s3LuUJLQ8ps/S45/IMG_3989croppedtwitter.jpg', 'profileUrl': 'http://www.blogger.com/profile/06258455990592976757'}, 'displayTime': 'November 29, 2011 at 1:08 PM', 'deleteclass': 'item-control blog-admin pid-2029383241'}, {'id': '4068678777784339319', 'body': 'For n-gram-based techniques, you may want to check an open-source C++ package at http://flamingo.ics.uci.edu/\74br /\76\74br /\76A trie-based solution has been shown to be very efficient, especially for instant search.  Check http://ipubmed.ics.uci.edu/\74br /\76\74br /\76Chen Li', 'timestamp': '1322551329231', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322551329231#c4068678777784339319', 'author': {'name': 'Chen Li', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/01749930606403355686'}, 'displayTime': 'November 29, 2011 at 1:22 PM', 'deleteclass': 'item-control blog-admin pid-1654794389'}, {'id': '5207099874560979426', 'body': 'Richard Minerich said:\74br /\76\46gt; Hrm, is there any reason you decided not to \74br /\76\46gt; test suffix arrays/trees? It seems like they \74br /\76\46gt; are one of the most popular approaches to fuzzy \74br /\76\46gt; search.\74br /\76\74br /\76But suffix arrays only find matches at the beginning of the sentence. If there is an error at char two then how will you get a good fuzzy match?\74br /\76\74br /\76Richard Minerich said:\74br /\76\46gt; Another fairly new technique is called canopy \74br /\76\46gt; clustering. It\46#39;s beholden to the triangle \74br /\76\46gt; inequality, but it\46#39;s a great initial blocking \74br /\76\46gt; method.\74br /\76\74br /\76I skimmed this paper and I fail to see the connection to fuzzy string matching.', 'timestamp': '1322555575213', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322555575213#c5207099874560979426', 'author': {'name': 'Joseph Turian', 'avatarUrl': 'http://2.bp.blogspot.com/_Hao3ATKBybM/Sq3DeZ15O-I/AAAAAAAAAFY/03QVfsNSYP0/S45/turian-smoking.jpg', 'profileUrl': 'http://www.blogger.com/profile/06249878639857416906'}, 'displayTime': 'November 29, 2011 at 2:32 PM', 'deleteclass': 'item-control blog-admin pid-778940691'}, {'id': '487541135040787510', 'body': 'Thank you ! A concise and effective explanation. It would be great if some use case scenarios are included.', 'timestamp': '1322562014451', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322562014451#c487541135040787510', 'author': {'name': 'Ratnadinakar', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/00767147646520869348'}, 'displayTime': 'November 29, 2011 at 4:20 PM', 'deleteclass': 'item-control blog-admin pid-1181226969'}, {'id': '1953653391567464510', 'body': 'Richard Minerich: \74br /\76\74br /\76In fact, I tried to use suffix array and I wrote the algorithm (and implemented it in Java) based on the following steps:\74br /\0761. Split the word into k + 1 parts skipping one letter between them: \46quot;crocodile\46quot; (k \75 2) \75\46gt; \46quot;cro_cod_le\46quot;\74br /\0762. Search for each part in suffix array \46quot;cro\46quot; \75\46gt; \46quot;crocodile\46quot;[13421], \46quot;macro\46quot;[412345] (word index in the dictionary shown in square brackets)\74br /\0763. Intersect found word indexes to obtain the result (and filter them using levenshtein to remove rare mismatches)\74br /\76\74br /\76It works really fast but requires a lot of space (about 1G for 3.2M words)\74br /\76\74br /\76The problem is that we need to store inverse mapping from word dictionary index to it\46#39;s suffix array index.\74br /\76\74br /\76If you want to see this implementation, I can place it somewhere.\74br /\76\74br /\76I\46#39;ll try to read about \46quot;canopy clustering\46quot; soon.', 'timestamp': '1322569131433', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322569131433#c1953653391567464510', 'author': {'name': 'Nikita Smetanin', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/05390795188408156286'}, 'displayTime': 'November 29, 2011 at 6:18 PM', 'deleteclass': 'item-control blog-admin pid-468972811'}, {'id': '3576223413918850597', 'body': 'Very interesting and detailed exposition of current techniques!\74br /\76\74br /\76Any reason why you left out soundex? (I know it is very language specific, but it\46#39;s really effective and can result in really good performance when the process of finding a soundex match is converted to one of an exact prefix match using Suffix Arrays, as Richard Minerich mentioned).\74br /\76\74br /\76I\46#39;ve done some work on this here: \74a href\75\42http://dhruvbird.com/autocomplete.pdf\42 rel\75\42nofollow\42\76http://dhruvbird.com/autocomplete.pdf\74/a\076', 'timestamp': '1322570061210', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322570061210#c3576223413918850597', 'author': {'name': 'dhruv', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/09979424322533140869'}, 'displayTime': 'November 29, 2011 at 6:34 PM', 'deleteclass': 'item-control blog-admin pid-630827905'}, {'id': '5845583745094431570', 'body': 'Your previous post is on soundex, so it seems like a natural incorporation of that technique to the one of inexact string match (albeit not a general one). But, in practice, I would think many use cases would ask for inexact phonetic string matching.', 'timestamp': '1322570313926', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322570313926#c5845583745094431570', 'author': {'name': 'dhruv', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/09979424322533140869'}, 'displayTime': 'November 29, 2011 at 6:38 PM', 'deleteclass': 'item-control blog-admin pid-630827905'}, {'id': '664713580701109812', 'body': 'Chen Li: \74br /\76The FLAMINGO project looks very interesting.\74br /\76Also I\46#39;ve implemented a lot of fuzzy search things for The Xapian Project (it is in C++ too) - some search algorithms, phonetic matching, context-sensitive spelling correction (including splitted and sticked words), transliteration, language detection.', 'timestamp': '1322574808909', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322574808909#c664713580701109812', 'author': {'name': 'Nikita Smetanin', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/05390795188408156286'}, 'displayTime': 'November 29, 2011 at 7:53 PM', 'deleteclass': 'item-control blog-admin pid-468972811'}, {'id': '8823549926562361603', 'body': '\74span class\75\47deleted-comment\47\76This comment has been removed by the author.\74/span\076', 'timestamp': '1322581899091', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322581899091#c8823549926562361603', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'November 29, 2011 at 9:51 PM', 'deleteclass': 'item-control blog-admin '}, {'id': '1612371264918306505', 'body': 'Richard,\74br /\76\74br /\76Suffix trees can be used for approximate string searching in a way similar to n-gram matching. This approach is called pattern partitioning.\74br /\76\74br /\76I have never used suffix trees or arrays to this end, because of the following:\74br /\0761) Uncompressed suffix trees/arrays are not compact.\74br /\0762) There are sophisticated compact versions (check the works of Navarro, Mäkinen, and Ferragina), but there is certainly a tradeoff in speed/index size involved. Not sure if those can beat an optimized n-gram index. I would love, however, to see these methods tested :-)\74br /\0763) I overall do not like pattern partitioning methods, because the average search time grows linearly with the dictionary size. In many case, this *CAN* be important.\74br /\76\74br /\76Suffix trees/arrays are more pertinent in molecular biology, but for a dictionary searching, they seem to be be an overkill. Here, you can do a much better job with some of the super-linear-index methods, or you can use a pair of regular tries (a second is over reversed strings) to get an excellent performance.\74br /\76\74br /\76BTW, I recently tested Chen Li\46#39;s Flamingo n-gram implementation. It is very efficient (in fact 1.5-2 times faster than my own n-gram-based code) and it also supports prunning, in case you don\46#39;t care for 100% recall', 'timestamp': '1322581988680', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322581988680#c1612371264918306505', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'November 29, 2011 at 9:53 PM', 'deleteclass': 'item-control blog-admin pid-714708742'}, {'id': '1505704288772155988', 'body': 'The advantage of a suffix tree or trie approach is that you don\46#39;t have to calculate string distance for your entire dictionary, since this can become expensive.\74br /\76\74br /\76As for growing linearly with dictionary size, while true, this is easily defeated through sharding which scales in similar fashion.', 'timestamp': '1322609580319', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322609580319#c1505704288772155988', 'author': {'name': 'Christophe Poucet', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/02320035941417593372'}, 'displayTime': 'November 30, 2011 at 5:33 AM', 'deleteclass': 'item-control blog-admin pid-1508924065'}, {'id': '6031675294776383367', 'body': 'Chris, no doubt about a trie-like structure, I doubt that ST is the right trie-like structure. Unless u need to search for arbitrary substrings.', 'timestamp': '1322613529196', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322613529196#c6031675294776383367', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'November 30, 2011 at 6:38 AM', 'deleteclass': 'item-control blog-admin pid-714708742'}, {'id': '8398008633420032345', 'body': 'Awhile back I ran across http://norvig.com/spell-correct.html, which covers writing a spell checker in python. It\46#39;s an interesting read if anyone is interested.', 'timestamp': '1322635085138', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322635085138#c8398008633420032345', 'author': {'name': 'blcArmadillo', 'avatarUrl': 'http://img1.blogblog.com/img/openid16-rounded.gif', 'profileUrl': 'http://ianburris.com/'}, 'displayTime': 'November 30, 2011 at 12:38 PM', 'deleteclass': 'item-control blog-admin pid-1685147808'}, {'id': '2590376346860333475', 'body': 'Itman, good call.  I have the bad habit of conflating suffix-trees and tries.  Indeed, I did mean tries.', 'timestamp': '1322649891652', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322649891652#c2590376346860333475', 'author': {'name': 'Christophe Poucet', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/02320035941417593372'}, 'displayTime': 'November 30, 2011 at 4:44 PM', 'deleteclass': 'item-control blog-admin pid-1508924065'}, {'id': '6021904890877665807', 'body': '\74span class\75\47deleted-comment\47\76This comment has been removed by the author.\74/span\076', 'timestamp': '1322690265349', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322690265349#c6021904890877665807', 'author': {'name': 'Richard Minerich', 'avatarUrl': 'http://3.bp.blogspot.com/_5tD9PQQf9KQ/Sg9QGPWlfHI/AAAAAAAAAFM/s3LuUJLQ8ps/S45/IMG_3989croppedtwitter.jpg', 'profileUrl': 'http://www.blogger.com/profile/06258455990592976757'}, 'displayTime': 'December 1, 2011 at 3:57 AM', 'deleteclass': 'item-control blog-admin '}, {'id': '7790956843937578755', 'body': 'Joseph Turian: Suffix based approach can actually find any common substring down to a length you specify.', 'timestamp': '1322690363957', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322690363957#c7790956843937578755', 'author': {'name': 'Richard Minerich', 'avatarUrl': 'http://3.bp.blogspot.com/_5tD9PQQf9KQ/Sg9QGPWlfHI/AAAAAAAAAFM/s3LuUJLQ8ps/S45/IMG_3989croppedtwitter.jpg', 'profileUrl': 'http://www.blogger.com/profile/06258455990592976757'}, 'displayTime': 'December 1, 2011 at 3:59 AM', 'deleteclass': 'item-control blog-admin pid-2029383241'}, {'id': '4569067145424812826', 'body': 'Canopy Cluster is more of a pre-processing step to speed things up. You cluster your target corpus first and so can avoid the O(N^2) problem later on by only comparing within one cluster.\74br /\76\74br /\76I myself haven\46#39;t had much luck with straight n-gram technqiues, it\46#39;s just too slow. My primary corpus is a few million names though, so I can see how I would need different sets of techniques than someone say, indexing academic papers.\74br /\76\74br /\76\74br /\76Nikita Smetanin:\74br /\76That is a big downside downside of the suffix based approaches for sure. It\46#39;s all about the time-space tradeoff.\74br /\76\74br /\76Itman:\74br /\76I\46#39;ll look into Pattern Partitioning. Thanks for the tip!', 'timestamp': '1322690426248', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322690426248#c4569067145424812826', 'author': {'name': 'Richard Minerich', 'avatarUrl': 'http://3.bp.blogspot.com/_5tD9PQQf9KQ/Sg9QGPWlfHI/AAAAAAAAAFM/s3LuUJLQ8ps/S45/IMG_3989croppedtwitter.jpg', 'profileUrl': 'http://www.blogger.com/profile/06258455990592976757'}, 'displayTime': 'December 1, 2011 at 4:00 AM', 'deleteclass': 'item-control blog-admin pid-2029383241'}, {'id': '4260836429939635972', 'body': 'you should have a look at the Levenshtein Automata\74br /\76\74br /\76http://blog.notdot.net/2010/07/Damn-Cool-Algorithms-Levenshtein-Automata\74br /\76\74br /\76its the best solution i have found so far', 'timestamp': '1322714592214', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322714592214#c4260836429939635972', 'author': {'name': 'Maxime Caron', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/03814017189114155703'}, 'displayTime': 'December 1, 2011 at 10:43 AM', 'deleteclass': 'item-control blog-admin pid-1687445560'}, {'id': '8068009484020718743', 'body': '\74span class\75\47deleted-comment\47\76This comment has been removed by the author.\74/span\076', 'timestamp': '1322839692567', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322839692567#c8068009484020718743', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'December 2, 2011 at 9:28 PM', 'deleteclass': 'item-control blog-admin '}, {'id': '6926253721088150091', 'body': 'Do you happen to have the dictionnary used for your tests available somewhere ?\74br /\76\74br /\76I\46#39;ve implemented a solution for this exact problem using tries. And since you discarded it because you say it\46#39;s not efficient enough, I\46#39;d like to compare it to your results :)\74br /\76\74br /\76Thanks', 'timestamp': '1322912747272', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322912747272#c6926253721088150091', 'author': {'name': 'Vjeux', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/13334437422746807908'}, 'displayTime': 'December 3, 2011 at 5:45 PM', 'deleteclass': 'item-control blog-admin pid-1650329157'}, {'id': '2992016080022276397', 'body': 'This dictionary is always available \74a href\75\42http://code.google.com/p/fuzzy-search-tools/downloads/detail?name\75dict.txt.zip\42 rel\75\42nofollow\42\76here\74/a\76.', 'timestamp': '1322917415672', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751322917415672#c2992016080022276397', 'author': {'name': 'Nikita Smetanin', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/05390795188408156286'}, 'displayTime': 'December 3, 2011 at 7:03 PM', 'deleteclass': 'item-control blog-admin pid-468972811'}, {'id': '4083878120235406884', 'body': 'I\46#39;ve written a blog article about fuzzy search with a Trie. \74br /\76\74br /\76http://blog.vjeux.com/2011/c/c-fuzzy-search-with-trie.html\74br /\76\74br /\76As for performances, I search every word at a distance 2 of the 400 most popular english words. The dictionnary contains 3 millions words. It takes 22 seconds on my old 2Ghz server to run it. It takes an average of 55ms per fuzzy search and generates an average of 247 results.\74br /\76\74br /\76The inputs and times look similar to the ones you obtain in your benchmarks. When I will have some time, I will update my code in order to take your inputs, this way you\46#39;ll be able to compare on your test computer.', 'timestamp': '1323266788647', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751323266788647#c4083878120235406884', 'author': {'name': 'Vjeux', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/13334437422746807908'}, 'displayTime': 'December 7, 2011 at 8:06 PM', 'deleteclass': 'item-control blog-admin pid-1650329157'}, {'id': '5287752163058456271', 'body': 'Hi everybody,\74br /\76\74br /\76Never mind my previous comment on Nick\46#39;s blog. I missed a point and, apparently, Nick\46#39;s solution makes sense.', 'timestamp': '1323359827506', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751323359827506#c5287752163058456271', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'December 8, 2011 at 9:57 PM', 'deleteclass': 'item-control blog-admin pid-714708742'}, {'id': '3297573633388482919', 'body': 'Hi, for developers who are interested in a new algorithm that combines token based, character based, and phonetic based algorithms into one fast and accurate name matching technology visit http://www.fame-api.com', 'timestamp': '1332496726007', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751332496726007#c3297573633388482919', 'author': {'name': 'FAME API', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/12376231848507997760'}, 'displayTime': 'March 23, 2012 at 3:58 PM', 'deleteclass': 'item-control blog-admin pid-2061656339'}, {'id': '4240236740994699748', 'body': 'Many thanks Nikita, this was exactly the concise and practical overview I was looking for.', 'timestamp': '1332785720251', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751332785720251#c4240236740994699748', 'author': {'name': 'Alexander', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/15239246923618199198'}, 'displayTime': 'March 27, 2012 at 12:15 AM', 'deleteclass': 'item-control blog-admin pid-2057870295'}, {'id': '3728467504890661541', 'body': 'Very nice! I\46#39;ve to deal with the search engine in company\46#39;s web-based product and we\46#39;re using htdig for this. Your article was very helpful in understanding fuzzyalgos, I\46#39;ll implement these in our product :)', 'timestamp': '1346066792599', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751346066792599#c3728467504890661541', 'author': {'name': 'Chankey Pathak', 'avatarUrl': 'http://3.bp.blogspot.com/_QaES48F1VIg/TRBK0_bps9I/AAAAAAAAAk4/K4L5qvyX5X8/S45/100_5098.JPG', 'profileUrl': 'http://www.blogger.com/profile/04990026893506195372'}, 'displayTime': 'August 27, 2012 at 5:26 PM', 'deleteclass': 'item-control blog-admin pid-536142000'}, {'id': '6659464977027542904', 'body': 'Good day!\74br /\76\74br /\76I was wondering if you could help me in my report. It is about the use of \46quot;FUZZY LOGIC\46quot; in searching the database. I\46#39;ve searched the net for the basic concepts of fuzzy logic and I always get these three steps: fuzzification, inference engine and \74br /\76defuzzification.\74br /\76\74br /\76Now, my problem is this: how exactly can I apply these three steps with the algorithms that you\46#39;ve discussed here? I think they will fit the fuzzification stage but how about the other two?\74br /\76\74br /\76Thanks in advance..!', 'timestamp': '1348659689971', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751348659689971#c6659464977027542904', 'author': {'name': 'Avatar', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/03313144565788782021'}, 'displayTime': 'September 26, 2012 at 5:41 PM', 'deleteclass': 'item-control blog-admin pid-666864112'}, {'id': '7658406115346579498', 'parentId': '6659464977027542904', 'body': 'Sorry, but this article is about fuzzy search, which has nothing in common with fuzzy logic. I hope you\46#39;ll find answers somewhere else.', 'timestamp': '1348660020335', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751348660020335#c7658406115346579498', 'author': {'name': 'Nikita Smetanin', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/05390795188408156286'}, 'displayTime': 'September 26, 2012 at 5:47 PM', 'deleteclass': 'item-control blog-admin pid-468972811'}, {'id': '6097840002298347836', 'parentId': '6659464977027542904', 'body': 'Ah, OK... Thanks anyway..!', 'timestamp': '1348662503644', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751348662503644#c6097840002298347836', 'author': {'name': 'Avatar', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/03313144565788782021'}, 'displayTime': 'September 26, 2012 at 6:28 PM', 'deleteclass': 'item-control blog-admin pid-666864112'}, {'id': '924640753733575760', 'body': 'Liked your post very much... I have been considering a consume-order-agnostic approach to approximate match, as an extension to exact match (presented here: http://arxiv.org/pdf/1209.4554v1.pdf). I think there might be an advantage here - would you agree?\74br /\076', 'timestamp': '1348756160703', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751348756160703#c924640753733575760', 'author': {'name': 'showoff', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/10293706577395008658'}, 'displayTime': 'September 27, 2012 at 8:29 PM', 'deleteclass': 'item-control blog-admin pid-601064248'}, {'id': '1164524914385175938', 'body': 'I like this post. However I would disagree that the Trie based methods are slow. Here is example of Fuzzy search based on Trie, it works pretty fast:\74br /\76http://www.softcorporation.com/products/people/index.html', 'timestamp': '1351133311459', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751351133311459#c1164524914385175938', 'author': {'name': 'mr. V', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/11202833265962247460'}, 'displayTime': 'October 25, 2012 at 8:48 AM', 'deleteclass': 'item-control blog-admin pid-285022917'}, {'id': '2356892829350968579', 'parentId': '1164524914385175938', 'body': 'You\46#39;re right, I\46#39;ve investigated the Levenshtein automata algorithm (which works on DAWG - a general case of a trie) and it seems to be fast enough with a moderate index (DAWG) size.', 'timestamp': '1351174209393', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751351174209393#c2356892829350968579', 'author': {'name': 'Nikita Smetanin', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/05390795188408156286'}, 'displayTime': 'October 25, 2012 at 8:10 PM', 'deleteclass': 'item-control blog-admin pid-468972811'}, {'id': '1092600810610900786', 'parentId': '1164524914385175938', 'body': 'For large string and larger errors, though, different methods are required. Because trie has a cost O(length^k alphabet_size^k). This works for names because, both length and k are small.', 'timestamp': '1351174657777', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751351174657777#c1092600810610900786', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'October 25, 2012 at 8:17 PM', 'deleteclass': 'item-control blog-admin pid-714708742'}, {'id': '6027944356331974165', 'body': 'I downloaded the dictionary, put it in our MatchMaker tool, and ran queries against it in around 10 ms. Index-size is around 110 MB and it calculates the full Damerau-Levenshtein distance with unbounded error-correction.\74br /\76The same index can even do a block-edit calculation (blocks of strings are shifted for cost 1!) within 20 ms.\74br /\76Optionally you can couple an approximate phonetics to it or do all kinds of extra comparison.\74br /\76\74br /\76So THERE IS A LEVENSHTEIN INDEX type.\74br /\76 ', 'timestamp': '1364894169974', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751364894169974#c6027944356331974165', 'author': {'name': 'Benno Nieswand', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/16967081620062714016'}, 'displayTime': 'April 2, 2013 at 3:16 PM', 'deleteclass': 'item-control blog-admin pid-1049460109'}, {'id': '867422100222754556', 'body': 'I did further tests with another Damerau-Levenshtein index type based on automata. It doesn\46#39;t preprossess any potential error, but does realtime computation of all edit choices:\74br /\76\74br /\76up to 1 error: below  1 ms\74br /\76up to 2 errors:around 5 ms\74br /\76up to 3 errors:around 15 ms\74br /\76\74br /\76If you don\46#39;t believe it, I can give more info!', 'timestamp': '1364897263149', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751364897263149#c867422100222754556', 'author': {'name': 'Benno Nieswand', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/16967081620062714016'}, 'displayTime': 'April 2, 2013 at 4:07 PM', 'deleteclass': 'item-control blog-admin pid-1049460109'}, {'id': '7486214077333762834', 'body': 'One can do better than 1 ms easily.', 'timestamp': '1364903022067', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751364903022067#c7486214077333762834', 'author': {'name': 'Itman', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06504303746901639466'}, 'displayTime': 'April 2, 2013 at 5:43 PM', 'deleteclass': 'item-control blog-admin pid-714708742'}, {'id': '2487633488480092904', 'parentId': '6027944356331974165', 'body': 'Yes, I know about Levenshtein automata, I implemented and tested it some time ago, but unfortunately I\46#39;d no enough time to write an article about it and some other very fast algorithms. Maybe I\46#39;ll publish my Levenshtein automata java source code if it still exists.\74br /\76\74br /\76However, I think that Levenshtein automata may have performance issues if you store them in external memory (because of its structure), so this case should be analyzed separately.', 'timestamp': '1364912179964', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751364912179964#c2487633488480092904', 'author': {'name': 'Nikita Smetanin', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/05390795188408156286'}, 'displayTime': 'April 2, 2013 at 8:16 PM', 'deleteclass': 'item-control blog-admin pid-468972811'}, {'id': '4435493795179516982', 'body': 'Anybody know or can guess what algorithm QSR NVivo 10 use to find the exact or fuzzy text matching? The software works like this: store certain documents containing whatever text and in any language;  then you can start searching for a certain word or multiple words. It does effectively catch the related words with its synonyms and it builds Word Tree Map for it. How does it do that? I mean what type of word distance calculations do they use? do they have a dictionary or do they use Wordnet or what?  ', 'timestamp': '1365532306344', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751365532306344#c4435493795179516982', 'author': {'name': 'Jordan Today', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/06175204545509430565'}, 'displayTime': 'April 10, 2013 at 12:31 AM', 'deleteclass': 'item-control blog-admin pid-800933302'}, {'id': '868678363332330857', 'body': 'Your blog is very informative and gracefully\74br /\76your guideline is very good.Thank you\74br /\76\74a href\75\42http://www.deepshikha.org\42 rel\75\42nofollow\42\76Engineering college\74/a\76 \74br /\76\74a href\75\42http://www.deepshikha.org\42 rel\75\42nofollow\42\76Best engineering college in india\74/a\76 \74br /\76\74a href\75\42http://www.deepshikha.org\42 rel\75\42nofollow\42\76Private engineering college \74/a\76 \74br /\76\74a href\75\42http://www.regionalpharma.com\42 rel\75\42nofollow\42\76pharmacy college \74/a\76   \74br /\76\74a href\75\42http://www.regionalpharma.com\42 rel\75\42nofollow\42\76pharmacy college in india\74/a\76 \74br /\76\74a href\75\42http://deepshikhagroupofcolleges.blogspot.in/\42 rel\75\42nofollow\42\76top pharmacy college\74/a\76   \74br /\76\74a href\75\42http://www.regionalcollege.org\42 rel\75\42nofollow\42\76Polytechnic college\74/a\76 \74br /\76\74a href\75\42http://www.regionalcollege.org\42 rel\75\42nofollow\42\76Top polytechnic college\74/a\76 \74br /\76\74a href\75\42http://www.regionalpolytechnic.com\42 rel\75\42nofollow\42\76Top private polytechnic college \74/a\76 \74br /\76\74a href\75\42http://www.regionalpolytechnic.com\42 rel\75\42nofollow\42\76Top polytechnic colleges in India\74/a\76 \74br /\76\74a href\75\42http://www.regionalinstitute.in\42 rel\75\42nofollow\42\76Techanical colleges\74/a\76\74br /\76\74a href\75\42http://www.regionalinstitute.in\42 rel\75\42nofollow\42\76Polytechnic college in india\74/a\76\74br /\76\74a href\75\42http://www.digitalinfo.in\42 rel\75\42nofollow\42\76Leading call center\74/a\76\74br /\76\74a href\75\42http://www.digitalinfo.in\42 rel\75\42nofollow\42\76 Outbound call center india\74/a\76\74br /\76\74a href\75\42http://www.digitalinfo.in\42 rel\75\42nofollow\42\76Cheap Seo services india\74/a\076', 'timestamp': '1366965794910', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751366965794910#c868678363332330857', 'author': {'name': 'Regional College Of Pharmacy', 'avatarUrl': 'http://1.bp.blogspot.com/-JU_Tt3jbldE/UWz7IRt98_I/AAAAAAAAAPw/ehT40mMAlZw/s45/download%25252B%252525284%25252529.jpg', 'profileUrl': 'http://www.blogger.com/profile/12881020149818784633'}, 'displayTime': 'April 26, 2013 at 2:43 PM', 'deleteclass': 'item-control blog-admin pid-1729442615'}, {'id': '4350348967937777620', 'body': 'Thank you for sharing valuable information. Nice post. I enjoyed reading this post. The whole blog is very nice found some good stuff and good information here Thanks..Also visit my page\74a href\75\42http://www.21standcentury.com/\42 rel\75\42nofollow\42\76 Design and multimedia \74/a\76 At 21st and century experience counts a lot as we believe that the single most important elements in mastering any task is experience. \74br /\076', 'timestamp': '1401098252408', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751401098252408#c4350348967937777620', 'author': {'name': 'jyoti soni', 'avatarUrl': '//lh5.googleusercontent.com/-r2R_RFfd6HM/AAAAAAAAAAI/AAAAAAAAADY/rXK7o876TSs/s512-c/photo.jpg', 'profileUrl': 'http://www.blogger.com/profile/08307301450488766339'}, 'displayTime': 'May 26, 2014 at 3:57 PM', 'deleteclass': 'item-control blog-admin pid-1663956298'}, {'id': '3753473003282163683', 'body': 'AM Field Engineer  from Japan, I am not used to this but i have to do this because i want the world and entire earth to know about Lord Zilialia. He is a blessing to man kind and a blessing to me in particular. Search no more for help any where your help is come. Just contact Lord Zilialia on spellcaster1202@gmail.com and you will be glad you did. Even Japanese do need help.\74br /\076', 'timestamp': '1401712502431', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751401712502431#c3753473003282163683', 'author': {'name': 'Maree Lawson', 'avatarUrl': 'http://img2.blogblog.com/img/b16-rounded.gif', 'profileUrl': 'http://www.blogger.com/profile/00686937627474054911'}, 'displayTime': 'June 2, 2014 at 6:35 PM', 'deleteclass': 'item-control blog-admin pid-279556749'}, {'id': '3421045452038978875', 'body': 'Learning to spell helps to cement the connection between the letters and their sounds, and learning high-frequency \46quot;sight words\46quot; to mastery level improves both reading and writing. English writing system is not merely to ensure accurate pronunciation of the written word &#8211; it is to convey meaning. https://vocabmonk.com helps you to learn new words with their spellings, meaning and pronunciation.\74br /\76Try it..!! \74br /\076', 'timestamp': '1410779653476', 'permalink': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment\0751410779653476#c3421045452038978875', 'author': {'name': 'Vocab Monk', 'avatarUrl': '//lh3.googleusercontent.com/--Y2FaWjmVUY/AAAAAAAAAAI/AAAAAAAAAHI/70-DkUVOjZY/s512-c/photo.jpg', 'profileUrl': 'http://www.blogger.com/profile/16519685134687675296'}, 'displayTime': 'September 15, 2014 at 5:14 PM', 'deleteclass': 'item-control blog-admin pid-2052126161'}];
+      var msgs = {'loadMore': 'Load more...', 'loading': 'Loading...', 'loaded': 'No more!', 'addComment': 'Add comment', 'reply': 'Reply', 'delete': 'Delete'};
+      var config = {'blogId': '885300322566276441', 'postId': '1887965468830630556', 'feed': 'http://ntz-develop.blogspot.com/feeds/1887965468830630556/comments/default', 'authorName': 'Nikita Smetanin', 'authorUrl': 'http://www.blogger.com/profile/05390795188408156286', 'baseUri': 'http://www.blogger.com', 'maxThreadDepth': 2};
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        if (entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + entry.content.$t + '</span>';
+            }
+          }
+        }
+        return entry.content.$t;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/delete-comment.g?blogID='
+               + config.blogId + '&postID=' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+</script>
+<div id="comment-holder">
+
+<div id="bc_0_45C" kind="c"><div id="bc_0_45CT"><div id="bc_0_44T" class="comment-thread" kind="r" t="0" u="0"><ol id="bc_0_44TB"><li id="bc_0_0B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c2893531161729933238" class="comment-block"><div id="bc_0_0M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1309672370518#c2893531161729933238">July 3, 2011 at 11:52 AM</a></span></div><p id="bc_0_0MC" class="comment-content"><span class="deleted-comment">This comment has been removed by the author.</span></p><span id="bc_0_0MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin "><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=2893531161729933238">Delete</a></span></span></div><div id="bc_0_0BR" class="comment-replies"></div><div id="bc_0_0B_box" class="comment-replybox-single"></div></li><li id="bc_0_1B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c7323942127224878608" class="comment-block"><div id="bc_0_1M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1309672411921#c7323942127224878608">July 3, 2011 at 11:53 AM</a></span></div><p id="bc_0_1MC" class="comment-content"><span class="deleted-comment">This comment has been removed by the author.</span></p><span id="bc_0_1MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin "><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=7323942127224878608">Delete</a></span></span></div><div id="bc_0_1BR" class="comment-replies"></div><div id="bc_0_1B_box" class="comment-replybox-single"></div></li><li id="bc_0_2B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/IMG_3989croppedtwitter.jpg"></div><div id="c508088373257448808" class="comment-block"><div id="bc_0_2M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06258455990592976757">Richard Minerich</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322550520393#c508088373257448808">November 29, 2011 at 1:08 PM</a></span></div><p id="bc_0_2MC" class="comment-content">Hrm, is there any reason you decided not to test suffix arrays/trees? It seems like they are one of the most popular approaches to fuzzy search.<br><br>Another fairly new technique is called canopy clustering. It's beholden to the triangle inequality, but it's a great initial blocking method.</p><span id="bc_0_2MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-2029383241"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=508088373257448808">Delete</a></span></span></div><div id="bc_0_2BR" class="comment-replies"></div><div id="bc_0_2B_box" class="comment-replybox-single"></div></li><li id="bc_0_3B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c4068678777784339319" class="comment-block"><div id="bc_0_3M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/01749930606403355686">Chen Li</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322551329231#c4068678777784339319">November 29, 2011 at 1:22 PM</a></span></div><p id="bc_0_3MC" class="comment-content">For n-gram-based techniques, you may want to check an open-source C++ package at http://flamingo.ics.uci.edu/<br><br>A trie-based solution has been shown to be very efficient, especially for instant search.  Check http://ipubmed.ics.uci.edu/<br><br>Chen Li</p><span id="bc_0_3MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1654794389"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=4068678777784339319">Delete</a></span></span></div><div id="bc_0_3BR" class="comment-replies"></div><div id="bc_0_3B_box" class="comment-replybox-single"></div></li><li id="bc_0_4B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/turian-smoking.jpg"></div><div id="c5207099874560979426" class="comment-block"><div id="bc_0_4M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06249878639857416906">Joseph Turian</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322555575213#c5207099874560979426">November 29, 2011 at 2:32 PM</a></span></div><p id="bc_0_4MC" class="comment-content">Richard Minerich said:<br>&gt; Hrm, is there any reason you decided not to <br>&gt; test suffix arrays/trees? It seems like they <br>&gt; are one of the most popular approaches to fuzzy <br>&gt; search.<br><br>But suffix arrays only find matches at the beginning of the sentence. If there is an error at char two then how will you get a good fuzzy match?<br><br>Richard Minerich said:<br>&gt; Another fairly new technique is called canopy <br>&gt; clustering. It's beholden to the triangle <br>&gt; inequality, but it's a great initial blocking <br>&gt; method.<br><br>I skimmed this paper and I fail to see the connection to fuzzy string matching.</p><span id="bc_0_4MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-778940691"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=5207099874560979426">Delete</a></span></span></div><div id="bc_0_4BR" class="comment-replies"></div><div id="bc_0_4B_box" class="comment-replybox-single"></div></li><li id="bc_0_5B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c487541135040787510" class="comment-block"><div id="bc_0_5M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/00767147646520869348">Ratnadinakar</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322562014451#c487541135040787510">November 29, 2011 at 4:20 PM</a></span></div><p id="bc_0_5MC" class="comment-content">Thank you ! A concise and effective explanation. It would be great if some use case scenarios are included.</p><span id="bc_0_5MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1181226969"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=487541135040787510">Delete</a></span></span></div><div id="bc_0_5BR" class="comment-replies"></div><div id="bc_0_5B_box" class="comment-replybox-single"></div></li><li id="bc_0_6B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c1953653391567464510" class="comment-block"><div id="bc_0_6M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="http://www.blogger.com/profile/05390795188408156286">Nikita Smetanin</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322569131433#c1953653391567464510">November 29, 2011 at 6:18 PM</a></span></div><p id="bc_0_6MC" class="comment-content">Richard Minerich: <br><br>In fact, I tried to use suffix array and I wrote the algorithm (and implemented it in Java) based on the following steps:<br>1. Split the word into k + 1 parts skipping one letter between them: "crocodile" (k = 2) =&gt; "cro_cod_le"<br>2. Search for each part in suffix array "cro" =&gt; "crocodile"[13421], "macro"[412345] (word index in the dictionary shown in square brackets)<br>3. Intersect found word indexes to obtain the result (and filter them using levenshtein to remove rare mismatches)<br><br>It works really fast but requires a lot of space (about 1G for 3.2M words)<br><br>The problem is that we need to store inverse mapping from word dictionary index to it's suffix array index.<br><br>If you want to see this implementation, I can place it somewhere.<br><br>I'll try to read about "canopy clustering" soon.</p><span id="bc_0_6MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-468972811"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=1953653391567464510">Delete</a></span></span></div><div id="bc_0_6BR" class="comment-replies"></div><div id="bc_0_6B_box" class="comment-replybox-single"></div></li><li id="bc_0_7B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c3576223413918850597" class="comment-block"><div id="bc_0_7M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/09979424322533140869">dhruv</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322570061210#c3576223413918850597">November 29, 2011 at 6:34 PM</a></span></div><p id="bc_0_7MC" class="comment-content">Very interesting and detailed exposition of current techniques!<br><br>Any reason why you left out soundex? (I know it is very language specific, but it's really effective and can result in really good performance when the process of finding a soundex match is converted to one of an exact prefix match using Suffix Arrays, as Richard Minerich mentioned).<br><br>I've done some work on this here: <a href="http://dhruvbird.com/autocomplete.pdf" rel="nofollow">http://dhruvbird.com/autocomplete.pdf</a></p><span id="bc_0_7MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-630827905"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=3576223413918850597">Delete</a></span></span></div><div id="bc_0_7BR" class="comment-replies"></div><div id="bc_0_7B_box" class="comment-replybox-single"></div></li><li id="bc_0_8B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c5845583745094431570" class="comment-block"><div id="bc_0_8M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/09979424322533140869">dhruv</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322570313926#c5845583745094431570">November 29, 2011 at 6:38 PM</a></span></div><p id="bc_0_8MC" class="comment-content">Your previous post is on soundex, so it seems like a natural incorporation of that technique to the one of inexact string match (albeit not a general one). But, in practice, I would think many use cases would ask for inexact phonetic string matching.</p><span id="bc_0_8MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-630827905"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=5845583745094431570">Delete</a></span></span></div><div id="bc_0_8BR" class="comment-replies"></div><div id="bc_0_8B_box" class="comment-replybox-single"></div></li><li id="bc_0_9B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c664713580701109812" class="comment-block"><div id="bc_0_9M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="http://www.blogger.com/profile/05390795188408156286">Nikita Smetanin</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322574808909#c664713580701109812">November 29, 2011 at 7:53 PM</a></span></div><p id="bc_0_9MC" class="comment-content">Chen Li: <br>The FLAMINGO project looks very interesting.<br>Also I've implemented a lot of fuzzy search things for The Xapian Project (it is in C++ too) - some search algorithms, phonetic matching, context-sensitive spelling correction (including splitted and sticked words), transliteration, language detection.</p><span id="bc_0_9MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-468972811"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=664713580701109812">Delete</a></span></span></div><div id="bc_0_9BR" class="comment-replies"></div><div id="bc_0_9B_box" class="comment-replybox-single"></div></li><li id="bc_0_10B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c8823549926562361603" class="comment-block"><div id="bc_0_10M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322581899091#c8823549926562361603">November 29, 2011 at 9:51 PM</a></span></div><p id="bc_0_10MC" class="comment-content"><span class="deleted-comment">This comment has been removed by the author.</span></p><span id="bc_0_10MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin "><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=8823549926562361603">Delete</a></span></span></div><div id="bc_0_10BR" class="comment-replies"></div><div id="bc_0_10B_box" class="comment-replybox-single"></div></li><li id="bc_0_11B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c1612371264918306505" class="comment-block"><div id="bc_0_11M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322581988680#c1612371264918306505">November 29, 2011 at 9:53 PM</a></span></div><p id="bc_0_11MC" class="comment-content">Richard,<br><br>Suffix trees can be used for approximate string searching in a way similar to n-gram matching. This approach is called pattern partitioning.<br><br>I have never used suffix trees or arrays to this end, because of the following:<br>1) Uncompressed suffix trees/arrays are not compact.<br>2) There are sophisticated compact versions (check the works of Navarro, Mäkinen, and Ferragina), but there is certainly a tradeoff in speed/index size involved. Not sure if those can beat an optimized n-gram index. I would love, however, to see these methods tested :-)<br>3) I overall do not like pattern partitioning methods, because the average search time grows linearly with the dictionary size. In many case, this *CAN* be important.<br><br>Suffix trees/arrays are more pertinent in molecular biology, but for a dictionary searching, they seem to be be an overkill. Here, you can do a much better job with some of the super-linear-index methods, or you can use a pair of regular tries (a second is over reversed strings) to get an excellent performance.<br><br>BTW, I recently tested Chen Li's Flamingo n-gram implementation. It is very efficient (in fact 1.5-2 times faster than my own n-gram-based code) and it also supports prunning, in case you don't care for 100% recall</p><span id="bc_0_11MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-714708742"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=1612371264918306505">Delete</a></span></span></div><div id="bc_0_11BR" class="comment-replies"></div><div id="bc_0_11B_box" class="comment-replybox-single"></div></li><li id="bc_0_12B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c1505704288772155988" class="comment-block"><div id="bc_0_12M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/02320035941417593372">Christophe Poucet</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322609580319#c1505704288772155988">November 30, 2011 at 5:33 AM</a></span></div><p id="bc_0_12MC" class="comment-content">The advantage of a suffix tree or trie approach is that you don't have to calculate string distance for your entire dictionary, since this can become expensive.<br><br>As for growing linearly with dictionary size, while true, this is easily defeated through sharding which scales in similar fashion.</p><span id="bc_0_12MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1508924065"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=1505704288772155988">Delete</a></span></span></div><div id="bc_0_12BR" class="comment-replies"></div><div id="bc_0_12B_box" class="comment-replybox-single"></div></li><li id="bc_0_13B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c6031675294776383367" class="comment-block"><div id="bc_0_13M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322613529196#c6031675294776383367">November 30, 2011 at 6:38 AM</a></span></div><p id="bc_0_13MC" class="comment-content">Chris, no doubt about a trie-like structure, I doubt that ST is the right trie-like structure. Unless u need to search for arbitrary substrings.</p><span id="bc_0_13MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-714708742"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=6031675294776383367">Delete</a></span></span></div><div id="bc_0_13BR" class="comment-replies"></div><div id="bc_0_13B_box" class="comment-replybox-single"></div></li><li id="bc_0_14B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/openid36-rounded.png"></div><div id="c8398008633420032345" class="comment-block"><div id="bc_0_14M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://ianburris.com/">blcArmadillo</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322635085138#c8398008633420032345">November 30, 2011 at 12:38 PM</a></span></div><p id="bc_0_14MC" class="comment-content">Awhile back I ran across http://norvig.com/spell-correct.html, which covers writing a spell checker in python. It's an interesting read if anyone is interested.</p><span id="bc_0_14MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1685147808"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=8398008633420032345">Delete</a></span></span></div><div id="bc_0_14BR" class="comment-replies"></div><div id="bc_0_14B_box" class="comment-replybox-single"></div></li><li id="bc_0_15B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c2590376346860333475" class="comment-block"><div id="bc_0_15M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/02320035941417593372">Christophe Poucet</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322649891652#c2590376346860333475">November 30, 2011 at 4:44 PM</a></span></div><p id="bc_0_15MC" class="comment-content">Itman, good call.  I have the bad habit of conflating suffix-trees and tries.  Indeed, I did mean tries.</p><span id="bc_0_15MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1508924065"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=2590376346860333475">Delete</a></span></span></div><div id="bc_0_15BR" class="comment-replies"></div><div id="bc_0_15B_box" class="comment-replybox-single"></div></li><li id="bc_0_16B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/IMG_3989croppedtwitter.jpg"></div><div id="c6021904890877665807" class="comment-block"><div id="bc_0_16M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06258455990592976757">Richard Minerich</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322690265349#c6021904890877665807">December 1, 2011 at 3:57 AM</a></span></div><p id="bc_0_16MC" class="comment-content"><span class="deleted-comment">This comment has been removed by the author.</span></p><span id="bc_0_16MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin "><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=6021904890877665807">Delete</a></span></span></div><div id="bc_0_16BR" class="comment-replies"></div><div id="bc_0_16B_box" class="comment-replybox-single"></div></li><li id="bc_0_17B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/IMG_3989croppedtwitter.jpg"></div><div id="c7790956843937578755" class="comment-block"><div id="bc_0_17M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06258455990592976757">Richard Minerich</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322690363957#c7790956843937578755">December 1, 2011 at 3:59 AM</a></span></div><p id="bc_0_17MC" class="comment-content">Joseph Turian: Suffix based approach can actually find any common substring down to a length you specify.</p><span id="bc_0_17MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-2029383241"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=7790956843937578755">Delete</a></span></span></div><div id="bc_0_17BR" class="comment-replies"></div><div id="bc_0_17B_box" class="comment-replybox-single"></div></li><li id="bc_0_18B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/IMG_3989croppedtwitter.jpg"></div><div id="c4569067145424812826" class="comment-block"><div id="bc_0_18M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06258455990592976757">Richard Minerich</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322690426248#c4569067145424812826">December 1, 2011 at 4:00 AM</a></span></div><p id="bc_0_18MC" class="comment-content">Canopy Cluster is more of a pre-processing step to speed things up. You cluster your target corpus first and so can avoid the O(N^2) problem later on by only comparing within one cluster.<br><br>I myself haven't had much luck with straight n-gram technqiues, it's just too slow. My primary corpus is a few million names though, so I can see how I would need different sets of techniques than someone say, indexing academic papers.<br><br><br>Nikita Smetanin:<br>That is a big downside downside of the suffix based approaches for sure. It's all about the time-space tradeoff.<br><br>Itman:<br>I'll look into Pattern Partitioning. Thanks for the tip!</p><span id="bc_0_18MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-2029383241"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=4569067145424812826">Delete</a></span></span></div><div id="bc_0_18BR" class="comment-replies"></div><div id="bc_0_18B_box" class="comment-replybox-single"></div></li><li id="bc_0_19B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c4260836429939635972" class="comment-block"><div id="bc_0_19M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/03814017189114155703">Maxime Caron</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322714592214#c4260836429939635972">December 1, 2011 at 10:43 AM</a></span></div><p id="bc_0_19MC" class="comment-content">you should have a look at the Levenshtein Automata<br><br>http://blog.notdot.net/2010/07/Damn-Cool-Algorithms-Levenshtein-Automata<br><br>its the best solution i have found so far</p><span id="bc_0_19MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1687445560"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=4260836429939635972">Delete</a></span></span></div><div id="bc_0_19BR" class="comment-replies"></div><div id="bc_0_19B_box" class="comment-replybox-single"></div></li><li id="bc_0_20B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c8068009484020718743" class="comment-block"><div id="bc_0_20M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322839692567#c8068009484020718743">December 2, 2011 at 9:28 PM</a></span></div><p id="bc_0_20MC" class="comment-content"><span class="deleted-comment">This comment has been removed by the author.</span></p><span id="bc_0_20MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin "><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=8068009484020718743">Delete</a></span></span></div><div id="bc_0_20BR" class="comment-replies"></div><div id="bc_0_20B_box" class="comment-replybox-single"></div></li><li id="bc_0_21B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c6926253721088150091" class="comment-block"><div id="bc_0_21M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/13334437422746807908">Vjeux</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322912747272#c6926253721088150091">December 3, 2011 at 5:45 PM</a></span></div><p id="bc_0_21MC" class="comment-content">Do you happen to have the dictionnary used for your tests available somewhere ?<br><br>I've implemented a solution for this exact problem using tries. And since you discarded it because you say it's not efficient enough, I'd like to compare it to your results :)<br><br>Thanks</p><span id="bc_0_21MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1650329157"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=6926253721088150091">Delete</a></span></span></div><div id="bc_0_21BR" class="comment-replies"></div><div id="bc_0_21B_box" class="comment-replybox-single"></div></li><li id="bc_0_22B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c2992016080022276397" class="comment-block"><div id="bc_0_22M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="http://www.blogger.com/profile/05390795188408156286">Nikita Smetanin</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1322917415672#c2992016080022276397">December 3, 2011 at 7:03 PM</a></span></div><p id="bc_0_22MC" class="comment-content">This dictionary is always available <a href="http://code.google.com/p/fuzzy-search-tools/downloads/detail?name=dict.txt.zip" rel="nofollow">here</a>.</p><span id="bc_0_22MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-468972811"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=2992016080022276397">Delete</a></span></span></div><div id="bc_0_22BR" class="comment-replies"></div><div id="bc_0_22B_box" class="comment-replybox-single"></div></li><li id="bc_0_23B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c4083878120235406884" class="comment-block"><div id="bc_0_23M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/13334437422746807908">Vjeux</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1323266788647#c4083878120235406884">December 7, 2011 at 8:06 PM</a></span></div><p id="bc_0_23MC" class="comment-content">I've written a blog article about fuzzy search with a Trie. <br><br>http://blog.vjeux.com/2011/c/c-fuzzy-search-with-trie.html<br><br>As for performances, I search every word at a distance 2 of the 400 most popular english words. The dictionnary contains 3 millions words. It takes 22 seconds on my old 2Ghz server to run it. It takes an average of 55ms per fuzzy search and generates an average of 247 results.<br><br>The inputs and times look similar to the ones you obtain in your benchmarks. When I will have some time, I will update my code in order to take your inputs, this way you'll be able to compare on your test computer.</p><span id="bc_0_23MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1650329157"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=4083878120235406884">Delete</a></span></span></div><div id="bc_0_23BR" class="comment-replies"></div><div id="bc_0_23B_box" class="comment-replybox-single"></div></li><li id="bc_0_24B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c5287752163058456271" class="comment-block"><div id="bc_0_24M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1323359827506#c5287752163058456271">December 8, 2011 at 9:57 PM</a></span></div><p id="bc_0_24MC" class="comment-content">Hi everybody,<br><br>Never mind my previous comment on Nick's blog. I missed a point and, apparently, Nick's solution makes sense.</p><span id="bc_0_24MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-714708742"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=5287752163058456271">Delete</a></span></span></div><div id="bc_0_24BR" class="comment-replies"></div><div id="bc_0_24B_box" class="comment-replybox-single"></div></li><li id="bc_0_25B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c3297573633388482919" class="comment-block"><div id="bc_0_25M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/12376231848507997760">FAME API</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1332496726007#c3297573633388482919">March 23, 2012 at 3:58 PM</a></span></div><p id="bc_0_25MC" class="comment-content">Hi, for developers who are interested in a new algorithm that combines token based, character based, and phonetic based algorithms into one fast and accurate name matching technology visit http://www.fame-api.com</p><span id="bc_0_25MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-2061656339"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=3297573633388482919">Delete</a></span></span></div><div id="bc_0_25BR" class="comment-replies"></div><div id="bc_0_25B_box" class="comment-replybox-single"></div></li><li id="bc_0_26B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c4240236740994699748" class="comment-block"><div id="bc_0_26M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/15239246923618199198">Alexander</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1332785720251#c4240236740994699748">March 27, 2012 at 12:15 AM</a></span></div><p id="bc_0_26MC" class="comment-content">Many thanks Nikita, this was exactly the concise and practical overview I was looking for.</p><span id="bc_0_26MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-2057870295"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=4240236740994699748">Delete</a></span></span></div><div id="bc_0_26BR" class="comment-replies"></div><div id="bc_0_26B_box" class="comment-replybox-single"></div></li><li id="bc_0_27B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/100_5098.JPG"></div><div id="c3728467504890661541" class="comment-block"><div id="bc_0_27M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/04990026893506195372">Chankey Pathak</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1346066792599#c3728467504890661541">August 27, 2012 at 5:26 PM</a></span></div><p id="bc_0_27MC" class="comment-content">Very nice! I've to deal with the search engine in company's web-based product and we're using htdig for this. Your article was very helpful in understanding fuzzyalgos, I'll implement these in our product :)</p><span id="bc_0_27MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-536142000"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=3728467504890661541">Delete</a></span></span></div><div id="bc_0_27BR" class="comment-replies"></div><div id="bc_0_27B_box" class="comment-replybox-single"></div></li><li id="bc_0_30B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c6659464977027542904" class="comment-block"><div id="bc_0_30M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/03313144565788782021">Avatar</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1348659689971#c6659464977027542904">September 26, 2012 at 5:41 PM</a></span></div><p id="bc_0_30MC" class="comment-content">Good day!<br><br>I was wondering if you could help me in my report. It is about the use of "FUZZY LOGIC" in searching the database. I've searched the net for the basic concepts of fuzzy logic and I always get these three steps: fuzzification, inference engine and <br>defuzzification.<br><br>Now, my problem is this: how exactly can I apply these three steps with the algorithms that you've discussed here? I think they will fit the fuzzification stage but how about the other two?<br><br>Thanks in advance..!</p><span id="bc_0_30MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-666864112"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=6659464977027542904">Delete</a></span></span></div><div id="bc_0_30BR" class="comment-replies"><span id="bc_0_30b+seedF_4qD" kind="d"><div id="bc_0_28T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_28TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_28TA" class="thread-arrow"></span><span id="bc_0_28TN" class="thread-count"><span id="bc_0_28TNT" style="display: none;"></span><span id="bc_0_28TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_28TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_28TC" class="thread-chrome thread-expanded"><div><li id="bc_0_28B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c7658406115346579498" class="comment-block"><div id="bc_0_28M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="http://www.blogger.com/profile/05390795188408156286">Nikita Smetanin</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1348660020335#c7658406115346579498">September 26, 2012 at 5:47 PM</a></span></div><p id="bc_0_28MC" class="comment-content">Sorry, but this article is about fuzzy search, which has nothing in common with fuzzy logic. I hope you'll find answers somewhere else.</p><span id="bc_0_28MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-468972811"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=7658406115346579498">Delete</a></span></span></div><div id="bc_0_28BR" class="comment-replies"></div><div id="bc_0_28B_box" class="comment-replybox-single"></div></li><li id="bc_0_29B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c6097840002298347836" class="comment-block"><div id="bc_0_29M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/03313144565788782021">Avatar</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1348662503644#c6097840002298347836">September 26, 2012 at 6:28 PM</a></span></div><p id="bc_0_29MC" class="comment-content">Ah, OK... Thanks anyway..!</p><span id="bc_0_29MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-666864112"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=6097840002298347836">Delete</a></span></span></div><div id="bc_0_29BR" class="comment-replies"></div><div id="bc_0_29B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_28I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_28T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_30B_box" class="comment-replybox-single"></div></li><li id="bc_0_31B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c924640753733575760" class="comment-block"><div id="bc_0_31M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/10293706577395008658">showoff</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1348756160703#c924640753733575760">September 27, 2012 at 8:29 PM</a></span></div><p id="bc_0_31MC" class="comment-content">Liked your post very much... I have been considering a consume-order-agnostic approach to approximate match, as an extension to exact match (presented here: http://arxiv.org/pdf/1209.4554v1.pdf). I think there might be an advantage here - would you agree?<br></p><span id="bc_0_31MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-601064248"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=924640753733575760">Delete</a></span></span></div><div id="bc_0_31BR" class="comment-replies"></div><div id="bc_0_31B_box" class="comment-replybox-single"></div></li><li id="bc_0_34B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c1164524914385175938" class="comment-block"><div id="bc_0_34M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/11202833265962247460">mr. V</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1351133311459#c1164524914385175938">October 25, 2012 at 8:48 AM</a></span></div><p id="bc_0_34MC" class="comment-content">I like this post. However I would disagree that the Trie based methods are slow. Here is example of Fuzzy search based on Trie, it works pretty fast:<br>http://www.softcorporation.com/products/people/index.html</p><span id="bc_0_34MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-285022917"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=1164524914385175938">Delete</a></span></span></div><div id="bc_0_34BR" class="comment-replies"><span id="bc_0_34b+seedF_4uD" kind="d"><div id="bc_0_32T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_32TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_32TA" class="thread-arrow"></span><span id="bc_0_32TN" class="thread-count"><span id="bc_0_32TNT" style="display: none;"></span><span id="bc_0_32TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_32TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_32TC" class="thread-chrome thread-expanded"><div><li id="bc_0_32B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c2356892829350968579" class="comment-block"><div id="bc_0_32M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="http://www.blogger.com/profile/05390795188408156286">Nikita Smetanin</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1351174209393#c2356892829350968579">October 25, 2012 at 8:10 PM</a></span></div><p id="bc_0_32MC" class="comment-content">You're right, I've investigated the Levenshtein automata algorithm (which works on DAWG - a general case of a trie) and it seems to be fast enough with a moderate index (DAWG) size.</p><span id="bc_0_32MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-468972811"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=2356892829350968579">Delete</a></span></span></div><div id="bc_0_32BR" class="comment-replies"></div><div id="bc_0_32B_box" class="comment-replybox-single"></div></li><li id="bc_0_33B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c1092600810610900786" class="comment-block"><div id="bc_0_33M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1351174657777#c1092600810610900786">October 25, 2012 at 8:17 PM</a></span></div><p id="bc_0_33MC" class="comment-content">For large string and larger errors, though, different methods are required. Because trie has a cost O(length^k alphabet_size^k). This works for names because, both length and k are small.</p><span id="bc_0_33MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-714708742"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=1092600810610900786">Delete</a></span></span></div><div id="bc_0_33BR" class="comment-replies"></div><div id="bc_0_33B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_32I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_32T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_34B_box" class="comment-replybox-single"></div></li><li id="bc_0_36B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c6027944356331974165" class="comment-block"><div id="bc_0_36M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/16967081620062714016">Benno Nieswand</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1364894169974#c6027944356331974165">April 2, 2013 at 3:16 PM</a></span></div><p id="bc_0_36MC" class="comment-content">I downloaded the dictionary, put it in our MatchMaker tool, and ran queries against it in around 10 ms. Index-size is around 110 MB and it calculates the full Damerau-Levenshtein distance with unbounded error-correction.<br>The same index can even do a block-edit calculation (blocks of strings are shifted for cost 1!) within 20 ms.<br>Optionally you can couple an approximate phonetics to it or do all kinds of extra comparison.<br><br>So THERE IS A LEVENSHTEIN INDEX type.<br> </p><span id="bc_0_36MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1049460109"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=6027944356331974165">Delete</a></span></span></div><div id="bc_0_36BR" class="comment-replies"><span id="bc_0_36b+seedF_4zD" kind="d"><div id="bc_0_35T" class="comment-thread inline-thread" kind="t" t="0" u="0"><span id="bc_0_35TT" class="thread-toggle thread-expanded" kind="g"><span id="bc_0_35TA" class="thread-arrow"></span><span id="bc_0_35TN" class="thread-count"><span id="bc_0_35TNT" style="display: none;"></span><span id="bc_0_35TNU" style="display: none;"></span><a href="javascript:;" target="_self">Replies</a><div id="bc_0_35TD" class="thread-dropContainer thread-expanded"><span class="thread-drop"></span></div></span></span><ol id="bc_0_35TC" class="thread-chrome thread-expanded"><div><li id="bc_0_35B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c2487633488480092904" class="comment-block"><div id="bc_0_35M" class="comment-header" kind="m"><cite class="user blog-author"><a rel="nofollow" href="http://www.blogger.com/profile/05390795188408156286">Nikita Smetanin</a></cite><span class="icon user blog-author"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1364912179964#c2487633488480092904">April 2, 2013 at 8:16 PM</a></span></div><p id="bc_0_35MC" class="comment-content">Yes, I know about Levenshtein automata, I implemented and tested it some time ago, but unfortunately I'd no enough time to write an article about it and some other very fast algorithms. Maybe I'll publish my Levenshtein automata java source code if it still exists.<br><br>However, I think that Levenshtein automata may have performance issues if you store them in external memory (because of its structure), so this case should be analyzed separately.</p><span id="bc_0_35MN" class="comment-actions secondary-text" kind="m"><span class="item-control blog-admin pid-468972811"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=2487633488480092904">Delete</a></span></span></div><div id="bc_0_35BR" class="comment-replies"></div><div id="bc_0_35B_box" class="comment-replybox-single"></div></li></div><div id="bc_0_35I" class="continue" kind="ci"><a href="javascript:;" target="_self">Reply</a></div></ol><div id="bc_0_35T_box" class="comment-replybox-thread"></div></div></span></div><div id="bc_0_36B_box" class="comment-replybox-single"></div></li><li id="bc_0_37B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c867422100222754556" class="comment-block"><div id="bc_0_37M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/16967081620062714016">Benno Nieswand</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1364897263149#c867422100222754556">April 2, 2013 at 4:07 PM</a></span></div><p id="bc_0_37MC" class="comment-content">I did further tests with another Damerau-Levenshtein index type based on automata. It doesn't preprossess any potential error, but does realtime computation of all edit choices:<br><br>up to 1 error: below  1 ms<br>up to 2 errors:around 5 ms<br>up to 3 errors:around 15 ms<br><br>If you don't believe it, I can give more info!</p><span id="bc_0_37MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1049460109"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=867422100222754556">Delete</a></span></span></div><div id="bc_0_37BR" class="comment-replies"></div><div id="bc_0_37B_box" class="comment-replybox-single"></div></li><li id="bc_0_38B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c7486214077333762834" class="comment-block"><div id="bc_0_38M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06504303746901639466">Itman</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1364903022067#c7486214077333762834">April 2, 2013 at 5:43 PM</a></span></div><p id="bc_0_38MC" class="comment-content">One can do better than 1 ms easily.</p><span id="bc_0_38MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-714708742"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=7486214077333762834">Delete</a></span></span></div><div id="bc_0_38BR" class="comment-replies"></div><div id="bc_0_38B_box" class="comment-replybox-single"></div></li><li id="bc_0_39B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c4435493795179516982" class="comment-block"><div id="bc_0_39M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/06175204545509430565">Jordan Today</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1365532306344#c4435493795179516982">April 10, 2013 at 12:31 AM</a></span></div><p id="bc_0_39MC" class="comment-content">Anybody know or can guess what algorithm QSR NVivo 10 use to find the exact or fuzzy text matching? The software works like this: store certain documents containing whatever text and in any language;  then you can start searching for a certain word or multiple words. It does effectively catch the related words with its synonyms and it builds Word Tree Map for it. How does it do that? I mean what type of word distance calculations do they use? do they have a dictionary or do they use Wordnet or what?  </p><span id="bc_0_39MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-800933302"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=4435493795179516982">Delete</a></span></span></div><div id="bc_0_39BR" class="comment-replies"></div><div id="bc_0_39B_box" class="comment-replybox-single"></div></li><li id="bc_0_40B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/download%252B%2525284%252529.jpg"></div><div id="c868678363332330857" class="comment-block"><div id="bc_0_40M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/12881020149818784633">Regional College Of Pharmacy</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1366965794910#c868678363332330857">April 26, 2013 at 2:43 PM</a></span></div><p id="bc_0_40MC" class="comment-content">Your blog is very informative and gracefully<br>your guideline is very good.Thank you<br><a href="http://www.deepshikha.org/" rel="nofollow">Engineering college</a> <br><a href="http://www.deepshikha.org/" rel="nofollow">Best engineering college in india</a> <br><a href="http://www.deepshikha.org/" rel="nofollow">Private engineering college </a> <br><a href="http://www.regionalpharma.com/" rel="nofollow">pharmacy college </a>   <br><a href="http://www.regionalpharma.com/" rel="nofollow">pharmacy college in india</a> <br><a href="http://deepshikhagroupofcolleges.blogspot.in/" rel="nofollow">top pharmacy college</a>   <br><a href="http://www.regionalcollege.org/" rel="nofollow">Polytechnic college</a> <br><a href="http://www.regionalcollege.org/" rel="nofollow">Top polytechnic college</a> <br><a href="http://www.regionalpolytechnic.com/" rel="nofollow">Top private polytechnic college </a> <br><a href="http://www.regionalpolytechnic.com/" rel="nofollow">Top polytechnic colleges in India</a> <br><a href="http://www.regionalinstitute.in/" rel="nofollow">Techanical colleges</a><br><a href="http://www.regionalinstitute.in/" rel="nofollow">Polytechnic college in india</a><br><a href="http://www.digitalinfo.in/" rel="nofollow">Leading call center</a><br><a href="http://www.digitalinfo.in/" rel="nofollow"> Outbound call center india</a><br><a href="http://www.digitalinfo.in/" rel="nofollow">Cheap Seo services india</a></p><span id="bc_0_40MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1729442615"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=868678363332330857">Delete</a></span></span></div><div id="bc_0_40BR" class="comment-replies"></div><div id="bc_0_40B_box" class="comment-replybox-single"></div></li><li id="bc_0_41B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/photo.jpg"></div><div id="c4350348967937777620" class="comment-block"><div id="bc_0_41M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/08307301450488766339">jyoti soni</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1401098252408#c4350348967937777620">May 26, 2014 at 3:57 PM</a></span></div><p id="bc_0_41MC" class="comment-content">Thank you for sharing valuable information. Nice post. I enjoyed reading this post. The whole blog is very nice found some good stuff and good information here Thanks..Also visit my page<a href="http://www.21standcentury.com/" rel="nofollow"> Design and multimedia </a> At 21st and century experience counts a lot as we believe that the single most important elements in mastering any task is experience. <br></p><span id="bc_0_41MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-1663956298"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=4350348967937777620">Delete</a></span></span></div><div id="bc_0_41BR" class="comment-replies"></div><div id="bc_0_41B_box" class="comment-replybox-single"></div></li><li id="bc_0_42B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/b36-rounded.png"></div><div id="c3753473003282163683" class="comment-block"><div id="bc_0_42M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/00686937627474054911">Maree Lawson</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1401712502431#c3753473003282163683">June 2, 2014 at 6:35 PM</a></span></div><p id="bc_0_42MC" class="comment-content">AM Field Engineer  from Japan, I am not used to this but i have to do this because i want the world and entire earth to know about Lord Zilialia. He is a blessing to man kind and a blessing to me in particular. Search no more for help any where your help is come. Just contact Lord Zilialia on spellcaster1202@gmail.com and you will be glad you did. Even Japanese do need help.<br></p><span id="bc_0_42MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-279556749"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=3753473003282163683">Delete</a></span></span></div><div id="bc_0_42BR" class="comment-replies"></div><div id="bc_0_42B_box" class="comment-replybox-single"></div></li><li id="bc_0_43B" class="comment" kind="b"><div class="avatar-image-container"><img src="./Nikita's blog  Fuzzy string search_files/photo(1).jpg"></div><div id="c3421045452038978875" class="comment-block"><div id="bc_0_43M" class="comment-header" kind="m"><cite class="user"><a rel="nofollow" href="http://www.blogger.com/profile/16519685134687675296">Vocab Monk</a></cite><span class="icon user"></span><span class="datetime secondary-text"><a rel="nofollow" href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html?showComment=1410779653476#c3421045452038978875">September 15, 2014 at 5:14 PM</a></span></div><p id="bc_0_43MC" class="comment-content">Learning to spell helps to cement the connection between the letters and their sounds, and learning high-frequency "sight words" to mastery level improves both reading and writing. English writing system is not merely to ensure accurate pronunciation of the written word – it is to convey meaning. https://vocabmonk.com helps you to learn new words with their spellings, meaning and pronunciation.<br>Try it..!! <br></p><span id="bc_0_43MN" class="comment-actions secondary-text" kind="m"><a kind="i" href="javascript:;" target="_self" o="r">Reply</a><span class="item-control blog-admin pid-2052126161"><a o="d" target="_self" href="http://www.blogger.com/delete-comment.g?blogID=885300322566276441&postID=3421045452038978875">Delete</a></span></span></div><div id="bc_0_43BR" class="comment-replies"></div><div id="bc_0_43B_box" class="comment-replybox-single"></div></li></ol><div id="bc_0_44I" class="continue" kind="ci" style="display: none;"><a href="javascript:;" target="_self">Add comment</a></div><div id="bc_0_44T_box" class="comment-replybox-thread"><iframe allowtransparency="true" class="blogger-iframe-colorize blogger-comment-from-post" frameborder="0" height="252px" id="comment-editor" name="comment-editor" src="./Nikita's blog  Fuzzy string search_files/comment-iframe.html" width="100%" style="display: block;"></iframe></div><div id="bc_0_44L" class="loadmore loaded" kind="rb"><a href="javascript:;" target="_self">Load more...</a></div></div></div></div></div>
+</div>
+<p class="comment-footer">
+</p><div class="comment-form">
+<a name="comment-form"></a>
+<p>
+</p>
+<a href="https://www.blogger.com/comment-iframe.g?blogID=885300322566276441&postID=1887965468830630556&blogspotRpcToken=7591565" id="comment-editor-src"></a>
+
+<script type="text/javascript" src="./Nikita's blog  Fuzzy string search_files/3995214906-comment_from_post_iframe.js"></script>
+<script type="text/javascript">
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html');
+    </script>
+</div>
+<p></p>
+<div id="backlinks-container">
+<div id="Blog1_backlinks-container"><a name="links"></a><h4>Links to this post</h4>
+<p class="comment-footer">
+<a class="comment-link" href="http://www.blogger.com/blog-this.g" id="Blog1_backlinks-create-link" target="_blank">Create a Link</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+<!-- google_ad_section_end -->
+</div>
+<div class="blog-pager" id="blog-pager">
+<span id="blog-pager-older-link">
+<a class="blog-pager-older-link" href="http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html" id="Blog1_blog-pager-older-link" title="Older Post">Older Post</a>
+</span>
+<a class="home-link" href="http://ntz-develop.blogspot.com/">Home</a>
+</div>
+<div class="clear"></div>
+<div class="post-feeds">
+<div class="feed-links">
+Subscribe to:
+<a class="feed-link" href="http://ntz-develop.blogspot.com/feeds/1887965468830630556/comments/default" target="_blank" type="application/atom+xml">Post Comments (Atom)</a>
+</div>
+</div>
+<script type="text/javascript">window.___gcfg = {'lang': 'en'};</script>
+</div></div>
+</div>
+<div id="sidebar-wrapper">
+<div class="sidebar section" id="sidebar"><div class="widget BlogArchive" id="BlogArchive1">
+<h2>Blog Archive</h2>
+<div class="widget-content">
+<div id="ArchiveList">
+<div id="BlogArchive1_ArchiveList">
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">▼&nbsp;</span>
+</a>
+<a class="post-count-link" href="http://ntz-develop.blogspot.com/search?updated-min=2011-01-01T00:00:00%2B05:00&updated-max=2012-01-01T00:00:00%2B06:00&max-results=4">2011</a>
+<span class="post-count" dir="ltr">(4)</span>
+<ul class="hierarchy">
+<li class="archivedate expanded">
+<a class="toggle" href="javascript:void(0)">
+<span class="zippy toggle-open">▼&nbsp;</span>
+</a>
+<a class="post-count-link" href="http://ntz-develop.blogspot.com/2011_03_01_archive.html">March</a>
+<span class="post-count" dir="ltr">(4)</span>
+<ul class="posts">
+<li><a href="./Nikita's blog  Fuzzy string search_files/Nikita's blog  Fuzzy string search.html">Fuzzy string search</a></li>
+<li><a href="http://ntz-develop.blogspot.com/2011/03/phonetic-algorithms.html">Phonetic algorithms</a></li>
+<li><a href="http://ntz-develop.blogspot.com/2011/03/blog-post.html">Нечёткий поиск в тексте и словаре</a></li>
+<li><a href="http://ntz-develop.blogspot.com/2011/03/blog-post_04.html">Фонетические алгоритмы</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=885300322566276441&widgetType=BlogArchive&widgetId=BlogArchive1&action=editWidget&sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;BlogArchive1&quot;));" target="configBlogArchive1" title="Edit">
+<img alt="" height="18" src="./Nikita's blog  Fuzzy string search_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget Profile" id="Profile1">
+<h2>About Me</h2>
+<div class="widget-content">
+<dl class="profile-datablock">
+<dt class="profile-data">
+<a class="profile-name-link g-profile" href="http://www.blogger.com/profile/05390795188408156286" rel="author" style="background-image: url(//www.blogger.com/img/logo-16.png);" data-gapiscan="true" data-onload="true" data-gapiattached="true">
+Nikita Smetanin
+</a>
+</dt>
+</dl>
+<a class="profile-link" href="http://www.blogger.com/profile/05390795188408156286" rel="author">View my complete profile</a>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=885300322566276441&widgetType=Profile&widgetId=Profile1&action=editWidget&sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Profile1&quot;));" target="configProfile1" title="Edit">
+<img alt="" height="18" src="./Nikita's blog  Fuzzy string search_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div>
+</div><div class="widget Attribution" id="Attribution1">
+<div class="widget-content" style="text-align: center;">
+Powered by <a href="http://www.blogger.com/" target="_blank">Blogger</a>.
+</div>
+<div class="clear"></div>
+<span class="widget-item-control">
+<span class="item-control blog-admin">
+<a class="quickedit" href="http://www.blogger.com/rearrange?blogID=885300322566276441&widgetType=Attribution&widgetId=Attribution1&action=editWidget&sectionId=sidebar" onclick="return _WidgetManager._PopupConfig(document.getElementById(&quot;Attribution1&quot;));" target="configAttribution1" title="Edit">
+<img alt="" height="18" src="./Nikita's blog  Fuzzy string search_files/icon18_wrench_allbkg.png" width="18">
+</a>
+</span>
+</span>
+<div class="clear"></div>
+</div></div>
+</div>
+<!-- spacer for skins that want sidebar and main to be the same height-->
+<div class="clear">&nbsp;</div>
+</div>
+<!-- end content-wrapper -->
+<div id="footer-wrapper">
+<div class="footer section" id="footer"></div>
+</div>
+</div></div>
+<!-- end outer-wrapper -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21365514-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script type="text/javascript">
+if (window.jstiming) window.jstiming.load.tick('widgetJsBefore');
+</script><script type="text/javascript" src="./Nikita's blog  Fuzzy string search_files/3787075037-widgets.js"></script>
+<script type="text/javascript" src="./Nikita's blog  Fuzzy string search_files/plusone.js" gapi_processed="true"></script>
+<script type="text/javascript">
+if (typeof(BLOG_attachCsiOnload) != 'undefined' && BLOG_attachCsiOnload != null) { window['blogger_templates_experiment_id'] = "templatesV1";window['blogger_blog_id'] = '885300322566276441';BLOG_attachCsiOnload('item_'); }_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d885300322566276441','//ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html','885300322566276441');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '885300322566276441', 'bloggerUrl': 'http://www.blogger.com', 'title': 'Nikita\47s blog', 'pageType': 'item', 'postId': '1887965468830630556', 'url': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html', 'canonicalUrl': 'http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html', 'canonicalHomepageUrl': 'http://ntz-develop.blogspot.com/', 'homepageUrl': 'http://ntz-develop.blogspot.com/', 'blogspotFaviconUrl': 'http://ntz-develop.blogspot.com/favicon.ico', 'enabledCommentProfileImages': true, 'adultContent': false, 'disableAdSenseWidget': false, 'analyticsAccountNumber': '', 'searchLabel': '', 'searchQuery': '', 'pageName': 'Fuzzy string search', 'pageTitle': 'Nikita\47s blog: Fuzzy string search', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'languageDirection': 'ltr', 'feedLinks': '\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42Nikita\46#39;s blog - Atom\42 href\75\42http://ntz-develop.blogspot.com/feeds/posts/default\42 /\76\n\74link rel\75\42alternate\42 type\75\42application/rss+xml\42 title\75\42Nikita\46#39;s blog - RSS\42 href\75\42http://ntz-develop.blogspot.com/feeds/posts/default?alt\75rss\42 /\76\n\74link rel\75\42service.post\42 type\75\42application/atom+xml\42 title\75\42Nikita\46#39;s blog - Atom\42 href\75\42http://www.blogger.com/feeds/885300322566276441/posts/default\42 /\76\n\n\74link rel\75\42alternate\42 type\75\42application/atom+xml\42 title\75\42Nikita\46#39;s blog - Atom\42 href\75\42http://ntz-develop.blogspot.com/feeds/1887965468830630556/comments/default\42 /\76\n', 'meTag': '', 'openIdOpTag': '', 'postImageUrl': 'http://habrastorage.org/storage2/885/52e/8ee/88552e8ee013623e2ef7bfd747375ae9.png', 'latencyHeadScript': '\74script type\75\42text/javascript\42\76(function() { var b\75window,f\75\42chrome\42,g\75\42tick\42,k\75\42jstiming\42;(function(){function d(a){this.t\75{};this.tick\75function(a,d,c){var e\75void 0!\75c?c:(new Date).getTime();this.t[a]\75[e,d];if(void 0\75\75c)try{b.console.timeStamp(\42CSI/\42+a)}catch(h){}};this[g](\42start\42,null,a)}var a;b.performance\46\46(a\75b.performance.timing);var n\75a?new d(a.responseStart):new d;b.jstiming\75{Timer:d,load:n};if(a){var c\75a.navigationStart,h\75a.responseStart;0\74c\46\46h\76\75c\46\46(b[k].srt\75h-c)}if(a){var e\75b[k].load;0\74c\46\46h\76\75c\46\46(e[g](\42_wtsrt\42,void 0,c),e[g](\42wtsrt_\42,\42_wtsrt\42,h),e[g](\42tbsd_\42,\42wtsrt_\42))}try{a\75null,\nb[f]\46\46b[f].csi\46\46(a\75Math.floor(b[f].csi().pageT),e\46\0460\74c\46\46(e[g](\42_tbnd\42,void 0,b[f].csi().startE),e[g](\42tbnd_\42,\42_tbnd\42,c))),null\75\75a\46\46b.gtbExternal\46\46(a\75b.gtbExternal.pageT()),null\75\75a\46\46b.external\46\46(a\75b.external.pageT,e\46\0460\74c\46\46(e[g](\42_tbnd\42,void 0,b.external.startE),e[g](\42tbnd_\42,\42_tbnd\42,c))),a\46\46(b[k].pt\75a)}catch(p){}})();b.tickAboveFold\75function(d){var a\0750;if(d.offsetParent){do a+\75d.offsetTop;while(d\75d.offsetParent)}d\75a;750\76\75d\46\46b[k].load[g](\42aft\42)};var l\75!1;function m(){l||(l\75!0,b[k].load[g](\42firstScrollTime\42))}b.addEventListener?b.addEventListener(\42scroll\42,m,!1):b.attachEvent(\42onscroll\42,m);\n })();\74/script\076', 'mobileHeadScript': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/76f25a6f2e06af76', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sf': 'n', 'tf': ''}}, {'name': 'skin', 'data': {'vars': {'sidebartextcolor': '#666666', 'linkcolor': '#5588aa', 'visitedlinkcolor': '#999999', 'textcolor': '#333333', 'headerfont': 'normal normal 78% \47Trebuchet MS\47,Trebuchet,Arial,Verdana,Sans-serif', 'pagetitlefont': 'normal normal 200% Georgia, Serif', 'bgcolor': '#ffffff', 'descriptioncolor': '#999999', 'titlecolor': '#cc6600', 'bordercolor': '#cccccc', 'postfooterfont': 'normal normal 78% \47Trebuchet MS\47, Trebuchet, Arial, Verdana, Sans-serif', 'pagetitlecolor': '#666666', 'bodyfont': 'normal normal 100% Georgia, Serif', 'endSide': 'right', 'startSide': 'left', 'descriptionfont': 'normal normal 78% \47Trebuchet MS\47, Trebuchet, Arial, Verdana, Sans-serif', 'sidebarcolor': '#999999'}, 'override': ''}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\75classic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\75flipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\75magazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\75mosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\75sidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\75snapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\75timeslide'}}}]);
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar', null, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_ProfileView', new _WidgetInfo('Profile1', 'sidebar', null, document.getElementById('Profile1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'sidebar', null, document.getElementById('Attribution1'), {'attribution': 'Powered by \74a href\75\47http://www.blogger.com\47 target\75\47_blank\47\76Blogger\74/a\76.'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'showBacklinks': true, 'postId': '1887965468830630556', 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/1258225926-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/2392111094-lightbox_bundle.css'}, 'displayModeFull'));
+</script>
+
+<iframe name="oauth2relay863732219" id="oauth2relay863732219" src="./Nikita's blog  Fuzzy string search_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe frameborder="0" id="google_top_static_frame" name="google_top_static_frame" src="./Nikita's blog  Fuzzy string search_files/blank.html" style="height: 0px; width: 0px; position: absolute;"></iframe></body></html>

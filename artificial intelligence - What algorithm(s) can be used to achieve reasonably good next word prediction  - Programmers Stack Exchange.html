@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<!-- saved from url=(0129)http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction? - Programmers Stack Exchange</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/programmers/img/favicon.ico?v=8fef1c85f782">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/programmers/img/apple-touch-icon.png?v=4ce8e2685a35">
+    <link rel="search" type="application/opensearchdescription+xml" title="Programmers Stack Exchange" href="http://programmers.stackexchange.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@StackProgrammer">
+    <meta name="twitter:domain" content="programmers.stackexchange.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/programmers/img/apple-touch-icon@2.png?v=8a6d048f3c78">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="What algorithm(s) can be used to achieve reasonably good next word prediction?">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="What is a good way of implementing &quot;next-word prediction&quot;? For example, the user types &quot;I am&quot; and the system suggests &quot;a&quot; and &quot;not&quot; (or possibly others) as the next word. I am aware of a method tha...">
+    <meta property="og:url" content="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction">
+    <link rel="canonical" href="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange.html">
+
+    
+    
+    <script type="text/javascript" async="" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/ados"></script><script async="" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/quant.js"></script><script async="" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/beacon.js"></script><script async="" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/analytics.js"></script><script type="text/javascript" async="" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/ados.js"></script><script src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/jquery.min.js"></script>
+    <script src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;What algorithm(s) can be used to achieve reasonably good next word prediction?&#39;" href="http://programmers.stackexchange.com/feeds/question/148350">
+    <script>
+        
+        StackExchange.ready(function () {
+
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:148350});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('131', '148350');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.ready(function () {
+            StackExchange.realtime.init('wss://qa.sockets.stackexchange.com,ws://qa.sockets.stackexchange.com');
+            StackExchange.realtime.subscribeToInboxNotifications();
+                    StackExchange.realtime.subscribeToReputationNotifications('131');
+                StackExchange.realtime.subscribeToTopBarNotifications('131');
+        });
+    </script>
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1415591135,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":false,"domain":"stacksnippets.net"},"site":{"name":"Programmers Stack Exchange","description":"Q&A for professional programmers interested in conceptual questions about software development","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdsB7sSAAAAAAzjgEF_Hd8vXv-C42sa_KyofaGR","recaptchaAudioLang":"en","enableNewTagCreationWarning":false,"enableSocialMediaInSharePopup":true},"user":{"fkey":"c86e770eccb8c433d2ca376b991288a7","isAnonymous":true,"ab":{"tutorial_tooltips":{"v":"b","g":2}}}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"a1ab00ffb113","js/moderator.en.js":"3bf88d4bfb80","js/full-anon.en.js":"ba40bc4f0c42","js/full.en.js":"b3f650994659","js/wmd.en.js":"49f3cc5412e4","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"a3258d148a79","js/help.en.js":"7f73fe585f5f","js/tageditor.en.js":"84750e4a4944","js/tageditornew.en.js":"06badc16a361","js/inline-tag-editing.en.js":"21223186b436","js/revisions.en.js":"507cd4269137","js/review.en.js":"a34923140178","js/tagsuggestions.en.js":"bc2c996faeda","js/post-validation.en.js":"b624eb3c0746","js/explore-qlist.en.js":"4e6f969d97ee","js/events.en.js":"33468104e1d9","js/keyboard-shortcuts.en.js":"f53953b93abf","js/external-editor.en.js":"7bf4d75730d1"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script async="" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/full-anon.en.js"></script><script async="" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/post-validation.en.js"></script><script async="" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/external-editor.en.js"></script><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body class="question-page new-topbar" lang="">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://programmers.stackexchange.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackexchange.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://programmers.blogoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+            </div>
+
+
+
+
+    <a href="http://programmers.stackexchange.com/" class="current-site-link site-link js-gps-track" data-id="131" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-programmers" title="Programmers"></div>
+        Programmers
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.programmers.stackexchange.com/" class="site-link js-gps-track" data-id="133" data-gps-track="
+            site.switch({ target_site:133, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-programmersmeta" title="Programmers Meta"></div>
+        Programmers Meta
+    </a>
+
+                </li>
+                    </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+                        <a href="https://programmers.stackexchange.com/users/signup?returnurl=http%3a%2f%2fprogrammers.stackexchange.com%2fquestions%2f148350%2fwhat-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a>
+                    or
+                    <a href="https://programmers.stackexchange.com/users/login?returnurl=http%3a%2f%2fprogrammers.stackexchange.com%2fquestions%2f148350%2fwhat-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a>
+
+                    to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 130 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+                            <a href="https://programmers.stackexchange.com/users/signup?returnurl=http%3a%2f%2fprogrammers.stackexchange.com%2fquestions%2f148350%2fwhat-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction" class="login-link">sign up</a>
+                            <a href="https://programmers.stackexchange.com/users/login?returnurl=http%3a%2f%2fprogrammers.stackexchange.com%2fquestions%2f148350%2fwhat-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction" class="login-link">log in</a>
+                            <a href="http://programmers.stackexchange.com/tour">tour</a>
+
+                            <a href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://programmers.stackexchange.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://programmers.stackexchange.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.programmers.stackexchange.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://programmers.stackexchange.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header" class="headeranon">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://programmers.stackexchange.com/">
+                    Programmers
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs mainnavsanon">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://programmers.stackexchange.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://programmers.stackexchange.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://programmers.stackexchange.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://programmers.stackexchange.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://programmers.stackexchange.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://programmers.stackexchange.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+	<link itemprop="image" href="http://cdn.sstatic.net/programmers/img/apple-touch-icon.png">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+            <a href="http://programmers.stackexchange.com/tour" id="tell-me-more" class="button">Take the 2-minute tour</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Programmers Stack Exchange is a question and answer site for professional programmers interested in conceptual questions about software development. It's 100% free, no registration required.
+        </div>        
+    </div>
+    <script>
+        $('#tell-me-more').click(function () {
+            var clickSource = $("body").attr("class") + '-mini';
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+            }
+
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("aboutpage.click", { aboutclick_location: clickSource } , true);
+            });
+        });
+        $('#herobox-mini #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "close" }, true);
+            });
+            $.cookie("hero", "none", { path: "/", expires: 365 });
+            var $hero = $("#herobox-mini");
+            $hero.slideUp('fast', function () { $hero.remove(); });
+            return false;
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange.html" class="question-hyperlink">What algorithm(s) can be used to achieve reasonably good next word prediction?</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="148350" id="question">
+
+    <script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,0,"adzerk521238078",4).enableDynamicSiteSelection().setZone(29) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk521238078"><div style="background-image: url( data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== ); width: 1px; height: 1px; display:none;"></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/i.gif"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="148350">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>1</b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+        <p>What is a good way of implementing "next-word prediction"? For example, the user types "I am" and the system suggests "a" and "not" (or possibly others) as the next word. I am aware of a method that uses Markov Chains and some training text(obviously) to more or less achieve this. But I read somewhere that this method is very restrictive and applies to very simple cases. </p>
+
+<p>I understand basics of neural networks and genetic algorithms(though have never used them in a serious project) and maybe they could be of some help. I wonder if there are any algorithms that, given appropriate training text(e.g., newspaper articles, and the user's own typing) can come up with reasonably appropriate suggestions for the next word. If not (links to)algorithms, general high-level methods to attack this problem are welcome.</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://programmers.stackexchange.com/questions/tagged/algorithms" class="post-tag js-gps-track" title="show questions tagged &#39;algorithms&#39;" rel="tag">algorithms</a> <a href="http://programmers.stackexchange.com/questions/tagged/artificial-intelligence" class="post-tag js-gps-track" title="show questions tagged &#39;artificial-intelligence&#39;" rel="tag">artificial-intelligence</a> <a href="http://programmers.stackexchange.com/questions/tagged/machine-learning" class="post-tag js-gps-track" title="show questions tagged &#39;machine-learning&#39;" rel="tag">machine-learning</a> <a href="http://programmers.stackexchange.com/questions/tagged/nlp" class="post-tag js-gps-track" title="show questions tagged &#39;nlp&#39;" rel="tag">nlp</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://programmers.stackexchange.com/q/148350" title="short permalink to this question" class="short-link" id="link-post-148350">share</a><span class="lsep">|</span><a href="http://programmers.stackexchange.com/posts/148350/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://programmers.stackexchange.com/posts/148350/revisions" title="show all edits to this post">edited <span title="2012-05-13 02:14:46Z" class="relativetime">May 13 '12 at 2:14</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://programmers.stackexchange.com/users/23251/jonsca"><div class="gravatar-wrapper-32"><img src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/ab24c0e23c30888c23e2d4fe9991cf2b" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://programmers.stackexchange.com/users/23251/jonsca">jonsca</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">543</span><span title="3 gold badges"><span class="badge1"></span><span class="badgecount">3</span></span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="25 bronze badges"><span class="badge3"></span><span class="badgecount">25</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2012-05-12 14:49:23Z" class="relativetime">May 12 '12 at 14:49</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://programmers.stackexchange.com/users/34281/yati-sagade"><div class="gravatar-wrapper-32"><img src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/0e1a66b5dea130f054d4b0a2b4a6c881" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://programmers.stackexchange.com/users/34281/yati-sagade">yati sagade</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,222</span><span title="8 silver badges"><span class="badge2"></span><span class="badgecount">8</span></span><span title="21 bronze badges"><span class="badge3"></span><span class="badgecount">21</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-148350" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-148350" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#" onclick=""></a>
+            </div>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								3 Answers
+                                <span style="display:none;" itemprop="answerCount">3</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="148408"></a>
+<div id="answer-148408" class="answer" data-answerid="148408" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="148408">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">7</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Take a look at <a href="http://en.wikipedia.org/wiki/N-gram">n-grams</a>. One n-gram is a sequence of <code>n</code> words. In your case you want <code>n</code> to be <code>3</code>, since you need two <code>query words</code> and a <code>resulting word</code>. One 3-gram would be for example "I am tired", another one "I am happy".</p>
+
+<p>What you then need is a collection of these 3-grams that are collected over your target language, say English. Since you cannot collect it over everything ever written in English you need to make a selection. That selection of representative texts is called a <code>corpus</code>. If your corpus is good it will tell you how often a sequence of three specific words occur together in English. From that 
+you can calculate the probability of a 3-gram.</p>
+
+<p>Collecting this kind of data is the hardest part. Once you have the list of all 3-grams together with their probability you can filter your list to all 3-grams starting with "I am". Then you sort all this list by probability <em>et voilà:</em> your prediction.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://programmers.stackexchange.com/a/148408" title="short permalink to this answer" class="short-link" id="link-post-148408">share</a><span class="lsep">|</span><a href="http://programmers.stackexchange.com/posts/148408/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-05-13 06:18:12Z" class="relativetime">May 13 '12 at 6:18</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://programmers.stackexchange.com/users/20062/sebastiangeiger"><div class="gravatar-wrapper-32"><img src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/c8332541fbcb778b92ea8601f9913bc1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://programmers.stackexchange.com/users/20062/sebastiangeiger">sebastiangeiger</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,757</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="14 bronze badges"><span class="badge3"></span><span class="badgecount">14</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-148408" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-280932" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Alright, and is there a optimal value of <code>n</code> that yields nice results? It doesn't always <i>have</i> to be the third word that is predicted, you see</span>
+                –&nbsp;
+                    <a href="http://programmers.stackexchange.com/users/34281/yati-sagade" title="1222 reputation" class="comment-user owner">yati sagade</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#comment280932_148408"><span title="2012-05-13 09:02:26Z" class="relativetime-clean">May 13 '12 at 9:02</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-280942" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Well, a larger <code>n</code> yields a longer list which will give you a more precise prediction but is also more expensive to search in. So it's a tradeoff between precision and computation time.</span>
+                –&nbsp;
+                    <a href="http://programmers.stackexchange.com/users/20062/sebastiangeiger" title="1757 reputation" class="comment-user">sebastiangeiger</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#comment280942_148408"><span title="2012-05-13 09:35:52Z" class="relativetime-clean">May 13 '12 at 9:35</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-395603" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Also, you need a larger corpus for larger n-grams to be practically useful.</span>
+                –&nbsp;
+                    <a href="http://programmers.stackexchange.com/users/1411/liori" title="427 reputation" class="comment-user">liori</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#comment395603_148408"><span title="2013-06-26 02:25:09Z" class="relativetime-clean">Jun 26 '13 at 2:25</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-395620" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">um this is literally a Markov Chain... not only that, but literally the most textbook example ...</span>
+                –&nbsp;
+                    <a href="http://programmers.stackexchange.com/users/1693/justin-l" title="121 reputation" class="comment-user">Justin L.</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#comment395620_148408"><span title="2013-06-26 06:28:33Z" class="relativetime-clean">Jun 26 '13 at 6:28</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 3 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-148408" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,0,"adzerk1228159302",4).enableDynamicSiteSelection().setZone(30) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1228159302"><div style="background-image: url( data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== ); width: 1px; height: 1px; display:none;"></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/i(1).gif"></div>
+  
+<a name="148359"></a>
+<div id="answer-148359" class="answer" data-answerid="148359" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="148359">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>It looks like the problem domain is a subset of string search.  By extending words to include white spaces, fuzzy string matching can be applied here.</p>
+
+<p>You might want to consider/allow all user input as one word during training in addition to your dictionary.  This allows you to suggest next word but also suggests auto complete of word or phrases.</p>
+
+<p>Here is a link to a compilation of fuzzy string search algorithms</p>
+
+<p><a href="http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html" rel="nofollow">http://ntz-develop.blogspot.com/2011/03/fuzzy-string-search.html</a></p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://programmers.stackexchange.com/a/148359" title="short permalink to this answer" class="short-link" id="link-post-148359">share</a><span class="lsep">|</span><a href="http://programmers.stackexchange.com/posts/148359/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://programmers.stackexchange.com/posts/148359/revisions" title="show all edits to this post">edited <span title="2012-05-12 18:21:39Z" class="relativetime">May 12 '12 at 18:21</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-05-12 16:01:29Z" class="relativetime">May 12 '12 at 16:01</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://programmers.stackexchange.com/users/28912/dorward-villaruz"><div class="gravatar-wrapper-32"><img src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/6e753f68f1659fef463cfc1fe6f0409c" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://programmers.stackexchange.com/users/28912/dorward-villaruz">Dorward Villaruz</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">388</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-148359" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-148359" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="151092"></a>
+<div id="answer-151092" class="answer" data-answerid="151092" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="151092">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>You are looking for a (statistical) <a href="http://en.wikipedia.org/wiki/Language_model" rel="nofollow">language model</a>.</p>
+
+<blockquote>
+  <p>A statistical language model assigns a probability to a sequence of m words <code>P(w_1,...,w_m)</code> by means of a probability distribution...</p>
+  
+  <p>In speech recognition and in data compression, such a model tries to capture the properties of a language, and to predict the next word in a speech sequence...</p>
+</blockquote>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://programmers.stackexchange.com/a/151092" title="short permalink to this answer" class="short-link" id="link-post-151092">share</a><span class="lsep">|</span><a href="http://programmers.stackexchange.com/posts/151092/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://programmers.stackexchange.com/posts/151092/revisions" title="show all edits to this post">edited <span title="2013-06-25 23:11:55Z" class="relativetime">Jun 25 '13 at 23:11</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://programmers.stackexchange.com/users/31260/gnat"><div class="gravatar-wrapper-32"><img src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/d6db99aa846a8217f7e2aba6fa198e7c" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://programmers.stackexchange.com/users/31260/gnat">gnat</a><br>
+        <span class="reputation-score" title="reputation score 16353" dir="ltr">16.4k</span><span title="10 gold badges"><span class="badge1"></span><span class="badgecount">10</span></span><span title="53 silver badges"><span class="badge2"></span><span class="badgecount">53</span></span><span title="108 bronze badges"><span class="badge3"></span><span class="badgecount">108</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-06-01 04:14:26Z" class="relativetime">Jun 1 '12 at 4:14</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://programmers.stackexchange.com/users/3287/user3287"><div class="gravatar-wrapper-32"><img src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/837d78446554c800d404141dd0172ccc" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://programmers.stackexchange.com/users/3287/user3287">user3287</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">832</span><span title="5 silver badges"><span class="badge2"></span><span class="badgecount">5</span></span><span title="7 bronze badges"><span class="badge3"></span><span class="badgecount">7</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-151092" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-286745" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Wow. But I think @sebastiangeiger's answer explains this for n=3.</span>
+                –&nbsp;
+                    <a href="http://programmers.stackexchange.com/users/34281/yati-sagade" title="1222 reputation" class="comment-user owner">yati sagade</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#comment286745_151092"><span title="2012-06-01 12:42:54Z" class="relativetime-clean">Jun 1 '12 at 12:42</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-287728" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">His answer describes a particular language model, namely n-gram models. There are other language models, e.g., syntactic language models (<a href="http://goo.gl/ffPOg" rel="nofollow">goo.gl/ffPOg</a>).</span>
+                –&nbsp;
+                    <a href="http://programmers.stackexchange.com/users/3287/user3287" title="832 reputation" class="comment-user">user3287</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#comment287728_151092"><span title="2012-06-05 06:26:42Z" class="relativetime-clean">Jun 5 '12 at 6:26</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-151092" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://programmers.stackexchange.com/questions/148350/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="148350">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.com/">
+							<h2 class="space">Your Answer</h2>
+
+
+
+        
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+            // Have to fire editor after snippets, if snippets enabled
+            if (StackExchange.options.snippets.enabled) {
+                StackExchange.using("snippets", function() {
+                    createEditor();
+                });
+            }
+            else {
+                createEditor();
+            }
+        });
+
+        function createEditor() {
+            prepareEditor({
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                ,immediatelyShowMarkdownHelp:true
+                });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="c86e770eccb8c433d2ca376b991288a7">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://programmers.stackexchange.com/users/login?returnurl=%2fquestions%2f148350%2fwhat-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Stack Exchange</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid">
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="hidden" name="use-google" class="use-google" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', '%2fquestions%2f148350%2fwhat-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction%23new-answer');
+                    }
+                );
+            </script>
+            <noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;script&gt;
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            &lt;/script&gt;
+            &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106"&gt;
+                    &lt;span class="edit-field-overlay"&gt;required, but not shown&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://programmers.stackexchange.com/questions/tagged/algorithms" class="post-tag" title="show questions tagged &#39;algorithms&#39;" rel="tag">algorithms</a> <a href="http://programmers.stackexchange.com/questions/tagged/artificial-intelligence" class="post-tag" title="show questions tagged &#39;artificial-intelligence&#39;" rel="tag">artificial-intelligence</a> <a href="http://programmers.stackexchange.com/questions/tagged/machine-learning" class="post-tag" title="show questions tagged &#39;machine-learning&#39;" rel="tag">machine-learning</a> <a href="http://programmers.stackexchange.com/questions/tagged/nlp" class="post-tag" title="show questions tagged &#39;nlp&#39;" rel="tag">nlp</a>  or <a href="http://programmers.stackexchange.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-05-12 14:49:23Z"><b>2 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>1597 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction?lastactivity" class="lastactivity-link" title="2013-06-25 23:11:55Z">1 year ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,0,"adzerk184887161",17).enableDynamicSiteSelection().setZone(56016) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk184887161"><div id="beta-ad-container" style="height: 250px; width: 220px;">
+<style type="text/css">
+#beta-ad { width: 220px; height: 250px; text-align: center; color: #326ab3; border-top: 1px solid #b4cfea; overflow: hidden; font-family: Helvetica, Arial, sans-serif !important; }
+#beta-ad a, #beta-ad a:visited, #beta-ad a:active { text-decoration: none; color: #326ab3; }
+#beta-ad { background: url(//cdn.sstatic.net/stackexchange/Img/beta-ad-bg.jpg) no-repeat bottom center; }
+#beta-ad-inner { height: 190px; padding: 0px 10px 20px 10px; width: 200px; overflow: hidden; }
+#beta-ad-top a { height: 22px; padding: 7px 0; font-size: 15px; line-height: 22px; display: block; color: #FFF !important; font-family: Helvetica, Arial, sans-serif !important; }
+#beta-ad-mid { height: 178px; display:table-cell; vertical-align: middle; }
+#beta-ad-mid #beta-ad-que, #beta-ad-mid #beta-ad-que:visited, #beta-ad-mid #beta-ad-que:active { font-size: 19px; line-height: 25px; font-weight: bold; color: #3a6da6; text-shadow: 0 1px 0 #fff; }
+#beta-ad-own { float: right; margin-top: 5px; font-size: 15px; line-height: 15px; }
+#beta-ad-own a { height: 20px; }
+#beta-ad-bot { height: 25px; font-size: 12px; overflow: hidden; margin-top: 6px; }
+#beta-ad-ans { margin-right: 8px; color: #29294b !important; display: inline-block; line-height: 24px; }
+.beta-ad-tag { color: #566E76!important; font-size: 11px; display: inline-block; background-color: #F7FDFF; text-decoration: none; white-space: nowrap; overflow: visible; margin: 2px 2px 6px 0; padding: 0.1em 0.6em; line-height: 1.4; border: 1px solid #C0D4DB; -moz-border-radius: 15px; -webkit-border-radius: 15px; border-radius: 15px; }
+</style>
+
+<div id="beta-ad">
+    <div id="beta-ad-top"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjo5NTU2MCwiY2giOjE2NTMxLCJjciI6MjY2MywiZGkiOiJkZjZmMzlkYzYwZGU0OTY0ODNhOWVmZTg5MmJlN2VhNCIsImRtIjoxLCJmYyI6MzMwOTY5LCJmbCI6MTcxNzU3LCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6ImFsZ29yaXRobXMsYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2UsbWFjaGluZS1sZWFybmluZyxubHAseC1jb21tdW5pdHkseC1ob3N0LXByb2dyYW1tZXJzLnN0YWNrZXhjaGFuZ2UuY29tIiwibnciOjIyLCJwYyI6MCwicHIiOjU3MjIyLCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo1Njc1NCwidWsiOiJ1ZTEtZTAzMjIwZTM1YWZlNDgxZTgyNmI1ZDI4YjI2ZmEzZDYiLCJ6biI6NTYwMTYsInRzIjoxNDE1NTkxMTM2MzkzLCJ1ciI6bnVsbH0&s=C8pc3PqTb-hp10LUi34rQlyTWlM&url=http%3A%2F%2Fitalian.stackexchange.com%2F%3Futm_medium%3Dad%26utm_source%3Dhttp-programmers-stackexchange-com-questions-148350-what-algorithms-can-be-use%26utm_campaign%3Ditalian.stackexchange.com-promo%26utm_content%3D3585">italian.stackexchange.com</a></div>
+    <div id="beta-ad-inner">
+        <div id="beta-ad-mid">
+            <a id="beta-ad-que" href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjo5NTU2MCwiY2giOjE2NTMxLCJjciI6MjY2MywiZGkiOiJkZjZmMzlkYzYwZGU0OTY0ODNhOWVmZTg5MmJlN2VhNCIsImRtIjoxLCJmYyI6MzMwOTY5LCJmbCI6MTcxNzU3LCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6ImFsZ29yaXRobXMsYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2UsbWFjaGluZS1sZWFybmluZyxubHAseC1jb21tdW5pdHkseC1ob3N0LXByb2dyYW1tZXJzLnN0YWNrZXhjaGFuZ2UuY29tIiwibnciOjIyLCJwYyI6MCwicHIiOjU3MjIyLCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo1Njc1NCwidWsiOiJ1ZTEtZTAzMjIwZTM1YWZlNDgxZTgyNmI1ZDI4YjI2ZmEzZDYiLCJ6biI6NTYwMTYsInRzIjoxNDE1NTkxMTM2MzkzLCJ1ciI6bnVsbH0&s=C8pc3PqTb-hp10LUi34rQlyTWlM&url=http%3A%2F%2Fitalian.stackexchange.com%2Fquestions%2F3585%2Fil-termine-ospite-indica-colui-che-ospita-o-colui-che-e-ospitato%3Futm_medium%3Dad%26utm_source%3Dhttp-programmers-stackexchange-com-questions-148350-what-algorithms-can-be-use%26utm_campaign%3Ditalian.stackexchange.com-promo%26utm_content%3D3585">Il termine “ospite” indica colui che ospita o colui che è ospitato?</a><br>
+            <div id="beta-ad-own">– <a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjo5NTU2MCwiY2giOjE2NTMxLCJjciI6MjY2MywiZGkiOiJkZjZmMzlkYzYwZGU0OTY0ODNhOWVmZTg5MmJlN2VhNCIsImRtIjoxLCJmYyI6MzMwOTY5LCJmbCI6MTcxNzU3LCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6ImFsZ29yaXRobXMsYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2UsbWFjaGluZS1sZWFybmluZyxubHAseC1jb21tdW5pdHkseC1ob3N0LXByb2dyYW1tZXJzLnN0YWNrZXhjaGFuZ2UuY29tIiwibnciOjIyLCJwYyI6MCwicHIiOjU3MjIyLCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo1Njc1NCwidWsiOiJ1ZTEtZTAzMjIwZTM1YWZlNDgxZTgyNmI1ZDI4YjI2ZmEzZDYiLCJ6biI6NTYwMTYsInRzIjoxNDE1NTkxMTM2MzkzLCJ1ciI6bnVsbH0&s=C8pc3PqTb-hp10LUi34rQlyTWlM&url=http%3A%2F%2Fitalian.stackexchange.com%2Fusers%2F519%2Fjosh61%3Futm_medium%3Dad%26utm_source%3Dhttp-programmers-stackexchange-com-questions-148350-what-algorithms-can-be-use%26utm_campaign%3Ditalian.stackexchange.com-promo%26utm_content%3D3585">Josh61</a></div>
+        </div>
+        <div id="beta-ad-bot"><a id="beta-ad-ans" href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjo5NTU2MCwiY2giOjE2NTMxLCJjciI6MjY2MywiZGkiOiJkZjZmMzlkYzYwZGU0OTY0ODNhOWVmZTg5MmJlN2VhNCIsImRtIjoxLCJmYyI6MzMwOTY5LCJmbCI6MTcxNzU3LCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6ImFsZ29yaXRobXMsYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2UsbWFjaGluZS1sZWFybmluZyxubHAseC1jb21tdW5pdHkseC1ob3N0LXByb2dyYW1tZXJzLnN0YWNrZXhjaGFuZ2UuY29tIiwibnciOjIyLCJwYyI6MCwicHIiOjU3MjIyLCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo1Njc1NCwidWsiOiJ1ZTEtZTAzMjIwZTM1YWZlNDgxZTgyNmI1ZDI4YjI2ZmEzZDYiLCJ6biI6NTYwMTYsInRzIjoxNDE1NTkxMTM2MzkzLCJ1ciI6bnVsbH0&s=C8pc3PqTb-hp10LUi34rQlyTWlM&url=http%3A%2F%2Fitalian.stackexchange.com%2Fquestions%2F3585%2Fil-termine-ospite-indica-colui-che-ospita-o-colui-che-e-ospitato%3Futm_medium%3Dad%26utm_source%3Dhttp-programmers-stackexchange-com-questions-148350-what-algorithms-can-be-use%26utm_campaign%3Ditalian.stackexchange.com-promo%26utm_content%3D3585%23tab-top">3 answers</a> <a class="beta-ad-tag" href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjo5NTU2MCwiY2giOjE2NTMxLCJjciI6MjY2MywiZGkiOiJkZjZmMzlkYzYwZGU0OTY0ODNhOWVmZTg5MmJlN2VhNCIsImRtIjoxLCJmYyI6MzMwOTY5LCJmbCI6MTcxNzU3LCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6ImFsZ29yaXRobXMsYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2UsbWFjaGluZS1sZWFybmluZyxubHAseC1jb21tdW5pdHkseC1ob3N0LXByb2dyYW1tZXJzLnN0YWNrZXhjaGFuZ2UuY29tIiwibnciOjIyLCJwYyI6MCwicHIiOjU3MjIyLCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo1Njc1NCwidWsiOiJ1ZTEtZTAzMjIwZTM1YWZlNDgxZTgyNmI1ZDI4YjI2ZmEzZDYiLCJ6biI6NTYwMTYsInRzIjoxNDE1NTkxMTM2MzkzLCJ1ciI6bnVsbH0&s=C8pc3PqTb-hp10LUi34rQlyTWlM&url=http%3A%2F%2Fitalian.stackexchange.com%2Fquestions%2Ftagged%2Fword-usage">word-usage</a> </div>
+    </div>
+</div>
+
+
+</div><script type="text/javascript">window._betaAdUrl = "http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjo5NTU2MCwiY2giOjE2NTMxLCJjciI6MjY2MywiZGkiOiJkZjZmMzlkYzYwZGU0OTY0ODNhOWVmZTg5MmJlN2VhNCIsImRtIjoxLCJmYyI6MzMwOTY5LCJmbCI6MTcxNzU3LCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6ImFsZ29yaXRobXMsYXJ0aWZpY2lhbC1pbnRlbGxpZ2VuY2UsbWFjaGluZS1sZWFybmluZyxubHAseC1jb21tdW5pdHkseC1ob3N0LXByb2dyYW1tZXJzLnN0YWNrZXhjaGFuZ2UuY29tIiwibnciOjIyLCJwYyI6MCwicHIiOjU3MjIyLCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo1Njc1NCwidWsiOiJ1ZTEtZTAzMjIwZTM1YWZlNDgxZTgyNmI1ZDI4YjI2ZmEzZDYiLCJ6biI6NTYwMTYsInRzIjoxNDE1NTkxMTM2MzkzLCJ1ciI6bnVsbH0&s=C8pc3PqTb-hp10LUi34rQlyTWlM";</script><script type="text/javascript" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/js"></script><img height="0px" width="0px" border="0" style="position:absolute;" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/i(2).gif"></div>
+			  
+    
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/50639?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">2
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/50639/what-applications-for-self-adaptive-programs-can-you-think-of?rq=1" class="question-hyperlink">What applications for self-adaptive programs can you think of?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/126952?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">2
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/126952/what-machine-learning-algorithms-would-be-applicable-here?rq=1" class="question-hyperlink">What machine learning algorithm[s?] would be applicable here?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/130266?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">8
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/130266/what-techniques-can-be-used-to-implement-facebooks-people-you-may-know-feature?rq=1" class="question-hyperlink">what techniques can be used to implement Facebook's People You May Know feature?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/156829?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/156829/what-technology-algorithm-should-be-used-to-abstract-meaning-or-keywords-from-a?rq=1" class="question-hyperlink">What technology/algorithm should be used to abstract meaning or keywords from a passage of text?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/181724?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/181724/tasks-incorrectly-categorized-with-online-text-classifiers?rq=1" class="question-hyperlink">Tasks incorrectly categorized with online text classifiers</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/187648?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">8
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/187648/can-a-neural-network-provide-more-than-yes-or-no-answers?rq=1" class="question-hyperlink">Can a neural network provide more than “yes” or “no” answers?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/199224?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">3
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/199224/algorithm-ai-or-intelligent-agent-suggestions-for-ingesting-poorly-formatted?rq=1" class="question-hyperlink">Algorithm, AI, or intelligent agent suggestions for ingesting poorly-formatted &amp; variable data from different document types</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/206020?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/206020/algorithm-to-analyse-and-predict?rq=1" class="question-hyperlink">Algorithm to analyse and predict</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://programmers.stackexchange.com/q/232967?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">3
+    </div>
+</a><a href="http://programmers.stackexchange.com/questions/232967/are-there-any-algorithms-for-splitting-or-combining-words-into-their-more-common?rq=1" class="question-hyperlink">Are there any algorithms for splitting or combining words into their more common form?</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/69329/computer-guesses-my-number-game" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    "Computer guesses my number" game
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/38441/which-are-safe-and-unsafe-regions-in-iran" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Which are safe and unsafe regions in Iran?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/207123/who-is-another-champion-in-president-obama-s-speech-the-biggest-corporation" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Who is ‘another champion’ in President’ Obama’s speech "The biggest corporation don't need another champion. You do."
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/145780/can-hyperbolic-space-be-bounded" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can hyperbolic space be bounded?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-judaism" title="Mi Yodeya"></div><a href="http://judaism.stackexchange.com/questions/48222/what-to-do-if-you-forget-nishmas" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:248 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What to do if you forget Nishmas?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/38940/what-does-beat-free-or-cant-beat-free-mean" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does "beat free" (or "can't beat free") mean?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div><a href="http://space.stackexchange.com/questions/5857/is-there-enough-iron-on-the-moon" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there enough iron on the Moon?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/31405/would-a-5-year-prison-sentence-totally-ruin-ones-academic-career" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Would a 5-year prison sentence totally ruin one's academic career?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/40932/unscramble-the-source-code" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Unscramble the Source Code
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1014153/convergent-or-divergent-sequence" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Convergent or Divergent Sequence?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/41334/the-fatal-error-challenge" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    The Fatal Error Challenge
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/834521/is-there-still-a-reason-to-choose-a-10-000-rpm-hard-drive-over-an-ssd" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there still a reason to choose a 10,000 RPM hard drive over an SSD?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/262250/is-it-imaginable-to-teach-a-machine-how-to-program-by-itself" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it imaginable to teach a machine how to program by itself?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/26830778/box-shape-with-right-angled-trapezoids" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Box shape with right angled trapezoids
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/38177/how-do-you-know-if-americans-genuinely-literally-mean-what-they-say" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do you know if Americans genuinely/literally mean what they say?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/145811/can-we-fully-simulate-molecular-physics" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can we fully simulate molecular physics?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/167004/why-dont-shell-builtins-have-proper-man-pages" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why don't shell builtins have proper man pages?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1013962/calculating-automorphism-groups" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Calculating automorphism groups
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/31241/is-it-professional-for-a-professor-to-ask-surprise-questions-on-a-test" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it professional for a professor to ask "surprise" questions on a test?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/207104/is-there-english-proverb-or-saying-equivalent-to-chinese-japanese-common-prove" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there English proverb or saying equivalent to Chinese / Japanese common proverb 李下に冠を正さず- Don’t touch (redress) your coronet under the plum tree?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-matheducators" title="Mathematics Educators Stack Exchange"></div><a href="http://matheducators.stackexchange.com/questions/5818/how-to-award-points-for-sense-making-at-the-end-of-a-problem" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:548 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to award points for sense-making at the end of a problem?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1014334/determine-whether-there-is-linear-independence-or-not" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Determine whether there is linear independence or not
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/72343/do-we-really-need-a-long-and-complicated-password-for-websites" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do we really need a long and complicated password for websites?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/643099/run-antivirus-software-on-linux-dns-servers-does-it-make-sense" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Run antivirus software on linux DNS servers. Does it make sense?
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="http://programmers.stackexchange.com/questions/148350/what-algorithms-can-be-used-to-achieve-reasonably-good-next-word-prediction#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://programmers.stackexchange.com/feeds/question/148350" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/148350/ivc/b04d');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/148350/ivc/b04d" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang"></div></div>
+
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://programmers.stackexchange.com/tour">tour</a>
+                    <a href="http://programmers.stackexchange.com/help">help</a>
+                        <a href="http://programmers.stackexchange.com/help/badges">badges</a>
+                    <a href="http://programmers.blogoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackexchange.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://programmers.stackexchange.com/contact">contact us</a></b>
+                        <b><a href="http://meta.programmers.stackexchange.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=footerlink">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>                   with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.11.10.2007
+            </div>
+            
+        </div>
+    <iframe id="global-auth-frame" style="display:none" src="./artificial intelligence - What algorithm(s) can be used to achieve reasonably good next word prediction  - Programmers Stack Exchange_files/read.html"></iframe></div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Programmers Stack Exchange works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('algorithms,artificial-intelligence,machine-learning,nlp,x-community,x-host-programmers.stackexchange.com');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-24', '.stackexchange.com');
+        
+        
+        ga('set', 'dimension2', '|algorithms|artificial-intelligence|machine-learning|nlp|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

@@ -16,11 +16,30 @@ Post-Tokenization
 OK so that corpus should be able to predict that:
 "Talking heads are my favorite" gives "band" ?
 
+>You are looking for a (statistical) language model.
+
+A statistical language model assigns a probability to a sequence of m words P(w_1,...,w_m) by means of a probability distribution...
+
+So perhaps do it with only trigrams, 
+
+So what i need to do is:
+
+```r
+# take an input:
+input<-"my favorite band is talking"
+# 1. reduce to last two words.
+input2<-unlist(strsplit(input," "))
+two<-length(input2)
+one<-two-1
+bigram<-paste(input2[one]," ",input2[two])
+# 2. now somehow find bigrams within trigrams... 
+```
 
 ## MUST UNDERSTAND:
 1. Cross-validation / sampling / bootstrapping
 
-2. Markov Model
+2. *Markov Model / Markov Chain*
+	
 
 3. Smoothing by assigning non-zero probabilities?
 
@@ -29,6 +48,8 @@ OK so that corpus should be able to predict that:
 5. (n-1) gram
 
 6. Katz's Back-off model
+
+7. Good-Turing frequency estimation
 
 -Can I find all 2- and 3-grams which include a word? not just search for a word...
 

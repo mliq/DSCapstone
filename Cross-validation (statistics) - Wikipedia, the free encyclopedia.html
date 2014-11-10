@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://en.wikipedia.org/wiki/Cross-validation_(statistics) -->
+<html lang="en" dir="ltr" class="client-js ve-not-available"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>Cross-validation (statistics) - Wikipedia, the free encyclopedia</title>
+<meta name="generator" content="MediaWiki 1.25wmf6">
+<link rel="alternate" href="android-app://org.wikipedia/http/en.m.wikipedia.org/wiki/Cross-validation_(statistics)">
+<link rel="alternate" type="application/x-wiki" title="Edit this page" href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit">
+<link rel="edit" title="Edit this page" href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit">
+<link rel="apple-touch-icon" href="https://bits.wikimedia.org/apple-touch/wikipedia.png">
+<link rel="shortcut icon" href="https://bits.wikimedia.org/favicon/wikipedia.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="https://en.wikipedia.org/w/opensearch_desc.php" title="Wikipedia (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://en.wikipedia.org/w/api.php?action=rsd">
+<link rel="alternate" hreflang="x-default" href="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/Cross-validation (statistics) - Wikipedia, the free encyclopedia.html">
+<link rel="copyright" href="https://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="Wikipedia Atom feed" href="https://en.wikipedia.org/w/index.php?title=Special:RecentChanges&feed=atom">
+<link rel="canonical" href="http://en.wikipedia.org/wiki/Cross-validation_(statistics)">
+<link rel="stylesheet" href="https://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&lang=en&modules=ext.echo.badge%7Cext.gadget.DRN-wizard%2CReferenceTooltips%2Ccharinsert%2Cfeatured-articles-links%2Cgeonotice%2CmySandbox%2CrefToolbar%2Cteahouse%7Cext.math.styles%7Cext.rtlcite%2Cwikihiero%2CwikimediaBadges%7Cext.uls.nojs%7Cext.visualEditor.viewPageTarget.noscript%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.monobook.styles%7Cwikibase.client.init&only=styles&skin=monobook&*">
+<!--[if IE 6]><link rel="stylesheet" href="//bits.wikimedia.org/static-1.25wmf6/skins/MonoBook/IE60Fixes.css?303-4" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="//bits.wikimedia.org/static-1.25wmf6/skins/MonoBook/IE70Fixes.css?303-4" media="screen" /><![endif]--><style>
+.mw-viewPageTarget-loading{width:128px;height:15px;float:right} .mw-editsection{white-space:nowrap; unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection-divider{color:#555}.ve-tabmessage-appendix{font-size:0.7em;vertical-align:top;line-height:1.43em;padding-left:0.5em; background-image:none !important;display:inline !important} .mw-viewPageTarget-loading{background-image:url(data:image/gif;base64,R0lGODlhgAAPAPEAAP///6fX+eXy/KfX+SH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAgAAPAAACo5QvoIC33NKKUtF3Z8RbN/55CEiNonMaJGp1bfiaMQvBtXzTpZuradUDZmY+opA3DK6KwaQTCbU9pVHc1LrDUrfarq765Ya9u+VRzLyO12lwG10yy39zY11Jz9t/6jf5/HfXB8hGWKaHt6eYyDgo6BaH6CgJ+QhnmWWoiVnI6ddJmbkZGkgKujhplNpYafr5OooqGst66Uq7OpjbKmvbW/p7UAAAIfkECQoAAAAsAAAAAIAADwAAArCcP6Ag7bLYa3HSZSG2le/Zgd8TkqODHKWzXkrWaq83i7V5s6cr2f2TMsSGO9lPl+PBisSkcekMJphUZ/OopGGfWug2Jr16x92yj3w247bh6teNXseRbyvc0rbr6/x5Ng0op4YSJDb4JxhI58eliEiYYujYmFi5eEh5OZnXhylp+RiaKQpWeDf5qQk6yprawMno2nq6KlsaSauqS5rLu8cI69k7+ytcvGl6XDtsyzxcAAAh+QQJCgAAACwAAAAAgAAPAAACvpw/oIC3IKIUb8pq6cpacWyBk3htGRk1xqMmZviOcemdc4R2kF3DvfyTtFiqnPGm+yCPQdzy2RQMF9Moc+fDArU0rtMK9SYzVUYxrASrxdc0G00+K8ruOu+9tmf1W06ZfsfXJfiFZ0g4ZvEndxjouPfYFzk4mcIICJkpqUnJWYiYs9jQVpm4edqJ+lkqikDqaZoquwr7OtHqAFerqxpL2xt6yQjKO+t7bGuMu1L8a5zsHI2MtOySVwo9fb0bVQAAIfkECQoAAAAsAAAAAIAADwAAAsucP6CAt9zSErSKZyvOd/KdgZaoeaFpRZKiPi1aKlwnfzBF4jcNzDk/e7EiLuLuhzwqayfmaNnjCCGNYhXqw9qcsWjT++TqxIKp2UhOprXf7PoNrpyvQ3p8fAdu82o+O5w3h2A1+Nfl5geHuLgXhEZVWBeZSMnY1oh5qZnyKOhgiGcJKHqYOSrVmWpHGmpauvl6CkvhaUD4qejaOqvH2+doV7tSqdsrexybvMsZrDrJaqwcvSz9i9qM/Vxs7Qs6/S18a+vNjUx9/v1TAAAh+QQJCgAAACwAAAAAgAAPAAAC0Zw/oIC33NKKUomLxct4c718oPV5nJmhGPWwU9TCYTmfdXp3+aXy+wgQuRRDSCN2/PWAoqVTCSVxilQZ0RqkSXFbXdf3ZWqztnA1eUUbEc9wm8yFe+VguniKPbNf6mbU/ubn9ieUZ6hWJAhIOKbo2Pih58C3l1a5OJiJuflYZidpgHSZCOnZGXc6l3oBWrE2aQnLWYpKq2pbV4h4OIq1eldrigt8i7d73Ns3HLjMKGycHC1L+hxsXXydO9wqOu3brPnLXL3C640sK+6cTaxNflEAACH5BAkKAAAALAAAAACAAA8AAALVnD+ggLfc0opS0SeyFnjn7oGbqJHf4mXXFD2r1bKNyaEpjduhPvLaC5nJEK4YTKhI1ZI334m5g/akJacAiDUGiUOHNUd9ApTgcTN81WaRW++Riy6Tv/S4dQ1vG4ps4NwOaBYlOEVYhYbnplexyJf3ZygGOXkWuWSZuNel+aboV0k5GFo4+qN22of6CMoq2kr6apo6m5fJWCoZm+vKu2Hr6KmqiHtJLKebRhuszNlYZ3ncewh9J9z8u3mLHA0rvetrzYjd2Wz8bB6oNO5MLq6FTp2+bVUAACH5BAkKAAAALAAAAACAAA8AAALanD+ggLfc0opS0XeX2Fy8zn2gp40ieHaZFWHt9LKNO5eo3aUhvisj6RutIDUZgnaEFYnJ4M2Z4210UykQ8BtqY0yHstk1UK+/sdk63i7VYLYX2sOa0HR41S5wi7/vcMWP1FdWJ/dUGIWXxqX3xxi4l0g4GEl5yOHIBwmY2cg1aXkHSjZXmbV4uoba5kkqelbaapo6u0rbN/SZG7trKFv7e6savKTby4voaoVpNAysiXscV4w8fSn8fN1pq1kd2j1qDLK8yYy9/ff9mgwrnv2o7QwvGO1ND049UgAAIfkECQoAAAAsAAAAAIAADwAAAticP6CAt9zSilLRd2d8onvBfV0okp/pZdamNRi7ui3yyoo4Ljio42h+w6kgNiJt5kAaasdYE7D78YKlXpX6GWphxqTT210qK1Cf9XT2SKXbYvv5Bg+jaWD5ekdjU9y4+PsXRuZHRrdnZ5inVidAyCTXF+nGlVhpdjil2OE49hjICVh4qZlpibcDKug5KAlHOWqqR8rWCjl564oLFruIucaYGlz7+XoKe2wsIqxLzMxaxIuILIs6/JyLbZsdGF063Uu6vH2tXc79LZ1MLWS96t4JH/rryzhPWgAAIfkECQoAAAAsAAAAAIAADwAAAtWcP6CAt9zSilLRd2fEe4kPCk8IjqTonZnVsQ33arGLwLV8Kyeqnyb5C60gM2LO6MAlaUukwdbcBUspYFXYcla00KfSywRzv1vpldqzprHFoTv7bsOz5jUaUMer5vL+Mf7Hd5RH6HP2AdiUKLa41Tj1Acmjp0bJFuinKKiZyUhnaBd5OLnzSNbluOnZWQZqeVdIYhqWyop6ezoquTs6O0aLC5wrHErqGnvJibms3LzKLIYMe7xnO/yL7TskLVosqa1aCy3u3FrJbSwbHpy9fr1NfR4fUgAAIfkECQoAAAAsAAAAAIAADwAAAsqcP6CAt9zSilLRd2fEW7cnhKIAjmFpZla3fh7CuS38OrUR04p5Ljzp46kgMqLOaJslkbhbhfkc/lAjqmiIZUFzy2zRe5wGTdYQuKs9N5XrrZPbFu94ZYE6ms5/9cd7/T824vdGyIa3h9inJQfA+DNoCHeomIhWGUcXKFIH6RZZ6Bna6Zg5l8JnSamayto2WtoI+4jqSjvZelt7+URKpmlmKykM2vnqa1r1axdMzPz5LLooO326Owxd7Bzam4x8pZ1t3Szu3VMOdF4AACH5BAkKAAAALAAAAACAAA8AAAK/nD+ggLfc0opS0XdnxFs3/i3CSApPSWZWt4YtAsKe/DqzXRsxDqDj6VNBXENakSdMso66WzNX6fmAKCXRasQil9onM+oziYLc8tWcRW/PbGOYWupG5Tsv3TlXe9/jqj7ftpYWaPdXBzbVF2eId+jYCAn1KKlIApfCSKn5NckZ6bnJpxB2t1kKinoqJCrlRwg4GCs4W/jayUqamaqryruES2b72StsqgvsKlurDEvbvOx8mzgazNxJbD18PN1aUgAAIfkECQoAAAAsAAAAAIAADwAAArKcP6CAt9zSilLRd2fEWzf+ecgjlKaQWZ0asqPowAb4urE9yxXUAqeZ4tWEN2IOtwsqV8YkM/grLXvTYbV4PTZpWGYU9QxTxVZyd4wu975ZZ/qsjsPn2jYpatdx62b+2y8HWMTW5xZoSIcouKjYePeTh7TnqFcpabmFSfhHeemZ+RkJOrp5OHmKKapa+Hiyyokaypo6q1CaGDv6akoLu3DLmLuL28v7CdypW6vsK9vsE1UAACH5BAkKAAAALAAAAACAAA8AAAKjnD+ggLfc0opS0XdnxFs3/nkISI2icxokanVt+JoxC8G1fNOlm6tp1QNmZj6ikDcMrorBpBMJtT2lUdzUusNSt9qurvrlhr275VHMvI7XaXAbXTLLf3NjXUnP23/qN/n8d9cHyEZYpoe3p5jIOCjoFofoKAn5CGeZZaiJWcjp10mZuRkaSAq6OGmU2lhp+vk6iioay3rpSrs6mNsqa9tb+ntQAAA7AAAAAAAAAAAA);background-image:url(//bits.wikimedia.org/static-1.25wmf6/extensions/VisualEditor/modules/ve-mw/init/styles/images/loading-ltr.gif?2014-10-29T18:15:00Z)!ie}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:6475cb1ad20ca794efd1cad5bfe00da2 */
+.uls-menu a{cursor:pointer}.uls-menu.callout .caret-before{border-top:20px solid transparent;border-right:20px solid #C9C9C9;border-bottom:20px solid transparent;display:inline-block;left:-21px;top:30px;position:absolute}.uls-menu.callout .caret-after{border-top:20px solid transparent;border-right:20px solid #FCFCFC;border-bottom:20px solid transparent;display:inline-block;left:-20px;top:30px;position:absolute}.uls-ui-languages button{width:23%;text-overflow:ellipsis;margin-right:4%}button.uls-more-languages{width:auto}.settings-title{font-size:11pt}.settings-text{color:#555555;font-size:9pt}div.display-settings-block:hover .settings-text{color:#252525}#pt-uls{text-transform:none}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:c3db481c077528203afa2736fe7c021a */
+.tipsy{padding:5px;position:absolute;z-index:100000;cursor:default}.tipsy-inner{padding:5px 8px 4px 8px; background-color:#ffffff;border:solid 1px #a7d7f9;color:black;max-width:15em;border-radius:4px; }.tipsy-arrow{position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALAgMAAADUwp+1AAAACVBMVEX5+fmn1/n///9s6BFKAAAAAXRSTlMAQObYZgAAACpJREFUCB1jZBD4wMiQMoeRcUU4I9uSaYxSE54xZjn8AtMgPkgcJA9UBwAeDw1Qrb3pVAAAAABJRU5ErkJggg==) no-repeat top left;background:url(//bits.wikimedia.org/static-1.25wmf6/resources/src/jquery.tipsy/images/tipsy.png?2014-10-29T18:10:00Z) no-repeat top left!ie;width:11px;height:6px} .tipsy-n .tipsy-arrow{top:0px;left:50%;margin-left:-5px} .tipsy-nw .tipsy-arrow{top:1px;left:10px} .tipsy-ne .tipsy-arrow{top:1px;right:10px} .tipsy-s .tipsy-arrow{bottom:0px;left:50%;margin-left:-5px;background-position:bottom left} .tipsy-sw .tipsy-arrow{bottom:0px;left:10px;background-position:bottom left} .tipsy-se .tipsy-arrow{bottom:0px;right:10px;background-position:bottom left} .tipsy-e .tipsy-arrow{top:50%;margin-top:-5px;right:1px;width:5px;height:11px;background-position:top right} .tipsy-w .tipsy-arrow{top:50%;margin-top:-5px;left:0px;width:6px;height:11px}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:f44d723cd93f422e04ee4fddb64c1b89 */
+@media print{#centralNotice{display:none}}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:ddb0c98a055632ae8e349c9cf48ac703 */
+.cite-accessibility-label{position:absolute !important; top:-99999px;clip:rect(1px 1px 1px 1px); clip:rect(1px,1px,1px,1px);padding:0 !important;border:0 !important;height:1px !important;width:1px !important;overflow:hidden}.mw-cite-backlink,.cite-accessibility-label{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:a59b70abe6ecaa39388bb79ebc509cb0 */
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD///////9PfTf///80aRdTgjn///9Feij///////////9Rfzf///////////9PfjZRgDh1o1xOfTb///////+bwYqLtnj///////9PfTa82K////9WhT6YxIL///9QgDdTgzr////////j7uDl7eLq8efi693k7OH///////9UhjuBr2rp9uRUhjr///9YljVKgir///9WiTlYjT3////9/v57vFlbkT5PjC9dlD/5/fhuq09stUTs9uhxuElctCpfnT1huDFloEZloUZmpENmvDZpvDxpvTxqvjxrvT5rvT9rwTxsqktswD5uwkBvuUdxw0NztFBztU9ztVBzwkp0tlJ1xkd2t1R3uVR4w1F4xk54x014yE15uVZ5v1R5xVB6v1R7yFJ8wVh9xVl9yFR9yVd9ylN+xVh+yFd/x1l/yFeAylmEx1+Ny2uY0Hqe04Wj1Ymv3Ze33qLD47TJ5L3O6cPU7Mrq9eb2+/Q4j37OAAAAQHRSTlMAAQIEBAUFBQwPFB4fJCUoKiosQEhJS01RUlZZXmdydXaChYuSlJSWmJmoq6uur8LExcvM19fg5ejt8fX2+Pr7SljgewAAAKpJREFUGBkFwQNCAwAAAMDLtl3LtrG4rWXbtvX77gAgZ6grFwC0bhwNVgKgdPZx8b0dgLi+s7Wn0VoAqpfOI9+BNADZI7fLrz2pSEwGHZuH+78lSK8ZLkLezF3ooyUG3VPXq2USei9WngeyoG195yBYWDF3E/2pAhl1e9Gr8bGT+bfOFCC2fnvh4X7rcqIAQNNu+HT6sxkAjceTL/2ZAIhv+PorBwBJxfkA//dFHSCBy/UTAAAAAElFTkSuQmCC);background-image:url(//bits.wikimedia.org/static-1.25wmf6/resources/src/mediawiki.action/images/green-checkmark.png?2014-10-29T18:10:00Z)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:edf8e7ed1725244c8ffcc87ec978003a */
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:869aa9133c31e6040d4830b259da96a8 */
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:f8d0c6895ce3ae14434c16b8fca59432 */
+.wp-teahouse-question-form{position:absolute;margin-left:auto;margin-right:auto;background-color:#f4f3f0;border:1px solid #a7d7f9;padding:1em}#wp-th-question-ask{float:right}.wp-teahouse-ask a.external{background-image:none !important}.wp-teahouse-respond-form{position:absolute;margin-left:auto;margin-right:auto;background-color:#f4f3f0;border:1px solid #a7d7f9;padding:1em}.wp-th-respond{float:right}.wp-teahouse-respond a.external{background-image:none !important}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:8614dfa7ef847fc9bfcc2d1c9f720197 */
+.referencetooltip{position:absolute;list-style:none;list-style-image:none;opacity:0;font-size:10px;margin:0;z-index:5;padding:0}.referencetooltip li{border:#080086 2px solid;max-width:260px;padding:10px 8px 13px 8px;margin:0px;background-color:#F7F7F7;box-shadow:2px 4px 2px rgba(0,0,0,0.3);-moz-box-shadow:2px 4px 2px rgba(0,0,0,0.3);-webkit-box-shadow:2px 4px 2px rgba(0,0,0,0.3)}.referencetooltip li+li{margin-left:7px;margin-top:-2px;border:0;padding:0;height:3px;width:0px;background-color:transparent;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;border-top:12px #080086 solid;border-right:7px transparent solid;border-left:7px transparent solid}.referencetooltip>li+li::after{content:'';border-top:8px #F7F7F7 solid;border-right:5px transparent solid;border-left:5px transparent solid;margin-top:-12px;margin-left:-5px;z-index:1;height:0px;width:0px;display:block}.client-js body .referencetooltip li li{border:none;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;height:auto;width:auto;margin:auto;padding:0;position:static}.RTflipped{padding-top:13px}.referencetooltip.RTflipped li+li{position:absolute;top:2px;border-top:0;border-bottom:12px #080086 solid}.referencetooltip.RTflipped li+li::after{border-top:0;border-bottom:8px #F7F7F7 solid;position:absolute;margin-top:7px}.RTsettings{float:right;height:16px;width:16px;cursor:pointer;background-image:url(//upload.wikimedia.org/wikipedia/commons/e/ed/Cog.png);margin-top:-9px;margin-right:-7px;-webkit-transition:opacity 0.15s;-moz-transition:opacity 0.15s;-o-transition:opacity 0.15s;-ms-transition:opacity 0.15s;transition:opacity 0.15s;opacity:0.6;filter:alpha(opacity=60)}.RTsettings:hover{opacity:1;filter:alpha(opacity=100)}.RTTarget{border:#080086 2px solid}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:7efa21f6db726653194905048a6b006a */
+.skin-vector li.GA,.skin-monobook li.GA,.skin-modern li.GA{list-style-image:url(//upload.wikimedia.org/wikipedia/commons/4/42/Monobook-bullet-ga.png)} .skin-vector li.FA,.skin-monobook li.FA{list-style-image:url(//upload.wikimedia.org/wikipedia/commons/d/d4/Monobook-bullet-star.png)}.skin-modern li.FA{list-style-image:url(//upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Modern-bullet-star.svg/9px-Modern-bullet-star.svg.png)}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:22ca6c0fc9d0923a196f8a3aec796994 */
+.mw-echo-title{font-size:1em;line-height:1.4em}.mw-echo-content{overflow:hidden}.mw-echo-payload{margin-top:0.3em}.mw-echo-timestamp,.mw-echo-notification-footer{color:#6D6D6D;font-size:11px;margin-top:0.2em}.mw-echo-notifications{background-color:#EEEEEE}.mw-echo-notification{clear:both;display:block;color:#6D6D6D;line-height:90%;margin:0;min-height:30px;background-color:white;position:relative;padding-top:15px;padding-bottom:10px; overflow:hidden;zoom:1}.mw-echo-notification.mw-echo-unread{color:#252525}.mw-echo-notification span.autocomment{color:inherit;font-style:normal}.mw-echo-icon{width:30px;height:30px;float:left;margin-right:10px;margin-left:10px}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:ef146979db13405094309a3f377c866a */
+.mw-ui-anchor.mw-ui-progressive{color:#347bff}.mw-ui-anchor.mw-ui-progressive:hover{color:#79a8ff}.mw-ui-anchor.mw-ui-progressive:focus,.mw-ui-anchor.mw-ui-progressive:active{color:#0053ee;outline:none}.mw-ui-anchor.mw-ui-progressive.mw-ui-quiet{color:#666;text-decoration:none}.mw-ui-anchor.mw-ui-progressive.mw-ui-quiet:hover{color:#347bff}.mw-ui-anchor.mw-ui-progressive.mw-ui-quiet:focus,.mw-ui-anchor.mw-ui-progressive.mw-ui-quiet:active{color:#0053ee}.mw-ui-anchor.mw-ui-constructive{color:#00af89}.mw-ui-anchor.mw-ui-constructive:hover{color:#00f4bf}.mw-ui-anchor.mw-ui-constructive:focus,.mw-ui-anchor.mw-ui-constructive:active{color:#006a53;outline:none}.mw-ui-anchor.mw-ui-constructive.mw-ui-quiet{color:#666;text-decoration:none}.mw-ui-anchor.mw-ui-constructive.mw-ui-quiet:hover{color:#00af89}.mw-ui-anchor.mw-ui-constructive.mw-ui-quiet:focus,.mw-ui-anchor.mw-ui-constructive.mw-ui-quiet:active{color:#006a53}.mw-ui-anchor.mw-ui-destructive{color:#d11d13}.mw-ui-anchor.mw-ui-destructive:hover{color:#ed453c}.mw-ui-anchor.mw-ui-destructive:focus,.mw-ui-anchor.mw-ui-destructive:active{color:#92140d;outline:none}.mw-ui-anchor.mw-ui-destructive.mw-ui-quiet{color:#666;text-decoration:none}.mw-ui-anchor.mw-ui-destructive.mw-ui-quiet:hover{color:#d11d13}.mw-ui-anchor.mw-ui-destructive.mw-ui-quiet:focus,.mw-ui-anchor.mw-ui-destructive.mw-ui-quiet:active{color:#92140d}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:61826f10af6d64f30dee4a5ba99d4694 */
+#p-lang .uls-settings-trigger{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAgCAMAAAAVMLmlAAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAALpQTFRF////W1tbgICAWVlZgICAUVFRgICAWVlZhYWFUlJShYWFVFRUgYGBVVVVgYGBVVVVgICAVFRUVVVVVlZWgYGBgICAVFRUgYGBVFRUgICAgYGBVVVVVVVVgYGBVlZWgYGBVFRUgICAVFRUgICAVVVVgICAVlZWgICAVFRUgICAVVVVgICAVFRUgICAVlZWgICAVVVVgICAVVVVgICAVVVVgICAVVVVgICAVVVVgICAVVVVgICAVVVVgICA9Fa9bgAAADx0Uk5TAA4OFBQWFhcXGRlJSUtLWlpbXV9fYGFhZGRlZmlpa2twcIiIioqPj5GRn5+goKGh6+vv7/Dw+fn8/P7+YuRUVgAAAOlJREFUGBmNwcdWAgEURMFLFCUaAcWAEhQYHBRmCN3//1u+BYcVC6s4p2U3OLrrVxN7Xn7uELoH5w65Dx1g6JNnoLazfz++VnZehkZir4pQ3NjzBg5TwtgBhzFh6kDr294UobiykxZc7ezVdLyx8yrw6pM+8GjnDjsf7gj3/WpiJ7Vhl6OW3eC/mlKdo5teZSHNSoM24XqvTCHTvg0MdDIASpn08/6ZSlkJ6jMpLUBhLc3qKEwIIwUURoSJAs2ltC5AIZUWTbjcSulktJayCvCikx7wJG0VttrfEp5eLpfS4uLtgaOmVOeMP8BAM9RClMO9AAAAAElFTkSuQmCC) no-repeat right top;background:transparent url(//bits.wikimedia.org/static-1.25wmf6/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.png?2014-10-29T18:15:00Z) no-repeat right top!ie;background-image:-webkit-linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2214%22%20height%3D%2232%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M13.582%206.632h-1.064c-.133-.538-.354-1.065-.645-1.552l.75-.75c.164-.164.164-.429%200-.593l-1.359-1.36c-.164-.164-.43-.164-.594%200l-.75.75c-.49-.294-1.012-.512-1.551-.645v-1.064c0-.231-.187-.418-.419-.418h-1.918c-.231%200-.418.187-.418.418v1.063c-.541.135-1.062.352-1.552.646l-.75-.75c-.164-.164-.429-.164-.593%200l-1.36%201.36c-.164.164-.164.429%200%20.593l.75.75c-.292.488-.494%201.015-.627%201.551h-1.064c-.231%200-.418.187-.418.419v1.918c0%20.231.187.418.418.418h1.046c.134.542.351%201.062.645%201.551l-.75.75c-.164.164-.164.429%200%20.593l1.36%201.36c.164.164.429.164.593%200l.75-.75c.491.296%201.01.493%201.551.627v1.063c.001.233.188.42.419.42h1.918c.231%200%20.419-.187.419-.418v-1.063c.542-.134%201.061-.333%201.551-.627l.75.75c.164.164.43.164.594%200l1.359-1.36c.164-.164.164-.429%200-.593l-.75-.75c.295-.489.51-1.013.645-1.551h1.064c.23-.002.418-.189.418-.42v-1.918c0-.232-.188-.418-.418-.418zm-6.582%204.012c-1.461%200-2.645-1.184-2.645-2.644s1.184-2.644%202.645-2.644%202.645%201.184%202.645%202.644-1.184%202.644-2.645%202.644z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20fill%3D%22%23808080%22%2F%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20transform%3D%22translate%280%2016%29%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E);background-image:-webkit-linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.25wmf6/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.svg?2014-10-29T18:15:00Z)!ie;background-image:linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2214%22%20height%3D%2232%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M13.582%206.632h-1.064c-.133-.538-.354-1.065-.645-1.552l.75-.75c.164-.164.164-.429%200-.593l-1.359-1.36c-.164-.164-.43-.164-.594%200l-.75.75c-.49-.294-1.012-.512-1.551-.645v-1.064c0-.231-.187-.418-.419-.418h-1.918c-.231%200-.418.187-.418.418v1.063c-.541.135-1.062.352-1.552.646l-.75-.75c-.164-.164-.429-.164-.593%200l-1.36%201.36c-.164.164-.164.429%200%20.593l.75.75c-.292.488-.494%201.015-.627%201.551h-1.064c-.231%200-.418.187-.418.419v1.918c0%20.231.187.418.418.418h1.046c.134.542.351%201.062.645%201.551l-.75.75c-.164.164-.164.429%200%20.593l1.36%201.36c.164.164.429.164.593%200l.75-.75c.491.296%201.01.493%201.551.627v1.063c.001.233.188.42.419.42h1.918c.231%200%20.419-.187.419-.418v-1.063c.542-.134%201.061-.333%201.551-.627l.75.75c.164.164.43.164.594%200l1.359-1.36c.164-.164.164-.429%200-.593l-.75-.75c.295-.489.51-1.013.645-1.551h1.064c.23-.002.418-.189.418-.42v-1.918c0-.232-.188-.418-.418-.418zm-6.582%204.012c-1.461%200-2.645-1.184-2.645-2.644s1.184-2.644%202.645-2.644%202.645%201.184%202.645%202.644-1.184%202.644-2.645%202.644z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20fill%3D%22%23808080%22%2F%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20transform%3D%22translate%280%2016%29%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E);background-image:linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.25wmf6/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.svg?2014-10-29T18:15:00Z)!ie;height:16px;width:14px;float:right;cursor:pointer}.skin-vector #p-lang .uls-settings-trigger{ margin-top:3px}#p-lang .uls-settings-trigger:hover{background-position:right -16px}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:3ac1d555512d45cbedfb439ab6c7a51c */</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:ae3fa4570b5ac0c6cf7b3776c8ae4d6f */
+#p-personal .mw-echo-overlay{text-align:left;text-transform:none;font-weight:normal}#p-personal .mw-echo-overlay ul{text-align:left;text-transform:none}#p-personal #mw-echo-overlay-link{padding-bottom:15px}#p-personal #mw-echo-overlay-pref-link{padding-bottom:15px}#p-personal .mw-echo-overlay li.mw-echo-notification{color:#6D6D6D}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:4f16b2ce23f26eb2b45c102fd040dc55 */
+.mw-echo-overlay{position:absolute;top:41px;border:1px solid silver;background-color:#fff;width:450px;min-height:2em;padding:0;color:#6D6D6D;z-index:100;box-shadow:0 3px 8px rgba(50,50,50,0.35)}.mw-echo-overlay:before,.mw-echo-overlay::before{content:'';background-image:url(//bits.wikimedia.org/static-1.25wmf6/extensions/Echo/modules/overlay/PokeyNorth.png?2014-10-29T18:11:40Z);background-repeat:no-repeat;width:21px;height:11px;position:absolute;z-index:101;top:-11px;left:193px}.mw-echo-overlay button{top:15px;right:15px;position:absolute;padding:0}.mw-echo-overlay .mw-ui-progressive{cursor:pointer}.mw-echo-overlay .mw-ui-progressive.mw-ui-quiet{pointer-events:none}.mw-echo-overlay a.mw-echo-grey-link{color:#666}.mw-echo-overlay .mw-echo-notifications,.mw-echo-overlay ul{overflow:auto;padding:0;margin:0}.mw-echo-overlay .mw-echo-notifications button{line-height:16px;font-size:13px}.mw-echo-overlay li.mw-echo-notification{display:block;padding:0}.mw-echo-overlay li.mw-echo-notification:hover .mw-echo-notification-wrapper{background-color:#F9F9F9}.mw-echo-overlay li.mw-echo-notification .mw-echo-notification-wrapper{display:block;background-color:#F1F1F1;border-bottom:1px solid #DDDDDD;padding:15px 40px 10px 10px;white-space:normal;font-size:13px;line-height:16px; color:inherit;text-decoration:inherit}.mw-echo-overlay li.mw-echo-notification.mw-echo-unread .mw-echo-notification-wrapper{background-color:white}.mw-echo-overlay li.mw-echo-notification.mw-echo-unread:hover .mw-echo-notification-wrapper{background-color:#F9F9F9}.mw-echo-overlay li.mw-echo-notification.mw-echo-unread button{background:none;border:none}.mw-echo-overlay li.mw-echo-notification:last-child .mw-echo-notification-wrapper{border-bottom:none}.mw-echo-title{color:#666}.mw-echo-title .mw-echo-title-heading{color:#666;font-size:1.15em}.mw-echo-title .mw-echo-title-heading,.mw-echo-title .mw-echo-title-heading a{font-weight:bold}.mw-echo-title .mw-echo-title-heading,.mw-echo-title .plainlinks{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;display:inline-block;vertical-align:top}.mw-echo-notification-primary-link{display:none}.mw-echo-overlay-title{font-size:13px;line-height:15px;padding:15px 15px 15px 28px;border-bottom:1px solid #DDDDDD}.mw-echo-overlay-title li{display:inline;font-size:1em;margin-left:0}.mw-echo-overlay-title li::after{content:" · ";padding:0 .25em}.mw-echo-overlay-title li:last-child::after{content:''}.mw-echo-overlay-footer{padding:0;border-top:1px solid #DDDDDD;display:table;width:100%}.mw-echo-overlay-footer a{border-left:1px solid #DDDDDD;float:none;display:table-cell;min-height:14px;font-size:13px;white-space:normal;font-weight:bold;padding:15px 15px 15px 45px}.mw-echo-overlay-footer a:hover{text-decoration:none}.mw-echo-icon-all{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAI1JREFUeNpi/P//PwM5gAXGOHnyJMyEhebm5gm4xGCACYth8UANCwiJIWtciEXhQlya4RqhTkFRiMdABkb0wIFKxCMJFQKxAboYhh+hNj9EEhLAJoahEWqjPJLQB2xiKE7F4syFaP6FRw0TOZrQowObAqyacCUAjFSCTYwFia0IDcELBMQYsMYjsQAgwACpI1IodmcmrwAAAABJRU5ErkJggg==) no-repeat 20px 15px !important;background:url(//bits.wikimedia.org/static-1.25wmf6/extensions/Echo/modules/overlay/../icons/NotificationsPage-ltr.png?2014-10-29T18:11:40Z) no-repeat 20px 15px !important!ie}.mw-echo-icon-cog{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAP9JREFUeNqMUs0NgmAMBeMdnEA2EE8chQnECXQEnUCcQNxAJxA3wBvcdAPYACfA16SNpeFgk5eW/n2vLW7f946Vuq5DqBwooyjKnBGZquQAykfiC3oHrIAA/pxTQsRKyXflRSR0UB7wBhaq+Qeg2Bw4oDgfvMhBzxQ57PPYbsQ5UQmNsh9AApxMkx/VqqpoEXtgy74n6MRqdoqd+ZPGyBAv6MVUFQ26shTKpjHuQpUCNxWMTWGqbHpxY7da8glkxiudADiqwhlodnargbLXDCuxUNdb9RUdx9yxtc11IdFaggrpC/taTiZfIscfUIVT31HmK2Umu2137Cf/R74CDADpxU3ofxmPcQAAAABJRU5ErkJggg==) no-repeat 20px 15px !important;background:url(//bits.wikimedia.org/static-1.25wmf6/extensions/Echo/modules/overlay/../icons/Settings.png?2014-10-29T18:11:40Z) no-repeat 20px 15px !important!ie}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:4d3f50592121563646b630f1905ad0ad */</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="https://bits.wikimedia.org/en.wikipedia.org/load.php?debug=false&lang=en&modules=site&only=styles&skin=monobook&*">
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:3904d24a08aa08f6a68dc338f9be277e */</style>
+<script src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/load.php"></script><script src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/load(1).php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Cross-validation_(statistics)","wgTitle":"Cross-validation (statistics)","wgCurRevisionId":630713607,"wgRevisionId":630713607,"wgArticleId":416612,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":"L12","wgUserGroups":["*","user"],"wgCategories":["All articles with unsourced statements","Articles with unsourced statements from July 2013","Model selection","Regression variable selection","Machine learning"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Cross-validation_(statistics)","wgUserId":1069537,"wgUserEditCount":8,"wgUserRegistration":1142145738000,"wgUserNewMsgRevisionId":null,"wgIsProbablyEditable":true,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgGlobalGroups":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":false,"previewDialog":false,"publish":false},"wgBetaFeaturesFeatures":[],"wgMediaViewerOnClick":true,"wgMediaViewerEnabledByDefault":true,"wgVisualEditor":{"isPageWatched":false,"pageLanguageCode":"en","pageLanguageDir":"ltr","svgMaxSize":4096,"namespacesWithSubpages":{"6":0,"8":0,"1":true,"2":true,"3":true,"4":true,"5":true,"7":true,"9":true,"10":true,"11":true,"12":true,"13":true,"14":true,"15":true,"100":true,"101":true,"102":true,"103":true,"104":true,"105":true,"106":true,"107":true,"108":true,"109":true,"110":true,"111":true,"830":true,"831":true,"447":true,"2600":false,"828":true,"829":true}},"wikilove-recipient":"","wikilove-anon":0,"wgEchoOverlayConfiguration":{"notification-count":"0","max-notification-count":99},"wgEchoHelpPage":"//en.wikipedia.org/wiki/Wikipedia:Notifications/FAQ","wgEchoConfig":{"version":"1.5","eventlogging":{"Echo":{"enabled":true,"revision":7731316},"EchoMail":{"enabled":true,"revision":5467650},"EchoInteraction":{"enabled":true,"revision":5782287}}},"wgHHVMStart":1412726400000,"wgULSAcceptLanguageList":["en-us","en"],"wgULSCurrentAutonym":"English","wgFlaggedRevsParams":{"tags":{"status":{"levels":1,"quality":2,"pristine":3}}},"wgStableRevisionId":null,"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}","wgNoticeProject":"wikipedia","wgNoticeUserData":{"registration":"20060312064218","editcount":8,"pastyearseditcount":2},"wgWikibaseItemId":"Q541014"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"editfont":"default","editondblclick":0,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"imagesize":2,"math":0,"minordefault":0,"newpageshidepatrolled":0,"nickname":"","norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"rcdays":7,"rclimit":50,"rows":25,"showhiddencats":false,"shownumberswatching":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":"2","underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":1,"watchdefault":0,"watchdeletion":0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"watchrollback"
+:0,"wllimit":250,"useeditwarning":1,"prefershttps":1,"flaggedrevssimpleui":1,"flaggedrevsstable":0,"flaggedrevseditdiffs":true,"flaggedrevsviewdiffs":false,"usebetatoolbar":1,"usebetatoolbar-cgd":1,"visualeditor-enable":0,"visualeditor-betatempdisable":0,"visualeditor-enable-experimental":0,"visualeditor-enable-language":0,"visualeditor-hidebetawelcome":0,"wikilove-enabled":1,"echo-subscriptions-web-page-review":true,"echo-subscriptions-email-page-review":"1","ep_showtoplink":false,"ep_bulkdelorgs":false,"ep_bulkdelcourses":true,"ep_showdyk":true,"echo-subscriptions-web-education-program":true,"echo-subscriptions-email-education-program":false,"echo-notify-show-link":true,"echo-show-alert":true,"echo-email-frequency":0,"echo-email-format":"html","echo-subscriptions-email-system":true,"echo-subscriptions-web-system":true,"echo-subscriptions-email-user-rights":true,"echo-subscriptions-web-user-rights":true,"echo-subscriptions-email-other":false,"echo-subscriptions-web-other":true,
+"echo-subscriptions-email-edit-user-talk":1,"echo-subscriptions-web-edit-user-talk":true,"echo-subscriptions-email-reverted":"1","echo-subscriptions-web-reverted":true,"echo-subscriptions-email-article-linked":"1","echo-subscriptions-web-article-linked":false,"echo-subscriptions-email-mention":"1","echo-subscriptions-web-mention":true,"echo-subscriptions-web-edit-thank":true,"echo-subscriptions-email-edit-thank":"1","echo-subscriptions-web-flow-discussion":true,"echo-subscriptions-email-flow-discussion":false,"gettingstarted-task-toolbar-show-intro":true,"uls-preferences":"","multimediaviewer-enable":true,"language":"en","variant-gan":"gan","variant-iu":"iu","variant-kk":"kk","variant-ku":"ku","variant-shi":"shi","variant-sr":"sr","variant-tg":"tg","variant-uz":"uz","variant-zh":"zh","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,
+"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false,"searchNs100":false,"searchNs101":false,"searchNs108":false,"searchNs109":false,"searchNs118":false,"searchNs119":false,"searchNs446":false,"searchNs447":false,"searchNs710":false,"searchNs711":false,"searchNs828":false,"searchNs829":false,"searchNs2600":false,"gadget-teahouse":1,"gadget-ReferenceTooltips":1,"gadget-geonotice":1,"gadget-DRN-wizard":1,"gadget-charinsert":1,"gadget-refToolbar":1,"gadget-mySandbox":1,"gadget-featured-articles-links":1,"rememberpassword":"1","timecorrection":"Offset|0","watchlisttoken":"f6096e178b1d529455a672307165db3b933ca0d0"});},{},{});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"8e2fae36abc77db0ca14ea32841e58f1546033f5+\\","patrolToken":"e412b2063035d3d8d1151d7c604bc3ff546033f5+\\","watchToken":"7f248504c5a0089ab5c31ebf25a80102546033f5+\\"});},{},{});
+/* cache key: enwiki:resourceloader:filter:minify-js:7:74b82208d9a703cc3b437561b7914107 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","ext.centralauth.centralautologin.clearcookie","ext.visualEditor.viewPageTarget.init","ext.uls.init","ext.uls.interface","ext.centralNotice.bannerController"]);
+}</script>
+<link rel="dns-prefetch" href="https://meta.wikimedia.org/">
+<script src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/index.php" type="text/javascript"></script><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Cross-validation_statistics skin-monobook action-view">
+<div id="globalWrapper">
+		<div id="column-content">
+			<div id="content" class="mw-body" role="main">
+				<a id="top"></a>
+									<div id="siteNotice"><div id="centralNotice"></div><!-- CentralNotice --></div>
+				<div class="mw-indicators">
+</div>
+				<h1 id="firstHeading" class="firstHeading" lang="en"><span dir="auto">Cross-validation (statistics)</span></h1>
+
+				<div id="bodyContent" class="mw-body-content">
+					<div id="siteSub">From Wikipedia, the free encyclopedia</div>
+					<div id="contentSub"></div>
+										<div id="jump-to-nav" class="mw-jump">Jump to: <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#column-one">navigation</a>, <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#searchInput">search</a></div>
+
+					<!-- start content -->
+					<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p><b>Cross-validation</b>, sometimes called <b>rotation estimation</b>,<sup id="cite_ref-1" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-1"><span>[</span>1<span>]</span></a></sup><sup id="cite_ref-Kohavi95_2-0" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-Kohavi95-2"><span>[</span>2<span>]</span></a></sup><sup id="cite_ref-Devijver82_3-0" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-Devijver82-3"><span>[</span>3<span>]</span></a></sup> is a <a href="https://en.wikipedia.org/wiki/Model_validation" title="Model validation" class="mw-redirect">model validation</a> technique for assessing how the results of a <a href="https://en.wikipedia.org/wiki/Statistics" title="Statistics">statistical</a> analysis will generalize to an independent data set. It is mainly used in settings where the goal is prediction, and one wants to estimate how <a href="https://en.wikipedia.org/wiki/Accuracy" title="Accuracy" class="mw-redirect">accurately</a> a predictive model will perform in practice. In a prediction problem, a model is usually given a dataset of <i>known data</i> on which training is run (<i>training dataset</i>), and a dataset of <i>unknown data</i> (or <i>first seen</i> data) against which the model is tested (<i>testing dataset</i>).<sup id="cite_ref-Newbie_question:_Confused_about_train.2C_validation_and_test_data.21_4-0" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-Newbie_question:_Confused_about_train.2C_validation_and_test_data.21-4"><span>[</span>4<span>]</span></a></sup> The goal of cross validation is to define a dataset to "test" the model in the training phase (i.e., the <i>validation dataset</i>), in order to limit problems like overfitting, give an insight on how the model will generalize to an independent data set (i.e., an unknown dataset, for instance from a real problem), etc.</p>
+<p>One round of cross-validation involves <a href="https://en.wikipedia.org/wiki/Partition_of_a_set" title="Partition of a set">partitioning</a> a <a href="https://en.wikipedia.org/wiki/Statistical_sample" title="Statistical sample" class="mw-redirect">sample</a> of <a href="https://en.wikipedia.org/wiki/Data" title="Data">data</a> into <a href="https://en.wikipedia.org/wiki/Complement_(set_theory)" title="Complement (set theory)">complementary</a> subsets, performing the analysis on one subset (called the <i>training set</i>), and validating the analysis on the other subset (called the <i>validation set</i> or <i>testing set</i>). To reduce <a href="https://en.wikipedia.org/wiki/Variance" title="Variance">variability</a>, multiple rounds of cross-validation are performed using different partitions, and the validation results are averaged over the rounds.</p>
+<p>Cross-validation is important in guarding against <a href="https://en.wikipedia.org/wiki/Testing_hypotheses_suggested_by_the_data" title="Testing hypotheses suggested by the data">testing hypotheses suggested by the data</a> (called "<a href="https://en.wikipedia.org/wiki/Type_III_error" title="Type III error">Type III errors</a>"<sup id="cite_ref-Mosteller1948_5-0" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-Mosteller1948-5"><span>[</span>5<span>]</span></a></sup>), especially where further <a href="https://en.wikipedia.org/wiki/Statistical_sample" title="Statistical sample" class="mw-redirect">samples</a> are hazardous, costly or impossible to collect.</p>
+<p></p>
+<div id="toc" class="toc">
+<div id="toctitle">
+<h2>Contents</h2>
+<span class="toctoggle">&nbsp;[<a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Purpose_of_cross_validation"><span class="tocnumber">1</span> <span class="toctext">Purpose of cross validation</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Common_types_of_cross-validation"><span class="tocnumber">2</span> <span class="toctext">Common types of cross-validation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Exhaustive_cross-validation"><span class="tocnumber">2.1</span> <span class="toctext">Exhaustive cross-validation</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Leave-p-out_cross-validation"><span class="tocnumber">2.1.1</span> <span class="toctext">Leave-p-out cross-validation</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Leave-one-out_cross-validation"><span class="tocnumber">2.1.2</span> <span class="toctext">Leave-one-out cross-validation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Non-exhaustive_cross-validation"><span class="tocnumber">2.2</span> <span class="toctext">Non-exhaustive cross-validation</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#k-fold_cross-validation"><span class="tocnumber">2.2.1</span> <span class="toctext"><i>k</i>-fold cross-validation</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#2-fold_cross-validation"><span class="tocnumber">2.2.2</span> <span class="toctext">2-fold cross-validation</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Repeated_random_sub-sampling_validation"><span class="tocnumber">2.2.3</span> <span class="toctext">Repeated random sub-sampling validation</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Measures_of_fit"><span class="tocnumber">3</span> <span class="toctext">Measures of fit</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Applications"><span class="tocnumber">4</span> <span class="toctext">Applications</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Statistical_properties"><span class="tocnumber">5</span> <span class="toctext">Statistical properties</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Computational_issues"><span class="tocnumber">6</span> <span class="toctext">Computational issues</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Relationship_to_other_forms_of_validation"><span class="tocnumber">7</span> <span class="toctext">Relationship to other forms of validation</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Limitations_and_misuse"><span class="tocnumber">8</span> <span class="toctext">Limitations and misuse</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#See_also"><span class="tocnumber">9</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-17"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#Notes_and_references"><span class="tocnumber">10</span> <span class="toctext">Notes and references</span></a></li>
+</ul>
+</div>
+<p></p>
+<h2><span class="mw-headline" id="Purpose_of_cross_validation">Purpose of cross validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=1" title="Edit section: Purpose of cross validation">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Suppose we have a <a href="https://en.wikipedia.org/wiki/Statistical_model" title="Statistical model">model</a> with one or more unknown <a href="https://en.wikipedia.org/wiki/Parameters" title="Parameters" class="mw-redirect">parameters</a>, and a data set to which the model can be fit (the training data set). The fitting process <a href="https://en.wikipedia.org/wiki/Optimization_(mathematics)" title="Optimization (mathematics)" class="mw-redirect">optimizes</a> the model parameters to make the model fit the training data as well as possible. If we then take an <a href="https://en.wikipedia.org/wiki/Independence_(probability_theory)" title="Independence (probability theory)">independent</a> sample of validation data from the same <a href="https://en.wikipedia.org/wiki/Statistical_population" title="Statistical population">population</a> as the training data, it will generally turn out that the model does not fit the validation data as well as it fits the training data. This is called <a href="https://en.wikipedia.org/wiki/Overfitting" title="Overfitting">overfitting</a>, and is particularly likely to happen when the size of the training data set is small, or when the number of parameters in the model is large. Cross-validation is a way to predict the fit of a model to a hypothetical validation set when an explicit validation set is not available.</p>
+<p><a href="https://en.wikipedia.org/wiki/Linear_regression" title="Linear regression">Linear regression</a> provides a simple illustration of overfitting. In linear regression we have <a href="https://en.wikipedia.org/wiki/Real_number" title="Real number">real</a> <i>response values</i> <i>Y</i><sub>1</sub>, ..., <i>Y<sub>n</sub></i>, and <a href="https://en.wikipedia.org/wiki/Euclidean_vector" title="Euclidean vector">vector</a> <i>covariates</i> <i>X</i><sub>1</sub>, ..., <i>X<sub>p</sub></i>. We can use <a href="https://en.wikipedia.org/wiki/Least_squares" title="Least squares">least squares</a> to fit a <a href="https://en.wikipedia.org/wiki/Hyperplane" title="Hyperplane">hyperplane</a> <i>a</i> + <i>b</i><sub>1</sub><i>X</i><sub>1</sub> + ... + <i>b</i><sub><i>p</i></sub><i>X</i><sub><i>p</i></sub> between the <i>Y</i> and <i>X</i> data, and then assess the fit using the <a href="https://en.wikipedia.org/wiki/Mean_squared_error" title="Mean squared error">mean squared error</a> (MSE):</p>
+<dl>
+<dd><img class="mwe-math-fallback-image-inline tex" alt="
+\frac{\sum_i (Y_i - a - b_1X_{1i} - \cdots - b_pX_{pi})^2}{n}
+" src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/83c5e10427d531cdbf08ef758b173cd1.png"></dd>
+</dl>
+<p>where <i>X<sub>ji</sub></i> is the value of variable <i>X<sub>j</sub></i> corresponding to the <i>i</i><sup>th</sup> response value <i>Y<sub>i</sub></i>.</p>
+<p>It can be shown under mild assumptions that the <a href="https://en.wikipedia.org/wiki/Expected_value" title="Expected value">expected value</a> of the MSE for the training set is (<i>n</i>&nbsp;−&nbsp;<i>p</i>&nbsp;−&nbsp;1)/(<i>n</i>&nbsp;+&nbsp;<i>p</i>&nbsp;+&nbsp;1)&nbsp;&lt;&nbsp;1 times the expected value of the MSE for the validation set<sup class="noprint Inline-Template Template-Fact" style="white-space:nowrap;">[<i><a href="https://en.wikipedia.org/wiki/Wikipedia:Citation_needed" title="Wikipedia:Citation needed"><span title="This claim needs references to reliable sources. (July 2013)">citation needed</span></a></i>]</sup> (the expected value is taken over the distribution of training sets). Thus if we fit the model and compute the MSE on the training set, we will get an optimistically <a href="https://en.wikipedia.org/wiki/Bias_(statistics)" title="Bias (statistics)">biased</a> assessment of how well the model will fit an independent data set. This biased estimate is called the <i>in-sample</i> estimate of the fit, whereas the cross-validation estimate is an <i>out-of-sample</i> estimate.</p>
+<p>Since in linear regression it is possible to directly compute the factor (<i>n</i>&nbsp;−&nbsp;<i>p</i>&nbsp;−&nbsp;1)/(<i>n</i>&nbsp;+&nbsp;<i>p</i>&nbsp;+&nbsp;1) by which the training MSE underestimates the validation MSE, cross-validation is not practically useful in that setting (however, cross-validation remains useful in the context of linear regression in that it can be used to select an optimally regularized cost function). In most other regression procedures (e.g. <a href="https://en.wikipedia.org/wiki/Logistic_regression" title="Logistic regression">logistic regression</a>), there is no simple formula to make such an adjustment. Cross-validation is, thus, a generally applicable way to predict the performance of a model on a validation set using computation in place of mathematical analysis.</p>
+<h2><span class="mw-headline" id="Common_types_of_cross-validation">Common types of cross-validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=2" title="Edit section: Common types of cross-validation">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Two types of cross-validation can be distinguished, exhaustive and non-exhaustive cross-validation.</p>
+<h3><span class="mw-headline" id="Exhaustive_cross-validation">Exhaustive cross-validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=3" title="Edit section: Exhaustive cross-validation">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Exhaustive cross-validation methods are cross-validation methods which learn and test on all possible ways to divide the original sample into a training and a validation set.</p>
+<h4><span class="mw-headline" id="Leave-p-out_cross-validation">Leave-p-out cross-validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=4" title="Edit section: Leave-p-out cross-validation">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
+<p>As the name suggests, leave-<i>p</i>-out cross-validation (<b>LpO CV</b>) involves using <i>p</i> observations as the validation set and the remaining observations as the training set. This is repeated on all ways to cut the original sample on a validation set of <i>p' observations and a training set.</i></p>
+<p>LpO cross-validation requires to learn and validate <img class="mwe-math-fallback-image-inline tex" alt="C_n^p" src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/40962cb179bc152c2371bc294eacf3ea.png"> times (where <i>n</i> is the number of observation in the original sample). So as soon as <i>n</i> is quite big it becomes impossible to calculate.</p>
+<h4><span class="mw-headline" id="Leave-one-out_cross-validation">Leave-one-out cross-validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=5" title="Edit section: Leave-one-out cross-validation">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
+<p>Leave-<i>one</i>-out cross-validation (<b>LOOCV</b>) is a particular case of leave-<i>p</i>-out cross-validation with <i>p</i>&nbsp;=&nbsp;1.</p>
+<p>LOO cross-validation doesn't have the calculation problem of general LpO cross-validation because <img class="mwe-math-fallback-image-inline tex" alt="C_n^1=n" src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/547781b41327e9a902c243eab57cff32.png">.</p>
+<h3><span class="mw-headline" id="Non-exhaustive_cross-validation">Non-exhaustive cross-validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=6" title="Edit section: Non-exhaustive cross-validation">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Non-exhaustive cross validation methods do not compute all ways of splitting the original sample. Those methods are approximations of leave-<i>p</i>-out cross-validation.</p>
+<h4><span class="mw-headline" id="k-fold_cross-validation"><i>k</i>-fold cross-validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=7" title="Edit section: k-fold cross-validation">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
+<p>In <i>k</i>-fold cross-validation, the original sample is randomly partitioned into <i>k</i> equal size subsamples. Of the <i>k</i> subsamples, a single subsample is retained as the validation data for testing the model, and the remaining <i>k</i>&nbsp;−&nbsp;1 subsamples are used as training data. The cross-validation process is then repeated <i>k</i> times (the <i>folds</i>), with each of the <i>k</i> subsamples used exactly once as the validation data. The <i>k</i> results from the folds can then be averaged (or otherwise combined) to produce a single estimation. The advantage of this method over repeated random sub-sampling (see below) is that all observations are used for both training and validation, and each observation is used for validation exactly once. 10-fold cross-validation is commonly used,<sup id="cite_ref-McLachlan_6-0" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-McLachlan-6"><span>[</span>6<span>]</span></a></sup> but in general <i>k</i> remains an unfixed parameter <a rel="nofollow" class="external autonumber" href="http://andrewgelman.com/2006/03/crossvalidation_2/">[1]</a>.</p>
+<p>When <i>k</i>=<i>n</i> (the number of observations), the <i>k</i>-fold cross-validation is exactly the leave-one-out cross-validation.</p>
+<p>In <i>stratified</i> <i>k</i>-fold cross-validation, the folds are selected so that the mean response value is approximately equal in all the folds. In the case of a dichotomous classification, this means that each fold contains roughly the same proportions of the two types of class labels.</p>
+<h4><span class="mw-headline" id="2-fold_cross-validation">2-fold cross-validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=8" title="Edit section: 2-fold cross-validation">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
+<p>This is the simplest variation of <i>k</i>-fold cross-validation. Also, called holdout method.<sup id="cite_ref-7" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-7"><span>[</span>7<span>]</span></a></sup> For each fold, we randomly assign data points to two sets <i>d</i><sub>0</sub> and <i>d</i><sub>1</sub>, so that both sets are equal size (this is usually implemented by shuffling the data array and then splitting it in two). We then train on <i>d</i><sub>0</sub> and test on <i>d</i><sub>1</sub>, followed by training on <i>d</i><sub>1</sub> and testing on&nbsp;<i>d</i><sub>0</sub>.</p>
+<p>This has the advantage that our training and test sets are both large, and each data point is used for both training and validation on each fold.</p>
+<h4><span class="mw-headline" id="Repeated_random_sub-sampling_validation">Repeated random sub-sampling validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=9" title="Edit section: Repeated random sub-sampling validation">edit</a><span class="mw-editsection-bracket">]</span></span></h4>
+<p>This method randomly splits the dataset into training and validation data. For each such split, the model is fit to the training data, and predictive accuracy is assessed using the validation data. The results are then averaged over the splits. The advantage of this method (over <i>k</i>-fold cross validation) is that the proportion of the training/validation split is not dependent on the number of iterations (folds). The disadvantage of this method is that some observations may never be selected in the validation subsample, whereas others may be selected more than once. In other words, validation subsets may overlap. This method also exhibits <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method" title="Monte Carlo method">Monte Carlo</a> variation, meaning that the results will vary if the analysis is repeated with different random splits.</p>
+<p>When the number of random splits goes to infinity, the Repeated random sub-sampling validation become arbitrary close to the leave-p-out cross-validation.</p>
+<p>In a stratified variant of this approach, the random samples are generated in such a way that the mean response value (i.e. the dependent variable in the regression) is equal in the training and testing sets. This is particularly useful if the responses are <a href="https://en.wikipedia.org/wiki/Dichotomous" title="Dichotomous" class="mw-redirect">dichotomous</a> with an unbalanced representation of the two response values in the data.</p>
+<h2><span class="mw-headline" id="Measures_of_fit">Measures of fit</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=10" title="Edit section: Measures of fit">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>The goal of cross-validation is to estimate the expected level of fit of a model to a data set that is independent of the data that were used to train the model. It can be used to estimate any quantitative measure of fit that is appropriate for the data and model. For example, for <a href="https://en.wikipedia.org/wiki/Binary_classification" title="Binary classification">binary classification</a> problems, each case in the validation set is either predicted correctly or incorrectly. In this situation the misclassification error rate can be used to summarize the fit, although other measures like <a href="https://en.wikipedia.org/wiki/Positive_predictive_value" title="Positive predictive value" class="mw-redirect">positive predictive value</a> could also be used. When the value being predicted is continuously distributed, the <a href="https://en.wikipedia.org/wiki/Mean_squared_error" title="Mean squared error">mean squared error</a>, <a href="https://en.wikipedia.org/wiki/Root_mean_squared_error" title="Root mean squared error" class="mw-redirect">root mean squared error</a> or <a href="https://en.wikipedia.org/wiki/Median_absolute_deviation" title="Median absolute deviation">median absolute deviation</a> could be used to summarize the errors.</p>
+<h2><span class="mw-headline" id="Applications">Applications</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=11" title="Edit section: Applications">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Cross-validation can be used to compare the performances of different predictive modeling procedures. For example, suppose we are interested in <a href="https://en.wikipedia.org/wiki/Optical_character_recognition" title="Optical character recognition">optical character recognition</a>, and we are considering using either <a href="https://en.wikipedia.org/wiki/Support_vector_machines" title="Support vector machines" class="mw-redirect">support vector machines</a> (SVM) or <a href="https://en.wikipedia.org/wiki/K_nearest_neighbors" title="K nearest neighbors" class="mw-redirect">k nearest neighbors</a> (KNN) to predict the true character from an image of a handwritten character. Using cross-validation, we could objectively compare these two methods in terms of their respective fractions of misclassified characters. If we simply compared the methods based on their in-sample error rates, the KNN method would likely appear to perform better, since it is more flexible and hence more prone to <a href="https://en.wikipedia.org/wiki/Overfitting" title="Overfitting">overfitting</a> compared to the SVM method.</p>
+<p>Cross-validation can also be used in <a href="https://en.wikipedia.org/wiki/Feature_selection" title="Feature selection"><i>variable selection</i></a>.<sup id="cite_ref-Picard84_8-0" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-Picard84-8"><span>[</span>8<span>]</span></a></sup> Suppose we are using the <a href="https://en.wikipedia.org/wiki/Protein_expression" title="Protein expression" class="mw-redirect">expression</a> levels of 20 <a href="https://en.wikipedia.org/wiki/Proteins" title="Proteins" class="mw-redirect">proteins</a> to predict whether a <a href="https://en.wikipedia.org/wiki/Cancer" title="Cancer">cancer</a> patient will respond to a <a href="https://en.wikipedia.org/wiki/Drug" title="Drug">drug</a>. A practical goal would be to determine which subset of the 20 features should be used to produce the best predictive model. For most modeling procedures, if we compare feature subsets using the in-sample error rates, the best performance will occur when all 20 features are used. However under cross-validation, the model with the best fit will generally include only a subset of the features that are deemed truly informative.</p>
+<h2><span class="mw-headline" id="Statistical_properties">Statistical properties</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=12" title="Edit section: Statistical properties">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Suppose we choose a measure of fit <i>F</i>, and use cross-validation to produce an estimate <i>F<sup>*</sup></i> of the expected fit <i>EF</i> of a model to an independent data set drawn from the same population as the training data. If we imagine sampling multiple independent training sets following the same distribution, the resulting values for <i>F<sup>*</sup></i> will vary. The statistical properties of <i>F<sup>*</sup></i> result from this variation.</p>
+<p>The cross-validation estimator <i>F<sup>*</sup></i> is very nearly unbiased for <i>EF</i>. The reason that it is slightly biased is that the training set in cross-validation is slightly smaller than the actual data set (e.g. for LOOCV the training set size is <i>n</i>&nbsp;−&nbsp;1 when there are <i>n</i> observed cases). In nearly all situations, the effect of this bias will be conservative in that the estimated fit will be slightly biased in the direction suggesting a poorer fit. In practice, this bias is rarely a concern.</p>
+<p>The variance of <i>F<sup>*</sup></i> can be large.<sup id="cite_ref-Efron97_9-0" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-Efron97-9"><span>[</span>9<span>]</span></a></sup><sup id="cite_ref-Stone77_10-0" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-Stone77-10"><span>[</span>10<span>]</span></a></sup> For this reason, if two statistical procedures are compared based on the results of cross-validation, it is important to note that the procedure with the better estimated performance may not actually be the better of the two procedures (i.e. it may not have the better value of <i>EF</i>). Some progress has been made on constructing confidence intervals around cross-validation estimates,<sup id="cite_ref-Efron97_9-1" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-Efron97-9"><span>[</span>9<span>]</span></a></sup> but this is considered a difficult problem.</p>
+<h2><span class="mw-headline" id="Computational_issues">Computational issues</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=13" title="Edit section: Computational issues">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Most forms of cross-validation are straightforward to implement as long as an implementation of the prediction method being studied is available. In particular, the prediction method need only be available as a "black box" – there is no need to have access to the internals of its implementation. If the prediction method is expensive to train, cross-validation can be very slow since the training must be carried out repeatedly. In some cases such as <a href="https://en.wikipedia.org/wiki/Least_squares" title="Least squares">least squares</a> and <a href="https://en.wikipedia.org/wiki/Kernel_regression" title="Kernel regression">kernel regression</a>, cross-validation can be sped up significantly by pre-computing certain values that are needed repeatedly in the training, or by using fast "updating rules" such as the <a href="https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula" title="Sherman–Morrison formula">Sherman–Morrison formula</a>. However one must be careful to preserve the "total blinding" of the validation set from the training procedure, otherwise bias may result. An extreme example of accelerating cross-validation occurs in <a href="https://en.wikipedia.org/wiki/Linear_regression" title="Linear regression">linear regression</a>, where the results of cross-validation have a <a href="https://en.wikipedia.org/wiki/Closed-form_expression" title="Closed-form expression">closed-form expression</a> known as the <i>prediction residual error sum of squares</i> (<a href="https://en.wikipedia.org/wiki/PRESS_statistic" title="PRESS statistic">PRESS</a>).</p>
+<h2><span class="mw-headline" id="Relationship_to_other_forms_of_validation">Relationship to other forms of validation</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=14" title="Edit section: Relationship to other forms of validation">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>In "true validation," or "holdout validation," a subset of observations is chosen randomly from the initial sample to form a validation or testing set, and the remaining observations are retained as the training data. Normally, less than a third of the initial sample is used for validation data.<sup id="cite_ref-11" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-11"><span>[</span>11<span>]</span></a></sup> This would generally not be considered to be cross-validation since only a single partition of the data into training and testing sets is used.</p>
+<h2><span class="mw-headline" id="Limitations_and_misuse">Limitations and misuse</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=15" title="Edit section: Limitations and misuse">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Cross-validation only yields meaningful results if the validation set and training set are drawn from the same population. In many applications of predictive modeling, the structure of the system being studied evolves over time. This can introduce systematic differences between the training and validation sets. For example, if a model for <a href="https://en.wikipedia.org/wiki/Stock_market_prediction" title="Stock market prediction">predicting stock values</a> is trained on data for a certain five-year period, it is unrealistic to treat the subsequent five-year period as a draw from the same population. As another example, suppose a model is developed to predict an individual's risk for being <a href="https://en.wikipedia.org/wiki/Medical_diagnosis" title="Medical diagnosis">diagnosed</a> with a particular disease within the next year. If the model is trained using data from a study involving only a specific population group (e.g. young people or males), but is then applied to the general population, the cross-validation results from the training set could differ greatly from the actual predictive performance.</p>
+<p>If carried out properly, and if the validation set and training set are from the same population, cross-validation is nearly unbiased. However there are many ways that cross-validation can be misused. If it is misused and a true validation study is subsequently performed, the prediction errors in the true validation are likely to be much worse than would be expected based on the results of cross-validation.</p>
+<p>These are some ways that cross-validation can be misused:</p>
+<ul>
+<li>By performing an initial analysis to identify the most informative <a href="https://en.wikipedia.org/wiki/Features_(pattern_recognition)" title="Features (pattern recognition)" class="mw-redirect">features</a> using the entire data set – if feature selection or model tuning is required by the modeling procedure, this must be repeated on every training set. If cross-validation is used to decide which features to use, an <i>inner cross-validation</i> to carry out the feature selection on every training set must be performed.</li>
+</ul>
+<ul>
+<li>By allowing some of the training data to also be included in the test set – this can happen due to "twinning" in the data set, whereby some exactly identical or nearly identical samples are present in the data set.</li>
+</ul>
+<p>It should be noted that some statisticians have questioned the usefulness of validation samples.<sup id="cite_ref-12" class="reference"><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_note-12"><span>[</span>12<span>]</span></a></sup></p>
+<h2><span class="mw-headline" id="See_also">See also</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=16" title="Edit section: See also">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Boosting_(machine_learning)" title="Boosting (machine learning)">Boosting (machine learning)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bootstrap_aggregating" title="Bootstrap aggregating">Bootstrap aggregating</a> (bagging)</li>
+<li><a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)" title="Bootstrapping (statistics)">Bootstrapping (statistics)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Resampling_(statistics)" title="Resampling (statistics)">Resampling (statistics)</a></li>
+</ul>
+<h2><span class="mw-headline" id="Notes_and_references">Notes and references</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit&section=17" title="Edit section: Notes and references">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="reflist" style="list-style-type: decimal;">
+<ol class="references">
+<li id="cite_note-1"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-1"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation book">Geisser, Seymour (1993). <i>Predictive Inference</i>. New York, NY: Chapman and Hall. <a href="https://en.wikipedia.org/wiki/International_Standard_Book_Number" title="International Standard Book Number">ISBN</a>&nbsp;<a href="https://en.wikipedia.org/wiki/Special:BookSources/0-412-03471-9" title="Special:BookSources/0-412-03471-9">0-412-03471-9</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.aufirst=Seymour&amp;rft.au=Geisser%2C+Seymour&amp;rft.aulast=Geisser&amp;rft.btitle=Predictive+Inference&amp;rft.date=1993&amp;rft.genre=book&amp;rft.isbn=0-412-03471-9&amp;rft.place=New+York%2C+NY&amp;rft.pub=Chapman+and+Hall&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-Kohavi95-2"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-Kohavi95_2-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation journal">Kohavi, Ron (1995). "A study of cross-validation and bootstrap for accuracy estimation and model selection". <i>Proceedings of the Fourteenth International Joint Conference on Artificial Intelligence</i> (San Mateo, CA: Morgan Kaufmann) <b>2</b> (12): 1137–1143. <a href="https://en.wikipedia.org/wiki/CiteSeer#CiteSeerX" title="CiteSeer">CiteSeerX</a>: <span class="url"><a rel="nofollow" class="external text" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.48.529">10.1.1.48.529</a></span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.atitle=A+study+of+cross-validation+and+bootstrap+for+accuracy+estimation+and+model+selection&amp;rft.aufirst=Ron&amp;rft.au=Kohavi%2C+Ron&amp;rft.aulast=Kohavi&amp;rft.date=1995&amp;rft.genre=article&amp;rft.issue=12&amp;rft.jtitle=Proceedings+of+the+Fourteenth+International+Joint+Conference+on+Artificial+Intelligence&amp;rft.pages=1137-1143&amp;rft.place=San+Mateo%2C+CA&amp;rft.pub=Morgan+Kaufmann&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.volume=2" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-Devijver82-3"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-Devijver82_3-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation book">Devijver, Pierre A.; Kittler, Josef (1982). <i>Pattern Recognition: A Statistical Approach</i>. London, GB: Prentice-Hall.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.au=Devijver%2C+Pierre+A.&amp;rft.aufirst=Pierre+A.&amp;rft.au=Kittler%2C+Josef&amp;rft.aulast=Devijver&amp;rft.btitle=Pattern+Recognition%3A+A+Statistical+Approach&amp;rft.date=1982&amp;rft.genre=book&amp;rft.place=London%2C+GB&amp;rft.pub=Prentice-Hall&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-Newbie_question:_Confused_about_train.2C_validation_and_test_data.21-4"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-Newbie_question:_Confused_about_train.2C_validation_and_test_data.21_4-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation web"><a rel="nofollow" class="external text" href="http://www.heatonresearch.com/node/1823">"Newbie question: Confused about train, validation and test data!"</a><span class="reference-accessdate">. Retrieved 2013-11-14</span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.btitle=Newbie+question%3A+Confused+about+train%2C+validation+and+test+data%21&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fwww.heatonresearch.com%2Fnode%2F1823&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-Mosteller1948-5"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-Mosteller1948_5-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation journal">Mosteller, Frederick (1948). "A k-sample slippage test for an extreme population". <i>Annals of Mathematical Statistics</i> <b>19</b> (1): 58–65. <a href="https://en.wikipedia.org/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1214%2Faoms%2F1177730290">10.1214/aoms/1177730290</a>. <a href="https://en.wikipedia.org/wiki/JSTOR" title="JSTOR">JSTOR</a>&nbsp;<a rel="nofollow" class="external text" href="https://www.jstor.org/stable/2236056">2236056</a>. <a href="https://en.wikipedia.org/wiki/Mathematical_Reviews" title="Mathematical Reviews">MR</a>&nbsp;<a rel="nofollow" class="external text" href="https://www.ams.org/mathscinet-getitem?mr=0024116">0024116</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.atitle=A+k-sample+slippage+test+for+an+extreme+population&amp;rft.aufirst=Frederick&amp;rft.aulast=Mosteller&amp;rft.au=Mosteller%2C+Frederick&amp;rft.date=1948&amp;rft.genre=article&amp;rft_id=info%3Adoi%2F10.1214%2Faoms%2F1177730290&amp;rft.issue=1&amp;rft.jstor=2236056&amp;rft.jtitle=Annals+of+Mathematical+Statistics&amp;rft.mr=0024116&amp;rft.pages=58-65&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.volume=19" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-McLachlan-6"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-McLachlan_6-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation book">McLachlan, Geoffrey J.; Do, Kim-Anh; Ambroise, Christophe (2004). <i>Analyzing microarray gene expression data</i>. Wiley.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.au=Ambroise%2C+Christophe&amp;rft.au=Do%2C+Kim-Anh&amp;rft.aufirst=Geoffrey+J.&amp;rft.aulast=McLachlan&amp;rft.au=McLachlan%2C+Geoffrey+J.&amp;rft.btitle=Analyzing+microarray+gene+expression+data&amp;rft.date=2004&amp;rft.genre=book&amp;rft.pub=Wiley&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-7"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-7"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation web"><a rel="nofollow" class="external text" href="http://www.cs.cmu.edu/~schneide/tut5/node42.html">"Cross Validation"</a><span class="reference-accessdate">. Retrieved 11 November 2012</span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.btitle=Cross+Validation&amp;rft.genre=book&amp;rft_id=http%3A%2F%2Fwww.cs.cmu.edu%2F~schneide%2Ftut5%2Fnode42.html&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Abook" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-Picard84-8"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-Picard84_8-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation journal">Picard, Richard; Cook, Dennis (1984). "Cross-Validation of Regression Models". <i>Journal of the American Statistical Association</i> <b>79</b> (387): 575–583. <a href="https://en.wikipedia.org/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.2307%2F2288403">10.2307/2288403</a>. <a href="https://en.wikipedia.org/wiki/JSTOR" title="JSTOR">JSTOR</a>&nbsp;<a rel="nofollow" class="external text" href="https://www.jstor.org/stable/2288403">2288403</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.atitle=Cross-Validation+of+Regression+Models&amp;rft.au=Cook%2C+Dennis&amp;rft.aufirst=Richard&amp;rft.aulast=Picard&amp;rft.au=Picard%2C+Richard&amp;rft.date=1984&amp;rft.genre=article&amp;rft_id=info%3Adoi%2F10.2307%2F2288403&amp;rft.issue=387&amp;rft.jstor=2288403&amp;rft.jtitle=Journal+of+the+American+Statistical+Association&amp;rft.pages=575-583&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.volume=79" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-Efron97-9"><span class="mw-cite-backlink">^ <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-Efron97_9-0"><span class="cite-accessibility-label">Jump up to: </span><sup><i><b>a</b></i></sup></a> <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-Efron97_9-1"><sup><i><b>b</b></i></sup></a></span> <span class="reference-text"><span class="citation journal">Efron, Bradley; Tibshirani, Robert (1997). "Improvements on cross-validation: The .632 + Bootstrap Method". <i><a href="https://en.wikipedia.org/wiki/Journal_of_the_American_Statistical_Association" title="Journal of the American Statistical Association">Journal of the American Statistical Association</a></i> <b>92</b> (438): 548–560. <a href="https://en.wikipedia.org/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.2307%2F2965703">10.2307/2965703</a>. <a href="https://en.wikipedia.org/wiki/JSTOR" title="JSTOR">JSTOR</a>&nbsp;<a rel="nofollow" class="external text" href="https://www.jstor.org/stable/2965703">2965703</a>. <a href="https://en.wikipedia.org/wiki/Mathematical_Reviews" title="Mathematical Reviews">MR</a>&nbsp;<a rel="nofollow" class="external text" href="https://www.ams.org/mathscinet-getitem?mr=1467848">1467848</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.atitle=Improvements+on+cross-validation%3A+The+.632+%2B+Bootstrap+Method&amp;rft.au=Efron%2C+Bradley&amp;rft.aufirst=Bradley&amp;rft.aulast=Efron&amp;rft.au=Tibshirani%2C+Robert&amp;rft.date=1997&amp;rft.genre=article&amp;rft_id=info%3Adoi%2F10.2307%2F2965703&amp;rft.issue=438&amp;rft.jstor=2965703&amp;rft.jtitle=Journal+of+the+American+Statistical+Association&amp;rft.mr=1467848&amp;rft.pages=548-560&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.volume=92" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-Stone77-10"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-Stone77_10-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation journal">Stone, Mervyn (1977). "Asymptotics for and against cross-validation". <i><a href="https://en.wikipedia.org/wiki/Biometrika" title="Biometrika">Biometrika</a></i> <b>64</b> (1): 29–35. <a href="https://en.wikipedia.org/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1093%2Fbiomet%2F64.1.29">10.1093/biomet/64.1.29</a>. <a href="https://en.wikipedia.org/wiki/JSTOR" title="JSTOR">JSTOR</a>&nbsp;<a rel="nofollow" class="external text" href="https://www.jstor.org/stable/2335766">2335766</a>. <a href="https://en.wikipedia.org/wiki/Mathematical_Reviews" title="Mathematical Reviews">MR</a>&nbsp;<a rel="nofollow" class="external text" href="https://www.ams.org/mathscinet-getitem?mr=0474601">0474601</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.atitle=Asymptotics+for+and+against+cross-validation&amp;rft.aufirst=Mervyn&amp;rft.aulast=Stone&amp;rft.au=Stone%2C+Mervyn&amp;rft.date=1977&amp;rft.genre=article&amp;rft_id=info%3Adoi%2F10.1093%2Fbiomet%2F64.1.29&amp;rft.issue=1&amp;rft.jstor=2335766&amp;rft.jtitle=Biometrika&amp;rft.mr=0474601&amp;rft.pages=29-35&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.volume=64" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-11"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-11"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation web"><a rel="nofollow" class="external text" href="http://web.archive.org/web/20060623055814/http://decisiontrees.net/node/36">"Tutorial 12"</a>. <i>Decision Trees Interactive Tutorial and Resources</i>. Archived from <a rel="nofollow" class="external text" href="http://decisiontrees.net/node/36">the original</a> on 2006-06-23<span class="reference-accessdate">. Retrieved 2006-06-21</span>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.atitle=Tutorial+12&amp;rft.genre=article&amp;rft_id=http%3A%2F%2Fdecisiontrees.net%2Fnode%2F36&amp;rft.jtitle=Decision+Trees+Interactive+Tutorial+and+Resources&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+<li id="cite_note-12"><span class="mw-cite-backlink"><b><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#cite_ref-12"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation journal">Hirsch, Robert (1991). "Validation Samples". <i>Biometrics</i> <b>47</b> (3): 1193–1194.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3ACross-validation+%28statistics%29&amp;rft.atitle=Validation+Samples&amp;rft.aufirst=Robert&amp;rft.au=Hirsch%2C+Robert&amp;rft.aulast=Hirsch&amp;rft.date=1991&amp;rft.genre=article&amp;rft.issue=3&amp;rft.jtitle=Biometrics&amp;rft.pages=1193-1194&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.volume=47" class="Z3988"><span style="display:none;">&nbsp;</span></span></span></li>
+</ol>
+</div>
+<table cellspacing="0" class="navbox" style="border-spacing:0;">
+<tbody><tr>
+<td style="padding:2px;">
+<table cellspacing="0" class="nowraplinks collapsible uncollapsed navbox-inner" style="border-spacing:0;background:transparent;color:inherit;" id="collapsibleTable0">
+<tbody><tr>
+<th scope="col" class="navbox-title" colspan="2"><span class="collapseButton">[<a id="collapseButton0" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#">hide</a>]</span>
+<div class="plainlinks hlist navbar mini">
+<ul>
+<li class="nv-view"><a href="https://en.wikipedia.org/wiki/Template:Statistics" title="Template:Statistics"><span title="View this template" style=";;background:none transparent;border:none;;">v</span></a></li>
+<li class="nv-talk"><a href="https://en.wikipedia.org/wiki/Template_talk:Statistics" title="Template talk:Statistics"><span title="Discuss this template" style=";;background:none transparent;border:none;;">t</span></a></li>
+<li class="nv-edit"><a class="external text" href="https://en.wikipedia.org/w/index.php?title=Template:Statistics&action=edit"><span title="Edit this template" style=";;background:none transparent;border:none;;">e</span></a></li>
+</ul>
+</div>
+<div style="font-size:110%;"><a href="https://en.wikipedia.org/wiki/Statistics" title="Statistics">Statistics</a></div>
+</th>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks collapsible collapsed navbox-subgroup" style="border-spacing:0;" id="collapsibleTable1">
+<tbody><tr>
+<th scope="col" class="navbox-title" colspan="2" style=";;"><span class="collapseButton">[<a id="collapseButton1" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#">show</a>]</span><span style="float:left;width:6em;">&nbsp;</span>
+<div style="font-size:110%;"><a href="https://en.wikipedia.org/wiki/Descriptive_statistics" title="Descriptive statistics">Descriptive statistics</a></div>
+</th>
+</tr>
+<tr style="height: 2px; display: none;">
+<td colspan="2"></td>
+</tr>
+<tr style="display: none;">
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Continuous_probability_distribution" title="Continuous probability distribution" class="mw-redirect">Continuous data</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;"><a href="https://en.wikipedia.org/wiki/Location_parameter" title="Location parameter">Location</a></th>
+<td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Mean" title="Mean">Mean</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Arithmetic_mean" title="Arithmetic mean">arithmetic</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Geometric_mean" title="Geometric mean">geometric</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Harmonic_mean" title="Harmonic mean">harmonic</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Median" title="Median">Median</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Mode_(statistics)" title="Mode (statistics)">Mode</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;"><a href="https://en.wikipedia.org/wiki/Statistical_dispersion" title="Statistical dispersion">Dispersion</a></th>
+<td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Range_(statistics)" title="Range (statistics)">Range</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Standard_deviation" title="Standard deviation">Standard deviation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Coefficient_of_variation" title="Coefficient of variation">Coefficient of variation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Percentile" title="Percentile">Percentile</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Interquartile_range" title="Interquartile range">Interquartile range</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;"><a href="https://en.wikipedia.org/wiki/Shape_of_the_distribution" title="Shape of the distribution">Shape</a></th>
+<td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Variance" title="Variance">Variance</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Skewness" title="Skewness">Skewness</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kurtosis" title="Kurtosis">Kurtosis</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Moment_(mathematics)" title="Moment (mathematics)">Moments</a></li>
+<li><a href="https://en.wikipedia.org/wiki/L-moment" title="L-moment">L-moments</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Count_data" title="Count data">Count data</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Index_of_dispersion" title="Index of dispersion">Index of dispersion</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Summary tables</th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Grouped_data" title="Grouped data">Grouped data</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Frequency_distribution" title="Frequency distribution">Frequency distribution</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Contingency_table" title="Contingency table">Contingency table</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Correlation_and_dependence" title="Correlation and dependence">Dependence</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient" title="Pearson product-moment correlation coefficient">Pearson product-moment correlation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rank_correlation" title="Rank correlation">Rank correlation</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient" title="Spearman&#39;s rank correlation coefficient">Spearman's rho</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kendall_tau_rank_correlation_coefficient" title="Kendall tau rank correlation coefficient">Kendall's tau</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Partial_correlation" title="Partial correlation">Partial correlation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Scatter_plot" title="Scatter plot">Scatter plot</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Statistical_graphics" title="Statistical graphics">Statistical graphics</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Bar_chart" title="Bar chart">Bar chart</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Biplot" title="Biplot">Biplot</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Box_plot" title="Box plot">Box plot</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Control_chart" title="Control chart">Control chart</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Correlogram" title="Correlogram">Correlogram</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Fan_chart_(statistics)" title="Fan chart (statistics)">Fan chart</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Forest_plot" title="Forest plot">Forest plot</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Histogram" title="Histogram">Histogram</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Pie_chart" title="Pie chart">Pie chart</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot" title="Q–Q plot">Q–Q plot</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Run_chart" title="Run chart">Run chart</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Scatter_plot" title="Scatter plot">Scatter plot</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Stemplot" title="Stemplot" class="mw-redirect">Stemplot</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Radar_chart" title="Radar chart">Radar chart</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<td colspan="2" class="navbox-list navbox-even" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks collapsible collapsed navbox-subgroup" style="border-spacing:0;" id="collapsibleTable2">
+<tbody><tr>
+<th scope="col" class="navbox-title" colspan="2" style=";;"><span class="collapseButton">[<a id="collapseButton2" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#">show</a>]</span><span style="float:left;width:6em;">&nbsp;</span>
+<div style="font-size:110%;"><a href="https://en.wikipedia.org/wiki/Data_collection" title="Data collection">Data collection</a></div>
+</th>
+</tr>
+<tr style="height: 2px; display: none;">
+<td colspan="2"></td>
+</tr>
+<tr style="display: none;">
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<th scope="row" class="navbox-group">Study design</th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Effect_size" title="Effect size">Effect size</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Standard_error" title="Standard error">Standard error</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Statistical_power" title="Statistical power">Statistical power</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Sample_size_determination" title="Sample size determination">Sample size determination</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Survey_methodology" title="Survey methodology">Survey methodology</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Sampling_(statistics)" title="Sampling (statistics)">Sampling</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Stratified_sampling" title="Stratified sampling">stratified</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Cluster_sampling" title="Cluster sampling">cluster</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Opinion_poll" title="Opinion poll">Opinion poll</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Questionnaire" title="Questionnaire">Questionnaire</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Experiment#Controlled_experiments" title="Experiment">Controlled experiments</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Design_of_experiments" title="Design of experiments">Design</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Optimal_design" title="Optimal design">optimal</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Randomized_experiment" title="Randomized experiment">Randomized</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Random_assignment" title="Random assignment">Random assignment</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Replication_(statistics)" title="Replication (statistics)">Replication</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Blocking_(statistics)" title="Blocking (statistics)">Blocking</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Factorial_experiment" title="Factorial experiment">Factorial experiment</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Uncontrolled studies</th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Natural_experiment" title="Natural experiment">Natural experiment</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Quasi-experiment" title="Quasi-experiment">Quasi-experiment</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Observational_study" title="Observational study">Observational study</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks collapsible collapsed navbox-subgroup" style="border-spacing:0;" id="collapsibleTable3">
+<tbody><tr>
+<th scope="col" class="navbox-title" colspan="2" style=";;"><span class="collapseButton">[<a id="collapseButton3" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#">show</a>]</span><span style="float:left;width:6em;">&nbsp;</span>
+<div style="font-size:110%;"><a href="https://en.wikipedia.org/wiki/Statistical_inference" title="Statistical inference">Statistical inference</a></div>
+</th>
+</tr>
+<tr style="height: 2px; display: none;">
+<td colspan="2"></td>
+</tr>
+<tr style="display: none;">
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Statistical_theory" title="Statistical theory">Statistical theory</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Sampling_distribution" title="Sampling distribution">Sampling distribution</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Order_statistic" title="Order statistic">Order statistic</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Scan_statistic" title="Scan statistic">Scan statistic</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Record_value" title="Record value">Record value</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Sufficient_statistic" title="Sufficient statistic">Sufficiency</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Completeness_(statistics)" title="Completeness (statistics)">Completeness</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Exponential_family" title="Exponential family">Exponential family</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Permutation_test" title="Permutation test" class="mw-redirect">Permutation test</a>&nbsp;(<a href="https://en.wikipedia.org/wiki/Randomization_test" title="Randomization test" class="mw-redirect">Randomization test</a>)</li>
+<li><a href="https://en.wikipedia.org/wiki/Empirical_distribution_function" title="Empirical distribution function">Empirical distribution</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bootstrap_(statistics)" title="Bootstrap (statistics)" class="mw-redirect">Bootstrap</a></li>
+<li><a href="https://en.wikipedia.org/wiki/U-statistic" title="U-statistic">U statistic</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Efficiency_(statistics)" title="Efficiency (statistics)">Efficiency</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Asymptotic_theory_(statistics)" title="Asymptotic theory (statistics)">Asymptotics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Robust_statistics" title="Robust statistics">Robustness</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Frequentist_inference" title="Frequentist inference">Frequentist inference</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Bias_of_an_estimator" title="Bias of an estimator">Unbiased</a> <a href="https://en.wikipedia.org/wiki/Estimator" title="Estimator">estimators</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Minimum-variance_unbiased_estimator" title="Minimum-variance unbiased estimator">Mean unbiased minimum-variance</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Median-unbiased_estimator" title="Median-unbiased estimator" class="mw-redirect">Median unbiased</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Bias_of_an_estimator" title="Bias of an estimator">Biased</a> <a href="https://en.wikipedia.org/wiki/Estimator" title="Estimator">estimators</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Maximum_likelihood" title="Maximum likelihood">Maximum likelihood</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Method_of_moments_(statistics)" title="Method of moments (statistics)">Method of moments</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Minimum_distance_estimation" title="Minimum distance estimation">Minimum distance</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Density_estimation" title="Density estimation">Density estimation</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Confidence_interval" title="Confidence interval">Confidence interval</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Statistical_hypothesis_testing" title="Statistical hypothesis testing">Testing hypotheses</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Power_(statistics)" title="Power (statistics)" class="mw-redirect">Power</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Parametric_statistics" title="Parametric statistics">Parametric tests</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Likelihood-ratio_test" title="Likelihood-ratio test">Likelihood-ratio</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Wald_test" title="Wald test">Wald</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Score_test" title="Score test">Score</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Specific tests</th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Z-test" title="Z-test"><i>Z</i> <span style="font-size:90%;">(normal)</span></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Student%27s_t-test" title="Student&#39;s t-test">Student's <i>t</i>-test</a></li>
+<li><i><a href="https://en.wikipedia.org/wiki/F-test" title="F-test">F</a></i></li>
+<li><a href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test" title="Shapiro–Wilk test">Shapiro–Wilk</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test" title="Kolmogorov–Smirnov test">Kolmogorov–Smirnov</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;"><a href="https://en.wikipedia.org/wiki/Goodness_of_fit" title="Goodness of fit">Goodness of fit</a></th>
+<td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Chi-squared_test" title="Chi-squared test">Chi-squared</a></li>
+<li><a href="https://en.wikipedia.org/wiki/G-test" title="G-test"><i>G</i></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Anderson%E2%80%93Darling_test" title="Anderson–Darling test">Sample source <span style="font-size:90%;">(Anderson–Darling)</span></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test" title="Shapiro–Wilk test">Sample normality <span style="font-size:90%;">(Shapiro–Wilk)</span></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Jarque-Bera_test" title="Jarque-Bera test" class="mw-redirect">Skewness&nbsp;/ kurtosis normality <span style="font-size:90%;">(Jarque-Bera)</span></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Likelihood-ratio_test" title="Likelihood-ratio test">Model comparison <span style="font-size:90%;">(Likelihood-ratio)</span></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Akaike_information_criterion" title="Akaike information criterion">Model quality <span style="font-size:90%;">(Akaike criterion)</span></a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;"><a href="https://en.wikipedia.org/wiki/Rank_statistics" title="Rank statistics" class="mw-redirect">Signed-rank</a></th>
+<td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test" title="Wilcoxon signed-rank test">1-sample <span style="font-size:90%;">(Wilcoxon)</span></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U" title="Mann–Whitney U" class="mw-redirect">2-sample <span style="font-size:90%;">(Mann–Whitney <i>U</i>)</span></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kruskal%E2%80%93Wallis_test" title="Kruskal–Wallis test" class="mw-redirect">1-way anova <span style="font-size:90%;">(Kruskal–Wallis)</span></a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Bayesian_inference" title="Bayesian inference">Bayesian inference</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Bayesian_probability" title="Bayesian probability">Bayesian probability</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Prior_probability" title="Prior probability">prior</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Posterior_probability" title="Posterior probability">posterior</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Credible_interval" title="Credible interval">Credible interval</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bayes_factor" title="Bayes factor">Bayes factor</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bayes_estimator" title="Bayes estimator">Bayesian estimator</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation" title="Maximum a posteriori estimation">Maximum posterior estimator</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<td colspan="2" class="navbox-list navbox-even" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks collapsible collapsed navbox-subgroup" style="border-spacing:0;" id="collapsibleTable4">
+<tbody><tr>
+<th scope="col" class="navbox-title" colspan="2" style=";;"><span class="collapseButton">[<a id="collapseButton4" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#">show</a>]</span><span style="float:left;width:6em;">&nbsp;</span>
+<div style="font-size:110%;">
+<div class="hlist">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Correlation_and_dependence" title="Correlation and dependence">Correlation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Regression_analysis" title="Regression analysis">Regression analysis</a></li>
+</ul>
+</div>
+</div>
+</th>
+</tr>
+<tr style="height: 2px; display: none;">
+<td colspan="2"></td>
+</tr>
+<tr style="display: none;">
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Correlation_and_dependence" title="Correlation and dependence">Correlation</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient" title="Pearson product-moment correlation coefficient">Pearson product–moment</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Partial_correlation" title="Partial correlation">Partial correlation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Confounding" title="Confounding">Confounding variable</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Coefficient_of_determination" title="Coefficient of determination">Coefficient of determination</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Regression_analysis" title="Regression analysis">Regression analysis</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Errors_and_residuals_in_statistics" title="Errors and residuals in statistics">Errors and residuals</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Regression_model_validation" title="Regression model validation">Regression model validation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Mixed_model" title="Mixed model">Mixed effects models</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Simultaneous_equations_model" title="Simultaneous equations model">Simultaneous equations models</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Multivariate_adaptive_regression_splines" title="Multivariate adaptive regression splines">Multivariate adaptive regression splines (MARS)</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Linear_regression" title="Linear regression">Linear regression</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Simple_linear_regression" title="Simple linear regression">Simple linear regression</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Ordinary_least_squares" title="Ordinary least squares">Ordinary least squares</a></li>
+<li><a href="https://en.wikipedia.org/wiki/General_linear_model" title="General linear model">General linear model</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bayesian_linear_regression" title="Bayesian linear regression">Bayesian regression</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group">Non-standard predictors</th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Nonlinear_regression" title="Nonlinear regression">Nonlinear regression</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Nonparametric_regression" title="Nonparametric regression">Nonparametric</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Semiparametric_regression" title="Semiparametric regression">Semiparametric</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Isotonic_regression" title="Isotonic regression">Isotonic</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Robust_regression" title="Robust regression">Robust</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Heteroscedasticity" title="Heteroscedasticity">Heteroscedasticity</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Homoscedasticity" title="Homoscedasticity">Homoscedasticity</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Generalized_linear_model" title="Generalized linear model">Generalized linear model</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Exponential_family" title="Exponential family">Exponential families</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logistic_regression" title="Logistic regression">Logistic <span style="font-size:90%;">(Bernoulli)</span></a>&nbsp;/ <a href="https://en.wikipedia.org/wiki/Binomial_regression" title="Binomial regression">Binomial</a>&nbsp;/ <a href="https://en.wikipedia.org/wiki/Poisson_regression" title="Poisson regression">Poisson regressions</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Partition_of_sums_of_squares" title="Partition of sums of squares">Partition of variance</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Analysis_of_variance" title="Analysis of variance">Analysis of variance (ANOVA, anova)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Analysis_of_covariance" title="Analysis of covariance">Analysis of covariance</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Multivariate_analysis_of_variance" title="Multivariate analysis of variance">Multivariate ANOVA</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)" title="Degrees of freedom (statistics)">Degrees of freedom</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks collapsible collapsed navbox-subgroup" style="border-spacing:0;" id="collapsibleTable5">
+<tbody><tr>
+<th scope="col" class="navbox-title" colspan="2" style=";;"><span class="collapseButton">[<a id="collapseButton5" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#">show</a>]</span><span style="float:left;width:6em;">&nbsp;</span>
+<div style="font-size:110%;"><a href="https://en.wikipedia.org/wiki/Categorical_data" title="Categorical data" class="mw-redirect">Categorical</a>&nbsp;/ <a href="https://en.wikipedia.org/wiki/Multivariate_statistics" title="Multivariate statistics">Multivariate</a>&nbsp;/ <a href="https://en.wikipedia.org/wiki/Time_series" title="Time series">Time-series</a>&nbsp;/ <a href="https://en.wikipedia.org/wiki/Survival_analysis" title="Survival analysis">Survival analysis</a></div>
+</th>
+</tr>
+<tr style="height: 2px; display: none;">
+<td colspan="2"></td>
+</tr>
+<tr style="display: none;">
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Categorical_data" title="Categorical data" class="mw-redirect">Categorical</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cohen%27s_kappa" title="Cohen&#39;s kappa">Cohen's kappa</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Contingency_table" title="Contingency table">Contingency table</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Graphical_model" title="Graphical model">Graphical model</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Poisson_regression" title="Poisson regression">Log-linear model</a></li>
+<li><a href="https://en.wikipedia.org/wiki/McNemar%27s_test" title="McNemar&#39;s test">McNemar's test</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Multivariate_statistics" title="Multivariate statistics">Multivariate</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/General_linear_model" title="General linear model">Multivariate regression</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Principal_component_analysis" title="Principal component analysis">Principal components</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Factor_analysis" title="Factor analysis">Factor analysis</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Cluster_analysis" title="Cluster analysis">Cluster analysis</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Statistical_classification" title="Statistical classification">Classification</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Copula_(probability_theory)" title="Copula (probability theory)">Copulas</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Time_series" title="Time series">Time-series</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;">General</th>
+<td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Decomposition_of_time_series" title="Decomposition of time series">Decomposition</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Trend_estimation" title="Trend estimation">Trend</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Stationary_process" title="Stationary process">Stationarity</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Seasonal_adjustment" title="Seasonal adjustment">Seasonal adjustment</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Exponential_smoothing" title="Exponential smoothing">Exponential smoothing</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Cointegration" title="Cointegration">Cointegration</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;">Specific tests</th>
+<td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Granger_causality" title="Granger causality">Granger causality</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Ljung%E2%80%93Box_test" title="Ljung–Box test">Q-statistic <span style="font-size:90%;">(Ljung–Box)</span></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Durbin%E2%80%93Watson_statistic" title="Durbin–Watson statistic">Durbin–Watson</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;"><a href="https://en.wikipedia.org/wiki/Time_domain" title="Time domain">Time domain</a></th>
+<td class="navbox-list navbox-odd" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Autocorrelation" title="Autocorrelation">Autocorrelation (ACF)</a>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Partial_autocorrelation_function" title="Partial autocorrelation function">partial (PACF)</a></li>
+</ul>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Cross-correlation_function" title="Cross-correlation function" class="mw-redirect">Cross-correlation (XCF)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Autoregressive%E2%80%93moving-average_model" title="Autoregressive–moving-average model">ARMA model</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Box%E2%80%93Jenkins" title="Box–Jenkins">ARIMA model <small style="font-size:85%;">(Box–Jenkins)</small></a></li>
+<li><a href="https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity" title="Autoregressive conditional heteroskedasticity">Autoregressive conditional heteroskedasticity (ARCH)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Vector_autoregression" title="Vector autoregression">Vector autoregression (VAR)</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group" style="font-weight:normal;;"><a href="https://en.wikipedia.org/wiki/Frequency_domain" title="Frequency domain">Frequency domain</a></th>
+<td class="navbox-list navbox-even" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Spectral_density_estimation" title="Spectral density estimation">Spectral density estimation</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Fourier_analysis" title="Fourier analysis">Fourier analysis</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Wavelet" title="Wavelet">Wavelet</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Survival_analysis" title="Survival analysis">Survival</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Survival_function" title="Survival function">Survival function</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kaplan%E2%80%93Meier_estimator" title="Kaplan–Meier estimator">Kaplan–Meier estimator (product limit)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logrank_test" title="Logrank test" class="mw-redirect">Logrank test</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Failure_rate" title="Failure rate">Failure rate</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Proportional_hazards_models" title="Proportional hazards models" class="mw-redirect">Proportional hazards models</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Accelerated_failure_time_model" title="Accelerated failure time model">Accelerated failure time (AFT) model</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<td colspan="2" class="navbox-list navbox-even" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks collapsible collapsed navbox-subgroup" style="border-spacing:0;" id="collapsibleTable6">
+<tbody><tr>
+<th scope="col" class="navbox-title" colspan="2" style=";;"><span class="collapseButton">[<a id="collapseButton6" href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)#">show</a>]</span><span style="float:left;width:6em;">&nbsp;</span>
+<div style="font-size:110%;"><a href="https://en.wikipedia.org/wiki/List_of_fields_of_application_of_statistics" title="List of fields of application of statistics">Applications</a></div>
+</th>
+</tr>
+<tr style="height: 2px; display: none;">
+<td colspan="2"></td>
+</tr>
+<tr style="display: none;">
+<td colspan="2" class="navbox-list navbox-odd" style="width:100%;padding:0px;">
+<div style="padding:0em 0.25em;"></div>
+<table cellspacing="0" class="nowraplinks navbox-subgroup" style="border-spacing:0;">
+<tbody><tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Biostatistics" title="Biostatistics">Biostatistics</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Bioinformatics" title="Bioinformatics">Bioinformatics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Clinical_trial" title="Clinical trial">Clinical trials</a>&nbsp;/ <a href="https://en.wikipedia.org/wiki/Clinical_study_design" title="Clinical study design">studies</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Epidemiology" title="Epidemiology">Epidemiology</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Medical_statistics" title="Medical statistics">Medical statistics</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Engineering_statistics" title="Engineering statistics">Engineering statistics</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Chemometrics" title="Chemometrics">Chemometrics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Methods_engineering" title="Methods engineering">Methods engineering</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Probabilistic_design" title="Probabilistic design">Probabilistic design</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Statistical_process_control" title="Statistical process control">Process</a>&nbsp;/ <a href="https://en.wikipedia.org/wiki/Quality_control" title="Quality control">quality control</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Reliability_engineering" title="Reliability engineering">Reliability</a></li>
+<li><a href="https://en.wikipedia.org/wiki/System_identification" title="System identification">System identification</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Social_statistics" title="Social statistics">Social statistics</a></th>
+<td class="navbox-list navbox-odd hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Actuarial_science" title="Actuarial science">Actuarial science</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Census" title="Census">Census</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Crime_statistics" title="Crime statistics">Crime statistics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Demographic_statistics" title="Demographic statistics">Demography</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Econometrics" title="Econometrics">Econometrics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/National_accounts" title="National accounts">National accounts</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Official_statistics" title="Official statistics">Official statistics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Statistical_population" title="Statistical population">Population</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Psychometrics" title="Psychometrics">Psychometrics</a></li>
+</ul>
+</div>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<th scope="row" class="navbox-group"><a href="https://en.wikipedia.org/wiki/Spatial_analysis" title="Spatial analysis">Spatial statistics</a></th>
+<td class="navbox-list navbox-even hlist" style="text-align:left;border-left-width:2px;border-left-style:solid;width:100%;padding:0px;">
+<div style="padding:0em 0.25em;">
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cartography" title="Cartography">Cartography</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Environmental_statistics" title="Environmental statistics">Environmental statistics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Geographic_information_system" title="Geographic information system">Geographic information system</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Geostatistics" title="Geostatistics">Geostatistics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kriging" title="Kriging">Kriging</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr style="height:2px;">
+<td colspan="2"></td>
+</tr>
+<tr>
+<td class="navbox-abovebelow hlist" colspan="2">
+<div>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Category:Statistics" title="Category:Statistics">Category</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Portal:Statistics" title="Portal:Statistics">Portal</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Outline_of_statistics" title="Outline of statistics">Outline</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_statistics_articles" title="List of statistics articles">Index</a></li>
+</ul>
+</div>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+
+
+<!-- 
+NewPP limit report
+Parsed by mw1001
+CPU time usage: 0.840 seconds
+Real time usage: 0.998 seconds
+Preprocessor visited node count: 2044/1000000
+Preprocessor generated node count: 12874/1500000
+Post‐expand include size: 192521/2048000 bytes
+Template argument size: 21389/2048000 bytes
+Highest expansion depth: 15/40
+Expensive parser function count: 3/500
+Lua time usage: 0.125/10.000 seconds
+Lua memory usage: 3.02 MB/50 MB
+-->
+
+<!-- Saved in parser cache with key enwiki:pcache:idhash:416612-0!*!0!!en!*!*!math=0 and timestamp 20141103000128 and revision id 630713607
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&oldid=630713607">http://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&amp;oldid=630713607</a>"</div>
+					<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="https://en.wikipedia.org/wiki/Help:Category" title="Help:Category">Categories</a>: <ul><li><a href="https://en.wikipedia.org/wiki/Category:Model_selection" title="Category:Model selection">Model selection</a></li><li><a href="https://en.wikipedia.org/wiki/Category:Regression_variable_selection" title="Category:Regression variable selection">Regression variable selection</a></li><li><a href="https://en.wikipedia.org/wiki/Category:Machine_learning" title="Category:Machine learning">Machine learning</a></li></ul></div><div id="mw-hidden-catlinks" class="mw-hidden-catlinks mw-hidden-cats-hidden">Hidden categories: <ul><li><a href="https://en.wikipedia.org/wiki/Category:All_articles_with_unsourced_statements" title="Category:All articles with unsourced statements">All articles with unsourced statements</a></li><li><a href="https://en.wikipedia.org/wiki/Category:Articles_with_unsourced_statements_from_July_2013" title="Category:Articles with unsourced statements from July 2013">Articles with unsourced statements from July 2013</a></li></ul></div></div>					<!-- end content -->
+										<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one">
+			<h2>Navigation menu</h2>
+					<div id="p-cactions" class="portlet" role="navigation">
+			<h3>Views</h3>
+
+			<div class="pBody">
+				<ul>
+				<li id="ca-nstab-main" class="selected"><a href="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/Cross-validation (statistics) - Wikipedia, the free encyclopedia.html" title="View the content page [shift-esc-c]" accesskey="c">Article</a></li>
+				<li id="ca-talk"><a href="https://en.wikipedia.org/wiki/Talk:Cross-validation_(statistics)" title="Discussion about the content page [shift-esc-t]" accesskey="t">Talk</a></li>
+				<li id="ca-edit"><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=edit" title="You can edit this page. Please use the preview button before saving [shift-esc-e]" accesskey="e">Edit this page</a></li>
+				<li id="ca-history"><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=history" rel="archives" title="Past versions of this page [shift-esc-h]" accesskey="h">History</a></li>
+				<li id="ca-watch"><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=watch&token=a0477a861bbfdb88dc26cb607b03ce7a546033f5%2B%5C" title="Add this page to your watchlist [shift-esc-w]" accesskey="w">Watch</a></li>
+				</ul>
+							</div>
+		</div>
+				<div class="portlet" id="p-personal" role="navigation">
+				<h3>Personal tools</h3>
+
+				<div class="pBody">
+					<ul>
+													<li id="pt-userpage"><a href="https://en.wikipedia.org/wiki/User:L12" class="new" dir="auto" title="Your user page [shift-esc-.]" accesskey=".">L12</a></li>
+													<li id="pt-notifications"><a href="https://en.wikipedia.org/wiki/Special:Notifications" class="mw-echo-notifications-badge" title="Your notifications">0</a></li>
+													<li id="pt-mytalk"><a href="https://en.wikipedia.org/wiki/User_talk:L12" class="new" title="Your talk page [shift-esc-n]" accesskey="n">Talk</a></li>
+													<li id="pt-mysandbox"><a href="https://en.wikipedia.org/wiki/Special:MyPage/sandbox?action=edit&redlink=1&editintro=Template%3AUser_sandbox&preload=Template%3AUser_sandbox%2Fpreload" title="Go to your sandbox">Sandbox</a></li><li id="pt-preferences"><a href="https://en.wikipedia.org/wiki/Special:Preferences" title="Your preferences">Preferences</a></li>
+													<li id="pt-betafeatures"><a href="https://en.wikipedia.org/wiki/Special:Preferences#mw-prefsection-betafeatures" title="Beta features">Beta</a></li>
+													<li id="pt-watchlist"><a href="https://en.wikipedia.org/wiki/Special:Watchlist" title="The list of pages you are monitoring for changes [shift-esc-l]" accesskey="l">Watchlist</a></li>
+													<li id="pt-mycontris"><a href="https://en.wikipedia.org/wiki/Special:Contributions/L12" title="A list of your contributions [shift-esc-y]" accesskey="y">Contributions</a></li>
+													<li id="pt-logout"><a href="https://en.wikipedia.org/w/index.php?title=Special:UserLogout&returnto=Cross-validation+%28statistics%29" title="Log out">Log out</a></li>
+											</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="https://en.wikipedia.org/wiki/Main_Page" class="mw-wiki-logo" title="Visit the main page"></a>
+			</div>
+				<div class="generated-sidebar portlet" id="p-navigation" role="navigation">
+		<h3>Navigation</h3>
+		<div class="pBody">
+							<ul>
+											<li id="n-mainpage-description"><a href="https://en.wikipedia.org/wiki/Main_Page" title="Visit the main page [shift-esc-z]" accesskey="z">Main page</a></li>
+											<li id="n-contents"><a href="https://en.wikipedia.org/wiki/Portal:Contents" title="Guides to browsing Wikipedia">Contents</a></li>
+											<li id="n-featuredcontent"><a href="https://en.wikipedia.org/wiki/Portal:Featured_content" title="Featured content – the best of Wikipedia">Featured content</a></li>
+											<li id="n-currentevents"><a href="https://en.wikipedia.org/wiki/Portal:Current_events" title="Find background information on current events">Current events</a></li>
+											<li id="n-randompage"><a href="https://en.wikipedia.org/wiki/Special:Random" title="Load a random article [shift-esc-x]" accesskey="x">Random article</a></li>
+											<li id="n-sitesupport"><a href="https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&utm_medium=sidebar&utm_campaign=C13_en.wikipedia.org&uselang=en" title="Support us">Donate to Wikipedia</a></li>
+											<li id="n-shoplink"><a href="https://shop.wikimedia.org/" title="Visit the Wikimedia Shop">Wikimedia Shop</a></li>
+									</ul>
+					</div>
+		</div>
+			<div id="p-search" class="portlet" role="search">
+			<h3><label for="searchInput">Search</label></h3>
+
+			<div id="searchBody" class="pBody">
+				<form action="https://en.wikipedia.org/w/index.php" id="searchform">
+					<input type="hidden" name="title" value="Special:Search">
+					<input type="search" name="search" placeholder="Search" title="Search Wikipedia [shift-esc-f]" accesskey="f" id="searchInput" autocomplete="off">
+					<input type="submit" name="go" value="Go" title="Go to a page with this exact name if one exists" id="searchGoButton" class="searchButton">&nbsp;
+						<input type="submit" name="fulltext" value="Search" title="Search Wikipedia for this text" id="mw-searchButton" class="searchButton">
+				</form>
+
+							</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-interaction" role="navigation">
+		<h3>Interaction</h3>
+		<div class="pBody">
+							<ul>
+											<li id="n-help"><a href="https://en.wikipedia.org/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia">Help</a></li>
+											<li id="n-aboutsite"><a href="https://en.wikipedia.org/wiki/Wikipedia:About" title="Find out about Wikipedia">About Wikipedia</a></li>
+											<li id="n-portal"><a href="https://en.wikipedia.org/wiki/Wikipedia:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+											<li id="n-recentchanges"><a href="https://en.wikipedia.org/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [shift-esc-r]" accesskey="r">Recent changes</a></li>
+											<li id="n-contactpage"><a href="https://en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact page</a></li>
+									</ul>
+					</div>
+		</div>
+			<div class="portlet" id="p-tb" role="navigation">
+			<h3>Tools</h3>
+
+			<div class="pBody">
+				<ul>
+											<li id="t-whatlinkshere"><a href="https://en.wikipedia.org/wiki/Special:WhatLinksHere/Cross-validation_(statistics)" title="List of all English Wikipedia pages containing links to this page [shift-esc-j]" accesskey="j">What links here</a></li>
+											<li id="t-recentchangeslinked"><a href="https://en.wikipedia.org/wiki/Special:RecentChangesLinked/Cross-validation_(statistics)" title="Recent changes in pages linked from this page [shift-esc-k]" accesskey="k">Related changes</a></li>
+											<li id="t-upload"><a href="https://en.wikipedia.org/wiki/Wikipedia:File_Upload_Wizard" title="Upload files [shift-esc-u]" accesskey="u">Upload file</a></li>
+											<li id="t-specialpages"><a href="https://en.wikipedia.org/wiki/Special:SpecialPages" title="A list of all special pages [shift-esc-q]" accesskey="q">Special pages</a></li>
+											<li id="t-permalink"><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&oldid=630713607" title="Permanent link to this revision of the page">Permanent link</a></li>
+											<li id="t-info"><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&action=info" title="More information about this page">Page information</a></li>
+											<li id="t-wikibase"><a href="https://www.wikidata.org/wiki/Q541014" title="Link to connected data repository item [shift-esc-g]" accesskey="g">Wikidata item</a></li>
+					<li id="t-cite"><a href="https://en.wikipedia.org/w/index.php?title=Special:CiteThisPage&page=Cross-validation_%28statistics%29&id=630713607" title="Information on how to cite this page">Cite this page</a></li>				</ul>
+							</div>
+		</div>
+		<div class="generated-sidebar portlet" id="p-coll-print_export" role="navigation">
+		<h3>Print/export</h3>
+		<div class="pBody">
+							<ul>
+											<li id="coll-create_a_book"><a href="https://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=book_creator&referer=Cross-validation+%28statistics%29">Create a book</a></li>
+											<li id="coll-download-as-rdf2latex"><a href="https://en.wikipedia.org/w/index.php?title=Special:Book&bookcmd=render_article&arttitle=Cross-validation+%28statistics%29&oldid=630713607&writer=rdf2latex">Download as PDF</a></li>
+											<li id="t-print"><a href="https://en.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&printable=yes" title="Printable version of this page [shift-esc-p]" accesskey="p">Printable version</a></li>
+									</ul>
+					</div>
+		</div>
+				<div id="p-lang" class="portlet" role="navigation"><span class="uls-settings-trigger" title="Language settings" tabindex="0" role="button" aria-haspopup="true"></span>
+				<h3>Languages</h3>
+
+				<div class="pBody">
+					<ul>
+													<li class="interlanguage-link interwiki-ar"><a href="https://ar.wikipedia.org/wiki/%D8%AA%D8%B5%D8%AF%D9%8A%D9%82_%D9%85%D8%AA%D9%82%D8%A7%D8%B7%D8%B9" title="تصديق متقاطع – Arabic" lang="ar" hreflang="ar">العربية</a></li>
+													<li class="interlanguage-link interwiki-ca"><a href="https://ca.wikipedia.org/wiki/Validaci%C3%B3_creuada" title="Validació creuada – Catalan" lang="ca" hreflang="ca">Català</a></li>
+													<li class="interlanguage-link interwiki-cs"><a href="https://cs.wikipedia.org/wiki/K%C5%99%C3%AD%C5%BEov%C3%A1_validace" title="Křížová validace – Czech" lang="cs" hreflang="cs">Čeština</a></li>
+													<li class="interlanguage-link interwiki-de"><a href="https://de.wikipedia.org/wiki/Kreuzvalidierungsverfahren" title="Kreuzvalidierungsverfahren – German" lang="de" hreflang="de">Deutsch</a></li>
+													<li class="interlanguage-link interwiki-es"><a href="https://es.wikipedia.org/wiki/Validaci%C3%B3n_cruzada" title="Validación cruzada – Spanish" lang="es" hreflang="es">Español</a></li>
+													<li class="interlanguage-link interwiki-fr"><a href="https://fr.wikipedia.org/wiki/Validation_crois%C3%A9e" title="Validation croisée – French" lang="fr" hreflang="fr">Français</a></li>
+													<li class="interlanguage-link interwiki-it"><a href="https://it.wikipedia.org/wiki/Cross-validazione" title="Cross-validazione – Italian" lang="it" hreflang="it">Italiano</a></li>
+													<li class="interlanguage-link interwiki-ja"><a href="https://ja.wikipedia.org/wiki/%E4%BA%A4%E5%B7%AE%E6%A4%9C%E8%A8%BC" title="交差検証 – Japanese" lang="ja" hreflang="ja">日本語</a></li>
+													<li class="interlanguage-link interwiki-pl"><a href="https://pl.wikipedia.org/wiki/Sprawdzian_krzy%C5%BCowy" title="Sprawdzian krzyżowy – Polish" lang="pl" hreflang="pl">Polski</a></li>
+													<li class="interlanguage-link interwiki-pt"><a href="https://pt.wikipedia.org/wiki/Valida%C3%A7%C3%A3o_cruzada" title="Validação cruzada – Portuguese" lang="pt" hreflang="pt">Português</a></li>
+													<li class="interlanguage-link interwiki-ru"><a href="https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D0%B5%D0%BA%D1%80%D1%91%D1%81%D1%82%D0%BD%D0%B0%D1%8F_%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D0%BA%D0%B0" title="Перекрёстная проверка – Russian" lang="ru" hreflang="ru">Русский</a></li>
+													<li class="interlanguage-link interwiki-su"><a href="https://su.wikipedia.org/wiki/Validasi-silang" title="Validasi-silang – Sundanese" lang="su" hreflang="su">Basa Sunda</a></li>
+													<li class="interlanguage-link interwiki-sv"><a href="https://sv.wikipedia.org/wiki/Korsvalidering" title="Korsvalidering – Swedish" lang="sv" hreflang="sv">Svenska</a></li>
+													<li class="interlanguage-link interwiki-vi"><a href="https://vi.wikipedia.org/wiki/Ki%E1%BB%83m_ch%E1%BB%A9ng_ch%C3%A9o" title="Kiểm chứng chéo – Vietnamese" lang="vi" hreflang="vi">Tiếng Việt</a></li>
+													<li class="interlanguage-link interwiki-zh"><a href="https://zh.wikipedia.org/wiki/%E4%BA%A4%E5%8F%89%E9%A9%97%E8%AD%89" title="交叉驗證 – Chinese" lang="zh" hreflang="zh">中文</a></li>
+													
+											</ul>
+
+					<div class="after-portlet after-portlet-lang"><span class="wb-langlinks-edit wb-langlinks-link"><a action="edit" href="https://www.wikidata.org/wiki/Q541014#sitelinks-wikipedia" text="Edit links" title="Edit interlanguage links" class="wbc-editpage">Edit links</a></span></div>				</div>
+			</div>
+				</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+					<div id="footer" role="contentinfo">
+						<div id="f-copyrightico">
+									<a href="https://wikimediafoundation.org/"><img src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/wikimedia-button.png" srcset="//bits.wikimedia.org/images/wikimedia-button-1.5x.png 1.5x, //bits.wikimedia.org/images/wikimedia-button-2x.png 2x" width="88" height="31" alt="Wikimedia Foundation"></a>
+							</div>
+					<div id="f-poweredbyico">
+									<a href="https://www.mediawiki.org/"><img src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31"></a>
+							</div>
+					<ul id="f-list">
+									<li id="lastmod"> This page was last modified on 22 October 2014 at 22:27.<br></li>
+									<li id="copyright">Text is available under the <a rel="license" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a><a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/" style="display:none;"></a>;
+additional terms may apply.  By using this site, you agree to the <a href="https://wikimediafoundation.org/wiki/Terms_of_Use">Terms of Use</a> and <a href="https://wikimediafoundation.org/wiki/Privacy_policy">Privacy Policy</a>. Wikipedia® is a registered trademark of the <a href="https://www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.</li>
+									<li id="privacy"><a href="https://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+									<li id="about"><a href="https://en.wikipedia.org/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+									<li id="disclaimer"><a href="https://en.wikipedia.org/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+									<li id="contact"><a href="https://en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact Wikipedia</a></li>
+									<li id="developers"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Developers</a></li>
+									<li id="mobileview"><a href="https://en.m.wikipedia.org/w/index.php?title=Cross-validation_(statistics)&mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+							</ul>
+		</div>
+		</div>
+		<script>/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/</script><script>if(window.mw){
+mw.loader.state({"ext.globalCssJs.site":"ready","ext.globalCssJs.user":"ready","site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["ext.cite","mediawiki.toc","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","mediawiki.page.watch.ajax","ext.gadget.teahouse","ext.gadget.ReferenceTooltips","ext.gadget.geonotice","ext.gadget.DRN-wizard","ext.gadget.charinsert","ext.gadget.refToolbar","ext.gadget.mySandbox","ext.gadget.featured-articles-links","ext.echo.overlay.init","ext.eventLogging.subscriber","ext.wikimediaEvents.deprecate","ext.navigationTiming","schema.UniversalLanguageSelector","ext.uls.eventlogger","ext.uls.interlanguage"],null,true);
+}</script>
+<script>if(window.mw){
+document.write("\u003Cscript src=\"//bits.wikimedia.org/en.wikipedia.org/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=site\u0026amp;only=scripts\u0026amp;skin=monobook\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script><script src="./Cross-validation (statistics) - Wikipedia, the free encyclopedia_files/load(2).php"></script><div class="suggestions" style="display: none; font-size: 11.4617490768433px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div>
+<script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":493,"wgHostname":"mw1151"});
+}</script>
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>
