@@ -109,28 +109,54 @@ unigram<-paste(input[two])
 
 # Find trigrams where first two words match and put in matches list
 trimatches <- freqTable[freqTable$triquery == bigram,]
+bimatch1 <- freqTable[freqTable$one == unigram,]
+bimatch2 <- freqTable[freqTable$two == unigram,]
 
-trimatches$three
+# Print out results:
+for (i in 1:nrow(trimatches)){print(paste("Trigram prediction ",i,": ",trimatches$three[i]))}
+for (i in 1:nrow(bimatch1)){print(paste("Bigram prediction ",i,": ",bimatch1$two[i]))}
+k=nrow(bimatch1)
+for (i in 1:nrow(bimatch1)){
+k=k+1
+print(paste("Bigram prediction ",k,": ",bimatch1$two[i]))}
 
-# Set trigram predicted word as an attribute of our data.frame freqTable
-freqTable$tripredicted <- sapply(words,FUN=function(x) x[3])
+# Next: Instead of printing, put these results in a frequency table and rank them as such.
+matches<-c(trimatches$three,bimatch1$two,bimatch2$one)
+matchCorpus<-makeCorpus(matches) # (Corpus(VectorSource(matches)) caused very similar terms to be considered separately like singular and plural)
+matchTDM<-TermDocumentMatrix(matchCorpus)
+predFreq<-data.frame(trimatches$three,)
 
-# A unigram query word may be either the first or second word of the trigram, depending on where in the trigram the last word of our input is. 
+matchCorpus<-
+matchTDM<-TermDocumentMatrix(matchCorpus)
+predFreq<-data.frame(trimatches$three,)
 
-# Set the predicted by bigram as an attribute of our data.frame freqTable
-freqTable$bipredicted <- sapply(words, FUN=function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}})
-
-
-
-# If matches were found, print these, otherwise move on to bigram matches
-if (nrow(trimatches)>0) {paste("trigram matches:", trimatches)}
-bimatches<- freqTable[freqTable$bipredicted != "NA",] 
-if (nrow(bimatches)>0) {paste("bigram matches:", bimatches$gram)}
 
 ```
+# TO DO NEXT:
+
+## Unstem? most frequent versions of that stem?
 
 CUT:
 
+	for (i in trimatches) {paste("Trigram prediction ",i,": ",trimatches$three)}
+	paste("Bigram predictions: ", bimatch1$two, bimatch2$one)
+
+	# Set trigram predicted word as an attribute of our data.frame freqTable
+	freqTable$tripredicted <- sapply(words,FUN=function(x) x[3])
+
+	# A unigram query word may be either the first or second word of the trigram, depending on where in the trigram the last word of our input is. 
+
+	# Set the predicted by bigram as an attribute of our data.frame freqTable
+	freqTable$bipredicted <- sapply(words, FUN=function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}})
+
+
+
+	# If matches were found, print these, otherwise move on to bigram matches
+	if (nrow(trimatches)>0) {paste("trigram matches:", trimatches)}
+	bimatches<- freqTable[freqTable$bipredicted != "NA",] 
+	if (nrow(bimatches)>0) {paste("bigram matches:", bimatches$gram)}
+
+	---
 	#uniTest<- function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}}
 
 	#freqTable$uniquery <- sapply(words, FUN=uniTest(x))
