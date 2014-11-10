@@ -1,0 +1,17 @@
+r function reference
+====
+
+str() "structure"
+summary() 
+dput()
+attributes()
+dim()
+length()
+paste()
+typeof()
+
+accessing parts of list: myList[[2]][3]
+
+nrow() ncol()
+
+rowSums()

@@ -24,18 +24,175 @@ So perhaps do it with only trigrams,
 
 So what i need to do is:
 
+## CONCERNS:
+-I'm not sure this is correct to eliminate "is". If eliminated from my corpus, of course it may as well be from input, but that is an issue (stopwords I think.)
+
 ```r
+
 # take an input:
 input<-"my favorite band is talking"
-# 1. reduce to last two words.
-input2<-unlist(strsplit(input," "))
-two<-length(input2)
+
+# Perform Transformations.
+input<-makeCorpus(input)
+input<-as.character(input[[1]][1])
+
+# 1. reduce to last two words
+input<-unlist(strsplit(input,"\\s+"))
+two<-length(input)
 one<-two-1
-bigram<-paste(input2[one]," ",input2[two])
-# 2. now somehow find bigrams within trigrams... 
+bigram<-paste(input[one],input[two])
+unigram<-paste(input[two])
+
+# 2. Find bigrams and unigrams within trigrams 
+
+# Get total count of each trigram
+gramCount<-rowSums(as.matrix(myTDM))
+
+# Create dataframe frequency table
+freqTable <- data.frame(gram=names(gramCount),count=gramCount,stringsAsFactors=FALSE)
+
+#split corpus trigrams up to words
+words <- strsplit(freqTable$gram," ")
+
+#set first two words as an attribute, a querying bigram
+freqTable$biquery <- sapply(words,FUN=function(x) paste(x[1],x[2]))
+
+# A unigram query word may be either the first or second word of the trigram, depending on where in the trigram the last word of our input is. 
+
+freqTable$uniquery <- sapply(words, FUN=function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}})
+
+# Set biquery predicted word as an attribute
+freqTable$bipredicted <- sapply(words,FUN=function(x) x[3])
+
+#uniTest<- function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {paste(NA)}}
+
+#freqTable$uniquery <- sapply(words, FUN=uniTest(x))
+
+
+uniTable<-freqTable[freqTable$uniquery == unigram,]
+#freqTable$uniquery <- sapply(words,FUN=function(x) paste(x[2]))
+
+
+
+```
+# Next: The lookup, and, Good-Turing?
+*For the unigram it will not always be the second word of the trigram, it will be whichever matches the last word of the query bigram.*
+
+```r
+# Find matches to query words
+matches <- freqTable[freqTable$biquery == bigram,]
+# test if matches
+if nrows(matches>0) {
+	print("trigram matches:")
+	print(matches$predicted)
+	# do something
+}
+else {
+	matches<- freqTable[freqTable$uniquery == unigram,]
+	print("bigram matches:")
+	print(matches$predicted)
+}
+# This will work if we can also use the corpus query words as bigrams and match to the last word in our bigram query.
+
+```
+
+# The following procedure comes from http://rstudio-pubs-static.s3.amazonaws.com/33754_4d463ac84bd24721bb9fe6a707ef6236.html and it uses a dataframe which finds *probabilities* of each trigram, not relying on findAssoc.
+
+```r
+# get the subset of the trigram data table with a matching bigram start
+  swf_T <- wf_T[wf_T$start == bigram,]
+# where wf_T is a data.frame in which:
+# columns are: words and count
+# rows are: names(freq_T), freq_T
+# where freq_T is a table created by rowSums(as.matrix(trainTDM_T))
+# AND where wf_T$start = sapply(triL,FUN=function(x) paste(x[1],x[2]))
+```
+
+
+My question is... what was the point of TDM? well I guess that compiled it to a per document thing. But now, I don't care about the individual documents anymore so I just am summing things up to get probabilities.
+
+## So take my small test TDM:
+
+> inspect(myTDM)
+<<TermDocumentMatrix (terms: 29, documents: 4)>>
+Non-/sparse entries: 38/78
+Sparsity           : 67%
+Maximal term length: 22
+Weighting          : term frequency (tf)
+
+                        Docs
+Terms                    1 2 3 4
+  aerosmith              0 0 1 0
+  band                   1 0 1 0
+  band aerosmith         0 0 1 0
+  blitzer                0 1 0 1
+  blitzer favorite       0 0 0 1
+  favorit                1 0 1 0
+  favorit band           1 0 1 0
+  favorit band aerosmith 0 0 1 0
+  favorite               0 0 0 1
+  hate                   0 1 0 0
+  hate talk              0 1 0 0
+  hate talk head         0 1 0 0
+  head                   1 1 0 0
+  head favorit           1 0 0 0
+  head favorit band      1 0 0 0
+  head tv                0 1 0 0
+  head tv like           0 1 0 0
+  like                   0 1 0 0
+  like wolf              0 1 0 0
+  like wolf blitzer      0 1 0 0
+  talk                   1 1 0 0
+  talk head              1 1 0 0
+  talk head favorit      1 0 0 0
+  talk head tv           0 1 0 0
+  tv like                0 1 0 0
+  tv like wolf           0 1 0 0
+  wolf                   0 1 0 1
+  wolf blitzer           0 1 0 1
+  wolf blitzer favorite  0 0 0 1
+
+no, lets go back and do just trigrams (edit TriGramTokenizer function)
+OK:
+> inspect(myTDM)
+<<TermDocumentMatrix (terms: 9, documents: 4)>>
+Non-/sparse entries: 9/27
+Sparsity           : 75%
+Maximal term length: 22
+Weighting          : term frequency (tf)
+
+                        Docs
+Terms                    1 2 3 4
+  favorit band aerosmith 0 0 1 0
+  hate talk head         0 1 0 0
+  head favorit band      1 0 0 0
+  head tv like           0 1 0 0
+  like wolf blitzer      0 1 0 0
+  talk head favorit      1 0 0 0
+  talk head tv           0 1 0 0
+  tv like wolf           0 1 0 0
+  wolf blitzer favorite  0 0 0 1
+
+```r
+
+#get total count of each trigram
+gramCount<-rowSums(as.matrix(myTDM))
+
+#Create dataframe frequency table
+freqTable <- data.frame(gram=names(gramCount),count=gramCount,stringsAsFactors=FALSE)
+
+#split the trigram up to define the first two 'query' words
+words <- strsplit(freqTable$gram," ")
+
+#set query words as an attribute
+freqTable$query <- sapply(words,FUN=function(x) paste(x[1],x[2]))
+
+# Set predicted word as an attribute
+freqTable$predicted <- sapply(words,FUN=function(x) x[3])
 ```
 
 ## MUST UNDERSTAND:
+
 1. Cross-validation / sampling / bootstrapping
 
 2. *Markov Model / Markov Chain*
@@ -50,6 +207,8 @@ bigram<-paste(input2[one]," ",input2[two])
 6. Katz's Back-off model
 
 7. Good-Turing frequency estimation
+
+8. Use of Zipfian ?
 
 -Can I find all 2- and 3-grams which include a word? not just search for a word...
 
