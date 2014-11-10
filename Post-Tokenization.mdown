@@ -1,5 +1,61 @@
 Post-Tokenization
 ====
+# NEXT STEPS
+
+1. Probably should work on fine-tuning the model before loading so much data? Not sure of this...
+
+	-`proof of concept` - yes build a small corpus where you are trying to get a certain prediction to work first... How would this go?
+
+```txt
+"Talking heads are my favorite band"
+"I hate the talking heads on tv like Wolf Blitzer"
+"My favorite band is Aerosmith"
+"Wolf Blitzer is not my favorite"
+```
+
+OK so that corpus should be able to predict that:
+"Talking heads are my favorite" gives "band" ?
+
+
+## MUST UNDERSTAND:
+1. Cross-validation / sampling / bootstrapping
+
+2. Markov Model
+
+3. Smoothing by assigning non-zero probabilities?
+
+4. multinomial or categorial distribution
+
+5. (n-1) gram
+
+6. Katz's Back-off model
+
+-Can I find all 2- and 3-grams which include a word? not just search for a word...
+
+## Speed Issues
+http://www.r-bloggers.com/faster-higher-stonger-a-guide-to-speeding-up-r-code-for-busy-people/
+
+-Run gc() throughout?
+
+-`tm_combine` Combine Corpora, Documents, Term-Document Matrices, and Term
+Frequency Vectors
+
+So, I could load portions of the files then combine.
+
+```r
+c(myTDM,myTDM2)
+```
+
+## QUIZ 2:
+
+>Right now, I am using grep() to search all matched tokens and print out corresponding frequency in decreasing order. This is good enough to finish quizz ( I think). But the main disadvantage is the low speed. It takes about one minute to search.
+
+# MODEL:
+## Assigning weights/points:
+
+See tm package documentation.pdf:
+`tm_term_score` - compute a score based on the number of matching terms.
+`weightSMART` SMART Weightings
 
 # Modeling problem.
 [Main forum](https://class.coursera.org/dsscapstone-002/forum/list?forum_id=10010)
@@ -241,7 +297,7 @@ findAssocs(txtTdmBi2, "barack obama", 0.1)
 # SPEED ISSUES
 
 ```r
-require(gamlr)
+library(gamlr)
 findAssocsBig <- function(u, term, corlimit){
   suppressWarnings(x.cor <-  gamlr:corr(t(u[ !u$dimnames$Terms == term, ]),        
                                          as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
