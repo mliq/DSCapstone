@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://www.noamross.net/blog/2013/4/25/faster-talk.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Noam Ross | FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People</title>
+  <meta name="description" content=" ">
+  <meta name="author" content="Noam Ross">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="ROBOTS" content="INDEX,FOLLOW">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="Noam Ross">
+  <link rel="icon" type="image/x-icon" href="http://www.noamross.net/assets/themes/noamblog/atom.ico">
+  <link href="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="http://feeds.feedburner.com/noamross" rel="alternate" type="application/rss+xml" title="Noam Ross">
+  <script type="text/javascript" async="" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/ga.js"></script><script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30394461-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+ </script>
+ <script type="text/javascript"> 
+    function typeset() {
+      MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+    function disqus_config() {
+      this.callbacks.onNewComment = [typeset];
+      this.callbacks.onInit = [typeset];
+    }
+  </script>
+  <script src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/prettify-min.js" type="text/javascript"></script>
+  <script src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/showdown-min.js" type="text/javascript"></script>
+  <script src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/jquery.disqus.js" type="text/javascript"></script>
+  <script type="text/javascript" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/app.js"></script>  
+  <script type="text/javascript" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/MathJax.js"> </script>
+  <script type="text/x-mathjax-config;executed=true">  MathJax.Hub.Config({ "HTML-CSS": { availableFonts: ["TeX"], webfont: [null] }} ); </script>
+  <script type="text/x-mathjax-config;executed=true">  MathJax.Hub.Config({ TeX: { extensions: ["autobold.js"] }} ); </script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "4376beef-ffcc-441e-a877-904acf7f379b", theme:'8', onhover:false, doNotHash:true, doNotCopy:true, hashAddressBar:false}); </script>
+  <script type="text/javascript">
+      function chgifr(url, iframe)  {
+          document.getElementById(iframe).src = url;
+      }
+  </script>
+  <script type="text/javascript">
+      function showhide(id) {
+           var e = document.getElementById(id);
+           if(e.style.display == 'block')
+              e.style.display = 'none';
+           else
+              e.style.display = 'block';
+        }
+  </script>  
+<style type="text/css">.a2a_menu, .a2a_menu * { -moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;float:none;margin:0;padding:0;height:auto;width:auto;}.a2a_menu { border-radius: 6px;display:none;direction:ltr;background:#FFF;font: 14px Arial,Helvetica,sans-serif;color:#000;line-height:12px;border: 1px solid #FFFFFF;vertical-align:baseline;overflow:hidden;}.a2a_mini {min-width:200px;position:absolute;width: 300px;z-index:9999997;}.a2a_overlay {display: none;background: #FFFFFF; _height: expression( ((e=document.documentElement.clientHeight)?e:document.body.clientHeight)+"px" ); _width: expression( ((e=document.documentElement.clientWidth)?e:document.body.clientWidth)+"px" ); filter: alpha(opacity=50); opacity: .7;position: fixed;_position: absolute; top: 0;right: 0;left: 0;bottom: 0;z-index: 9999998;-webkit-animation: a2aFadeInOverlay .14s ease-out;animation: a2aFadeInOverlay .14s ease-out;}.a2a_full {background: #FFF;height: auto;height: calc(320px);top: 15%;_top: expression(40+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+"px"); left: 50%;margin-left: -320px; position: fixed;_position: absolute; text-align: center;width: 640px;z-index: 9999999; -webkit-animation: a2aFadeIn .14s ease-in;    animation: a2aFadeIn .14s ease-in;}.a2a_full_header,.a2a_full_services,.a2a_full_footer {border: 0;margin: 0;padding: 12px;box-sizing: border-box;}.a2a_full_header {padding-bottom: 8px;}.a2a_full_services {height: 280px; overflow-y: scroll;padding: 0 12px;-webkit-overflow-scrolling: touch;}.a2a_full_services .a2a_i {display: inline-block;float: none;width: 181px;width: calc(33.334% - 18px);}div.a2a_full_footer {font-size: 9px;text-align: center;padding: 6px 12px;}div.a2a_full_footer a,div.a2a_full_footer a:visited {display: inline;font-size: 9px;padding: 6px 12px; }div.a2a_full_footer a:hover {background: none;border: 0;color: #45462f;}div.a2a_full_footer a span.a2a_i_a2a_sm {display: inline-block;padding-left: 14px;vertical-align: bottom;}@-webkit-keyframes a2aFadeIn {from { opacity: 0; }  to { opacity: 1; }}@keyframes a2aFadeIn {from { opacity: 0; }  to { opacity: 1; }}@-webkit-keyframes a2aFadeInOverlay {from { opacity: 0; }  to { opacity: .7; }}@keyframes a2aFadeInOverlay {from { opacity: 0; }  to { opacity: .7; }}@media (max-width: 639px) {.a2a_full {top: 15%;left: 0;margin-left: auto;width: 100%;}}@media (min-width: 318px) and (max-width: 437px) {.a2a_full .a2a_full_services .a2a_i {width: calc(50% - 18px);}}@media (max-width: 317px) {.a2a_full .a2a_full_services .a2a_i {width: calc(100% - 18px);}}@media (max-height: 436px) {.a2a_full {bottom: 40px;height: auto;top: 40px;}}.a2a_menu a{color:#45462f;text-decoration:none;font:14px Arial,Helvetica,sans-serif;line-height:14px;height:auto;width:auto;outline:none;-moz-outline:none;}.a2a_menu a:visited{color:#45462f}.a2a_menu a:hover,.a2a_menu a:active,.a2a_menu a.a2a_i:focus,.a2a_tabs div:hover{color:#575757;border:1px solid #FFFFFF;background-color:#FFFFFF;text-decoration:none}.a2a_menu span,.a2a_img{background:url(http://static.addtoany.com/menu/icons.28.png) no-repeat;border:0;display:block;line-height:16px}.a2a_menu span.a2a_i_find { height:16px;left: 8px;position:absolute;top: 7px;width:16px;}.a2a_menu span.a2a_i_find svg {background-color: #FFF;}.a2a_menu span.a2a_i_find svg path {fill: #FFFFFF;}#a2a_menu_container{display:inline-block} #a2a_menu_container{_display:inline} .a2a_menu_title_container {padding: 6px 8px;}.a2a_menu_find_container {border: 1px solid #FFFFFF;border-radius: 6px;padding: 2px 24px 2px 0;position: relative;text-align: left;}.a2a_cols_container{border-bottom-right-radius:8px;border-top-right-radius:8px}.a2a_cols_container .a2a_col1{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}.a2a_menu input, .a2a_menu input[type="text"]{display:block;background-image:none;box-shadow:none;line-height:100%;margin:0;overflow:hidden;padding:0;-moz-box-shadow:none;-webkit-box-shadow:none;-webkit-appearance:none} .a2a_menu_title_container input.a2a_menu_title {background-color: #FFF;border: 0;color: #45462f;font: inherit;margin: 0;padding: 0;width: 99%;}.a2a_menu_find_container input.a2a_menu_find {background-color: transparent;_background-color: #FFF;border: 0;color: #45462f;font-size: 16px;height: 20px;line-height: 20px;left: 28px;outline: 0;padding: 2px 0;position: relative;width: 99%;}.a2a_clear{clear:both} .a2a_img, .a2a_svg { display:block; overflow:hidden; }.a2a_img{height:16px;line-height:16px;width:16px;}.a2a_svg{height:32px;line-height:32px;width:32px;}.a2a_default_style a{float:left;line-height:16px;padding:0 2px}.a2a_default_style a:hover .a2a_img,.a2a_default_style a:hover .a2a_svg,.a2a_floating_style a:hover .a2a_img,.a2a_floating_style a:hover .a2a_svg { opacity: .7;}.a2a_default_style .a2a_count,.a2a_default_style .a2a_svg, .a2a_floating_style .a2a_svg { border-radius:4px ;} .a2a_default_style .a2a_img, .a2a_default_style .a2a_dd, .a2a_default_style .a2a_svg{float:left}.a2a_default_style .a2a_img_text{margin-right:4px}.a2a_default_style .a2a_divider{border-left:1px solid #000;display:inline;float:left;height:16px;line-height:16px;margin:0 5px}.a2a_kit a{cursor:pointer}.a2a_floating_style { background-color: #fff; border-radius: 6px; padding: 4px; position: fixed; z-index: 9999995; }.a2a_vertical_style a { display: block; padding: 4px; }.a2a_floating_style.a2a_default_style { bottom: 0; }.a2a_floating_style.a2a_default_style a { padding: 4px; }.a2a_count {background-color: #fff;border: 1px solid #ccc;box-sizing: border-box;color: #2a2a2a;display: block;float: left;font: 12px Arial,Helvetica,sans-serif;height: 16px;margin-left: 4px;position: relative;text-align: center;width: 50px;}.a2a_count:before,.a2a_count:after {border: solid transparent;border-width: 4px 4px 4px 0;content: "";height: 0;left: 0;line-height: 0;margin: -4px 0 0 -4px;position: absolute;top: 50%;width: 0;}.a2a_count:before {border-right-color: #ccc;}.a2a_count:after {border-right-color: #fff;margin-left: -3px;}.a2a_count span {-webkit-animation: a2aFadeIn .14s ease-in;    animation: a2aFadeIn .14s ease-in;}.a2a_nowrap{white-space:nowrap}.a2a_note{margin:0 auto;padding:9px;font-size:12px;text-align:center}.a2a_note .a2a_note_note{margin:0;color:#45462f}.a2a_wide a{display:block;margin-top:3px;border:1px solid #FFFFFF;padding:3px;text-align:center}.a2a_tabs{float:left;margin:0 0 3px} .a2a_tabs a,.a2a_tabs div{margin:1px;background-color:#FFFFFF; border:1px solid #FFFFFF; font-size:11px; padding:6px 12px ; white-space:nowrap} .a2a_tabs a span, .a2a_tabs div span{display:inline-block;padding-left:20px;height:auto;width:auto} .a2a_tabs_default a span, .a2a_tabs_default div span{height:auto;max-width:99px;overflow:hidden;padding-left:20px;width:auto;_width:expression(this.clientWidth > 99? "97px" : "auto");}.a2a_tabs a, .a2a_tabs a:visited, .a2a_tabs a:hover, .a2a_tabs div, .a2a_tabs div:hover{cursor:pointer;border-bottom:1px solid #FFFFFF;color:#575757;border-bottom-left-radius:0;-webkit-border-bottom-left-radius:0;-moz-border-radius-bottomleft:0;border-bottom-right-radius:0;-webkit-border-bottom-right-radius:0;-moz-border-radius-bottomright:0}a.a2a_tab_selected, a.a2a_tab_selected:visited,a.a2a_tab_selected:hover,a.a2a_tab_selected:active,a.a2a_tab_selected:focus, div.a2a_tab_selected,div.a2a_tab_selected:hover{color:#45462f;background-color:#FFF;border:1px solid #FFFFFF;border-bottom:1px solid #FFF}a.a2a_i,i.a2a_i{display:block;float:left;border:1px solid #FFF;padding:6px 8px;text-align:left;white-space:nowrap;width:132px;}a.a2a_i span, a.a2a_more span {overflow: hidden;padding: 0 0 0 21px;text-overflow: ellipsis;}a.a2a_sss:hover {border-left: 1px solid #FFFFFF;}a.a2a_menu_show_more_less{border-bottom:1px solid #FFF;border-left:0;border-right:0;margin:6px 0 0;padding:6px}a.a2a_menu_show_more_less span{display:inline-block;height:16px;margin:0 auto;vertical-align:bottom;} iframe.a2a_shim {background-color: transparent;border: 0;bottom: 0;filter: alpha(opacity=0); height: 100%;left: 0;right: 0;top: 0;position: absolute;width: 100%;z-index: 9999996;_height: expression( ((e=document.documentElement.clientHeight)?e:document.body.clientHeight)+"px" ); _width: expression( ((e=document.documentElement.clientWidth)?e:document.body.clientWidth)+"px" ); }.a2a_dd img {border:0;-ms-touch-action:manipulation;}iframe[id^="PIN_"][id$="_nag"] {display: none !important;}.a2a_i_a2a{background-position:0 0!important}.a2a_i_a2a_sm{background-position:0 -17px!important}.a2a_i_agregator{background-position:0 -34px!important}.a2a_i_aim{background-position:0 -51px!important}.a2a_i_allvoices{background-position:0 -68px!important}.a2a_i_amazon{background-position:0 -85px!important}.a2a_i_aol{background-position:0 -102px!important}.a2a_i_app_net{background-position:0 -119px!important}.a2a_i_arto{background-position:0 -136px!important}.a2a_i_baidu{background-position:0 -153px!important}.a2a_i_bebo{background-position:0 -170px!important}.a2a_i_bibsonomy{background-position:0 -187px!important}.a2a_i_bitty{background-position:0 -204px!important}.a2a_i_blinklist{background-position:0 -221px!important}.a2a_i_blogger{background-position:0 -238px!important}.a2a_i_bloglines{background-position:0 -255px!important}.a2a_i_blogmarks{background-position:0 -272px!important}.a2a_i_bloomberg_current{background-position:0 -289px!important}.a2a_i_bookmark{background-position:0 -306px!important}.a2a_i_bookmarks_fr{background-position:0 -323px!important}.a2a_i_box{background-position:0 -340px!important}.a2a_i_buddymarks{background-position:0 -357px!important}.a2a_i_buffer{background-position:0 -374px!important}.a2a_i_care2{background-position:0 -391px!important}.a2a_i_chrome{background-position:0 -408px!important}.a2a_i_citeulike{background-position:0 -425px!important}.a2a_i_dailyrotation{background-position:0 -442px!important}.a2a_i_default{background-position:0 -459px!important}.a2a_i_delicious{background-position:0 -476px!important}.a2a_i_designfloat{background-position:0 -493px!important}.a2a_i_diaspora{background-position:0 -510px!important}.a2a_i_digg{background-position:0 -527px!important}.a2a_i_diigo{background-position:0 -544px!important}.a2a_i_dzone{background-position:0 -561px!important}.a2a_i_email{background-position:0 -578px!important}.a2a_i_evernote{background-position:0 -595px!important}.a2a_i_facebook{background-position:0 -612px!important}.a2a_i_fark{background-position:0 -629px!important}.a2a_i_feed{background-position:0 -646px!important}.a2a_i_feedblitz{background-position:0 -663px!important}.a2a_i_feedbucket{background-position:0 -680px!important}.a2a_i_feedly{background-position:0 -697px!important}.a2a_i_feedmailer{background-position:0 -714px!important}.a2a_i_find{background-position:0 -731px!important}.a2a_i_fireant{background-position:0 -748px!important}.a2a_i_firefox{background-position:0 -765px!important}.a2a_i_flipboard{background-position:0 -782px!important}.a2a_i_folkd{background-position:0 -799px!important}.a2a_i_friendfeed{background-position:0 -816px!important}.a2a_i_funp{background-position:0 -833px!important}.a2a_i_gmail{background-position:0 -850px!important}.a2a_i_google{background-position:0 -867px!important}.a2a_i_google_plus{background-position:0 -884px!important}.a2a_i_hatena{background-position:0 -901px!important}.a2a_i_instapaper{background-position:0 -918px!important}.a2a_i_itunes{background-position:0 -935px!important}.a2a_i_jamespot{background-position:0 -952px!important}.a2a_i_jumptags{background-position:0 -969px!important}.a2a_i_khabbr{background-position:0 -986px!important}.a2a_i_kindle{background-position:0 -1003px!important}.a2a_i_klipfolio{background-position:0 -1020px!important}.a2a_i_line{background-position:0 -1037px!important}.a2a_i_linkagogo{background-position:0 -1054px!important}.a2a_i_linkatopia{background-position:0 -1071px!important}.a2a_i_linkedin{background-position:0 -1088px!important}.a2a_i_livejournal{background-position:0 -1105px!important}.a2a_i_mail_ru{background-position:0 -1122px!important}.a2a_i_mendeley{background-position:0 -1139px!important}.a2a_i_meneame{background-position:0 -1156px!important}.a2a_i_miro{background-position:0 -1173px!important}.a2a_i_mixi{background-position:0 -1190px!important}.a2a_i_my_msn{background-position:0 -1207px!important}.a2a_i_myspace{background-position:0 -1224px!important}.a2a_i_netlog{background-position:0 -1241px!important}.a2a_i_netvibes{background-position:0 -1258px!important}.a2a_i_netvouz{background-position:0 -1275px!important}.a2a_i_newsalloy{background-position:0 -1292px!important}.a2a_i_newsisfree{background-position:0 -1309px!important}.a2a_i_newstrust{background-position:0 -1326px!important}.a2a_i_newsvine{background-position:0 -1343px!important}.a2a_i_nowpublic{background-position:0 -1360px!important}.a2a_i_odnoklassniki{background-position:0 -1377px!important}.a2a_i_oknotizie{background-position:0 -1394px!important}.a2a_i_oldreader{background-position:0 -1411px!important}.a2a_i_orkut{background-position:0 -1428px!important}.a2a_i_outlook{background-position:0 -1445px!important}.a2a_i_outlook_com{background-position:0 -1462px!important}.a2a_i_pdf{background-position:0 -1479px!important}.a2a_i_phonefavs{background-position:0 -1496px!important}.a2a_i_pinboard{background-position:0 -1513px!important}.a2a_i_pinterest{background-position:0 -1530px!important}.a2a_i_plurk{background-position:0 -1547px!important}.a2a_i_pocket{background-position:0 -1564px!important}.a2a_i_podnova{background-position:0 -1581px!important}.a2a_i_print{background-position:0 -1598px!important}.a2a_i_printfriendly{background-position:0 -1615px!important}.a2a_i_protopage{background-position:0 -1632px!important}.a2a_i_pusha{background-position:0 -1649px!important}.a2a_i_rapidfeeds{background-position:0 -1666px!important}.a2a_i_reddit{background-position:0 -1683px!important}.a2a_i_rediff{background-position:0 -1700px!important}.a2a_i_segnalo{background-position:0 -1717px!important}.a2a_i_share{background-position:0 -1734px!important}.a2a_i_sina_weibo{background-position:0 -1751px!important}.a2a_i_sitejot{background-position:0 -1768px!important}.a2a_i_slashdot{background-position:0 -1785px!important}.a2a_i_springpad{background-position:0 -1802px!important}.a2a_i_startaid{background-position:0 -1819px!important}.a2a_i_stumbleupon{background-position:0 -1836px!important}.a2a_i_stumpedia{background-position:0 -1853px!important}.a2a_i_symbaloo{background-position:0 -1870px!important}.a2a_i_technotizie{background-position:0 -1887px!important}.a2a_i_thefreedictionary{background-position:0 -1904px!important}.a2a_i_thefreelibrary{background-position:0 -1921px!important}.a2a_i_tuenti{background-position:0 -1938px!important}.a2a_i_tumblr{background-position:0 -1955px!important}.a2a_i_twiddla{background-position:0 -1972px!important}.a2a_i_twitter{background-position:0 -1989px!important}.a2a_i_typepad{background-position:0 -2006px!important}.a2a_i_viadeo{background-position:0 -2023px!important}.a2a_i_vk{background-position:0 -2040px!important}.a2a_i_wanelo{background-position:0 -2057px!important}.a2a_i_webnews{background-position:0 -2074px!important}.a2a_i_whatsapp{background-position:0 -2091px!important}.a2a_i_winksite{background-position:0 -2108px!important}.a2a_i_wists{background-position:0 -2125px!important}.a2a_i_wordpress{background-position:0 -2142px!important}.a2a_i_xerpi{background-position:0 -2159px!important}.a2a_i_xing{background-position:0 -2176px!important}.a2a_i_y18{background-position:0 -2193px!important}.a2a_i_yahoo{background-position:0 -2210px!important}.a2a_i_yim{background-position:0 -2227px!important}.a2a_i_yoolink{background-position:0 -2244px!important}.a2a_i_youmob{background-position:0 -2261px!important}</style><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script type="text/javascript" async="" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/embed.js"></script><style type="text/css">@media all {.footnote,.footnote-links{display: none;}}@media print {.footnote,.footnote-links{display: inline;}}</style><script type="text/javascript" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/getAllAppDefault.esi"></script><script type="text/javascript" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/checkOAuth.esi"></script><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?rev=2.4-beta-2') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><link rel="stylesheet" type="text/css" href="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/buttons.f72ae7c4435271cf3af83d1f10fbbbb0.css"></head>
+<body data-twttr-rendered="true"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div><iframe id="twttrHubFrameSecure" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrameSecure" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/hub.1c5a573e465d84666458a45e49b0a735(1).html" style="position: absolute; top: -9999em; width: 10px; height: 10px;"></iframe><iframe id="twttrHubFrame" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrame" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/hub.1c5a573e465d84666458a45e49b0a735.html" style="position: absolute; top: -9999em; width: 10px; height: 10px;"></iframe>
+<div class="wrapper">
+  <div class="blog">
+ 
+      <div id="menu" class="menu-top">
+        <div class="blog-info">
+          <h1><a href="http://www.noamross.net/index.html">Noam Ross</a></h1>
+          <div class="blog-description">
+           <h2>Real-time research in ecology, economics, and sustainability</h2>
+          </div>
+         </div>
+          <div class="pages">
+            
+            <!-- Lockerz Share BEGIN -->
+            <a class="a2a_dd" href="https://www.addtoany.com/share_save#url=http%3A%2F%2Fwww.noamross.net%2Fblog%2F2013%2F4%2F25%2Ffaster-talk.html&title=Noam%20Ross%20%7C%20FasteR!%20HigheR!%20StrongeR!%20-%20A%20Guide%20to%20Speeding%20Up%20R%20Code%20for%20Busy%20People&description=%20" tile"share="" this="" page"=""><span class="shareicon"><span class="hide">Share</span></span></a>
+            <script type="text/javascript">
+            var a2a_config = a2a_config || {};
+            a2a_config.onclick = 0;
+            a2a_config.show_title = 1;
+            a2a_config.color_main = "FFFFFF";
+            a2a_config.color_border = "FFFFFF";
+            a2a_config.color_link_text = "45462f";
+            a2a_config.color_link_text_hover = "575757";
+            a2a_config.prioritize = ["twitter", "facebook", "tumblr", "email", "delicious", "linkedin", "stumbleupon", "google_plus"];
+            </script>
+            <script type="text/javascript" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/page.js"></script>
+            <!-- Lockerz Share END -->
+            
+            <a href="http://feeds.feedburner.com/noamross" title="Subscribe via Feedburner RSS"> <span class="rssicon"> <span class="hide">RSS</span></span></a>
+            
+             
+             
+            
+
+
+  
+    
+  
+    
+    	
+    	<a href="http://www.noamross.net/about.html">About</a>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<a href="http://www.noamross.net/connect.html">Connect</a>
+    	
+    
+  
+    
+  
+    
+    	
+    	<a href="http://www.noamross.net/index.html">Blog</a>
+    	
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<a href="http://www.noamross.net/publications.html">Publications</a>
+    	
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+    	
+    	<a href="http://www.noamross.net/tags.html">Topics</a>
+    	
+    
+  
+    
+  
+
+
+
+            
+        </div>
+      </div>
+
+      <div class="container">
+
+        <div class="content">
+          
+<div id="headblock">
+<h1 id="page.title"><a href="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People.html">FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People</a></h1>
+<p>by <em>Noam Ross</em>, 25 April 2013</p>
+<hr>
+</div>
+<div class="contenttext" data-twttr-id="twttr-sandbox-0"><p></p><p><em>This is an overview of tools for speeding up your R code that I wrote for the <a href="http://www.noamross.net/davis-r-users-group.html">Davis R Users’ Group</a><sup class="footnote">1</sup>.</em></p>
+<h2 id="first-ask-why">First, Ask “Why?”</h2>
+<p>It’s customary to <a href="http://en.wikiquote.org/wiki/Donald_Knuth">quote Donald Knuth</a><sup class="footnote">2</sup> at this point, but instead I’ll quote my twitter buddy Ted Hart to illustrate a point:</p>
+<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-tweet twitter-tweet-rendered" allowfullscreen="" style="display: block; max-width: 99%; min-width: 220px; padding: 0px; border-radius: 5px; margin: 10px 0px; border-color: rgb(238, 238, 238) rgb(221, 221, 221) rgb(187, 187, 187); border-width: 1px; border-style: solid; box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 3px; position: static; visibility: visible; width: 500px;" title="Embedded Tweet" height="187"></iframe>
+<script async="" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/widgets.js" charset="utf-8"></script>
+<p>Code optimization is a matter is a matter of personal taste and <em>priorities</em>. There may be some ways of writing code that are better or worse, and there are definitely ways that will make it run faster, but before you dive into optimization, you should ask yourself these questions:</p>
+<h4 id="do-you-want-your-code-to-be-readable">(1) Do you want your code to be <em>readable</em>?</h4>
+<p>If you need to explain your code to yourself or others, or you will need to return to it in a few months time and understand what you wrote, it’s important that you write it in a way that is easy to understand. Comments, indenting, and formatting go a long way, but your choices make a difference, as Ted notes above.</p>
+<p>Some optimal code can be hard to read. For instance, and curly braces can be faster than parentheses. But which is more intuitive to read?<a href="http://www.noamross.net/blog/2013/4/25/faster-talk.html#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a><sup class="footnote">5</sup></p>
+<h4 id="do-you-want-your-code-to-be-sharable1">(2) Do you want your code to be <em>sharable</em>?<a href="http://www.noamross.net/blog/2013/4/25/faster-talk.html#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a><sup class="footnote">6</sup></h4>
+<p>Most of the considerations of (1) apply here, but they have to be balanced with the fact that, if your code is painfully slow, others are not going to want or have time to use it.</p>
+<p>Also, some optimization strategies don’t transfer well. If you use parallel processing, it won’t be usable to others who don’t have multicore computers. Some tricks for speeding up code will work well as a quick-and-dirty fix, but are likely to break in new versions of R or are disallowed from CRAN packages altogether.</p>
+<h4 id="do-you-have-other-shit-to-do">(3) Do you have other shit to do?</h4>
+<p>No? Please contact me and I’ll help you with that. Yes? You are among the 90% or R users who’s first priority is not computer programming. The time spent optimizing code is often longer than the computing time actually saved. Use the simple solutions and you can get on with your research/life.</p>
+<p>With these in mind, I’ll go through some strategies for speeding up your R computations. Because I’m especially mindful of consideration #3, this guide is somewhat in the reverse of traditional tutorials on this topic. I’m going to talk about the blunt instruments first, then get into the idiosyncrasies of code.</p>
+<h2 id="get-a-bigger-computer">Get a Bigger Computer</h2>
+<p>If you have a task that only needs to be accomplished a few times, you might be best off finding more resources rather than re-writing your code. You have an Amazon.com account, right? Amazon rents virtual machines on the web. It’s so easy to set one up that I accidentally started one today without meaning to while searching for the link. The cost of computing power roughly equivalent to my 2011 MacBook Pro is <em>13¢ per hour</em>. You can have 100 MacBooks of computing power for <a href="http://greentheo.scroggles.com/2009/11/13/amazon-ec2-providing-100-macbooks-of-power-for-minimum-wage/">less than minimum wage</a><sup class="footnote">7</sup>.<a href="http://www.noamross.net/blog/2013/4/25/faster-talk.html#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a><sup class="footnote">8</sup> These virtual machines can also have much more memory than your laptop or desktop.</p>
+<p>Sometimes you don’t even need more computing power, you just need to run R on some other computer without tying up your machine for hours. In any case, consider this option. If you just need to run a task once, and you think you are going to have to spend more than an hour rewriting your code, you might as well use that hour getting a virtual machine set up and never worry about computing power again.</p>
+<p>Cloud resources like Amazon aren’t the only way to get more computer power. If you’re at a university, there are probably high-power computing clusters available to you. Depending on your particular set-up, you may need to to run your program in <a href="http://stat.ethz.ch/R-manual/R-patched/library/utils/html/BATCH.html">batch mode</a><sup class="footnote">9</sup> to use such clusters. Personally, I think that a cloud-based service like Amazon avoids administrative hassle if you are on a short deadline or have a one-off task, but if you need lots of power regularly, getting in on a local cluster is worthwhile.</p>
+<p>The most user-friendly way to use cloud computing is to set up a server to run RStudio, which can then be accessed by a web browser and works just like it would on your desktop. Bioconductor has a <a href="http://bioconductor.org/help/bioconductor-cloud-ami/">step by step guide</a><sup class="footnote">10</sup> to starting an Amazon Web Instance that they’ve pre-configured this way. There are a couple of other useful guides to doing the same thing by <a href="http://www.louisaslett.com/RStudio_AMI/">Louis Aslett (including a video)</a><sup class="footnote">11</sup> and <a href="http://inundata.org/2011/03/30/r-ec2-rstudio-server/">Karthik Ram</a><sup class="footnote">12</sup>. Read all of these and you should be able to set yourself up in an hour or two.</p>
+<p>A fancier alternative is the experimental <a href="https://code.google.com/p/segue/">Segue package</a><sup class="footnote">13</sup>, which provides an <code>apply()</code> function variant, <code>emrapply()</code>, that sends commands from your local R session to Amazon servers and returns the results. An introductory guide is <a href="http://jeffreybreen.wordpress.com/2011/01/10/segue-r-to-amazon-elastic-mapreduce-hadoop/">here</a><sup class="footnote">14</sup>.</p>
+<p>Of course, if you are writing software that you expect others to run on normal laptop and desktop computers, you’ll want to make sure it does so at a reasonable speed. In this case, running your software in the cloud may not make sense.</p>
+<h2 id="parallel-processing">Parallel Processing</h2>
+<p>Parallel processing used to be a very fancy thing, but with recent R packages, it can be implemented with very little programming time. Parallel processing breaks up your task, splits it among multiple processors, and puts the components back together. This is very useful and easy if you have a task that <em>can</em> be split up, especially without the different parts needing to “talk to” each other.</p>
+<p>On your typical laptop or desktop, implementing parallel processing in your R code might speed up your program by a factor of 2 to 4. However, if you have a big machine, or you followed my advice in the last section, you can take advantage of large computers with many CPUs or “cores”.</p>
+<p>I’m not going to get into the nitty gritty of setting up parallel processes and the various packages that do so e.g. <code>multicore</code>, <code>snow</code>,<code>snowfall</code>, <code>doParallel</code>,<code>foreach</code>, <code>plyr</code>,…) because <a href="http://www.linkedin.com/pub/jacob-teter/9/7b2/684">Jacob Teter</a><sup class="footnote">15</sup> will give a presentation on that at <a href="http://www.noamross.net/davis-r-users-group.html">D-RUG</a><sup class="footnote">1</sup> next week. Instead I’ll discuss a bit about <em>when</em> this approach might be appropriate.</p>
+<p>Essentially, parallel processing works best when you have a task that has to be completed many times, but each repeat is independent. For instance, if you are repreating a simulation, and in each case are drawing new parameters from a distribution, that is an easily parallelizable task. However, if you are simulating population dynamics, in which each time step you need the outputs of the previous time steps, than you can’t split up each time step into parallel components.</p>
+<p>A good rule of thumb is that if you can wrap your task in an <code>apply</code> function or one of its variants, it’s a good option for parallelization. In fact most implementations of parallel processing in R are versions of <code>apply</code>.</p>
+<p>Not every task runs better in parallel. When you run a task in parallel, your computer “dispatches” each task to a CPU core. This dispatching adds computational overhead. So, it’s usually best to try to minimize the number of dispatches. In most cases you are going to have a small number of computing cores relative to your tasks. A powerful laptop or desktop will have 2, 4, or 8 cores, and even the most powerful Amazon virtual machine has 88.</p>
+<p>The following would be a poor use of parallel computing:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aaply</span>(<span class="dv">1</span>:<span class="dv">10000</span>, <span class="dv">1</span>, function(x) <span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dt">mean=</span>x), <span class="dt">.parallel=</span><span class="ot">TRUE</span>)</code></pre>
+<p>This would dispatch the very small task of generating a random number 10,000 times. The dispatching would probably take more time than the actual calculations. Instead, organize the tasks into blocks, and dispatch each block of tasks, for instance:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">aaply</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10000</span>,<span class="dv">100</span>), function(x) <span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dt">mean=</span>x+(<span class="dv">1</span>:<span class="dv">100</span>), <span class="dt">.parallel=</span><span class="ot">TRUE</span>)</code></pre>
+<p>This sends the task of generating 100 numbers to each core, reducing the overhead.</p>
+<p><strong><em>[Update 4/26/2013: As <a href="https://twitter.com/vsbuffalo/status/327564597282369536">Vince Buffalo points out</a><sup class="footnote">16</sup>, random number generation requires that R keep track of state, so may not be a good example of a parallel-izable task]</em></strong></p>
+<p>In practice, this means that you want to “parallelize” your code at the highest, or chunkiest level. If you have a series of nested loops, for instance, you will want to run the highest-level loop in parallel.</p>
+<p>Note that <a href="http://lookingatdata.blogspot.se/2013/01/speeding-up-r-computations-pt-iii.html">more cores is not always better</a><sup class="footnote">17</sup>. For reasons I don’t completely understand, the overhead of using more cores is not always worth it, so it may be better to use, say 16, rather than 64 codes. Some experimentation will help here.</p>
+<p>One other thing: if you can limit the parallel processes to computational tasks, and avoid things like reading/writing to disk or downloading files in the parallel code, you’ll be less likely to run into problems.</p>
+<p>A disadvantage of parallel computing is that it is not available to everyone. People run code on different machines. If you are writing software that you expect to share with others (and as a scientist, you should ALWAYS be prepared to share your work on request, and post your code as a supplement to your paper), you will want to provide an option to run it not in parallel. I like to do something like this:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#This script uses parallel processing if p.flag=TRUE.  Set up a parallel </span>
+<span class="co">#cluster as appropriate for your machine as appropriate. (the commented code </span>
+<span class="co">#below will use 2 cores on a multicore computer)</span>
+<span class="co">#library(doParallel)</span>
+<span class="co">#cl &lt;- makeCluster(2)  # Use 2 cores</span>
+<span class="co">#registerDoParallel(cl) # register these 2 cores with the "foreach" package</span>
+<span class="kw">library</span>(plyr)
+p.flag=<span class="ot">FALSE</span>  <span class="co"># Change to TRUE if using parallel processing</span>
+.
+.
+.
+ <span class="kw">aaply</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10000</span>,<span class="dv">100</span>), function(x) <span class="kw">rnorm</span>(<span class="dv">1</span>, <span class="dt">mean=</span>x+(<span class="dv">1</span>:<span class="dv">100</span>), 
+      <span class="dt">.parallel=</span>p.flag)</code></pre>
+<h2 id="compiling-functions">Compiling Functions</h2>
+<p>R code is interpreted when it is run, unlike some other languages, which are first compiled. This is one reason why functions written in C are often faster than functions written in R.</p>
+<p>However, R has compiling ability, which can speed up functions <a href="http://dirk.eddelbuettel.com/blog/2011/04/12/#the_new_r_compiler_package">by a factor or 3 or 4 <em>in some cases</em></a><sup class="footnote">18</sup>. Compiling functions just requires calling <code>cmpfun()</code> in the base <code>compiler</code> package. Here’s an example:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(compiler)
+f &lt;-<span class="st"> </span>function(n, x) for (i in <span class="dv">1</span>:n) x =<span class="st"> </span>(<span class="dv">1</span> +<span class="st"> </span>x)^(-<span class="dv">1</span>)
+g &lt;-<span class="st"> </span><span class="kw">cmpfun</span>(f)
+
+<span class="kw">library</span>(microbenchmark)
+compare &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(<span class="kw">f</span>(<span class="dv">1000</span>, <span class="dv">1</span>), <span class="kw">g</span>(<span class="dv">1000</span>, <span class="dv">1</span>), <span class="dt">times =</span> <span class="dv">1000</span>)
+
+<span class="kw">library</span>(ggplot2)
+<span class="kw">autoplot</span>(compare)</code></pre>
+<div class="figure">
+<img src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/unnamed-chunk-1.png">
+</div>
+<pre class="sourceCode r"><code class="sourceCode r">
+compare</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">## Unit: microseconds
+##        expr   min    lq median     uq  max neval
+##  f(1000, 1) 950.0 991.3 1024.7 1087.2 2799  1000
+##  g(1000, 1) 218.2 228.0  238.2  257.3 1743  1000</code></pre>
+<p>(See the benchmarking section below for more on comparing functions with <code>microbenchmark()</code>)</p>
+<p><code>cmpfun()</code> works well in cases like this - when you are defining a new function that is mostly numerical manipulation. It doesn’t help with functions that call a lot of other R functions, or involve manipulating and translating between data types. It also doesn’t work well on already-defined R functions, which have been pre-compiled since R 2.14 and are sometimes written in compiled languages like C. For instance, if I try to compile this <code>paste()</code>-based function, I get no improvement:</p>
+<pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span>function(n) <span class="kw">paste</span>(<span class="dv">1</span>:n, <span class="dt">collapse =</span> <span class="st">" "</span>)
+g &lt;-<span class="st"> </span><span class="kw">cmpfun</span>(f)
+compare &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(<span class="kw">f</span>(<span class="dv">1000</span>), <span class="kw">g</span>(<span class="dv">1000</span>), <span class="dt">times =</span> <span class="dv">1000</span>)
+<span class="kw">autoplot</span>(compare)</code></pre>
+<div class="figure">
+<img src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/unnamed-chunk-2.png">
+</div>
+<pre class="sourceCode r"><code class="sourceCode r">compare</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">## Unit: microseconds
+##     expr   min    lq median    uq  max neval
+##  f(1000) 320.2 331.8  353.9 429.2 1889  1000
+##  g(1000) 320.7 330.6  352.8 412.5 2530  1000</code></pre>
+<p>You can also <a href="http://www.r-statistics.com/2012/04/speed-up-your-r-code-using-a-just-in-time-jit-compiler/">enable just-in-time compiling in R</a><sup class="footnote">19</sup>, which will automatically compile EVERY function the first time that it is run. This will slow down R quite a bit at first, as each function must be compiled before it is run the first time, but but then speed it up later. Just add this to the start of your script</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(compiler)
+<span class="kw">enableJIT</span>(<span class="dv">1</span>)</code></pre>
+<p>The numeric argument in <code>enableJIT</code> specifies the “level” of compilation. At level 2 and 3 more functions are compiled. In a few rare cases enableJIT will <em>slow down</em> code, particularly, if most of it is already pre-compiled or written in C, and/or if the code <em>creates</em> functions repeatedly, which then need to be compiled every time. This is more likely to happen with <code>enableJIT(2)</code> or <code>enableJIT(3)</code>, though these have the potential to speed up code more, as well.</p>
+<h2 id="diagnosis-profiling-and-benchmarking">Diagnosis: Profiling and Benchmarking</h2>
+<p>OK, the tools I described above are all blunt instruments that could speed up many types of code. However, if they fail you or aren’t feasible, you’re going to need to know something about what is slowing your code down.</p>
+<h3 id="benchmarking">Benchmarking</h3>
+<p>Benchmarking is a way to test and compare the speed of functions.</p>
+<p>Traditionally, <code>system.time(replicate())</code> could be used to time functions, but the <code>microbenchmark</code> package is a better option for benchmarking individuals calls and functions. If you have identified a function that is called many times in your code and needs to be speeded up, you can write or try out several different versions, using <code>microbenchmark</code> to compare them. Here’s the example from above:</p>
+<pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span>function(n, x) for (i in <span class="dv">1</span>:n) x =<span class="st"> </span>(<span class="dv">1</span> +<span class="st"> </span>x)^(-<span class="dv">1</span>)
+g &lt;-<span class="st"> </span><span class="kw">cmpfun</span>(f)
+
+<span class="kw">library</span>(microbenchmark)
+compare &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(<span class="kw">f</span>(<span class="dv">1000</span>, <span class="dv">1</span>), <span class="kw">g</span>(<span class="dv">1000</span>, <span class="dv">1</span>), <span class="dt">times =</span> <span class="dv">1000</span>)
+
+<span class="kw">library</span>(ggplot2)
+<span class="kw">autoplot</span>(compare)</code></pre>
+<div class="figure">
+<img src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/unnamed-chunk-3.png">
+</div>
+<pre class="sourceCode r"><code class="sourceCode r">compare</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">## Unit: microseconds
+##        expr   min     lq median     uq   max neval
+##  f(1000, 1) 958.2 1064.2 1220.5 1795.7 11595  1000
+##  g(1000, 1) 219.8  243.7  271.4  379.4  1370  1000</code></pre>
+<p>All <code>microbenchmark</code> needs as inputs are a series of expressions to compare. <code>times</code> is an optional parameter of the number of times to test each function (default 100). Microbenchmark randomizes the test order and discards some “warmup” tests. The full distribution is returned as a data frame, but only the summaries are printed.</p>
+<p>The <code>autoplot()</code> command draws a comparison of distribution times using <code>ggplot()</code></p>
+<h3 id="profiling">Profiling</h3>
+<p>Benchmarking is good for comparing small functions. <em>Profiling</em> examines your code to determine what parts of it are running slow. This is the essential tool for getting the best bang for your buck in speeding up code.</p>
+<p>R’s code profiler samples the “call stack” at regular intervals. The call stack is the list of the current function running, the function that called it, and all the functions that <em>those</em>. By examining these samples, you can find which functions are taking up the largest amount of time, either because they are slow or are called many times.</p>
+<p>You activate the profiler with <code>Rprof("filename")</code> which writes each sample of the call stack to “filename”. So do this:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Rprof</span>(<span class="st">"file.out"</span>)
+<span class="kw">Some_slow_code</span>()
+<span class="kw">Rprof</span>(<span class="ot">NULL</span>)
+<span class="kw">summaryRprof</span>(<span class="st">"file.out"</span>)</code></pre>
+<p><code>Rprof(NULL)</code> stops sampling and <code>summaryRprof("file.out")</code> gives you a summary of the results. Here’s an example of profiling a random walk function (from a <a href="http://www.stat.auckland.ac.nz//~ihaka/downloads/Taupo-handouts.pdf">talk by Duncan Temple Lang</a><sup class="footnote">20</sup>):</p>
+<pre class="sourceCode r"><code class="sourceCode r">rw2s1 &lt;-<span class="st"> </span>function(n) {
+    xpos =<span class="st"> </span>ypos =<span class="st"> </span><span class="kw">numeric</span>(n)
+    xdir =<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+    pm1 =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, -<span class="dv">1</span>)
+    for (i in <span class="dv">2</span>:n) if (<span class="kw">sample</span>(xdir, <span class="dv">1</span>)) {
+        xpos[i] =<span class="st"> </span>xpos[i -<span class="st"> </span><span class="dv">1</span>] +<span class="st"> </span><span class="kw">sample</span>(pm1, <span class="dv">1</span>)
+        ypos[i] =<span class="st"> </span>ypos[i -<span class="st"> </span><span class="dv">1</span>]
+    } else {
+        xpos[i] =<span class="st"> </span>xpos[i -<span class="st"> </span><span class="dv">1</span>]
+        ypos[i] =<span class="st"> </span>ypos[i -<span class="st"> </span><span class="dv">1</span>] +<span class="st"> </span><span class="kw">sample</span>(pm1, <span class="dv">1</span>)
+    }
+    <span class="kw">list</span>(<span class="dt">x =</span> xpos, <span class="dt">y =</span> ypos)
+}
+
+<span class="kw">Rprof</span>(<span class="st">"out.out"</span>)
+for (i in <span class="dv">1</span>:<span class="dv">1000</span>) pos =<span class="st"> </span><span class="kw">rw2s1</span>(<span class="dv">1000</span>)
+<span class="kw">Rprof</span>(<span class="ot">NULL</span>)
+<span class="kw">summaryRprof</span>(<span class="st">"out.out"</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">## $by.self
+##              self.time self.pct total.time total.pct
+## "sample.int"      7.62    47.04       7.62     47.04
+## "rw2s1"           5.28    32.59      16.20    100.00
+## "sample"          2.90    17.90      10.52     64.94
+## "-"               0.30     1.85       0.30      1.85
+## "+"               0.04     0.25       0.04      0.25
+## "list"            0.04     0.25       0.04      0.25
+## "numeric"         0.02     0.12       0.02      0.12
+## 
+## $by.total
+##              total.time total.pct self.time self.pct
+## "rw2s1"           16.20    100.00      5.28    32.59
+## "sample"          10.52     64.94      2.90    17.90
+## "sample.int"       7.62     47.04      7.62    47.04
+## "-"                0.30      1.85      0.30     1.85
+## "+"                0.04      0.25      0.04     0.25
+## "list"             0.04      0.25      0.04     0.25
+## "numeric"          0.02      0.12      0.02     0.12
+## 
+## $sample.interval
+## [1] 0.02
+## 
+## $sampling.time
+## [1] 16.2</code></pre>
+<p>The two tables list the functions called. The <code>$by.self</code> component lists the time spent by <em>functions alone</em>, while the <code>$by.total</code> table lists the time spent by <em>functions and all the functions they call</em>. So you see that <code>rw2s1</code>, being the <em>parent function</em>, takes the most time in <code>$by.total</code>, but <code>sample.int</code> is the bottom-level function that is taking the most time.</p>
+<p>I don’t find this <code>summaryRprof()</code> output very intuitive. There are some moderately better tools out there in the packages <code>profr</code> and <code>proftool</code>, but I don’t like them either. Instead I’ve written a custom function that you can get <a href="https://github.com/noamross/noamtools/blob/master/R/proftable.R">here</a><sup class="footnote">21</sup> called <code>proftable</code>. Here it parses the same output as above:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">proftable</span>(<span class="st">"out.out"</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">##  PctTime Stack                      
+##  47.037  rw2s1 &gt; sample &gt; sample.int
+##  32.593  rw2s1                      
+##  17.901  rw2s1 &gt; sample             
+##   1.852  rw2s1 &gt; -                  
+##   0.247  rw2s1 &gt; +                  
+##   0.247  rw2s1 &gt; list               
+##   0.123  rw2s1 &gt; numeric            
+## 
+## Total Time: 16.2 seconds</code></pre>
+<p>Here you can see that &gt;50% of time is being taken up by <code>sample.int</code>, which is itself usually called by <code>sample</code>.</p>
+<h4 id="misc-profiling-things">Misc profiling things</h4>
+<ul>
+<li><p>The latest version of R (3.0.0) allows code profiling by <em>line number</em> using <code>Rprof(file, line.profiling=TRUE)</code> and <code>summaryRprof(file, lines="show")</code>. I don’t yet have a good example of it and haven’t incorporated this function into <code>proftable()</code> yet. There’s an example of use <a href="http://stackoverflow.com/a/15821706/1757441">at Stack Overflow</a><sup class="footnote">22</sup></p></li>
+<li><p>Note that, depending on the R interface you are using, it may wrap your code in some other functions, which will appear as the topmost functions in the stack. For instance, if use the “Source” button in Rtudio, all your stacks will start with something like:</p>
+<pre class="sourceCode r"><code class="sourceCode r">source &gt;<span class="st"> </span>withVisible &gt;<span class="st"> </span>eval &gt;<span class="st"> </span>eval &gt;</code></pre>
+<p><strong>[Update 5/8/2003: The <a href="https://github.com/noamross/noamtools/blob/master/R/proftable.R">latest verion</a><sup class="footnote">21</sup> of <code>proftable</code> can deal with line numbers. It also deals with wrapper stacks like above.]</strong></p></li>
+<li><p><code>trace()</code> can also be useful to track down where a particular slow function is being called. Try using <code>trace(function, tracer=cat(as.character(sys.calls()))</code>, for instance, to print the stack whenever <code>function</code> is called.</p></li>
+<li><p>R also has the ability to do <em>memory profiling</em> - tracking how your code uses memory. These include <code>Rprofmem()</code>, <code>tracemem()</code>, and <code>Rprof(memory.profiling=TRUE)</code>, but the documentation for these isn’t great and I haven’t found good resources on this topic. Let me know if you can point me to some resources.</p></li>
+<li><p>Jeromy Anglim has a blog post of an <code>Rprof()</code> <a href="http://jeromyanglim.blogspot.com/2010/02/case-study-in-optimising-code-in-r.html">case study</a><sup class="footnote">23</sup> that is worth reading</p></li>
+</ul>
+<h2 id="find-better-packages">Find better packages</h2>
+<p>Before you go about changing your own code, take a look and see if you can use better code someone else has written. There are thousands of packages on CRAN, but many of them are redundant and implement the same thing. There’s tremendous variation in package quality and speed, so you can often speed things up by finding a faster package.</p>
+<p>For instance, the <code>xts</code> and <code>zoo</code> packages both handle time series data, but much of <code>xts</code> is written in C and Fortran, and it is considerably faster. Here are some performance benchmarks (though they are a bit out of date):</p>
+<div class="figure">
+<img src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/xtsperformance.png" alt="Comparison of functions on xts time series objects against time series from other packages. From this presentation"><p class="caption">Comparison of functions on xts time series objects against time series from other packages. From <a href="http://www.quantmod.com/Columbia2008/ColumbiaDec4.pdf">this presentation</a><sup class="footnote">24</sup></p>
+</div>
+<p>Other packages are specifically designed to speed up certain operations. Some creative googling (e.g., <em>r package CRAN fast “something”</em>) will help you find them.</p>
+<p>For instance. Using base functions like <code>colMeans()</code> is faster than using <code>apply</code> functions to apply <code>mean</code>. The <code>matrixStats</code> package extends these functions to include others like <code>rowMaxs()</code>, <code>colRanks()</code>, etc.</p>
+<p><code>data.table</code> is a package designed for speeding up data frame operations when working very large datasets. <code>data.table</code>’s biggest advantage is in tasks like sub-setting and indexing. Here I compare the two in looking up the value of a row:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table)
+myDF &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="fl">1e+05</span>), <span class="dv">10000</span>, <span class="dv">10</span>))
+myDF$key &lt;-<span class="st"> </span><span class="kw">as.character</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(myDF))
+myDT &lt;-<span class="st"> </span><span class="kw">data.table</span>(myDF)
+<span class="kw">setkey</span>(myDT, key)
+<span class="kw">microbenchmark</span>(myDF[myDF$key ==<span class="st"> </span><span class="dv">2</span>, ], myDT[<span class="st">"2"</span>, ])</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">## Unit: microseconds
+##                   expr    min     lq median   uq  max neval
+##  myDF[myDF$key == 2, ] 2658.8 2885.3   3187 3755 6434   100
+##            myDT["2", ]  724.3  899.7   1112 1393 4287   100</code></pre>
+<p>Here <code>data.table</code> is 3X times faster. It gets faster with larger data sets.</p>
+<h2 id="improving-your-code">Improving your code</h2>
+<p>Once you know what parts of your code are slowing you down, and you have a method to test speed, you need tools and options for writing faster functions. Here are a few.</p>
+<h3 id="vectorization">Vectorization</h3>
+<p>This is the first thing most guides to coding discuss, so I won’t go into in much. Basically, R is good at matrix/vector algebra, so if you can express something as</p>
+<p><span class="math"><span class="MathJax_Preview"></span><div class="MathJax_Display" role="textbox" aria-readonly="true" style="text-align: center;"><span class="MathJax" id="MathJax-Element-1-Frame"><nobr><span class="math" id="MathJax-Span-1" style="width: 6.623em; display: inline-block;"><span style="display: inline-block; position: relative; width: 5.945em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(2.348em 1000.029em 6.466em -0.467em); top: -4.637em; left: 0.003em;"><span class="mrow" id="MathJax-Span-2"><span class="mrow" id="MathJax-Span-3"><span class="mo" id="MathJax-Span-4" style="vertical-align: 2.14em;"><span style="display: inline-block; position: relative; width: 0.68em; height: 0px;"><span style="position: absolute; font-family: MathJax_Size4; top: -2.864em; left: 0.003em;">⎡<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span><span style="position: absolute; font-family: MathJax_Size4; top: -0.831em; left: 0.003em;">⎣<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span><span style="font-family: MathJax_Size4; position: absolute; top: -1.822em; left: 0.003em;">⎢<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span></span></span><span class="mtable" id="MathJax-Span-5" style="padding-right: 0.159em; padding-left: 0.159em;"><span style="display: inline-block; position: relative; width: 0.576em; height: 0px;"><span style="position: absolute; clip: rect(2.348em 1000.029em 5.893em -0.467em); top: -4.272em; left: 0.003em;"><span style="display: inline-block; position: relative; width: 0.576em; height: 0px;"><span style="position: absolute; clip: rect(1.931em 1000.029em 2.661em -0.414em); top: -3.855em; left: 50%; margin-left: -0.258em;"><span class="mtd" id="MathJax-Span-6"><span class="mrow" id="MathJax-Span-7"><span class="mi" id="MathJax-Span-8" style="font-family: MathJax_Math-italic;">x</span></span></span><span style="display: inline-block; width: 0px; height: 2.505em;"></span></span><span style="position: absolute; clip: rect(1.931em 1000.029em 2.87em -0.467em); top: -2.447em; left: 50%; margin-left: -0.258em;"><span class="mtd" id="MathJax-Span-9"><span class="mrow" id="MathJax-Span-10"><span class="mi" id="MathJax-Span-11" style="font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.505em;"></span></span><span style="position: absolute; clip: rect(1.931em 1000.029em 2.661em -0.414em); top: -1.04em; left: 50%; margin-left: -0.206em;"><span class="mtd" id="MathJax-Span-12"><span class="mrow" id="MathJax-Span-13"><span class="mi" id="MathJax-Span-14" style="font-family: MathJax_Math-italic;">z<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.505em;"></span></span></span><span style="display: inline-block; width: 0px; height: 4.277em;"></span></span></span></span><span class="mo" id="MathJax-Span-15" style="vertical-align: 2.14em;"><span style="display: inline-block; position: relative; width: 0.68em; height: 0px;"><span style="position: absolute; font-family: MathJax_Size4; top: -2.864em; left: 0.003em;">⎤<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span><span style="position: absolute; font-family: MathJax_Size4; top: -0.831em; left: 0.003em;">⎦<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span><span style="font-family: MathJax_Size4; position: absolute; top: -1.822em; left: 0.003em;">⎥<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span></span></span></span><span class="mo" id="MathJax-Span-16" style="font-family: MathJax_Main; padding-left: 0.211em;">+</span><span class="mrow" id="MathJax-Span-17" style="padding-left: 0.211em;"><span class="mo" id="MathJax-Span-18" style="vertical-align: 2.14em; padding-left: 0.211em;"><span style="display: inline-block; position: relative; width: 0.68em; height: 0px;"><span style="position: absolute; font-family: MathJax_Size4; top: -2.864em; left: 0.003em;">⎡<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span><span style="position: absolute; font-family: MathJax_Size4; top: -0.831em; left: 0.003em;">⎣<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span><span style="font-family: MathJax_Size4; position: absolute; top: -1.822em; left: 0.003em;">⎢<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span></span></span><span class="mtable" id="MathJax-Span-19" style="padding-right: 0.159em; padding-left: 0.159em;"><span style="display: inline-block; position: relative; width: 0.576em; height: 0px;"><span style="position: absolute; clip: rect(2.348em 1000.029em 5.893em -0.414em); top: -4.272em; left: 0.003em;"><span style="display: inline-block; position: relative; width: 0.576em; height: 0px;"><span style="position: absolute; clip: rect(1.931em 1000.029em 2.661em -0.414em); top: -3.855em; left: 50%; margin-left: -0.258em;"><span class="mtd" id="MathJax-Span-20"><span class="mrow" id="MathJax-Span-21"><span class="mi" id="MathJax-Span-22" style="font-family: MathJax_Math-italic;">a</span></span></span><span style="display: inline-block; width: 0px; height: 2.505em;"></span></span><span style="position: absolute; clip: rect(1.671em 1000.029em 2.661em -0.414em); top: -2.447em; left: 50%; margin-left: -0.206em;"><span class="mtd" id="MathJax-Span-23"><span class="mrow" id="MathJax-Span-24"><span class="mi" id="MathJax-Span-25" style="font-family: MathJax_Math-italic;">b</span></span></span><span style="display: inline-block; width: 0px; height: 2.505em;"></span></span><span style="position: absolute; clip: rect(1.931em 1000.029em 2.661em -0.414em); top: -1.04em; left: 50%; margin-left: -0.206em;"><span class="mtd" id="MathJax-Span-26"><span class="mrow" id="MathJax-Span-27"><span class="mi" id="MathJax-Span-28" style="font-family: MathJax_Math-italic;">c</span></span></span><span style="display: inline-block; width: 0px; height: 2.505em;"></span></span></span><span style="display: inline-block; width: 0px; height: 4.277em;"></span></span></span></span><span class="mo" id="MathJax-Span-29" style="vertical-align: 2.14em;"><span style="display: inline-block; position: relative; width: 0.68em; height: 0px;"><span style="position: absolute; font-family: MathJax_Size4; top: -2.864em; left: 0.003em;">⎤<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span><span style="position: absolute; font-family: MathJax_Size4; top: -0.831em; left: 0.003em;">⎦<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span><span style="font-family: MathJax_Size4; position: absolute; top: -1.822em; left: 0.003em;">⎥<span style="display: inline-block; width: 0px; height: 4.016em;"></span></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 4.642em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 4.342em; vertical-align: -1.906em;"></span></span></nobr></span></div><script type="math/tex; mode=display" id="MathJax-Element-1">\begin{bmatrix} x \\ y \\ z \end{bmatrix} + \begin{bmatrix} a \\ b \\ c \end{bmatrix} </script></span></p>
+<p>It will go faster than</p>
+<p><span class="math"><span class="MathJax_Preview"></span><div class="MathJax_Display" role="textbox" aria-readonly="true" style="text-align: center;"><span class="MathJax" id="MathJax-Element-2-Frame"><nobr><span class="math" id="MathJax-Span-30" style="width: 3.026em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.713em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(-0.258em 1000.029em 4.068em -0.31em); top: -2.135em; left: 0.003em;"><span class="mrow" id="MathJax-Span-31"><span class="mtable" id="MathJax-Span-32" style="padding-right: 0.159em; padding-left: 0.159em;"><span style="display: inline-block; position: relative; width: 2.348em; height: 0px;"><span style="position: absolute; clip: rect(2.505em 1000.029em 6.466em -0.467em); top: -4.689em; left: 0.003em;"><span style="display: inline-block; position: relative; width: 2.348em; height: 0px;"><span style="position: absolute; clip: rect(1.983em 1000.029em 2.974em -0.414em); top: -4.167em; right: 0.003em;"><span class="mtd" id="MathJax-Span-33"><span class="mrow" id="MathJax-Span-34"><span class="mi" id="MathJax-Span-35" style="font-family: MathJax_Math-italic;">x</span><span class="mo" id="MathJax-Span-36" style="font-family: MathJax_Main; padding-left: 0.211em;">+</span><span class="mi" id="MathJax-Span-37" style="font-family: MathJax_Math-italic; padding-left: 0.211em;">a</span></span></span><span style="display: inline-block; width: 0px; height: 2.713em;"></span></span><span style="position: absolute; clip: rect(1.879em 1000.029em 3.078em -0.467em); top: -2.656em; right: 0.003em;"><span class="mtd" id="MathJax-Span-38"><span class="mrow" id="MathJax-Span-39"><span class="mi" id="MathJax-Span-40" style="font-family: MathJax_Math-italic;">y<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-41" style="font-family: MathJax_Main; padding-left: 0.211em;">+</span><span class="mi" id="MathJax-Span-42" style="font-family: MathJax_Math-italic; padding-left: 0.211em;">b</span></span></span><span style="display: inline-block; width: 0px; height: 2.713em;"></span></span><span style="position: absolute; clip: rect(1.983em 1000.029em 2.974em -0.414em); top: -1.144em; right: 0.003em;"><span class="mtd" id="MathJax-Span-43"><span class="mrow" id="MathJax-Span-44"><span class="mi" id="MathJax-Span-45" style="font-family: MathJax_Math-italic;">z<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-46" style="font-family: MathJax_Main; padding-left: 0.211em;">+</span><span class="mi" id="MathJax-Span-47" style="font-family: MathJax_Math-italic; padding-left: 0.211em;">c</span></span></span><span style="display: inline-block; width: 0px; height: 2.713em;"></span></span></span><span style="display: inline-block; width: 0px; height: 4.694em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.14em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 4.574em; vertical-align: -2.022em;"></span></span></nobr></span></div><script type="math/tex; mode=display" id="MathJax-Element-2">\begin{aligned}
+x + a \\
+y + b \\
+z + c \\
+\end{aligned}</script></span></p>
+<p>Or, in R</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) +<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</code></pre>
+<p>Instead of</p>
+<pre class="sourceCode r"><code class="sourceCode r">for(i in <span class="dv">1</span>:<span class="dv">3</span>) x[i] &lt;-<span class="st"> </span>i+i</code></pre>
+<ul>
+<li><p>Most base R functions are designed to handle vectors as well as scalars.</p></li>
+<li><p>However, using an <code>apply</code> function is not really vectorization. <code>apply</code> functions are actually wrappers for <code>for</code> loops</p></li>
+<li><p>For more on vectorization, see Chapters 3 and 4 of <a href="http://www.burns-stat.com/pages/Tutor/R_inferno.pdf">The R Inferno</a><sup class="footnote">25</sup></p></li>
+</ul>
+<h3 id="pre-allocating-memory">Pre-allocating memory</h3>
+<p>Again, a common topic I won’t dwell on too much. Essentially, R is bad at continually re-sizing objects, because it makes an extra copy of these objects each time. So if you have a loop that creates a vector or list, don’t append to the vector or list with each pass of the loop. Instead, make an <em>empty</em> object of the correct size first, then fill in its elements.</p>
+<p>More <a href="http://musicallyut.blogspot.com/2012/07/pre-allocate-your-vectors.html">here</a><sup class="footnote">26</sup></p>
+<p>The <code>apply</code> family of functions helps you avoid these problems by doing pre-allocation automatically. Plus, as I wrote above, if you use <code>apply</code> variants, it’s easy to parallelize your code.</p>
+<h3 id="using-simpler-data-structures">Using simpler data structures</h3>
+<p>R has some very handy objects, lists and dataframes, that are flexible and can store multiple types of data at once. However, this flexibility comes at a cost. Simpler data structures that only store <em>one</em> type of data can be manipulated much faster. If you can represent data in a matrix instead of a data frame (e.g., if you can reduce it to all numbers or characters), you can speed things up considerably.</p>
+<p>For instance, compare these operations for getting the standard deviation of 100,000 rows of 10 variables in both a matrix and a data frame:</p>
+<pre class="sourceCode r"><code class="sourceCode r">myMatrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="fl">1e+05</span>), <span class="dv">10000</span>, <span class="dv">100</span>)
+myDF &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(myMatrix)
+<span class="kw">microbenchmark</span>(<span class="kw">apply</span>(myMatrix, <span class="dv">2</span>, sd), <span class="kw">apply</span>(myDF, <span class="dv">2</span>, sd))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">## Unit: milliseconds
+##                    expr   min    lq median    uq    max neval
+##  apply(myMatrix, 2, sd) 29.70 31.60  33.04 34.65  94.21   100
+##      apply(myDF, 2, sd) 39.69 70.14  96.61 98.81 250.12   100</code></pre>
+<h3 id="the-small-stuff">The small stuff</h3>
+<p>Little things can add up, but the little things are most likely not your main problem. Here are a few odds and ends I’ve discovered. They’ll shave a few percent off your run time, but thinking about them too much will add hours to your coding time.</p>
+<h4 id="extra-parentheses">Extra parentheses</h4>
+<p>Sometimes when I write complex mathematical expressions I include extra parentheses to help make the code more readable. This has a small performance cost, as you can see here:</p>
+<pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span>function(x) x =<span class="st"> </span><span class="dv">1</span>/{
+    <span class="dv">1</span> +<span class="st"> </span>x
+}
+f &lt;-<span class="st"> </span>function(x) x =<span class="st"> </span><span class="dv">1</span>/(<span class="dv">1</span> +<span class="st"> </span>x)
+g &lt;-<span class="st"> </span>function(x) x =<span class="st"> </span>(<span class="dv">1</span>/(<span class="dv">1</span> +<span class="st"> </span>x))
+h &lt;-<span class="st"> </span>function(x) x =<span class="st"> </span>((<span class="dv">1</span>/(<span class="dv">1</span> +<span class="st"> </span>x)))
+k &lt;-<span class="st"> </span>function(x) x =<span class="st"> </span>(((<span class="dv">1</span>/(<span class="dv">1</span> +<span class="st"> </span>x))))
+x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+comp &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(<span class="kw">a</span>(x), <span class="kw">f</span>(x), <span class="kw">g</span>(x), <span class="kw">h</span>(x), <span class="kw">k</span>(x), <span class="dt">times =</span> <span class="fl">1e+05</span>)
+comp</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">## Unit: microseconds
+##  expr   min    lq median    uq   max neval
+##  a(x) 1.991 2.197  2.313 2.971 11068 1e+05
+##  f(x) 1.960 2.174  2.292 2.990 10435 1e+05
+##  g(x) 2.090 2.302  2.427 3.112 10755 1e+05
+##  h(x) 2.188 2.406  2.536 3.178  9660 1e+05
+##  k(x) 2.259 2.504  2.644 3.367 11228 1e+05</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(comp)</code></pre>
+<div class="figure">
+<img src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/unnamed-chunk-6.png">
+</div>
+<p>The difference is modest, but each layer of parentheses adds a bit to performance time. Note that, amazingly, r speeds up when you use curly braces (<code>{</code> and <code>}</code>) instead of parentheses! Why? <a href="http://radfordneal.wordpress.com/2010/08/19/speeding-up-parentheses-and-lots-more-in-r/">Radford Neal explains</a><sup class="footnote">27</sup>:</p>
+<blockquote>
+<p>The difference between parentheses and curly brackets comes about because R treats curly brackets as a “special” operator, whose arguments are not automatically evaluated, but it treats parentheses as a “built in” operator, whose arguments (just one for parentheses) are evaluated automatically, with the results of this evaluation stored in a LISP-style list. Creating this list requires allocation of memory and other operations which seem to be slow enough to cause the difference, since the curly bracket operator just evaluates the expressions inside and returns the last of them, without creating such a list.</p>
+</blockquote>
+<h4 id="standard-and-internal-functions">Standard and internal functions</h4>
+<p>A few standard functions in R are pretty slow, often because they perform error checking and methods dispatch before actually doing arithmetic. <code>mean</code> is among the most notorious of these. <code>mean(x)</code>does a lot more than just <code>sum(x)/length(x)</code>. It checks the form of the inputs, assigns the appropriate method, then dispatches <code>.Internal(mean(x))</code>. The latter is much faster, as it is written in C:</p>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">100</span>, <span class="dv">100</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)
+comp &lt;-<span class="st"> </span><span class="kw">microbenchmark</span>(<span class="kw">mean</span>(x), <span class="kw">sum</span>(x)/<span class="kw">length</span>(x), <span class="kw">.Internal</span>(<span class="kw">mean</span>(x)), <span class="dt">times =</span> <span class="fl">1e+05</span>)
+comp</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">## Unit: nanoseconds
+##                expr  min   lq median   uq      max neval
+##             mean(x) 5671 6136   6386 6792 61466725 1e+05
+##    sum(x)/length(x)  720  878   1064 1211  1511792 1e+05
+##  .Internal(mean(x))  513  556    614  677  1082112 1e+05</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">autoplot</span>(comp)</code></pre>
+<div class="figure">
+<img src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/unnamed-chunk-7.png">
+</div>
+<p>You can sometimes get away with using the internal functions like <code>.Internal(mean(x))</code>. However, this is considered poor practice because (a) internals are subject to change and break your code with updates to R, and (b) this is disallowed in packages submitted to CRAN, so it makes code more difficult to share. That said, the internal version can be 9X faster. Your call.</p>
+<p><strong><em>[Update 4/26/2013: On the <a href="https://twitter.com/kevin_ushey/status/327205714328158208">suggestion of Kevin Ushey</a><sup class="footnote">28</sup>, I’m adding the following section]</em></strong></p>
+<h1 id="other-languages-more-reward-for-more-effort">Other Languages: More reward for more effort</h1>
+<p>I’ve mentioned a few times that functions written in other languages, like C or C++, are much faster than other R functions. Obviously, learning another language is an undertaking, but thanks to some recent developments, writing R functions in C has become much easier. The <code>Rcpp</code> package lets you write such C++ functions without learning much about compiling or other peripheral issues, and Hadley Wyckham has written an <a href="https://github.com/hadley/devtools/wiki/Rcpp">excellent beginners’s guide to <code>Rcpp</code></a><sup class="footnote">29</sup> that teaches you just enough C++ to get started. From the guide:</p>
+<blockquote>
+<p>Typical bottlenecks that C++ can help with are:</p>
+<ul>
+<li><p>Loops that can’t easily be vectorised because each iteration depends on the previous. C++ modifies objects in place, so there is little overhead when modifying a data structure many times.</p></li>
+<li><p>Recursive functions, or problems which involve calling functions millions of times. The overhead of calling a function in C++ is much lower than the overhead of calling a function in R. To give you some idea of the magnitude, on my computer when writing this book the overhead in C++ was ~5ns compared to ~200ns for R.</p></li>
+<li><p>Problems that require advanced data structures and algorithms that R doesn’t provide. Through the standard &gt;template library (STL), C++ has efficient implementations of many important data structures, from ordered maps &gt;to double ended queues.</p></li>
+</ul>
+</blockquote>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>I used to also have a reference here that <code>x*x</code> is faster than <code>x^2</code> in R, but as <a href="http://simplystatistics.org/2013/04/28/sunday-datastatistics-link-roundup-4282013/#comment-879142735">Thomas Lumley points out</a><sup class="footnote">30</sup>, this hasn’t been true for a while, and some quick empirical testing confirmed that the two are pretty close.<a href="http://www.noamross.net/blog/2013/4/25/faster-talk.html#fnref1">↩</a><sup class="footnote">31</sup></p></li>
+<li id="fn2"><p>If you are a scientist, you should ALWAYS be prepared to share your code, and should probably publish it as a supplement to your papers.<a href="http://www.noamross.net/blog/2013/4/25/faster-talk.html#fnref2">↩</a><sup class="footnote">32</sup></p></li>
+<li id="fn3"><p>There are cheaper services than Amazon, but there aren’t as many resources on how to use them. If you really need to reduce costs, you can use <a href="http://aws.amazon.com/ec2/spot-instances/"><em>spot instances</em></a><sup class="footnote">33</sup>, which allow you to set an allowable price, and run your program when something that cheap is available. Also, you could run many small Amazon virtual machines simultaneously on a free trial account, but if your goal is to do things <em>quickly</em>, it might be worth paying for a more powerful machine.<a href="http://www.noamross.net/blog/2013/4/25/faster-talk.html#fnref3">↩</a><sup class="footnote">34</sup></p></li>
+</ol>
+</div><p></p><div class="footnote-links"><hr><ol><li>http://www.noamross.net/davis-r-users-group.html</li><li>http://en.wikiquote.org/wiki/Donald_Knuth</li><li>https://twitter.com/search/%23Rstats</li><li>https://twitter.com/DistribEcology/status/311581025870426113</li><li>http://www.noamross.net/blog/2013/4/25/faster-talk.html#fn1</li><li>http://www.noamross.net/blog/2013/4/25/faster-talk.html#fn2</li><li>http://greentheo.scroggles.com/2009/11/13/amazon-ec2-providing-100-macbooks-of-power-for-minimum-wage/</li><li>http://www.noamross.net/blog/2013/4/25/faster-talk.html#fn3</li><li>http://stat.ethz.ch/R-manual/R-patched/library/utils/html/BATCH.html</li><li>http://bioconductor.org/help/bioconductor-cloud-ami/</li><li>http://www.louisaslett.com/RStudio_AMI/</li><li>http://inundata.org/2011/03/30/r-ec2-rstudio-server/</li><li>https://code.google.com/p/segue/</li><li>http://jeffreybreen.wordpress.com/2011/01/10/segue-r-to-amazon-elastic-mapreduce-hadoop/</li><li>http://www.linkedin.com/pub/jacob-teter/9/7b2/684</li><li>https://twitter.com/vsbuffalo/status/327564597282369536</li><li>http://lookingatdata.blogspot.se/2013/01/speeding-up-r-computations-pt-iii.html</li><li>http://dirk.eddelbuettel.com/blog/2011/04/12/#the_new_r_compiler_package</li><li>http://www.r-statistics.com/2012/04/speed-up-your-r-code-using-a-just-in-time-jit-compiler/</li><li>http://www.stat.auckland.ac.nz//~ihaka/downloads/Taupo-handouts.pdf</li><li>https://github.com/noamross/noamtools/blob/master/R/proftable.R</li><li>http://stackoverflow.com/a/15821706/1757441</li><li>http://jeromyanglim.blogspot.com/2010/02/case-study-in-optimising-code-in-r.html</li><li>http://www.quantmod.com/Columbia2008/ColumbiaDec4.pdf</li><li>http://www.burns-stat.com/pages/Tutor/R_inferno.pdf</li><li>http://musicallyut.blogspot.com/2012/07/pre-allocate-your-vectors.html</li><li>http://radfordneal.wordpress.com/2010/08/19/speeding-up-parentheses-and-lots-more-in-r/</li><li>https://twitter.com/kevin_ushey/status/327205714328158208</li><li>https://github.com/hadley/devtools/wiki/Rcpp</li><li>http://simplystatistics.org/2013/04/28/sunday-datastatistics-link-roundup-4282013/#comment-879142735</li><li>http://www.noamross.net/blog/2013/4/25/faster-talk.html#fnref1</li><li>http://www.noamross.net/blog/2013/4/25/faster-talk.html#fnref2</li><li>http://aws.amazon.com/ec2/spot-instances/</li><li>http://www.noamross.net/blog/2013/4/25/faster-talk.html#fnref3</li></ol></div></div>
+<ul class="tags">
+  
+    <li><strong>Tags: </strong></li>
+    
+    <li><a href="http://www.noamross.net/tags.html#R-ref">R</a></li>
+    
+    <li><a href="http://www.noamross.net/tags.html#D-RUG-ref">D-RUG</a></li>
+      
+</ul>
+
+
+
+  <div id="disqus_thread"><iframe id="dsq-221" data-disqus-uid="221" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="about:blank" horizontalscrolling="no" verticalscrolling="no" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 0px !important;"></iframe></div>
+<script type="text/javascript">
+    var disqus_shortname = 'noamrossgh'; // required: replace example with your forum shortname
+    var disqus_identifier = '/blog/2013/4/25/faster-talk.html';
+    var disqus_url = 'http://www.noamross.net/blog/2013/4/25/faster-talk.html';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+
+
+
+
+
+<div class="noprint" id="previous-posts"><hr>
+<p> <strong>Previous Post</strong>: <a href="http://www.noamross.net/blog/2013/4/24/automating-preprints.html">Setting up Automated Reprint Requests in Gmail</a> </p>
+<p> <strong>Next Post</strong>: <a href="http://www.noamross.net/blog/2013/5/2/improved-r-profiling-summaries.html">Improved R Profiling Summaries</a> </p></div>
+
+
+
+        </div>
+    
+
+      </div>
+      
+<script type="text/javascript" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/jquery.min.js"></script>
+<script type="text/javascript" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/footnote-links.js"></script>
+<script type="text/javascript">$('div.contenttext').footnoteLinks();</script>
+
+
+</div></div><div style="position: static;"><div class="a2a_overlay" id="a2apage_overlay"></div><div class="a2a_menu a2a_full" id="a2apage_full"><div class="a2a_full_header"><div id="a2apage_find_container" class="a2a_menu_find_container"><input id="a2apage_find" class="a2a_menu_find" type="text" onclick="a2a.focus_find()" onkeyup="a2a.do_find()" autocomplete="off" title="Find any service"><span id="a2apage_find_icon" class="a2a_i_find" onclick="a2a.focus_find()"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="8 8 16 16"><path fill="#0166FF" d="M21.636,20.553l-3.291-3.291c0.536-0.753,0.858-1.667,0.858-2.661c0-2.542-2.061-4.602-4.602-4.602C12.06,9.999,10,12.059,10,14.601c0,2.541,2.06,4.602,4.602,4.602c0.994,0,1.907-0.32,2.659-0.856l3.291,3.29c0.401,0.402,0.968,0.486,1.268,0.184C22.119,21.521,22.036,20.953,21.636,20.553z M14.602,17.9c-1.823,0-3.3-1.477-3.3-3.3s1.477-3.3,3.3-3.3s3.3,1.477,3.3,3.3S16.424,17.9,14.602,17.9z"></path></svg></span></div></div><div class="a2a_full_services" id="a2apage_full_services"><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_twitter">Twitter</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_facebook">Facebook</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_tumblr">Tumblr</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_email">Email</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_delicious">Delicious</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_linkedin">LinkedIn</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_stumbleupon">StumbleUpon</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_google_plus">Google+</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_pinterest">Pinterest</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_reddit">Reddit</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_wordpress">WordPress</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_digg">Digg</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_google">Google Bookmarks</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_yahoo">Yahoo Bookmarks</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_whatsapp">WhatsApp</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_evernote">Evernote</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_line">Line</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_wanelo">Wanelo</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_app_net">App.net</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_buffer">Buffer</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_xing">XING</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_bebo">Bebo</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_orkut">Orkut</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_mixi">Mixi</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_vk">VK</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_pocket">Pocket</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_gmail">Google Gmail</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_mendeley">Mendeley</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_yahoo">Yahoo Mail</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_pinboard">Pinboard</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_outlook_com">Outlook.com</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_box">Box.net</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_aol">AOL Mail</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_instapaper">Instapaper</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_y18">Hacker News</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_springpad">Springpad</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_myspace">MySpace</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_flipboard">Flipboard</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_arto">Arto</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_aim">AIM</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_yim">Yahoo Messenger</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_mail_ru">Mail.Ru</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_plurk">Plurk</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_diaspora">Diaspora</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_fark">Fark</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_blogger">Blogger Post</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_typepad">TypePad Post</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_kindle">Kindle It</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_sina_weibo">Sina Weibo</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_baidu">Baidu</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_netlog">Netlog</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_citeulike">CiteULike</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_jumptags">Jumptags</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_funp">FunP</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_phonefavs">PhoneFavs</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_xerpi">Xerpi</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_netvouz">Netvouz</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_diigo">Diigo</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_bibsonomy">BibSonomy</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_blogmarks">BlogMarks</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_startaid">StartAid</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_khabbr">Khabbr</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_meneame">Meneame</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_yoolink">Yoolink</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_bookmarks_fr">Bookmarks.fr</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_technotizie">Technotizie</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_newsvine">NewsVine</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_friendfeed">FriendFeed</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_protopage">Protopage Bookmarks</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_blinklist">Blinklist</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_webnews">Webnews</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_segnalo">Segnalo</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_pusha">Pusha</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_youmob">YouMob</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_slashdot">Slashdot</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_allvoices">Allvoices</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_jamespot">Jamespot</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_twiddla">Twiddla</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_linkagogo">LinkaGoGo</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_nowpublic">NowPublic</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_livejournal">LiveJournal</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_linkatopia">Linkatopia</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_buddymarks">BuddyMarks</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_viadeo">Viadeo</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_wists">Wists</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_sitejot">SiteJot</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_dzone">DZone</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_care2">Care2 News</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_bitty">Bitty Browser</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_odnoklassniki">Odnoklassniki</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_symbaloo">Symbaloo Feeds</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_folkd">Folkd</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_newstrust">NewsTrust</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_amazon">Amazon Wish List</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_printfriendly">PrintFriendly</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_default">Wykop</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_tuenti">Tuenti</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_rediff">Rediff MyPage</span></a><i class="a2a_i"></i><i class="a2a_i"></i></div><div class="a2a_full_footer"><a href="https://www.addtoany.com/" title="Share Buttons" target="_blank"><span class="a2a_i_a2a_sm">AddToAny</span></a></div></div><div id="a2apage_dropdown" class="a2a_menu a2a_mini" onmouseover="a2a.onMouseOver_stay()" onmouseout="a2a.onMouseOut_delay()" style="display:none"><div id="a2apage_title_container" class="a2a_menu_title_container"><input id="a2apage_title" class="a2a_menu_title"></div><div class="a2a_mini_services" id="a2apage_mini_services"><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_twitter">Twitter</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_facebook">Facebook</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_tumblr">Tumblr</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_email">Email</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_delicious">Delicious</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_linkedin">LinkedIn</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_stumbleupon">StumbleUpon</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_google_plus">Google+</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_pinterest">Pinterest</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_reddit">Reddit</span></a></div><div id="a2apage_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2apage_col1"></div><div id="a2apage_2_col1" style="display:none"><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_gmail">Google Gmail</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_yahoo">Yahoo Mail</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_outlook_com">Outlook.com</span></a><a rel="nofollow" class="a2a_i" href="http://www.noamross.net/" target="_blank"><span class="a2a_i_aol">AOL Mail</span></a><a rel="nofollow" class="a2a_i a2a_emailer" href="http://www.noamross.net/" target="_blank" id="a2apage_any_email"><span class="a2a_i_email">Any email</span></a><a rel="nofollow" class="a2a_i a2a_emailer a2a_email_client" href="http://www.noamross.net/" target="" id="a2apage_email_client"><span class="a2a_i_email">Email app</span></a></div><div class="a2a_clear"></div></div><div class="a2apage_wide a2a_wide"><a href="" id="a2apage_show_more_less" class="a2a_menu_show_more_less a2a_more" onmouseover="img=this.firstChild;if(a2a.c.color_arrow_hover==&#39;fff&#39;){if(img.className.indexOf(&#39;_wt&#39;)==-1)img.className+=&#39;_wt&#39;}else img.className=img.className.replace(/_wt/,&#39;&#39;)" onmouseout="img=this.firstChild;if(a2a.c.color_arrow==&#39;fff&#39;){if(img.className.indexOf(&#39;_wt&#39;)==-1)img.className+=&#39;_wt&#39;}else img.className=img.className.replace(/_wt/,&#39;&#39;)" title="Show all"><span class="a2a_i_a2a">More…</span></a></div></div><div style="height: 1px; width: 1px; position: absolute; z-index: 100000; top: 0px; visibility: hidden;"><iframe id="a2apage_sm_ifr" height="1" width="1" title="AddToAny Utility Frame" transparency="true" allowtransparency="true" frameborder="0" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/sm11.html" style="height: 1px; width: 1px; border: 0px; left: 0px; top: 0px; position: absolute; z-index: 100000; display: none;"></iframe></div></div><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" style="display: none;"></iframe><iframe id="stSegmentFrame" name="stSegmentFrame" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/getSegment.html" frameborder="0" scrolling="no" width="0px" height="0px" style="display:none;"></iframe><div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size4, sans-serif;"></div></div><div id="stwrapper" class="stwrapper stwrapper5x" style="display: none; z-index: 89999999;"><iframe allowtransparency="true" id="stLframe" class="stLframe stframe5x" name="stLframe" frameborder="0" scrolling="no" width="514px" height="419px" src="./Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/index.cf3727cef3867c5556624d0554f110b8.html" style="top: 0px; left: 0px;"></iframe></div><div id="stOverlay" onclick="javascript:stWidget.closeWidget();" style="height: 100%; width: 100%; opacity: 0.6; position: fixed; display: none; left: 0px; top: 0px; z-index: 89999990; background-color: rgb(0, 0, 0);"></div></body></html>

@@ -1,6 +1,54 @@
 Post-Tokenization
 ====
 
+# OK this is just unmanageable, 
+I think I Need to go removing many terms from each file.
+
+I feel like, similar to your problems with many tasks including songwriting, you flail about looking for shortcuts and easy answers instead of taking a DEEP BREATH and READING the hard documentation and doing the careful sober planning.
+
+# Export
+
+dput(myTDM, file="myTDM.dput")
+
+dump?
+
+# Import
+myTDM<-dget(myTDM, file="myTDM.dput")
+
+
+## MUST UNDERSTAND:
+
+1. Cross-validation / sampling / bootstrapping
+
+2. *Markov Model / Markov Chain*
+
+3. Smoothing by assigning non-zero probabilities?
+
+4. multinomial or categorial distribution
+
+5. (n-1) gram
+
+6. Katz's Back-off model
+
+7. Good-Turing frequency estimation
+
+8. Use of Zipfian ?
+
+-Can I find all 2- and 3-grams which include a word? not just search for a word...
+
+9. Support vector machine
+
+# STATUS at 4:20 11/10/14
+We have a working model, 
+Model1.scalingup4.list
+Which does trigram and bigram detection.
+We loaded in # 9270280 Terms, 2020000 Docs (lines) of Twitter data.
+It took nearly 2 hours.
+
+
+# QUESTION
+Would having all as a document instead of each line being a document speed up?
+
 # Reading in large files 
 
 The error comes not with readLines but with the corpus work...
@@ -373,26 +421,7 @@ freqTable$query <- sapply(words,FUN=function(x) paste(x[1],x[2]))
 freqTable$predicted <- sapply(words,FUN=function(x) x[3])
 ```
 
-## MUST UNDERSTAND:
 
-1. Cross-validation / sampling / bootstrapping
-
-2. *Markov Model / Markov Chain*
-	
-
-3. Smoothing by assigning non-zero probabilities?
-
-4. multinomial or categorial distribution
-
-5. (n-1) gram
-
-6. Katz's Back-off model
-
-7. Good-Turing frequency estimation
-
-8. Use of Zipfian ?
-
--Can I find all 2- and 3-grams which include a word? not just search for a word...
 
 ## Speed Issues
 http://www.r-bloggers.com/faster-higher-stonger-a-guide-to-speeding-up-r-code-for-busy-people/
