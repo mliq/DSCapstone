@@ -124,11 +124,12 @@ print(paste("Bigram prediction ",k,": ",bimatch1$two[i]))}
 matches<-c(trimatches$three,bimatch1$two,bimatch2$one)
 matchCorpus<-makeCorpus(matches) # (Corpus(VectorSource(matches)) caused very similar terms to be considered separately like singular and plural)
 matchTDM<-TermDocumentMatrix(matchCorpus)
-predFreq<-data.frame(trimatches$three,)
 
-matchCorpus<-
-matchTDM<-TermDocumentMatrix(matchCorpus)
-predFreq<-data.frame(trimatches$three,)
+# Get total frequency in prediction corpus of each prediction
+predCount<-rowSums(as.matrix(matchTDM))
+
+# Create dataframe frequency table
+predFreq <- data.frame(gram=names(predCount),count=predCount,stringsAsFactors=FALSE)
 
 
 ```

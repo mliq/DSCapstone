@@ -1,3 +1,6 @@
+uniTest<- function(x) list {if (x[1] == unigram) {return x[2]}else if (x[2] == unigram) {paste x[3]}else {return 0}}
+uniTest<- function(x) {if (x[1] == unigram) {paste(x[2])}else if(x[2] == unigram) {paste(x[3])}else {return(NA)}}
+
 #Final Project 1
 #===================
 #For now just using news dataset - first 1000
@@ -39,7 +42,7 @@ corpus<-makeCorpus(lineNews)
 # Build TDM with uni-, bi- and tri-grams.
 library(rJava) # Is this really needed?
 library(RWeka)
-TrigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 3))
+TrigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
 
 myTDM <- TermDocumentMatrix(corpus, control = list(tokenize = TrigramTokenizer))
 
@@ -50,6 +53,31 @@ testCorpus<-makeCorpus("talking heads")
 testTDM<-TermDocumentMatrix(testCorpus, control = list(tokenize = TrigramTokenizer))
 
 findAssocs(myTDM,testCorpus[[1]][1]$content,0.0)
+# head                   1.00
+# talk                   1.00
+# hate                   0.58
+# hate talk              0.58
+# hate talk head         0.58
+# head favorit           0.58
+# head favorit band      0.58
+# head tv                0.58
+# head tv like           0.58
+# like                   0.58
+# like wolf              0.58
+# like wolf blitzer      0.58
+# talk head favorit      0.58
+# talk head tv           0.58
+# tv like                0.58
+# tv like wolf           0.58
+# band                   0.00
+# blitzer                0.00
+# favorit                0.00
+# favorit band           0.00
+# wolf                   0.00
+# wolf blitzer           0.00
+
+# So, I want to predict "band" but that's not real close. 
+# A big reason is that it is repeating the words used, I would like to eliminate those...
 
 
 ## TRIM? ##
