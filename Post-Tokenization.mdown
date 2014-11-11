@@ -1,18 +1,33 @@
 Post-Tokenization
 ====
 
+# Model 2
+
+Start over based on n-gram probabilities model, with just bigrams, and using small data first.
+
+Break a sentence into bigrams, and find the probability of that sentence, fine, but then what?? [](]https://class.coursera.org/nlp/lecture/128)
+
+
 # OK this is just unmanageable, 
 I think I Need to go removing many terms from each file.
 
 I feel like, similar to your problems with many tasks including songwriting, you flail about looking for shortcuts and easy answers instead of taking a DEEP BREATH and READING the hard documentation and doing the careful sober planning.
 
-# Export
+## Create a Pcorpus?
+
+## bag of words model could be done with this? :
+This would give us all the words in our prediction query sentence and their frequency... but actually that doesn't give us predictions.
+inspect(TermDocumentMatrix(reuters, list(dictionary = c("prices", "crude", "oil"))))
+
+
+#---#
+# Export? (crashed)
 
 dput(myTDM, file="myTDM.dput")
 
 dump?
 
-# Import
+## Import
 myTDM<-dget(myTDM, file="myTDM.dput")
 
 

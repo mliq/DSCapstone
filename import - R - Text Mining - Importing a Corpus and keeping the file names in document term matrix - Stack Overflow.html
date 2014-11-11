@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<!-- saved from url=(0120)http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=038622610830">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=fd7230a85918">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="R - Text Mining - Importing a Corpus and keeping the file names in document term matrix">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Up until recently (1 month ago) the code shown below allowed me to import a series of .txt documents stored in a local folder into R, to create a Corpus, pre-process it and finally to convert it in...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term">
+    <link rel="canonical" href="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow.html">
+
+    
+    
+    <script type="text/javascript" async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/ados"></script><script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/quant.js"></script><script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/beacon.js"></script><script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/ados.js"></script><script src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;R - Text Mining - Importing a Corpus and keeping the file names in document term matrix&#39;" href="http://stackoverflow.com/feeds/question/26257951">
+    <script>
+        
+        StackExchange.ready(function () {
+                
+                StackExchange.using("snippets", function () {
+                    StackExchange.snippets.initSnippetRenderer();
+                });
+                
+
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({votesCast:[],autoShowCommentHelp:true,showAnswerHelp:true,totalCommentCount:1,shownCommentCount:1,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:26257951});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '26257951');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1415662848,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"6bef6e5254dbe64879cbccfe9e04b968","isRegistered":true,"userType":3,"userId":3626188,"accountId":2706904,"gravatar":"<div class=\"gravatar-wrapper-32\"><img src=\"http://i.stack.imgur.com/T08bM.jpg?s=32&g=1\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"http://stackoverflow.com/users/3626188/mliqu","notificationsUnviewedCount":4,"inboxUnviewedCount":0,"ab":{"tutorial_tooltips":{"v":"b","g":2},"homepage_recommended_algo":{"v":"c","g":1}}}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"d2c4fcf39911","js/moderator.en.js":"f0aae043e417","js/full-anon.en.js":"fddfe4b756a3","js/full.en.js":"1c1bfbceb214","js/wmd.en.js":"a3970d941c95","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"5d2325aa9edf","js/help.en.js":"56d0a3a560ae","js/tageditor.en.js":"464d150473b9","js/tageditornew.en.js":"2cf0b88b6e05","js/inline-tag-editing.en.js":"de80429b1816","js/revisions.en.js":"e707189c34fa","js/review.en.js":"a318c6c40a99","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"58b8876dc9a1","js/explore-qlist.en.js":"4e6f969d97ee","js/events.en.js":"33468104e1d9","js/keyboard-shortcuts.en.js":"2a87f0c2931a","js/external-editor.en.js":"1db696fc3241","js/external-editor.en.js":"1db696fc3241","js/snippet-javascript.en.js":"fd82a8a2ce5e","js/snippet-javascript-codemirror.en.js":"35d933d4f0dc"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+    
+    
+<script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/full.en.js"></script><script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/prettify-full.en.js"></script><script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/external-editor.en.js"></script><script async="" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/wmd.en.js"></script><script type="text/javascript" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="http://static.adzerk.net/Extensions/adFeedback.css"><style type="text/css"> .wmd-snippet-button span { background-position: 0 0; } .wmd-snippet-button:hover span { background-position: 0 -40px; }</style><link href="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/sidebar.min.css" type="text/css" rel="stylesheet"><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body class="question-page new-topbar" lang="">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+                    <a href="http://stackoverflow.com/users/logout" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+    </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+                <a href="http://stackexchange.com/users/2706904/?tab=accounts">your communities</a>
+        </h3>
+            
+            <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" id="edit-pinned-sites">edit</a>
+            <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" id="cancel-pinned-sites" style="display: none;">cancel</a>
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <ul class="my-sites">
+                    <li>
+                        
+
+
+
+    <a href="http://ebooks.stackexchange.com/" class="site-link js-gps-track" data-id="530" data-gps-track="
+            site.switch({ target_site:530, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-ebooks" title="Ebooks"></div>
+        Ebooks
+            <span class="rep-score">11</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://stackoverflow.com/" class="site-link js-gps-track" data-id="1" data-gps-track="
+            site.switch({ target_site:1, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+            <span class="rep-score">3</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://apple.stackexchange.com/" class="site-link js-gps-track" data-id="118" data-gps-track="
+            site.switch({ target_site:118, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-apple" title="Ask Different"></div>
+        Ask Different
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://expatriates.stackexchange.com/" class="site-link js-gps-track" data-id="546" data-gps-track="
+            site.switch({ target_site:546, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-expatriates" title="Expatriates"></div>
+        Expatriates
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://music.stackexchange.com/" class="site-link js-gps-track" data-id="240" data-gps-track="
+            site.switch({ target_site:240, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-music" title="Music: Practice &amp; Theory"></div>
+        Music: Practice &amp; Theory
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+            </ul>
+                <div class="pinned-site-editor-container" style="display: none;">
+                    <input id="js-site-search-txt" type="text" class="site-filter-input" value="" placeholder="Add a Stack Exchange community">
+                    <input type="submit" id="pin-site-btn" value="Add" disabled="disabled">
+                    <ul class="js-found-sites found-sites"></ul>
+                    <ul class="pinned-site-list sortable" data-custom-list="False">
+                    </ul>
+                    <input type="submit" value="Save" id="save-pinned-sites-btn" disabled="disabled">
+                    <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" id="reset-pinned-sites">reset to default list</a>
+                </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 131 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+                <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+                    <span class="hidden-text">Inbox</span>
+                    <span class="unread-count" style="display:none"></span>
+                </a>
+                <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+                    <span class="hidden-text">Reputation and Badges</span>
+                    <span class="unread-count" style="display:none">
+                        
+                    </span>
+                </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <a href="http://stackoverflow.com/users/3626188/mliqu" class="profile-me js-gps-track" data-gps-track="profile_summary.click()">
+                    <div class="gravatar-wrapper-24" title="mliqu"><img src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/T08bM.jpg" alt="" width="24" height="24" class="avatar-me js-avatar-me"></div>
+                    <div class="links-container topbar-flair">
+
+                        <span class="reputation" title="your reputation: 3">
+                            3
+                        </span>
+<span title="3 bronze badges"><span class="badge3"></span><span class="badgecount">3</span></span>                    </div>
+                </a>
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+
+
+
+
+    <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs ">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+	<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow.html" class="question-hyperlink">R - Text Mining - Importing a Corpus and keeping the file names in document term matrix</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="26257951" id="question">
+
+    <script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk110128705",4).setZone(43) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk110128705"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo4NDcsImNoIjoxMTc4LCJjciI6NTkxOSwiZGkiOiI4YTE2M2QzODllODc0ODFlYWZmOTk3ZWFlZmQxOGNlNyIsImRtIjoxLCJmYyI6ODgwNSwiZmwiOjI0NDQsImlwIjoiNzUuNzMuNi42MiIsImt3IjoicixpbXBvcnQsdGV4dC1taW5pbmcsY29ycHVzLHgtdXNlci1yZWdpc3RlcmVkIiwibnciOjIyLCJwYyI6MCwicHIiOjE1NjgsInJ0IjoxLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3QiOjgyNzcsInVrIjoidWUxLWUwMzIyMGUzNWFmZTQ4MWU4MjZiNWQyOGIyNmZhM2Q2Iiwiem4iOjQzLCJ0cyI6MTQxNTY2Mjg0OTM5MSwidXIiOiJodHRwOi8vY2FyZWVycy5zdGFja292ZXJmbG93LmNvbT91dG1fc291cmNlPXN0YWNrZXhjaGFuZ2UuY29tJnV0bV9tZWRpdW09YWQmdXRtX2NhbXBhaWduPWhvdXNlLWFkcy1jYXRjaC1hbGwtYWxsLXNpdGVzJnV0bV9jb250ZW50PWxiLWNvZGVwbGV4In0&s=MYYPrA1XerlyQz5GiQBa9iyndKs" rel="nofollow" target="_blank" title=""><img src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/4c4f1be011a447efbce49c1811022e7a.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/i.gif"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="26257951">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b></b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+        <p>Up until recently (1 month ago) the code shown below allowed me to import a series of .txt documents stored in a local folder into R, to create a Corpus, pre-process it and finally to convert it into a Document Term Matrix. The issue I am having is that the document names are not being imported, instead each document is listed as 'character(0)'. </p>
+
+<p>One of my aims is to conduct topic modelling on the corpus and so it is important that I can relate the document names to the topics that the model produces. </p>
+
+<p>Does anyone have any suggestions as to what has changed? Or how I can fix this?</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">library</span><span class="pun">(</span><span class="str">"tm"</span><span class="pun">)</span><span class="pln">
+library</span><span class="pun">(</span><span class="str">"SnowballC"</span><span class="pun">)</span><span class="pln">
+
+setwd</span><span class="pun">(</span><span class="str">"C:/Users/Documents/Dataset/"</span><span class="pun">)</span><span class="pln">
+corpus </span><span class="pun">&lt;-</span><span class="pln">Corpus</span><span class="pun">(</span><span class="pln">DirSource</span><span class="pun">(</span><span class="str">"blog"</span><span class="pun">))</span><span class="pln">
+
+
+</span><span class="com">#pre_processing</span><span class="pln">
+myStopwords </span><span class="pun">&lt;-</span><span class="pln"> c</span><span class="pun">(</span><span class="pln">stopwords</span><span class="pun">(</span><span class="str">"english"</span><span class="pun">))</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">corpus</span><span class="pun">,</span><span class="pln"> tolower</span><span class="pun">)</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> removeNumbers</span><span class="pun">)</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> removeWords</span><span class="pun">,</span><span class="pln"> myStopwords</span><span class="pun">)</span><span class="pln"> 
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> stripWhitespace</span><span class="pun">)</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> removePunctuation</span><span class="pun">)</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> stemDocument</span><span class="pun">)</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> PlainTextDocument</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com">#creating a doucment term matrix</span><span class="pln">
+myDtm </span><span class="pun">&lt;-</span><span class="pln"> DocumentTermMatrix</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> control</span><span class="pun">=</span><span class="pln">list</span><span class="pun">(</span><span class="pln">wordLengths</span><span class="pun">=</span><span class="pln">c</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="lit">Inf</span><span class="pun">)))</span><span class="pln">
+
+dim</span><span class="pun">(</span><span class="pln">myDtm</span><span class="pun">)</span><span class="pln">
+inspect</span><span class="pun">(</span><span class="pln">myDtm</span><span class="pun">)</span></code></pre>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag js-gps-track" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/import" class="post-tag js-gps-track" title="show questions tagged &#39;import&#39;" rel="tag">import</a> <a href="http://stackoverflow.com/questions/tagged/text-mining" class="post-tag js-gps-track" title="show questions tagged &#39;text-mining&#39;" rel="tag">text-mining</a> <a href="http://stackoverflow.com/questions/tagged/corpus" class="post-tag js-gps-track" title="show questions tagged &#39;corpus&#39;" rel="tag">corpus</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/26257951/3626188" title="short permalink to this question" class="short-link" id="link-post-26257951">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/26257951/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2014-10-08 13:19:44Z" class="relativetime">Oct 8 at 13:19</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/3587152/user3587152"><div><img src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/447f9264aa3687c9d8e55d0a94d36a39" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/3587152/user3587152">user3587152</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">13</span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-26257951" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-41193786" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I previously had this problem, but don't remember the issue / resolution.  If you examine your_corpus after every operation, you can see when the id is dropped.  Then you can search so for that operation.  Also, check this answer  <a href="http://stackoverflow.com/questions/24501514/keep-document-id-with-r-corpus" title="keep document id with r corpus">stackoverflow.com/questions/24501514/…</a></span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/3969377/user3969377" title="633 reputation" class="comment-user">user3969377</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#comment41193786_26257951"><span title="2014-10-08 14:25:47Z" class="relativetime-clean">Oct 8 at 14:25</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-26257951" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" onclick=""></a>
+            </div>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								2 Answers
+                                <span style="display:none;" itemprop="answerCount">2</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="26260368"></a>
+<div id="answer-26260368" class="answer accepted-answer" data-answerid="26260368" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="26260368">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here's a debugging session to identify / correct the loss of file name.  The tolower line was modified, and the plaintext line was commented-out since these lines remove the file information.  Also, if you check ds$reader, you can see the baseline reader creates a plain text document.</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">library</span><span class="pun">(</span><span class="str">"tm"</span><span class="pun">)</span><span class="pln">
+library</span><span class="pun">(</span><span class="str">"SnowballC"</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com"># corpus &lt;-Corpus(DirSource("blog"))</span><span class="pln">
+
+sf</span><span class="pun">&lt;-</span><span class="pln">system.file</span><span class="pun">(</span><span class="str">"texts"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"txt"</span><span class="pun">,</span><span class="pln"> package </span><span class="pun">=</span><span class="pln"> </span><span class="str">"tm"</span><span class="pun">)</span><span class="pln">
+ds </span><span class="pun">&lt;-</span><span class="pln">DirSource</span><span class="pun">(</span><span class="pln">sf</span><span class="pun">)</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln">Corpus</span><span class="pun">(</span><span class="pln">ds</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com"># Check status with the following line</span><span class="pln">
+meta</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]])</span><span class="pln">
+
+</span><span class="com">#pre_processing</span><span class="pln">
+myStopwords </span><span class="pun">&lt;-</span><span class="pln"> c</span><span class="pun">(</span><span class="pln">stopwords</span><span class="pun">(</span><span class="str">"english"</span><span class="pun">))</span><span class="pln">
+</span><span class="com"># your_corpus &lt;- tm_map(your_corpus, tolower)</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> content_transformer</span><span class="pun">(</span><span class="pln">tolower</span><span class="pun">))</span><span class="pln">
+meta</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]])</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> removeNumbers</span><span class="pun">)</span><span class="pln">
+meta</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]])</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> removeWords</span><span class="pun">,</span><span class="pln"> myStopwords</span><span class="pun">)</span><span class="pln"> 
+meta</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]])</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> stripWhitespace</span><span class="pun">)</span><span class="pln">
+meta</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]])</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> removePunctuation</span><span class="pun">)</span><span class="pln">
+meta</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]])</span><span class="pln">
+your_corpus </span><span class="pun">&lt;-</span><span class="pln"> tm_map</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> stemDocument</span><span class="pun">)</span><span class="pln">
+meta</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]])</span><span class="pln">
+</span><span class="com">#your_corpus &lt;- tm_map(your_corpus, PlainTextDocument)</span><span class="pln">
+</span><span class="com">#meta(your_corpus[[1]])</span><span class="pln">
+
+</span><span class="com">#creating a doucment term matrix</span><span class="pln">
+myDtm </span><span class="pun">&lt;-</span><span class="pln"> DocumentTermMatrix</span><span class="pun">(</span><span class="pln">your_corpus</span><span class="pun">,</span><span class="pln"> control</span><span class="pun">=</span><span class="pln">list</span><span class="pun">(</span><span class="pln">wordLengths</span><span class="pun">=</span><span class="pln">c</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="lit">Inf</span><span class="pun">)))</span><span class="pln">
+
+dim</span><span class="pun">(</span><span class="pln">myDtm</span><span class="pun">)</span><span class="pln">
+inspect</span><span class="pun">(</span><span class="pln">myDtm</span><span class="pun">)</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/26260368/3626188" title="short permalink to this answer" class="short-link" id="link-post-26260368">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/26260368/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/26260368/revisions" title="show all edits to this post">edited <span title="2014-10-08 15:19:21Z" class="relativetime">Oct 8 at 15:19</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-10-08 15:10:21Z" class="relativetime">Oct 8 at 15:10</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/3969377/user3969377"><div><img src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/3f8dfdb77167183582d1d62390e0838b" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/3969377/user3969377">user3969377</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">633</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-26260368" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-41200394" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Excellent, this works now. Thanks for your help :)</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/3587152/user3587152" title="13 reputation" class="comment-user owner">user3587152</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#comment41200394_26260368"><span title="2014-10-08 17:21:22Z" class="relativetime-clean">Oct 8 at 17:21</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-26260368" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk1004165165",4).setZone(44) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1004165165"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo4NDcsImNoIjoxMTc4LCJjciI6NTkyMCwiZGkiOiIxNmNlOTc1YTViNWU0ZGYxYjc2NTAxZDc3MTMzNzM3MCIsImRtIjoxLCJmYyI6ODgwNiwiZmwiOjI0NDQsImlwIjoiNzUuNzMuNi42MiIsImt3IjoicixpbXBvcnQsdGV4dC1taW5pbmcsY29ycHVzLHgtdXNlci1yZWdpc3RlcmVkIiwibnciOjIyLCJwYyI6MCwicHIiOjE1NjgsInJ0IjoxLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vIiwic3QiOjgyNzcsInVrIjoidWUxLWUwMzIyMGUzNWFmZTQ4MWU4MjZiNWQyOGIyNmZhM2Q2Iiwiem4iOjQ0LCJ0cyI6MTQxNTY2Mjg0OTM5MywidXIiOiJodHRwOi8vY2FyZWVycy5zdGFja292ZXJmbG93LmNvbT91dG1fc291cmNlPXN0YWNrZXhjaGFuZ2UuY29tJnV0bV9tZWRpdW09YWQmdXRtX2NhbXBhaWduPWhvdXNlLWFkcy1jYXRjaC1hbGwtYWxsLXNpdGVzJnV0bV9jb250ZW50PWxiLWdpdGh1YiJ9&s=wVGSNk81FecbeUZKKRKCkiITzn0" rel="nofollow" target="_blank" title=""><img src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/60abb4b317034aa2af0bc697e6f02963.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/i(1).gif"></div>
+  
+<a name="26263139"></a>
+<div id="answer-26263139" class="answer" data-answerid="26263139" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="26263139">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here's an approach using <code>qdap</code> where I make a function to read in a directory of files and convert them to a <code>data.frame</code>:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">library</span><span class="pun">(</span><span class="pln">qdap</span><span class="pun">)</span><span class="pln">
+sf </span><span class="pun">&lt;-</span><span class="pln"> system.file</span><span class="pun">(</span><span class="str">"texts"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"txt"</span><span class="pun">,</span><span class="pln"> package </span><span class="pun">=</span><span class="pln"> </span><span class="str">"tm"</span><span class="pun">)</span><span class="pln">
+
+read_in </span><span class="pun">&lt;-</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">sf</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    list2df</span><span class="pun">(</span><span class="pln">setNames</span><span class="pun">(</span><span class="pln">lapply</span><span class="pun">(</span><span class="pln">file.path</span><span class="pun">(</span><span class="pln">sf</span><span class="pun">,</span><span class="pln"> dir</span><span class="pun">(</span><span class="pln">sf</span><span class="pun">)),</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        clean</span><span class="pun">(</span><span class="pln">unbag</span><span class="pun">(</span><span class="pln">readLines</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)))}),</span><span class="pln"> dir</span><span class="pun">(</span><span class="pln">sf</span><span class="pun">)),</span><span class="pln"> </span><span class="str">"text"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"source"</span><span class="pun">)[,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">:</span><span class="lit">1</span><span class="pun">]</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+mydtm </span><span class="pun">&lt;-</span><span class="pln"> with</span><span class="pun">(</span><span class="pln">read_in</span><span class="pun">(</span><span class="pln">sf</span><span class="pun">),</span><span class="pln"> as.dtm</span><span class="pun">(</span><span class="pln">text</span><span class="pun">,</span><span class="pln"> source</span><span class="pun">,</span><span class="pln"> stem</span><span class="pun">=</span><span class="lit">TRUE</span><span class="pun">,</span><span class="pln"> 
+    stopwords</span><span class="pun">=</span><span class="pln">tm</span><span class="pun">::</span><span class="pln">stopwords</span><span class="pun">(</span><span class="str">"english"</span><span class="pun">)))</span><span class="pln">
+mydtm </span><span class="pun">&lt;-</span><span class="pln"> Filter</span><span class="pun">(</span><span class="pln">mydtm</span><span class="pun">,</span><span class="pln"> min</span><span class="pun">=</span><span class="lit">3</span><span class="pun">)</span><span class="pln">
+inspect</span><span class="pun">(</span><span class="pln">mydtm</span><span class="pun">)</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/26263139/3626188" title="short permalink to this answer" class="short-link" id="link-post-26263139">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/26263139/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-10-08 17:44:33Z" class="relativetime">Oct 8 at 17:44</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1000343/tyler-rinker"><div class="gravatar-wrapper-32"><img src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/489e674a9beb5760a71abf592b462669" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1000343/tyler-rinker">Tyler Rinker</a><br>
+        <span class="reputation-score" title="reputation score 29584" dir="ltr">29.6k</span><span title="6 gold badges"><span class="badge1"></span><span class="badgecount">6</span></span><span title="55 silver badges"><span class="badge2"></span><span class="badgecount">55</span></span><span title="162 bronze badges"><span class="badge3"></span><span class="badgecount">162</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-26263139" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-26263139" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/26257951/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="26257951">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.com/">
+							<h2 class="space">Your Answer</h2>
+
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+            // Have to fire editor after snippets, if snippets enabled
+            if (StackExchange.options.snippets.enabled) {
+                StackExchange.using("snippets", function() {
+                    createEditor();
+                });
+            }
+            else {
+                createEditor();
+            }
+        });
+
+        function createEditor() {
+            prepareEditor({
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: false,
+                    discardSelector: ".discard-answer"
+                ,immediatelyShowMarkdownHelp:true
+                });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I" style="left: 25px;"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L" style="left: 75px;"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q" style="left: 100px;"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K" style="left: 125px;"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G" style="left: 150px;"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" style="left:175px" id="wmd-snippet-button" title="Code snippet Ctrl-M"><span style="background-image: url(http://stackoverflow.com/content/balsamiq/wmd-mockup-button.png?v=4);"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2" style="left: 200px;"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O" style="left: 225px;"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U" style="left: 250px;"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H" style="left: 275px;"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R" style="left: 300px;"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3" style="left: 325px;"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z" style="left: 350px;"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y" style="left: 375px;"><span style="background-position: -220px -20px;"></span></li><li class="wmd-button wmd-help-button active-help" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li><div id="mdhelp" class="mdhelp" style="right: -6.99999237060547px; width: 667px; top: 25px;">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-buttons="image">Images</li>
+        <li data-tab="mdhelp-styles" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html"> HTML </li>
+        <li style="float:right"><a href="http://stackoverflow.com/editing-help" target="_blank">advanced help »</a></li>
+    </ul>
+    
+    <div class="mdhelp-tab" id="mdhelp-links">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit http://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;http://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+                <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: http://notfound.stackexchange.com/
+ [question]: http://english.stackexchange.com/questions/11481
+</pre>
+                <p>You can add tooltips to links:</p>
+<pre> Click [here](http://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")! This works with [reference links][blog] as well.   [blog]: http://blog.stackoverflow.com/<span class="spaces">&nbsp;</span>"click here for updates" </pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-images">
+        <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+        <pre>![a busy cat](http://sstatic.net/stackoverflow/img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: http://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+        <p>
+            The word in square brackets is the alt text, which gets displayed if the browser
+ can't show the image. Be sure to include meaningful alt text for screen-reading
+ software.
+        </p>
+   
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-styles">
+        <div class="col1">
+            <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+        
+        </div>
+        <div class="col2">
+            <p>
+                To break your text into sections, you can use headers:
+            </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+            <p>
+                Use hash marks if you need several levels of headers:</p>
+    <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+
+            
+        </div>
+
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-lists">
+        <p>Both bulleted and numbered lists are possible:</p>
+        <div class="col1">
+<pre> -<span class="spaces">&nbsp;</span>Use a minus sign for a bullet +<span class="spaces">&nbsp;</span>Or plus sign *<span class="spaces">&nbsp;</span>Or an asterisk  1.<span class="spaces">&nbsp;</span>Numbered lists are easy 2.<span class="spaces">&nbsp;</span>Markdown keeps track of  the numbers for you 7.<span class="spaces">&nbsp;</span>So this will be item 3. </pre>
+        </div>
+        <div class="col2">
+<pre> 1.<span class="spaces">&nbsp;</span>Lists in a list item: <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again. 2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items. <span class="spaces">&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent. </pre>        
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes">
+        <div class="col1">
+            <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+</pre>
+        </div>
+        <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-code">
+        <p>
+            To create code blocks or other preformatted text, indent by four spaces:
+        </p>
+        <pre> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Markdown and HTML are turned off in code blocks: <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](http://example.com) </pre>
+        <p>
+            To create not a block, but an inline code span, use backticks:
+        </p>
+        <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+        <p>
+            If you want to have a preformatted block within a list, indent by eight spaces:
+        </p>
+        <pre> 1. This is normal text. 2. So is this, but now follows a code block: <span class="spaces">&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block. </pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-html">
+        <p>
+            If you need to do something that Markdown can't handle, use HTML. Note that <a href="http://meta.stackexchange.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a>
+        </p>
+        <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+        <p>
+            Markdown is smart enough not to mangle your span-level HTML:
+        </p>
+        <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+        <p>
+            Block-level HTML elements have a few restrictions:
+        </p>
+        <ol>
+            <li>They must be separated from surrounding text by blank lines.</li>
+            <li>The begin and end tags of the outermost block element must not be indented.</li>
+            <li>Markdown can't be used within HTML blocks.</li>
+        </ol>
+        <br>
+        <pre> &lt;pre&gt;  You can &lt;em&gt;not&lt;/em&gt; use Markdown in here. &lt;/pre&gt; </pre>
+    </div>
+
+    <div class="cbt"></div>
+</div></ul></div>
+            <div style="clear: both; height: 24px;"></div><textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div class="grippie" style="margin-right: -7px;"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="6bef6e5254dbe64879cbccfe9e04b968">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" class="discard-answer dno">discard</a>
+								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/import" class="post-tag" title="show questions tagged &#39;import&#39;" rel="tag">import</a> <a href="http://stackoverflow.com/questions/tagged/text-mining" class="post-tag" title="show questions tagged &#39;text-mining&#39;" rel="tag">text-mining</a> <a href="http://stackoverflow.com/questions/tagged/corpus" class="post-tag" title="show questions tagged &#39;corpus&#39;" rel="tag">corpus</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+
+
+
+<script>
+    window.showNewUser = false;
+
+</script>
+
+<div class="module newuser newuser-greeting" id="newuser-box" style="display:none;">
+    <h4>Hello World!</h4>
+    <div>
+        <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p><p>Got a question about the site itself? <a href="http://meta.stackoverflow.com/">meta</a> is the place to talk about things like what questions are appropriate, what tags we should use, etc.</p>
+        <p class="ar">
+                <a href="http://stackoverflow.com/tour?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;
+            <a href="http://stackoverflow.com/help?mnu=1">help »</a>
+                &nbsp; <a href="http://meta.stackoverflow.com/">meta »</a>
+        </p>
+    </div>
+</div>
+    <script>
+    if (showNewUser) {
+        document.getElementById('newuser-box').style.display = '';
+    }
+    </script>						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2014-10-08 13:19:44Z"><b>1 month ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>41 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term?lastactivity" class="lastactivity-link" title="2014-10-08 17:44:33Z">1 month ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Hot Meta Posts
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">24</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/276508/grace-period-to-recover-deleted-answer-content-user-removed?cb=1" class="question-hyperlink">Grace Period to recover deleted answer content (User Removed)</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">21</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/276386/when-is-it-appropriate-to-add-code-to-the-ops-question-when-the-op-has-supplie?cb=1" class="question-hyperlink">When is it appropriate to add code to the OP's question, when the OP has supp…</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">12</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/276424/should-java-be-removed-from-certain-scala-questions?cb=1" class="question-hyperlink">Should [java] be removed from certain [scala] questions?</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">3</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/276429/bounties-now-invisible-for-anonymous-users?cb=1" class="question-hyperlink">Bounties now invisible for anonymous users</a>
+                </div>
+                <br class="cbt">
+            </div>
+    </div>
+</div>			
+			<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk541074937",[17,2221]).setZone(45) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk541074937"><div id="SE20-ad-container" style="height: 250px; width: 220px;">
+<style>
+#launched-ad { width: 220px; height: 250px; overflow: hidden; background: url(//cdn.sstatic.net/stackexchange/Img/launched-ads/dba.png) no-repeat bottom center; }
+#launched-ad-link { display: block; width: 220px; height: 250px; line-height: 1.2; color: #00adee !important; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 20px; line-height: 28px; text-decoration: none; cursor: pointer; }
+#launched-ad-inner { width: 180px; margin: 20px 20px 0 20px;}
+</style>
+<a id="launched-ad-link" href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjo5OTMsImNoIjoxMTc4LCJjciI6MzE5NCwiZGkiOiJlZmVjM2U4YWRkN2Q0NDNlYTZmZGU0ZDlmZjMzNDkxNSIsImRtIjoxLCJmYyI6MTE3MTksImZsIjoyODQxLCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6InIsaW1wb3J0LHRleHQtbWluaW5nLGNvcnB1cyx4LXVzZXItcmVnaXN0ZXJlZCIsIm53IjoyMiwicGMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS1lMDMyMjBlMzVhZmU0ODFlODI2YjVkMjhiMjZmYTNkNiIsInpuIjo0NSwidHMiOjE0MTU2NjI4NDk0MDEsInVyIjpudWxsfQ&s=snqNF-7iM0_sAmB5a37s5qQSMuY&url=http%3A%2F%2Fdba.stackexchange.com%2Fquestions%2F82304%2Fsql-server-grant-execute-on-all-stored-procedures-without-ddl-permissions%3Futm_medium%3Dad%26utm_source%3Dhttp-stackoverflow-com-questions-26257951-r-text-mining-importing-a-corpus-and%26utm_campaign%3Ddba.stackexchange.com-promo%26utm_content%3D82304">
+    <div id="launched-ad">
+        <div id="launched-ad-inner">SQL Server Grant execute on all stored procedures without ddl permissions</div>
+    </div>
+</a>
+</div><script type="text/javascript">window._launchedAdUrl= "http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjo5OTMsImNoIjoxMTc4LCJjciI6MzE5NCwiZGkiOiJlZmVjM2U4YWRkN2Q0NDNlYTZmZGU0ZDlmZjMzNDkxNSIsImRtIjoxLCJmYyI6MTE3MTksImZsIjoyODQxLCJpcCI6Ijc1LjczLjYuNjIiLCJrdyI6InIsaW1wb3J0LHRleHQtbWluaW5nLGNvcnB1cyx4LXVzZXItcmVnaXN0ZXJlZCIsIm53IjoyMiwicGMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS1lMDMyMjBlMzVhZmU0ODFlODI2YjVkMjhiMjZmYTNkNiIsInpuIjo0NSwidHMiOjE0MTU2NjI4NDk0MDEsInVyIjpudWxsfQ&s=snqNF-7iM0_sAmB5a37s5qQSMuY";</script><script type="text/javascript" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/js"></script><img height="0px" width="0px" border="0" style="position:absolute;" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/i(2).gif"></div>  
+        <div id="hireme" class=" blue tagged">  <a href="http://careers.stackoverflow.com/?a=5TaWQ&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-tech-stack2" class="top" target="_blank"> </a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/71878/devops-engineer-with-a-taste-for-analytics-bluetone-communications?a=o6ywMYin5kJ&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-tech-stack2" target="_blank" title="DevOps Engineer with a taste for analytics at Bluetone Communications. Click to learn more."> <span class="title">DevOps Engineer with a taste for analytics</span> <span class="company">Bluetone Communications</span> <span class="location">New Albany, OH</span> <span class="post-tag">python</span> <span class="post-tag">ruby</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/72394/remote-frontend-developer-mb3-inc?a=ohhJxM3da1k&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-tech-stack2" target="_blank" title="Remote Frontend Developer at MB3. Click to learn more."> <span class="title">Remote Frontend Developer</span> <span class="company">MB3</span> <span class="location">Orlando, FL / remote</span> <span class="post-tag">html</span> <span class="post-tag">javascript</span> </a> </li> </ul> <img alt="" class="impression" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/o6ywMYin5kJ-ohhJxM3da1k-5TaWQ" style="display:none"> </div>
+			<div class="module" id="chat-feature">
+    
+
+    
+<h4><a href="http://chat.stackoverflow.com/" id="h-chat-link" title="81 users active in 32 rooms the last 60 minutes">81 People Chatting</a></h4>
+
+<div class="related" id="ad502-rooms"><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="Lounge&lt;C++&gt;"><a href="http://chat.stackoverflow.com/rooms/10">Lounge&lt;C++&gt;</a></span></h3><span title="2014-11-10 21:03:37Z" class="ad502-last-message">2 hours ago - <a href="http://chat.stackoverflow.com/users/565635">orlp</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/343443"><img height="23" width="23" title="Abyx: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/2dcf7b64ff07a02fbd78c27f50ce9631"></a><a href="http://chat.stackoverflow.com/users/303662"><img height="23" width="23" title="Ell: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/e4fe5511c802ce89b7e95c8173a7a17a"></a><a href="http://chat.stackoverflow.com/users/75889"><img height="23" width="23" title="StackedCrooked: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/37aa3ec65ec47c5a3f9e2a80534837f3"></a><a href="http://chat.stackoverflow.com/users/565635"><img height="23" width="23" title="orlp: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/7b4b3e7c9ac68b7d2c93ad02d0b9c79d"></a><a href="http://chat.stackoverflow.com/users/922184"><img height="23" width="23" title="Mysticial: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/URZNf.jpg"></a><a href="http://chat.stackoverflow.com/users/1804599"><img height="23" width="23" title="rightføld: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/44814a231040ea4f568c0bb2e3b7c223"></a><a href="http://chat.stackoverflow.com/users/1381108"><img height="23" width="23" title="Rapptz: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/0a55e1b257487441cd435f66bfb413f1"></a></div></div><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="PHP"><a href="http://chat.stackoverflow.com/rooms/11">PHP</a></span></h3><span title="2014-11-10 21:04:02Z" class="ad502-last-message">2 hours ago - <a href="http://chat.stackoverflow.com/users/508666">PeeHaa</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/113938"><img height="23" width="23" title="salathe: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/a6a942eb4fdf4fc9ab5dc921d69249af"></a><a href="http://chat.stackoverflow.com/users/2153758"><img height="23" width="23" title="bwoebi: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/3659fff22e890aaa5d7b03e799f9047f"></a><a href="http://chat.stackoverflow.com/users/851498"><img height="23" width="23" title="Florian Margaine: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/138a5bfc83f7df06b2701ccd722531c3"></a><a href="http://chat.stackoverflow.com/users/508666"><img height="23" width="23" title="PeeHaa: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/FKDM0.png"></a><a href="http://chat.stackoverflow.com/users/1401975"><img height="23" width="23" title="HamZa: 2 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/Jh3mC.jpg"></a><a href="http://chat.stackoverflow.com/users/385378"><img height="23" width="23" title="NikiC: 3 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/b4ec98df44deb80b1576283152670358"></a><a href="http://chat.stackoverflow.com/users/736162"><img height="23" width="23" title="Andrea Faulds: 3 hours ago" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/eb6854f56cb2aa14ce798b53ea667639"></a></div></div></div>
+<script>
+// <!--
+    StackExchange.ready(
+    function () {
+        var options = {
+            chatUrl: 'http://chat.stackoverflow.com',
+            reloadUrl: '/api/recent-chat',
+            preloadData: {"activeUsers":81,"activeRooms":32,"rooms":[{"name":"Lounge\u003cC++\u003e","id":10,"lastPost":1415653417,"posts":3191357,"users":[{"name":"Abyx","id":343443,"emailhash":"2dcf7b64ff07a02fbd78c27f50ce9631","lastPost":1415653228},{"name":"Ell","id":303662,"emailhash":"e4fe5511c802ce89b7e95c8173a7a17a","lastPost":1415653178},{"name":"StackedCrooked","id":75889,"emailhash":"37aa3ec65ec47c5a3f9e2a80534837f3","lastPost":1415652910},{"name":"orlp","id":565635,"emailhash":"7b4b3e7c9ac68b7d2c93ad02d0b9c79d","lastPost":1415652846},{"name":"Mysticial","id":922184,"emailhash":"!http://i.stack.imgur.com/URZNf.jpg?s=128\u0026g=1","lastPost":1415652746},{"name":"rightføld","id":1804599,"emailhash":"44814a231040ea4f568c0bb2e3b7c223","lastPost":1415652405},{"name":"Rapptz","id":1381108,"emailhash":"0a55e1b257487441cd435f66bfb413f1","lastPost":1415652125}],"messages":[{"date":1415653417,"user":"orlp","userid":565635}],"singleImage":false,"tags":["c++","c++11","c++14","c++-faq"]},{"name":"PHP","id":11,"lastPost":1415653442,"posts":1703730,"users":[{"name":"salathe","id":113938,"emailhash":"a6a942eb4fdf4fc9ab5dc921d69249af","lastPost":1415653389},{"name":"bwoebi","id":2153758,"emailhash":"3659fff22e890aaa5d7b03e799f9047f","lastPost":1415653358},{"name":"Florian Margaine","id":851498,"emailhash":"138a5bfc83f7df06b2701ccd722531c3","lastPost":1415652339},{"name":"PeeHaa","id":508666,"emailhash":"!http://i.stack.imgur.com/FKDM0.png?s=128\u0026g=1","lastPost":1415652282},{"name":"HamZa","id":1401975,"emailhash":"!http://i.stack.imgur.com/Jh3mC.jpg?s=128\u0026g=1","lastPost":1415652256},{"name":"NikiC","id":385378,"emailhash":"b4ec98df44deb80b1576283152670358","lastPost":1415650544},{"name":"Andrea Faulds","id":736162,"emailhash":"eb6854f56cb2aa14ce798b53ea667639","lastPost":1415650089}],"messages":[{"date":1415653442,"user":"PeeHaa","userid":508666}],"singleImage":false,"tags":["php"]}]} 
+        };
+
+        StackExchange.chatAd.init(options);
+    });
+// -->
+</script>
+
+</div>  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/24501514?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/24501514/keep-document-id-with-r-corpus?lq=1" class="question-hyperlink">Keep document ID with R corpus</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/10377273?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/10377273/tm-package-error-error-definining-document-term-matrix?rq=1" class="question-hyperlink">tm Package error: Error definining Document Term Matrix</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/14322511?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/14322511/compare-terms-of-documents-in-document-term-matrix-in-r?rq=1" class="question-hyperlink">Compare Terms of Documents in Document Term Matrix in R</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/17294824?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/17294824/counting-words-in-a-single-document-from-corpus-in-r-and-putting-it-in-dataframe?rq=1" class="question-hyperlink">Counting words in a single document from corpus in R and putting it in dataframe</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/19760746?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/19760746/finding-most-frequent-term-in-each-document-of-a-corpus?rq=1" class="question-hyperlink">Finding most frequent term in each document of a corpus</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20617510?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/20617510/plot-tf-idf-value-of-bigram-over-time?rq=1" class="question-hyperlink">Plot TF.IDF value of bigram over time</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/20970681?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/20970681/convert-tdm-csv-file-into-corpus-format-in-text-mining?rq=1" class="question-hyperlink">Convert TDM CSV file into Corpus Format in Text Mining</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/23993393?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/23993393/text-mining-in-r-how-to-find-high-correlation-terms?rq=1" class="question-hyperlink">Text Mining in R, how to find high correlation terms?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25050629?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/25050629/scaling-and-parallel-processing-tm-package-term-document-matrix-calculations-i?rq=1" class="question-hyperlink">Scaling and parallel processing 'tm' package Term-Document Matrix calculations in R studio?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25330753?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/25330753/more-efficient-means-of-creating-a-corpus-and-dtm?rq=1" class="question-hyperlink">More efficient means of creating a corpus and DTM</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25551514?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/25551514/termdocumentmatrix-errors-in-r?rq=1" class="question-hyperlink">TermDocumentMatrix errors in R</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/167112/scp-command-with-selected-file-and-directories-for-download-asks-for-password-f" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    SCP command with selected file and directories for download ask's for password for each new file or directory
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-chinese" title="Chinese Language Stack Exchange"></div><a href="http://chinese.stackexchange.com/questions/10286/whats-the-difference-between-%e9%9b%95%e5%83%8f-and-%e9%9b%95%e5%a1%91" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:371 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What's the difference between 雕像 and 雕塑?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/3891/dietary-requirements-of-giant-spiders" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Dietary Requirements of Giant Spiders
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/211529/add-circle-to-smith-chart-using-pgf" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Add circle to Smith chart using PGF
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/167181/search-2nd-line-of-files-and-print-filenames-to-stdout" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Search 2nd line of files and print filenames to stdout
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/65367/plot-how-set-markers-in-plot-in-front-of-axes" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Plot: How set markers in plot in front of axes
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a href="http://dba.stackexchange.com/questions/82304/sql-server-grant-execute-on-all-stored-procedures-without-ddl-permissions" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    SQL Server Grant execute on all stored procedures without ddl permissions
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/9572/how-do-aircraft-refueling-in-air-deal-with-wake-turbulence" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do aircraft refueling in-air deal with wake turbulence?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/38464/is-there-an-ontology-of-geographical-entities-to-visit" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there an ontology of geographical entities to visit?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/69419/how-would-you-comment-and-space-this-sample-snippet-of-code" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How would you comment and space this sample snippet of code?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/3894/how-would-nanobots-consume-objects" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How would nanobots consume objects?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/39107/in-the-morning-vs-in-morning" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    “in the morning” vs. “in morning”
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/191244/titan-weapons-of-light-perk" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Titan - Weapons of Light perk
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/40935/unscramble-the-source-code-robber-thread-for-cracking-attempts" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Unscramble the Source Code [robber thread for cracking attempts]
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/211537/include-tikz-element-inside-tikzpicture" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Include TikZ element inside tikzpicture
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/186708/big-list-of-repositories-of-mathematical-preprints-and-postprints" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Big list of repositories of mathematical preprints and postprints
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/207237/why-isnt-enterprise-spelt-enterprize-in-us-english" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why isn't "Enterprise" spelt "Enterprize" in US English?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-diy" title="Home Improvement Stack Exchange"></div><a href="http://diy.stackexchange.com/questions/52571/how-should-a-section-of-cast-iron-piping-be-replaced" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:73 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How should a section of cast iron piping be replaced?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/50702/how-does-one-avoid-a-bottleneck-of-enemies-in-a-doorway" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does one avoid a bottleneck of enemies in a doorway?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/36073/customer-of-my-employer-wants-dob-last-4-digits-of-ss-state-or-residence-ful" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Customer of my employer wants dob, last 4 digits of SS, state or residence &amp; full name. OK?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/31451/how-detrimental-is-involvement-in-politics-to-a-scientific-career" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How detrimental is involvement in politics to a scientific career?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/137914/total-resistance-with-resistors-bridging-two-branches" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Total resistance with resistors bridging two branches
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/72363/in-star-trek-tng-why-does-everyone-have-plants-at-the-head-of-their-beds" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    In Star Trek TNG, why does everyone have plants at the head of their beds?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/137943/why-is-this-resistor-connected-between-connector-shield-and-ground" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is this resistor connected between connector shield and ground?
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="http://stackoverflow.com/questions/26257951/r-text-mining-importing-a-corpus-and-keeping-the-file-names-in-document-term#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/26257951" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/26257951/ivc/e438');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/26257951/ivc/e438" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-r</div></div>
+
+    <script>
+        $('#wmd-input').one("keypress", function() {
+            $.ajax({
+                url: '/accounts/email-settings-form',
+                cache: false,
+                success: function(data) {
+                    $('#submit-button').parent().prepend(data);
+                }
+            });
+        });
+
+    </script>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=footerlink">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>                   with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.11.10.2009
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('r,import,text-mining,corpus,x-user-registered');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        ga('set', 'dimension1', '2706904');         
+        ga('set', 'dimension2', '|r|import|text-mining|corpus|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script><script type="text/javascript" src="./import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/p"></script></body></html>
