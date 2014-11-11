@@ -1,0 +1,259 @@
+[33mcommit 373dafec627971498a1aec8f3e4bfc3bdc31f1a7[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 22:00:39 2014 -0600
+
+    added some helpful *what next* info for tomorrow AM
+
+[33mcommit 580283ba3dc177ad4d4ad59380c55523421622a3[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 20:58:00 2014 -0600
+
+    get back to model1 now that mem issue fixed
+
+[33mcommit 0470c8699549144286bd8dae6df6072af39b5333[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 20:13:24 2014 -0600
+
+    progress made with lapply vectorizing listing etc.
+
+[33mcommit b0916479a72b09a33de0f40864692f3503b72da1[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 17:51:38 2014 -0600
+
+    Trying to regroup here following intro to tm guide because maybe each line being a document screwed it up.
+
+[33mcommit 4cfb575921382eb3fd8c44397663810f4ca06c17[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 14:16:19 2014 -0600
+
+    loading into list should be cleaner
+
+[33mcommit 080f5d74d019177265c2598679ef2329bba32436[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 11:50:55 2014 -0600
+
+    Scale up successful using slam package, now how to read in much data without crashing?
+
+[33mcommit 15c0d6c62f9e6200b9ad61ac7ff22a9b293b4ef5[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 10:59:13 2014 -0600
+
+    Model1.R works, try now with more data
+
+[33mcommit 89ff335ba62bd493d4448367a643f3357f8d08ce[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 10:39:41 2014 -0600
+
+    frequency table of predictions
+
+[33mcommit 0175b9c9ef07def2eb2643faf8d1ae22c614d5b1[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 09:59:44 2014 -0600
+
+    Making a nice orderly code here now
+
+[33mcommit 3407691001e4543b64bb3c81175a59cf165b39cb[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 09:40:10 2014 -0600
+
+    putting corpus transformations first
+
+[33mcommit 90dba6ff3cdb79aa0fbce361523fea9dea143319[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 10 00:43:50 2014 -0600
+
+    good progress on uni and bi grams within trigram table
+
+[33mcommit 0c9260339965a1365bd796c15817a15aa71522b9[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sun Nov 9 22:48:46 2014 -0600
+
+    plugging along, how to check for bigram start in trigram TDM?
+
+[33mcommit bbadcc33d241728827d8ff43b9ba03fc8e975f83[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sun Nov 9 21:36:46 2014 -0600
+
+    Working on proof of concept with small data first since loading large data kills my computer
+
+[33mcommit f70e40b8b898f790d08a0af135dd2c05910dce8a[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sun Nov 9 19:12:08 2014 -0600
+
+    Working but slow, crashed when I tried all twitter
+
+[33mcommit 15aac4a478acba8944c0b61dec3a5adb9874eed4[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sun Nov 9 15:56:21 2014 -0600
+
+    Finally did it I think, now to implement
+
+[33mcommit 9b132fca3abaa9eb2a8e9a21bb64bb691bca18ac[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sun Nov 9 11:56:12 2014 -0600
+
+    Starting Stanford NLP videos for modeling help, rtexttools doesn't seem to be working
+
+[33mcommit 2aac34fa8af632bf0b1be2167fc674e8ebc30477[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sat Nov 8 18:18:51 2014 -0600
+
+    working with RTextTools now...
+
+[33mcommit 6f5cdd161c652e79dd76f67a1c82126638a29517[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sat Nov 8 15:50:06 2014 -0600
+
+    ok case of is not in the news data so I will have to try with twitter or blog
+
+[33mcommit ac7f56a96dc467ce13ff57a8095033a26acfd8aa[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sat Nov 8 15:02:44 2014 -0600
+
+    integer overflow preventing bigram findAssoc
+
+[33mcommit f895f2f6cd20ac79808c4095f48fd37cc6d433a7[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sat Nov 8 14:15:38 2014 -0600
+
+    clean up
+
+[33mcommit 6ad3eb5fb1f29799076e9127b811eec664f40c1e[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Sat Nov 8 13:46:59 2014 -0600
+
+    Making progress with findAssocs
+
+[33mcommit a7b42f3ff906ebfa576a32a4fab3686359e40540[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Thu Nov 6 18:41:43 2014 -0600
+
+    working on prediction
+
+[33mcommit f692f212e5df3c647decf476a4fecdef2c0cb46a[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Nov 5 21:42:31 2014 -0600
+
+    EOD 11.5 added many help files webpages pdfs new notes post- and post-post-tokenization
+
+[33mcommit 1491211d1cee5c452eb39c5e42ff58f0f831e129[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Nov 5 10:22:31 2014 -0600
+
+    Looking good corpus is words now.
+
+[33mcommit 784af9bfca075deb942879342740bfd79e8e0590[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Nov 5 10:15:07 2014 -0600
+
+    Good concise fix of the unicode issue, will clean up code next.
+
+[33mcommit f03b64e23dad79a379eb5ad573cd5b01f4294ceb[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Nov 5 09:10:23 2014 -0600
+
+    cleaned up R file, still some symbol errors
+
+[33mcommit 81337324b2b1c5d5fbeef4d803ce020503dd30ef[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Tue Nov 4 20:46:49 2014 -0600
+
+    Will now commence cleanup of various failed methods to fix strange Unicode characters
+
+[33mcommit 0c83354ddd3b7a328e44f0c2b8b840a1c934ab54[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Tue Nov 4 16:41:54 2014 -0600
+
+    word cloud
+
+[33mcommit 9c0f88ad6c347c34e233e6fdcb5aeff8e0c44dfe[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Tue Nov 4 15:01:20 2014 -0600
+
+    Decided to put off tagging Proper Nouns for later Improvements. Fixed basic issues using Intro to tm package.pdf guide
+
+[33mcommit 832a4ea59be9abc8750f32bb405ec383d93faf0b[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Tue Nov 4 13:38:36 2014 -0600
+
+    Fixed incorrect corpus creation
+
+[33mcommit dad717d6010a7398d5b67b6ab1b518bbddf5b34c[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Tue Nov 4 13:22:01 2014 -0600
+
+    updated .gitignore
+
+[33mcommit e06c94ab7ef02c2bc3529759bc0a51b3a901394b[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Tue Nov 4 12:56:48 2014 -0600
+
+    splitting off tm package notes to own file
+
+[33mcommit 98e8370f0ef1320d451559eeb7a4da869bb0973f[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Nov 3 16:41:12 2014 -0600
+
+    Week 2 day 1
+
+[33mcommit 067d5e8607ae6644685182983f513964dafeeb20[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Oct 29 15:46:57 2014 -0500
+
+    notes added
+
+[33mcommit 6d3569091b950b3644189084076bd4ccfd73606b[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Oct 29 14:21:50 2014 -0500
+
+    delete large files from index only
+
+[33mcommit 8b4868bd7b27e5e9f4b657522ac5c03cca2a9cc2[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Oct 29 14:17:58 2014 -0500
+
+    .gitignore over 100MB files
+
+[33mcommit 9bf5a7cbfafad06d46cefdf94d607344dec83434[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Oct 29 13:21:40 2014 -0500
+
+    added script that cleans up those large files
+
+[33mcommit 4ea27153010c17239a47bccf6dcae06b86ba722f[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Oct 29 13:00:20 2014 -0500
+
+    .gitignore edit 2
+
+[33mcommit 47bcb3a388b9b8357183586b78c37de262566ef8[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Oct 29 12:41:15 2014 -0500
+
+    Updated .gitignore
+
+[33mcommit 44cea6d6c9ba8eea376ec915f72c15f1b679a12e[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Oct 29 12:22:43 2014 -0500
+
+    Removed large files
+
+[33mcommit 8415db7f9edea2251573d356ca567b3b4334ed6c[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Wed Oct 29 11:53:39 2014 -0500
+
+    Day 3 - Task 1 day 2 morning.
+
+[33mcommit b3422f9ee09946c04c3fa6d5c70b91fa6f19a838[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Tue Oct 28 09:58:31 2014 -0500
+
+    Day 2 morning commit
+
+[33mcommit fd1d757881d7aca9ba416aa6b53747212da9dd3b[m
+Author: mliq <mliq@users.noreply.github.com>
+Date:   Mon Oct 27 08:31:44 2014 -0500
+
+    First Commit
+
+[33mcommit 29dc
