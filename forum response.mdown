@@ -27,3 +27,22 @@ Total turnaround occurred when I broke the file up to many files into 20,000 lin
 I am still not sure if this worked simply because it was in a list, or if it was because I broke the chunks into a good size that was neither too large or too small to be efficient. I will test further at some point but for now I'm just trying to solve Quiz 2. 
 
 This link made my lightbulb go off: http://musicallyut.blogspot.com/2012/07/pre-allocate-your-vectors.html
+
+# Patrick ChamberlainSignature Track· 8 hours ago 
+I've created a TDM from 100,000 lines of the twitter file without any problem - but 1/3 of the twitter file just leads to either an immediate out of memory error, or worse hours go by then nothing and I have to kill it. 
+
+@Michael do you mean split the files up, put them in one directory and then use tm to load them all into one Corpus?   
+
+## Response
+
+Hi Patrick,  
+
+I think that loading to one corpus would cause the same problem, I think the crashing point is when you try to make a TDM from a very large corpus. What I did is to keep the chunks separated until TDM function so that you have a list of smaller corpora instead of one large corpus.
+
+First, I split up into many files (20,000 lines each, but 100,000 may work as well). Then I used a for loop to load these into a list, so myList[1] is the first 20,000 lines, myList[2] is the next etc.
+
+Then I used lapply for some cleanup using iconv and gsub on the whole list.
+
+Then, I made a custom function which runs all of my tm package functions in order: make a corpus, perform tm_map transformations, then make TDM.
+
+Then I simply ran that custom function on the list and it works very fast. This turns your list of text into a list of corpora,  rather than one giant one. Then, the TermDocumentMatrix function works much faster and combines them in the end to one TDM somewhat magically. (I was surprised that my end result was one large TDM instead of a list of TDMs, but that seems to be the case, and is my intention of course, so, great!)

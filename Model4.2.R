@@ -17,21 +17,7 @@ corpus<- tm_map(corpus,removeNumbers)
 return(corpus)
 }
 
-# Make Corpus, do transformations,  then TDM
-makeTDM <- function(x) {
-corpus<-Corpus(VectorSource(x))
-corpus <- tm_map(corpus, stripWhitespace)
-corpus <- tm_map(corpus, content_transformer(tolower))
-corpus <- tm_map(corpus, removeWords, stopwords("english"))
-corpus <- tm_map(corpus, stemDocument)
-corpus<- tm_map(corpus,removePunctuation)
-corpus<- tm_map(corpus,removeNumbers)
-tdm<-TermDocumentMatrix(corpus)
-tdm<-removeSparseTerms(tdm,0.50)
-return(tdm)}
-
 # TrigramTokenizer function
-# library(rJava) # Is this really needed?
 library(RWeka)
 TrigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
 

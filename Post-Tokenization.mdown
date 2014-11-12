@@ -2,6 +2,53 @@ Post-Tokenization
 ====
 
 # Model 4
+
+So remember that removeSparse 0.98 got the best results so far.
+(right?) Try 0.97.
+
+*.97: 154180 TDM rows*
+             gram count
+just         just    14
+anyon       anyon     2
+beer         beer     2
+case         case     2
+divorc     divorc     2
+alreadi   alreadi     1
+benjamin benjamin     1
+best         best     1
+build       build     1
+classic   classic     1
+
+OK great, that improved results further.
+let's try .96?
+
+Reference: *.98*
+         gram count
+just     just    16
+case     case     4
+miss     miss     3
+anyon   anyon     2
+beer     beer     2
+divorc divorc     2
+ever     ever     2
+ltd       ltd     2
+phone   phone     2
+studi   studi     2
+
+## Next
+
+1. Investigate weighting options?
+
+2. How does tokenizer work? Is it getting every group?
+
+3. I think what would really improve is to recognize the verb of sentence... Is it always the second word? (No...)
+
+4. How can machine learning and trees be implemented?
+
+5. https://www.google.com/search?q=beyond+ngrAms&ie=UTF-8&oe=UTF-8&hl=en&client=safari
+
+6. https://www.google.com/search?q=word+tree+predict&ie=UTF-8&oe=UTF-8&hl=en&client=safari
+----
 OK, Model 3.3 has produced the two frequency tables, now how to combine them?
 
 First reduce it to 10 options.
@@ -61,6 +108,11 @@ There are no trimatches.
 
 ### Of course, easiest one is to try larger dataset:
 Just replace triTDM with triTDMlarge
+
+Result: beer not even in top 10 now.
+So perhaps more sparse elimination would help? I don't see how though...
+and still no trimatches.
+perhaps stick with remove sparse and add the other corpuses?
 
 X # Get the frequency of each predFreq gram in our 'bag of words' freqTable
   unimatches<- uniFreqTable[uniFreqTable$gram==predFreq$gram,]
