@@ -1,6 +1,6 @@
 # SETUP #
 gc()
-setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/twit10")
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 library(tm)
 
 # FUNCTION DEFINITIONS #
@@ -45,12 +45,25 @@ return(tdm)}
 #initialize a list to hold our data
 twit<-list()
 
-# Reach chunks into a list
-for (i in 0:118) {
-i4<-formatC(i,width=4,flag=0)
-fileName=paste0("twitter",i4)
-twit[i+1]<-list(readLines(fileName))
+# Read in text, break into chunks
+fileName="testData1.txt"
+text<-read.table(fileName, stringsAsFactors=FALSE)
+totalLines=dim(text)[1]
+chunkSize=20000
+chunks=totalLines/chunkSize
+remainder = chunks %% 1
+wholeChunks = chunks-remainder
+
+i=1
+line=1
+while (line<totalLines){
+end=line+chunkSize-1
+twit[[i]]<-text[line:end,]
+line=end+1
+i=i+1
 }
+twit[[i]]<-text[line:totalLines,]
+
 
 # Text Transformations to remove odd characters #
 twit=lapply(twit,FUN=iconv, to='ASCII', sub=' ')

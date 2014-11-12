@@ -1,5 +1,38 @@
 Post-Tokenization
 ====
+# Model 5
+Next steps:
+
+## 1. break up the file in R instead of unix?
+
+```r
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone")
+twit<-list()
+fileName="testData1.txt"
+text<-read.table(fileName, stringsAsFactors=FALSE)
+
+# wait, do i need to break it up, or could I just feed the corpus in chunks? well whats the difference really...
+
+totalLines=dim(text)[1]
+chunkSize=2
+chunks=totalLines/chunkSize
+remainder = chunks %% 1
+wholeChunks = chunks-remainder
+
+i=1
+line=1
+while (line<totalLines){
+end=line+chunkSize-1
+twit[[i]]<-text[line:end,]
+line=end+1
+i=i+1
+}
+twit[[i]]<-text[line:totalLines,]
+
+
+```
+## 2. increase corpus size by entering the rest of shit?
+
 
 # Model 4
 
@@ -22,7 +55,23 @@ classic   classic     1
 OK great, that improved results further.
 let's try .96?
 
-Reference: *.98*
+*.96 100333 rows*
+           gram count
+just       just     9
+case       case     2
+beer       beer     1
+best       best     1
+classic classic     1
+concern concern     1
+curious curious     1
+divorc   divorc     1
+got         got     1
+great     great     1
+
+-In a way this is better because case can be eliminated as being in our query...
+-And, perhaps just can be eliminated...
+
+*.98*
          gram count
 just     just    16
 case     case     4
@@ -48,8 +97,9 @@ studi   studi     2
 5. https://www.google.com/search?q=beyond+ngrAms&ie=UTF-8&oe=UTF-8&hl=en&client=safari
 
 6. https://www.google.com/search?q=word+tree+predict&ie=UTF-8&oe=UTF-8&hl=en&client=safari
-----
-OK, Model 3.3 has produced the two frequency tables, now how to combine them?
+
+****
+# OK, Model 3.3 has produced the two frequency tables, now how to combine them?
 
 First reduce it to 10 options.
 
