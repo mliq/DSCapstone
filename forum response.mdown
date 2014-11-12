@@ -16,6 +16,14 @@ Jeff
 # Reply
 Hi Jeff, 
 
-You sound like a much more advanced a programmer than I, so forgive me if this is obvious for you, but: 
+You sound like a much more advanced a programmer than I, so forgive me if this is obvious for you, but, I seem to have gone through the same issues and come out with some answers. 
 
-What I have learned after many days of struggle is that R runs infinitely faster when you have all your data in one list vector and attack it at once - sometimes using lapply, sometimes it's not necessary - rather than using a for loop or other iteration method. 
+Namely, after many days of struggle, my R operations run infinitely faster after I both broke the data up into slices of a reasonable size and loaded them into a list and did the operations on that list all at once, using lapply or sometimes that's not even needed, rather than using a for loop or doing the data all together.
+ 
+For example, when I tried to load one of the large text files into a variable, then make corpus then make TDM, I had the same issue as you: everything was slow and finally some operation would run for an hour or two then freeze my PC completely (scary). 
+
+Total turnaround occurred when I broke the file up to many files into 20,000 line chunks, (using unix split, though I'm sure there is a way to do this in R, anyone?) then loaded those into a list in R, then worked on that list as a whole, all my operations took about 5 minutes!
+
+I am still not sure if this worked simply because it was in a list, or if it was because I broke the chunks into a good size that was neither too large or too small to be efficient. I will test further at some point but for now I'm just trying to solve Quiz 2. 
+
+This link made my lightbulb go off: http://musicallyut.blogspot.com/2012/07/pre-allocate-your-vectors.html

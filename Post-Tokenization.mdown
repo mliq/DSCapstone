@@ -1,10 +1,45 @@
 Post-Tokenization
 ====
-I wonder what the big speed up was. Was it just loading into a list?
+# Model 3.3
+
+Not using sparse terms, I got a triTDM of 10721832 !
+probably should reduce that...
+
+saved my session, now ran:
+  
+  triTDM2<-removeSparseTerms(triTDM,0.01)
+
+That obliterated it, so i'm trying now .0001
+
+hmm seems to be getting worse... should i use bigger numbers?
+
+0.99 ok now here we go:
+731102 now.
+
+let's do 0.98 i'd say.
+
+277012
+
+OK... 
+let's try it.
+
 
 #Model 3.2
 My issue is that my trigram function perhaps cuts away too much leaving only 775 trigrams.
 Try a different value on make sparse, lower than 0.50, I'll try 0.20
+Not much better.
+Probably should do this complete?
+
+# Bag of Words ? Problem is there are no associations there! it can only tell us the probability of a word in GENERAL.
+
+So... That is really not useful in terms of prediction EXCEPT to compare and choose the most likely of the trigram options perhaps.
+
+# SO my plan is now:
+_Done in Model 3.3 `uniFreqTable`_ 1. Use bag of words to build a list of the most frequently used unigrams (words) 
+
+*Done in Model 3.3 `predFreq`* 2. Use trigram model to find an array of possible predictions.
+
+3. Build a mechanism which takes 
 
 # Model 3
 ? http://www.williamwebber.com/research/teaching/comp90042/2014s1/lect/l02.pdf
@@ -22,6 +57,9 @@ Try a different value on make sparse, lower than 0.50, I'll try 0.20
 3. 
 
 # Future study / forum
+
+I wonder what the big speed up was. Was it just loading into a list?
+
 ### Fairly irrelevant for now but wondering:
 1. Could I have broken up the file using only R not bash split?
 
