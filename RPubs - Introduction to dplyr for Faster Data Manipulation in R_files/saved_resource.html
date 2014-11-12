@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<!-- saved from url=(0342)http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#285 -->
+<html lang="en" dir="ltr" class="js touch localstorage sessionstorage contenteditable use-opacity-transitions"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Disqus Comments</title>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    <style>
+        html {
+            overflow: hidden;
+        }
+        
+    </style>
+
+<link rel="stylesheet" href="http://a.disquscdn.com/next/styles/lounge.f030335d09a444f401a69d0aa6ae5d85.css"><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="remote/config" src="config.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="common.bundle" src="common.051c8cee65341d7e56c65332fe6bbd91.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="lounge.bundle" src="lounge.6e952062cacda728fd1c78a7489b385c.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="http://www.google-analytics.com/ga.js" src="ga.js"></script><style id="css_1415731829269"></style><!--<base target="_parent">--><base href="." target="_parent"><script src="event.js" async="" charset="UTF-8"></script><link rel="stylesheet" href="http://a.disquscdn.com/next/styles/discovery.c299e37422569a91c0e57e7bb42885cd.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="discovery/main" src="discovery.b1c79b79a4074604cd6fab305a08c2e5.js"></script><script src="event(1).js" async="" charset="UTF-8"></script><script src="event(2).js" async="" charset="UTF-8"></script></head>
+<body>
+    
+    <!--[if lte IE 8]>
+<script src="//a.disquscdn.com/1415232117/build/vendor/ie8.js"></script>
+<![endif]-->
+<!--[if IE 9]>
+<script src="//a.disquscdn.com/1415232117/build/vendor/ie9.js"></script>
+<![endif]-->
+
+    
+<script type="text/json" id="disqus-urls">{
+    "root":"//disqus.com",
+    "next":"//a.disquscdn.com/next/022f4b4c"
+}</script>
+
+    
+
+    <div id="error" style="display:none; text-align: center">
+        <p>We were unable to load Disqus. If you are a moderator please see our <a href="http://docs.disqus.com/help/83/"> troubleshooting guide</a>. </p>
+    </div>
+
+    
+    <script type="text/json" id="disqus-forumData">{"session":{"isReadOnly":null,"canModerate":false,"audienceSyncVerified":false,"canReply":true,"mustVerifyEmail":false},"features":{"sso":true},"forum":{"name":"RPubs","language":"en","settings":{"canEnableSponsoredComments":false,"discoveryVariant":"default","allowAnonPost":true,"allowMedia":false,"moderatorText":null,"typeface":"auto","disable3rdPartyTrackers":false,"promotedDiscoveryEnabled":false,"discoveryMax":false,"ssoRequired":false,"discoveryLocked":false,"audienceSyncEnabled":false,"hasCustomAvatar":false,"organicDiscoveryEnabled":true,"discoverySettingsUrl":"https://rpubs.disqus.com/admin/settings/ads/","discoveryThumbnailsEnabled":false,"colorScheme":"auto","sponsoredCommentsEnabled":false,"linkAffiliationEnabled":true},"url":"http://rpubs.com/","guidelines":null,"favicon":{"permalink":"http://disqus.com/api/forums/favicons/rpubs.jpg","cache":"//a.disquscdn.com/uploads/forums/142/3073/favicon.png"},"avatar":{"small":{"permalink":"http://disqus.com/api/forums/avatars/rpubs.jpg?size=32","cache":"//a.disquscdn.com/1415232117/images/noavatar32.png"},"large":{"permalink":"http://disqus.com/api/forums/avatars/rpubs.jpg?size=92","cache":"//a.disquscdn.com/1415232117/images/noavatar92.png"}},"pk":1423073,"founder":"5779961","raw_guidelines":null,"id":"rpubs","channel":null}}</script>
+
+    
+    <script type="text/json" id="disqus-threadData">{"cursor":{"hasPrev":false,"prev":null,"total":0,"hasNext":false,"next":"1:0:0"},"code":0,"response":{"lastModified":1408817163,"posts":[],"thread":{"feed":"https://rpubs.disqus.com/rpubs_introduction_to_dplyr_for_faster_data_manipulation_in_r/latest.rss","uploadAdd":"//rpubs.disqus.com/thread/rpubs_introduction_to_dplyr_for_faster_data_manipulation_in_r/async_media_upload/","identifiers":["pub-25966"],"dislikes":0,"likes":1,"message":"","id":"2952946495","isDeleted":false,"category":"1450984","clean_title":"Introduction to dplyr for Faster Data Manipulation in R","userScore":0,"userSubscription":false,"createdAt":"2014-08-23T18:06:03","hasStreaming":false,"uploadRemove":"//rpubs.disqus.com/thread/rpubs_introduction_to_dplyr_for_faster_data_manipulation_in_r/async_media_remove/","raw_message":"","isClosed":false,"link":"http://rpubs.com/justmarkham/dplyr-tutorial","slug":"rpubs_introduction_to_dplyr_for_faster_data_manipulation_in_r","forum":"rpubs","author":"5779961","posts":0,"moderators":[5779961],"title":"RPubs - Introduction to dplyr for Faster Data Manipulation in R","highlightedPost":null}},"order":"desc"}</script>
+
+    
+
+    <div id="fixed-content"></div>
+
+    <script src="lounge.load.js" id="bootstrap-script" data-app="lounge"></script>
+
+
+<div id="layout" data-tracking-area="layout">
+
+<div id="discovery-top" data-tracking-area="discovery-north"></div>
+
+<div id="onboard" data-tracking-area="onboard"><div></div></div>
+
+<div id="highlighted-post" data-tracking-area="highlighted" class="highlighted-post" style="display: none;"></div>
+
+<header id="main-nav" data-tracking-area="main-nav">
+<nav class="nav nav-primary">
+<ul>
+<li class="tab-conversation active">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-role="post-count" class="publisher-nav-color" data-nav="conversation"><span class="comment-count">
+0 comments
+</span>
+
+<span class="comment-count-placeholder">
+Comments
+</span>
+</a>
+</li>
+<li class="tab-community">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" class="publisher-nav-color" data-nav="community" id="community-tab">
+<span class="community-name">
+<strong>RPubs</strong>
+
+</span>
+
+<strong class="community-name-placeholder">Community</strong>
+</a>
+</li>
+<li class="dropdown user-menu" data-role="logout"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" class="dropdown-toggle" data-toggle="dropdown">
+<span class="dropdown-toggle-wrapper">
+
+<span>
+Login
+</span>
+
+</span> <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+
+
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="auth:disqus">Disqus</a>
+</li>
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="auth:facebook">Facebook</a>
+</li>
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="auth:twitter">Twitter</a>
+</li>
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="auth:google">Google</a>
+</li>
+
+
+
+</ul>
+</li>
+<li class="notification-menu unread" data-role="notification-menu"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" class="notification-container" data-nav="dashboard">
+<span class="notification-icon icon-comment"></span>
+<span class="notification-count" data-role="notification-count">1</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+
+
+
+<section id="conversation" data-role="main" data-tracking-area="main">
+<div class="nav nav-secondary" data-tracking-area="secondary-nav">
+<ul>
+<li data-role="post-sort" class="dropdown sorting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" class="dropdown-toggle" data-nav="conversation" data-toggle="dropdown">
+
+Sort by Newest
+
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="sort" data-sort="popular">Best<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li class="selected">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="sort" data-sort="desc">Newest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="sort" data-sort="asc">Oldest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+</ul>
+</li>
+
+<li id="thread-votes" class="favorite pull-right">
+<!-- rendered dynamically -->
+<div class="thread-likes" data-role="vote-button"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="upvote" title="Favorite this discussion">
+<span class="label">Favorite</span>
+<span class="icon-star"></span>
+<span class="icon-check"></span>
+</a>
+</div></li>
+
+<li id="thread-share-menu" class="dropdown share-menu">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" class="dropdown-toggle" data-toggle="dropdown" title="Share">
+<span class="label">Share</span> <span class="icon-export"></span>
+</a>
+<ul class="share-menu dropdown-menu pull-right">
+<li class="share">Share this discussion on
+<ul>
+<li class="twitter">
+<a data-action="share:twitter" href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#">Twitter</a>
+</li>
+<li class="facebook">
+<a data-action="share:facebook" href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#">Facebook</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="posts">
+<div id="form"><form class="reply">
+<div class="postbox">
+<div role="alert"></div>
+<div class="avatar">
+<span class="user">
+<img data-role="user-avatar" src="noavatar92.b677f9ddbee6f4bb22f473ae3bd61b85.png" alt="Avatar">
+</span>
+</div>
+
+<div class="textarea-wrapper" data-role="textarea" dir="auto"><div><span class="placeholder">Start the discussion…</span><div class="textarea" tabindex="0" role="textbox" aria-multiline="true" contenteditable="true" data-role="editable" aria-label="Start the discussion…" style="overflow: auto; max-height: 350px;"><p><br></p></div><div style="display: none;"><ul class="suggestions">
+<li class="header">
+<h5>in this conversation</h5>
+</li>
+</ul>
+</div></div>
+<div data-role="drag-drop-placeholder" class="media-drag-hover" style="display: none">
+<div class="drag-text">
+⬇ Drag and drop your images here to upload them.
+</div>
+</div>
+<div class="edit-alert" role="postbox-alert"></div>
+<div class="post-actions">
+<ul class="wysiwyg">
+</ul>
+</div>
+</div>
+
+<div data-role="login-form"><div><section class="auth-section logged-out">
+<div class="connect">
+<h6>Sign in with</h6>
+<ul data-role="login-menu" class="services login-buttons">
+
+
+<li class="auth-disqus">
+<button type="button" data-action="auth:disqus" title="Disqus"><i class="icon-disqus"></i></button>
+</li>
+<li class="auth-facebook">
+<button type="button" data-action="auth:facebook" title="Facebook"><i class="icon-facebook-circle"></i></button>
+</li>
+<li class="auth-twitter">
+<button type="button" data-action="auth:twitter" title="Twitter"><i class="icon-twitter-circle"></i></button>
+</li>
+<li class="auth-google">
+<button type="button" data-action="auth:google" title="Google"><i class="icon-google-plus-circle"></i></button>
+</li>
+<li class="auth-signup">
+<button type="button" data-action="auth:disqus" title="Disqus">Sign up for Disqus</button>
+</li>
+</ul>
+</div>
+<div class="guest">
+<h6 class="guest-form-title">
+or pick a name
+</h6>
+
+<div class="what-is-disqus help-icon">
+<div id="rules" class="tooltip show">
+<h3>Disqus is a conversation network</h3>
+<ul>
+<li><span>Disqus never moderates or censors. The rules on this community are its own.</span></li>
+<li><span>Your email is safe with us. It's only used for moderation and optional notifications.</span></li>
+<li><span>Don't be a jerk or do anything illegal. Everything is easier that way.</span></li>
+</ul>
+<p class="clearfix"><a href="http://docs.disqus.com/kb/terms-and-policies/" class="btn btn-small" target="_blank">Read full terms and conditions</a></p>
+</div>
+</div>
+
+<p class="input-wrapper">
+<input dir="auto" type="text" placeholder="Name" name="display_name" id="view127_display_name" maxlength="30">
+</p>
+
+<div class="guest-details " data-role="guest-details">
+<p class="input-wrapper">
+<input dir="auto" type="email" placeholder="Email" name="email" id="view127_email">
+</p>
+
+<p class="input-wrapper">
+<input dir="auto" type="password" placeholder="Password" name="password" id="view127_password">
+</p>
+<div class="guest-checkbox">
+<label>
+<input type="checkbox" name="author-guest">
+I'd rather post as guest
+</label>
+</div>
+</div>
+</div>
+<div class="proceed">
+<button type="submit" class="btn submit" aria-label="Post"><span class="icon-proceed"></span></button>
+<button type="submit" class="btn next" aria-label="Next"><span class="icon-proceed"></span></button>
+</div>
+</section>
+
+</div></div>
+</div>
+</form></div>
+
+<button class="alert realtime" style="display: none;" data-role="realtime-notification">
+</button>
+
+<div id="no-posts" style="">Be the first to comment.</div>
+
+<ul id="post-list" class="post-list"></ul>
+
+<div class="load-more" data-role="more" style="display: none;">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="more-posts" class="btn">Load more comments</a>
+</div>
+</div>
+
+</section>
+
+<section id="community" data-tracking-area="main" style="display:none" data-role="main" data-outbound-link="embed:community">
+</section>
+
+<section id="dashboard" style="display:none" data-role="main" data-tracking-area="main">
+<p style="line-height: 1.4">Nothing for you here ... yet. But as you comment with Disqus and follow
+other Disqus users, you will start to receive notifications here, as well as a personalized
+feed of activity by you and the people you follow. So get out there and participate in
+some discussions!</p>
+</section>
+
+<section id="profile" style="display:none" data-role="main" data-tracking-area="main">
+</section>
+
+<div id="discovery" data-tracking-area="discovery-south" style="position: static; visibility: visible; display: block; width: 100%;"><div id="discovery-main-c149" class="discovery-main style-variant-default">
+<div id="discovery-note" class="discovery-note">
+<div class="alert">
+<button class="close" data-action="discovery-help-close" title="Close this box">×</button>
+Disqus helps you find new and interesting content, discussions and products. Some sponsors and ecommerce sites may pay us for these recommendations and links. <a href="http://help.disqus.com/customer/portal/articles/666278-introducing-promoted-discovery-and-f-a-q-" target="_blank">Learn more</a>
+ or <a href="https://www.surveymonkey.com/s/GHK872T" target="_blank">
+give us feedback</a>.
+</div>
+</div>
+
+<div class="discovery-options">
+<button class="discovery-help" data-action="discovery-help">
+What's this?
+</button>
+</div>
+
+<section id="col-organic-c149" class="col-organic discovery-col-0 ">
+<header class="discovery-col-header">
+
+<h2>Also on <strong>RPubs</strong>
+</h2>
+
+
+</header>
+<ul class="discovery-posts"><li class="discovery-post post-0" id="discovery-link-organic-3123934884">
+<a href="http://redirect.disqus.com/url?url=http%3A%2F%2Frpubs.com%2Fstvjc%2F33746%3ApWfxxcDiXVwzFGlRIPlyx5_Uytw&imp=59am1p615ds53b&prev_imp&forum_id=1423073&forum=rpubs&thread_id=2952946495&major_version=metadata&thread=3123934884&zone=thread&area=discovery" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="biocMultiAssay">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+biocMultiAssay
+</span>
+
+
+</h3>
+
+<ul class="meta">
+<li class="comments">
+1 comment
+</li>
+<li class="time">a month ago</li>
+</ul>
+</header>
+
+</a><a href="http://redirect.disqus.com/url?url=http%3A%2F%2Frpubs.com%2Fstvjc%2F33746%3ApWfxxcDiXVwzFGlRIPlyx5_Uytw&imp=59am1p615ds53b&prev_imp&forum_id=1423073&forum=rpubs&thread_id=2952946495&major_version=metadata&thread=3123934884&zone=thread&area=discovery" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar" src="avatar92.jpg">
+<p><span class="user" data-role="discovery-top-comment-author">stvjc</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3"></span></p>
+</a>
+
+</li>
+<li class="discovery-post post-1" id="discovery-link-organic-3147583551">
+<a href="http://redirect.disqus.com/url?url=http%3A%2F%2Frpubs.com%2Fmarkheckmann%2F35199%3AKg4wI3gSBe0HkZS5mQzMom8tQEQ&imp=59am1p615ds53b&prev_imp&forum_id=1423073&forum=rpubs&thread_id=2952946495&major_version=metadata&thread=3147583551&zone=thread&area=discovery" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="woche_2_reports_erstellen">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+woche_2_reports_erstellen
+</span>
+
+
+</h3>
+
+<ul class="meta">
+<li class="comments">
+1 comment
+</li>
+<li class="time">19 days ago</li>
+</ul>
+</header>
+
+</a><a href="http://redirect.disqus.com/url?url=http%3A%2F%2Frpubs.com%2Fmarkheckmann%2F35199%3AKg4wI3gSBe0HkZS5mQzMom8tQEQ&imp=59am1p615ds53b&prev_imp&forum_id=1423073&forum=rpubs&thread_id=2952946495&major_version=metadata&thread=3147583551&zone=thread&area=discovery" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar" src="avatar92(1).jpg">
+<p><span class="user" data-role="discovery-top-comment-author">markheckmann</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3"></span></p>
+</a>
+
+</li>
+<li class="discovery-post post-2" id="discovery-link-organic-3040495860">
+<a href="http://redirect.disqus.com/url?url=http%3A%2F%2Frpubs.com%2Felinw%2Fstorms%3Afuv7htWNi1VezdRsU5zr-eKMjus&imp=59am1p615ds53b&prev_imp&forum_id=1423073&forum=rpubs&thread_id=2952946495&major_version=metadata&thread=3040495860&zone=thread&area=discovery" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="Storm Analysis">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+Storm Analysis
+</span>
+
+
+</h3>
+
+<ul class="meta">
+<li class="comments">
+1 comment
+</li>
+<li class="time">2 months ago</li>
+</ul>
+</header>
+
+</a><a href="http://redirect.disqus.com/url?url=http%3A%2F%2Frpubs.com%2Felinw%2Fstorms%3Afuv7htWNi1VezdRsU5zr-eKMjus&imp=59am1p615ds53b&prev_imp&forum_id=1423073&forum=rpubs&thread_id=2952946495&major_version=metadata&thread=3040495860&zone=thread&area=discovery" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar" src="avatar92(2).jpg">
+<p><span class="user" data-role="discovery-top-comment-author">elinw</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3"></span></p>
+</a>
+
+</li>
+<li class="discovery-post post-3" id="discovery-link-organic-3027215847">
+<a href="http://redirect.disqus.com/url?url=http%3A%2F%2Frpubs.com%2Ftetleyplus3%2F28851%3AjHid5hXZB-Vsf1a90Wt_lmyc3CU&imp=59am1p615ds53b&prev_imp&forum_id=1423073&forum=rpubs&thread_id=2952946495&major_version=metadata&thread=3027215847&zone=thread&area=discovery" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="prueba">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+prueba
+</span>
+
+
+</h3>
+
+<ul class="meta">
+<li class="comments">
+1 comment
+</li>
+<li class="time">2 months ago</li>
+</ul>
+</header>
+
+</a><a href="http://redirect.disqus.com/url?url=http%3A%2F%2Frpubs.com%2Ftetleyplus3%2F28851%3AjHid5hXZB-Vsf1a90Wt_lmyc3CU&imp=59am1p615ds53b&prev_imp&forum_id=1423073&forum=rpubs&thread_id=2952946495&major_version=metadata&thread=3027215847&zone=thread&area=discovery" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar" src="avatar92(3).jpg">
+<p><span class="user" data-role="discovery-top-comment-author">tetleyplus3</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3"></span></p>
+</a>
+
+</li>
+</ul>
+</section>
+
+</div>
+</div>
+
+<div id="footer" data-tracking-area="footer">
+<ul>
+<li class="logo"><a href="http://disqus.com/" title="Powered by Disqus">Powered by Disqus</a></li>
+<li id="thread-subscribe-button" class="email"> 
+<div class="default">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=022f4b4c&f=rpubs&t_i=pub-25966&t_u=http%3A%2F%2Frpubs.com%2Fjustmarkham%2Fdplyr-tutorial&t_d=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&t_t=RPubs%20-%20Introduction%20to%20dplyr%20for%20Faster%20Data%20Manipulation%20in%20R&s_o=default#" data-action="subscribe" title="Subscribe and get email updates from this discussion"><i aria-hidden="true" class="icon-mail"></i><span class="clip">Subscribe</span> <i aria-hidden="true" class="icon-checkmark"></i></a>
+</div>
+<div class="form">
+<div class="input-wrapper"><input id="thread-subscribe-email" type="email" placeholder="yourname@email.com"></div>
+</div>
+</li>
+<li class="install">
+<a href="https://disqus.com/websites/?utm_source=rpubs&utm_medium=Disqus-Footer" target="_blank">
+<i aria-hidden="true" class="icon-disqus"></i>
+<span class="clip">Add Disqus to your site</span>
+</a>
+</li>
+<li class="privacy">
+<a href="https://help.disqus.com/customer/portal/articles/1657951?utm_source=disqus&utm_medium=embed-footer&utm_content=privacy-btn" target="_blank">
+<i aria-hidden="true" class="icon-privacy"></i>
+<span class="clip">Privacy</span>
+</a>
+</li>
+</ul>
+</div>
+</div><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

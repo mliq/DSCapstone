@@ -1,12 +1,18 @@
 Post-Tokenization
 ====
-? http://www.williamwebber.com/research/teaching/comp90042/2014s1/lect/l02.pdf
+I wonder what the big speed up was. Was it just loading into a list?
+
+#Model 3.2
+My issue is that my trigram function perhaps cuts away too much leaving only 775 trigrams.
+Try a different value on make sparse, lower than 0.50, I'll try 0.20
+
 # Model 3
+? http://www.williamwebber.com/research/teaching/comp90042/2014s1/lect/l02.pdf
 ## NEXT STEPS:
 1. should i try again where each line is a document? 
-	As long as I am not depending on findAssocs, I suppose this is irrelevant. So the key issue will then be, *is my TrigramTokenizer accurate or is it meshing together sentences that bear no relation?*AND it makes it hard to use sparsity measures.  
+  As long as I am not depending on findAssocs, I suppose this is irrelevant. So the key issue will then be, *is my TrigramTokenizer accurate or is it meshing together sentences that bear no relation?*AND it makes it hard to use sparsity measures.  
 
-	Question: is there an _ideal_ document length for NLP?
+  Question: is there an _ideal_ document length for NLP?
 
 2. Thinking about machine learning... i suppose you are assigning frequencies and coming up with some kind of equation to predict the words, and possibly using k-folds / cross-validation. 
 
@@ -15,6 +21,7 @@ Post-Tokenization
 
 3. 
 
+# Future study / forum
 ### Fairly irrelevant for now but wondering:
 1. Could I have broken up the file using only R not bash split?
 

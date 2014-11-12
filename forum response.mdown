@@ -1,0 +1,21 @@
+DS Forum Response
+====
+[Is anyone else finding R and TM just be punishingly slow/memory wasteful?](https://class.coursera.org/dsscapstone-002/forum/thread?thread_id=125)
+
+Jeff HeatonSignature Track· a day ago 
+I am using a Mac Book Pro w/16gig ram and a latest generation i7 quadcore.  But doing this text mining stuff in R makes it feel like a Commodore 64.  I spent several days learning to sample the data down to sizes that would fit into memory, even though I am dealing with data less than 400meg.  I spent quite a bit of time watching R's TM package run single-threaded for hours only the chew through my 16gig of ram, crash and burn hours later.  I guess I could throw some Amazon EC2 muscle at it, with more ram.    I did get a tree-based n-gram frequency model working in R.  But I wanted to do more than just a 3-gram.
+
+So I took another approach.  I just used Java, wrote my own ngram tree and also a context-based weighted model to use all "significant" words in a sentence.  I did not have to sample, I could use the entire dataset.  I cross-validated over the whole thing to tune my model params/sensitivity for the context, etc.  I was able to go through quite a few iterations to fix/adjust things.  Retraining takes under 5 min, using a thread pool.  I figure in the end I will either build my model in Java and move it into a shiny app, or worst case just port my final code to R, and resort to sampling, rather than cross validating over the whole dataset like I do now. 
+
+My model worked great, I got a 100% on quiz 2. I guess, using an unorthodox approach for this class.  I did a number of exploratory graphs in R that I can use for the milestone report.
+
+Am I missing something?  I really like R for modeling and graphing, once the data has been put into a form where it is ready to go to the model.  But doing heavy-lifting data transformations, with several 100 meg of data in R makes me feel like I am somewhat shackled. 
+
+Jeff
+
+# Reply
+Hi Jeff, 
+
+You sound like a much more advanced a programmer than I, so forgive me if this is obvious for you, but: 
+
+What I have learned after many days of struggle is that R runs infinitely faster when you have all your data in one list vector and attack it at once - sometimes using lapply, sometimes it's not necessary - rather than using a for loop or other iteration method. 
