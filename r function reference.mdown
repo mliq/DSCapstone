@@ -18,3 +18,7 @@ rowSums()
 
 paste() concatenate
 paste0() no space in between
+
+read.table
+readLines
+readChar ?

@@ -1,6 +1,98 @@
 Post-Tokenization
 ====
+
+# OK I need to go through this stanford NLP more carefully
+
+I do not understand how they make bigrams. They skip a word?
+Seems like maybe bigrams use stopword elimination but trigrams and unigrams do not.
+
+# [intro n-grams](https://class.coursera.org/nlp/lecture/14)
+
+1. we should be able to calculate the joint probability of an entire sentence by P(A)P(B|A)P(C|A,B) etc. (chain rule)
+
+2. Markov assumption skips over words to generate probabilities, perhaps just the first and last two words of a sentence.
+
+
+# interpolate / backoff
+https://class.coursera.org/nlp/lecture/19
+
+Backoff means - just use trigram if you have a good match, but otherwise stepdown to bigrams 
+(this is the model I'm using now I believe)
+
+Interpolation says use a mix of unigram, bigram, trigram always.
+Lambda must sum to 1.
+So with 3 types of grams, we have lambda=1/3 for each.
+
+So the linear interpolation probability model is:
+P(Sam|I am) = P(Sam)/3+P(Sam|am)/3+P(Sam|I am)/3
+
+in other words, we take the probability of the trigram over all sentences, and this is lambda. THen we multiply the unigram, bigram and trigram all by that... ? *Or is it 1/3 because of 3 types of grams??*
+
+P(Sam) = #Sam/#total WORDS (unigrams)
+P(Sam|am) = #S
+P(Sam|I am) = #(Sam I am)/#ALL SENTENCES.
+
+## Lambdas conditional on previous words??
+
+# ok here is something to focus on.
+
+Question 6 is "on my way" (probably).
+I get no trigrams because, I assume, on and my get eliminated.
+Perhaps stopword elimination is a problem.
+
+[](http://nlp.stanford.edu/IR-book/html/htmledition/contents-1.html)
+# problem: i'm not really using library(slam)! would that help??
+
+# backup all corpus in TDM: 
+C:\Users\Michael\SkyDrive\Code\GitHub\DSCapstone\Coursera-SwiftKey\final\en_US\triTDM all corpus no sparse.RData
+(27 million rows!)
+
+bigTDM all 3 texts NO stopWordRemoval.RData
+30415033 rows.
+
+*.98* down to 327837
+
+# Question: what exactly is SwiftKey contributing to this??
+
+# Model 6
+It would be best if you understand what you WANT to do first on an intuitive level before searching for the programmatic way to do it.
+
+One option is to identify the subject and verb of a sentence, then make a model which matches those with other words...
+
+Damn, that crashed.
+perhaps removeSparse .99 or .98 would work.
+ALSO, could do removeSparse AFTER big TDM is made, because crash occured here:
+
+```r
+# Set each word of trigram as an attribute for future use
+freqTable$one <- sapply(words,FUN=function(x) paste(x[1]))
+```
+
+## beyond ngrams.pdf
+probabilistic context-free grammars (PCFGs)
+
 # Model 5
+
+# try one more time WITHOUT remove sparse!
+
+## Model5.works.R Review
+Trigrams predicts better than bigrams.
+
+1. NA 
+2. worlds
+3. day,happi
+4. Not working
+5. Not good
+6. NA
+7. time
+8. NA
+9. not sure, is wore = worse?
+10. NA
+
+Problems in predictions.txt
+
+1. beer has now disappeared..
+
 Next steps:
 
 ## 1. break up the file in R instead of unix?
@@ -29,8 +121,8 @@ i=i+1
 }
 twit[[i]]<-text[line:totalLines,]
 
-
 ```
+
 ## 2. increase corpus size by entering the rest of shit?
 
 
