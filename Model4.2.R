@@ -31,7 +31,7 @@ corpus <- tm_map(corpus, stemDocument)
 corpus<- tm_map(corpus,removePunctuation)
 corpus<- tm_map(corpus,removeNumbers)
 tdm<- TermDocumentMatrix(corpus, control = list(tokenize = TrigramTokenizer))
-tdm<-removeSparseTerms(tdm,0.97)
+tdm<-removeSparseTerms(tdm,0.96)
 return(tdm)}
 
 ## DATA MUNGING ##
