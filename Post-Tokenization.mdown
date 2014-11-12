@@ -1,5 +1,89 @@
 Post-Tokenization
 ====
+
+# Model 4
+OK, Model 3.3 has produced the two frequency tables, now how to combine them?
+
+First reduce it to 10 options.
+
+```r
+# If predictions are more than 10, reduce to 10
+if(nrow(predFreq)>10){
+predFreq<-predFreq[1:10,]
+}
+
+# Get the frequency of each predFreq gram in our 'bag of words' freqTable
+uniPreds<-uniFreqTable[which(uniFreqTable$gram %in% predFreq$gram),]
+
+```
+OK this made my results WORSE though.
+The deal is, I want beer to be the result.
+
+I get this:
+         gram count
+just     just    16
+case     case     4
+miss     miss     3
+anyon   anyon     2
+beer     beer     2
+divorc divorc     2
+ever     ever     2
+ltd       ltd     2
+phone   phone     2
+studi   studi     2
+
+now just could maybe be eliminated...
+
+> uniPreds
+         gram  count
+just     just 149907
+miss     miss  29680
+ever     ever  24989
+anyon   anyon  14857
+phone   phone  12481
+beer     beer   6930
+case     case   4397
+studi   studi   4040
+divorc divorc    399
+
+## let's see if tri matches are better than bimatches
+There are no trimatches.
+
+## Options from here:
+
+1. Try to incorporate 4-grams
+
+2. try a larger dataset, no removeSparse
+
+3. Something more complex!
+
+4. Ensure that trigrams are all from the same sentence??
+
+### Of course, easiest one is to try larger dataset:
+Just replace triTDM with triTDMlarge
+
+X # Get the frequency of each predFreq gram in our 'bag of words' freqTable
+  unimatches<- uniFreqTable[uniFreqTable$gram==predFreq$gram,]
+
+  uniFreqTable[uniFreqTable$gram == "beer",]
+  uniFreqTable[uniFreqTable$gram == predFreq$gram,]
+  #longer object length is not a multiple of shorter object length
+  which(uniFreqTable$gram %in% predFreq$gram)
+
+  uniPreds<-uniFreqTable[which(uniFreqTable$gram %in% predFreq$gram),]
+  predFreq$gram # Is our vector...
+
+  AH a problem is if some terms are NOT found in our uniFreq!
+
+  OK I don't understand why my original syntax is giving me shit, I guess because they are not equal lenght, fine.
+
+## SO my plan is now:
+_Done in Model 3.3 `uniFreqTable`_ 1. Use bag of words to build a list of the most frequently used unigrams (words) 
+
+*Done in Model 3.3 `predFreq`* 2. Use trigram model to find an array of possible predictions.
+
+3. Build a mechanism which takes 
+
 # Model 3.3
 
 Not using sparse terms, I got a triTDM of 10721832 !
@@ -33,13 +117,6 @@ Probably should do this complete?
 # Bag of Words ? Problem is there are no associations there! it can only tell us the probability of a word in GENERAL.
 
 So... That is really not useful in terms of prediction EXCEPT to compare and choose the most likely of the trigram options perhaps.
-
-# SO my plan is now:
-_Done in Model 3.3 `uniFreqTable`_ 1. Use bag of words to build a list of the most frequently used unigrams (words) 
-
-*Done in Model 3.3 `predFreq`* 2. Use trigram model to find an array of possible predictions.
-
-3. Build a mechanism which takes 
 
 # Model 3
 ? http://www.williamwebber.com/research/teaching/comp90042/2014s1/lect/l02.pdf
