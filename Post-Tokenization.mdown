@@ -1,5 +1,47 @@
 Post-Tokenization
 ====
+# Current operation
+
+# Question 4 is a key case where trigrams won't cut it!
+Question 4
+Very early observations on the Bills game: Offense still struggling but the
+
+You need to catch Offense and see what words are common with that.
+
+## I'm trying Model5 with .97 and no stopwords, 
+however I believe I will need to redo my model big-time based on 
+Stanford NLP.
+And work in a smaller test set for this I think.
+ERROR, too large (16.7 million still in TDM)
+
+but HMM the one that was created before is quite good!
+Now I'm not positive if that was from .97 but I think so... 
+it was created at 4:47...
+
+OK so, it must come from this run, because I canceled .985 before it completed.
+Yet, jeez i dunno i guess it went through somewhat somehow...
+
+Anyway it looks quite good:
+
+1. beer
+2. world
+3. well, here it's lost and plus it didn't cut down to 10 for some reason...
+
+so what the hell i'll try again at .95?
+
+trying .96, which has nrows=815930
+
+## I am a bit mystified why this piece of slow running code is needed
+
+```r
+# Put these results in a frequency table and rank them as such.
+matches<-lapply(1:length(input), FUN=function(x){c(trimatches[[x]]$three,bimatch1[[x]]$two,bimatch2[[x]]$one)})
+matchCorpus<-lapply(1:length(matches),FUN=function(x){makeCorpus(matches[[x]])}) # (Corpus(VectorSource(matches)) caused very similar terms to be considered separately like singular and plural)
+matchTDM<-lapply(1:length(matchCorpus),FUN=function(x){TermDocumentMatrix(matchCorpus[[x]])})
+```
+I am finding which words in the prediction corpus are most common....
+but what is the point of that...]
+why not simply use the freqTable$count??
 
 # OK I need to go through this stanford NLP more carefully
 
@@ -11,6 +53,38 @@ Seems like maybe bigrams use stopword elimination but trigrams and unigrams do n
 1. we should be able to calculate the joint probability of an entire sentence by P(A)P(B|A)P(C|A,B) etc. (chain rule)
 
 2. Markov assumption skips over words to generate probabilities, perhaps just the first and last two words of a sentence.
+
+# [Estimating n-gram probabilities](https://class.coursera.org/nlp/lecture/128)
+
+1. bigram estimates:
+*First, key note that they use <s> and </s> so that start and end of sentence are considered part of a bigram.*
+
+if sentence is "A B C D E"
+P(A|<s>)\*P(B|A)\*P(C|B)...P(</s|E)
+
+so here it's all bigrams.
+
+use log probabilities because adding them is faster than multiplying.
+
+## [log probability](http://en.wikipedia.org/wiki/Log_probability)
+Since the log of a number in [0,1] is negative, negative log probabilities are more commonly used.
+
+x' in probability means negation of an event, so the probability it does NOT happen (1-P)
+-
+
+SRILM toolkit, google n-gram
+# [Evaluation and Perplexity](https://class.coursera.org/nlp/lecture/129)
+
+Perplexity is the probability of the test set, normalized by the number of words.
+
+Normalization is done by putting the probability to the -1/N power, where N is the number of bigrams in a sentence (same as number of words? Not if using tokens it would be words+1.
+Idea being that many words are less likely...
+
+Perplexity is inversely related to probability.
+"How many things could occur next?""
+average branching factor
+
+So of course, the tree/branching idea would be that we are reducing the perplexity as it goes along.
 
 
 # interpolate / backoff
@@ -42,6 +116,8 @@ Perhaps stopword elimination is a problem.
 
 [](http://nlp.stanford.edu/IR-book/html/htmledition/contents-1.html)
 # problem: i'm not really using library(slam)! would that help??
+actually row_sums IS slam package.
+A better question though is, could I somehow keep those rowsums in sparse matrix or other format more friendly than regular matrix?
 
 # backup all corpus in TDM: 
 C:\Users\Michael\SkyDrive\Code\GitHub\DSCapstone\Coursera-SwiftKey\final\en_US\triTDM all corpus no sparse.RData

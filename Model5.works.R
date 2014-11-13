@@ -10,7 +10,7 @@ makeCorpus<- function(x) {
 corpus<-Corpus(VectorSource(x))
 corpus <- tm_map(corpus, stripWhitespace)
 corpus <- tm_map(corpus, content_transformer(tolower))
-corpus <- tm_map(corpus, removeWords, stopwords("english"))
+#corpus <- tm_map(corpus, removeWords, stopwords("english"))
 corpus <- tm_map(corpus, stemDocument)
 corpus<- tm_map(corpus,removePunctuation)
 corpus<- tm_map(corpus,removeNumbers)
@@ -26,7 +26,7 @@ makeTriTDM <- function(x) {
 corpus<-Corpus(VectorSource(x))
 corpus <- tm_map(corpus, stripWhitespace)
 corpus <- tm_map(corpus, content_transformer(tolower))
-corpus <- tm_map(corpus, removeWords, stopwords("english"))
+#corpus <- tm_map(corpus, removeWords, stopwords("english"))
 corpus <- tm_map(corpus, stemDocument)
 corpus<- tm_map(corpus,removePunctuation)
 corpus<- tm_map(corpus,removeNumbers)
@@ -85,8 +85,9 @@ rm(blogTDM)
 gc()
 
 # going further crashes without some removal.(27 million rows)
-triTDM<-removeSparseTerms(triTDM,0.98)
-
+# library(tm)
+triTDM<-removeSparseTerms(triTDM,0.96)
+gc()
 # 2. Isolate bigrams and unigrams within trigrams 
 #=============================================#
 
