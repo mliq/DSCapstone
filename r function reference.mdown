@@ -1,6 +1,6 @@
 r function reference
 ====
-
+class()
 str() "structure"
 summary() 
 dput()

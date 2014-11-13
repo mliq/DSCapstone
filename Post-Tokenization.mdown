@@ -1,15 +1,55 @@
 Post-Tokenization
 ====
+# DUDE! breakthrough.
+Note that you may need a totally different model for the Quiz like the Buffalo Bills one because that's NEWS not TWITTER. You need separate corpora... This is where you could have a TDM with 3 documents...
+
+So then the question becomes, how can I make a TDM that obliterates document separation but does not crash...
+hmmm........
+
+well if i read everything into one list item... that would do it no?
+would it be faster?
+let's see!
+
+## Further, if i am totally abandoning document identification, 
+I should examine what these Corpus and TDM functions really do and see if I can do it more efficiently?? I just want to count all the damn trigrams and eliminate duplicates... 
+
+error:
+ Error in .jcall("RWekaInterfaces", "[S", "tokenize", .jcast(tokenizer,  : 
+  java.lang.OutOfMemoryError: Java heap space 
+options(java.parameters = "-Xmx5000m")
+NOW:
+java.lang.OutOfMemoryError: GC overhead limit exceeded
+
+options(java.parameters = "-XX:-UseConcMarkSweepGC -Xmx5000m")
+
+*Well, perhaps best approach is my old one,*
+load in 20K line chunks, 
+Then just collapse the TDM using rowSums?
+
 # Current operation
 Ok, i feel like i'm fumbling in the dark again without a clear understanding of what I am trying to implement.
 
-I know that my first model actually worked better than what I have now.
+*I know that Model5 actually worked better than what I have now.*
 
 It sacrificed associations, reading in a big jumble of words and finding frequencies only.
 
 The problem is that it failed when a trigger was earlier in the sentence from the trigram.
 
-# findAssocs method
+So if that method is working better than findAssoc, 
+perhaps I just need to go back to that method and expand it.
+Instead of trigrams, get 4,5,6 grams until hopefully you encounter all the words you want...
+
+I guess that will be my next try.
+
+*yeah just forget about findAssoc, it can't handle more than 100,000 docs or so*
+
+# So let's try expanding our Model5 to doing Quadrigrams
+
+1. Must I create freqTable or can I access/search for terms and get their frequency without doing that? I think I kind of did that in the findAssoc below?
+
+2. 
+
+# XX findAssocs method
 
 ```r
 # Start the clock!
