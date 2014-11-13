@@ -1,6 +1,132 @@
 Post-Tokenization
 ====
 # Current operation
+Ok, i feel like i'm fumbling in the dark again without a clear understanding of what I am trying to implement.
+
+I know that my first model actually worked better than what I have now.
+
+It sacrificed associations, reading in a big jumble of words and finding frequencies only.
+
+The problem is that it failed when a trigger was earlier in the sentence from the trigram.
+
+# findAssocs method
+
+```r
+# Start the clock!
+ptm <- proc.time()
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+
+# FUNCTION DEFINITIONS #
+library(tm)
+# Make Corpus and do transformations only
+makeCorpus<- function(x) {
+corpus<-Corpus(VectorSource(x))
+corpus <- tm_map(corpus, stripWhitespace)
+corpus <- tm_map(corpus, content_transformer(tolower))
+#corpus <- tm_map(corpus, removeWords, stopwords("english"))
+corpus <- tm_map(corpus, stemDocument)
+corpus<- tm_map(corpus,removePunctuation)
+corpus<- tm_map(corpus,removeNumbers)
+return(corpus)
+}
+
+# TrigramTokenizer function
+library(RWeka)
+TrigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+
+# Make Corpus, Transform, Make Trigram TDM
+makeTriTDM <- function(x) {
+corpus<-Corpus(VectorSource(x))
+corpus <- tm_map(corpus, stripWhitespace)
+corpus <- tm_map(corpus, content_transformer(tolower))
+#corpus <- tm_map(corpus, removeWords, stopwords("english"))
+corpus <- tm_map(corpus, stemDocument)
+corpus<- tm_map(corpus,removePunctuation)
+corpus<- tm_map(corpus,removeNumbers)
+tdm<- TermDocumentMatrix(corpus, control = list(tokenize = TrigramTokenizer))
+#tdm<-removeSparseTerms(tdm,0.97)
+return(tdm)}
+
+## DATA MUNGING ##
+
+# 1. Corpus, transformations, and TDM Creation
+#=============================================#
+
+fileMunge<- function(x) {
+text<-readLines(x,n=1000000)
+# text<-removeWords(text, c("bitch","fuck","shit","ass","ho","crap","cunt","asshole"))
+totalLines=length(text)
+chunkSize=1
+chunks=totalLines/chunkSize
+remainder = chunks %% 1
+wholeChunks = chunks-remainder
+# initialize list
+output=list()
+# break file into chunks 
+i=1
+line=1
+while (i<=wholeChunks){
+end=line+chunkSize-1
+output[[i]]<-text[line:end]
+line=end+1
+i=i+1
+}
+output[[i]]<-text[line:totalLines]
+# Text Transformations to remove odd characters #
+output=lapply(output,FUN=iconv, to='ASCII', sub=' ')
+output=lapply(output,FUN= function(x) gsub("'{2}", " ",x))
+output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
+}
+
+# Read, chunk, parse data, then make corpus, do transformations, make TDM of tri-grams:
+test<-fileMunge("Quiz2.txt")
+train<-fileMunge("en_US.twitter.txt")
+triTDM <- makeTriTDM(train)
+
+# Divide test data into trigrams
+corp<-makeCorpus(test)
+# Break first sentence into trigrams (16)
+test1<-TrigramTokenizer(corp[[1]])
+
+# Go through each trigram and findAssocs
+# assocs<-lapply(test1,FUN=function(x){findAssocs(triTDM,x,0)})
+
+library(plyr)
+findAssocsBig <- function(u, term, corlimit){
+  suppressWarnings(x.cor <-  gamlr::corr(t(u[ !u$dimnames$Terms == term, ]),        
+                                         as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
+  x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
+  return(x)
+}
+
+findAssocsBig(triTDM,test1[16],0)
+proc.time() - ptm
+# OK this works really fast.. but... crashes when I do llply, I think because #2 "subscript is out of bounds?" Can I ignore NA or something? # assocs<-llply(test1,function(x)findAssocsBig(triTDM,x,0), .progress = "text" )
+# anyway, is it WORTH fixing??
+# Let's see how much time to do a 1 million corpus this shit.
+
+
+##---##
+
+
+ptm <- proc.time()
+assocs<-llply(test1,function(x)findAssocs(triTDM,x,0), .progress = "text" )
+proc.time() - ptm
+#OK too fucking slow
+
+
+library(plyr)
+findAssocsBig <- function(u, term, corlimit){
+  suppressWarnings(x.cor <-  gamlr::corr(t(u[ !u$dimnames$Terms == term, ]),        
+                                         as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
+  x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
+  return(x)
+}
+assocs <- llply(test1, function(i) findAssocsBig(triTDM, i, 0), .progress = "text" )
+
+# Stop the clock
+proc.time() - ptm
+```
 # well, i think i am wasting time. Beer is not in my first 100K lines... 
 
 So moving to a sentence based model, how would this work?
@@ -40,12 +166,95 @@ The output is a list where each item in the list is a vector of named numbers wh
 
 dat[[1005]]
 
+rowSums(inspect(triTDM2[1:10,]))
+
+OK so I can get rowsums fine. 
+But what I want really is to get associations...
+A term-term matrix?
+
 # [perhaps this with bag of words?](http://stackoverflow.com/questions/10622730/constructing-a-co-occurrence-matrix-from-dummycoded-observations-in-r)
+
+```r
+X= as.matrix(triTDM2) # only 10921 rows yet 1.6 GB!
+X <- as.matrix(X)
+out <- t(X) %*% X  
+diag(out) <- 0   # (b/c you don't count co-occurrences of an aspect with itself)
+
+#
+topResults<-which(out[1,]>=2)
+out[1,topResults]
+dimnames(X)[[1]][1]
+dimnames(X)[[1]][topResults]
+# ok this produced a list of associated trigrams.
+# now let's try it on the quiz.
+
+# Divide test data into trigrams
+corp<-makeCorpus(test)
+# Break first sentence into trigrams (16)
+test1<-TrigramTokenizer(corp[[1]])
+
+# Call up a trigram by name
+dimnames(X)[[1]][1] # "a bad day"
+which(dimnames(X)[[1]]=="a bad day") #1
+# Call up trigram from test sentence in X
+which(dimnames(X)[[1]]==test1[3]) #4313 "in front of"
+# OK, i found the 3rd trigram of test sentence 1 at row 4313 in X.
+topResults<-which(out[4313,]>=2)
+dimnames(X)[[1]][topResults] # "the latest from"
+
+#ok odd result, let's try with 16.
+which(dimnames(X)[[1]]==test1[7]) # 8-16 nope
+topResults<-which(out[5051,]>=2)
+dimnames(X)[[1]][topResults]
+
+# is this the same as findAssoc?
+findAssocs(triTDM2,test1[7],0)
+# Nope
+# > dimnames(X)[[1]][topResults]
+ [1] "can be use"       "give a damn"      "good at your"     "i can stand"     
+ [5] "know you are"     "realli dont like" "what i want"      "with you a"      
+ [9] NA                 NA                 NA                 NA                
+[13] NA                 NA                 NA                 NA                
+> 
+> findAssoc(triTDM2,test1[7],0)
+Error: could not find function "findAssoc"
+> findAssocs(triTDM2,test1[7],0)
+                  just bought a
+a new bikini               0.50
+they should renam          0.50
+i just bought              0.35
+
+
+```
+X <- as.matrix(X)
+out <- t(X) %*% X  
+diag(out) <- 0   # (b/c you don't count co-occurrences of an aspect with itself)
+out
+#      [,1] [,2] [,3] [,4]
+# [1,]    0    0    1    0
+# [2,]    0    0    2    1
+# [3,]    1    2    0    1
+# [4,]    0    1    1    0
+To get the results into a data.frame exactly like the one you showed, you can then do something like:
+
+nms <- paste("X", 1:4, sep="")
+dimnames(out) <- list(nms, nms)
+out <- as.data.frame(out)
+
+as.simple_triplet_matrix(x)?
+
+# [this?](http://stackoverflow.com/questions/11508728/r-tm-package-create-matrix-of-nmost-frequent-terms?rq=1)
+
+The term-document matrices in tm are already created as sparse matrices. Here, mydata.tdm$i and mydata.tdm$j are the vectors of indexes of the matrix and mydata.tdm$v is the related vector of frequencies. So that you can create a sparse matrix writing :
+
+sparseMatrix(i=mydata.tdm$i, j=mydata.tdm$j, x=mydata.tdm$v)
+Then you can use rowSums and link the rows, you're interested in, to the terms, they stand for, with $Terms.
 
 # also first: insert this into makeCorpus and makeTriTDM at start
 
 ```r
-removeWords(x, c("bitch","fuck","shit","ass","ho","crap","cunt","asshole"))
+	removeWords(x, c("bitch","fuck","shit","ass","ho","crap","cunt","asshole"))
+	# This does not work! perhaps because of capitals?
 ```
 #---
 I would take each trigram in THAT sentence, find probabilities, multiply them together.
@@ -100,7 +309,7 @@ return(tdm)}
 
 fileMunge<- function(x) {
 text<-readLines(x,n=100000)
-text<-removeWords(text, c("bitch","fuck","shit","ass","ho","crap","cunt","asshole"))
+# text<-removeWords(text, c("bitch","fuck","shit","ass","ho","crap","cunt","asshole"))
 totalLines=length(text)
 chunkSize=1
 chunks=totalLines/chunkSize
