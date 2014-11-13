@@ -28,7 +28,7 @@ Let's try with our test data:
 
 ```r
 gc()
-setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/")
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 
 # FUNCTION DEFINITIONS #
 library(tm)
@@ -92,13 +92,18 @@ output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
 }
 
 # Read, chunk, parse data, then make corpus, do transformations, make TDM of tri-grams:
-test<-fileMunge("testData1.txt")
-triTDM <- makeTriTDM(test)
-# rm(test)
+test<-fileMunge("Quiz2.txt")
+train<-fileMunge("en_US.twitter.txt")
+triTDM <- makeTriTDM(train)
+
+
+#rm(train)
 # gc()
 
 #
 corp<-makeCorpus(test)
+
+
 findAssocs(triTDM,as.character(corp[[1]]),0)
 
 
