@@ -2,6 +2,162 @@ Post-Tokenization
 ====
 # Current operation
 
+So moving to a sentence based model, how would this work?
+
+1. probability of every trigram.
+
+2. Take a sentence and find probability of every trigram in it.
+
+3. Fine, but where is the TREE? Where does it combine all these things?
+
+idea:
+use which to identify which documents each term from our query is found in, then examine all the other words in THOSE documents...
+[tf-idf](http://en.wikipedia.org/wiki/Tf–idf)
+Well, that is actually what findAssoc does right?
+
+
+I would take each trigram in THAT sentence, find probabilities, multiply them together.
+
+Then, given a prediction query, find the sentences that are most similar.
+
+Then look at the sentence with highest probability.
+
+then look at the words not used yet.
+
+Let's try with our test data:
+
+```r
+gc()
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/")
+
+# FUNCTION DEFINITIONS #
+library(tm)
+# Make Corpus and do transformations only
+makeCorpus<- function(x) {
+corpus<-Corpus(VectorSource(x))
+corpus <- tm_map(corpus, stripWhitespace)
+corpus <- tm_map(corpus, content_transformer(tolower))
+#corpus <- tm_map(corpus, removeWords, stopwords("english"))
+corpus <- tm_map(corpus, stemDocument)
+corpus<- tm_map(corpus,removePunctuation)
+corpus<- tm_map(corpus,removeNumbers)
+return(corpus)
+}
+
+# TrigramTokenizer function
+library(RWeka)
+TrigramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+
+# Make Corpus, Transform, Make Trigram TDM
+makeTriTDM <- function(x) {
+corpus<-Corpus(VectorSource(x))
+corpus <- tm_map(corpus, stripWhitespace)
+corpus <- tm_map(corpus, content_transformer(tolower))
+#corpus <- tm_map(corpus, removeWords, stopwords("english"))
+corpus <- tm_map(corpus, stemDocument)
+corpus<- tm_map(corpus,removePunctuation)
+corpus<- tm_map(corpus,removeNumbers)
+tdm<- TermDocumentMatrix(corpus, control = list(tokenize = TrigramTokenizer))
+#tdm<-removeSparseTerms(tdm,0.97)
+return(tdm)}
+
+## DATA MUNGING ##
+
+# 1. Corpus, transformations, and TDM Creation
+#=============================================#
+
+fileMunge<- function(x) {
+text<-readLines(x)
+totalLines=length(text)
+chunkSize=1
+chunks=totalLines/chunkSize
+remainder = chunks %% 1
+wholeChunks = chunks-remainder
+# initialize list
+output=list()
+# break file into chunks 
+i=1
+line=1
+while (i<=wholeChunks){
+end=line+chunkSize-1
+output[[i]]<-text[line:end]
+line=end+1
+i=i+1
+}
+output[[i]]<-text[line:totalLines]
+# Text Transformations to remove odd characters #
+output=lapply(output,FUN=iconv, to='ASCII', sub=' ')
+output=lapply(output,FUN= function(x) gsub("'{2}", " ",x))
+output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
+}
+
+# Read, chunk, parse data, then make corpus, do transformations, make TDM of tri-grams:
+test<-fileMunge("testData1.txt")
+triTDM <- makeTriTDM(test)
+# rm(test)
+# gc()
+
+#
+corp<-makeCorpus(test)
+findAssocs(triTDM,as.character(corp[[1]]),0)
+
+
+#1. Calculate probabilities of each line in my testdata1.txt
+# "Talking heads are my favorite band"
+findAssocs(triTDM,"Talking heads are my favorite band",0)
+findAssocs(triTDM,"talk head are",0)
+                #talk head are
+# are my favorit              1
+# head are my                 1
+# my favorit band             1
+findAssocs(triTDM,"talk head are my",0)
+
+corp<-makeCorpus(test)
+findAssocs(triTDM,as.character(corp[[1]]),0)
+TrigramTokenizer(corp[[1]])
+#[1] "talk head are"  
+#[2] "head are my"    
+#[3] "are my favorit" 
+#[4] "my favorit band"
+
+#make list of the trigrams in that sentence
+train<-TrigramTokenizer(corp[[1]])
+
+# Make a frequency table with <UNK> and also every trigram we have found.
+
+
+# Create a list of all trigrams and their frequency count.
+freq<-data.frame(trigrams=triTDM$dimnames[[1]], count=rowSums(inspect(triTDM)) #stringsAsFactors=FALSE ?? 
+freq$MLE<-(freq$count/nrow(freq))
+
+
+#make list of associations for each trigram in that sentence
+trainGrams<-lapply(train,FUN=function(x){findAssocs(triTDM,x,0)})
+
+### PROBABILITIES ###
+
+#So for each training sentence, we take each trigram it has, then calculate the count of that trigram over the total number of trigrams in our corpus.
+#Access each part of TDM: triTDM$dimnames[[1]][2]
+
+So...
+findAssoc doesn't really help, it's not a frequency or probability table.
+
+library(slam)
+
+gramCount<-as.matrix(row_sums(triTDM))
+
+```
+
+## I think what's really missing though is relations
+I am able to follow the model of trigram modeling but it's still just an expanded bag of words/probability model. 
+I want something that says, a sentence with "offense" may also have "defense".
+
+### Wordnet thesaurus, FreeBase, DBPedia
+
+# So it seems like the main thing I am missing in my model is, 
+*identifying sentences*
+THe key seems to be grouping a sentence to find it's probability, though I'm not quite sure why?
+
 # Question 4 is a key case where trigrams won't cut it!
 Question 4
 Very early observations on the Bills game: Offense still struggling but the
@@ -86,9 +242,27 @@ average branching factor
 
 So of course, the tree/branching idea would be that we are reducing the perplexity as it goes along.
 
+perplexity = weighted equivalent branching factor
 
-# interpolate / backoff
-https://class.coursera.org/nlp/lecture/19
+so PP(x)=P(x)^(-1/N)
+
+# [Generalization and Zeros](https://class.coursera.org/nlp/lecture/17)
+
+Any zero probability bigram (simply not in the test corpus), will be assigned 0 probability and cause the sentence to be 0 probability, and perplexity uncalculable (divide by zero)
+
+# [Smoothing: Add One](https://class.coursera.org/nlp/lecture/18)
+
+We need to take away from counted bigrams if we want to add to 0 bigrams to keep ratios the same.
+
+Simplest way is Laplace smoothing - just add 1 to everything.
+
+MLE Maximum Likelihood Estimate - the one that maximizes the likelihood of the training set T given the model M - just the count of something over the total number. key point here is just that it is for a training corpus, may be totally off in another corpus.
+
+MLE LM (language model) assigns highest probability to the training corpus thus has lowest perplexity. Smoothed PP will be higher.
+
+We DO NOT USE add-1 smoothing for n-grams because there are TOO many zeroes, it totally skews our data.
+
+# [INTERPOLATION / BACKOFF](https://class.coursera.org/nlp/lecture/19)
 
 Backoff means - just use trigram if you have a good match, but otherwise stepdown to bigrams 
 (this is the model I'm using now I believe)
@@ -105,6 +279,47 @@ in other words, we take the probability of the trigram over all sentences, and t
 P(Sam) = #Sam/#total WORDS (unigrams)
 P(Sam|am) = #S
 P(Sam|I am) = #(Sam I am)/#ALL SENTENCES.
+
+Choose lambdas that maximize probability of held-out data (like a second test set...)
+
+so 1. fix n-gram probabilities on training data
+2. search for lambdas that give largest probability to held-out set
+
+	log P(w1...wn)|M(lambda1...lambdak) = Sigma log PM(lamba1...lambdaK(w1...wn)
+
+## OOV = out of vocabulary words
+create unknown word token <UNK>
+
+So we filter out low-probability words, a fixed lexicon L of size V.
+
+then any words not in training set are <UNK>
+
+## Pruning
+
+only keep n-grams with count>threshold
+remove singletons of higher-order n-grams
+entropy-based pruning - advanced.
+
+## Back-off
+
+Stupid back-off - not probabilities, scores (greater than 1 is possible). Only relative frequencies multiplied by a constant rate.
+
+So if trigram occurs, I use that, if not, I use bigram probability.
+I don't discount whether the probability comes from bigrams or trigrams.
+
+Stupid back-off good for very large n-grams. (web-scale)
+
+Extended interpolated kneser-ney - more used, discussed later.
+
+## Advanced Language Models
+Discriminative models - choose n-gram weights to improve a task.
+
+Parsing-based models - discussed later
+
+Caching models - recently used words more likely 
+
+#[Good-Turing Smoothing](https://class.coursera.org/nlp/lecture/32)
+1:41
 
 ## Lambdas conditional on previous words??
 
@@ -208,7 +423,7 @@ So remember that removeSparse 0.98 got the best results so far.
 (right?) Try 0.97.
 
 *.97: 154180 TDM rows*
-             gram count
+						 gram count
 just         just    14
 anyon       anyon     2
 beer         beer     2
@@ -224,7 +439,7 @@ OK great, that improved results further.
 let's try .96?
 
 *.96 100333 rows*
-           gram count
+					 gram count
 just       just     9
 case       case     2
 beer       beer     1
@@ -240,7 +455,7 @@ great     great     1
 -And, perhaps just can be eliminated...
 
 *.98*
-         gram count
+				 gram count
 just     just    16
 case     case     4
 miss     miss     3
@@ -285,7 +500,7 @@ OK this made my results WORSE though.
 The deal is, I want beer to be the result.
 
 I get this:
-         gram count
+				 gram count
 just     just    16
 case     case     4
 miss     miss     3
@@ -300,7 +515,7 @@ studi   studi     2
 now just could maybe be eliminated...
 
 > uniPreds
-         gram  count
+				 gram  count
 just     just 149907
 miss     miss  29680
 ever     ever  24989
@@ -333,19 +548,19 @@ and still no trimatches.
 perhaps stick with remove sparse and add the other corpuses?
 
 X # Get the frequency of each predFreq gram in our 'bag of words' freqTable
-  unimatches<- uniFreqTable[uniFreqTable$gram==predFreq$gram,]
+	unimatches<- uniFreqTable[uniFreqTable$gram==predFreq$gram,]
 
-  uniFreqTable[uniFreqTable$gram == "beer",]
-  uniFreqTable[uniFreqTable$gram == predFreq$gram,]
-  #longer object length is not a multiple of shorter object length
-  which(uniFreqTable$gram %in% predFreq$gram)
+	uniFreqTable[uniFreqTable$gram == "beer",]
+	uniFreqTable[uniFreqTable$gram == predFreq$gram,]
+	#longer object length is not a multiple of shorter object length
+	which(uniFreqTable$gram %in% predFreq$gram)
 
-  uniPreds<-uniFreqTable[which(uniFreqTable$gram %in% predFreq$gram),]
-  predFreq$gram # Is our vector...
+	uniPreds<-uniFreqTable[which(uniFreqTable$gram %in% predFreq$gram),]
+	predFreq$gram # Is our vector...
 
-  AH a problem is if some terms are NOT found in our uniFreq!
+	AH a problem is if some terms are NOT found in our uniFreq!
 
-  OK I don't understand why my original syntax is giving me shit, I guess because they are not equal lenght, fine.
+	OK I don't understand why my original syntax is giving me shit, I guess because they are not equal lenght, fine.
 
 ## SO my plan is now:
 _Done in Model 3.3 `uniFreqTable`_ 1. Use bag of words to build a list of the most frequently used unigrams (words) 
@@ -360,8 +575,8 @@ Not using sparse terms, I got a triTDM of 10721832 !
 probably should reduce that...
 
 saved my session, now ran:
-  
-  triTDM2<-removeSparseTerms(triTDM,0.01)
+	
+	triTDM2<-removeSparseTerms(triTDM,0.01)
 
 That obliterated it, so i'm trying now .0001
 
@@ -392,9 +607,9 @@ So... That is really not useful in terms of prediction EXCEPT to compare and cho
 ? http://www.williamwebber.com/research/teaching/comp90042/2014s1/lect/l02.pdf
 ## NEXT STEPS:
 1. should i try again where each line is a document? 
-  As long as I am not depending on findAssocs, I suppose this is irrelevant. So the key issue will then be, *is my TrigramTokenizer accurate or is it meshing together sentences that bear no relation?*AND it makes it hard to use sparsity measures.  
+	As long as I am not depending on findAssocs, I suppose this is irrelevant. So the key issue will then be, *is my TrigramTokenizer accurate or is it meshing together sentences that bear no relation?*AND it makes it hard to use sparsity measures.  
 
-  Question: is there an _ideal_ document length for NLP?
+	Question: is there an _ideal_ document length for NLP?
 
 2. Thinking about machine learning... i suppose you are assigning frequencies and coming up with some kind of equation to predict the words, and possibly using k-folds / cross-validation. 
 
@@ -514,7 +729,7 @@ Using 20,000 lines of twitter, I get:
 Error: cannot allocate vector of size 15.7 Gb
 In addition: Warning messages:
 1: In vector(typeof(x$v), nr * nc) :
-  Reached total allocation of 12220Mb: see help(memory.size)
+	Reached total allocation of 12220Mb: see help(memory.size)
 
 Solutions proposed:
 
@@ -756,7 +971,7 @@ else {
 
 ```r
 # get the subset of the trigram data table with a matching bigram start
-  swf_T <- wf_T[wf_T$start == bigram,]
+	swf_T <- wf_T[wf_T$start == bigram,]
 # where wf_T is a data.frame in which:
 # columns are: words and count
 # rows are: names(freq_T), freq_T
@@ -776,37 +991,37 @@ Sparsity           : 67%
 Maximal term length: 22
 Weighting          : term frequency (tf)
 
-                        Docs
+												Docs
 Terms                    1 2 3 4
-  aerosmith              0 0 1 0
-  band                   1 0 1 0
-  band aerosmith         0 0 1 0
-  blitzer                0 1 0 1
-  blitzer favorite       0 0 0 1
-  favorit                1 0 1 0
-  favorit band           1 0 1 0
-  favorit band aerosmith 0 0 1 0
-  favorite               0 0 0 1
-  hate                   0 1 0 0
-  hate talk              0 1 0 0
-  hate talk head         0 1 0 0
-  head                   1 1 0 0
-  head favorit           1 0 0 0
-  head favorit band      1 0 0 0
-  head tv                0 1 0 0
-  head tv like           0 1 0 0
-  like                   0 1 0 0
-  like wolf              0 1 0 0
-  like wolf blitzer      0 1 0 0
-  talk                   1 1 0 0
-  talk head              1 1 0 0
-  talk head favorit      1 0 0 0
-  talk head tv           0 1 0 0
-  tv like                0 1 0 0
-  tv like wolf           0 1 0 0
-  wolf                   0 1 0 1
-  wolf blitzer           0 1 0 1
-  wolf blitzer favorite  0 0 0 1
+	aerosmith              0 0 1 0
+	band                   1 0 1 0
+	band aerosmith         0 0 1 0
+	blitzer                0 1 0 1
+	blitzer favorite       0 0 0 1
+	favorit                1 0 1 0
+	favorit band           1 0 1 0
+	favorit band aerosmith 0 0 1 0
+	favorite               0 0 0 1
+	hate                   0 1 0 0
+	hate talk              0 1 0 0
+	hate talk head         0 1 0 0
+	head                   1 1 0 0
+	head favorit           1 0 0 0
+	head favorit band      1 0 0 0
+	head tv                0 1 0 0
+	head tv like           0 1 0 0
+	like                   0 1 0 0
+	like wolf              0 1 0 0
+	like wolf blitzer      0 1 0 0
+	talk                   1 1 0 0
+	talk head              1 1 0 0
+	talk head favorit      1 0 0 0
+	talk head tv           0 1 0 0
+	tv like                0 1 0 0
+	tv like wolf           0 1 0 0
+	wolf                   0 1 0 1
+	wolf blitzer           0 1 0 1
+	wolf blitzer favorite  0 0 0 1
 
 no, lets go back and do just trigrams (edit TriGramTokenizer function)
 OK:
@@ -817,17 +1032,17 @@ Sparsity           : 75%
 Maximal term length: 22
 Weighting          : term frequency (tf)
 
-                        Docs
+												Docs
 Terms                    1 2 3 4
-  favorit band aerosmith 0 0 1 0
-  hate talk head         0 1 0 0
-  head favorit band      1 0 0 0
-  head tv like           0 1 0 0
-  like wolf blitzer      0 1 0 0
-  talk head favorit      1 0 0 0
-  talk head tv           0 1 0 0
-  tv like wolf           0 1 0 0
-  wolf blitzer favorite  0 0 0 1
+	favorit band aerosmith 0 0 1 0
+	hate talk head         0 1 0 0
+	head favorit band      1 0 0 0
+	head tv like           0 1 0 0
+	like wolf blitzer      0 1 0 0
+	talk head favorit      1 0 0 0
+	talk head tv           0 1 0 0
+	tv like wolf           0 1 0 0
+	wolf blitzer favorite  0 0 0 1
 
 ```r
 
@@ -989,15 +1204,15 @@ cleanData3 <- gsub("[0-9]", " ", cleanData2)
 
 require(RTextTools)
 myTDM <- create_matrix(cleanData3, language="english", 
-                    removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
-                    removePunctuation=TRUE, removeSparseTerms=0.60, 
-                    removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
+										removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
+										removePunctuation=TRUE, removeSparseTerms=0.60, 
+										removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
 #creates a matrix where terms are columns, documents are rows.
 colnames(myTDM) #lists all terms
 # ok above results in only 32 words!
 myTDM <- create_matrix(cleanData3, language="english", 
-                    removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
-                    removePunctuation=TRUE, removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
+										removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
+										removePunctuation=TRUE, removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
 
 # Could problem be that I did not load tm or tau?
 # okay, that worked and produced 48399 columns
@@ -1011,8 +1226,8 @@ sink()
 # so it seems i have only unigrams, and that the reason may be that words have been mashed together for some reason. I will try again without all the other options.
 
 myTDM <- create_matrix(cleanData3, language="english", 
-                    removeNumbers=FALSE, stemWords=FALSE, ngramLength=c(2),  
-                    removePunctuation=FALSE, removeStopwords=FALSE, stripWhitespace=FALSE, toLower=TRUE)
+										removeNumbers=FALSE, stemWords=FALSE, ngramLength=c(2),  
+										removePunctuation=FALSE, removeStopwords=FALSE, stripWhitespace=FALSE, toLower=TRUE)
 # Error in FUN(X[[2L]], ...) : non-character argument
 
 debug(create_matrix)
@@ -1020,8 +1235,8 @@ undebug(create_matrix)
 #OR debugonce(create_matrix)
 
 capture.output(create_matrix(cleanData3, language="english", 
-                    removeNumbers=FALSE, stemWords=FALSE, ngramLength=c(2),  
-                    removePunctuation=FALSE, removeStopwords=FALSE, stripWhitespace=FALSE, toLower=TRUE), file='source_create_matrix.r')
+										removeNumbers=FALSE, stemWords=FALSE, ngramLength=c(2),  
+										removePunctuation=FALSE, removeStopwords=FALSE, stripWhitespace=FALSE, toLower=TRUE), file='source_create_matrix.r')
 ```
 
 ```r
@@ -1061,11 +1276,11 @@ Woot! that worked...
 ```r
 library(RTextTools)
 TDM2 <- create_matrix(corpus, language="english", 
-                    removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
-                    removePunctuation=TRUE, removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
+										removeNumbers=TRUE, stemWords=TRUE, ngramLength=c(1,2,3),  
+										removePunctuation=TRUE, removeStopwords=TRUE, stripWhitespace=TRUE, toLower=TRUE)
 #Warning message:
 #In if (ngramLength > 1) { :
-  #the condition has length > 1 and only the first element will be used
+	#the condition has length > 1 and only the first element will be used
 ```
 So, that way does not work.
 
@@ -1116,10 +1331,10 @@ findAssocs(txtTdmBi2, "barack obama", 0.1)
 ```r
 library(gamlr)
 findAssocsBig <- function(u, term, corlimit){
-  suppressWarnings(x.cor <-  gamlr:corr(t(u[ !u$dimnames$Terms == term, ]),        
-                                         as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
-  x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
-  return(x)
+	suppressWarnings(x.cor <-  gamlr:corr(t(u[ !u$dimnames$Terms == term, ]),        
+																				 as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
+	x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
+	return(x)
 }
 findAssocsBig(txtTdmBi, "added today", 0.01)
 #Error in get(name, envir = asNamespace(pkg), inherits = FALSE) : 
