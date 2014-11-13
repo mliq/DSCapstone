@@ -1,6 +1,7 @@
 Post-Tokenization
 ====
 # Current operation
+# well, i think i am wasting time. Beer is not in my first 100K lines... 
 
 So moving to a sentence based model, how would this work?
 
@@ -15,7 +16,38 @@ use which to identify which documents each term from our query is found in, then
 [tf-idf](http://en.wikipedia.org/wiki/Tf–idf)
 Well, that is actually what findAssoc does right?
 
+# [this](http://stackoverflow.com/questions/16836022/findassocs-for-multiple-terms-in-r)
+use a lapply function to calculate the associated words for every item in the vector of terms in the term-document matrix. The vector of terms is most simply accessed with txtTdmBi$dimnames$Terms. For example txtTdmBi$dimnames$Terms[[1005]] is "foreign investment".
 
+Here I've used llply from the plyr package so we can have a progress bar (comforting for big jobs), but it's basically the same as the base lapply function.
+
+```r
+library(plyr)
+dat <- llply(triTDM2$dimnames$Terms, function(i) findAssocs(triTDM2, i, 0.5), .progress = "text" )
+
+# if very large:
+findAssocsBig <- function(u, term, corlimit){
+  suppressWarnings(x.cor <-  gamlr::corr(t(u[ !u$dimnames$Terms == term, ]),        
+                                         as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
+  x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
+  return(x)
+}
+dat1 <- llply(triTDM2$dimnames$Terms, function(i) findAssocsBig(triTDM2, i, 0.5), .progress = "text" )
+
+```
+
+The output is a list where each item in the list is a vector of named numbers where the name is the term and the number is the correlation value. For example, to see the terms associated with "foreign investment", we can access the list like so:
+
+dat[[1005]]
+
+# [perhaps this with bag of words?](http://stackoverflow.com/questions/10622730/constructing-a-co-occurrence-matrix-from-dummycoded-observations-in-r)
+
+# also first: insert this into makeCorpus and makeTriTDM at start
+
+```r
+removeWords(x, c("bitch","fuck","shit","ass","ho","crap","cunt","asshole"))
+```
+#---
 I would take each trigram in THAT sentence, find probabilities, multiply them together.
 
 Then, given a prediction query, find the sentences that are most similar.
@@ -67,7 +99,8 @@ return(tdm)}
 #=============================================#
 
 fileMunge<- function(x) {
-text<-readLines(x)
+text<-readLines(x,n=100000)
+text<-removeWords(text, c("bitch","fuck","shit","ass","ho","crap","cunt","asshole"))
 totalLines=length(text)
 chunkSize=1
 chunks=totalLines/chunkSize
@@ -95,16 +128,94 @@ output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
 test<-fileMunge("Quiz2.txt")
 train<-fileMunge("en_US.twitter.txt")
 triTDM <- makeTriTDM(train)
+# Cut to 9947
+triTDM2<-removeSparseTerms(triTDM,0.99995)
+
+library(plyr)
+library(gamlr)
+findAssocsBig <- function(u, term, corlimit){
+  suppressWarnings(x.cor <-  gamlr::corr(t(u[ !u$dimnames$Terms == term, ]),        
+                                         as.matrix(t(u[  u$dimnames$Terms == term, ]))  ))  
+  x <- sort(round(x.cor[(x.cor[, term] > corlimit), ], 2), decreasing = TRUE)
+  return(x)
+}
+dat1 <- llply(triTDM2$dimnames$Terms, function(i) findAssocsBig(triTDM2, i, 0.5), .progress = "text" )
 
 
+
+
+# Cut TDM down from 811,459 terms to 73550
+triTDM2<-removeSparseTerms(triTDM,0.99999)
+
+# Divide test data into trigrams
+corp<-makeCorpus(test)
+# Break first sentence into trigrams (16)
+test1<-TrigramTokenizer(corp[[1]])
+# Make dataframe of predictions for those 16 trigrams, and time the process:
+# Start the clock!
+ptm <- proc.time()
+# Data frame findAssocs
+test1results<-lapply(test1,FUN=function(x){head(as.data.frame(findAssocs(triTDM2,x,0)),n=10)})
+# Stop the clock
+proc.time() - ptm
+#  user  system elapsed 
+# 444.28    0.04  445.40 
+
+# okay. Beer is not there.
+# so, next step is, put all of these results, not just 10 into a data frame...
+# btw, this is not a data frame.
+# Start the clock!
+ptm <- proc.time()
+# Data frame findAssocs
+test1results2<-lapply(test1,FUN=function(x){(findAssocs(triTDM2,x,0))})
+# Stop the clock
+proc.time() - ptm
+# 422 slightly faster
+
+grams<-unlist(lapply(test1results2,FUN=function(x){dimnames(x)}))
+count<-unlist(lapply(test1results2,FUN=function(x){lapply(x,FUN=identity)}))
+testDF<-data.frame(grams=grams,count=count)
+#error: grams is 6 longer than count... why is this??
+
+# then put all those results into a corpus and find frequent terms?
+# results<-test1results2 ?
+testTDM<-makeTriTDM(test1results2)
+
+gramCount<-as.matrix(row_sums(testTDM))
+freqTable <- data.frame(gram=dimnames(gramCount)[[1]],count=gramCount,stringsAsFactors=FALSE)
+# sort descending the frequency tables
+freqTable<-freqTable[order(-freqTable$count),]
+
+##--##
+
+
+#findFreqTerms(x = myTDM, lowfreq=1, highfreq=Inf)
+
+
+#Note that there are 16 trigrams in this example.
+
+# incredibly slow on full TDM of first 100K twitter lines.
+# try after removeSparseTerms .97?
+triTDM2<-removeSparseTerms(triTDM,0.97)
+# hm put it down to nothing! right, too much sparsity...
+triTDM2<-removeSparseTerms(triTDM,0.9999)
+#nrow=3800
+triTDM2<-removeSparseTerms(triTDM,0.999999)
+#nrow = 811459 (no change)
+triTDM2<-removeSparseTerms(triTDM,0.99999)
+#nrow = 302611
+findAssocs(triTDM2,test1[1],0)
+# took maybe two minutes
+system.time(findAssocs(triTDM2,test1[3],0))
 #rm(train)
 # gc()
 
 #
-corp<-makeCorpus(test)
 
 
-findAssocs(triTDM,as.character(corp[[1]]),0)
+
+#
+findAssocs(triTDM,TrigramTokenizer(corp[[1]]),0)
 
 
 #1. Calculate probabilities of each line in my testdata1.txt

@@ -22,3 +22,10 @@ paste0() no space in between
 read.table
 readLines
 readChar ?
+
+See inside function:
+showMethods
+getMethod 
+
+
+head/tail (x,n=10) // Returns the first or last 10 parts of a vector
