@@ -90,15 +90,85 @@ counts=row_sums(Ttdm)
 Tfreq<-data.frame(grams=names(counts), counts=counts)
 counts=row_sums(Qtdm)
 Qfreq<-data.frame(grams=names(counts), counts=counts)
-counts=row_sums(Qtdm)
+counts=row_sums(Ptdm)
 Pfreq<-data.frame(grams=names(counts), counts=counts)
+
 # Get a DF with only terms appearing over x amount of times:
-Qfreq[which(Qfreq$counts>=2),]
+# Pfreq[which(Pfreq$counts>=5),]
 
 # Stop the clock
 proc.time() - ptm # 95 secs 
+#=============================================#
+# PREDICTION #
+#=============================================#
 
+## Prediction Corpus Preparation ##
 
+# isolate the query words from the predicted final word of each n-gram:
+length(as.character(Pfreq$grams[1]))
+
+test<-unlist(strsplit(as.character(Pfreq$grams[1]),"\\s+"))
+
+Pfreq$words<-lapply(Pfreq$grams,FUN=function(x){unlist(strsplit(as.character(x),"\\s+"))})
+Pfreq$query<-lapply(Pfreq$words,FUN=function(x){x[1:4]})
+Pfreq$result<-lapply(Pfreq$words,FUN=function(x){x[5]})
+
+# now let's see if this is too slow...
+
+## INPUT MUNGING ##
+
+# Take an input:
+input<-readLines("Quiz2.txt")
+
+# Perform Transformations:
+input<-makeCorpus(input)
+input<-lapply(input, FUN=function(x){as.character(x[1])})
+
+# Split by words:
+input<-lapply(input,FUN=function(x){unlist(strsplit(x,"\\s+"))})
+
+## TESTING ##
+
+# First, by pentagrams
+
+# Reduce 1st sentence to last 4 words
+for(i in 3:0) {
+num<-(length(input[[1]])-i)
+string<-input[[1]][num]
+if(i==3){gram=string}
+else{gram<-paste(gram,string)}
+}
+
+# Get a DF with matching pentagrams:
+Presult<-Pfreq[which(Pfreq$grams==gram),]
+
+# If none, move to quadrigrams
+
+for(i in 2:0) {
+num<-(length(input[[1]])-i)
+string<-input[[1]][num]
+if(i==2){gram=string}
+else{gram<-paste(gram,string)}
+}
+
+if(nrow(Presult)==0){
+# Get a DF with matching quadrigrams:
+Qresult<-Qfreq[which(Qfreq$grams==gram),]
+}
+
+# If none, move to trigrams
+
+if(nrow(Qresult)==0){
+# Get a DF with matching trigrams:
+Tresult<-Tfreq[which(Tfreq$grams==gram),]
+}
+
+# If none, move to bigrams
+
+if(nrow(Tresult)==0){
+# Get a DF with matching trigrams:
+Bresult<-Bfreq[which(Bfreq$grams==gram),]
+}
 
 #=============================================#
 #=============================================#
