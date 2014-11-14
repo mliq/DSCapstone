@@ -1,5 +1,7 @@
 Post-Tokenization
 ====
+# so i have been trying to skip TDM using termFreq, however this seems to be a waste because termFreq is extremely slow... I don't know why I thought it was so awesome to begin with...
+
 # #1 thing i'd like to learn: Can I offload to files instead of all in RAM??
 
 # Wait, can I just skip TDMs and use termFreq ??
@@ -67,30 +69,49 @@ output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
 # read in file and process
 twit=fileMunge("en_US.twitter.txt")
 twitC<-makeCorpus(twit)
+TF4<-termFreq(PlainTextDocument(twitC), control = list(tokenize = QgramTokenizer))
+
+# Stop the clock
+proc.time() - ptm
+
+Qtdm<- TermDocumentMatrix(twitC, control = list(tokenize = QgramTokenizer))
+Ttdm<- TermDocumentMatrix(twitC, control = list(tokenize = TgramTokenizer))
+Btdm<- TermDocumentMatrix(twitC, control = list(tokenize = BgramTokenizer))
+Utdm<- TermDocumentMatrix(twitC, control = list(tokenize = UgramTokenizer))
+
+TF1<-termFreq(PlainTextDocument(Qtdm), control = list(tokenize = UgramTokenizer))
+TF2<-termFreq(PlainTextDocument(twitC), control = list(tokenize = BgramTokenizer))
+TF3<-termFreq(PlainTextDocument(twitC), control = list(tokenize = TgramTokenizer))
+
+```
+
+OK but i'm afraid this method is even slower than making TDM first.
+Sorry.
+
+# Term frequency list for 1-4grams.
+
+TF1<-termFreq(PlainTextDocument(twitC), control = list(tokenize = UgramTokenizer))
+TF2<-termFreq(PlainTextDocument(twitC), control = list(tokenize = BgramTokenizer))
+TF3<-termFreq(PlainTextDocument(twitC), control = list(tokenize = TgramTokenizer))
+TF4<-termFreq(PlainTextDocument(twitC), control = list(tokenize = QgramTokenizer))
+
+```r
+
+
+```
+This gives us a list of all terms where the grams are names accessed names(TF[100])
+and the numbers are TF[[100]].
+Can put this in a dataframe.
+
+QUESTION = will termFreq accept trigrams or will it still break up to single words?
+
+twitCorp<-makeCorpus(twit)
 
 # Tokenize in different sizes
 twit1<-UgramTokenizer(twitC)
 twit2<-BgramTokenizer(twitC)
 twit3<-TgramTokenizer(twitC)
 twit4<-QgramTokenizer(twitC)
-
-# Term frequency list for each
-
-TF1<-termFreq(PlainTextDocument(twit1))
-TF2<-termFreq(PlainTextDocument(twit2))
-TF3<-termFreq(PlainTextDocument(twit3))
-TF4<-termFreq(PlainTextDocument(twit4))
-
-# Stop the clock
-proc.time() - ptm
-```
-This gives us a list of all terms where the grams are names accessed names(TF[100])
-and the numbers are TF[[100]].
-Can put this in a dataframe.
-
-
-
-twitCorp<-makeCorpus(twit)
 TF<-termFreq(PlainTextDocument(twitCorp))
 
 TF<-termFreq(PlainTextDocument(twit))
