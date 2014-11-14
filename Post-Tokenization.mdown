@@ -1,5 +1,100 @@
 Post-Tokenization
 ====
+# #1 thing i'd like to learn: Can I offload to files instead of all in RAM??
+
+# Wait, can I just skip TDMs and use termFreq ??
+YES. 
+Still do corpus operations, 
+
+So simply:
+
+```r
+# FUNCTION DEFINITIONS #
+# Start the clock!
+ptm <- proc.time()
+# SETUP #
+gc()
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+library(tm)
+# Make Corpus and do transformations only
+makeCorpus<- function(x) {
+corpus<-Corpus(VectorSource(x))
+corpus <- tm_map(corpus, stripWhitespace)
+corpus <- tm_map(corpus, content_transformer(tolower))
+#corpus <- tm_map(corpus, removeWords, stopwords("english"))
+corpus <- tm_map(corpus, stemDocument)
+corpus<- tm_map(corpus,removePunctuation)
+corpus<- tm_map(corpus,removeNumbers)
+return(corpus)
+}
+
+# Tokenizer functions
+library(RWeka)
+QgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 4, max = 4))
+TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+BgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
+
+# Input data in chunks function and some processing
+fileMunge<- function(x) {
+text<-readLines(x, n=100000)
+totalLines=length(text)
+chunkSize=10000
+chunks=totalLines/chunkSize
+remainder = chunks %% 1
+wholeChunks = chunks-remainder
+# initialize list
+output=list()
+# break file into chunks 
+i=1
+line=1
+while (i<=wholeChunks){
+end=line+chunkSize-1
+output[[i]]<-text[line:end]
+line=end+1
+i=i+1
+}
+output[[i]]<-text[line:totalLines]
+#Text Transformations to remove odd characters #
+output=lapply(output,FUN=iconv, to='ASCII', sub=' ')
+output=lapply(output,FUN= function(x) gsub("'{2}", " ",x))
+output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
+}
+
+##### End Function Define #####
+
+## Input data
+# read in file and process
+twit=fileMunge("en_US.twitter.txt")
+twitC<-makeCorpus(twit)
+
+# Tokenize in different sizes
+twit1<-UgramTokenizer(twitC)
+twit2<-BgramTokenizer(twitC)
+twit3<-TgramTokenizer(twitC)
+twit4<-QgramTokenizer(twitC)
+
+# Term frequency list for each
+
+TF1<-termFreq(PlainTextDocument(twit1))
+TF2<-termFreq(PlainTextDocument(twit2))
+TF3<-termFreq(PlainTextDocument(twit3))
+TF4<-termFreq(PlainTextDocument(twit4))
+
+# Stop the clock
+proc.time() - ptm
+```
+This gives us a list of all terms where the grams are names accessed names(TF[100])
+and the numbers are TF[[100]].
+Can put this in a dataframe.
+
+
+
+twitCorp<-makeCorpus(twit)
+TF<-termFreq(PlainTextDocument(twitCorp))
+
+TF<-termFreq(PlainTextDocument(twit))
+
 # DUDE! breakthrough.
 Note that you may need a totally different model for the Quiz like the Buffalo Bills one because that's NEWS not TWITTER. You need separate corpora... This is where you could have a TDM with 3 documents...
 

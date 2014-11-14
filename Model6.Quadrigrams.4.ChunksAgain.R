@@ -19,12 +19,15 @@ corpus<- tm_map(corpus,removeNumbers)
 return(corpus)
 }
 
-# TrigramTokenizer function
+# QuadrigramTokenizer function
 library(RWeka)
-gramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 4, max = 4))
+QgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 4, max = 4))
+TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+BgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
+UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
 
 # Make Corpus, Transform, Make Trigram TDM
-makeQuadTDM <- function(x) {
+makeTDMs <- function(x) {
 corpus<-Corpus(VectorSource(x))
 corpus <- tm_map(corpus, stripWhitespace)
 corpus <- tm_map(corpus, content_transformer(tolower))
@@ -32,9 +35,13 @@ corpus <- tm_map(corpus, content_transformer(tolower))
 corpus <- tm_map(corpus, stemDocument)
 corpus<- tm_map(corpus,removePunctuation)
 corpus<- tm_map(corpus,removeNumbers)
-tdm<- TermDocumentMatrix(corpus, control = list(tokenize = gramTokenizer))
+Qtdm<- TermDocumentMatrix(corpus, control = list(tokenize = QgramTokenizer))
+Ttdm<- TermDocumentMatrix(corpus, control = list(tokenize = TgramTokenizer))
+Btdm<- TermDocumentMatrix(corpus, control = list(tokenize = BgramTokenizer))
+Utdm<- TermDocumentMatrix(corpus, control = list(tokenize = UgramTokenizer))
 #tdm<-removeSparseTerms(tdm,0.97)
-return(tdm)}
+#return(tdm)
+}
 
 ## DATA MUNGING ##
 
@@ -42,7 +49,7 @@ return(tdm)}
 #=============================================#
 
 fileMunge<- function(x) {
-text<-readLines(x)
+text<-readLines(x, n=100000)
 totalLines=length(text)
 chunkSize=10000
 chunks=totalLines/chunkSize
@@ -68,16 +75,25 @@ output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
 
 # Read, chunk, parse data, then make corpus, do transformations, make TDM of tri-grams:
 twit=fileMunge("en_US.twitter.txt")
-myTDM <- makeQuadTDM(twit)
+myTDM <- makeTDMs(twit)
 rm(twit)
 gc()
 
 library(slam)
 counts=row_sums(myTDM)
-#freqDF<-data.frame(grams=)
+# rm(myTDM)
+# user  system elapsed 
+# 1364.21    4.38 1354.50 
+freqDF<-data.frame(grams=names(counts), counts=counts)
 # Stop the clock
 proc.time() - ptm
-# rm(myTDM)
+# 45 seconds with 100,000 files broken to 10k each chunks.
+
+# get a DF with only terms appearing over x amount of times:
+freqDF[which(freqDF$counts>=2),]
+
+# now break up trigrams to bi and uni grams? or hell, just re-run the tokenizer if it was so easy right?
+
 
 #--#
 # news<-fileMunge("en_US.news.txt")

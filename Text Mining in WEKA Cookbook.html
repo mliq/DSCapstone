@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0037)http://www.esp.uem.es/jmgomez/tmweka/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>Text Mining in WEKA Cookbook</title>
+  <link rel="stylesheet" type="text/css" href="./Text Mining in WEKA Cookbook_files/simplestyle.css">
+<style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body>
+<p>
+</p><center>
+  <table cellpadding="4" cellspacing="1" align="Center" width="80%">
+    <tbody><tr>
+      <td align="center" bgcolor="#A0A0A0"><h1>
+	  Text Mining in WEKA Cookbook
+	</h1>
+      </td>
+    </tr>
+    <tr>
+      <td><p>
+	</p><p>
+	In this page I intend to provide useful hints and tips (recipes) for working
+	with text data in <a href="http://weka.sourceforge.net/">WEKA</a>. The information
+	is organized as a list of blog posts and references, plus additional material
+	like code and text collections.
+	</p><p>
+	I suggest to read my following posts on text classification with WEKA in
+	the publication order:
+	</p><ul>
+	  <li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/01/text-mining-in-weka-chaining-filters.html">Text
+	    Mining in WEKA: Chaining Filters and Classifiers</a> explains how and why
+	    you should so when evaluating your text classifiers using cross-fold validation.
+	    The explanation is done using the Explorer tools, and it helps as a quick
+	    introduction to the process of building a text classifier in WEKA, along
+	    to the <code>FilteredClassifier</code> class.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/02/text-mining-in-weka-revisited-selecting.html">Text
+	    Mining in WEKA Revisited: Selecting Attributes by Chaining Filters</a> describes
+	    how to complete the life-cycle of the learning process by adding feature
+	    selection to it, by using the <code>MultiFilter</code> class.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/04/command-line-functions-for-text-mining.html">Command
+	    Line Functions for Text Mining in WEKA</a> presents how perform previous
+	    experiments with the <code>FilteredClassifier</code> and
+	    <code>MultiFilter</code> classes but now in the command line interface instead
+	    on WEKA's Explorer.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/04/a-simple-text-classifier-in-java-with.html">A
+	    Simple Text Classifier in Java with WEKA</a> presents and discuses two little
+	    programs as examples of how to integrate WEKA into your Java code for text
+	    mining.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/04/url-text-classification-with-weka-part.html">URL
+	    Text Classification with WEKA, Part 1: Data Analysis</a> shows an application
+	    of text classification to processing URLs text as a complement to URL
+	    database-based filtering in Web Filters. This first post just explains how
+	    I have built the dataset, while an upcoming post will explain my ongoing
+	    experiments.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/05/mapping-vocabulary-from-train-to-test.html">Mapping
+	    Vocabulary from Train to Test Datasets in WEKA Text Classifiers</a> discusses
+	    three ways of mapping the set of terms used in the representations of the
+	    training and test sets of a text dataset for enabling learning, namely using
+	    batch filters, the <code>FilteredClassifier</code> class and the
+	    <code>InputMappedClassifier</code> class.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/05/language-identification-as-text.html">Language
+	    Identification as Text Classification with WEKA</a> explains how to build
+	    an automated language guesser for texts as a complete example of a Text Mining
+	    process with WEKA, and in order to demonstrate a more advanced usage of the
+	    <code>StringToWordVector</code> class.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/06/baseline-sentiment-analysis-with-weka.html">Baseline
+	    Sentiment Analysis with WEKA</a> shows how to configure and run an experiment
+	    on sentyment analysis and opinion mining using WEKA, and specially the
+	    <code>TextDirectoryLoader</code> and the <code>NGramTokenizer</code> classes.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/06/comparing-baselines-of-keyword-and.html">Comparing
+	    baselines of keyword and learning based sentiment analysis</a> provides a
+	    basic example of using SentiWordNet for a keyword-based approach to sentiment
+	    classification, and compares it with a learning-based approach based in WEKA.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/06/sample-code-for-text-indexing-with-weka.html">Sample
+	    Code for Text Indexing with WEKA</a> shows how to index a text dataset using
+	    your own Java code and the <code>StringToWordVector</code> filter in WEKA.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/07/performance-analysis-of-n-gram.html">Performance
+	    Analysis of N-Gram Tokenizer in WEKA</a>, which analyzes the WEKA class
+	    <code>NGramTokenizer</code> in terms of performance, as it depends on the
+	    complexity of the regular expression used during the tokenization step.
+	  </li><li>
+	    Do you want me to deal with some specific topic?
+	    <a href="http://www.esp.uem.es/jmgomez/">Just let me know</a>.
+	</li></ul>
+	<p>
+	I have some other posts on WEKA, like the following ones:
+	</p><ul>
+	  <li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/01/a-note-on-weka-limitations-and-big-data.html">A
+	    note on WEKA limitations and big data</a>, which discusses how to go big
+	    data when staring with WEKA.
+	  </li><li>
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2008/03/class-imbalanced-distribution-and-weka.html">Class
+	    imbalanced distribution and WEKA cost sensitive learning</a>, which explains
+	    how to deal with the class imbalance problem by using cost-sensitive clasifiers
+	    in WEKA.
+	</li></ul>
+	<p>
+	All my posts related to WEKA can be found
+	<a href="http://jmgomezhidalgo.blogspot.com.es/search/label/WEKA">using the
+	label WEKA</a>.
+	</p><p>
+	Interesting references for working with WEKA include:
+	</p><ul>
+	  <li>
+	    <a href="http://weka.wikispaces.com/Use+WEKA+in+your+Java+code">Use WEKA
+	    in your&nbsp;Java code</a> provides an excelent introduction to how to use
+	    the classes Instances, Filter, Classifier, Clusteres, Evaluation and
+	    AttributeSelection, in your own code.
+	  </li><li>
+	    <a href="http://weka.wikispaces.com/Programmatic+Use">WEKA programmatic use</a>
+	    describes the learning process life-cycle and, more importantly, it explains
+	    how to deal with attributes in your Java code.
+	  </li><li>
+	    <a href="http://weka.wikispaces.com/Text+categorization+with+Weka">Text
+	    Categorization with WEKA</a> deals with transforming a directory structure
+	    of classes (directories) and documents (inside those directories) into ARFF
+	    format for further processing. The code is available at
+	    <a href="http://weka.wikispaces.com/ARFF+files+from+Text+Collections">ARFF
+	    files from Text Collections</a>.
+	</li></ul>
+	<p>
+	For testing your classifiers and integrating WEKA in your own code, I provide
+	the following stuff:
+	</p><ul>
+	  <li>
+	    The full <a href="http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/">spam
+	    SMS text collection</a>.
+	  </li><li>
+	    An
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/FilteredClassifier/smsspam.small.arff">ARFF-formatted
+	    mini spam SMS collection</a> used in most of my posts.
+	  </li><li>
+	    The
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/FilteredClassifier/smstest.txt">test
+	    example</a> used in
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/04/a-simple-text-classifier-in-java-with.html">my
+	    post about integrating WEKA in your Java code for text mining</a>.
+	  </li><li>
+	    The programs
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/FilteredClassifier/MyFilteredLearner.java"><code>MyFilteredLearner.java</code></a>
+	    and
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/FilteredClassifier/MyFilteredClassifier.java"><code>MyFilteredClassifier.java</code></a>,
+	    which demonstrate
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/04/a-simple-text-classifier-in-java-with.html">how
+	    to integrate WEKA in your Java code for text mining</a>.
+	  </li><li>
+	    The
+	    <a href="https://github.com/jmgomezh/tmweka/tree/master/InputMappedClassifier">train/test
+	    split</a> from the previous mini spam SMS collection provided for the post
+	    in which I explain how to map the vocabular from the training to the test
+	    collection in WEKA. It features a
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/InputMappedClassifier/smsspam.small.train.arff">training
+	    subset</a> and a
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/InputMappedClassifier/smsspam.small.test.arff">test
+	    subset</a>.
+	  </li><li>
+	    The
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/URLAnalysis/urllist.arff">URL
+	    list dataset</a> for my posts on analyzing URL content for Web Filtering
+	    (<a href="http://jmgomezhidalgo.blogspot.com.es/2013/04/url-text-classification-with-weka-part.html">part
+	    1</a>, part 2). This dataset is over 40Mb. This list is based on an
+	    SquidBlackList.org list licensed under Commons Attribution 3.0 Unported License:
+	    <span property="dct:title">Blacklists</span>
+	    (<a rel="cc:attributionURL" property="cc:attributionName" href="http://www.squidblacklist.org/">Squidblacklist.org</a>)
+	    / <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">CC
+	    BY 3.0</a>.
+	  </li><li>
+	    The
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/LangID/langid.collection.train.arff">training</a>
+	    and
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/LangID/langid.collection.test.arff">test</a>
+	    datasets for the Language Identification demonstration, along with
+	    <a href="https://github.com/jmgomezh/tmweka/tree/master/LangID">the sample
+	    scripts</a> (<code>*.sh</code>) and the program
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/LangID/LanguageIdentifier.java"><code>LanguageIdentifier.java</code></a>&nbsp;that
+	    makes use of the learned model.
+	  </li><li>
+	    The SFU Review Corpus formatted for WEKA experiments
+	    (<a href="https://github.com/jmgomezh/tmweka/blob/master/OpinionMining/SFU_Review_Corpus.arff">English</a>,
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/OpinionMining/SFU_Spanish_Review.arff">Spanish</a>)
+	    as used in the
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/06/baseline-sentiment-analysis-with-weka.html">Baseline
+	    Sentiment Analysis with WEKA</a> post.
+	  </li><li>
+	    The
+	    <code><a href="https://github.com/jmgomezh/tmweka/blob/master/OpinionMining/SentimentClassifier.java">SentimentClassifier.java</a>
+	    </code>program for learning-based sentiment classification with WEKA.
+	  </li><li>
+	    The
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/OpinionMining/SentiWordNetDemo.java"><code>SentiWordNetDemo.java</code></a>
+	    program for keyword-based sentiment classification with SentiWordNet (see
+	    <a href="http://jmgomezhidalgo.blogspot.com.es/2013/06/comparing-baselines-of-keyword-and.html">Comparing
+	    baselines of keyword and learning based sentiment analysis</a>).
+	  </li><li>
+	    The
+	    <a href="https://github.com/jmgomezh/tmweka/blob/master/WEKAExamples/IndexTest.java"><code>IndexTest.java</code></a>
+	    class, which demonstrates the process of indexing a text collection in Java.
+	</li></ul>
+	<p>
+	You will find most of this stuff at my
+	<a href="https://github.com/jmgomezh/tmweka">tmweka Github repository</a>.
+	</p><p>
+	Please <a href="http://www.esp.uem.es/jmgomez/">feel free to contact me</a>
+	if you have any doubt or special requirement.</p></td>
+    </tr>
+  </tbody></table>
+</center>
+<p>
+  </p><hr size="2" width="100%" align="center">
+<center>
+  <address>
+    <a href="http://www.esp.uem.es/jmgomez/">José María Gómez
+    Hidalgo</a>
+  </address>
+</center>
+<p>
+<script type="text/javascript"> var gaJsHost = (("https:" ==
+document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost +
+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Text Mining in WEKA Cookbook_files/ga.js" type="text/javascript"></script> <script type="text/javascript"> try { var pageTracker =
+_gat._getTracker("UA-9167129-1"); pageTracker._trackPageview(); } catch(err)
+{}</script>
+
+</p></body></html>

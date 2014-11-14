@@ -1,0 +1,1065 @@
+/*
+ * NOTE:
+ *   Any *.css file was generated from an equivalent *.less
+ *   If you modify coursera.css, your changes will be overwritten
+ */
+/* ==|== primary styles =====================================================
+   Subsystem: Human Grading
+   Author: Coursera
+   ========================================================================== */
+/* bootstrap variables ------------------------------------------------------ */
+/* human-grading variables -------------------------------------------------- */
+/* bootstrap mixins --------------------------------------------------------- */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  /* Make inputs at least the height of their button counterpart */
+
+  /* Makes inputs behave like true block-level elements */
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* human-grading mixins ----------------------------------------------------- */
+/* human-grading navigation ------------------------------------------------- */
+.navbar {
+  *position: relative;
+  *z-index: 2;
+  overflow: visible;
+  margin-bottom: 18px;
+}
+.navbar-inner {
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -ms-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: linear-gradient(top, #ffffff, #f2f2f2);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f2f2f2', GradientType=0);
+  border: 1px solid #d4d4d4;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+}
+.navbar .container {
+  width: auto;
+}
+.btn-navbar {
+  display: none;
+  float: right;
+  padding: 7px 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #fafafa;
+  background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -ms-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+  background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+  background-image: linear-gradient(top, #ffffff, #f2f2f2);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f2f2f2', GradientType=0);
+  border-color: #f2f2f2 #f2f2f2 #cccccc;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.075);
+}
+.btn-navbar:hover,
+.btn-navbar:active,
+.btn-navbar.active,
+.btn-navbar.disabled,
+.btn-navbar[disabled] {
+  background-color: #f2f2f2;
+}
+.btn-navbar:active,
+.btn-navbar.active {
+  background-color: #d9d9d9 \9;
+}
+.btn-navbar .icon-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: #f5f5f5;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+.btn-navbar .icon-bar + .icon-bar {
+  margin-top: 3px;
+}
+.nav-collapse.collapse {
+  height: auto;
+}
+.navbar {
+  color: #777777;
+}
+.navbar .brand:hover {
+  text-decoration: none;
+}
+.navbar .brand {
+  float: left;
+  display: block;
+  padding: 8px 20px 12px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 1;
+  color: #ffffff;
+}
+.navbar .navbar-text {
+  margin-bottom: 0;
+  line-height: 40px;
+}
+.navbar .btn,
+.navbar .btn-group {
+  margin-top: 5px;
+}
+.navbar .btn-group .btn {
+  margin-top: 0;
+}
+.navbar-form {
+  margin-bottom: 0;
+  *zoom: 1;
+}
+.navbar-form:before,
+.navbar-form:after {
+  display: table;
+  content: "";
+}
+.navbar-form:after {
+  clear: both;
+}
+.navbar-form input,
+.navbar-form select,
+.navbar-form .radio,
+.navbar-form .checkbox {
+  margin-top: 5px;
+}
+.navbar-form input,
+.navbar-form select {
+  display: inline-block;
+  margin-bottom: 0;
+}
+.navbar-form input[type="image"],
+.navbar-form input[type="checkbox"],
+.navbar-form input[type="radio"] {
+  margin-top: 3px;
+}
+.navbar-form .input-append,
+.navbar-form .input-prepend {
+  margin-top: 6px;
+  white-space: nowrap;
+}
+.navbar-form .input-append input,
+.navbar-form .input-prepend input {
+  margin-top: 0;
+}
+.navbar-search {
+  position: relative;
+  float: left;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+.navbar-search .search-query {
+  padding: 4px 9px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1;
+  color: #ffffff;
+  background-color: #ffffff;
+  border: 1px solid #b3b3b3;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(255, 255, 255, 0.15);
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+.navbar-search .search-query:-moz-placeholder {
+  color: #cccccc;
+}
+.navbar-search .search-query::-webkit-input-placeholder {
+  color: #cccccc;
+}
+.navbar-search .search-query:focus,
+.navbar-search .search-query.focused {
+  padding: 5px 10px;
+  color: #333333;
+  text-shadow: 0 1px 0 #ffffff;
+  background-color: #ffffff;
+  border: 0;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  margin-bottom: 0;
+}
+.navbar-fixed-top .navbar-inner,
+.navbar-fixed-bottom .navbar-inner {
+  padding-left: 0;
+  padding-right: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 940px;
+}
+.navbar-fixed-top {
+  top: 0;
+}
+.navbar-fixed-bottom {
+  bottom: 0;
+}
+.navbar .nav {
+  position: relative;
+  left: 0;
+  display: block;
+  float: left;
+  margin: 0 10px 0 0;
+}
+.navbar .nav.pull-right {
+  float: right;
+}
+.navbar .nav > li {
+  display: block;
+  float: left;
+}
+.navbar .nav > li > a {
+  float: none;
+  padding: 10px 10px 11px;
+  line-height: 19px;
+  color: #777777;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #ffffff;
+}
+.navbar .nav > li > a:hover {
+  background-color: transparent;
+  color: #333333;
+  text-decoration: none;
+}
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover {
+  color: #555555;
+  text-decoration: none;
+  background-color: #e5e5e5;
+  -webkit-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  -moz-box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+}
+.navbar .divider-vertical {
+  height: 40px;
+  width: 1px;
+  margin: 0 9px;
+  overflow: hidden;
+  background-color: #f2f2f2;
+  border-right: 1px solid #ffffff;
+}
+.navbar .nav.pull-right {
+  margin-left: 10px;
+  margin-right: 0;
+}
+.navbar .dropdown-menu {
+  margin-top: 1px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.navbar .dropdown-menu:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: -7px;
+  left: 9px;
+}
+.navbar .dropdown-menu:after {
+  content: '';
+  display: inline-block;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+  position: absolute;
+  top: -6px;
+  left: 10px;
+}
+.navbar-fixed-bottom .dropdown-menu:before {
+  border-top: 7px solid #ccc;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  border-bottom: 0;
+  bottom: -7px;
+  top: auto;
+}
+.navbar-fixed-bottom .dropdown-menu:after {
+  border-top: 6px solid #ffffff;
+  border-bottom: 0;
+  bottom: -6px;
+  top: auto;
+}
+.navbar .nav .dropdown-toggle .caret,
+.navbar .nav .open.dropdown .caret {
+  border-top-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+.navbar .nav .active .caret {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.navbar .nav .open > .dropdown-toggle,
+.navbar .nav .active > .dropdown-toggle,
+.navbar .nav .open.active > .dropdown-toggle {
+  background-color: transparent;
+}
+.navbar .nav .active > .dropdown-toggle:hover {
+  color: #ffffff;
+}
+.navbar .nav.pull-right .dropdown-menu,
+.navbar .nav .dropdown-menu.pull-right {
+  left: auto;
+  right: 0;
+}
+.navbar .nav.pull-right .dropdown-menu:before,
+.navbar .nav .dropdown-menu.pull-right:before {
+  left: auto;
+  right: 12px;
+}
+.navbar .nav.pull-right .dropdown-menu:after,
+.navbar .nav .dropdown-menu.pull-right:after {
+  left: auto;
+  right: 13px;
+}
+#AssessmentNavigationView {
+  margin-bottom: 36px;
+}
+#AssessmentNavigationView .breadcrumb {
+  margin-bottom: 40px;
+}
+#hg-nav > li {
+  margin-right: 10px;
+}
+#hg-nav li a span.step {
+  font-size: 1.2em;
+  padding-right: 5px;
+}
+#hg-nav li a.disabled {
+  cursor: not-allowed;
+  color: #AAA;
+}
+#hg-nav li .hg-nav-step-status {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  margin-left: 4px;
+}
+#hg-nav li .hg-nav-step-status-other,
+#hg-nav li .hg-nav-step-status-todo {
+  display: none;
+}
+#hg-nav li .hg-nav-step-status-select-todo > .hg-nav-step-status-todo {
+  display: inline-block;
+}
+#hg-nav li .hg-nav-step-status-select-other > .hg-nav-step-status-other {
+  display: inline-block;
+}
+#hg-nav li.hg-nav-step > a {
+  white-space: nowrap;
+}
+#hg-nav .hg-nav-top-row {
+  position: relative;
+  width: 100%;
+  background-color: #f7f7f7;
+  background-image: -moz-linear-gradient(top, #ffffff, #ebebeb);
+  background-image: -ms-linear-gradient(top, #ffffff, #ebebeb);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ebebeb));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ebebeb);
+  background-image: -o-linear-gradient(top, #ffffff, #ebebeb);
+  background-image: linear-gradient(top, #ffffff, #ebebeb);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ebebeb', GradientType=0);
+  border-bottom: #cccccc;
+}
+#hg-nav .hg-nav-top-row > .progress {
+  height: 20px;
+  margin: 2px 0;
+  background-image: none;
+  background-color: #B6B6B6;
+}
+#hg-nav .hg-nav-top-row > .progress .bar {
+  height: 20px;
+}
+#hg-nav .hg-nav-top-row > .hg-asst-interval {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+}
+#hg-nav .hg-nav-top-row > .hg-asst-interval > .hg-asst-interval-part {
+  display: inline-block;
+}
+#hg-nav .hg-nav-top-row > .hg-asst-interval > .hg-asst-interval-part > .hg-date {
+  padding: 0 7px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.25);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+#hg-nav .hg-nav-top-row > .hg-asst-phase-reload {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+#hg-nav .hg-nav-top-row > .hg-nav-phase-header {
+  padding: 10px 10px 11px;
+}
+#hg-nav > li.hg-phase-active > .hg-nav-top-row {
+  background-image: none;
+  background-color: #E6E6E6;
+}
+#hg-nav > li.hg-phase-active .progress.progress-danger {
+  background-color: #fce6e6;
+}
+#hg-nav > li.hg-phase-active .progress.progress-success {
+  background-color: #d1eed1;
+}
+#hg-nav > li.hg-phase-active .progress.progress-info {
+  background-color: #daf1f8;
+}
+#hg-nav > li.hg-phase-active .progress.progress-warning {
+  background-color: #fdd49a;
+}
+#hg-nav > li.hg-phase-active .progress.progress-default .bar {
+  background-image: none;
+  background-color: #B6B6B6;
+}
+#hg-nav > li.hg-phase-active .icon-check-empty {
+  color: red;
+}
+#hg-nav > li.hg-phase-active .icon-check {
+  color: green;
+}
+#hg-nav > li.hg-phase-relevant .hg-asst-interval {
+  opacity: 1;
+}
+#hg-nav > li[data-hg-date-status="current"]:not(.hg-phase-relevant) .hg-asst-phase-reload {
+  display: block;
+}
+#hg-nav > li:not(.hg-phase-active) .progress > .bar {
+  background-image: none;
+  background-color: #666;
+}
+#hg-nav .hg-nav-bottom-row {
+  clear: both;
+  margin-right: 0;
+}
+#hg-nav li.hg-nav-border-left {
+  border-left: 1px solid #ffffff;
+}
+#hg-nav li.hg-nav-border-right {
+  border-right: 1px solid #ffffff;
+}
+/* human-grading TinyMCE ------------------------------------------------- */
+.mceContentBody {
+  margin: 8px;
+}
+.mceContentBody a {
+  text-decoration: underline;
+  cursor: default;
+}
+.hg-tinymce-code + .hg-tinymce-code {
+  margin-top: -11px;
+  border-top: none;
+}
+/* human-grading actionbar ------------------------------------------------- */
+.assessmentActionBar .hg-peergrading-counter {
+  padding: 8.5px;
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-size: 12px;
+  color: #333333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #eed3d7;
+  background-color: white;
+  color: #b94a48;
+}
+/* human-grading --------------------------------------------------- */
+.hg-upload .lbl {
+  line-height: 16px;
+  vertical-align: 15%;
+}
+.hg-upload .f_loader {
+  background: url('/images/icons/loader_16x16.gif') no-repeat;
+  height: 16px;
+  width: 16px;
+  display: none;
+  margin-left: 10px;
+}
+.hg-upload .f_loading {
+  vertical-align: baseline;
+  display: none;
+  margin-left: 4px;
+}
+.hg-upload .f_filebak {
+  display: none;
+}
+.hg-upload input[type="file"] {
+  height: inherit;
+  line-height: normal;
+}
+.trainingFeedback {
+  min-height: 20px;
+  margin-bottom: 20px;
+  padding: 19px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: black;
+  color: white;
+}
+.trainingFeedback > .assessmentExposition > .assessmentText {
+  font-weight: bold;
+}
+.trainingFeedback .trainingFeedback {
+  padding: 0;
+}
+/* human-grading results ---------------------------------------------------- */
+.overallGradeSection {
+  min-height: 20px;
+  padding: 19px 19px 0 19px;
+  margin-bottom: 20px;
+  background-color: white;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: -25px;
+  border: 1px dashed #ffc40d;
+  -webkit-box-shadow: 0 0 0 2px #ffffd2 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+  -moz-box-shadow: 0 0 0 2px #ffffd2 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+  box-shadow: 0 0 0 2px #ffffd2 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #ffff9f;
+  margin-top: 18px;
+}
+.overallGradeSection > * {
+  margin-bottom: 18px;
+}
+.overallGradeNumber {
+  font-size: 200%;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
+}
+.overallEvaluationFeedbackSection {
+  margin-left: 20px;
+}
+.overallEvaluationFeedbackAuthor {
+  font-weight: bold;
+}
+.evaluationSetValueContainer {
+  float: right;
+  margin-bottom: 18px;
+  margin-right: -8px;
+  margin-top: -8px;
+}
+.evaluationSetValueBorder {
+  display: inline-block;
+  /* So that the border fits the content */
+
+  background-color: white;
+  border: 3px solid #EEE;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin-left: 15px;
+  padding: 10px;
+}
+.evaluationSetValueTable {
+  margin-left: 20px;
+}
+.evaluationSetValueTable td {
+  padding: 3px;
+}
+input.evaluationSetValueBox {
+  width: 25px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  background-color: white;
+  border-color: black;
+}
+/* human-grading form group ------------------------------------------------- */
+/* human-grading - bootstrap override --------------------------------------- */
+label input {
+  display: inline-block !important;
+}
+h1 {
+  font-size: 24px;
+}
+h2 {
+  font-size: 20.4px;
+}
+h3 {
+  font-size: 16.2px;
+}
+.popover-content p,
+.popover-content ul,
+.popover-content ol {
+  margin-bottom: 10px;
+}
+.nav-tabs > li,
+.nav-pills > li {
+  float: none;
+  display: inline-block;
+  *display: inline;
+  /* ie7 fix */
+
+  zoom: 1;
+  /* hasLayout ie7 trigger */
+
+}
+.nav-tabs,
+.nav-pills {
+  text-align: center;
+}
+/* Box sizing and fixes (copied from spark.main.styl) */
+.input-prepend .add-on,
+.input-append .add-on {
+  height: 28px;
+}
+select,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  height: 28px;
+}
+/* human-grading global ----------------------------------------------------- */
+.contentToolbar {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin: 0 20px 18px;
+}
+.contentToolbar a + a {
+  margin-left: 1em;
+}
+.contentToolbar button + button {
+  margin-left: 1em;
+}
+.assessmentActionBar {
+  text-align: center;
+}
+.errorMessage {
+  margin-bottom: 10px;
+}
+.loadingIndicatorContainer {
+  display: inline-block;
+}
+.loadingIndicatorDisplay {
+  background: url('/images/icons/loader_16x16.gif') no-repeat;
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+}
+.loadingIndicatorMessage {
+  font-weight: bold;
+}
+/* human-grading main ------------------------------------------------------- */
+#assessmentContainer {
+  min-width: 746px;
+}
+#assessmentContainer img {
+  max-width: 100%;
+}
+.assessmentTitle,
+.pageTitle {
+  color: #666;
+  margin-bottom: 18px;
+}
+.assessmentTitle > .assessmentSubmissionAuthor {
+  font-size: 120%;
+}
+.assessmentSection {
+  border-top: 1px dashed #CCC;
+  border-bottom: 1px dashed #CCC;
+  margin-bottom: 36px;
+}
+.assessmentGroup {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.evaluationGroup,
+.sectionEvaluationGroup {
+  min-height: 20px;
+  padding: 19px 19px 0 19px;
+  margin-bottom: 20px;
+  background-color: white;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: -25px;
+  border: 1px dashed #ffc40d;
+  -webkit-box-shadow: 0 0 0 2px #ffffd2 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+  -moz-box-shadow: 0 0 0 2px #ffffd2 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+  box-shadow: 0 0 0 2px #ffffd2 1px 1px 6px 1px rgba(10, 10, 0, 0.5);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.evaluationGroup {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.sectionEvaluationGroup {
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 2px dashed #ffc40d;
+}
+.evaluationGroupHeader {
+  line-height: 27px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+.assessmentSection > .assessmentGroup > .assessmentExposition,
+.evaluationGroup > .assessmentGroup > .assessmentExposition,
+.sectionEvaluationGroup > .assessmentGroup > .assessmentExposition,
+.assessmentSection > .assessmentGroup > .assessmentAnswer,
+.evaluationGroup > .assessmentGroup > .assessmentAnswer,
+.sectionEvaluationGroup > .assessmentGroup > .assessmentAnswer,
+.assessmentSection > .assessmentGroup > .assessmentEvaluation,
+.evaluationGroup > .assessmentGroup > .assessmentEvaluation,
+.sectionEvaluationGroup > .assessmentGroup > .assessmentEvaluation {
+  min-height: 20px;
+  padding: 19px 19px 0 19px;
+  margin-bottom: 20px;
+  background-color: white;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.assessmentSection > .assessmentGroup > .assessmentExposition,
+.evaluationGroup > .assessmentGroup > .assessmentExposition,
+.sectionEvaluationGroup > .assessmentGroup > .assessmentExposition {
+  background-color: #efefef;
+  padding-bottom: 19px;
+}
+.assessmentSection > .assessmentGroup > .assessmentExposition + .assessmentAnswer,
+.evaluationGroup > .assessmentGroup > .assessmentExposition + .assessmentAnswer,
+.sectionEvaluationGroup > .assessmentGroup > .assessmentExposition + .assessmentAnswer,
+.assessmentSection > .assessmentGroup > .assessmentExposition + .assessmentEvaluation,
+.evaluationGroup > .assessmentGroup > .assessmentExposition + .assessmentEvaluation,
+.sectionEvaluationGroup > .assessmentGroup > .assessmentExposition + .assessmentEvaluation {
+  /* Negate the assessmentExposition box's margin-bottom */
+
+  margin-top: -20px;
+}
+.assessmentSection > .assessmentGroup > .assessmentAnswer > *,
+.evaluationGroup > .assessmentGroup > .assessmentAnswer > *,
+.sectionEvaluationGroup > .assessmentGroup > .assessmentAnswer > *,
+.assessmentSection > .assessmentGroup > .assessmentEvaluation > *,
+.evaluationGroup > .assessmentGroup > .assessmentEvaluation > *,
+.sectionEvaluationGroup > .assessmentGroup > .assessmentEvaluation > * {
+  margin-bottom: 18px;
+}
+.assessmentSection > .assessmentExposition {
+  padding: 19px;
+}
+.evaluationForm .assessmentSection > .assessmentGroup > .assessmentAnswer {
+  background-color: #e8e8e8;
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 6px 6px;
+}
+.evaluationForm .assessmentSection > .assessmentGroup > .assessmentAnswer > .assessmentText {
+  overflow: scroll;
+  background-color: #F4F4F4;
+  padding: 7px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.evaluationForm .evaluationGroup,
+.evaluationForm .sectionEvaluationGroup {
+  background-color: #ffffd2;
+}
+.submissionForm .evaluationGroup,
+.submissionForm .sectionEvaluationGroup {
+  background-color: #edede4;
+}
+.submissionForm .evaluationGroup > .assessmentGroup > .assessmentEvaluation,
+.submissionForm .sectionEvaluationGroup > .assessmentGroup > .assessmentEvaluation {
+  background-color: #e8e8e8;
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 6px 6px;
+}
+@-moz-document url-prefix() {
+  .evaluationForm .assesmentSection > .assessmentGroup > .assessmentAnswer {
+    background-image: none;
+    background-color: #e8e8e8;
+  }
+  .submissionForm .evaluationGroup > .assessmentGroup > .assessmentEvaluation,
+  .submissionForm .sectionEvaluationGroup > .assessmentGroup > .assessmentEvaluation {
+    background-image: none;
+    background-color: #e8e8e8;
+  }
+}
+.submissionProperties {
+  color: #888;
+  margin-bottom: 18px;
+}
+.submissionProperties .assessmentSubmissionAuthor {
+  color: #666;
+  font-size: 120%;
+}
+.validationErrorMessage {
+  display: none;
+  color: red;
+}
+input[type=text].validationError,
+select.validationError,
+textarea.validationError {
+  border: 2px solid red;
+}
+.hg-warning-text {
+  color: #b94a48;
+}
+table.setView td,
+table.setView th {
+  text-align: center;
+}
+.returnLink {
+  margin-bottom: 18px;
+}
+.assessmentSection.highlightEvaluated,
+.assessmentGroup.highlightEvaluated {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-box-shadow: 0px 0px 10px 3px #ffc40d;
+  -moz-box-shadow: 0px 0px 10px 3px #ffc40d;
+  box-shadow: 0px 0px 10px 3px #ffc40d;
+}
+.assessmentGroup.highlightEvaluated {
+  background-color: #ffffd2;
+}
+/* ==|== media queries ======================================================
+   PLACEHOLDER Media Queries for Responsive Design.
+   These override the primary ('mobile first') styles
+   Modify as content requires.
+   ========================================================================== */
+@media only screen and (min-width: 480px) {
+  /* Style adjustments for viewports 480px and over go here */
+}
+@media only screen and (min-width: 768px) {
+  /* Style adjustments for viewports 768px and over go here */
+}
+/*
+ * HTML5 ✰ Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ *
+ * Detailed information about this CSS: h5bp.com/css
+ *
+ * ==|== normalize ==========================================================
+ */
+/* ==|== non-semantic helper classes ========================================
+   Please define your styles before this section.
+   ========================================================================== */
+/* For image replacement */
+.ir {
+  display: block;
+  border: 0;
+  text-indent: -999em;
+  overflow: hidden;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  direction: ltr;
+  *line-height: 0;
+}
+.ir br {
+  display: none;
+}
+/* Hide from both screenreaders and browsers: h5bp.com/u */
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+/* Hide only visually, but have it available for screenreaders: h5bp.com/v */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+/* Extends the .visuallyhidden class to allow the element to be focusable when navigated to via the keyboard: h5bp.com/p */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+/* Hide visually and from screenreaders, but maintain layout */
+.invisible {
+  visibility: hidden;
+}
+/* Contain floats: h5bp.com/q */
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+/* ==|== print styles =======================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -ms-filter: none !important;
+  }
+  /* Black prints faster: h5bp.com/s */
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  /* Don't show links for images, or javascript/internal links */
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  /* h5bp.com/t */
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 0.5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
