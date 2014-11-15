@@ -1,0 +1,1 @@
+initRunQuery(".test_query","run_query");

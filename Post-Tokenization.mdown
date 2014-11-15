@@ -1,6 +1,75 @@
 Post-Tokenization
+==== 
+DUE 5:30 PM SUNDAY!!
 ====
+
 # Model8 Results ANALYSIS
+
+# BLOGS, keep stop words
+Getting java heap errors on Btdm, Utdm.
+maybe need to go down in words.
+
+## First run, just not workable. Going to try 75K lines
+But didn't I get it to work with the ENTIRE corpus once?
+well that was only 3grams and i did removesparse I think.
+
+
+# NEWS NO STOP WORDS - seems a total loss.
+## Time: 670.12
+## Memory usage: 2.5 GB
+
+## 2.1 Total fail. perhaps *cause stopwords are in the query? (duh. So this may be key...)*
+
+## 2.2 fail
+
+## 2.3 fail
+
+## 2.4 fail
+
+
+# running on news corpus now: C:\Users\Michael\SkyDrive\Code\GitHub\DSCapstone\Model8 Results\newsCorpus
+
+## Time: 1171.92 (19.5 minutes)
+## Memory usage:
+Only 3.5GB is taken up! much less than Twitter (500,000 lines, 25K chunks)
+
+> object.size(Bfreq)
+459094344 bytes = 459MB
+> object.size(Ufreq)
+10463552 bytes = 10MB
+> object.size(Qfreq)
+1481002352 bytes = 1.4GB
+> object.size(Pfreq)
+1672289832 bytes = 1.7GB
+
+## Quiz 2.1
+Pentagram found for case of beer, only pentagram. also one of the quadrigrams but only one count.
+
+## Quiz 2.2
+wrong prediction: state
+
+## Quiz 2.3 
+wrong
+
+## Quiz 2.4
+trigrams real,compani,fact,most,state, best
+hm. let's try look up, what are possible answers?
+
+Ufreq[which(Ufreq$grams=="players"),] #174
+Ufreq[which(Ufreq$grams=="crowd"),] #370
+Ufreq[which(Ufreq$grams=="defense"),] #136
+Ufreq[which(Ufreq$grams=="referees"),] #3
+
+# Twitter corpus
+#=============================================#
+object.size(Bfreq)
+# 790626128 bytes = 790MB
+object.size(Ufreq)
+# 21492600 bytes = 21MB
+object.size(Qfreq)
+# 2766943008 bytes = 2.8GB
+object.size(Pfreq)
+# 3038129744 bytes = 3GB
 
 # the frequency table is the issue, so no trick will allow more data.
 EXCEPT, remove sparse, that I must play with.

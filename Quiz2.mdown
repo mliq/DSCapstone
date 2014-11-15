@@ -1,0 +1,66 @@
+Quiz 2: Natural language processing I Help
+
+The due date for this quiz is Sun 16 Nov 2014 4:30 PM PST.
+
+For each of the sentence fragments below use your natural language processing algorithm to predict the next word in the sentence.
+In accordance with the Coursera Honor Code, I (Michael Liquori) certify that the answers here are my own work.
+Question 1
+The guy in front of me just bought a pound of bacon, a bouquet, and a case of
+soda
+pretzels
+cheese
+beer
+Question 2
+You're the reason why I smile everyday. Can you follow me please? It would mean the
+universe
+world
+best
+most
+Question 3
+Hey sunshine, can you follow me and make me the
+smelliest
+happiest
+saddest
+bluest
+Question 4
+Very early observations on the Bills game: Offense still struggling but the
+players
+crowd
+defense
+referees
+Question 5
+Go on a romantic date at the
+movies
+mall
+grocery
+beach
+Question 6
+Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my
+way
+horse
+phone
+motorcycle
+Question 7
+Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some
+thing
+years
+time
+weeks
+Question 8
+After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little
+ears
+fingers
+toes
+eyes
+Question 9
+Be grateful for the good times and keep the faith during the
+bad
+worse
+sad
+hard
+Question 10
+If this isn't the cutest thing you've ever seen, then you must be
+callous
+asleep
+insensitive
+insane
