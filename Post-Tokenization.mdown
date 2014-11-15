@@ -1,5 +1,117 @@
 Post-Tokenization
 ====
+# Model8 Results ANALYSIS
+
+# the frequency table is the issue, so no trick will allow more data.
+EXCEPT, remove sparse, that I must play with.
+No reason to see 5gram as useful, but *4gram I think it was in one question here??*
+bigram also dubious?
+
+## Quiz2.1 
+Correct result predicted if stopwords are eliminated, trigrams, then test for word frequency in Ufreq.
+*Question: Would this work the same if stopWords are eliminated at outset, or should we only eliminate them from the answers?*
+
+ ok Tresult puts Beer at the top (if stopwords removed) but tied with water.
+ Bresult has just too many words and beer not very high.
+
+ so say we just had test result of Tri and then checked Ufreq:
+Ufreq[which(Ufreq$grams=="beer"),] # 1450
+Ufreq[which(Ufreq$grams=="water"),] # 1133 
+
+## 2.2 - CINCH
+
+## 2.3 - hmmm
+Here, the trigram does not pull it off, the Quadrigram does.
+(happiest is the answer?)
+
+However, it does work if we eliminate fuck, most, link, same, way, strength, best, wrong,.
+
+Ufreq[which(Ufreq$grams=="happiest"),] # 84
+Ufreq[which(Ufreq$grams=="happi"),] # 9917
+
+*Why is happiest not stemmed???*
+
+## 2.4 "Very early observations on the Bills game: Offense still struggling but the"
+
+tri results: best, onli, one, fact, next, key...
+nothing good here...
+
+## 2.5 "Go on a romantic date at the"
+
+mall and beach are close..
+
+Ufreq[which(Ufreq$grams=="mall"),] # 371
+Ufreq[which(Ufreq$grams=="beach"),] # 847
+
+[1] "   Qresult   "
+                                  grams counts
+date at the bar         date at the bar      1
+date at the chees     date at the chees      1
+date at the gym         date at the gym      1
+date at the movies   date at the movies      1
+date at the palafox date at the palafox      1
+date at the time       date at the time      1
+date at the whiskey date at the whiskey      1
+
+Tresult:
+at the end                                 369
+at the same                                289
+at the moment                              124
+at the gym                                 116
+at the top                                  94
+at the bar                                  70
+at the door                                 67
+at the game                                 66
+at the mall                                 61
+at the beach                                57
+at the airport                              52
+at the show                                 49
+at the new                                  44
+at the bottom                               42
+at the time                                 42
+at the park                                 37
+at the next                                 34
+at the office                               33
+at the hous                                 31
+at the studio                               31
+
+## 2.6 "Well I'm pretty sure my granny has some old bagpipes in her garage I'll dust them off and be on my"
+
+way Qresult and triresult easily.
+
+## 2.7 "Ohhhhh #PointBreak is on tomorrow. Love that film and haven't seen it in quite some"
+
+*nothing but bigrams...*
+some of                                    962
+some peopl                                 477
+some great                                 292
+some new                                   267
+some good                                  262
+some time                                  191
+some more                                  181
+some reason                                169
+some thing                                 101
+
+Ufreq[which(Ufreq$grams=="peopl"),] # 9674
+Ufreq[which(Ufreq$grams=="great"),] # 16323
+Ufreq[which(Ufreq$grams=="new"),] # 14621
+Ufreq[which(Ufreq$grams=="good"),] # 21295
+Ufreq[which(Ufreq$grams=="time"),] # 17594
+
+hmm good screws me there...
+
+## 2.8 "After the ice bucket challenge Louis will push his long wet hair out of his eyes with his little"
+
+*only bigrams*
+lost on this one, too many and none are my options...
+maybe just Ufreq the answers:
+ears
+fingers
+toes
+eyes
+
+
+
 # so i have been trying to skip TDM using termFreq, however this seems to be a waste because termFreq is extremely slow... I don't know why I thought it was so awesome to begin with...
 
 # #1 thing i'd like to learn: Can I offload to files instead of all in RAM??

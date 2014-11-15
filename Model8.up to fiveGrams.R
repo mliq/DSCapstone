@@ -209,6 +209,6 @@ BresultRefined<-BresultRefined[order(-BresultRefined$count),]
 # may also need to eliminate stopwords at some point...
 
 # Stop the clock
-proc.time() - ptm # 95 secs 
+proc.time() - ptm #  1867.46 (31 minutes) ALMOST all RAM used! could not do more.
 #=============================================#
 #=============================================#

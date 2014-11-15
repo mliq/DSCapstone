@@ -10,6 +10,8 @@ length()
 paste()
 typeof()
 
+assign(x,value) where x is a string - use variables to create variable names
+
 accessing parts of list: myList[[2]][3]
 
 nrow() ncol()
