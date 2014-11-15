@@ -1,0 +1,67 @@
+---
+title: "Milestone Report - Data Science Capstone - Johns Hopkins/Coursera"
+author: "Michael Liquori"
+date: "Saturday, November 15, 2014"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r, echo=FALSE}
+# with test data first
+
+## Load data
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/")
+test<-readLines("testdata1.txt")
+
+## Get line count
+lCount=list(length(test))
+
+## Get unique words via tokenizer
+library(RWeka)
+UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
+testUgrams<-UgramTokenizer(test)
+
+### Word count list
+wCount=list(length(testUgrams))
+
+## Get frequency table with word lengths.
+
+charFreqTable<-function(x){
+
+wLengths<-as.numeric((lapply(x,nchar)))
+
+wlFreq=lapply(min(wLengths):max(wLengths),FUN=function(x){length(which(wLengths==x))})
+
+counts=list(min(wLengths):max(wLengths))
+
+return(data.frame(Chars=(min(wLengths):max(wLengths)),Freq=unlist(wlFreq)))
+}
+
+wlFreqTest<-charFreqTable(testUgrams)
+
+## Plot
+
+wLengths<-as.numeric((lapply(testUgrams,nchar)))
+hist(wLengths, breaks=0:max(wLengths))
+
+### Nicer looking?
+hist(wLengths, col ="firebrick1", breaks=seq(0,max(wLengths),by=1), main="Word Length Histogram: Test Data", xlab = "Values", cex.lab = 1.3)
+ 
+# real data
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+
+twit<-readLines("en_US.twitter.txt")
+news<-readLines("en_US.news.txt")
+blog<-readLines("en_US.blogs.txt")
+
+#Get unique words via tokenizer?
+library(RWeka)
+UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
+twitUgrams<-UgramTokenizer(twit)
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

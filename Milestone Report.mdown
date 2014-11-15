@@ -1,4 +1,29 @@
 Milestone Report
+# Ingredients
+
+* brief, concise style, in a way that a non-data scientist manager could appreciate
+	
+	So, do not echo code.
+
+* basic plots, such as histograms to illustrate features of the data?
+
+	Histogram of word and line counts in each doc.
+		plot(lCount,wCount)	hist?
+
+		Note: histograms are not barplots, they always have frequency on the left. Barplots are categorical on horizontal axis, histograms are continuous/numeric.
+
+		So what numeric features can I have here? It cannot be categorical, so it cannot contain all corpora in one graph.
+
+		It could be horizontal axis of words/sentence (sentence length). Frequency on left.
+
+		*length of words* ? this could provide some value, for example in #4 Quiz 2, isolating longer words such as "defense", though I still don't know how that helps prediction.
+
+		let's pursue this.
+
+* evaluated basic summaries of the data such as word and line counts
+
+* an HTML page describing the exploratory analysis of the training data set on Rpubs.
+
 
 # Rubric
 The motivation for this project is to: 

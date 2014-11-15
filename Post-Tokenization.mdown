@@ -3,6 +3,8 @@ Post-Tokenization
 DUE 5:30 PM SUNDAY!!
 ====
 
+*length of words* ? this could provide some value, for example in #4 Quiz 2, isolating longer words such as "defense", though I still don't know how that helps prediction.
+
 # Model8 Results ANALYSIS
 
 # BLOGS, keep stop words
@@ -13,6 +15,9 @@ maybe need to go down in words.
 But didn't I get it to work with the ENTIRE corpus once?
 well that was only 3grams and i did removesparse I think.
 
+## 75K lines, 5K chunks.
+### 1239.10
+### 4.4GB
 
 # NEWS NO STOP WORDS - seems a total loss.
 ## Time: 670.12
