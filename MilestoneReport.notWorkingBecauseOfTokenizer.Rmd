@@ -1,0 +1,63 @@
+---
+title: "Milestone Report - Data Science Capstone - Johns Hopkins/Coursera"
+author: "Michael Liquori"
+date: "Saturday, November 15, 2014"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r, echo=FALSE}
+## Load data
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+
+twit<-readLines("en_US.twitter.txt")
+news<-readLines("en_US.news.txt")
+blog<-readLines("en_US.blogs.txt")
+
+## Get line count
+tlCount=list(length(twit))
+nlCount=list(length(news))
+blCount=list(length(blog))
+
+## Get unique words via tokenizer
+options( java.parameters = "-Xmx6g" )
+library(RWeka)
+UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
+tUgrams<-UgramTokenizer(twit)
+bUgrams<-UgramTokenizer(blog)
+nUgrams<-UgramTokenizer(news)
+
+### Word count list
+twCount=list(length(tUgrams))
+bwCount=list(length(bUgrams))
+nwCount=list(length(nUgrams))
+
+## Get frequency table with word lengths.
+
+charFreqTable<-function(x){
+wLengths<-as.numeric((lapply(x,nchar)))
+wlFreq=lapply(min(wLengths):max(wLengths),FUN=function(x){length(which(wLengths==x))})
+counts=list(min(wLengths):max(wLengths))
+return(data.frame(Chars=(min(wLengths):max(wLengths)),Freq=unlist(wlFreq)))
+}
+
+twlFreq<-charFreqTable(tUgrams)
+bwlFreq<-charFreqTable(bUgrams)
+nwlFreq<-charFreqTable(nUgrams)
+
+## Plot
+
+twLengths<-as.numeric((lapply(tUgrams,nchar)))
+bwLengths<-as.numeric((lapply(bUgrams,nchar)))
+nwLengths<-as.numeric((lapply(nUgrams,nchar)))
+
+hist(twLengths, col ="cadetblue3", breaks=seq(0,max(wLengths),by=1), main="Twitter Corpus Word-length frequency", xlab = "Values", cex.lab = 1.3)
+
+hist(nwLengths, col ="chocolate2", breaks=seq(0,max(wLengths),by=1), main="News Corpus Word-length frequency", xlab = "Values", cex.lab = 1.3)
+
+hist(bwLengths, col ="firebrick1", breaks=seq(0,max(wLengths),by=1), main="Blogs Corpus Word-length frequency", xlab = "Values", cex.lab = 1.3)
+
+```

@@ -10,58 +10,145 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r, echo=FALSE}
-# with test data first
 
-## Load data
-setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/")
-test<-readLines("testdata1.txt")
+# Start the clock!
+ptm <- proc.time()
+
+# SETUP #
+gc()
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+library(tm)
+
+# FUNCTION DEFINITIONS #
+
+# Make Corpus, Transform, Make Trigram TDM
+makeTDM <- function(x) {
+corpus<-Corpus(VectorSource(x))
+corpus <- tm_map(corpus, stripWhitespace)
+corpus <- tm_map(corpus, content_transformer(tolower))
+# corpus <- tm_map(corpus, removeWords, stopwords("english"))
+corpus <- tm_map(corpus, stemDocument)
+corpus<- tm_map(corpus,removePunctuation)
+corpus<- tm_map(corpus,removeNumbers)
+tdm<- TermDocumentMatrix(corpus)
+#tdm<-removeSparseTerms(tdm,0.97)
+return(tdm)}
+
+## DATA MUNGING ##
+
+# 1. Corpus, transformations, and TDM Creation
+#=============================================#
+
+fileMunge<- function(x) {
+text<-readLines(x)
+totalLines=length(text)
+chunkSize=20000
+chunks=totalLines/chunkSize
+remainder = chunks %% 1
+wholeChunks = chunks-remainder
+# initialize list
+output=list()
+# break file into chunks 
+i=1
+line=1
+while (i<=wholeChunks){
+end=line+chunkSize-1
+output[[i]]<-text[line:end]
+line=end+1
+i=i+1
+}
+output[[i]]<-text[line:totalLines]
+# Text Transformations to remove odd characters #
+output=lapply(output,FUN=iconv, to='ASCII', sub=' ')
+output=lapply(output,FUN= function(x) gsub("'{2}", " ",x))
+output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
+}
+
+# Read, chunk, parse data, then make corpus, do transformations, make TDM of tri-grams:
+twit<-fileMunge("en_US.twitter.txt")
+tTDM <- makeTDM(twit)
+rm(twit)
+gc()
+
+news<-fileMunge("en_US.news.txt")
+nTDM <- makeTDM(news)
+# triTDM<-c(triTDM,newTDM)
+rm(news)
+# rm(newTDM)
+gc()
+
+blog<-fileMunge("en_US.blogs.txt")
+bTDM <- makeTDM(blog)
+# triTDM<-c(triTDM,blogTDM)
+rm(blog)
+# rm(blogTDM)
+gc()
+
 
 ## Get line count
-lCount=list(length(test))
 
-## Get unique words via tokenizer
-library(RWeka)
-UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
-testUgrams<-UgramTokenizer(test)
+twit<-readLines("en_US.twitter.txt")
+tlCount=list(length(twit))
+rm(twit)
+gc()
 
-### Word count list
-wCount=list(length(testUgrams))
+news<-readLines("en_US.news.txt")
+nlCount=list(length(news))
+rm(news)
+gc()
+
+blog<-readLines("en_US.blogs.txt")
+blCount=list(length(blog))
+rm(blog)
+gc()
+
+## Get unique words
+
+tUgrams<-dimnames(tTDM)$Terms
+bUgrams<-dimnames(bTDM)$Terms
+nUgrams<-dimnames(nTDM)$Terms
+
+### Number of Unique Words
+
+twCount=length(tUgrams)
+bwCount=length(bUgrams)
+nwCount=length(nUgrams)
 
 ## Get frequency table with word lengths.
 
 charFreqTable<-function(x){
-
 wLengths<-as.numeric((lapply(x,nchar)))
-
 wlFreq=lapply(min(wLengths):max(wLengths),FUN=function(x){length(which(wLengths==x))})
-
 counts=list(min(wLengths):max(wLengths))
-
 return(data.frame(Chars=(min(wLengths):max(wLengths)),Freq=unlist(wlFreq)))
 }
 
-wlFreqTest<-charFreqTable(testUgrams)
+twlFreq<-charFreqTable(tUgrams)
+bwlFreq<-charFreqTable(bUgrams)
+nwlFreq<-charFreqTable(nUgrams)
 
-## Plot
+# Plot
 
-wLengths<-as.numeric((lapply(testUgrams,nchar)))
-hist(wLengths, breaks=0:max(wLengths))
+## Line numbers in each Corpus, horizontal barplot
 
-### Nicer looking?
-hist(wLengths, col ="firebrick1", breaks=seq(0,max(wLengths),by=1), main="Word Length Histogram: Test Data", xlab = "Values", cex.lab = 1.3)
- 
-# real data
-setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+data<-data.frame(names=c("Twitter Corpus", "News Corpus", "Blogs Corpus"), counts=c(1,2,3))
+par(mai=c(1,2,1,1))
+barplot(data$count, main="Number of Lines per Corpus", horiz=TRUE, names.arg=data$names, las=1)
 
-twit<-readLines("en_US.twitter.txt")
-news<-readLines("en_US.news.txt")
-blog<-readLines("en_US.blogs.txt")
+## Line length in each Corpus, 3 histograms?
 
-#Get unique words via tokenizer?
-library(RWeka)
-UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
-twitUgrams<-UgramTokenizer(twit)
+
+## Word length Frequency Histograms for each Corpus
+twLengths<-as.numeric((lapply(tUgrams,nchar)))
+bwLengths<-as.numeric((lapply(bUgrams,nchar)))
+nwLengths<-as.numeric((lapply(nUgrams,nchar)))
+
+hist(twLengths, col ="cadetblue3", breaks=seq(0,max(wLengths),by=1), main="Twitter Corpus Word-length frequency", xlab = "Values", cex.lab = 1.3)
+
+hist(nwLengths, col ="chocolate2", breaks=seq(0,max(wLengths),by=1), main="News Corpus Word-length frequency", xlab = "Values", cex.lab = 1.3)
+
+hist(bwLengths, col ="firebrick1", breaks=seq(0,max(wLengths),by=1), main="Blogs Corpus Word-length frequency", xlab = "Values", cex.lab = 1.3)
+# Stop the clock
+proc.time() - ptm # 1171.92
 
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0042)http://www.bramschoenmakers.nl/en/node/726 -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <!-- BS20071201: For Google Webmaster Tools -->
+  <meta name="verify-v1" content="xMi75wiJ7XeqfMQoK2w6U/8gi8IZrxKpdefH5Y5W9k4=">
+  <title>R: Increase heap size for rJava | bramschoenmakers.nl</title>
+
+  
+<link rel="shortcut icon" href="http://www.bramschoenmakers.nl/misc/favicon.ico" type="image/x-icon">
+  <style type="text/css" media="all">@import "/sites/bramschoenmakers.nl/www/files/css/a13a98b0e97eca641e187f9a668f3cbf.css";</style>
+    
+<script type="text/javascript" src="./R  Increase heap size for rJava   bramschoenmakers.nl_files/5501934017dbc3f44bd097d1939aae92.js"></script>
+
+<script type="text/javascript">Drupal.extend({ settings: { "googleanalytics": { "trackDownload": "pdf|zip|mp3" } } });</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+          // find all external links and set target to new window
+          $("a.external-link").attr("target", "_blank");
+        });
+      </script>
+
+<style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+
+<body>
+
+    <div id="container">
+      <div id="header">
+        <div id="logoWrapper">
+                        <div id="siteName"><a href="http://www.bramschoenmakers.nl/" title="Home">bramschoenmakers.nl</a></div>                    </div>
+      <!-- BS20080322: Uitgezet -->
+      <!--<div id="nav">
+             </div>-->
+    </div>
+
+  <div id="content">
+                <div class="breadcrumb"><a href="http://www.bramschoenmakers.nl/">Home</a></div>        <div class="pageTitle">R: Increase heap size for rJava</div>
+        <div class="tabs"></div>
+                	          <div class="node">
+            <span class="submitted">Submitted by Bram Schoenmakers on 10 June, 2010 - 00:15.</span>
+    <div class="taxonomy">Tagged: <span class="first taxonomy_term_427"><a href="http://www.bramschoenmakers.nl/en/taxonomy/term/427" rel="tag" title="" class="taxonomy_term_427">Java</a></span>
+&nbsp;• &nbsp;<span class="taxonomy_term_476"><a href="http://www.bramschoenmakers.nl/en/taxonomy/term/476" rel="tag" title="" class="taxonomy_term_476">R</a></span>
+&nbsp;• &nbsp;<span class="taxonomy_term_478"><a href="http://www.bramschoenmakers.nl/en/taxonomy/term/478" rel="tag" title="" class="taxonomy_term_478">rJava</a></span>
+&nbsp;• &nbsp;<span class="last taxonomy_term_477"><a href="http://www.bramschoenmakers.nl/en/taxonomy/term/477" rel="tag" title="" class="taxonomy_term_477">RWeka</a></span>
+</div>    <div class="content"><p>Technically speaking, this is not strictly a Unix Revelation. Still, to me it's useful enough to note this down.</p>
+<p>We all know Java runs in a virtual machine, and assigns itself in 80% of the cases too little memory to do some real work. Result? Well, this:</p>
+<div class="error">java.lang.OutOfMemoryError: Java heap space</div>
+<p>Sun gave us the <span class="commandtxt">-Xmx flag</span> to increase the heap size (and <span class="commandtxt">-Xms</span> to increase the stack size).</p>
+<p>This works nicely from the commandline, the next challenge was to do something similar from an <a href="http://www.r-project.org/" class="external-link" target="_blank">R</a> environment. Using <a href="http://cran.r-project.org/web/packages/RWeka/index.html" class="external-link" target="_blank">RWeka</a>, which in turn depends on <a href="http://cran.r-project.org/web/packages/rJava/index.html" class="external-link" target="_blank">rJava</a>, I found myself hitting the limit every time (which defaults to 512 MB).</p>
+<p>The solution is to supply this <span class="commandtxt">-Xmx</span> parameter before the Java Virtual Machine is initialized. From the R shell, invoke this:</p>
+<div class="command">&gt; options( java.parameters = "-Xmx4g" )<br>
+&gt; library( "RWeka" )</div>
+<p>This will override the default setting and assign 4 gigabytes of heap space to the Java environment. Of course, you still need to have at least that amount of RAM.</p>
+</div>
+      </div>
+<div id="comments"></div>                  </div>
+
+  <div id="sidebarWrapper">
+    <div id="sidebar">
+              <div class="block block-menu" id="block-menu-82">
+    <h2 class="title">Menu</h2>
+    <div class="content">
+<ul class="menu">
+<li class="expanded"><a href="http://www.bramschoenmakers.nl/en/blog/1" title="An aggregation of all non-issues I wrote about.">My blog</a>
+<ul class="menu">
+<li class="leaf"><a href="http://www.bramschoenmakers.nl/en/blog/en">English</a></li>
+<li class="leaf"><a href="http://www.bramschoenmakers.nl/en/blog/nl">Nederlands</a></li>
+<li class="leaf"><a href="http://www.bramschoenmakers.nl/en/blog/list">List</a></li>
+<li class="leaf"><a href="http://www.bramschoenmakers.nl/en/node/291">Tags</a></li>
+
+</ul>
+</li>
+<li class="collapsed"><a href="http://www.bramschoenmakers.nl/en/node/261">Features</a></li>
+<li class="collapsed"><a href="http://www.bramschoenmakers.nl/en/unixrevelations">Unix Revelations</a></li>
+<li class="leaf"><a href="http://www.bramschoenmakers.nl/en/user/login">Log in</a></li>
+
+</ul>
+</div>
+ </div>
+  <div class="block block-block" id="block-block-9">
+    <h2 class="title"></h2>
+    <div class="content"><form action="http://www.google.com/cse" id="cse-search-box">
+<div>
+    <input type="hidden" name="cx" value="001174737424413819622:hbcxveln_xk"><br>
+    <input type="hidden" name="ie" value="UTF-8"><br>
+    <input type="text" name="q" size="20" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: url(http://www.google.com/cse/intl/en/images/google_custom_search_watermark.gif) 0% 50% no-repeat rgb(255, 255, 255);"><br>
+    <input type="submit" name="sa" value="Search">
+  </div>
+<input name="siteurl" type="hidden" value="www.bramschoenmakers.nl/en/node/726"><input name="ref" type="hidden" value="www.bramschoenmakers.nl/en/taxonomy/term/477"><input name="ss" type="hidden" value=""></form>
+<script type="text/javascript" src="./R  Increase heap size for rJava   bramschoenmakers.nl_files/brand"></script></div>
+ </div>
+  <div class="block block-block" id="block-block-8">
+    <h2 class="title">Online profiles</h2>
+    <div class="content"><ul class="profile-list">
+<li><span class="profile-icon" style="background-position: 0px 0px;"></span><a class="profile-link external-link" href="http://www.google.com/profiles/bramschoenmakers" rel="me" target="_blank">Google Profile</a></li>
+<li><span class="profile-icon" style="background-position: -48px -16px;"></span><a class="profile-link external-link" href="http://twitter.com/bram85" rel="me" target="_blank">Twitter</a></li>
+<li><span class="profile-icon" style="background-position: -16px -0px;"></span><a class="profile-link external-link" href="http://facebook.com/bramschoenmakers" rel="me" target="_blank">Facebook</a></li>
+<li><span class="profile-icon" style="background-position: 0px -16px;"></span><a class="profile-link external-link" href="http://www.last.fm/user/bram85" rel="me" target="_blank">Last.fm</a></li>
+<li><span class="profile-icon" style="background-position: -32px -0px;"></span><a class="profile-link external-link" href="http://www.flickr.com/people/bramschoenmakers/" rel="me" target="_blank">Flickr</a></li>
+<li><span class="profile-icon" style="background-position: -64px -16px;"></span><a class="profile-link external-link" href="http://nl.linkedin.com/in/bramschoenmakers" rel="me" target="_blank">LinkedIn</a></li>
+<li><span class="profile-icon" style="background-position: -48px -0px;"></span><a class="profile-link external-link" href="http://github.com/bram85" rel="me" target="_blank">Github</a></li>
+<li><span class="profile-icon" style="background-position: -64px -0px;"></span><a class="profile-link external-link" href="http://stackoverflow.com/users/322263/bram-schoenmakers" rel="me" target="_blank">Stack Overflow</a></li>
+</ul>
+</div>
+ </div>
+  <div class="block block-views" id="block-views-recentblogs">
+    <h2 class="title">Recent blogs</h2>
+    <div class="content"><div class="view view-recentblogs"><div class="view-content view-content-recentblogs"><div class="item-list"><ul><li><div class="view-item view-item-recentblogs"><div class="view-field view-data-node-title"><a href="http://www.bramschoenmakers.nl/en/node/754">Never miss a phone call again with Tasker (Android) and KDialog (KDE)</a></div></div>
+</li><li><div class="view-item view-item-recentblogs"><div class="view-field view-data-node-title"><a href="http://www.bramschoenmakers.nl/en/node/751">Backup online services with Backupify</a></div></div>
+</li><li><div class="view-item view-item-recentblogs"><div class="view-field view-data-node-title"><a href="http://www.bramschoenmakers.nl/en/node/750">Backup your brain with Evernote</a></div></div>
+</li></ul></div></div></div>
+</div>
+ </div>
+    </div>
+  </div>
+
+
+  <div id="footer">
+    © 2005-2011 Bram Schoenmakers --- <a href="http://www.bramschoenmakers.nl/contact">Contact</a><br>
+Hosted by <a href="http://www.secure-hosting.nl/">Secure-Hosting.nl</a>
+  </div>
+</div>
+<script type="text/javascript" src="./R  Increase heap size for rJava   bramschoenmakers.nl_files/urchin.js"></script>
+<script type="text/javascript">
+_uacct = "UA-2979244-1";urchinTracker();
+</script>
+<script type="text/javascript" src="./R  Increase heap size for rJava   bramschoenmakers.nl_files/downloadtracker.js"></script>
+
+
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>
