@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://yihui.name/knitr/demo/output/ -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Control output: Manipulate six types of chunk output and inline output | knitr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Yihui Xie">
+    <link rel="stylesheet" href="http://yihui.name/knitr/css/main.css">
+    <link rel="stylesheet" href="http://yihui.name/knitr/css/code_highlights.css">
+    <link rel="stylesheet" href="http://yihui.name/knitr/css/widescreen.css">
+    <!--[if lt IE 9]>
+	    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="apple-touch-icon" sizes="114x114" href="./Control output  Manipulate six types of chunk output and inline output   knitr_files/avatar.png">
+
+    <meta name="description" content="knitr: an R package for general-purpose dynamic report generation.">
+  <script src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/cb=gapi.loaded_1" async=""></script><script src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/ga.js"></script><script type="text/javascript" async="" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" async="" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/embed.js"></script><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style><script src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/alfie.f51946af45e0b561c60f768335c9eb79.js" async="" charset="UTF-8"></script></head>
+    <body lang="en" id="main-layout" class="vcard " data-twttr-rendered="true">
+      <header id="masthead">
+      <div class="wrapper">
+        <a id="logo" href="http://yihui.name/" rel="author">
+          <div>
+            <figure class="jk-logo frame">
+            <img src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/avatar.png" alt="Yihui Xie" title="Yihui Xie">
+            </figure>
+          </div>
+        </a>
+        <nav>
+        <ul>
+          <li class="index">
+          <a href="http://yihui.name/knitr/">
+            <span>Home</span>
+          </a>
+          </li>
+          <li class="projects">
+          <a href="http://yihui.name/knitr/objects">
+            <span>Objects</span>
+          </a>
+          </li>
+          <li class="projects">
+          <a href="http://yihui.name/knitr/options">
+            <span>Options</span>
+          </a>
+          </li>
+          <li class="projects">
+          <a href="http://yihui.name/knitr/hooks">
+            <span>Hooks</span>
+          </a>
+          </li>
+          <li class="projects">
+          <a href="http://yihui.name/knitr/patterns">
+            <span>Patterns</span>
+          </a>
+          </li>
+          <li class="projects">
+          <a href="http://yihui.name/knitr/demos">
+            <span>Demos</span>
+          </a>
+          </li>
+        </ul>
+        </nav>
+      </div>
+      </header>
+
+      <article id="content" class="hentry">
+
+      <header>
+      <div>
+	<img style="float:right" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/knit-logo.png">
+        <h1 class="entry-title">Control output</h1>
+        <p>Manipulate six types of chunk output and inline output</p>
+      </div>
+      </header>
+
+      <div class="wrapper">
+        <div class="entry-content">
+        <p>As introduced in the <a href="https://bitbucket.org/stat/knitr/downloads/knitr-manual.pdf">main manual</a>, <strong>knitr</strong> uses the <strong>evaluate</strong> package to evaluate R code chunks, and there are six types of output: source code, normal text output, messages, warnings, errors and plots. Below we give a summary on the fine control over them.</p>
+
+<ol>
+<li>source code: use chunk option <code>echo</code>, e.g. <code>echo=FALSE</code> hides the R code</li>
+<li>normal text output: use option <code>results</code> (<code>markup</code> marks up the results; <code>asis</code> return texts as-is; <code>hide</code> hides the results)</li>
+<li>messages: option <code>message</code> (<code>FALSE</code> hides messages in the output)</li>
+<li>warnings: option <code>warning</code> (<code>FALSE</code> hides warnings in the output)</li>
+<li>errors: option <code>error</code> (<code>FALSE</code> will make R stop if an error occurs; <code>TRUE</code> will show the error messages in the output)</li>
+<li>plots: option <code>fig.keep</code> (<code>none</code> discards all plots; <code>all</code> for all plots including low-level plots; <code>high</code> for high-level plots)</li>
+</ol>
+
+<p>These options are orthogonal to each other, so you are free to turn on/off one type of output without affecting other pieces.</p>
+
+<p>Note all <a href="http://yihui.name/knitr/options">options</a> in <strong>knitr</strong> can take values from R expressions, which brings the feature of conditional evaluation introduced in the main manual. In short, <code>eval=dothis</code> means the real value of <code>eval</code> is taken from a variable named <code>dothis</code> in the global environment; by manipulating this variable, we can turn on/off the evaluation of a batch of chunks.</p>
+
+<h2>Advanced usage of the <code>echo</code> option</h2>
+
+<p>Besides <code>TRUE/FALSE</code>, the chunk option <code>echo</code> can also take a numeric vector to selectively echo source code in the output. This vector indexes the complete R expresions in the code chunk, e.g. <code>echo=1</code> means only include the first expression in the output. Below is a complete example:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="o">&lt;&lt;</span>hide<span class="o">-</span>par<span class="p">,</span> echo<span class="o">=</span><span class="m">3</span><span class="o">:</span><span class="m">4</span><span class="o">&gt;&gt;=</span>
+<span class="c1">## 'ugly' code that I do not want to show</span>
+par<span class="p">(</span>mar <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0.1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> cex.lab <span class="o">=</span> <span class="m">0.95</span><span class="p">,</span> cex.axis <span class="o">=</span> <span class="m">0.9</span><span class="p">,</span>
+    mgp <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0.7</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tcl <span class="o">=</span> <span class="m">-0.3</span><span class="p">)</span>
+plot<span class="p">(</span>mtcars<span class="p">[,</span> <span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">])</span>
+plot<span class="p">(</span>mtcars<span class="p">[,</span> <span class="m">4</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
+<span class="o">@</span></code></pre></div>
+
+<p>The <code>par()</code> expression is not essential to this code chunk, and it is even distracting to the readers, so we may want to hide it in the output. In this particular case, we do not want the first expression (comments) either; <code>echo=3:4</code> means the third and fourth expressions are to be included in the output. Note the index of an expression is not necessarily the same as its line number. Alternatively, we can use <code>echo=-(1:2)</code> to remove the first two expressions.</p>
+
+<p>It may be confusing to the reader if you select a discrete subset of the source code; often times we should use <code>a:b</code> or <code>-(a:b)</code> to select a (relatively) complete subset. However, nobody can stop you from doing so:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">% select <span class="m">3</span>rd and <span class="m">5</span>th expressions
+<span class="o">&lt;&lt;</span>hide<span class="o">-</span>par<span class="p">,</span> echo<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span><span class="o">&gt;&gt;=</span>
+<span class="c1">## 'ugly' code that I do not want to show</span>
+par<span class="p">(</span>mar <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">0.1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> cex.lab <span class="o">=</span> <span class="m">0.95</span><span class="p">,</span> cex.axis <span class="o">=</span> <span class="m">0.9</span><span class="p">,</span>
+    mgp <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">0.7</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> tcl <span class="o">=</span> <span class="m">-0.3</span><span class="p">)</span>
+plot<span class="p">(</span>mtcars<span class="p">[,</span> <span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">])</span>
+par<span class="p">(</span>mar <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.5</span><span class="p">))</span> <span class="c1"># reset margins</span>
+plot<span class="p">(</span>mtcars<span class="p">[,</span> <span class="m">4</span><span class="o">:</span><span class="m">5</span><span class="p">])</span>
+<span class="o">@</span></code></pre></div>
+
+<h2>Inline output</h2>
+
+<p>Besides chunk output, there is another type of output: inline R code output (e.g. <code>\Sexpr{t.test(x)$p.value}</code>). Numeric output is treated specially: the numbers will be written in scientific notations if they are too big or small. The threshold between scientific notation and fixed notation is the R option <code>scipen</code> (see <code>?options</code> for details). Basically if a number is bigger than <code>10^4</code> or smaller than <code>10^{-4}</code> (applies to the absolute values of negative numbers too), it will be denoted in scientific notation. Depending on the output format (LaTeX or HTML), <strong>knitr</strong> will use the appropriate code like <code>$3.14 \times 10^5$</code> or <code>3.14 &amp;times; 10&lt;sup&gt;5&lt;/sup&gt;</code>.</p>
+
+<p>Another R option <code>digits</code> controls how many digits a number should be rounded with. If you do not like the default <code>options(scipen = 0, digits = 4)</code>, you can change them in the first chunk like:</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="o">&lt;&lt;</span>setup<span class="p">,</span> echo<span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> cache<span class="o">=</span><span class="kc">FALSE</span><span class="o">&gt;&gt;=</span>
+<span class="c1">## numbers &gt;= 10^5 will be denoted in scientific notation,</span>
+<span class="c1">## and rounded to 2 digits</span>
+<span class="kp">options</span><span class="p">(</span>scipen <span class="o">=</span> <span class="m">1</span><span class="p">,</span> digits <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+<span class="o">@</span></code></pre></div>
+
+<p>A Markdown example:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">Inline code looks like this `r 1+1`</code></pre></div>
+
+<p>The above would print <code>2</code>, inline with the rest of the sentence.</p>
+
+<p>An Rnw example (LaTeX):</p>
+
+<div class="highlight"><pre><code class="language-latex" data-lang="latex">Inline code looks like this <span class="k">\Sexpr</span><span class="nb">{</span>1+1<span class="nb">}</span></code></pre></div>
+
+<p>An R HTML example:</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;p&gt;</span>Inline code looks like this <span class="c">&lt;!--rinline 1+1 --&gt;</span><span class="nt">&lt;/p&gt;</span></code></pre></div>
+
+<p>For R HTML documents, the character results are written in <code>&lt;code&gt;&lt;/code&gt;</code> by default. If you would like to drop the <code>&lt;code&gt;&lt;/code&gt;</code> tags in the output, simply wrap your R code with <code>I()</code>. For example,</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;p&gt;</span>Inline code looks like this <span class="c">&lt;!--rinline I(1+1) --&gt;</span><span class="nt">&lt;/p&gt;</span></code></pre></div>
+
+<p>See this <a href="http://stackoverflow.com/q/14124022/559676">SO post</a> for another example.</p>
+
+<h2>Long lines of text output</h2>
+
+<p>Normally R respects the option <code>width</code> (set via <code>options(width = ??)</code>) when printing text output, e.g. <code>rnorm(100)</code>. The default value for <code>width</code> is set to <code>75</code> and it is likely you want a smaller value if you use LaTeX. In some cases, you may see the output is still too width even if you have set this option to be a small value, and that is usually because R does not respect this option. I cannot do much about this, although there can be some hacks on <strong>knitr</strong>'s side. See <a href="https://github.com/yihui/knitr/issues/421">#421</a> for one example.</p>
+
+<h2>One comment on messages</h2>
+
+<p>Many people like to use <code>cat()</code> to write messages in R, and this is a very bad practice, because it is inconvenient to turn off such messages. When we really mean <em>messages</em>, we should use <code>message()</code>. These regular messages can be conveniently suppressed by <code>suppressMessages()</code> or captured by <strong>knitr</strong>. Some package authors did not seem to pay attention to this issue; when we load a package or use functions in a package, we may see fake messages that cannot be supppressed. If a startup message is really necessary, it should be put in <code>packageStartupMessage()</code>. When you are unable to turn off some messages by <code>message=FALSE</code> in <strong>knitr</strong>, it is probably time to request the package authors to make some changes.</p>
+
+<p>Similarly, we should use <code>warning()</code> when we really mean a warning.</p>
+
+<p>So watch out your <code>cat</code>s!</p>
+
+<h2>Misc</h2>
+
+<p>If you use <code>echo=FALSE, results='hide'</code> on a chunk, you may see extra empty lines in the output; if you do not want these empty lines, see <a href="https://github.com/yihui/knitr/issues/231">#231</a> for a possible solution.</p>
+
+      </div>
+      </div>
+
+      </article>
+
+      <footer id="colophon">
+      <div class="wrapper">
+          <section id="copyright">
+          <div>If you have any questions, please consider asking them on <em><a href="http://stackoverflow.com/questions/tagged/knitr">StackOverflow</a></em>, where you may get more attention and fast answers.</div>
+          <div id="disqus_thread"><iframe id="dsq-227" data-disqus-uid="227" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 4201px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+          <script type="text/javascript">
+              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+              var disqus_shortname = 'yihui'; // required: replace example with your forum shortname
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+          <p>
+          <span style="float:right;">© 2011-2013 <a href="http://yihui.name/">Yihui Xie</a> | Licensed under <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">CC-BY-NC</a> |
+          <a href="https://github.com/yihui/knitr/issues" title="Go to GitHub Issues">Feedback</a> | <a href="https://groups.google.com/group/knitr">Mailing list</a></span>
+          <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/tweet_button.d58098f8a7f0ff5a206e7f15442a6b30.en.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 109px; height: 20px;"></iframe><script type="text/javascript" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/widgets.js"></script>
+          <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 70px; height: 15px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 70px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1416165892440" name="I0_1416165892440" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+          <script type="text/javascript">
+            (function() {
+              var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+              po.src = 'https://apis.google.com/js/plusone.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+          </script>
+          </p>
+          </section>
+        </div>
+        </footer>
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-1988641-6']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+        <script type="text/javascript" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/nocomment.js"></script><iframe name="oauth2relay450100974" id="oauth2relay450100974" src="./Control output  Manipulate six types of chunk output and inline output   knitr_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe>
+       
+     
+</body></html>

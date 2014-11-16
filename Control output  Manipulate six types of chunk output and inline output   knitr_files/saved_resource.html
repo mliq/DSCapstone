@@ -1,0 +1,2396 @@
+<!DOCTYPE html>
+<!-- saved from url=(0371)http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#227 -->
+<html lang="en" dir="ltr" class="js touch localstorage sessionstorage contenteditable use-opacity-transitions"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Disqus Comments</title>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    <style>
+        html {
+            overflow: hidden;
+        }
+        
+    </style>
+
+<link rel="stylesheet" href="http://a.disquscdn.com/next/styles/lounge.e11c48eb709c65c87fbacde73b3075e9.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="remote/config" src="config.js"></script><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="common.bundle" src="common.666063e7c3bcceac126d584f8214129d.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="lounge.bundle" src="lounge.b1b3a3d0baeeee1bd63d0a9cbd77ff12.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="http://www.google-analytics.com/ga.js" src="ga.js"></script><style id="css_1416165893901"></style><!--<base target="_parent">--><base href="." target="_parent"><script src="event.js" async="" charset="UTF-8"></script><link rel="stylesheet" href="http://a.disquscdn.com/next/styles/discovery.c299e37422569a91c0e57e7bb42885cd.css"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="discovery/main" src="discovery.6d5f61a593786b1c3da9f3a0b100ba18.js"></script><script src="event(1).js" async="" charset="UTF-8"></script><script src="event(2).js" async="" charset="UTF-8"></script></head>
+<body class="serif">
+    
+    <!--[if lte IE 8]>
+<script src="//a.disquscdn.com/1415823794/build/vendor/ie8.js"></script>
+<![endif]-->
+<!--[if IE 9]>
+<script src="//a.disquscdn.com/1415823794/build/vendor/ie9.js"></script>
+<![endif]-->
+
+    
+<script type="text/json" id="disqus-urls">{
+    "root":"//disqus.com",
+    "next":"//a.disquscdn.com/next/c6ed14e4"
+}</script>
+
+    
+
+    <div id="error" style="display:none; text-align: center">
+        <p>We were unable to load Disqus. If you are a moderator please see our <a href="http://docs.disqus.com/help/83/"> troubleshooting guide</a>. </p>
+    </div>
+
+    
+    <script type="text/json" id="disqus-forumData">{"session":{"isReadOnly":null,"canModerate":false,"audienceSyncVerified":false,"canReply":true,"mustVerifyEmail":false},"features":{},"forum":{"category":null,"description":null,"founder":"18051630","settings":{"canEnableSponsoredComments":false,"discoveryVariant":"default","allowAnonPost":true,"allowMedia":true,"moderatorText":"","typeface":"auto","disable3rdPartyTrackers":false,"promotedDiscoveryEnabled":false,"discoveryMax":false,"ssoRequired":false,"discoveryLocked":false,"audienceSyncEnabled":false,"hasCustomAvatar":false,"organicDiscoveryEnabled":true,"discoverySettingsUrl":"https://yihui.disqus.com/admin/settings/ads/","discoveryThumbnailsEnabled":false,"colorScheme":"auto","sponsoredCommentsEnabled":false,"linkAffiliationEnabled":true},"url":"http://yihui.name","guidelines":null,"favicon":{"permalink":"http://disqus.com/api/forums/favicons/yihui.jpg","cache":"//a.disquscdn.com/uploads/forums/108/2964/favicon.png"},"language":"en","avatar":{"small":{"permalink":"http://disqus.com/api/forums/avatars/yihui.jpg?size=32","cache":"//a.disquscdn.com/1415823794/images/noavatar32.png"},"large":{"permalink":"http://disqus.com/api/forums/avatars/yihui.jpg?size=92","cache":"//a.disquscdn.com/1415823794/images/noavatar92.png"}},"pk":1082964,"raw_guidelines":null,"id":"yihui","channel":null,"name":"Yihui Xie"}}</script>
+
+    
+    <script type="text/json" id="disqus-threadData">{"cursor":{"hasPrev":false,"prev":null,"total":21,"hasNext":false,"next":"1:0:0"},"code":0,"response":{"lastModified":1416086063,"posts":[{"isFlagged":false,"forum":"yihui","parent":null,"author":{"name":"Rivo","url":"","profileUrl":"","emailHash":"","avatar":{"small":{"permalink":"//a.disquscdn.com/1415823794/images/noavatar32.png","cache":"//a.disquscdn.com/1415823794/images/noavatar32.png"},"large":{"permalink":"//a.disquscdn.com/1415823794/images/noavatar92.png","cache":"//a.disquscdn.com/1415823794/images/noavatar92.png"},"permalink":"//a.disquscdn.com/1415823794/images/noavatar92.png","cache":"//a.disquscdn.com/1415823794/images/noavatar92.png"},"isAnonymous":true},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Hi.\n\nI have a discrepancy (bad rounding) between console and report (even when 'asis' is set):\n\n&lt;&lt;discrepancy&gt;&gt;=\nlibrary(quantmod)\ngetSymbols(&quot;GS&quot;)\nlast(GS$GS.Close['2012-04']) #displays 115.15 in console and 115.2 in pdf\n&lt;&lt;end-discrepancy&gt;&gt;\n #sorry, I couldn't use the at sign as it's again and again changed to the name of one of the below commenters.\n@","createdAt":"2012-06-11T21:45:39","id":"554726241","thread":"590729055","depth":0,"numReports":0,"likes":4,"isEdited":true,"message":"\u003cp>Hi.\u003c/p>\u003cp>I have a discrepancy (bad rounding) between console and report (even when 'asis' is set):\u003c/p>\u003cp>&lt;&lt;discrepancy&gt;&gt;=\u003cbr>library(quantmod)\u003cbr>getSymbols(\"GS\")\u003cbr>last(GS$GS.Close['2012-04']) #displays 115.15 in console and 115.2 in pdf\u003cbr>&lt;&lt;end-discrepancy&gt;&gt;\u003cbr> #sorry, I couldn't use the at sign as it's again and again changed to the name of one of the below commenters.\u003cbr>@\u003c/p>","isSpam":false,"isHighlighted":false,"points":4},{"isFlagged":false,"forum":"yihui","parent":null,"author":{"username":"gustavwdelius","about":"","name":"Gustav W Delius","disable3rdPartyTrackers":false,"url":"","isAnonymous":false,"rep":1.206833,"profileUrl":"http://disqus.com/gustavwdelius/","reputation":1.206833,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2013-12-18T09:20:39","id":"86739874","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/gustavwdelius.jpg","cache":"//a.disquscdn.com/uploads/users/8673/9874/avatar32.jpg?1387358441"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/gustavwdelius.jpg","cache":"//a.disquscdn.com/uploads/users/8673/9874/avatar92.jpg?1387358441","large":{"permalink":"http://disqus.com/api/users/avatars/gustavwdelius.jpg","cache":"//a.disquscdn.com/uploads/users/8673/9874/avatar92.jpg?1387358441"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"This page describes how to have inline output of the results of R commands. But is it also possible to have inline chunks containing the formatted R code, similar to what chunk output does with the echo=TRUE, eval=FALSE option?","createdAt":"2014-11-15T10:49:00","id":"1694319072","thread":"590729055","depth":0,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>This page describes how to have inline output of the results of R commands. But is it also possible to have inline chunks containing the formatted R code, similar to what chunk output does with the echo=TRUE, eval=FALSE option?\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":1694319072,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"No.","createdAt":"2014-11-15T21:14:20","id":"1694948330","thread":"590729055","depth":1,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>No.\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":null,"author":{"username":"disqus_ihhgNqRpoK","about":"","name":"fritsch","disable3rdPartyTrackers":false,"url":"","isAnonymous":false,"rep":1.2373129999999999,"profileUrl":"http://disqus.com/disqus_ihhgNqRpoK/","reputation":1.2373129999999999,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2014-03-11T13:21:32","id":"98232154","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar32.jpg?1394544094"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar92.jpg?1394544094","large":{"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar92.jpg?1394544094"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Hi,\n\nthe following chunk fails despite error=TRUE, i.e. knitr ends with an error instead of printing the chunk error message:\n\n```{r,error=TRUE}\nx\u003c-rnorm(1)\n\nif(x>=0)\n    print(\"x gr\u00f6\u00dfer oder gleich 0\")\nelse\n    print(\"x kleiner als 0\")\n```\n\nIs there a different option that allows me to just output R errors? Is it a bug?\n\nThx\nStefan","createdAt":"2014-07-25T13:52:40","id":"1503190524","thread":"590729055","depth":0,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>Hi,\u003c/p>\u003cp>the following chunk fails despite error=TRUE, i.e. knitr ends with an error instead of printing the chunk error message:\u003c/p>\u003cp>```{r,error=TRUE}\u003cbr>x&lt;-rnorm(1)\u003c/p>\u003cp>if(x&gt;=0)\u003cbr>    print(\"x gr\u00f6\u00dfer oder gleich 0\")\u003cbr>else\u003cbr>    print(\"x kleiner als 0\")\u003cbr>```\u003c/p>\u003cp>Is there a different option that allows me to just output R errors? Is it a bug?\u003c/p>\u003cp>Thx\u003cbr>Stefan\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":1503190524,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"That is a syntax error: you should not put `else` on a new line.","createdAt":"2014-07-25T22:05:56","id":"1504260527","thread":"590729055","depth":1,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>That is a syntax error: you should not put `else` on a new line.\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":1504260527,"author":{"username":"disqus_ihhgNqRpoK","about":"","name":"fritsch","disable3rdPartyTrackers":false,"url":"","isAnonymous":false,"rep":1.2373129999999999,"profileUrl":"http://disqus.com/disqus_ihhgNqRpoK/","reputation":1.2373129999999999,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2014-03-11T13:21:32","id":"98232154","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar32.jpg?1394544094"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar92.jpg?1394544094","large":{"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar92.jpg?1394544094"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Yes, but as far as I understand the idea of \"error=TRUE\" is that I will get that error message as output instead of knitr quitting on me.\n\n\"errors: option error (FALSE will make R stop if an error occurs; TRUE will show the error messages in the output)\"","createdAt":"2014-07-28T09:44:03","id":"1507924209","thread":"590729055","depth":2,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>Yes, but as far as I understand the idea of \"error=TRUE\" is that I will get that error message as output instead of knitr quitting on me.\u003c/p>\u003cp>\"errors: option error (FALSE will make R stop if an error occurs; TRUE will show the error messages in the output)\"\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":1507924209,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"That does not include parsing/syntax errors. A code chunk has to be parsed before being executed, and the `error` option only applies to the errors during code execution.","createdAt":"2014-07-28T18:33:48","id":"1508557532","thread":"590729055","depth":3,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>That does not include parsing/syntax errors. A code chunk has to be parsed before being executed, and the `error` option only applies to the errors during code execution.\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":1508557532,"author":{"username":"disqus_ihhgNqRpoK","about":"","name":"fritsch","disable3rdPartyTrackers":false,"url":"","isAnonymous":false,"rep":1.2373129999999999,"profileUrl":"http://disqus.com/disqus_ihhgNqRpoK/","reputation":1.2373129999999999,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2014-03-11T13:21:32","id":"98232154","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar32.jpg?1394544094"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar92.jpg?1394544094","large":{"permalink":"http://disqus.com/api/users/avatars/disqus_ihhgNqRpoK.jpg","cache":"//a.disquscdn.com/uploads/users/9823/2154/avatar92.jpg?1394544094"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Ok, thx.","createdAt":"2014-07-29T15:33:50","id":"1510252685","thread":"590729055","depth":4,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>Ok, thx.\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":null,"author":{"name":"broesel","url":"","profileUrl":"","emailHash":"","avatar":{"small":{"permalink":"//a.disquscdn.com/1415823794/images/noavatar32.png","cache":"//a.disquscdn.com/1415823794/images/noavatar32.png"},"large":{"permalink":"//a.disquscdn.com/1415823794/images/noavatar92.png","cache":"//a.disquscdn.com/1415823794/images/noavatar92.png"},"permalink":"//a.disquscdn.com/1415823794/images/noavatar92.png","cache":"//a.disquscdn.com/1415823794/images/noavatar92.png"},"isAnonymous":true},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Hi Yihui,\n\n\nI really appreciate knitr. Just one question: \nWhat is actually the main reason, why long lines of text ouput are sometimes still too width, although options(width=60)?\n\n\nI have tried all other solutions with listings etc., but from my point of view the default setting of knitr is the most beautiful and convenient one.\n\n\nDo you think this is going to be solved by R soon? How can I contribute to find a solution for this problem?\n\n\nThanks in advance for an answer.\n\n\nbroesel","createdAt":"2013-05-09T15:40:50","id":"890960196","thread":"590729055","depth":0,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>Hi Yihui,\u003c/p>\u003cp>I really appreciate knitr. Just one question: \u003cbr>What is actually the main reason, why long lines of text ouput are sometimes still too width, although options(width=60)?\u003c/p>\u003cp>I have tried all other solutions with listings etc., but from my point of view the default setting of knitr is the most beautiful and convenient one.\u003c/p>\u003cp>Do you think this is going to be solved by R soon? How can I contribute to find a solution for this problem?\u003c/p>\u003cp>Thanks in advance for an answer.\u003c/p>\u003cp>broesel\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":890960196,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Sorry but there is no general solution to this problem. Some text output are not subject to the control of options('width').","createdAt":"2013-05-25T07:18:35","id":"907769027","thread":"590729055","depth":1,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>Sorry but there is no general solution to this problem. Some text output are not subject to the control of options('width').\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":null,"author":{"username":"twitter-154793244","about":"","name":"Andy Teucher","disable3rdPartyTrackers":false,"url":"http://twitter.com/andyteucher","isAnonymous":false,"rep":1.2324929999999998,"profileUrl":"http://disqus.com/twitter-154793244/","reputation":1.2324929999999998,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2013-01-17T23:55:09","id":"41512266","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/twitter-154793244.jpg","cache":"//a.disquscdn.com/uploads/users/4151/2266/avatar32.jpg?1358480633"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/twitter-154793244.jpg","cache":"//a.disquscdn.com/uploads/users/4151/2266/avatar92.jpg?1358480633","large":{"permalink":"http://disqus.com/api/users/avatars/twitter-154793244.jpg","cache":"//a.disquscdn.com/uploads/users/4151/2266/avatar92.jpg?1358480633"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Hello,\n\nI'm having a bit of an issue using options eval=FALSE and echo=(a numeric vector) in an Rmd file.\n\nThe following produces an html file that returns just the first line (summary(cars)), and the output from all three, as expected:\n\n```{r foo, eval=TRUE, echo=c(1:1)}\nsummary(cars)\nstr(cars)\nhead(cars)\n```\n\nHowever, if I change it to:\n\n```{r foo, eval=FALSE, echo=c(1:1)}\nsummary(cars)\nstr(cars)\nhead(cars)\n```\nthen all three lines show in the html file, while I would expect only the first line.  I'm not sure if this is a bug, or if eval=FALSE then the script is not parsed into different expressions so that it reads the entire chunk as one expression... or if I'm missing something else...\n\nIt probably seems odd that I would want to do something like that, but I have a script which I am using in two different Rmd files.  In each Rmd file I load the script using read_chunk, and in one Rmd file I need to execute the entire chunk (but hide some irrelevant code), while in the other Rmd file I want to hide the same bit of the chunk but not execute the chunk.","createdAt":"2013-01-17T23:55:12","id":"771357407","thread":"590729055","depth":0,"numReports":0,"likes":0,"isEdited":true,"message":"\u003cp>Hello,\u003c/p>\u003cp>I'm having a bit of an issue using options eval=FALSE and echo=(a numeric vector) in an Rmd file.\u003c/p>\u003cp>The following produces an html file that returns just the first line (summary(cars)), and the output from all three, as expected:\u003c/p>\u003cp>```{r foo, eval=TRUE, echo=c(1:1)}\u003cbr>summary(cars)\u003cbr>str(cars)\u003cbr>head(cars)\u003cbr>```\u003c/p>\u003cp>However, if I change it to:\u003c/p>\u003cp>```{r foo, eval=FALSE, echo=c(1:1)}\u003cbr>summary(cars)\u003cbr>str(cars)\u003cbr>head(cars)\u003cbr>```\u003cbr>then all three lines show in the html file, while I would expect only the first line.  I'm not sure if this is a bug, or if eval=FALSE then the script is not parsed into different expressions so that it reads the entire chunk as one expression... or if I'm missing something else...\u003c/p>\u003cp>It probably seems odd that I would want to do something like that, but I have a script which I am using in two different Rmd files.  In each Rmd file I load the script using read_chunk, and in one Rmd file I need to execute the entire chunk (but hide some irrelevant code), while in the other Rmd file I want to hide the same bit of the chunk but not execute the chunk.\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":771357407,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"That is a bug; could you file it to https://github.com/yihui/knitr/issues? Thanks!","createdAt":"2013-01-18T01:58:32","id":"771435616","thread":"590729055","depth":1,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>That is a bug; could you file it to \u003ca href=\"https://github.com/yihui/knitr/issues?\" rel=\"nofollow\">https://github.com/yihui/knitr...\u003c/a> Thanks!\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":771435616,"author":{"username":"twitter-154793244","about":"","name":"Andy Teucher","disable3rdPartyTrackers":false,"url":"http://twitter.com/andyteucher","isAnonymous":false,"rep":1.2324929999999998,"profileUrl":"http://disqus.com/twitter-154793244/","reputation":1.2324929999999998,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2013-01-17T23:55:09","id":"41512266","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/twitter-154793244.jpg","cache":"//a.disquscdn.com/uploads/users/4151/2266/avatar32.jpg?1358480633"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/twitter-154793244.jpg","cache":"//a.disquscdn.com/uploads/users/4151/2266/avatar92.jpg?1358480633","large":{"permalink":"http://disqus.com/api/users/avatars/twitter-154793244.jpg","cache":"//a.disquscdn.com/uploads/users/4151/2266/avatar92.jpg?1358480633"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Done - thank you!","createdAt":"2013-01-18T03:43:52","id":"771497637","thread":"590729055","depth":2,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>Done - thank you!\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":null,"author":{"username":"aaronbaggett","about":"","name":"Aaron Baggett","disable3rdPartyTrackers":false,"url":"","isAnonymous":false,"rep":1.232862,"profileUrl":"http://disqus.com/aaronbaggett/","reputation":1.232862,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2013-07-08T09:24:57","id":"61236387","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/aaronbaggett.jpg","cache":"//a.disquscdn.com/uploads/users/6123/6387/avatar32.jpg?1373275498"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/aaronbaggett.jpg","cache":"//a.disquscdn.com/uploads/users/6123/6387/avatar92.jpg?1373275498","large":{"permalink":"http://disqus.com/api/users/avatars/aaronbaggett.jpg","cache":"//a.disquscdn.com/uploads/users/6123/6387/avatar92.jpg?1373275498"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"Yihui,\u00a0\n\nThe output from my R functions are overflowing past the right edge of the shaded area--even past the width of the page. \u00a0I've tried reducing the width in options setup, which, for some reason, does not seem to change the output printed by the R package's function.\n\nMy setup chunk is as follows:\n\n&lt;&lt;setup, include=FALSE, cache=FALSE&gt;&gt;=\nopts_chunk$set(fig.path='figure/minimal-', fig.align='center', fig.show='hold')\noptions(width = 90)\n\nI'm using \u00a0&lt;&lt;tidy = TRUE&gt;&gt;= in the code chunk.\n\nSee pdfLaTeX screen here: http://goo.gl/NRtyn\n\nThank you for your help.","createdAt":"2012-10-15T20:25:19","id":"683094425","thread":"590729055","depth":0,"numReports":0,"likes":0,"isEdited":true,"message":"\u003cp>Yihui,\u00a0\u003c/p>\u003cp>The output from my R functions are overflowing past the right edge of the shaded area--even past the width of the page. \u00a0I've tried reducing the width in options setup, which, for some reason, does not seem to change the output printed by the R package's function.\u003c/p>\u003cp>My setup chunk is as follows:\u003c/p>\u003cp>&lt;&lt;setup, include=FALSE, cache=FALSE&gt;&gt;=\u003cbr>opts_chunk$set(fig.path='figure/minimal-', fig.align='center', fig.show='hold')\u003cbr>options(width = 90)\u003c/p>\u003cp>I'm using \u00a0&lt;&lt;tidy = TRUE&gt;&gt;= in the code chunk.\u003c/p>\u003cp>See pdfLaTeX screen here: \u003ca href=\"http://goo.gl/NRtyn\" rel=\"nofollow\">http://goo.gl/NRtyn\u003c/a>\u003c/p>\u003cp>Thank you for your help.\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":683094425,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"I cannot do much about that, because that is just what would have been shown in R console. Well, you can certainly try LaTeX tricks to break the long lines, or modify the fa() function so that it breaks those lines internally (e.g. with strwrap()), or design an output hook function in knitr to break the lines. None of these approaches are trivial (the third one might be the easiest), so I'd rather recommend you not to tackle at it.","createdAt":"2012-10-16T06:25:20","id":"683813186","thread":"590729055","depth":1,"numReports":0,"likes":0,"isEdited":true,"message":"\u003cp>I cannot do much about that, because that is just what would have been shown in R console. Well, you can certainly try LaTeX tricks to break the long lines, or modify the fa() function so that it breaks those lines internally (e.g. with strwrap()), or design an output hook function in knitr to break the lines. None of these approaches are trivial (the third one might be the easiest), so I'd rather recommend you not to tackle at it.\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":null,"author":{"username":"facebook-614034923","about":"","name":"Tal Bashan","disable3rdPartyTrackers":false,"url":"http://www.facebook.com/tal.bashan.90","isAnonymous":false,"rep":1.232124,"profileUrl":"http://disqus.com/facebook-614034923/","reputation":1.232124,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2012-10-10T03:01:06","id":"34163270","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/facebook-614034923.jpg","cache":"//a.disquscdn.com/uploads/users/3416/3270/avatar32.jpg?1349838078"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/facebook-614034923.jpg","cache":"//a.disquscdn.com/uploads/users/3416/3270/avatar92.jpg?1349838078","large":{"permalink":"http://disqus.com/api/users/avatars/facebook-614034923.jpg","cache":"//a.disquscdn.com/uploads/users/3416/3270/avatar92.jpg?1349838078"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"My R output is quite long (stepwise regression) and I'd like to either make it smaller or crop it so it fits on the same page. How can that be done?\nThanks for your help,\nTal","createdAt":"2012-10-10T03:01:17","id":"677952491","thread":"590729055","depth":0,"numReports":0,"likes":0,"isEdited":true,"message":"\u003cp>My R output is quite long (stepwise regression) and I'd like to either make it smaller or crop it so it fits on the same page. How can that be done?\u003cbr>Thanks for your help,\u003cbr>Tal\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":677952491,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"See here for an example:\n\nhttps://github.com/yihui/knitr-examples/blob/master/052-suppress-output.md \nhttps://github.com/yihui/knitr-examples/blob/master/052-suppress-output.Rmd","createdAt":"2012-10-11T23:05:39","id":"679370856","thread":"590729055","depth":1,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>See here for an example:\u003c/p>\u003cp>\u003ca href=\"https://github.com/yihui/knitr-examples/blob/master/052-suppress-output.md\" rel=\"nofollow\">https://github.com/yihui/knitr...\u003c/a> \u003cbr>\u003ca href=\"https://github.com/yihui/knitr-examples/blob/master/052-suppress-output.Rmd\" rel=\"nofollow\">https://github.com/yihui/knitr...\u003c/a>\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":null,"author":{"username":"facebook-100000595983206","about":"","name":"Blaine Mooers","disable3rdPartyTrackers":false,"url":"http://www.facebook.com/blaine.mooers","isAnonymous":false,"rep":1.232124,"profileUrl":"http://disqus.com/facebook-100000595983206/","reputation":1.232124,"location":"","isPrivate":false,"isPrimary":true,"joinedAt":"2012-09-29T14:38:07","id":"33267314","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/facebook-100000595983206.jpg","cache":"//a.disquscdn.com/uploads/users/3326/7314/avatar32.jpg?1348929538"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/facebook-100000595983206.jpg","cache":"//a.disquscdn.com/uploads/users/3326/7314/avatar92.jpg?1348929538","large":{"permalink":"http://disqus.com/api/users/avatars/facebook-100000595983206.jpg","cache":"//a.disquscdn.com/uploads/users/3326/7314/avatar92.jpg?1348929538"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"My output goes past the right margin and up to the edge of the page before wrapping around. How can I get the output to stop at the right margin?\u00a0","createdAt":"2012-09-29T14:38:57","id":"666323167","thread":"590729055","depth":0,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>My output goes past the right margin and up to the edge of the page before wrapping around. How can I get the output to stop at the right margin?\u00a0\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":666323167,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"try a smaller value for options(width) ","createdAt":"2012-09-29T21:15:03","id":"666513371","thread":"590729055","depth":1,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>try a smaller value for options(width) \u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":null,"author":{"name":"johnnyx","url":"","profileUrl":"","emailHash":"","avatar":{"small":{"permalink":"//a.disquscdn.com/1415823794/images/noavatar32.png","cache":"//a.disquscdn.com/1415823794/images/noavatar32.png"},"large":{"permalink":"//a.disquscdn.com/1415823794/images/noavatar92.png","cache":"//a.disquscdn.com/1415823794/images/noavatar92.png"},"permalink":"//a.disquscdn.com/1415823794/images/noavatar92.png","cache":"//a.disquscdn.com/1415823794/images/noavatar92.png"},"isAnonymous":true},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"When I want to plot a certain function,\u00a0 namely gevrlevelPlot( ),\u00a0I also get output like min v\u00a0 max that I want to supress. I only want to keep the plot but I can also not just externalize the plot. So is there a way for me to\u00a0supress\u00a0some of the results, but not all of them?>\u00a0","createdAt":"2012-05-18T11:57:52","id":"531989537","thread":"590729055","depth":0,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>When I want to plot a certain function,\u00a0 namely gevrlevelPlot( ),\u00a0I also get output like min v\u00a0 max that I want to supress. I only want to keep the plot but I can also not just externalize the plot. So is there a way for me to\u00a0supress\u00a0some of the results, but not all of them?&gt;\u00a0\u003c/p>","isSpam":false,"isHighlighted":false,"points":0},{"isFlagged":false,"forum":"yihui","parent":531989537,"author":{"username":"yihui","about":"Statistics, R, Graphics","name":"Yihui Xie","disable3rdPartyTrackers":false,"url":"http://yihui.name/","isAnonymous":false,"rep":1.8077969999999999,"profileUrl":"http://disqus.com/yihui/","reputation":1.8077969999999999,"location":"Ames, IA","isPrivate":false,"isPrimary":true,"joinedAt":"2011-10-18T00:57:44","id":"18051630","avatar":{"small":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar32.jpg?1416086061"},"isCustom":true,"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061","large":{"permalink":"http://disqus.com/api/users/avatars/yihui.jpg","cache":"//a.disquscdn.com/uploads/users/1805/1630/avatar92.jpg?1416086061"}}},"media":[],"isDeleted":false,"isApproved":true,"dislikes":0,"raw_message":"You need to figure out if they are normal text output, messages or warnings, and suppress them accordingly. Currently you can only choose the source code to show; other types of output can be turned either completely off or on.\n\nNormally a plot function should not generate normal text output, so you may need to read the last section above and contact the author if he/she happens to be using cat().","createdAt":"2012-05-18T13:33:46","id":"532065653","thread":"590729055","depth":1,"numReports":0,"likes":0,"isEdited":false,"message":"\u003cp>You need to figure out if they are normal text output, messages or warnings, and suppress them accordingly. Currently you can only choose the source code to show; other types of output can be turned either completely off or on.\u003c/p>\u003cp>Normally a plot function should not generate normal text output, so you may need to read the last section above and contact the author if he/she happens to be using cat().\u003c/p>","isSpam":false,"isHighlighted":false,"points":0}],"thread":{"feed":"https://yihui.disqus.com/control_output_manipulate_six_types_of_chunk_output_and_inline_output_knitr/latest.rss","uploadAdd":"//yihui.disqus.com/thread/control_output_manipulate_six_types_of_chunk_output_and_inline_output_knitr/async_media_upload/","identifiers":[],"dislikes":0,"likes":0,"message":"","id":"590729055","isDeleted":false,"category":"1103880","clean_title":"Control output: Manipulate six types of chunk output and inline output | knitr","userScore":0,"userSubscription":false,"createdAt":"2012-02-27T09:10:15","hasStreaming":false,"uploadRemove":"//yihui.disqus.com/thread/control_output_manipulate_six_types_of_chunk_output_and_inline_output_knitr/async_media_remove/","raw_message":"","isClosed":true,"link":"http://yihui.name/knitr/demo/output/","slug":"control_output_manipulate_six_types_of_chunk_output_and_inline_output_knitr","forum":"yihui","author":"18051630","posts":21,"moderators":[18051630],"title":"Control output: Manipulate six types of chunk output and inline output | knitr","highlightedPost":null}},"order":"popular"}</script>
+
+    
+
+    <div id="fixed-content"></div>
+
+    <script src="lounge.load.js" id="bootstrap-script" data-app="lounge"></script>
+
+
+<div id="layout" data-tracking-area="layout"><div class="alert"><a class="close" data-action="dismiss" title="Dismiss">×</a>
+<span>
+Comments for this thread are now closed.
+</span>
+</div>
+
+<div id="discovery-top" data-tracking-area="discovery-north"></div>
+
+<div id="onboard" data-tracking-area="onboard"></div>
+
+<div id="highlighted-post" data-tracking-area="highlighted" class="highlighted-post" style="display: none;"></div>
+
+<header id="main-nav" data-tracking-area="main-nav">
+<nav class="nav nav-primary">
+<ul>
+<li class="tab-conversation active">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-role="post-count" class="publisher-nav-color" data-nav="conversation"><span class="comment-count">
+21 comments
+</span>
+
+<span class="comment-count-placeholder">
+Comments
+</span>
+</a>
+</li>
+<li class="tab-community">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="publisher-nav-color" data-action="community-sidebar" data-forum="yihui" id="community-tab">
+<span class="community-name">
+<strong>Yihui Xie</strong>
+
+</span>
+
+<strong class="community-name-placeholder">Community</strong>
+</a>
+</li>
+<li class="dropdown user-menu" data-role="logout"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="dropdown-toggle" data-toggle="dropdown">
+<span class="dropdown-toggle-wrapper">
+
+<span>
+Login
+</span>
+
+</span> <span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+
+
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="auth:disqus">Disqus</a>
+</li>
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="auth:facebook">Facebook</a>
+</li>
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="auth:twitter">Twitter</a>
+</li>
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="auth:google">Google</a>
+</li>
+
+
+
+</ul>
+</li>
+<li class="notification-menu" data-role="notification-menu"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="notification-container" data-nav="dashboard">
+<span class="notification-icon icon-comment"></span>
+<span class="notification-count" data-role="notification-count"></span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+
+
+
+<section id="conversation" data-role="main" data-tracking-area="main">
+<div class="nav nav-secondary" data-tracking-area="secondary-nav">
+<ul>
+<li data-role="post-sort" class="dropdown sorting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="dropdown-toggle" data-nav="conversation" data-toggle="dropdown">
+Sort by Best
+
+
+<span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+<li class="selected">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="sort" data-sort="popular">Best<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="sort" data-sort="desc">Newest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+
+<li>
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="sort" data-sort="asc">Oldest<i aria-hidden="true" class="icon-checkmark"></i></a>
+</li>
+</ul>
+</li>
+
+<li id="thread-votes" class="favorite pull-right">
+<!-- rendered dynamically -->
+<div class="thread-likes" data-role="vote-button"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="upvote" title="Favorite this discussion">
+<span class="label">Favorite</span>
+<span class="icon-star"></span>
+<span class="icon-check"></span>
+</a>
+</div></li>
+
+<li id="thread-share-menu" class="dropdown share-menu">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="dropdown-toggle" data-toggle="dropdown" title="Share">
+<span class="label">Share</span> <span class="icon-export"></span>
+</a>
+<ul class="share-menu dropdown-menu pull-right">
+<li class="share">Share this discussion on
+<ul>
+<li class="twitter">
+<a data-action="share:twitter" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#">Twitter</a>
+</li>
+<li class="facebook">
+<a data-action="share:facebook" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#">Facebook</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div id="posts">
+<div id="form"></div>
+
+<button class="alert realtime" style="display: none;" data-role="realtime-notification">
+</button>
+
+<div id="no-posts" style="display: none;">Be the first to comment.</div>
+
+<ul id="post-list" class="post-list"><li class="post" id="post-554726241"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar">
+<div class="user"><img src="noavatar92.png" class="user" alt="Avatar"></div>
+</div>
+
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author">Rivo</span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-554726241" data-role="relative-time" class="time-ago" title="Monday, June 11, 2012 4:45 PM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Hi.</p><p>I have a discrepancy (bad rounding) between console and report (even when 'asis' is set):</p><p>&lt;&lt;discrepancy&gt;&gt;=<br>library(quantmod)<br>getSymbols("GS")<br>last(GS$GS.Close['2012-04']) #displays 115.15 in console and 115.2 in pdf<br>&lt;&lt;end-discrepancy&gt;&gt;<br> #sorry, I couldn't use the at sign as it's again and again changed to the name of one of the below commenters.<br>@</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-4" data-action="upvote" title="">
+<span class="updatable count" data-role="likes">4</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-554726241">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:554726241">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li><li class="post" id="post-1694319072"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/gustavwdelius/" class="user" data-action="profile" data-username="gustavwdelius" data-user="86739874">
+<img data-role="user-avatar" data-user="86739874" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="86739874" data-username="gustavwdelius" data-role="username">Gustav W Delius</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-1694319072" data-role="relative-time" class="time-ago" title="Saturday, November 15, 2014 4:49 AM">
+a day ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>This page describes how to have inline output of the results of R commands. But is it also possible to have inline chunks containing the formatted R code, similar to what chunk output does with the echo=TRUE, eval=FALSE option?</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-1694319072">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1694319072">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-1694948330"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-1694319072" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Gustav W Delius</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-1694948330" data-role="relative-time" class="time-ago" title="Saturday, November 15, 2014 3:14 PM">
+a day ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>No.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-1694948330">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1694948330">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-1503190524"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/disqus_ihhgNqRpoK/" class="user" data-action="profile" data-username="disqus_ihhgNqRpoK" data-user="98232154">
+<img data-role="user-avatar" data-user="98232154" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="98232154" data-username="disqus_ihhgNqRpoK" data-role="username">fritsch</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-1503190524" data-role="relative-time" class="time-ago" title="Friday, July 25, 2014 8:52 AM">
+4 months ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Hi,</p><p>the following chunk fails despite error=TRUE, i.e. knitr ends with an error instead of printing the chunk error message:</p><p>```{r,error=TRUE}<br>x&lt;-rnorm(1)</p><p>if(x&gt;=0)<br>    print("x größer oder gleich 0")<br>else<br>    print("x kleiner als 0")<br>```</p><p>Is there a different option that allows me to just output R errors? Is it a bug?</p><p>Thx<br>Stefan</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-1503190524">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1503190524">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-1504260527"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-1503190524" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> fritsch</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-1504260527" data-role="relative-time" class="time-ago" title="Friday, July 25, 2014 5:05 PM">
+4 months ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>That is a syntax error: you should not put `else` on a new line.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-1504260527">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1504260527">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-1507924209"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/disqus_ihhgNqRpoK/" class="user" data-action="profile" data-username="disqus_ihhgNqRpoK" data-user="98232154">
+<img data-role="user-avatar" data-user="98232154" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="98232154" data-username="disqus_ihhgNqRpoK" data-role="username">fritsch</a></span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-1504260527" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Yihui Xie</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-1507924209" data-role="relative-time" class="time-ago" title="Monday, July 28, 2014 4:44 AM">
+4 months ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Yes, but as far as I understand the idea of "error=TRUE" is that I will get that error message as output instead of knitr quitting on me.</p><p>"errors: option error (FALSE will make R stop if an error occurs; TRUE will show the error messages in the output)"</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-1507924209">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1507924209">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-1508557532"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-1507924209" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> fritsch</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-1508557532" data-role="relative-time" class="time-ago" title="Monday, July 28, 2014 1:33 PM">
+4 months ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>That does not include parsing/syntax errors. A code chunk has to be parsed before being executed, and the `error` option only applies to the errors during code execution.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-1508557532">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1508557532">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-1510252685"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/disqus_ihhgNqRpoK/" class="user" data-action="profile" data-username="disqus_ihhgNqRpoK" data-user="98232154">
+<img data-role="user-avatar" data-user="98232154" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="98232154" data-username="disqus_ihhgNqRpoK" data-role="username">fritsch</a></span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-1508557532" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Yihui Xie</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-1510252685" data-role="relative-time" class="time-ago" title="Tuesday, July 29, 2014 10:33 AM">
+4 months ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Ok, thx.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-1510252685">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:1510252685">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li></ul>
+
+</li></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-890960196"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar">
+<div class="user"><img src="noavatar92.png" class="user" alt="Avatar"></div>
+</div>
+
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author">broesel</span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-890960196" data-role="relative-time" class="time-ago" title="Thursday, May 9, 2013 10:40 AM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Hi Yihui,</p><p>I really appreciate knitr. Just one question: <br>What is actually the main reason, why long lines of text ouput are sometimes still too width, although options(width=60)?</p><p>I have tried all other solutions with listings etc., but from my point of view the default setting of knitr is the most beautiful and convenient one.</p><p>Do you think this is going to be solved by R soon? How can I contribute to find a solution for this problem?</p><p>Thanks in advance for an answer.</p><p>broesel</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-890960196">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:890960196">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-907769027"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-890960196" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> broesel</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-907769027" data-role="relative-time" class="time-ago" title="Saturday, May 25, 2013 2:18 AM">
+a year ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Sorry but there is no general solution to this problem. Some text output are not subject to the control of options('width').</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-907769027">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:907769027">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-771357407"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/twitter-154793244/" class="user" data-action="profile" data-username="twitter-154793244" data-user="41512266">
+<img data-role="user-avatar" data-user="41512266" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="41512266" data-username="twitter-154793244" data-role="username">Andy Teucher</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-771357407" data-role="relative-time" class="time-ago" title="Thursday, January 17, 2013 5:55 PM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Hello,</p><p>I'm having a bit of an issue using options eval=FALSE and echo=(a numeric vector) in an Rmd file.</p><p>The following produces an html file that returns just the first line (summary(cars)), and the output from all three, as expected:</p><p>```{r foo, eval=TRUE, echo=c(1:1)}<br>summary(cars)<br>str(cars)<br>head(cars)<br>```</p><p>However, if I change it to:</p><p>```{r foo, eval=FALSE, echo=c(1:1)}<br>summary(cars)<br>str(cars)<br>head(cars)<br>```<br>then all three lines show in the html file, while I would expect only the first line.  I'm not sure if this is a bug, or if eval=FALSE then the script is not parsed into different expressions so that it reads the entire chunk as one expression... or if I'm missing something else...</p><p>It probably seems odd that I would want to do something like that, but I have a script which I am using in two different Rmd files.  In each Rmd file I load the script using read_chunk, and in one Rmd file I need to execute the entire chunk (but hide some irrelevant code), while in the other Rmd file I want to hide the same bit of the chunk but not execute the chunk.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-771357407">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:771357407">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-771435616"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-771357407" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Andy Teucher</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-771435616" data-role="relative-time" class="time-ago" title="Thursday, January 17, 2013 7:58 PM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>That is a bug; could you file it to <a href="https://github.com/yihui/knitr/issues?" rel="nofollow">https://github.com/yihui/knitr...</a> Thanks!</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-771435616">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:771435616">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-771497637"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/twitter-154793244/" class="user" data-action="profile" data-username="twitter-154793244" data-user="41512266">
+<img data-role="user-avatar" data-user="41512266" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="41512266" data-username="twitter-154793244" data-role="username">Andy Teucher</a></span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-771435616" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Yihui Xie</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-771497637" data-role="relative-time" class="time-ago" title="Thursday, January 17, 2013 9:43 PM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Done - thank you!</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-771497637">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:771497637">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-683094425"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/aaronbaggett/" class="user" data-action="profile" data-username="aaronbaggett" data-user="61236387">
+<img data-role="user-avatar" data-user="61236387" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="61236387" data-username="aaronbaggett" data-role="username">Aaron Baggett</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-683094425" data-role="relative-time" class="time-ago" title="Monday, October 15, 2012 3:25 PM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>Yihui,&nbsp;</p><p>The output from my R functions are overflowing past the right edge of the shaded area--even past the width of the page. &nbsp;I've tried reducing the width in options setup, which, for some reason, does not seem to change the output printed by the R package's function.</p><p>My setup chunk is as follows:</p><p>&lt;&lt;setup, include=FALSE, cache=FALSE&gt;&gt;=<br>opts_chunk$set(fig.path='figure/minimal-', fig.align='center', fig.show='hold')<br>options(width = 90)</p><p>I'm using &nbsp;&lt;&lt;tidy = TRUE&gt;&gt;= in the code chunk.</p><p>See pdfLaTeX screen here: <a href="http://goo.gl/NRtyn" rel="nofollow">http://goo.gl/NRtyn</a></p><p>Thank you for your help.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-683094425">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:683094425">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-683813186"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-683094425" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Aaron Baggett</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-683813186" data-role="relative-time" class="time-ago" title="Tuesday, October 16, 2012 1:25 AM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>I cannot do much about that, because that is just what would have been shown in R console. Well, you can certainly try LaTeX tricks to break the long lines, or modify the fa() function so that it breaks those lines internally (e.g. with strwrap()), or design an output hook function in knitr to break the lines. None of these approaches are trivial (the third one might be the easiest), so I'd rather recommend you not to tackle at it.</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-683813186">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:683813186">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-677952491"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/facebook-614034923/" class="user" data-action="profile" data-username="facebook-614034923" data-user="34163270">
+<img data-role="user-avatar" data-user="34163270" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="34163270" data-username="facebook-614034923" data-role="username">Tal Bashan</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-677952491" data-role="relative-time" class="time-ago" title="Tuesday, October 9, 2012 10:01 PM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>My R output is quite long (stepwise regression) and I'd like to either make it smaller or crop it so it fits on the same page. How can that be done?<br>Thanks for your help,<br>Tal</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-677952491">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:677952491">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-679370856"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-677952491" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Tal Bashan</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-679370856" data-role="relative-time" class="time-ago" title="Thursday, October 11, 2012 6:05 PM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>See here for an example:</p><p><a href="https://github.com/yihui/knitr-examples/blob/master/052-suppress-output.md" rel="nofollow">https://github.com/yihui/knitr...</a> <br><a href="https://github.com/yihui/knitr-examples/blob/master/052-suppress-output.Rmd" rel="nofollow">https://github.com/yihui/knitr...</a></p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-679370856">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:679370856">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-666323167"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/facebook-100000595983206/" class="user" data-action="profile" data-username="facebook-100000595983206" data-user="33267314">
+<img data-role="user-avatar" data-user="33267314" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="33267314" data-username="facebook-100000595983206" data-role="username">Blaine Mooers</a></span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-666323167" data-role="relative-time" class="time-ago" title="Saturday, September 29, 2012 9:38 AM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>My output goes past the right margin and up to the edge of the page before wrapping around. How can I get the output to stop at the right margin?&nbsp;</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-666323167">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:666323167">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-666513371"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-666323167" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> Blaine Mooers</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-666513371" data-role="relative-time" class="time-ago" title="Saturday, September 29, 2012 4:15 PM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>try a smaller value for options(width) </p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-666513371">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:666513371">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li><li class="post" id="post-531989537"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar">
+<div class="user"><img src="noavatar92.png" class="user" alt="Avatar"></div>
+</div>
+
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author">johnnyx</span>
+
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-531989537" data-role="relative-time" class="time-ago" title="Friday, May 18, 2012 6:57 AM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>When I want to plot a certain function,&nbsp; namely gevrlevelPlot( ),&nbsp;I also get output like min v&nbsp; max that I want to supress. I only want to keep the plot but I can also not just externalize the plot. So is there a way for me to&nbsp;supress&nbsp;some of the results, but not all of them?&gt;&nbsp;</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-531989537">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:531989537">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"><li class="post" id="post-532065653"><div role="alert"></div>
+<div data-role="post-content" class="post-content">
+<ul class="post-menu dropdown" data-role="menu">
+<li class="collapse">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Collapse"><span>−</span></a>
+</li>
+<li class="expand">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="collapse" title="Expand"><span>+</span></a>
+</li>
+
+<li class="" role="menu">
+<a class="dropdown-toggle" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="flag" data-role="flag" title="Flag as inappropriate">
+<i aria-hidden="true" class="icon icon-flag"></i>
+</a>
+</li>
+</ul>
+<div class="indicator"></div>
+
+<div class="avatar hovercard">
+<a href="http://disqus.com/yihui/" class="user" data-action="profile" data-username="yihui" data-user="18051630">
+<img data-role="user-avatar" data-user="18051630" src="noavatar92.png" alt="Avatar">
+</a>
+</div>
+<div class="post-body">
+<header>
+<span class="post-byline">
+<span class="author publisher-anchor-color"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="profile" data-user="18051630" data-username="yihui" data-role="username">Yihui Xie</a></span>
+<span class="badge moderator">Mod</span>
+
+<span><a href="http://yihui.name/knitr/demo/output/#comment-531989537" class="parent-link" data-role="parent-link"><i aria-hidden="true" class="icon-forward" title="in reply to"></i> johnnyx</a></span>
+</span>
+
+<span class="post-meta">
+<span class="bullet time-ago-bullet" aria-hidden="true">•</span>
+
+<a href="http://yihui.name/knitr/demo/output/#comment-532065653" data-role="relative-time" class="time-ago" title="Friday, May 18, 2012 8:33 AM">
+2 years ago
+</a>
+</span>
+
+</header>
+
+<div class="post-body-inner">
+<div class="post-message-container" data-role="message-container">
+<div class="publisher-anchor-color" data-role="message-content">
+<div class="post-message " data-role="message" dir="auto">
+<p>You need to figure out if they are normal text output, messages or warnings, and suppress them accordingly. Currently you can only choose the source code to show; other types of output can be turned either completely off or on.</p><p>Normally a plot function should not generate normal text output, so you may need to read the last section above and contact the author if he/she happens to be using cat().</p>
+</div>
+
+<span class="post-media"><ul data-role="post-media-list"></ul></span>
+</div>
+</div>
+<a class="see-more hidden" title="see more" data-action="see-more">see more</a>
+</div>
+
+<footer>
+<menu>
+
+<li class="voting" data-role="voting">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="vote-up  count-0" data-action="upvote" title="Vote up">
+<span class="updatable count" data-role="likes">0</span>
+<span class="control"><i aria-hidden="true" class="icon icon-arrow-2"></i></span>
+</a>
+<span role="button" class="vote-down  count-0" title="Vote down">
+<span class="control"><i aria-hidden="true" class="icon icon-arrow"></i></span>
+<span class="tooltip">You must sign in to down-vote this post.</span>
+</span>
+</li>
+<li class="bullet" aria-hidden="true">•</li>
+
+
+
+
+<li class="share">
+<a class="toggle"><i class="icon icon-mobile icon-share"></i><span class="text">Share ›</span></a>
+<ul>
+<li class="twitter"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:twitter">Twitter</a></li>
+<li class="facebook"><a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="share:facebook">Facebook</a></li>
+<li class="link"><a href="http://yihui.name/knitr/demo/output/#comment-532065653">Link</a></li>
+</ul>
+</li>
+
+<li class="realtime" data-role="realtime-notification:532065653">
+<span style="display:none;" class="realtime-replies"></span>
+<a style="display:none;" href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" class="btn btn-small"></a>
+</li>
+
+</menu>
+</footer>
+</div>
+
+<div data-role="blacklist-form"></div>
+<div class="reply-form-container" data-role="reply-form"></div>
+</div>
+
+<ul data-role="children" class="children"></ul>
+
+</li></ul>
+
+</li></ul>
+
+<div class="load-more" data-role="more" style="display: none;">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="more-posts" class="btn">Load more comments</a>
+</div>
+</div>
+
+</section>
+
+<section id="community" data-tracking-area="main" style="display:none" data-role="main" data-outbound-link="embed:community">
+</section>
+
+<section id="dashboard" style="display:none" data-role="main" data-tracking-area="main">
+<p style="line-height: 1.4">Nothing for you here ... yet. But as you comment with Disqus and follow
+other Disqus users, you will start to receive notifications here, as well as a personalized
+feed of activity by you and the people you follow. So get out there and participate in
+some discussions!</p>
+</section>
+
+<section id="profile" style="display:none" data-role="main" data-tracking-area="main">
+</section>
+
+<div id="discovery" data-tracking-area="discovery-south" style="position: static; visibility: visible; display: block; width: 100%;"><div id="discovery-main-c393" class="discovery-main style-variant-default">
+<div id="discovery-note" class="discovery-note">
+<div class="alert">
+<button class="close" data-action="discovery-help-close" title="Close this box">×</button>
+Disqus helps you find new and interesting content, discussions and products. Some sponsors and ecommerce sites may pay us for these recommendations and links. <a href="http://help.disqus.com/customer/portal/articles/666278-introducing-promoted-discovery-and-f-a-q-" target="_blank">Learn more</a>
+ or <a href="https://www.surveymonkey.com/s/GHK872T" target="_blank">
+give us feedback</a>.
+</div>
+</div>
+
+<div class="discovery-options">
+<button class="discovery-help" data-action="discovery-help">
+What's this?
+</button>
+</div>
+
+<section id="col-organic-c393" class="col-organic discovery-col-0 ">
+<header class="discovery-col-header">
+
+<h2>Also on <strong>Yihui Xie</strong>
+</h2>
+
+
+</header>
+<ul class="discovery-posts"><li class="discovery-post post-0" id="discovery-link-organic-2756528526" style="clear: left;">
+<a href="http://redirect.disqus.com/url?url=http%3A%2F%2Fyihui.name%2Fcn%2F2014%2F06%2Fon-writing%2F%3AkzFEtUNMfAPwfslgJxPs7d07mL4&imp=5m89451hbdo6a&prev_imp&forum_id=1082964&forum=yihui&thread_id=590729055&major_version=metadata&thread=2756528526&zone=thread&area=discovery" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="江阔云低断雁叫西风 | 谢益辉">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+江阔云低断雁叫西风 | 谢益辉
+</span>
+
+
+</h3>
+
+<ul class="meta">
+<li class="comments">
+9 comments
+</li>
+<li class="time">5 months ago</li>
+</ul>
+</header>
+
+</a><a href="http://redirect.disqus.com/url?url=http%3A%2F%2Fyihui.name%2Fcn%2F2014%2F06%2Fon-writing%2F%3AkzFEtUNMfAPwfslgJxPs7d07mL4&imp=5m89451hbdo6a&prev_imp&forum_id=1082964&forum=yihui&thread_id=590729055&major_version=metadata&thread=2756528526&zone=thread&area=discovery" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar">
+<p><span class="user" data-role="discovery-top-comment-author">慧小妞</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3"> 我想请问您 我在做期货价格预测 有196个月的数据 有大概15个变量对期货进行预测 想用数据挖掘方法可是，不知道用决策树什么的进行建模时，怎么考虑滞后期呢  …</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-1" id="discovery-link-organic-2756534882" style="margin-bottom: 13.5px;">
+<a href="http://redirect.disqus.com/url?url=http%3A%2F%2Fyihui.name%2Fcn%2F2014%2F06%2Fmore-sleep%2F%3AFX4ozSaI4b7aAGSyeNDEDh-E_n4&imp=5m89451hbdo6a&prev_imp&forum_id=1082964&forum=yihui&thread_id=590729055&major_version=metadata&thread=2756534882&zone=thread&area=discovery" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="我去睡一会儿 | 谢益辉">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+我去睡一会儿 | 谢益辉
+</span>
+
+
+</h3>
+
+<ul class="meta">
+<li class="comments">
+5 comments
+</li>
+<li class="time">5 months ago</li>
+</ul>
+</header>
+
+</a><a href="http://redirect.disqus.com/url?url=http%3A%2F%2Fyihui.name%2Fcn%2F2014%2F06%2Fmore-sleep%2F%3AFX4ozSaI4b7aAGSyeNDEDh-E_n4&imp=5m89451hbdo6a&prev_imp&forum_id=1082964&forum=yihui&thread_id=590729055&major_version=metadata&thread=2756534882&zone=thread&area=discovery" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar">
+<p><span class="user" data-role="discovery-top-comment-author">Yihui Xie</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">难怪这么倔，原来名字念Jue……我跟郭德纲学历差不多，都是小学没毕业</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-2" id="discovery-link-organic-2312446217" style="clear: left;">
+<a href="http://redirect.disqus.com/url?url=http%3A%2F%2Fyihui.name%2Fcn%2F2014%2F01%2Fliterate-programming%2F%3ApyaS9HaKCMOA-NoqnyELQ8Eld4o&imp=5m89451hbdo6a&prev_imp&forum_id=1082964&forum=yihui&thread_id=590729055&major_version=metadata&thread=2312446217&zone=thread&area=discovery" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="文学化编程 | 谢益辉">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+文学化编程 | 谢益辉
+</span>
+
+
+</h3>
+
+<ul class="meta">
+<li class="comments">
+2 comments
+</li>
+<li class="time">9 months ago</li>
+</ul>
+</header>
+
+</a><a href="http://redirect.disqus.com/url?url=http%3A%2F%2Fyihui.name%2Fcn%2F2014%2F01%2Fliterate-programming%2F%3ApyaS9HaKCMOA-NoqnyELQ8Eld4o&imp=5m89451hbdo6a&prev_imp&forum_id=1082964&forum=yihui&thread_id=590729055&major_version=metadata&thread=2312446217&zone=thread&area=discovery" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar">
+<p><span class="user" data-role="discovery-top-comment-author">vodka</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">文学在于创造，编程也是创造最优简化问题方式，亦然。</span></p>
+</a>
+
+</li>
+<li class="discovery-post post-3" id="discovery-link-organic-2086797281" style="margin-bottom: 13.5px;">
+<a href="http://redirect.disqus.com/url?url=http%3A%2F%2Fyihui.name%2Fcn%2F2014%2F01%2Ffive-years%2F%3Azc3LIbv2tf32kXJNR8OR-RtxWPE&imp=5m89451hbdo6a&prev_imp&forum_id=1082964&forum=yihui&thread_id=590729055&major_version=metadata&thread=2086797281&zone=thread&area=discovery" class="publisher-anchor-color">
+
+<header class="discovery-post-header">
+<h3 title="黄粱五载梦 | 谢益辉">
+<span data-role="discovery-thread-title" class="title line-truncate" data-line-truncate="2">
+黄粱五载梦 | 谢益辉
+</span>
+
+
+</h3>
+
+<ul class="meta">
+<li class="comments">
+22 comments
+</li>
+<li class="time">10 months ago</li>
+</ul>
+</header>
+
+</a><a href="http://redirect.disqus.com/url?url=http%3A%2F%2Fyihui.name%2Fcn%2F2014%2F01%2Ffive-years%2F%3Azc3LIbv2tf32kXJNR8OR-RtxWPE&imp=5m89451hbdo6a&prev_imp&forum_id=1082964&forum=yihui&thread_id=590729055&major_version=metadata&thread=2086797281&zone=thread&area=discovery" class="top-comment" data-role="discovery-top-comment">
+<img alt="Avatar" data-role="discovery-avatar">
+<p><span class="user" data-role="discovery-top-comment-author">dengyishuo</span> — <span data-role="discovery-top-comment-snippet" class="line-truncate" data-line-truncate="3">落笔惊心，文采尤胜内容。</span></p>
+</a>
+
+</li>
+</ul>
+</section>
+
+</div>
+</div>
+
+<div id="footer" data-tracking-area="footer">
+<ul>
+<li class="logo"><a href="http://disqus.com/" title="Powered by Disqus">Powered by Disqus</a></li>
+<li id="thread-subscribe-button" class="email"> 
+<div class="default">
+<a href="http://disqus.com/embed/comments/?base=default&disqus_version=c6ed14e4&f=yihui&t_u=http%3A%2F%2Fyihui.name%2Fknitr%2Fdemo%2Foutput%2F&t_d=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&t_t=Control%20output%3A%20Manipulate%20six%20types%20of%20chunk%20output%20and%20inline%20output%20%7C%20knitr&s_o=default#" data-action="subscribe" title="Subscribe and get email updates from this discussion"><i aria-hidden="true" class="icon-mail"></i><span class="clip">Subscribe</span> <i aria-hidden="true" class="icon-checkmark"></i></a>
+</div>
+<div class="form">
+<div class="input-wrapper"><input id="thread-subscribe-email" type="email" placeholder="yourname@email.com"></div>
+</div>
+</li>
+<li class="install">
+<a href="https://disqus.com/websites/?utm_source=yihui&utm_medium=Disqus-Footer" target="_blank">
+<i aria-hidden="true" class="icon-disqus"></i>
+<span class="clip">Add Disqus to your site</span>
+</a>
+</li>
+<li class="privacy">
+<a href="https://help.disqus.com/customer/portal/articles/1657951?utm_source=disqus&utm_medium=embed-footer&utm_content=privacy-btn" target="_blank">
+<i aria-hidden="true" class="icon-privacy"></i>
+<span class="clip">Privacy</span>
+</a>
+</li>
+</ul>
+</div>
+</div></body></html>

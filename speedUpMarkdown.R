@@ -1,20 +1,9 @@
----
-title: "Milestone Report - Data Science Capstone - Johns Hopkins/Coursera"
-author: "Michael Liquori"
-date: "Saturday, November 15, 2014"
-output: html_document
----
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r, echo=FALSE,warning=FALSE,message=FALSE}
 
 # Start the clock!
 ptm <- proc.time()
 
 # SETUP #
+gc()
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 library(tm)
 load("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/RanMdownScriptFullProcessing.RData")
@@ -79,9 +68,6 @@ nAvg=(sum(unlist(nproduct))/sum(nwlFreq$Freq)) # total chars
 
 ## Shared parameters
 
-# save par defaults first
-op<-par()
-
 names=c("Twitter Corpus", "News Corpus", "Blogs Corpus")
 colors=c("cadetblue3","chocolate2","firebrick1")
 par(mai=c(1,2,1,1))
@@ -107,28 +93,22 @@ axis(1, at = c(0,100000,200000,300000,400000,500000), labels=c(0,"100,000","200,
 text(0,bp,prettyNum(counts,big.mark=",",scientific=F),cex=1.3,pos=4) 
 
 # Histogram for each corpus barplots:
-par(op)
 par(mfcol=c(3,1))
-
 ## Line lengths in each Corpus, 3 histograms
 
 ## Word length Frequency Histograms for each Corpus
-
 twLengths<-as.numeric((lapply(tUgrams,nchar)))
 bwLengths<-as.numeric((lapply(bUgrams,nchar)))
 nwLengths<-as.numeric((lapply(nUgrams,nchar)))
 
-hist(twLengths, col ="cadetblue3", breaks=seq(0,max(twLengths),by=1), main="Twitter Corpus Word-Lengths", xlab = "Values", cex.lab = 1.3, xlim=c(0,25))
+hist(bwLengths, col ="firebrick1", breaks=seq(0,max(bwLengths),by=1), main="Blogs Corpus Word-Lengths", xlab = "Values", cex.lab = 1.3,xlim=c(0,25))
 
 hist(nwLengths, col ="chocolate2", breaks=seq(0,max(nwLengths),by=1), main="News Corpus Word-Lengths", xlab = "Values", cex.lab = 1.3,xlim=c(0,25))
 
-hist(bwLengths, col ="firebrick1", breaks=seq(0,max(bwLengths),by=1), main="Blogs Corpus Word-Lengths", xlab = "Values", cex.lab = 1.3,xlim=c(0,25))
+hist(twLengths, col ="cadetblue3", breaks=seq(0,max(twLengths),by=1), main="Twitter Corpus Word-Lengths", xlab = "Values", cex.lab = 1.3, xlim=c(0,25))
 
 ## AVERAGE word Length
 
 
 # Stop the clock
 proc.time() - ptm # 8.91 secs!
-
-
-```
