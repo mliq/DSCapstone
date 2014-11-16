@@ -1,5 +1,11 @@
 r function reference
 ====
+# Number formats
+formatC(200000,format="f", digits=0) - enforce no e00 type number.
+round(x,1) - rounds to 1 digit post-decimal
+text(0,bp,prettyNum(counts,big.mark=",",scientific=F),cex=1.3,pos=4) - prettyNum inserts commas in big numbers, the rest adds the label into the bar of the barplot.
+
+# Understanding parts of objects
 class()
 str() "structure"
 summary() 
