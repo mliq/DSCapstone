@@ -111,8 +111,12 @@ hist(bwLengths, col ="firebrick1", breaks=seq(0,max(bwLengths),by=1), main="Blog
 
 ## AVERAGE word Length
 
+saveRDS(twLengths,"twLengths")
+saveRDS(nwLengths,"nwLengths")
+saveRDS(bwLengths,"bwLengths")
 
+twLengths=readRDS("twLengths")
+bwLengths=readRDS("bwLengths")
+nwLengths=readRDS("nwLengths")
 # Stop the clock
 proc.time() - ptm # 1255.23
-
-```
