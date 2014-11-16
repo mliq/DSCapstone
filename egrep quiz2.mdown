@@ -1,0 +1,6 @@
+quiz 2 egrep solution:
+
+egrep talking testData1.txt | wc -l
+
+for each possible answer.
+
