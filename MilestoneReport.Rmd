@@ -122,7 +122,6 @@ blmount<-system("wc -L en_US.blogs.txt",intern=TRUE)
 blmount<-strsplit(blmount," ")
 blmount<-as.numeric(blmount[[1]][1])
 
-
 ## Get unique words
 
 tUgrams<-dimnames(tTDM)$Terms
@@ -134,6 +133,9 @@ nUgrams<-dimnames(nTDM)$Terms
 tuwCount=length(tUgrams)
 buwCount=length(bUgrams)
 nuwCount=length(nUgrams)
+
+
+
 
 ## Get frequency table with word lengths.
 
@@ -148,6 +150,11 @@ twlFreq<-charFreqTable(tUgrams)
 bwlFreq<-charFreqTable(bUgrams)
 nwlFreq<-charFreqTable(nUgrams)
 
+## AVERAGE word Length
+quantity=colsum
+product=lapply(1:nrow(twlFreq),FUN=function(x){(twlFreq[x,1]*twlFreq[x,2])})
+twlFreq$product=product
+
 # Plot
 
 ## Line numbers in each Corpus, horizontal barplot
@@ -156,7 +163,9 @@ data<-data.frame(names=c("Twitter Corpus", "News Corpus", "Blogs Corpus"), count
 par(mai=c(1,2,1,1))
 barplot(data$count, main="Number of Lines per Corpus", horiz=TRUE, names.arg=data$names, las=1)
 
-## Line length in each Corpus, 3 histograms?
+## Line length in each Corpus, 3 histograms
+
+## AVERAGE word Length
 
 
 ## Word length Frequency Histograms for each Corpus
@@ -174,5 +183,3 @@ hist(bwLengths, col ="firebrick1", breaks=seq(0,max(bwLengths),by=1), main="Blog
 proc.time() - ptm # 1255.23
 
 ```
-
-
