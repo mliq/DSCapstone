@@ -29,6 +29,29 @@ Milestone Report
 The motivation for this project is to: 
 
 ## Demonstrate that you've downloaded the data and have successfully loaded it in.
+
+# Background
+
+The aim of this project is to develop a model that will allow us to predict the next word a user intends to type to aid in faster typing, similar to the feature currently embedded in most smartphones. We will seek to balance speed and accuracy in developing an algorithm which is competitive with the current word-prediction keyboards available, such as "SwiftKey".
+
+The data provided for NLP (Natural Language Processing) consists of 3 "corpora" of data, one collected from blogs, one from news articles, and a third from twitter messages ("tweets"). 
+
+# Exploratory Analysis
+
+
+
+
+Exploratory analysis - perform a thorough exploratory analysis of the data, understanding the distribution of words and relationship between the words in the corpora. 
+
+Understand frequencies of words and word pairs - build figures and tables to understand variation in the frequencies of words and word pairs in the data.
+
+Questions to consider
+
+Some words are more frequent than others - what are the distributions of word frequencies? 
+What are the frequencies of 2-grams and 3-grams in the dataset? 
+How many unique words do you need in a frequency sorted dictionary to cover 50% of all word instances in the language? 90%? 
+How do you evaluate how many of the words come from foreign languages? 
+Can you think of a way to increase the coverage -- identifying words that may not be in the corpora or using a smaller number of words in the dictionary to cover the same number of phrases?
 ## Create a basic report of summary statistics about the data sets.
 ## Report any interesting findings that you amassed so far.
 ## Get feedback on your plans for creating a prediction algorithm and Shiny app.

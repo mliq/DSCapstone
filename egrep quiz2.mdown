@@ -1,6 +1,63 @@
 quiz 2 egrep solution:
 
-egrep talking testData1.txt | wc -l
+## Count unique words:
+	sed 's/\r//' testData1.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -l
+25
+	
+	sed 's/\r//' en_US.twitter.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -l
+1192198
+
+	sed 's/\r//' en_US.blogs.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -l
+952939
+
+	sed 's/\r//' en_US.news.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -l
+750174
+
+XX
+		cat testData1.txt | tr " " "\n" | sort | uniq -c | wc -l 
+	32
+	cat testData1.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort | uniq -c -i| wc -l
+
+	cat testData1.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u| uniq -c -i| wc -l
+
+
+	You can normalize line delimeters (convert CR+LF to LF):
+
+	sed 's/\r//' testData1.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -l
+	25
+
+		cat en_US.twitter.txt | tr " " "\n" | sort | uniq -c | wc -l
+	1450780
+
+		cat en_US.news.txt | tr " " "\n" | sort | uniq -c | wc -l
+
+
+		cat en_US.blogs.txt | tr " " "\n" | sort | uniq -c | wc -l
+
+## Count total words:
+	sed 's/\r//' en_US.twitter.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort | wc -l
+
+
+	sed 's/\r//' en_US.blogs.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort | wc -l
+
+
+	sed 's/\r//' en_US.news.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort | wc -l
+
+
+## length of unique words
+
+	cat testData1.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort | uniq -c -i -u| wc -l
+
+ah.. problem is that the " marks remain... need to strip those first...
+	
+	cat testData1.txt | tr -d '"'
+
+450
+/32 = 14 true?
+
+# egrep talking testData1.txt | wc -l
 
 for each possible answer.
 
+Blitzer
+Blitzer
