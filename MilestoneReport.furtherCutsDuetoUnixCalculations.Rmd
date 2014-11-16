@@ -74,7 +74,6 @@ counts=list(min(wLengths):max(wLengths))
 return(data.frame(Chars=(min(wLengths):max(wLengths)),Freq=unlist(wlFreq)))
 }
 
-# So i want a list of unique words, the length
 twlFreq<-charFreqTable(tUgrams)
 bwlFreq<-charFreqTable(bUgrams)
 nwlFreq<-charFreqTable(nUgrams)

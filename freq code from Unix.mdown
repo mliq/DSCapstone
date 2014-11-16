@@ -1,0 +1,19 @@
+sed 's/\r//' testData1.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -m > testCount
+
+cat testData1.txt | sed 's/\r//' | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -l
+
+cat testData1.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -l
+
+----
+
+cat en_US.twitter.txt | sed 's/\r//' |tr -d '"' | tr " " "\n" | sort | uniq -c -i > twit2
+cat en_US.blogs.txt | sed 's/\r//' |tr -d '"' | tr " " "\n" | sort | uniq -c -i > blogs2
+cat en_US.news.txt | sed 's/\r//' |tr -d '"' | tr " " "\n" | sort | uniq -c -i > news2
+
+twit2<-read.csv("twit2",sep=" ")
+blogs2<-read.csv("blogs2",sep=" ")
+news2<-read.csv("new2",sep=" ")
+
+tUgrams=twit2[,8]
+bUgrams=blogs2[,8]
+nUgrams=news2[,8]

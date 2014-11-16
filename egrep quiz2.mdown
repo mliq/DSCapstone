@@ -1,5 +1,9 @@
 quiz 2 egrep solution:
 
+## Line counts:
+	sed 's/\r//' en_US.twitter.txt | iconv -c -t ASCII | wc -l
+
+
 ## Count unique words:
 	sed 's/\r//' testData1.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort -u | wc -l
 25
@@ -36,13 +40,25 @@ XX
 
 ## Count total words:
 	sed 's/\r//' en_US.twitter.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort | wc -l
-
+30373583
 
 	sed 's/\r//' en_US.blogs.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort | wc -l
-
+37334131
 
 	sed 's/\r//' en_US.news.txt | iconv -c -t ASCII | tr -d '"' | tr " " "\n" | sort | wc -l
+34372530
 
+## Average length of total words...
+### Get chars count (-m), divide by total words.
+
+	sed 's/\r//' en_US.twitter.txt | iconv -c -t ASCII | tr -d '"' | tr -d " "| wc -m
+136036793/30373583 = 4.47878648363612551078
+
+	sed 's/\r//' en_US.blogs.txt | iconv -c -t ASCII | tr -d '"' | tr -d " "| wc -m
+170366328/37334131=4.56328628621354545523
+
+	sed 's/\r//' en_US.news.txt | iconv -c -t ASCII | tr -d '"' | tr -d " "| wc -m
+169887520/34372530=4.94253754378860095547
 
 ## length of unique words
 
