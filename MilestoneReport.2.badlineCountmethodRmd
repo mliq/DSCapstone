@@ -9,6 +9,10 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
+rows <- as.numeric(system(paste("wc -l < en_US.twitter.txt",sep=""), TRUE))
+
+
+
 ```{r, echo=FALSE}
 
 # Start the clock!
@@ -72,56 +76,39 @@ gc()
 
 news<-fileMunge("en_US.news.txt")
 nTDM <- makeTDM(news)
+# triTDM<-c(triTDM,newTDM)
 rm(news)
+# rm(newTDM)
 gc()
 
 blog<-fileMunge("en_US.blogs.txt")
 bTDM <- makeTDM(blog)
+# triTDM<-c(triTDM,blogTDM)
 rm(blog)
+# rm(blogTDM)
 gc()
+
 
 ## Get line count
 
-tlCount<-system("wc -l en_US.twitter.txt",intern=TRUE)
-tlCount<-strsplit(tlCount," ")
-tlCount<-as.numeric(tlCount[[1]][1])
+tcount<-system("wc -l en_US.twitter.txt",intern=TRUE)
+tcount<-strsplit(tcount," ")
+tcount<-as.numeric(tcount[[1]][1])
 
-nlCount<-system("wc -l en_US.news.txt",intern=TRUE)
-nlCount<-strsplit(nlCount," ")
-nlCount<-as.numeric(nlCount[[1]][1])
+twit<-readLines("en_US.twitter.txt")
+tlCount=list(length(twit))
+rm(twit)
+gc()
 
-blCount<-system("wc -l en_US.blogs.txt",intern=TRUE)
-blCount<-strsplit(blCount," ")
-blCount<-as.numeric(blCount[[1]][1])
+news<-readLines("en_US.news.txt")
+nlCount=list(length(news))
+rm(news)
+gc()
 
-## Number of Total Words
-
-twCount<-system("wc -w en_US.twitter.txt",intern=TRUE)
-twCount<-strsplit(twCount," ")
-twCount<-as.numeric(twCount[[1]][1])
-
-nwCount<-system("wc -w en_US.news.txt",intern=TRUE)
-nwCount<-strsplit(nwCount," ")
-nwCount<-as.numeric(nwCount[[1]][1])
-
-bwCount<-system("wc -w en_US.blogs.txt",intern=TRUE)
-bwCount<-strsplit(bwCount," ")
-bwCount<-as.numeric(bwCount[[1]][1])
-
-## Get maximum line length
-
-tlmount<-system("wc -L en_US.twitter.txt",intern=TRUE)
-tlmount<-strsplit(tlmount," ")
-tlmount<-as.numeric(tlmount[[1]][1])
-
-nlmount<-system("wc -L en_US.news.txt",intern=TRUE)
-nlmount<-strsplit(nlmount," ")
-nlmount<-as.numeric(nlmount[[1]][1])
-
-blmount<-system("wc -L en_US.blogs.txt",intern=TRUE)
-blmount<-strsplit(blmount," ")
-blmount<-as.numeric(blmount[[1]][1])
-
+blog<-readLines("en_US.blogs.txt")
+blCount=list(length(blog))
+rm(blog)
+gc()
 
 ## Get unique words
 
@@ -131,9 +118,9 @@ nUgrams<-dimnames(nTDM)$Terms
 
 ### Number of Unique Words
 
-tuwCount=length(tUgrams)
-buwCount=length(bUgrams)
-nuwCount=length(nUgrams)
+twCount=length(tUgrams)
+bwCount=length(bUgrams)
+nwCount=length(nUgrams)
 
 ## Get frequency table with word lengths.
 
