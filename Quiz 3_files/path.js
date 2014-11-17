@@ -1,0 +1,1 @@
+define(function(){var path={};return path.join=function(parts){var args=parts instanceof Array?parts:Array.prototype.slice.call(arguments);return args.join("/").replace(/([^:])[\/]{2,}|^\/\//g,"$1/").replace(/\/$/,"")},path});
