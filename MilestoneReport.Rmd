@@ -1,6 +1,6 @@
 ---
 title: "Milestone Report"
-subtitle: "Data Science Capstone- Johns Hopkins / Coursera"
+subtitle: "Data Science Capstone <br> Johns Hopkins / Coursera"
 author: "Michael Liquori"
 date: "Saturday, November 15, 2014"
 output: html_document
@@ -98,9 +98,20 @@ We see that lines are much shorter in the <font color="skyblue" face="bold">**tw
 
 But, what exactly do lines represent? In the <font color="skyblue" face="bold">**twitter corpus**</font> they seem to represent one tweet, which has a clearly defined limit of 140 characters. In the <font color="red" face="bold">**blogs**</font> and <font color="orange" face="bold">**news corpus**</font>, they are less defined, sometimes representing just one sentence, sometimes an entire paragraph. 
 
+Let's also check the total number of words in each corpus:
+
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+## Total Words
+par(mai=c(1,2,1,1))
+counts=c(twCount,bwCount,nwCount)
+bp<-barplot(counts, col=colors, main="Total Words per Corpus", horiz=TRUE, names.arg=names, las=1, axes=FALSE)
+axis(1, at=seq(0,40000000,by=10000000),labels=formatC(seq(0,40000000,by=10000000),format="f", digits=0))
+text(0,bp,prettyNum(counts,big.mark=",",scientific=F),cex=1.3,pos=4) 
+```
+
 #### Diversity of Vocabulary
 
-Now let's examine the diversity of unique words used in each corpus. There are two different measures we will use: stemmed and unstemmed. Stemming reduces words to their root, so, for example, "walking, walked, walker" would all become simply "walk" and be counted as one unique word. Unstemmed, they would count as 3 unique words.
+Now let's examine the diversity of unique words used in each corpus. There are two different measures we will use: **stemmed** and **unstemmed**. Stemming reduces words to their root, so, for example, "walking, walked, walker" would all become simply "walk" and be counted as one unique word. Unstemmed, they would count as 3 unique words.
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
 ## Number of Unique Words Stemmed
@@ -161,10 +172,21 @@ tTop=readRDS("tTop")
 nTop=readRDS("nTop")
 
 # plot
-
 barplot(bTop, col ="firebrick1", main="Top 10 Words: Blogs Corpus", xlab = "Frequency", cex.lab = 1.3, horiz=TRUE, las=1)
 
 barplot(nTop, col ="chocolate2", main="Top 10 Words: News Corpus", xlab = "Frequency", cex.lab = 1.3,horiz=TRUE, las=1)
 
 barplot(tTop, col ="cadetblue3", main="Top 10 Words: Twitter Corpus", xlab = "Frequency", cex.lab = 1.3, horiz=TRUE, las=1)
 ```
+
+### Next Steps: Developing A Prediction Algorithm
+
+We can see even from just the top 10 words in each corpus that there are significant differences between the corpora, with words like "love" and "thank" scoring highly in <font color="skyblue" face="bold">**twitter**</font>, while "state" scores highly in <font color="orange" face="bold">**news**</font>.  Also, "said" scores extremely highly in the <font color="orange" face="bold">**news corpus**</font>, due to frequent use of quotations in news articles, which may mean that this corpus may more closely mirror the way people actually speak, rather than how they write.
+
+So, one important aspect of our algorithm may be to try and determine which type of message is being written - for <font color="red" face="bold">**blog**</font>, <font color="orange" face="bold">**news**</font>, or <font color="skyblue" face="bold">**twitter**</font> type of communications. One of the basic rules of machine learning is that you are likely to get good prediction results only if the data you train your algorithm on is of the same type as your test data (Source: *Stanford NLP Course on Coursera*).
+
+First, we will aim to identify the type of communication we are dealing with by examining the words used and seeing how common they are in each corpus. Next, we will search in that corpus for trigrams (3-word phrases) where the first two words match the last two words of our prediction query. Next we will look to bigrams, and finally the probability of individual words may play a role in our prediction. 
+
+In some cases, unusual words which are at the beginning of the sentence may play an important role in prediction, so we should also include a method which considers these words and searches among a corpus of other sentences which include those words.
+
+We will also need to remove sparse words in order to increase the speed of our algorithm, and testing will need to be done to see where the appropriate balance of speed and accuracy lies.

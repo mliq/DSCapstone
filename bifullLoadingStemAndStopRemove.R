@@ -2,9 +2,11 @@
 ptm <- proc.time()
 
 # SETUP #
-gc()
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 library(tm)
+library(xtable)
+library(RWeka)
+options("max.print"=1000000)
 
 # FUNCTION DEFINITIONS #
 
@@ -17,7 +19,7 @@ corpus <- tm_map(corpus, removeWords, stopwords("english"))
 corpus <- tm_map(corpus, stemDocument)
 corpus<- tm_map(corpus,removePunctuation)
 corpus<- tm_map(corpus,removeNumbers)
-tdm<- TermDocumentMatrix(corpus)
+tdm<- TermDocumentMatrix(corpus, control = list(tokenize = BgramTokenizer))
 #tdm<-removeSparseTerms(tdm,0.97)
 return(tdm)}
 
@@ -51,6 +53,7 @@ output=lapply(output,FUN= function(x) gsub("'{2}", " ",x))
 output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
 }
 
+BgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
 
 # Read, chunk, parse data, then make corpus, do transformations, make TDM of tri-grams:
 twit<-fileMunge("en_US.twitter.txt")
@@ -89,14 +92,6 @@ m <- as.matrix(btdm2)
 v <- sort(rowSums(m), decreasing=TRUE)
 bTop=v[10:1]
 
-saveRDS(tTop,"tTop")
-saveRDS(nTop,"nTop")
-saveRDS(bTop,"bTop")
-
-
-# head(v, 10)
-# tDF=data.frame(Words=tTop,Freq=unlist(wlFreq)))
-
-# plot histogram
-par(mfcol=c(3,1))
-hist(tTop)
+saveRDS(tTop,"t2Top")
+saveRDS(nTop,"n2Top")
+saveRDS(bTop,"b2Top")

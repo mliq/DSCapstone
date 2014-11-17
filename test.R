@@ -66,6 +66,6 @@ tDF=data.frame(Words=names(tTop), Freq=tTop)
 # par(mfcol=c(3,1))
 barplot(bTop, col ="firebrick1", breaks=seq(0,max(tTop),by=1), main="Top 10 Words: Blogs Corpus", xlab = "Frequency", cex.lab = 1.3,xlim=c(0,25), horiz=TRUE, las=1)
 
-barplot(tTop, col ="chocolate2", breaks=seq(0,max(tTop),by=1), main="Top 10 Words: News Corpus", xlab = "Frequency", cex.lab = 1.3,xlim=c(0,25), horiz=TRUE, las=1)
+barplot(nTop, col ="chocolate2", breaks=seq(0,max(tTop),by=1), main="Top 10 Words: News Corpus", xlab = "Frequency", cex.lab = 1.3,xlim=c(0,25), horiz=TRUE, las=1)
 
-barplot(nTop, col ="cadetblue3", breaks=seq(0,max(tTop),by=1), main="Top 10 Words: Twitter Corpus", xlab = "Frequency", cex.lab = 1.3,xlim=c(0,25), horiz=TRUE, las=1)
+barplot(tTop, col ="cadetblue3", breaks=seq(0,max(tTop),by=1), main="Top 10 Words: Twitter Corpus", xlab = "Frequency", cex.lab = 1.3,xlim=c(0,25), horiz=TRUE, las=1)
