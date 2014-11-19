@@ -1,0 +1,135 @@
+BODY {
+MARGIN: 0px;
+PADDING: 0px;
+BACKGROUND: white;
+COLOR: black;
+} 
+
+A:link {background: none; color: maroon; text-decoration: underline; cursor: pointer;}
+A:visited {background: none; color: maroon; text-decoration: underline; cursor: pointer;}
+A:hover {background: none; color: red; text-decoration: underline; cursor: pointer;}
+A:active { background: none; color: red; background: underline; cursor: pointer;}
+
+.Global {
+WIDTH: 100%;
+HEIGHT: 100%;
+}
+
+.Global TD {
+BORDER: 1px solid navy;
+VERTICAL-ALIGN: top;
+}
+
+.Header {
+WIDTH: 100%;
+HEIGHT: 100px;
+PADDING: 0px; 
+}
+
+.Header TD {
+BORDER: 0px;
+VERTICAL-ALIGN: top;
+TEXT-ALIGN: left;
+}
+
+.NavBar {
+WIDTH: 100%;
+HEIGHT: 27px;
+}
+
+.NavBar TD {
+BACKGROUND: url("/common/bluegradient.gif") repeat;
+COLOR: inherit;
+FONT: 16px arial,sans-serif;
+PADDING: 0px 0px 0px 30px;
+TEXT-ALIGN: left;
+BORDER: 0px;
+VERTICAL-ALIGN: middle;
+}
+
+.NavBarMenu TD {
+BACKGROUND: none;
+COLOR: inherit;
+FONT: 16px arial,sans-serif;
+PADDING: 0px 10px 0px 0px;
+BORDER: 0px;
+VERTICAL-ALIGN: middle;
+}
+
+.Left {
+WIDTH: 160px; 
+BACKGROUND: #9fbdd0;
+COLOR: inherit;
+}
+
+.Content {
+BACKGROUND: #ebf1f5;
+COLOR: inherit;
+}
+
+.Right {
+WIDTH: 160px; 
+BACKGROUND: #9fbdd0;
+COLOR: inherit;
+}
+
+.RightPanelBox {
+WIDTH: 160px; 
+HEIGHT: 100%; 
+BACKGROUND: #fdfbec; 
+COLOR: inherit;
+}
+
+.BoxStyle {
+BORDER: 1px solid #284151;
+WIDTH: 90%;
+BACKGROUND: #fdfbec;
+COLOR: inherit;
+}
+
+.BoxStyle TD {
+BACKGROUND: #fdfbec;
+COLOR: inherit;
+TEXT-ALIGN: left;
+BORDER: 0px;
+}
+
+.HeadingStyle {
+BACKGROUND: none;
+COLOR: #000000;
+FONT: bold 20px arial,sans-serif;
+}
+
+.Padded {
+PADDING: 15px;
+}
+
+P {
+FONT: 13px arial,sans-serif;
+}
+
+.SmallFont {
+FONT: 13px arial,sans-serif;
+}
+
+.MedFontBold {
+FONT: bold 15px arial,sans-serif;
+}
+
+.SmallFont TD {
+FONT: 13px arial,sans-serif;
+}
+
+.MedFontBold TD {
+FONT: bold 15px arial,sans-serif;
+}
+
+.Footer {
+BACKGROUND: url("/common/footer.gif");
+COLOR: #000000;
+FONT: 13px arial,sans-serif;
+HEIGHT: 22px;
+TEXT-ALIGN: center;
+}
+
+

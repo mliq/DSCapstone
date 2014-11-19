@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://www.rexegg.com/regex-quickstart.html -->
+<html lang="en" hc="a3" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="revisit-after" content="7 Days">
+<meta name="dcterms.rightsHolder" content="copyright (c) RexEgg.com --- ALL RIGHTS RESERVED">
+<link rel="icon" href="http://a.yu8.us/icon_rexegg.png">
+<link rel="stylesheet" href="http://108.160.149.97/0_mycss-140815.html?cat=regex&com=1" media="screen,print">
+<link href="http://fonts.googleapis.com/css?family=Merriweather:700|Lato:400,700,400italic,700italic" rel="stylesheet"><meta name="description" content="Regular Expressions Syntax Reference. Includes tables showing syntax, examples and matches.">
+<title>Regex Cheat Sheet</title>
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script type="text/javascript" charset="UTF-8" src="./Regex Cheat Sheet_files/ViXvvn6WvGm7h5LRRVPURJjrzxLS8DBt5ZKDB-JaL0A.js"></script><script src="./Regex Cheat Sheet_files/ga.js" type="text/javascript"></script><style type="text/css">.recaptchatable td img{display:block}.recaptchatable .recaptcha_image_cell center img{height:57px}.recaptchatable .recaptcha_image_cell center{height:57px}.recaptchatable .recaptcha_image_cell{background-color:white;height:57px;padding:7px!important}.recaptchatable,#recaptcha_area tr,#recaptcha_area td,#recaptcha_area th{margin:0!important;border:0!important;border-collapse:collapse!important;vertical-align:middle!important}.recaptchatable *{margin:0;padding:0;border:0;color:black;position:static;top:auto;left:auto;right:auto;bottom:auto}.recaptchatable #recaptcha_image{position:relative;margin:auto;border:1px solid #dfdfdf!important}.recaptchatable #recaptcha_image #recaptcha_challenge_image{display:block}.recaptchatable #recaptcha_image #recaptcha_ad_image{display:block;position:absolute;top:0}.recaptchatable a img{border:0}.recaptchatable a,.recaptchatable a:hover{cursor:pointer;outline:none;border:0!important;padding:0!important;text-decoration:none;color:blue;background:none!important;font-weight:normal}.recaptcha_input_area{position:relative!important;background:none!important}.recaptchatable label.recaptcha_input_area_text{border:1px solid #dfdfdf!important;margin:0!important;padding:0!important;position:static!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important}.recaptcha_theme_red label.recaptcha_input_area_text,.recaptcha_theme_white label.recaptcha_input_area_text{color:black!important}.recaptcha_theme_blackglass label.recaptcha_input_area_text{color:white!important}.recaptchatable #recaptcha_response_field{font-size:11pt}.recaptcha_theme_blackglass #recaptcha_response_field,.recaptcha_theme_white #recaptcha_response_field{border:1px solid gray}.recaptcha_theme_red #recaptcha_response_field{border:1px solid #cca940}.recaptcha_audio_cant_hear_link{font-size:7pt;color:black}.recaptchatable{line-height:1em;border:1px solid #dfdfdf!important}.recaptcha_error_text{color:red}.recaptcha_only_if_privacy{float:right;text-align:right;margin-right:7px}#recaptcha-ad-choices{position:absolute;height:15px;top:0;right:0}#recaptcha-ad-choices img{height:15px}.recaptcha-ad-choices-collapsed{width:30px;height:15px;display:block}.recaptcha-ad-choices-expanded{width:75px;height:15px;display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-collapsed{display:none}#recaptcha-ad-choices:hover .recaptcha-ad-choices-expanded{display:block}
+
+.recaptcha_is_showing_audio .recaptcha_only_if_image,.recaptcha_isnot_showing_audio .recaptcha_only_if_audio,.recaptcha_had_incorrect_sol .recaptcha_only_if_no_incorrect_sol,.recaptcha_nothad_incorrect_sol .recaptcha_only_if_incorrect_sol{display:none !important}</style><script type="text/javascript" src="./Regex Cheat Sheet_files/reload"></script></head>
+<body>
+<header class="sitebanner"></header>
+<nav><!-- Top Menu --><ul class="glossymenu"> <li class="current"><a rel="nofollow" href="http://www.rexegg.com/"><b>Fundamentals</b></a></li><li><a rel="nofollow" href="http://www.rexegg.com/regex-disambiguation.html"><b>Black Belt Program</b></a></li><li><a rel="nofollow" href="http://www.rexegg.com/regex-tricks.html"><b>Regex in Action</b></a></li><li><a rel="nofollow" href="http://www.rexegg.com/regex-humor.html"><b>Humor &amp; More</b></a></li><li><a rel="nofollow" href="http://www.rexegg.com/regex-consultant.html"><b>Ask Rex</b></a></li></ul>
+</nav><!-- Top Menu --><div class="wrap_3cols"><div class="wrap_2leftcols">
+
+<article><br>
+    <h1>Quick-Start: Regex Cheat Sheet</h1><div class="cinter">
+        <a rel="nofollow" href="http://www.copyscape.com/" target="_blank">
+        <img src="./Regex Cheat Sheet_files/copyscape-white.gif" alt="Page copy protected against web site content
+        infringement by Copyscape" title="Do not copy content from the page.
+        Plagiarism will be detected by Copyscape." width="234" height="16">
+        </a></div><br>
+
+The tables below are a reference to basic regex. While reading the rest of the site, when in doubt, you can always come back and look here. (It you want a bookmark, here's a direct link to the <a href="http://www.rexegg.com/regex-quickstart.html#ref" target="_blank">regex reference tables</a>). I encourage you to print the tables so you have a cheat sheet on your desk for quick reference.<br><br>
+
+The tables are not exhaustive, for two reasons. First, every regex flavor is different, and I didn't want to crowd the page with overly exotic syntax. For a full reference to the particular regex flavors you'll be using, it's always best to go straight to the source. In fact, for some regex engines (such as Perl, PCRE, Java and .NET) you may want to check once a year, as their creators often introduce new features. 
+<br><br>
+The other reason the tables are not exhaustive is that I wanted them to serve as a quick introduction to regex. If you are a complete beginner, you should get a firm grasp of basic regex syntax just by reading the examples in the tables. I tried to introduce features in a logical order and to keep out oddities that I've never seen in actual use, such as the "bell character". With these tables as a jumping board, you will be able to advance to mastery by exploring the other pages on the site.
+<br><br>
+
+<h2>How to use the tables</h2>
+The tables are meant to serve as an accelerated regex course, and they are meant to be read slowly, one line at a time. On each line, in the leftmost column, you will find a new element of regex syntax. The next column, "Legend", explains what the element means (or encodes) in the regex syntax. The next two columns work hand in hand: the "Example" column gives a valid regular expression that uses the element, and the "Sample Match" column presents a text string that could be matched by the regular expression.<br><br>
+
+You can read the tables online, of course, but if you suffer from even the mildest case of online-ADD (attention deficit disorder), like most of us… Well then, I highly recommend you print them out. You'll be able to study them slowly, and to use them as a cheat sheet later, when you are reading the rest of the site or experimenting with your own regular expressions.
+<br><br>
+Enjoy!
+<br><br>
+
+If you overdose, make sure not to miss the next page, which comes back down to Earth and talks about some really cool stuff: <a href="http://www.rexegg.com/regex-uses.html"><b>The 1001 ways to use Regex</b></a>.
+<br><br>
+<br>
+
+<a name="ref"></a>
+<h2>Regex Accelerated Course and Cheat Sheet</h2>
+
+For easy navigation, here are some jumping points to various sections of the page:<br><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#chars">Characters</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#quantifiers">Quantifiers</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#morechars">More Characters</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#logic">Logic</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#whitespace">More White-Space</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#morequants">More Quantifiers</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#classes">Character Classes</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#anchors">Anchors and Boundaries</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#posix">POSIX Classes</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#modifiers">Inline Modifiers</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#lookarounds">Lookarounds</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#classoperations">Character Class Operations</a><br>
+✽ <a href="http://www.rexegg.com/regex-quickstart.html#other">Other Syntax</a><br>
+
+
+<br><br>
+
+
+
+<a name="chars"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#chars">(direct link)</a></span><br>
+<h2>Characters</h2>
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Character</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="brown"><td><span class="mono">\d</span></td><td>Most engines: one digit<br>from 0 to 9</td><td>file_\d\d</td><td>file_25</td></tr><tr class="beige"><td><span class="mono">\d</span></td><td>.NET, Python 3: one Unicode digit in any script</td><td>file_\d\d</td><td>file_9੩</td></tr><tr class="brown"><td><span class="mono">\w</span></td><td>Most engines: "word character": ASCII letter, digit or underscore</td><td>\w-\w\w\w</td><td>A-b_1</td></tr><tr class="beige"><td><span class="mono">\w</span></td><td>.Python 3: "word character": Unicode letter, ideogram, digit, or underscore</td><td>\w-\w\w\w</td><td>字-ま_۳</td></tr><tr class="brown"><td><span class="mono">\w</span></td><td>.NET: "word character": Unicode letter, ideogram, digit, or connector</td><td>\w-\w\w\w</td><td>字-ま‿۳</td></tr><tr class="beige"><td><span class="mono">\s</span></td><td>Most engines: "whitespace character": space, tab, newline, carriage return, vertical tab</td><td>a\sb\sc</td><td>a b<br>c</td></tr><tr class="brown"><td><span class="mono">\s</span></td><td>.NET, Python 3, JavaScript: "whitespace character": any Unicode separator</td><td>a\sb\sc</td><td>a b<br>c</td></tr><tr class="beige"><td><span class="mono">\D</span></td><td>One character that is not a <i>digit</i> as defined by your engine's <i>\d</i></td><td>\D\D\D</td><td>ABC</td></tr><tr class="brown"><td><span class="mono">\W</span></td><td>One character that is not a <i>word character</i> as defined by your engine's <i>\w</i></td><td>\W\W\W\W\W</td><td>*-+=)</td></tr><tr class="beige"><td><span class="mono">\S</span></td><td>One character that is not a <i>whitespace character</i> as defined by your engine's <i>\s</i></td><td>\S\S\S\S</td><td>Yoyo</td></tr></tbody></table><br><br>
+
+
+
+<a name="quantifiers"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#quantifiers">(direct link)</a></span><br>
+<h2>Quantifiers</h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Quantifier</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="wasabi"><td><span class="mono">+</span></td><td>One or more</td><td>Version \w-\w+</td><td>Version A-b1_1</td></tr><tr class="greentea"><td><span class="mono">{3}</span></td><td>Exactly three times</td><td>\D{3}</td><td>ABC</td></tr><tr class="wasabi"><td><span class="mono">{2,4}</span></td><td>Two to four times</td><td>\d{2,4}</td><td>156</td></tr><tr class="greentea"><td><span class="mono">{3,}</span></td><td>Three or more times</td><td>\w{3,}</td><td>regex_tutorial</td></tr><tr class="wasabi"><td><span class="mono">*</span></td><td>Zero or more times</td><td>A*B*C*</td><td>AAACC</td></tr><tr class="greentea"><td><span class="mono">?</span></td><td>Once or none</td><td>plurals?</td><td>plural</td></tr></tbody></table><br><br>
+
+
+
+<a name="morechars"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#morechars">(direct link)</a></span><br>
+<h2>More Characters</h2>
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Character</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="brown"><td><span class="mono"><b>.</b></span></td><td>Any character except line break</td><td>a.c</td><td>abc</td></tr><tr class="beige"><td><span class="mono"><b>.</b></span></td><td>Any character except line break</td><td>.*</td><td>whatever, man.</td></tr><tr class="brown"><td><span class="mono">\<b>.</b></span></td><td>A period (special character: needs to be escaped by a \)</td><td>a\.c</td><td>a.c</td></tr><tr class="beige"><td><span class="mono">\</span></td><td>Escapes a special character</td><td>\.\*\+\?&nbsp;&nbsp;&nbsp;&nbsp;\$\^\/\\</td><td>.*+?&nbsp;&nbsp;&nbsp;&nbsp;$^/\</td></tr><tr class="brown"><td><span class="mono">\</span></td><td>Escapes a special character</td><td>\[\{\(\)\}\]</td><td>[{()}]</td></tr></tbody></table><br><br>
+
+
+
+<a name="logic"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#logic">(direct link)</a></span><br>
+<h2>Logic</h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Logic</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="wasabi"><td><span class="mono">|</span></td><td> Alternation / OR operand</td><td>22|33</td><td>33</td></tr><tr class="greentea"><td><span class="mono">( … )</span></td><td>Capturing group</td><td>A(nt|pple)</td><td>Apple (captures "pple")</td></tr><tr class="wasabi"><td><span class="mono">\1</span></td><td>Contents of Group 1</td><td>r(\w)g\1x</td><td>regex</td></tr><tr class="greentea"><td><span class="mono">\2</span></td><td>Contents of Group 2</td><td>(\d\d)\+(\d\d)=\2\+\1</td><td>12+65=65+12</td></tr><tr class="wasabi"><td><span class="mono">(?: … )</span></td><td>Non-capturing group</td><td>A(?:nt|pple)</td><td>Apple</td></tr></tbody></table><br><br>
+
+
+
+<a name="whitespace"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#whitespace">(direct link)</a></span><br>
+<h2>More White-Space</h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Character</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="brown"><td><span class="mono">\t</span></td><td>Tab</td><td>T\t\w{2}</td><td>T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ab</td></tr><tr class="beige"><td><span class="mono">\r</span></td><td>Carriage return character</td><td>see below</td><td></td></tr><tr class="brown"><td><span class="mono">\n</span></td><td>Line feed character</td><td>see below</td><td></td></tr><tr class="beige"><td><span class="mono">\r\n</span></td><td>Line separator on Windows</td><td>AB\r\nCD</td><td>AB<br>CD</td></tr><tr class="brown"><td><span class="mono">\N</span></td><td>Perl, PCRE (C, PHP, R…): one character that is not a line feed</td><td>\N+</td><td>ABC</td></tr><tr class="beige"><td><span class="mono">\v</span></td><td>.NET, JavaScript, Python, Ruby: vertical tab</td><td></td><td></td></tr><tr class="brown"><td><span class="mono">\v</span></td><td>Perl, PCRE (C, PHP, R…), Java: one vertical whitespace character: line feed, carriage return, vertical tab, form feed, paragraph or line separator</td><td></td><td></td></tr><tr class="beige"><td><span class="mono">\V</span></td><td>Perl, PCRE (C, PHP, R…), Java: any character that is not a vertical whitespace</td><td></td><td></td></tr><tr class="brown"><td><span class="mono">\R</span></td><td>Perl, PCRE (C, PHP, R…), Java: one line break (carriage return + line feed pair, and all the characters matched by \v)</td><td></td><td></td></tr></tbody></table><br><br>
+
+
+
+<a name="morequants"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#morequants">(direct link)</a></span><br>
+<h2>More Quantifiers</h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Quantifier</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="wasabi"><td><span class="mono">+</span></td><td>The + (one or more) is "greedy"</td><td>\d+</td><td>12345</td></tr><tr class="greentea"><td><span class="mono">?</span></td><td>Makes quantifiers "lazy"</td><td>\d+?</td><td>1 in <b>1</b>2345</td></tr><tr class="wasabi"><td><span class="mono">*</span></td><td>The * (zero or more) is "greedy"</td><td>A*</td><td>AAA</td></tr><tr class="greentea"><td><span class="mono">?</span></td><td>Makes quantifiers "lazy"</td><td>A*?</td><td>empty in AAA</td></tr><tr class="wasabi"><td><span class="mono">{2,4}</span></td><td>Two to four times, "greedy"</td><td>\w{2,4}</td><td>abcd</td></tr><tr class="greentea"><td><span class="mono">?</span></td><td>Makes quantifiers "lazy"</td><td>\w{2,4}?</td><td>ab in <b>ab</b>cd</td></tr></tbody></table><br><br>
+
+
+
+<a name="classes"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#classes">(direct link)</a></span><br>
+<h2>Character Classes</h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Character</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="brown"><td><span class="mono">[ … ]</span></td><td>One of the characters in the brackets</td><td>[AEIOU]</td><td>One uppercase vowel</td></tr><tr class="beige"><td><span class="mono">[ … ]</span></td><td>One of the characters in the brackets</td><td>T[ao]p</td><td><i>Tap</i> or <i>Top</i></td></tr><tr class="brown"><td><span class="mono">-</span></td><td>Range indicator</td><td>[a-z]</td><td>One lowercase letter</td></tr><tr class="beige"><td><span class="mono">[x-y]</span></td><td>One of the characters in the range from x to y</td><td>[A-Z]+</td><td>GREAT</td></tr><tr class="brown"><td><span class="mono">[ … ]</span></td><td>One of the characters in the brackets</td><td>[AB1-5w-z]</td><td>One of either: A,B,1,2,3,4,5,w,x,y,z</td></tr><tr class="beige"><td><span class="mono">[x-y]</span></td><td>One of the characters in the range from x to y</td><td>[ -~]+</td><td>Characters in the printable section of the <a href="http://www.asciitable.com/" target="_blank">ASCII table</a>.</td></tr><tr class="brown"><td><span class="mono">[^x]</span></td><td>One character that is not x</td><td>[^a-z]{3}</td><td>A1!</td></tr><tr class="beige"><td><span class="mono">[^x-y]</span></td><td>One of the characters <b>not</b> in the range from x to y</td><td>[^ -~]+</td><td>Characters that are <b>not</b> in the printable section of the <a href="http://www.asciitable.com/" target="_blank">ASCII table</a>.</td></tr><tr class="brown"><td><span class="mono">[\d\D]</span></td><td>One character that is a digit or a non-digit</td><td>[\d\D]+</td><td>Any characters, inc-<br>luding new lines, which the regular dot doesn't match</td></tr><tr class="beige"><td><span class="mono">[\x41]</span></td><td>Matches the character at hexadecimal position 41 in the ASCII table, i.e. A</td><td>[\x41-\x45]{3}</td><td>ABE</td></tr></tbody></table><br><br>
+
+
+
+<a name="anchors"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#anchors">(direct link)</a></span><br>
+<h2><a href="http://www.rexegg.com/regex-anchors.html">Anchors</a> and <a href="http://www.rexegg.com/regex-boundaries.html">Boundaries</a></h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Anchor</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="wasabi"><td><span class="mono">^</span></td><td><a href="http://www.rexegg.com/regex-anchors.html#caret">Start of string</a> or <a href="http://www.rexegg.com/regex-anchors.html#carmulti">start of line</a> depending on multiline mode. (But when [^inside brackets], it means "not")</td><td>^abc .*</td><td>abc (line start)</td></tr><tr class="greentea"><td><span class="mono">$</span></td><td><a href="http://www.rexegg.com/regex-anchors.html#dollar">End of string</a> or <a href="http://www.rexegg.com/regex-anchors.html#eol">end of line</a> depending on multiline mode. Many engine-dependent subtleties.</td><td>.*? the end$</td><td>this is the end</td></tr><tr class="wasabi"><td><span class="mono">\A</span></td><td><a href="http://www.rexegg.com/regex-anchors.html#A">Beginning of string</a><br>(all major engines except JS)</td><td>\Aabc[\d\D]*</td><td>abc (string...<br>...start)</td></tr><tr class="greentea"><td><span class="mono">\z</span></td><td><a href="http://www.rexegg.com/regex-anchors.html#z">Very end of the string</a><br>Not available in Python and JS</td><td>the end\z</td><td>this is...\n...<b>the end</b></td></tr><tr class="wasabi"><td><span class="mono">\Z</span></td><td><a href="http://www.rexegg.com/regex-anchors.html#Z">End of string</a> or (except Python) before final line break<br>Not available in JS</td><td>the end\Z</td><td>this is...\n...<b>the end</b>\n</td></tr><tr class="greentea"><td><span class="mono">\G</span></td><td><a href="http://www.rexegg.com/regex-anchors.html#G">Beginning of String or End of Previous Match</a><br>
+	  .NET, Java, PCRE (C, PHP, R…), Perl, Ruby</td><td></td><td></td></tr><tr class="wasabi"><td><span class="mono">\b</span></td><td><a href="http://www.rexegg.com/regex-boundaries.html#wordboundary">Word boundary</a><br> Most engines: position where one side only is an ASCII letter, digit or underscore</td><td>Bob.*\bcat\b</td><td>Bob ate the cat</td></tr><tr class="greentea"><td><span class="mono">\b</span></td><td><a href="http://www.rexegg.com/regex-boundaries.html#wordboundary">Word boundary</a><br>.NET, Java, Python 3, Ruby: position where one side only is a Unicode letter, digit or underscore</td><td>Bob.*\b\кошка\b</td><td>Bob ate the кошка</td></tr><tr class="wasabi"><td><span class="mono">\B</span></td><td><a href="http://www.rexegg.com/regex-boundaries.html#notb">Not a word boundary</a></td><td>c.*\Bcat\B.*</td><td>copycats</td></tr></tbody></table><br><br>
+
+
+
+<a name="posix"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#posix">(direct link)</a></span><br>
+<h2>POSIX Classes</h2>
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Character</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="brown"><td><span class="mono">[:alpha:]</span></td><td>PCRE (C, PHP, R…): ASCII letters A-Z and a-z</td><td>[8[:alpha:]]+</td><td>WellDone88</td></tr><tr class="beige"><td><span class="mono">[:alpha:]</span></td><td>Ruby 2: Unicode letter or ideogram</td><td>[[:alpha:]\d]+</td><td>кошка99</td></tr><tr class="brown"><td><span class="mono">[:alnum:]</span></td><td>PCRE (C, PHP, R…): ASCII digits and letters A-Z and a-z</td><td>[[:alnum:]]{10}</td><td>ABCDE12345</td></tr><tr class="beige"><td><span class="mono">[:alnum:]</span></td><td>Ruby 2: Unicode digit, letter or ideogram</td><td>[[:alnum:]]{10}</td><td>кошка90210</td></tr><tr class="brown"><td><span class="mono">[:punct:]</span></td><td>PCRE (C, PHP, R…): ASCII punctuation mark</td><td>[[:punct:]]+</td><td>?!.,:;</td></tr><tr class="beige"><td><span class="mono">[:punct:]</span></td><td>Ruby: Unicode punctuation mark</td><td>[[:punct:]]+</td><td>‽,:〽⁆</td></tr></tbody></table><br><br>
+
+
+
+<a name="modifiers"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#modifiers">(direct link)</a></span><br>
+<h2><a href="http://www.rexegg.com/regex-modifiers.html">Inline Modifiers</a></h2>
+
+
+None of these are supported in JavaScript. In Ruby, beware of <span class="socode">(?s)</span> and <span class="socode">(?m)</span>.
+<br>
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Modifier</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="wasabi"><td><span class="mono">(?i)</span></td><td><a href="http://www.rexegg.com/regex-modifiers.html#i">Case-insensitive mode</a><br>
+(except JavaScript)</td><td>(?i)Monday</td><td>monDAY</td></tr><tr class="greentea"><td><span class="mono">(?s)</span></td><td><a href="http://www.rexegg.com/regex-modifiers.html#dotall">DOTALL mode</a> (except JS and Ruby). The dot (.) matches new line characters (\r\n). Also known as "single-line mode" because the dot treats the entire input as a single line</td><td>(?s)From A.*to Z</td><td>From A<br>to Z</td></tr><tr class="wasabi"><td><span class="mono">(?m)</span></td><td><a href="http://www.rexegg.com/regex-modifiers.html#multiline">Multiline mode</a><br>
+(except Ruby and JS) ^ and $ match at the beginning and end of every line</td><td>(?m)1\r\n^2$\r\n^3$</td><td>1<br>2<br>3</td></tr><tr class="greentea"><td><span class="mono">(?m)</span></td><td><a href="http://www.rexegg.com/regex-modifiers.html#rubym">In Ruby</a>: the same as (?s) in other engines, i.e. DOTALL mode, i.e. dot matches line breaks</td><td>(?m)From A.*to Z</td><td>From A<br>to Z</td></tr><tr class="wasabi"><td><span class="mono">(?x)</span></td><td><a href="http://www.rexegg.com/regex-modifiers.html#freespacing">Free-Spacing Mode mode</a><br>
+(except JavaScript). Also known as comment mode or whitespace mode</td><td>(?x) # this is a<br># comment<br>abc # write on multiple<br># lines<br>[ ]d # spaces must be<br># in brackets</td><td>abc d</td></tr><tr class="greentea"><td><span class="mono">(?n)</span></td><td><a href="http://www.rexegg.com/regex-modifiers.html#n">.NET: named capture only</a></td><td>Turns all (parentheses) into non-capture groups. To capture, use <a href="http://www.rexegg.com/regex-capture.html#namedgroups">named groups</a>.</td><td></td></tr><tr class="wasabi"><td><span class="mono">(?d)</span></td><td><a href="http://www.rexegg.com/regex-modifiers.html#d">Java: Unix linebreaks only</a></td><td>The dot and the ^ and $ anchors are only affected by \n</td><td></td></tr></tbody></table><br><br>
+
+
+
+<a name="lookarounds"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#lookarounds">(direct link)</a></span><br>
+<h2><a href="http://www.rexegg.com/regex-lookarounds.html">Lookarounds</a></h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Lookaround</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="brown"><td><span class="mono">(?=…)</span></td><td><a href="http://www.rexegg.com/regex-disambiguation.html#lookahead">Positive lookahead</a></td><td>(?=\d{10})\d{5}</td><td>01234 in <b>01234</b>56789</td></tr><tr class="beige"><td><span class="mono">(?&lt;=…)</span></td><td><a href="http://www.rexegg.com/regex-disambiguation.html#lookbehind">Positive lookbehind</a></td><td>(?&lt;=\d)cat</td><td>cat in 1<b>cat</b></td></tr><tr class="brown"><td><span class="mono">(?!…)</span></td><td><a href="http://www.rexegg.com/regex-disambiguation.html#negative-lookahead">Negative lookahead</a></td><td>(?!theatre)the\w+</td><td>theme</td></tr><tr class="beige"><td><span class="mono">(?&lt;!…)</span></td><td><a href="http://www.rexegg.com/regex-disambiguation.html#negative-lookbehind">Negative lookbehind</a></td><td>\w{3}(?&lt;!mon)ster</td><td>Munster</td></tr></tbody></table><br><br>
+
+
+
+<a name="classoperations"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#classoperations">(direct link)</a></span><br>
+<h2><a href="http://www.rexegg.com/regex-class-operations.html">Character Class Operations</a></h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Class Operation</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="wasabi"><td><span class="mono">[…-[…]]</span></td><td>.NET: character class subtraction. One character that is in those on the left, but not in the subtracted class.</td><td>[a-z-[aeiou]]</td><td>Any lowercase consonant</td></tr><tr class="greentea"><td><span class="mono">[…-[…]]</span></td><td>.NET: character class subtraction.</td><td>[\p{IsArabic}-[\D]]</td><td>An Arabic character that is not a non-digit, i.e., an Arabic digit</td></tr><tr class="wasabi"><td><span class="mono">[…&amp;&amp;[…]]</span></td><td>Java, Ruby 2+: character class intersection.  One character that is both in those on the left and in the &amp;&amp; class.</td><td>[\S&amp;&amp;[\D]]</td><td>An non-whitespace character that is a non-digit.</td></tr><tr class="greentea"><td><span class="mono">[…&amp;&amp;[…]]</span></td><td>Java, Ruby 2+: character class intersection.</td><td>[\S&amp;&amp;[\D]&amp;&amp;[^a-zA-Z]]</td><td>An non-whitespace character that a non-digit and not a letter.</td></tr><tr class="wasabi"><td><span class="mono">[…&amp;&amp;[^…]]</span></td><td>Java, Ruby 2+: character class subtraction is obtained by intersecting a class with a negated class</td><td>[a-z&amp;&amp;[^aeiou]]</td><td>An English lowercase letter that is not a vowel.</td></tr><tr class="greentea"><td><span class="mono">[…&amp;&amp;[^…]]</span></td><td>Java, Ruby 2+: character class subtraction</td><td>[\p{InArabic}&amp;&amp;[^\p{L}\p{N}]]</td><td>An Arabic character that is not a letter or a number</td></tr></tbody></table><br><br>
+
+
+
+<a name="other"></a>
+<span class="em8"><a href="http://www.rexegg.com/regex-quickstart.html#other">(direct link)</a></span><br>
+<h2>Other Syntax</h2>
+
+
+<table width="600" border="0" style="table-layout:fixed;"><tbody><tr><th width="100" scope="col">Syntax</th><th width="200" scope="col">Legend</th><th width="150" scope="col">Example</th><th width="150" scope="col">Sample Match</th></tr><tr class="brown"><td><a name="blockescape"><span class="mono">\Q…\E</span></a></td><td>Perl, PCRE (C, PHP, R…), Java: treat anything between the delimiters as a literal string. Useful to escape metacharacters.</td><td>\Q(C++ ?)\E</td><td>(C++ ?)</td></tr></tbody></table><br><br>
+
+
+
+<br><br><div class="cinter">
+Don't Miss The <a href="http://www.rexegg.com/regex-style.html"><span class="redtext em2"><b>Regex Style Guide</b></span></a><br><br>
+and <a href="http://www.rexegg.com/regex-best-trick.html"><span class="redtext em2"><b>The Best Regex Trick Ever!!!</b></span></a><br>
+</div><a href="http://www.rexegg.com/regex-uses.html">
+<img src="./Regex Cheat Sheet_files/next_regex.png" class="left" width="125" height="40" alt="next"><br>
+<b>&nbsp;The 1001 ways to use Regex</b>
+</a>
+<br><br><br>
+
+
+
+<div class="cinter">
+		<a href="http://www.rexegg.com/regex-consultant.html">
+		<img src="./Regex Cheat Sheet_files/rightgraphic_rexegg3.png" class="tada" width="100" height="100" alt="Regex Rex"><br>
+		<b>Ask Rex</b></a>
+		<br><br>
+		</div><a name="comlist"></a>
+<div class="comment-wrapper"><br><div class="cinter"><a href="http://www.rexegg.com/regex-quickstart.html#comform">Leave a Comment</a></div><div class="cinter redtext mt1">1-6 of 6 Threads</div>
+<a name="cid1504"></a>
+<div class="comment">
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">Mark</span><span class="comment-location"> – UK</span></div>
+<div class="comment-date">July 18, 2014 - 19:59</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>Table showing which tools use which flavour</div><br>
+<div class="comment-text">Great site, thanl you! I looked through a lot of your material but cannot find a table that says which tools use which flavours of regex - it would be good if you had a table with sed, awk, ls, grep, perl and so on, saying which type of regex they use, AND how you can make it use a different regex flavour by adding switches, E.G. Grep -E, sed -E</div>
+</div>
+<a name="cid1506"></a>
+<div class="comment-reply"><div class="comment-reply-legend">Reply to Mark</div>
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">Rex</span></div>
+<div class="comment-date">July 18, 2014 - 23:59</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>RE: Table showing which tools use which flavour</div><br>
+<div class="comment-text">Hi Mark, thanks, that's a great idea. I'm in a process of updating the pages, but it's going really slow. :)
+
+</div>
+</div>
+<a name="cid1435"></a>
+<div class="comment">
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">Justin</span><span class="comment-location"> – Black Hawk, CO</span></div>
+<div class="comment-date">May 21, 2014 - 08:50</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>Question about "once or none"</div><br>
+<div class="comment-text">In the Cheat Sheet, the question mark character is shown to "match once or none". However, the sample match does not look correct. "plurals? " - sample match - "plural"<br>
+Wouldn't "plurals? " match "plurals" but NOT "plural"?</div>
+</div>
+<a name="cid1436"></a>
+<div class="comment-reply"><div class="comment-reply-legend">Reply to Justin</div>
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">Rex</span></div>
+<div class="comment-date">May 21, 2014 - 09:32</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>RE: Example question for... ?</div><br>
+<div class="comment-text">Hi Justin, the example is correct. "plurals?" matches either "plural" or "plurals". Remember that the "once or none" is applied to the "s"
+</div>
+</div>
+<a name="cid1274"></a>
+<div class="comment">
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">Robin S</span><span class="comment-location"> – Indiana</span></div>
+<div class="comment-date">January 22, 2014 - 04:11</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>Thanks so much!</div><br>
+<div class="comment-text">This cheat sheet is bookmarked - so much more understandable (and reference-able) than any other sites about regex. It needs to be at the top of google searches for anything reg-ex! :-)<br>
+<br>
+Fabulous!</div>
+</div>
+<a name="cid1226"></a>
+<div class="comment">
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">Anwar Mian</span><span class="comment-location"> – Dumfries, VA, USA</span></div>
+<div class="comment-date">December 07, 2013 - 10:43</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>Excellent</div><br>
+<div class="comment-text">This regex cheat sheet is just excellent. Your column headers are just perfect, especially, "Example and "Sample Match. "  I've been looking for a regex cheat sheet like this. Thanks,<br>
+Anwar</div>
+</div>
+<a name="cid1204"></a>
+<div class="comment">
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">fungayi</span></div>
+<div class="comment-date">November 05, 2013 - 04:44</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>Regex to Return Text After nth Position</div><br>
+<div class="comment-text">I have been trying without success to build a regex that returns text the nth character in a paragraph. For example, I want to return the text after the 45th character. How do I do this?</div>
+</div>
+<a name="cid1246"></a>
+<div class="comment-reply"><div class="comment-reply-legend">Reply to fungayi</div>
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">Rex</span></div>
+<div class="comment-date">December 22, 2013 - 22:21</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>RE: Regex to Return Text After nth Position</div><br>
+<div class="comment-text">Hi fungayi,<br>
+Sorry about the delay, I've been traveling.<br>
+Several ways. <br>
+In PCRE (the regex flavor in PHP), you have one easy option:<br>
+^.{45}\K.*<br>
+With lookbehinds, you can do:<br>
+(?&lt;=^.{45}).*<br>
+With capture groups, you could do the following (what you want is group 2):<br>
+(^.{45})(.*)<br>
+Wishing you a beautiful week</div>
+</div>
+<a name="cid1183"></a>
+<div class="comment">
+<div class="comment-header"><div class="comment-author_location"><span class="comment-author">Ricky</span><span class="comment-location"> – Germany</span></div>
+<div class="comment-date">October 06, 2013 - 01:59</div></div>
+<div class="comment-subject"><span class="comment-subject-title">Subject: </span>One of the best</div><br>
+<div class="comment-text">This is one of the best regex cheat sheets out there!</div>
+</div>
+</div><br><br>
+<a name="comform"></a><div class="comment-form-wrapper"><div class="cinter redtext mt1">Leave a Comment</div><div id="comment-form-div">
+<form action="./Regex Cheat Sheet_files/Regex Cheat Sheet.html" method="post">
+<input type="hidden" name="token" value="c3b77d4b78a6a182b6b70cc5e88e3e5f">
+<input type="hidden" name="admin" value="0">
+
+<input class="comment-field" type="text" name="poster" value="" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;">
+		<label class="comment-required-field">*</label>
+		<label class="comment-label">Your name</label><br>
+<input class="comment-field" type="text" name="email" value="">
+		<label class="comment-required-field">*</label>
+		<label class="comment-label">Email (it will not be shown)</label><br>
+<input class="comment-field" type="text" name="location" value="">
+		<label class="comment-label">Your location</label><br><br>
+<label class="comment-label">Subject: </label>
+			<input class="comment-subject-field" type="text" name="subject" value="" maxlength="128"><br><br>
+<div class="cinter blue">
+		<b>All comments are moderated.<br>
+		Link spammers, this won't work for you.</b></div>
+<textarea name="comment"></textarea><br>To prevent automatic spam, we require that you type the two words below before you submit your comment.<br><script type="text/javascript">
+			var RecaptchaOptions = {theme : 'clean'};
+			</script><script type="text/javascript" src="./Regex Cheat Sheet_files/challenge"></script><script type="text/javascript" src="./Regex Cheat Sheet_files/recaptcha.js"></script><div id="recaptcha_widget_div" style="" class=" recaptcha_nothad_incorrect_sol recaptcha_isnot_showing_audio"><div id="recaptcha_area"><table id="recaptcha_table" class="recaptchatable recaptcha_theme_clean"> <tbody><tr height="73"> <td class="recaptcha_image_cell" width="302"><center><div id="recaptcha_image" style="width: 300px; height: 57px;"><img id="recaptcha_challenge_image" alt="reCAPTCHA challenge image" height="57" width="300" src="./Regex Cheat Sheet_files/image"></div></center></td> <td style="padding: 10px 7px 7px 7px;"> <a id="recaptcha_reload_btn" title="Get a new challenge"><img id="recaptcha_reload" width="25" height="18" alt="Get a new challenge" src="./Regex Cheat Sheet_files/refresh.png"></a> <a id="recaptcha_switch_audio_btn" class="recaptcha_only_if_image" title="Get an audio challenge"><img id="recaptcha_switch_audio" width="25" height="15" alt="Get an audio challenge" src="./Regex Cheat Sheet_files/audio.png"></a><a id="recaptcha_switch_img_btn" class="recaptcha_only_if_audio" title="Get a visual challenge"><img id="recaptcha_switch_img" width="25" height="15" alt="Get a visual challenge" src="./Regex Cheat Sheet_files/text.png"></a> <a id="recaptcha_whatsthis_btn" title="Help"><img id="recaptcha_whatsthis" width="25" height="16" src="./Regex Cheat Sheet_files/help.png" alt="Help"></a> </td> <td style="padding: 18px 7px 18px 7px;"> <img id="recaptcha_logo" alt="" width="71" height="36" src="./Regex Cheat Sheet_files/logo.png"> </td> </tr> <tr> <td style="padding-left: 7px;"> <div class="recaptcha_input_area" style="padding-top: 2px; padding-bottom: 7px;"> <span id="recaptcha_challenge_field_holder" style="display: none;"><input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field" value="03AHJ_Vut2dSNH5Qwsil5QLB6FzlH_YdIBE5_--lHbKx4mwLJ9fUADWavdo8Y1ccHJUXTWy_B4JSkCuKhwI5jaP-63h2jzNti4J8v-e7aLhAlfW0JpMt3PMT8Y49GKalTiRbIrxwXA0wHHDVk9Jj6abnnH6UaUA-wSGR89DRVzUb-rDHFPK79jPVyNCjwyzI9lZ_ZZMDAG8bdZ_4w1OMZTOXxfOGmE2IZ2b1r-QNutG6m6IYI5iIai7QtPxC8ZUpv5YyJDaf3xRGq1rhI98nB7vB3AKp9VNv_gMQ0vEpuUf9tl_ATIaftitmY"></span><input style="border: 1px solid #3c3c3c; width: 302px;" name="recaptcha_response_field" id="recaptcha_response_field" type="text" placeholder="Type the text" autocomplete="off"> </div> </td> <td colspan="2"><span id="recaptcha_privacy" class="recaptcha_only_if_privacy"><a href="http://www.google.com/intl/en/policies/" target="_blank">Privacy &amp; Terms</a></span></td> </tr> </tbody></table> </div></div>
+
+	<noscript>
+  		&lt;iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfvuOMSAAAAAGcFAXogBLzXqT46PmX9vO2oUgU6" height="300" width="500" frameborder="0"&gt;&lt;/iframe&gt;&lt;br/&gt;
+  		&lt;textarea name="recaptcha_challenge_field" rows="3" cols="40"&gt;&lt;/textarea&gt;
+  		&lt;input type="hidden" name="recaptcha_response_field" value="manual_challenge"/&gt;
+	</noscript>
+<div id="comment-form-submit-line">
+<input class="comment-submit" type="submit" name="submitcomment" value="Submit" onmouseout="this.className=&#39;comment-submit&#39;" onmouseover="this.className=&#39;comment-submit-hover&#39;"></div></form>
+
+</div></div><br>
+	
+</article>
+<nav class="leftmenu fadein">
+
+<b>Fundamentals</b><br><ul><li><a href="http://www.rexegg.com/">Regex Tutorial</a></li><li><a href="http://www.rexegg.com/regex-vs-regular-expression.html">Regex vs. Regex</a></li><li><a class="thispage" href="./Regex Cheat Sheet_files/Regex Cheat Sheet.html">Quick Reference</a></li><li><a href="http://www.rexegg.com/regex-uses.html">100 Uses for Regex</a></li><li><a href="http://www.rexegg.com/regex-style.html">Regex Style Guide</a></li></ul><br>
+<b>Black Belt Program</b> <br><ul><li><a href="http://www.rexegg.com/regex-disambiguation.html">All <span class="mono">(? … ) Syntax</span></a></li><li><a href="http://www.rexegg.com/regex-boundaries.html">Boundaries++</a></li><li><a href="http://www.rexegg.com/regex-anchors.html">Anchors</a></li><li><a href="http://www.rexegg.com/regex-capture.html">Capture &amp; Back</a></li><li><a href="http://www.rexegg.com/regex-modifiers.html">Flags &amp; Modifiers</a></li><li><a href="http://www.rexegg.com/regex-lookarounds.html">Lookarounds</a></li><li><a href="http://www.rexegg.com/regex-quantifiers.html">Quantifiers</a></li><li><a href="http://www.rexegg.com/regex-explosive-quantifiers.html">Explosive Quantifiers</a></li><li><a href="http://www.rexegg.com/regex-conditionals.html">Conditionals</a></li><li><a href="http://www.rexegg.com/regex-recursion.html">Recursion</a></li><li><a href="http://www.rexegg.com/regex-class-operations.html">Class Operations</a></li><li><a href="http://www.rexegg.com/regex-gotchas.html">Regex <i>Gotchas</i></a></li><li><a href="http://www.rexegg.com/regex-tricks.html">Syntax Tricks</a></li><li><a href="http://www.rexegg.com/regex-quantifier-capture.html">Quantifier capture</a></li></ul><br>
+<b>Regex in Action</b> <br><div class="">For awesome tricks:<br>scroll down!</div><ul><li><a href="http://www.rexegg.com/regex-cookbook.html">Cookbook</a></li><li><a href="http://www.rexegg.com/regex-interesting-character-classes.html">Cool Regex Classes</a></li><li><a href="http://www.rexegg.com/regex-optimizations.html">Regex Optimizations</a></li><li><a href="http://www.rexegg.com/pcregrep-pcretest.html">PCRE: Grep and Test</a></li><li><a href="http://www.rexegg.com/regex-perl-one-liners.html">Perl One-Liners</a></li></ul><br>
+<b>Tools &amp; More</b> <br><ul><li><a href="http://www.rexegg.com/regex-tools.html">Regex Tools</a></li><li><a href="http://www.rexegg.com/regex-humor.html">Regex Humor</a></li><li><a href="http://www.rexegg.com/regex-books.html">Regex Books &amp; More</a></li><li><a href="http://www.rexegg.com/regexbuddy-trial.html">RegexBuddy Trial</a></li></ul><br>
+<b>Tricks</b> <br><ul><li><a href="http://www.rexegg.com/regex-best-trick.html">The Best Regex Trick</a></li><li><a href="http://www.rexegg.com/regex-trick-line-numbers.html">Line Numbers</a></li><li><a href="http://www.rexegg.com/regex-trick-numbers-in-english.html">Numbers in English</a></li></ul><br>
+<b>Languages</b> <br><ul><li><a href="http://www.rexegg.com/pcre-documentation.html">PCRE Doc &amp; Log</a></li><li><a href="http://www.rexegg.com/regex-csharp.html">Regex with C#</a></li><li><a href="http://www.rexegg.com/regex-php.html">Regex with PHP</a></li><li><a href="http://www.rexegg.com/regex-python.html">Regex with Python</a></li><li><a href="http://www.rexegg.com/regex-java.html">Regex with Java</a></li><li><a href="http://www.rexegg.com/regex-javascript.html">Regex with JavaScript</a></li><li><a href="http://www.rexegg.com/regex-ruby.html">Regex with Ruby</a></li><li><a href="http://www.rexegg.com/regex-perl.html">Regex with Perl</a></li><li><a href="http://www.rexegg.com/regex-vbnet.html">Regex with VB.NET</a></li></ul>
+<br>
+
+
+
+
+</nav>
+</div><!-- wrap_2leftcols -->
+</div><!-- wrap_3cols -->
+	<div class="topanchor">
+	<aside class="rightcolumn fadein"><table class="cintable">
+            <tbody><tr><td style="text-align:center; ">
+            <a rel="nofollow" href="http://www.amazon.com/dp/0596528124?tag=onamazon-20" target="_blank">
+            <img src="./Regex Cheat Sheet_files/c_mastering-regex.jpg" class="pulse1st" height="160" width="116" alt="Matering Regular Expressions">
+            <br><span class="greytext em9"><b>A must-read</b></span><br><br></a></td></tr></tbody></table><div class="cinter greytext">
+					<b>
+					RegexBuddy 4<br>
+					is Out! Big Wow!<br>
+					<div class="em9 pulse2nd">
+					<a href="http://www.rexegg.com/regexbuddy-trial.html">
+					<span class="redtext">
+					Get the Free Trial</span></a></div>
+					</b><br>
+					<div class="dtada" style="margin: 0 0 -0.5em 0;">
+					<img src="./Regex Cheat Sheet_files/rightgraphic_rexegg3.png" class="tada" width="100" height="100" alt="Regex Rex">
+					</div>
+                    <span class="greytext em9"><b><a href="http://www.rexegg.com/regex-consultant.html">Ask Rex</a></b></span>
+					<br>
+<form method="get" action="http://www.google.com/search" target="_blank">
+        <input type="text" name="q" size="14" maxlength="255" placeholder="search the site" value="" class="searchbox">
+        <input type="hidden" name="sitesearch" value="RexEgg.com"><input type="image" src="./Regex Cheat Sheet_files/search2.png" alt="Search" title="Search"></form>
+</div><br>
+
+</aside>
+</div><!-- Top Anchor -->
+<footer>
+<br><b>© Copyright RexEgg.com</b>
+<br><br><br><br><br><br><br>
+	
+</footer>
+<script type="text/javascript">
+function gaSSDSLoad (acct) {
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."),
+      pageTracker,
+      s;
+  s = document.createElement('script');
+  s.src = gaJsHost + 'google-analytics.com/ga.js';
+  s.type = 'text/javascript';
+  s.onloadDone = false;
+  function init () {
+    pageTracker = _gat._getTracker(acct);
+    pageTracker._trackPageview();
+  }
+  s.onload = function () {
+    s.onloadDone = true;
+    init();
+  };
+  s.onreadystatechange = function() {
+    if (('loaded' === s.readyState || 'complete' === s.readyState)) {
+      s.onloadDone = true;
+      init();
+    }
+  };
+  document.getElementsByTagName('head')[0].appendChild(s);
+}
+gaSSDSLoad("UA-7079260-7");
+</script>
+
+<!-- POWERED BY BIG FOOT -->
+
+<iframe src="about:blank" style="height: 0px; width: 0px; visibility: hidden; border: none;">This frame prevents back/forward cache problems in Safari.</iframe><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>
