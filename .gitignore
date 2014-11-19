@@ -3,6 +3,7 @@ Example/**
 Coursera-SwiftKey.zip
 Task1 Corpus created.RData
 Quiz1.RData
+blogTriCounts
 
 # Windows image file caches
 Thumbs.db
@@ -46,3 +47,4 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+.Rproj.user

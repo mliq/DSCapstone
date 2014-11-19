@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0058)http://www.inside-r.org/packages/cran/qdap/docs/word.count -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>word.count {qdap} | inside-R | A Community Site for R</title>
+    
+<link rel="shortcut icon" href="http://www.inside-r.org/sites/all/themes/rweb/favicon.ico" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" media="all" href="./word.count {qdap}   inside-R   A Community Site for R_files/css_e7e6890575179c6e19db2a7135928170.css">
+<link type="text/css" rel="stylesheet" media="print" href="./word.count {qdap}   inside-R   A Community Site for R_files/css_2f8a9213003983ca173e57dd3b576aac.css">
+    <!--[if lte IE 6]><style type="text/css" media="all">@import "/sites/all/themes/rweb/css/ie6.css";</style><![endif]-->
+    <!--[if IE 7]><style type="text/css" media="all">@import "/sites/all/themes/rweb/css/ie7.css";</style><![endif]-->
+    <script type="text/javascript" async="" src="./word.count {qdap}   inside-R   A Community Site for R_files/munchkin.js"></script><script type="text/javascript" src="./word.count {qdap}   inside-R   A Community Site for R_files/js_2fb44906c3831b546f6f8f2a4909f2aa.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","fivestar":{"titleUser":"Your rating: ","titleAverage":"Average: ","feedbackSavingVote":"Saving your vote...","feedbackVoteSaved":"Your vote has been saved.","feedbackDeletingVote":"Deleting your vote...","feedbackVoteDeleted":"Your vote has been deleted."},"custom_search":{"form_target":"_self","solr":1}});
+//--><!]]>
+</script>
+  <style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+
+  <body class="not-front not-logged-in page-packages one-sidebar sidebar-right show-grid">
+  
+         
+    <div id="skip-nav"><a href="http://www.inside-r.org/packages/cran/qdap/docs/word.count#content">Skip to Content</a></div>  
+    <div id="page" class="container-12 clearfix">
+
+    <!-- ______________________ HEADER _______________________ -->
+
+  <div id="header">
+
+              <div id="navigation-secondary" class="grid-10 prefix-2 clearfix">
+          <ul class="links secondary-links">
+                      <li class="first"><a href="http://www.inside-r.org/user/login">log in</a></li>
+                      <li class="last"><a href="http://www.inside-r.org/rss">rss</a></li>
+          </ul>
+      </div><!-- /#navigation-secondary -->
+      
+    <div class="header-row clearfix">
+
+      <div id="logo" class="grid-2">
+        <a id="logo" href="http://www.inside-r.org/" title="inside-r home" rel="home nofollow"><img src="./word.count {qdap}   inside-R   A Community Site for R_files/logo.png" alt="inside-R logo"></a>
+      </div> <!-- /logo -->
+
+              <div id="navigation-primary" class=" grid-10 menu with-main-menu with-sub-menu">
+          <ul id="primary" class="links main-menu"><li class="menu-279 first"><a href="http://www.inside-r.org/blogs" title="R blogs and news">Blogs</a></li>
+<li class="menu-3022"><a href="http://www.inside-r.org/r-doc" title="R language documentation">R Language</a></li>
+<li class="menu-2815 active"><a href="http://www.inside-r.org/packages" title="Crantastic R packages" class="active">R Packages</a></li>
+<li class="menu-2897"><a href="http://www.inside-r.org/howto" title="Tips and tricks about R">How to</a></li>
+<li class="menu-3117"><a href="http://www.inside-r.org/pretty-r" title="Pretty R syntax highlighter">Pretty R</a></li>
+<li class="menu-3194 last"><a href="http://www.inside-r.org/download" title="Download R now">Get R</a></li>
+</ul>        </div> <!-- /navigation -->
+      
+    </div><!-- /header-row -->
+
+    <div class="header-row clearfix">
+
+              <div id="tagline" class="grid-6"><div id="tagline-inner">A Community Site for R – Sponsored by Revolution Analytics</div></div>
+      
+              <div id="search-box" class="grid-6"><div id="search-box-inner">
+          <form action="./word.count {qdap}   inside-R   A Community Site for R_files/word.count {qdap}   inside-R   A Community Site for R.html" accept-charset="UTF-8" method="post" id="search-theme-form" class="search-form" target="_self">
+<div><div id="search" class="container-inline">
+  <div class="form-item" id="edit-search-theme-form-1-wrapper">
+ <input type="text" maxlength="128" name="search_theme_form" id="edit-search-theme-form-1" size="15" value="" class="form-text cleardefault">
+</div>
+<fieldset class="custom_search-popup custom_search-processed"><a class="custom_search-popup-close" href="http://www.inside-r.org/packages/cran/qdap/docs/word.count#">Close</a></fieldset>
+<input type="submit" name="op" id="edit-submit-1" value="GO" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-c00ca9fa4382e1b23d97e012edba9255" value="form-c00ca9fa4382e1b23d97e012edba9255">
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form">
+<input type="hidden" name="default_text" id="edit-default-text-1" value="" class="default-text">
+</div>
+
+</div></form>
+        </div></div> <!-- /#search-box -->
+      
+    </div><!-- /header-row -->
+    
+      <div id="masthead" class="grid-12 clearfix">
+        <img src="./word.count {qdap}   inside-R   A Community Site for R_files/masthead.jpg" alt="RWeb masthead">
+      </div>
+
+  </div><!-- /#header -->
+
+    <!-- ______________________ MAIN _______________________ -->
+
+    <div id="main" class="grid-9 clearfix">
+    
+      <div id="content">
+        <div id="content-inner" class="inner column center">
+
+          
+                      <div id="content-header">
+
+              <div class="breadcrumb"><a href="http://www.inside-r.org/">Home</a> » <a href="http://www.inside-r.org/packages">Package reference</a> » <a href="http://www.inside-r.org/packages/cran/qdap">qdap</a> » word.count {qdap}</div>
+                              <h1 class="title">word.count {qdap}</h1>
+              
+              
+               
+
+              
+            </div> <!-- /#content-header -->
+          
+          <div id="content-area">
+            <ul class="tabs primary">
+
+</ul>
+<div id="node-173982" class="node node-rdoc clear-block">
+
+
+  <div class="meta">
+    </div>
+
+  <div class="content">
+
+    <div class="field field-type-text field-field-sub-title">
+    <div class="field-items">
+            <div class="field-item odd">
+                    Word Counts        </div>
+        </div>
+</div>
+
+    <div class="rdoc-meta">
+      <div class="field field-type-text field-field-package">
+    <div class="field-items">
+            <div class="field-item odd">
+                      <div class="field-label-inline-first">
+              Package:&nbsp;</div>
+                    qdap        </div>
+        </div>
+</div>
+      <div class="field field-type-text field-field-pkg-version">
+    <div class="field-items">
+            <div class="field-item odd">
+                      <div class="field-label-inline-first">
+              Version:&nbsp;</div>
+                    0.2.5        </div>
+        </div>
+</div>
+    </div><!-- /rdoc-meta -->
+
+    <div class="rdoc-content">
+<div class="rdoc-description">
+<h3>Description</h3>
+<p><span class="geshifilter"><code class="r geshifilter-r">word.count</code></span> - Transcript apply word counts.</p>
+<p>  <span class="geshifilter"><code class="r geshifilter-r">character.count</code></span> - Transcript apply character   counts.</p>
+<p>  <span class="geshifilter"><code class="r geshifilter-r">character.table</code></span> - Computes a table of character   counts by grouping . variable(s).
+</p></div>
+<div class="rdoc-usage">
+<h3>Usage</h3>
+<pre class="rdoc-monospace">word.count(text.var, byrow = TRUE, missing = NA,
+    digit.remove = TRUE, names = FALSE)
+
+  wc(text.var, byrow = TRUE, missing = NA,
+    digit.remove = TRUE, names = FALSE)
+
+  character.count(text.var, byrow = TRUE, missing = NA,
+    apostrophe.remove = TRUE, digit.remove = TRUE,
+    count.space = FALSE)
+
+  character.table(text.var, grouping.var, percent = TRUE,
+    prop.by.row = TRUE, zero.replace = 0, digits = 2, ...)
+
+  char.table(text.var, grouping.var, percent = TRUE,
+    prop.by.row = TRUE, zero.replace = 0, digits = 2, ...)
+</pre></div>
+<div class="rdoc-arg-list">
+<h3>Arguments</h3>
+<dl class="rdoc-args">
+<dt>text.var</dt>
+<dd>The text variable</dd>
+<dt>grouping.var</dt>
+<dd>The grouping variables.  Default   <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">NULL</span></code></span> generates one word list for all text.  Also   takes a single grouping variable or a list of 1 or more   grouping variables.</dd>
+<dt>byrow</dt>
+<dd>logical.  If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">TRUE</span></code></span> counts by row, if   <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">FALSE</span></code></span> counts all words.</dd>
+<dt>missing</dt>
+<dd>Value to insert for missing values (empty   cells).</dd>
+<dt>digit.remove</dt>
+<dd>logical.  If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">TRUE</span></code></span> removes   digits before counting words.</dd>
+<dt>names</dt>
+<dd>logical.  If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">TRUE</span></code></span> the sentences are   given as the names of the counts.</dd>
+<dt>apostrophe.remove</dt>
+<dd>logical.  If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">TRUE</span></code></span>   apostrophes will be counted in the character count.</dd>
+<dt>count.space</dt>
+<dd>logical.  If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">TRUE</span></code></span> spaces are   counted as characters.</dd>
+<dt>prop.by.row</dt>
+<dd>logical.  If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">TRUE</span></code></span> applies   proportional to the row. If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">FALSE</span></code></span> applies by   column.</dd>
+<dt>...</dt>
+<dd>Other arguments passed to   <span class="geshifilter"><code class="r geshifilter-r">prop</code></span>.</dd>
+<dt>percent</dt>
+<dd>logical.  If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">TRUE</span></code></span> output given as   percent.  If <span class="geshifilter"><code class="r geshifilter-r"><span style="color: #000000; font-weight: bold;">FALSE</span></code></span> the output is proportion.</dd>
+<dt>zero.replace</dt>
+<dd>Value to replace 0 values with.</dd>
+<dt>digits</dt>
+<dd>Integer; number of decimal places to round   when printing.</dd>
+</dl>
+</div>
+<div class="rdoc-arg-list">
+<h3>Values</h3>
+<p><span class="geshifilter"><code class="r geshifilter-r">word.count</code></span> - returns a word count by row or total.</p>
+<p>  <span class="geshifilter"><code class="r geshifilter-r">character.count</code></span> - returns a character count by row   or total.</p>
+<p>  <span class="geshifilter"><code class="r geshifilter-r">character.table</code></span> - returns a list: dataframe of   character counts by grouping variable.</p>
+<dl class="rdoc-args">
+<dt>raw</dt>
+<dd>Dataframe of the frequency of characters by   grouping variable.</dd>
+<dt>prop</dt>
+<dd>Dataframe of the   proportion of characters by grouping variable.</dd>
+<dt>rnp</dt>
+<dd>Dataframe of the frequency and proportions of   characters by grouping variable.</dd>
+<dt>percent</dt>
+<dd>The   value of percent used for plotting purposes.</dd>
+<dt>zero.replace</dt>
+<dd>The value of zero.replace used for   plotting purposes.</dd>
+</dl>
+</div>
+<div class="rdoc-note">
+<h3>Note</h3>
+<p>wc is a convenient short hand for word.count.
+</p></div>
+<div class="rdoc-seealso">
+<h3>See Also</h3>
+<p><span class="geshifilter"><code class="r geshifilter-r">syllable.count</code></span></p>
+<p>  <span class="geshifilter"><code class="r geshifilter-r">prop</code></span>
+</p></div>
+<div class="rdoc-examples">
+<h3>Examples</h3>
+<p></p><div class="geshifilter"><pre class="r geshifilter-r" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">## Not run:</span>
+<span style="color: #666666; font-style: italic;"># WORD COUNT</span>
+word.count<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #009900;">)</span>
+wc<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #009900;">)</span>
+word.count<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #339933;">,</span> <a href="http://inside-r.org/r-doc/base/names"><span style="color: #003399; font-weight: bold;">names</span></a> = <span style="color: #000000; font-weight: bold;">TRUE</span><span style="color: #009900;">)</span>
+word.count<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #339933;">,</span> byrow=<span style="color: #000000; font-weight: bold;">FALSE</span><span style="color: #339933;">,</span> <a href="http://inside-r.org/r-doc/base/names"><span style="color: #003399; font-weight: bold;">names</span></a> = <span style="color: #000000; font-weight: bold;">TRUE</span><span style="color: #009900;">)</span>
+<a href="http://inside-r.org/r-doc/base/sum"><span style="color: #003399; font-weight: bold;">sum</span></a><span style="color: #009900;">(</span>word.count<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;"># CHARACTER COUNTS</span>
+character.count<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #009900;">)</span>
+character.count<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #339933;">,</span> byrow=<span style="color: #000000; font-weight: bold;">FALSE</span><span style="color: #009900;">)</span>
+<a href="http://inside-r.org/r-doc/base/sum"><span style="color: #003399; font-weight: bold;">sum</span></a><span style="color: #009900;">(</span>character.count<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;"># CHARACTER TABLE</span>
+x <span style="">&lt;-</span> character.table<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #339933;">,</span> DATA<span style="">$</span>person<span style="color: #009900;">)</span>
+<a href="http://inside-r.org/r-doc/graphics/plot"><span style="color: #003399; font-weight: bold;">plot</span></a><span style="color: #009900;">(</span>x<span style="color: #009900;">)</span>
+<a href="http://inside-r.org/r-doc/graphics/plot"><span style="color: #003399; font-weight: bold;">plot</span></a><span style="color: #009900;">(</span>x<span style="color: #339933;">,</span> label = <span style="color: #000000; font-weight: bold;">TRUE</span><span style="color: #009900;">)</span>
+<a href="http://inside-r.org/r-doc/graphics/plot"><span style="color: #003399; font-weight: bold;">plot</span></a><span style="color: #009900;">(</span>x<span style="color: #339933;">,</span> label = <span style="color: #000000; font-weight: bold;">TRUE</span><span style="color: #339933;">,</span> text.color = <span style="color: #0000ff;">"red"</span><span style="color: #009900;">)</span>
+<a href="http://inside-r.org/r-doc/graphics/plot"><span style="color: #003399; font-weight: bold;">plot</span></a><span style="color: #009900;">(</span>x<span style="color: #339933;">,</span> label = <span style="color: #000000; font-weight: bold;">TRUE</span><span style="color: #339933;">,</span> lab.digits = <span style="color: #cc66cc;">1</span><span style="color: #339933;">,</span> zero.replace = <span style="color: #0000ff;">"PP7"</span><span style="color: #009900;">)</span>
+x<span style="">$</span>raw<span style="color: #009900;">[</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">1</span><span style="">:</span><span style="color: #cc66cc;">20</span><span style="color: #009900;">]</span>
+x<span style="">$</span>prop<span style="color: #009900;">[</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">1</span><span style="">:</span><span style="color: #cc66cc;">8</span><span style="color: #009900;">]</span>
+x<span style="">$</span>rnp<span style="color: #009900;">[</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">1</span><span style="">:</span><span style="color: #cc66cc;">8</span><span style="color: #009900;">]</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">## char.table(DATA$state, DATA$person)</span>
+<span style="color: #666666; font-style: italic;">## char.table(DATA$state, DATA$person, percent = TRUE)</span>
+<span style="color: #666666; font-style: italic;">## character.table(DATA$state, list(DATA$sex, DATA$adult))</span>
+&nbsp;
+<a href="http://inside-r.org/r-doc/base/library"><span style="color: #003399; font-weight: bold;">library</span></a><span style="color: #009900;">(</span>ggplot2<span style="color: #009900;">)</span><span style="color: #339933;">;</span>library<span style="color: #009900;">(</span>reshape2<span style="color: #009900;">)</span>
+dat <span style="">&lt;-</span> character.table<span style="color: #009900;">(</span>DATA<span style="">$</span>state<span style="color: #339933;">,</span> <a href="http://inside-r.org/r-doc/base/list"><span style="color: #003399; font-weight: bold;">list</span></a><span style="color: #009900;">(</span>DATA<span style="">$</span>sex<span style="color: #339933;">,</span> DATA<span style="">$</span>adult<span style="color: #009900;">)</span><span style="color: #009900;">)</span>
+dat2 <span style="">&lt;-</span> colsplit2df<span style="color: #009900;">(</span>melt<span style="color: #009900;">(</span>dat<span style="">$</span>raw<span style="color: #009900;">)</span><span style="color: #339933;">,</span> keep.orig = <span style="color: #000000; font-weight: bold;">TRUE</span><span style="color: #009900;">)</span>
+<a href="http://inside-r.org/r-doc/utils/head"><span style="color: #003399; font-weight: bold;">head</span></a><span style="color: #009900;">(</span>dat2<span style="color: #339933;">,</span> <span style="color: #cc66cc;">15</span><span style="color: #009900;">)</span>
+dat3 <span style="">&lt;-</span> dat2<span style="color: #009900;">[</span><a href="http://inside-r.org/r-doc/base/rep"><span style="color: #003399; font-weight: bold;">rep</span></a><span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/base/seq_len"><span style="color: #003399; font-weight: bold;">seq_len</span></a><span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/base/dim"><span style="color: #003399; font-weight: bold;">dim</span></a><span style="color: #009900;">(</span>dat2<span style="color: #009900;">)</span><span style="color: #009900;">[</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">]</span><span style="color: #009900;">)</span><span style="color: #339933;">,</span> dat2<span style="color: #009900;">[</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">5</span><span style="color: #009900;">]</span><span style="color: #009900;">)</span><span style="color: #339933;">,</span> <span style="">-</span><span style="color: #cc66cc;">5</span><span style="color: #009900;">]</span>
+&nbsp;
+&nbsp;
+ggplot<span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/utils/data"><span style="color: #003399; font-weight: bold;">data</span></a> = dat2<span style="color: #339933;">,</span> aes<span style="color: #009900;">(</span>y = variable<span style="color: #339933;">,</span> x = value<span style="color: #339933;">,</span> colour=sex<span style="color: #009900;">)</span><span style="color: #009900;">)</span> <span style="">+</span>
+    facet_grid<span style="color: #009900;">(</span>adult<span style="">~</span>.<span style="color: #009900;">)</span> <span style="">+</span>
+    geom_line<span style="color: #009900;">(</span>size=<span style="color: #cc66cc;">1</span><span style="color: #339933;">,</span> aes<span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/grDevices/group"><span style="color: #003399; font-weight: bold;">group</span></a> =variable<span style="color: #009900;">)</span><span style="color: #339933;">,</span> colour = <span style="color: #0000ff;">"black"</span><span style="color: #009900;">)</span> <span style="">+</span>
+    geom_point<span style="color: #009900;">(</span><span style="color: #009900;">)</span>
+&nbsp;
+ggplot<span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/utils/data"><span style="color: #003399; font-weight: bold;">data</span></a> = dat3<span style="color: #339933;">,</span> aes<span style="color: #009900;">(</span>x = variable<span style="color: #339933;">,</span> fill = variable<span style="color: #009900;">)</span><span style="color: #009900;">)</span> <span style="">+</span>
+    geom_bar<span style="color: #009900;">(</span><span style="color: #009900;">)</span> <span style="">+</span>
+    facet_grid<span style="color: #009900;">(</span>sex <span style="">~</span> adult<span style="color: #339933;">,</span> margins = <span style="color: #000000; font-weight: bold;">TRUE</span><span style="color: #009900;">)</span> <span style="">+</span>
+    theme<span style="color: #009900;">(</span>legend.position=<span style="color: #0000ff;">"none"</span><span style="color: #009900;">)</span>
+<span style="color: #666666; font-style: italic;">## End(Not run)</span></pre></div>
+<p></p></div>
+<div class="rdoc-license">
+<p>
+Documentation reproduced from package qdap, version 0.2.5. License: GPL-2
+</p>
+</div>
+</div>
+
+  </div><!-- /content -->
+
+  <ul class="links inline"><li class="comment_forbidden first last"></li>
+</ul></div>
+          </div> <!-- /#content-area -->
+
+          
+          </div>
+        </div> <!-- /content-inner /content -->
+
+      </div> <!-- /main -->
+
+      <!-- ______________________ RIGHT SIDEBAR _______________________ -->
+
+              <div id="right-sidebar" class="column sidebar grid-3 clearfix">
+          <div id="right-sidebar-inner" class="inner">
+              <div id="block-custom_search_blocks-1" class="clear-block block block-custom_search_blocks ">
+
+
+  <div class="block-inner">
+
+          <h3 class="title block-title">Search Packages</h3>
+    
+    <div class="content">
+      <form action="./word.count {qdap}   inside-R   A Community Site for R_files/word.count {qdap}   inside-R   A Community Site for R.html" accept-charset="UTF-8" method="post" id="custom-search-blocks-form-1" class="search-form" target="_self">
+<div><div class="form-item" id="edit-custom-search-blocks-form-1-1-wrapper">
+ <label class="element-invisible" for="edit-custom-search-blocks-form-1-1">Search this site: </label>
+ <input type="text" maxlength="128" name="custom_search_blocks_form_1" id="edit-custom-search-blocks-form-1-1" size="15" value="" title="Enter the terms you wish to search for." class="form-text  custom-search-default-value custom-search-box">
+</div>
+<fieldset class="custom_search-popup custom_search-processed"><a class="custom_search-popup-close" href="http://www.inside-r.org/packages/cran/qdap/docs/word.count#">Close</a></fieldset>
+<input type="hidden" name="custom_search_types" id="edit-custom-search-types" value="c-cran_package" class="custom-search-selector custom-search-types">
+<input type="hidden" name="delta" id="edit-delta" value="1">
+<input type="hidden" name="form_build_id" id="form-3e7819c80b49f57e9391750c857438ef" value="form-3e7819c80b49f57e9391750c857438ef">
+<input type="hidden" name="form_id" id="edit-custom-search-blocks-form-1" value="custom_search_blocks_form_1">
+<input type="hidden" name="default_text" id="edit-default-text" value="" class="default-text">
+<input type="submit" name="op" id="edit-submit" value="GO" class="form-submit">
+
+</div></form>
+    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->              <div id="block-block-2" class="clear-block block block-block ">
+
+
+  <div class="block-inner">
+
+          <h3 class="title block-title">About inside-R.org</h3>
+    
+    <div class="content">
+      <p>inside-R.org is a collection of resources about the open-source <a href="http://www.r-project.org/" target="_blank">R Project</a> for the R Statistics Community. This site is sponsored by Revolution Analytics.</p>
+<p>Follow <a href="http://twitter.com/inside_R" target="_blank">@inside_R</a> on Twitter for updates about this site.</p>
+<p>If you have questions or ideas for the site, please send us an email at <a href="mailto:community@inside-R.org">community@inside-R.org</a>.</p>
+    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->  <div id="block-block-3" class="clear-block block block-block ">
+
+
+  <div class="block-inner">
+
+          <h3 class="title block-title">Information about R</h3>
+    
+    <div class="content">
+      <ul>
+<li><a href="http://www.inside-r.org/what-is-r">What is R?</a></li>
+<li><a href="http://www.inside-r.org/why-use-r">Why use R?</a></li>
+<li><a href="http://www.inside-r.org/r-resources-web">Resources for R</a></li>
+</ul>
+    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->          </div> <!-- /sidebar-right-inner -->
+        </div> <!-- /sidebar-right -->
+       
+
+    </div> <!-- /page -->
+
+      <!-- ______________________ FOOTER _______________________ -->
+
+              <div id="footer" class="container-12 clearfix">
+          <div class="footer-menu">
+              <div id="block-menu-menu-footer" class="clear-block block block-menu ">
+
+
+  <div class="block-inner">
+
+    
+    <div class="content">
+      <ul class="menu"><li class="leaf first"><a href="http://www.inside-r.org/contact" title="">Contact us</a></li>
+<li class="leaf last"><a href="http://www.inside-r.org/terms-and-conditions" title="Terms and conditions">Terms and conditions</a></li>
+</ul>    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->          </div>
+        </div> <!-- /footer -->
+      
+        <script src="./word.count {qdap}   inside-R   A Community Site for R_files/munchkin(1).js" type="text/javascript"></script> <script>mktoMunchkin("224-FMR-259");</script>
+
+        <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script src="./word.count {qdap}   inside-R   A Community Site for R_files/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      try { var pageTracker = _gat._getTracker("UA-6984166-8"); pageTracker._trackPageview(); } catch(err) {}
+    </script>
+
+      
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

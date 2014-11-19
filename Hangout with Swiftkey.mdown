@@ -1,0 +1,72 @@
+# I don't even know if trigram prediction means using quadrigram!!
+Yes:
+>two words in a trigram model
+
+# Soledad issues raised
+---
+Importance of outliers, predicting what you HAVE NOT seen, understanding CONTEXT.
+
+Sole ds learning langaige is to examine and undestand exceptions and outliers, jokes
+Context is everything
+
+## Detecting unseen ngrams
+Unigrams are one way, but of course can cause a lot of issues.
+[Kneser-Ney](https://class.coursera.org/nlp/lecture/20)
+
+#Hangout with Swiftkey
+---
+
+# "deep learning" models
+future research in word similarities rather than n-grams can detect different things.
+
+# Don't store strings - put to integers or it will really slow down data structure. 20 integers = 8 bytes...
+
+[Discussed here Interpolation](https://class.coursera.org/nlp/lecture/19)
+Store words as indexes, not strings.
+Use Huffman coding to fit large numbers of words into 2 bytes.
+Quantize probabilities (4-8 btis instead of 8-byte float)
+Bloom Filters
+EFficient data structures like tries.
+Entropy-based Pruning - remove those that contribute less to probability on a particular held-out test set.
+Remove singletons of higher order n-grams (1 instance)
+
+parsing-based models..
+
+## So how would that work then, it looks up online?
+Hmm I guess you'd assign every known bigram a number, then in your table you'd have a number which refers to the most probable next words?
+
+## 10 bytes/ngram is best.
+
+## Variation in accuracy: 10-30%
+
+# Model Issues
+First is this, 
+1. SPACE OF MODEL
+2. RAM space used for searching
+3. cpu speed
+
+## Secondly is engineering issues: methods
+
+There are some that are both smaller and faster. 
+	
+	- Compression - keep more in cache.
+
+# measurements
+10 bytes/ngram is good.
+
+# Classification is useful!
+
+So probably offense/defense should really go into "sports" category. 
+Then have a sports model.
+
+But also very difficult.
+
+# Programming languages:
+
+C++, Java with Clojure on Android.
+Python is used for trying out text processing, good unicode support.
+
+# Punctuation is important.
+
+# do throw away the 1s, unless you can get more data to make them not 1s. 
+## Backoff model so things you remove are considered?

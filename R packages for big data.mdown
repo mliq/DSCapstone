@@ -1,0 +1,80 @@
+R packages for big data
+====
+
+[](http://www.slideshare.net/bytemining/r-hpc)
+bigmemory
+ff
+HadoopStreaming
+Rhipe
+
+# big family - bigmemory, biganalytics, bigtabulate
+
+filebacked.big.matrix. remember matrices contain only one type of data.
+
+creates a pointer to a C++ matrix on disk.
+
+So... I need to make a .csv file with my data, then I can search it quickly using this package... 
+
+Sounds like from bigmemory-vignette.pdf that the ff package may be better.
+
+# ff
+
+perhaps I must take the TDM first to a data.frame?
+
+names=dimnames(b.tdm)$Terms, counts=
+
+Counts<-ff(counts)
+ffBlogs<-ffdf(names=names(Counts),freq=Counts)
+ffsave(ffBlogs,file="Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-Swiftkey/final/en_US/ffBlogs")
+
+# Hadoop
+
+Sounds like hadoop is the way to go?
+
+library(HadoopStreaming)
+
+library(Rhipe) more "r" like.
+but more complicated?
+
+## mahout - scalable machine learning libs
+## Lucene - an efficient indexer for information retreival
+## Nutch on top of Lucene search
+
+He recommends to stick with ff and bigmemory for 10GB, for larger go to Hadoop.
+Of course, I would love to learn Hadoop.
+
+# Amazon EC2?
+
+# Elastic MapReduce?
+
+# databases that can be called from R? (SQL)
+
+
+# [Scalability](https://class.coursera.org/datasci-002/lecture/71)
+
+Scale-up - upgrade a machine
+Scale-out - over many machines
+
+Ability to deal with data is actually going down, 
+perhaps only N*logN operations can be done rather than N^2 or N^4 (something concrete which could be distributed over many machines, k )
+
+## algorithmic complexity orders
+O stands for order.
+algorithmic complexity order N: O(N) - "Order N"
+	means 40 items, we do 40 operations.
+sort, start in middle, now we know which way to go, eliminated half the records.
+	This is O(log(N)), although sort is N(log(N)), but that may be available already, making this scalable.
+
+relational databases like SQL have a lot of this code baked in already.
+
+[](file:///C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Big-O%20Algorithm%20Complexity%20Cheat%20Sheet.html)
+## Monte carlo simulations - 
+understand stochastically, running thousands of simulations and averaging rather than modeling exactly.
+
+# [Algorithms I, Stanford](https://class.coursera.org/algo-006/lecture)
+
+# [Mining Massive Datasets, Stanford](https://class.coursera.org/mmds-001/lecture)
+
+# [](http://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/)
+
+# [](http://www.rdatamining.com)

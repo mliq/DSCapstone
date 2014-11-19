@@ -1,0 +1,7 @@
+Task 2 To do List
+----
+
+Overview:
+Our aim is to get a finite list of probabilities for what the next word is. We are building an equation that tells us this.
+
+1. Start and end sentence token insert as in Stanford course? (<s>, </s>)
