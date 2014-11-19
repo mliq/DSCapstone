@@ -1,0 +1,59 @@
+MapReduce
+----
+
+# [MapReduce Abstractions](https://class.coursera.org/datasci-002/lecture/67)
+
+On dataset of 1,000,000 good number of machines to Map phase is 10,000.
+
+So Map function takes a document and produces many things such as individual words from a document.
+
+Reduce then groups them such as in a frequency table (25 "the")
+
+Hadoop is an implementation of MapReduce.
+
+Data model - files
+A file = bag of (key, value) pairs
+Input: (inputkey, value)
+Output: (outputkey, value)
+
+Assumption that keys and values are relatively small (not terabytes). Anything that fits on one machine.
+
+The map phase produces an (intermediate key, value)
+System applies map to all keys in parallel.
+
+Reduce Input is (intermediate key, bag of values) (so multiple map functions can have the same intermediate key and it will be grouped by Reduce function.) Could be in a bag or an iterator.
+
+Output: list(out_value)
+
+## So for my map reduce
+
+Map breaks each document/line into individual words, passes them to reduce.
+Reduce creates the TDM / Frequency matrix.
+This is really nothing new. 
+
+# [PseudoCode](https://class.coursera.org/datasci-002/lecture/73)
+Some questions to consider: How many key-value pairs are you emitting per document? How could you reduce that number?
+
+You can have Map do more, ie counting and combining each document individually so less for Reduce to put together.
+
+Reduce Loop:
+int result =0
+for each v in intermediate_values
+result += v;
+
+# Social media example
+3 phases:
+Map, Shuffle, Reduce
+Map counts each
+Shuffle says X(1,1,1) (puts in piles)
+Finally Reduce adds to X(3) (quantifies/counts piles)
+
+# Matrix Multiplication (dot product)
+
+so a 4X2 matrix * 2X4, you multiply Row1 of first element-wise times corresponding element in Column1 of second and sum.
+
+don't bother to emit 0 tuples.
+
+So you go by rows of first matrix, columns of second.
+Resulting matrix had #columns=#rows of first input, #rows=#columns of second input.
+

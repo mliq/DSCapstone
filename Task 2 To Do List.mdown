@@ -4,4 +4,25 @@ Task 2 To do List
 Overview:
 Our aim is to get a finite list of probabilities for what the next word is. We are building an equation that tells us this.
 
-1. Start and end sentence token insert as in Stanford course? (<s>, </s>)
+1. Figure out how to efficiently (memory-wise) do a unigram model to start. 
+	
+	1. MapReduce - https://class.coursera.org/datasci-002/lecture/67
+
+2. Add bigrams and trigrams, interpolation and smoothing techniques from Week 1 of https://class.coursera.org/nlp/lecture.
+	
+	1. Start and end sentence token insert as in Stanford course? (<s>, </s>)
+
+3. Classification / unusual situations
+
+	1. Make a database which finds all sentences which have 2 unusual words together, (like offense/defense).
+	Another way to say it - are there certain words that are highly probable to be together in one sentence, though they are unusual overall?
+
+----
+In fact, perhaps building a sentence database is the first step. [Inverted Index](https://class.coursera.org/datasci-002/lecture/77)
+
+1. Question: Can i use SQLShare? or SQL in general?
+	Hm... maybe in the future but as is I don't think it is setup for this?
+	
+
+# Break to sentences first.
+strsplit=
