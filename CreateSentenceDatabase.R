@@ -59,8 +59,9 @@ twit10<-lapply(twit9,FUN=function(x) gsub("\\s+$", "", x))
 # Replace ~ and any whitespace around with just one space
 twit11<-lapply(twit10,FUN=function(x) gsub("\\s*~\\s*", " ", x))
 # Eliminate empty and single letter values (more?)
-twit12[which(nchar(twit12)==1)]=NULL
-twit12[which(nchar(twit12)==0)]=NULL
+twit11[which(nchar(unlist(unlist(twit11)))==1)]=NULL
+twit11[which(nchar(unlist(unlist(twit11)))==0)]=NULL
+twit12=unlist(twit11)
 
 ##########################
 # Stop the clock
