@@ -69,7 +69,22 @@ twit12=unlist(twit11)
 ########################## 
 # BUILD ASSOCIATED WORDS DATABASE (ALL FOUND IN SAME SENTENCE)  #
 ##########################
-library(tm)
+# Further Transformations
+# lower and stem, can be done without TM or i will still use TM?
+# library(tm)
+# corpus <- tm_map(corpus, content_transformer(tolower))
+# corpus <- tm_map(corpus, stemDocument)
+
+######
+#Create filehash database
+library(filehash)
+dbCreate("mydb")
+db <- dbInit("mydb")
+
+#Insert data to database
+dbInsert(db, "a", rnorm(100))
+# Here we have associated with the key “a” 100 standard normal random variates. We can retrieve those values with dbFetch.
+value <- dbFetch(db, "a")
 
 
 
