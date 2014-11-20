@@ -24,5 +24,26 @@ In fact, perhaps building a sentence database is the first step. [Inverted Index
 	Hm... maybe in the future but as is I don't think it is setup for this?
 	
 
-# Break to sentences first.
-strsplit=
+# Break to sentences first. DONE
+
+## Question: Should I insert start and end tokens? 
+I think this would only be useful in a full fledged model where I was trying to really predict people typing... i dunno really what is the point?
+
+# Using this sentence data, we can create map to 4 different databases:
+
+## ASSOCIATED WORDS:  returns a list of all words that fall in the same sentence as that word?
+Lets build this first since it is a new concept...
+So for this, we can use findAssoc.
+
+### Is stemDocument really that great?
+
+## TRI,BI,UNIGRAMS.
+And.
+
+After we have the basic model to build all above, 
+we will need to work on making it work over all the data.
+Options:
+1. AWS
+2. a formula that goes piece by piece then offloads to disk. At the end, the disk pieces can be combined in a separate operation?
+3. ff package or other. *PCorpus? filehash??*
+4. SIMPLY CUTTING a lot out... Replacing them with <UNK>, which could be a trigger to look towards related sentence words only?
