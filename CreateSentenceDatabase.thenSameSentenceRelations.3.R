@@ -101,25 +101,20 @@ library("filehash")
 filehashOption("DB1")
 dbCreate("t.ass")
 db <- dbInit("t.ass", type="DB1")
-
+x=2
 lapply(1:length(t.ass),FUN=function(x){
 key=dimnames(t.ass[[x]])[[2]]
 new=t.ass[[x]][1:length(t.ass[[x]])]
 names(new)=dimnames(t.ass[[x]])[[1]]
 # [3] Error in names(new) = dimnames(t.ass[[x]])[[1]] : 'names' attribute [8] must be the same length as the vector [5]
-
 if(dbExists(db,key)==TRUE)
 {
-existing=dbFetch(db,key)
-# insert new values after old
-dbInsert(db,key,c(existing,new))
-# insert new names after old
-names(db[[key]])=c(dimnames(existing),dimnames(new))
+existing=db[[key]]
+db[[key]]=c(new,existing)
 }
 else
 {
-dbInsert(db,key,new)
-names(db[[key]])=dimnames(new)
+db[[key]]=new
 }
 })
 
