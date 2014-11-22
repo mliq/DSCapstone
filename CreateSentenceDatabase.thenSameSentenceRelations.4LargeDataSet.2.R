@@ -98,34 +98,28 @@ return(tdm)}
 ########################## 
 ########################## 
 
+library("filehash")
+filehashOption("DB1")
+dbCreate("t.ass")
+db <- dbInit("t.ass", type="DB1")
+
 assocsToDB<-function(x){
 tdm <- makeTDM(x)
 # Create a matrix of associations.
 ass<-lapply(dimnames(tdm)$Terms,FUN=function(x){findAssocs(tdm,x,0)})
 #clean out nulls. NOTE - why do i have stuff separated by periods though??
 ass[which(lapply(1:length(ass),FUN=function(x){is.null(dimnames(ass[[x]]))==1})==TRUE)]=NULL
-}
-
-# We should test this first on 1, 20000 lines might already be too much?
-assocsToDB(twit[[1]])
-
-lapply(twit,assocsToDB)
 #########################################
 # Create filehash database
-
 # 2 is the key word, 1 are the values.
 # so names will be dimnames(t.ass[[x]][1])
 # values will be: t.ass[[1]][1:length(t.ass[[1]])]
-library("filehash")
-filehashOption("DB1")
-dbCreate("t.ass")
-db <- dbInit("t.ass", type="DB1")
-x=2
-lapply(1:length(t.ass),FUN=function(x){
-key=dimnames(t.ass[[x]])[[2]]
-new=t.ass[[x]][1:length(t.ass[[x]])]
-names(new)=dimnames(t.ass[[x]])[[1]]
-# [3] Error in names(new) = dimnames(t.ass[[x]])[[1]] : 'names' attribute [8] must be the same length as the vector [5]
+
+lapply(1:length(ass),FUN=function(x){
+key=dimnames(ass[[x]])[[2]]
+new=ass[[x]][1:length(ass[[x]])]
+names(new)=dimnames(ass[[x]])[[1]]
+
 if(dbExists(db,key)==TRUE)
 {
 existing=db[[key]]
@@ -136,6 +130,17 @@ else
 db[[key]]=new
 }
 })
+}
+
+
+
+# We should test this first on 1, 20000 lines might already be too much?
+assocsToDB(twit[[1]][1:100])
+# wow this is taking FOREVER. I'll give it until... 4 pm maybe (1 hour total?) and then I may need to end it. I should have tested it first on a smaller set... The chunk thing that is.
+# I don't really understand either why it's not expanding in size in the t.ass file...
+
+#lapply(twit,assocsToDB)
+
 
 # Stop the clock
 proc.time() - ptm
