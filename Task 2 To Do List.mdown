@@ -53,3 +53,7 @@ But i still don't understand best way to get Corpus into that.
 
 *I guess PCorpus is not useful because it will be the TDM and frequency tables that I want to access permanently, not the Corpus.*
 
+# OK next step: 
+1. make sure I can get the results in a format I can use.... 
+2. Then I can run it on all Twitter.
+3. 
