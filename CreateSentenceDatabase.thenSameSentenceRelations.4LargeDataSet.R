@@ -27,9 +27,16 @@ line=end+1
 i=i+1
 }
 output[[i]]<-text[line:totalLines]
-# Text Transformations to remove odd characters #
 # CONVERT TO ASCII
 output=lapply(output,FUN=iconv, to='ASCII', sub=' ')
+}
+
+twit<-fileMunge("en_US.twitter.txt")
+
+# Process each element of list into Sentences
+
+process<- function(output) {
+# Text Transformations to remove odd characters #
 # replace APOSTROPHES OF 2 OR MORE with space - WHY??? that never happens..
 	# output=lapply(output,FUN= function(x) gsub("'{2}", " ",x))
 # Replace numbers with spaces... not sure why to do that yet either.
@@ -62,8 +69,10 @@ output[which(nchar(unlist(unlist(output)))==0)]=NULL
 output=unlist(output)
 }
 
-twit<-fileMunge("en_US.twitter.txt")
+twit2<-lapply(twit,process)
 
+# Stop the clock
+proc.time() - ptm
 ########################## 
 # END SENTENCE CREATION  #
 ##########################
@@ -93,8 +102,7 @@ t.ass[which(lapply(1:length(t.ass),FUN=function(x){is.null(dimnames(t.ass[[x]]))
 #########################################
 # Create filehash database
 
-# So, I want to re-write my lapply function so that it stores the numbers first, then the names.
-# hm what is the 2 here for? Ah, 2 is the key word, 1 are the values.
+# 2 is the key word, 1 are the values.
 # so names will be dimnames(t.ass[[x]][1])
 # values will be: t.ass[[1]][1:length(t.ass[[1]])]
 library("filehash")

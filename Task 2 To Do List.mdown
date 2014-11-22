@@ -54,8 +54,11 @@ But i still don't understand best way to get Corpus into that.
 *I guess PCorpus is not useful because it will be the TDM and frequency tables that I want to access permanently, not the Corpus.*
 
 # OK next step: 
-1. make sure I can get the results in a format I can use.... 
-2. will need to deal with unfound terms like "ain't"..
+1. I need to make the filehashing a function that runs on each chunk individually so that memory is not overloaded.
+
 2. Then I can run it on all Twitter to see how feasible it is size/speed-wise.
+
+Predictions:
+1. will need to deal with unfound terms like "ain't"..
 
 3. 
