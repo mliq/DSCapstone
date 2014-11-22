@@ -78,10 +78,6 @@ proc.time() - ptm
 ########################## 
 # END SENTENCE CREATION  #
 ########################## 
-##########################
-# FOLLOWING MUST GO ONE CHUNK AT A TIME #
-########################## 
-########################## 
 ########################## 
 # BUILD ASSOCIATED WORDS DATABASE (ALL FOUND IN SAME SENTENCE)  #
 ##########################
@@ -96,14 +92,24 @@ tdm<- TermDocumentMatrix(corpus)
 #tdm<-removeSparseTerms(tdm,0.97)
 return(tdm)}
 
-t.tdm <- makeTDM(twit)
+########################## 
+##########################
+# FOLLOWING MUST GO ONE CHUNK AT A TIME #
+########################## 
+########################## 
 
-#########################################
-# Create a matrix of associations. or just straight to db.
-# this is the slowest part... do i need it?
-t.ass<-lapply(dimnames(t.tdm)$Terms,FUN=function(x){findAssocs(t.tdm,x,0)})
+assocsToDB<-function(x){
+tdm <- makeTDM(x)
+# Create a matrix of associations.
+ass<-lapply(dimnames(tdm)$Terms,FUN=function(x){findAssocs(tdm,x,0)})
 #clean out nulls. NOTE - why do i have stuff separated by periods though??
-t.ass[which(lapply(1:length(t.ass),FUN=function(x){is.null(dimnames(t.ass[[x]]))==1})==TRUE)]=NULL
+ass[which(lapply(1:length(ass),FUN=function(x){is.null(dimnames(ass[[x]]))==1})==TRUE)]=NULL
+}
+
+# We should test this first on 1, 20000 lines might already be too much?
+assocsToDB(twit[[1]])
+
+lapply(twit,assocsToDB)
 #########################################
 # Create filehash database
 
