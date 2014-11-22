@@ -84,6 +84,9 @@ proc.time() - ptm
 # tdm: lowercase, stem, TDM
 
 library(tm)
+library(RWeka)
+TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+
 makeTDM <- function(x) {
 corpus<-Corpus(VectorSource(x))
 corpus <- tm_map(corpus, content_transformer(tolower))
@@ -92,22 +95,50 @@ tdm<- TermDocumentMatrix(corpus)
 #tdm<-removeSparseTerms(tdm,0.97)
 return(tdm)}
 
+
+makeTriTDM <- function(x) {
+corpus<-Corpus(VectorSource(x))
+corpus <- tm_map(corpus, content_transformer(tolower))
+corpus <- tm_map(corpus, stemDocument)
+tdm<- TermDocumentMatrix(corpus, control = list(tokenize = TgramTokenizer))
+#tdm<-removeSparseTerms(tdm,0.97)
+return(tdm)}
+
+
 ########################## 
 ##########################
 # FOLLOWING MUST GO ONE CHUNK AT A TIME #
 ########################## 
 ########################## 
 
+# database creation (CHANGE FILENAME!)
 library("filehash")
 filehashOption("DB1")
-dbCreate("t.ass")
-db <- dbInit("t.ass", type="DB1")
+dbCreate("t.tri")
+db <- dbInit("t.tri", type="DB1")
+
+# Trigram to DB function
+library(slam)
+trigramToDB<-function(x){
+tdm <- makeTriTDM(x)
+# create vector of total frequencies
+
+counts=row_sums(b.tdm)
+# for each row x:
+# assign counts[x] to names(counts[x]) in db
+
+tris<-
+# rows<-grep(x,names(counts))
+#names=names(counts[rows]),counts=counts[rows]
+
+}
+
 
 assocsToDB<-function(x){
 tdm <- makeTDM(x)
 # Create a matrix of associations.
 ass<-lapply(dimnames(tdm)$Terms,FUN=function(x){findAssocs(tdm,x,0)})
-#clean out nulls. NOTE - why do i have stuff separated by periods though??
+# Clean out nulls. NOTE - why do i have stuff separated by periods though??
 ass[which(lapply(1:length(ass),FUN=function(x){is.null(dimnames(ass[[x]]))==1})==TRUE)]=NULL
 #########################################
 # Create filehash database
@@ -136,18 +167,14 @@ db[[key]]=new
 
 # We should test this first on 1, 20000 lines might already be too much?
 assocsToDB(twit[[1]][1:100])
-# ok this worked, but below does not, so what is the diff?
-assocsToDB(twit[[1]])
-
 
 # Start the clock!
 ptm <- proc.time()
 
-assocsToDB(twit[[1]][1:length(twit[[1]])])
+assocsToDB(twit[[1]])
 
 # Stop the clock
 proc.time() - ptm
-## OK this could be working, i mean it will take a while to make the TDM so let's give it a chance.
 
 # wow this is taking FOREVER. I'll give it until... 4 pm maybe (1 hour total?) and then I may need to end it. I should have tested it first on a smaller set... The chunk thing that is.
 # I don't really understand either why it's not expanding in size in the t.ass file...

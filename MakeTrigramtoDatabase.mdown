@@ -136,18 +136,14 @@ db[[key]]=new
 
 # We should test this first on 1, 20000 lines might already be too much?
 assocsToDB(twit[[1]][1:100])
-# ok this worked, but below does not, so what is the diff?
-assocsToDB(twit[[1]])
-
 
 # Start the clock!
 ptm <- proc.time()
 
-assocsToDB(twit[[1]][1:length(twit[[1]])])
+assocsToDB(twit[[1]])
 
 # Stop the clock
 proc.time() - ptm
-## OK this could be working, i mean it will take a while to make the TDM so let's give it a chance.
 
 # wow this is taking FOREVER. I'll give it until... 4 pm maybe (1 hour total?) and then I may need to end it. I should have tested it first on a smaller set... The chunk thing that is.
 # I don't really understand either why it's not expanding in size in the t.ass file...
