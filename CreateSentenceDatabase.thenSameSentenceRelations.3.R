@@ -84,33 +84,81 @@ return(tdm)}
 
 t.tdm <- makeTDM(twit)
 
-##########################
-
-######
+#########################################
 # Create a matrix of associations. or just straight to db.
-
+# this is the slowest part... do i need it?
 t.ass<-lapply(dimnames(t.tdm)$Terms,FUN=function(x){findAssocs(t.tdm,x,0)})
-
 #clean out nulls. NOTE - why do i have stuff separated by periods though??
 t.ass[which(lapply(1:length(t.ass),FUN=function(x){is.null(dimnames(t.ass[[x]]))==1})==TRUE)]=NULL
-
 #########################################
-
 # Create filehash database
-library(filehash)
+
+# So, I want to re-write my lapply function so that it stores the numbers first, then the names.
+# hm what is the 2 here for? Ah, 2 is the key word, 1 are the values.
+# so names will be dimnames(t.ass[[x]][1])
+# values will be: t.ass[[1]][1:length(t.ass[[1]])]
+library("filehash")
 filehashOption("DB1")
 dbCreate("t.ass")
 db <- dbInit("t.ass", type="DB1")
-lapply(1:length(t.ass),FUN=function(x){
-if(dbExists(db, dimnames(t.ass[[x]])[[2]])==TRUE){temp<-dbFetch(db,dimnames(t.ass[[x]])[[2]])
-dbInsert(db,dimnames(t.ass[[x]])[[2]],c(dimnames(t.ass[[x]])[[1]][1:length(t.ass[[1]])],temp))
-}else{
-dbInsert(db,dimnames(t.ass[[x]])[[2]],dimnames(t.ass[[x]])[[1]][1:length(t.ass[[1]])])
-}})
 
+lapply(1:length(t.ass),FUN=function(x){
+key=dimnames(t.ass[[x]])[[2]]
+new=t.ass[[x]][1:length(t.ass[[x]])]
+names(new)=dimnames(t.ass[[x]])[[1]]
+# [3] Error in names(new) = dimnames(t.ass[[x]])[[1]] : 'names' attribute [8] must be the same length as the vector [5]
+
+if(dbExists(db,key)==TRUE)
+{
+existing=dbFetch(db,key)
+# insert new values after old
+dbInsert(db,key,c(existing,new))
+# insert new names after old
+names(db[[key]])=c(dimnames(existing),dimnames(new))
+}
+else
+{
+dbInsert(db,key,new)
+names(db[[key]])=dimnames(new)
+}
+})
+
+# Stop the clock
+proc.time() - ptm
+####################################
+#-
+####################################
 # load already created database:
 library(filehash)
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+db <- dbInit("t.ass", type="DB1")
 
+# Get associations from a test set: #
+
+# input test set
+test<-fileMunge("test2.txt")
+test.tdm<-makeTDM(test)
+
+# Get list of sentence 1 terms:
+test1<-dimnames(test.tdm[which(inspect(test.tdm[,1]!=0)),1])$Terms
+# Fetch from DB frequent terms for first word of first sentence:
+term=test1[2]
+corrs=db[[term]]
+terms=dimnames(db[[term]])
+
+# Fuck the dimnames don't come out. I don't know why
+
+inspect(test.tdm[,1])
+which(inspect(test.tdm[,1]!=0))
+inspect(test.tdm[which(inspect(test.tdm[,1]!=0)),1])
+# OK that got me what I want now I want just the dimnames i guess.
+length(dimnames(test.tdm[which(inspect(test.tdm[,1]!=0)),1])$Terms)
+test1<-dimnames(test.tdm[which(inspect(test.tdm[,1]!=0)),1])$Terms
+# What was the purpose of making TDM? Will I use frequency? Perhaps.
+# So now i want to call up the file associations for each term, the more frequent may be given more weight later.
+test1.db<-dbFetch(db,test1[2])
+# 1. will need to deal with unfound terms like "ain't"
+# 2. how do i get the correlation number? It does not appear to be here.
 
 #########################################
 #########################################
@@ -120,6 +168,12 @@ library(filehash)
 # Stop the clock
 #proc.time() - ptm
 
+#########################################
+## Eliminate empties:
+dbReorganize(db)
+db <- dbInit("t.ass", type="DB1")
+##
+#########################################
 #########################################
 #########################################
 
@@ -191,3 +245,23 @@ value <- dbFetch(db, "a")
 # twit12<-twit10[unlist(twit11) != ""] 
 
 # dimnames(t.tdm)$Terms 
+
+# library(filehash)
+# filehashOption("DB1")
+# dbCreate("t.ass")
+# db <- dbInit("t.ass", type="DB1")
+# lapply(1:length(t.ass),FUN=function(x){
+# if(dbExists(db, dimnames(t.ass[[x]])[[2]])==TRUE){temp<-dbFetch(db,dimnames(t.ass[[x]])[[2]])
+# dbInsert(db,dimnames(t.ass[[x]])[[2]],c(dimnames(t.ass[[x]])[[1]][1:length(t.ass[[1]])],temp))
+# }else{
+# dbInsert(db,dimnames(t.ass[[x]])[[2]],dimnames(t.ass[[x]])[[1]][1:length(t.ass[[1]])])
+# }})
+# # Now I want to store the correlation factor, not just the word. Can I do this with lists? or is there a Dictionary like function? or Data frames?
+# # First let's test it with one word "ain't" well that won't work it's not in the corpus. So but then. Oh but we are testing made up data first.
+# dbInsert(db,"ain't",c(dog=.50,cat=.75))
+# dbInsert(db,"ain't",c(.20,.3))
+# dbInsert(db,"ain't",names("aint")<-c("dog","cat"))
+# names(db["ain't"])=c("dog","cat")
+# # THIS worked:
+# names(db$"ain't")=c("dog","cat")
+# db$"ain't"
