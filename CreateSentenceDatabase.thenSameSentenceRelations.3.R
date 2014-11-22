@@ -138,10 +138,14 @@ test.tdm<-makeTDM(test)
 test1<-dimnames(test.tdm[which(inspect(test.tdm[,1]!=0)),1])$Terms
 # Fetch from DB frequent terms for first word of first sentence:
 term=test1[2]
-corrs=db[[term]]
-terms=dimnames(db[[term]])
 
-# Fuck the dimnames don't come out. I don't know why
+corrs=db[[term]]
+
+# OK so corrs[[x]] gets just the number, 
+# names(corrs)[x] gets the term.
+
+####################################
+####################################
 
 inspect(test.tdm[,1])
 which(inspect(test.tdm[,1]!=0))

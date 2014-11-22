@@ -55,5 +55,7 @@ But i still don't understand best way to get Corpus into that.
 
 # OK next step: 
 1. make sure I can get the results in a format I can use.... 
-2. Then I can run it on all Twitter.
+2. will need to deal with unfound terms like "ain't"..
+2. Then I can run it on all Twitter to see how feasible it is size/speed-wise.
+
 3. 
