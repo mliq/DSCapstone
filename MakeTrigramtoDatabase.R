@@ -31,7 +31,7 @@ output[[i]]<-text[line:totalLines]
 output=lapply(output,FUN=iconv, to='ASCII', sub=' ')
 }
 
-twit<-fileMunge("en_US.twitter.txt")
+twit<-fileMunge("en_US.twitter.txt") 
 
 # Process each element of list into Sentences
 

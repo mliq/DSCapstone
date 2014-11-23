@@ -9,8 +9,10 @@ potential to run findAssoc ever?
 Apparently I could use up to 4096 MB on shiny by running:
 `shinyapps::configureApp("APPNAME", size="xxlarge")`
 but potential for being forced down to 256.
+http://shiny.rstudio.com/articles/shinyapps.html
+For now though I guess we should develop for *4096* because any shrinking will sacrifice speed and accuracy.
 
-For now though I guess we should develop for 4096 because any shrinking will sacrifice speed and accuracy.
+We shall see but it seems U,B,Tfreq may be about 1GB per corpus so that would work.
 
 2. 	Abandoning disk-writing approaches because they are way too slow.
 

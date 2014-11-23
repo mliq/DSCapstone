@@ -1,0 +1,493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0058)http://www.inside-r.org/howto/how-generate-random-number-r -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" hc="a3" class="js" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>How to generate a random number in R | inside-R | A Community Site for R</title>
+    
+<link rel="shortcut icon" href="http://www.inside-r.org/sites/all/themes/rweb/favicon.ico" type="image/x-icon">
+    <link type="text/css" rel="stylesheet" media="all" href="./How to generate a random number in R   inside-R   A Community Site for R_files/css_e7e6890575179c6e19db2a7135928170.css">
+<link type="text/css" rel="stylesheet" media="print" href="./How to generate a random number in R   inside-R   A Community Site for R_files/css_2f8a9213003983ca173e57dd3b576aac.css">
+    <!--[if lte IE 6]><style type="text/css" media="all">@import "/sites/all/themes/rweb/css/ie6.css";</style><![endif]-->
+    <!--[if IE 7]><style type="text/css" media="all">@import "/sites/all/themes/rweb/css/ie7.css";</style><![endif]-->
+    <script type="text/javascript" async="" src="./How to generate a random number in R   inside-R   A Community Site for R_files/munchkin.js"></script><script type="text/javascript" src="./How to generate a random number in R   inside-R   A Community Site for R_files/js_2fb44906c3831b546f6f8f2a4909f2aa.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","fivestar":{"titleUser":"Your rating: ","titleAverage":"Average: ","feedbackSavingVote":"Saving your vote...","feedbackVoteSaved":"Your vote has been saved.","feedbackDeletingVote":"Deleting your vote...","feedbackVoteDeleted":"Your vote has been deleted."},"custom_search":{"form_target":"_self","solr":1}});
+//--><!]]>
+</script>
+  <style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+
+  <body class="not-front not-logged-in page-node node-type-tutorial one-sidebar sidebar-right show-grid">
+  
+         
+    <div id="skip-nav"><a href="http://www.inside-r.org/howto/how-generate-random-number-r#content">Skip to Content</a></div>  
+    <div id="page" class="container-12 clearfix">
+
+    <!-- ______________________ HEADER _______________________ -->
+
+  <div id="header">
+
+              <div id="navigation-secondary" class="grid-10 prefix-2 clearfix">
+          <ul class="links secondary-links">
+                      <li class="first"><a href="http://www.inside-r.org/user/login">log in</a></li>
+                      <li class="last"><a href="http://www.inside-r.org/rss">rss</a></li>
+          </ul>
+      </div><!-- /#navigation-secondary -->
+      
+    <div class="header-row clearfix">
+
+      <div id="logo" class="grid-2">
+        <a id="logo" href="http://www.inside-r.org/" title="inside-r home" rel="home nofollow"><img src="./How to generate a random number in R   inside-R   A Community Site for R_files/logo.png" alt="inside-R logo"></a>
+      </div> <!-- /logo -->
+
+              <div id="navigation-primary" class=" grid-10 menu with-main-menu with-sub-menu">
+          <ul id="primary" class="links main-menu"><li class="menu-279 first"><a href="http://www.inside-r.org/blogs" title="R blogs and news">Blogs</a></li>
+<li class="menu-3022"><a href="http://www.inside-r.org/r-doc" title="R language documentation">R Language</a></li>
+<li class="menu-2815"><a href="http://www.inside-r.org/packages" title="Crantastic R packages">R Packages</a></li>
+<li class="menu-2897 active"><a href="http://www.inside-r.org/howto" title="Tips and tricks about R" class="active">How to</a></li>
+<li class="menu-3117"><a href="http://www.inside-r.org/pretty-r" title="Pretty R syntax highlighter">Pretty R</a></li>
+<li class="menu-3194 last"><a href="http://www.inside-r.org/download" title="Download R now">Get R</a></li>
+</ul>        </div> <!-- /navigation -->
+      
+    </div><!-- /header-row -->
+
+    <div class="header-row clearfix">
+
+              <div id="tagline" class="grid-6"><div id="tagline-inner">A Community Site for R – Sponsored by Revolution Analytics</div></div>
+      
+              <div id="search-box" class="grid-6"><div id="search-box-inner">
+          <form action="./How to generate a random number in R   inside-R   A Community Site for R_files/How to generate a random number in R   inside-R   A Community Site for R.html" accept-charset="UTF-8" method="post" id="search-theme-form" class="search-form" target="_self">
+<div><div id="search" class="container-inline">
+  <div class="form-item" id="edit-search-theme-form-1-wrapper">
+ <input type="text" maxlength="128" name="search_theme_form" id="edit-search-theme-form-1" size="15" value="" class="form-text cleardefault">
+</div>
+<fieldset class="custom_search-popup custom_search-processed"><a class="custom_search-popup-close" href="http://www.inside-r.org/howto/how-generate-random-number-r#">Close</a></fieldset>
+<input type="submit" name="op" id="edit-submit-1" value="GO" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-16d47d5f8055909ec860a0d5345ae341" value="form-16d47d5f8055909ec860a0d5345ae341">
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form">
+<input type="hidden" name="default_text" id="edit-default-text-1" value="" class="default-text">
+</div>
+
+</div></form>
+        </div></div> <!-- /#search-box -->
+      
+    </div><!-- /header-row -->
+    
+      <div id="masthead" class="grid-12 clearfix">
+        <img src="./How to generate a random number in R   inside-R   A Community Site for R_files/masthead.jpg" alt="RWeb masthead">
+      </div>
+
+  </div><!-- /#header -->
+
+    <!-- ______________________ MAIN _______________________ -->
+
+    <div id="main" class="grid-9 clearfix">
+    
+      <div id="content">
+        <div id="content-inner" class="inner column center">
+
+          
+                      <div id="content-header">
+
+              <div class="breadcrumb"><a href="http://www.inside-r.org/">Home</a> » <a href="http://www.inside-r.org/howto">How to</a> » How to generate a random number in R</div>
+                              <h1 class="title">How to generate a random number in R</h1>
+              
+              
+               
+
+              
+            </div> <!-- /#content-header -->
+          
+          <div id="content-area">
+            
+<div class="node tutorial " id="node-26826">
+  <div class="node-inner">
+
+    
+    <div class="meta clearfix">
+        <div class="picture">
+  <a href="http://www.inside-r.org/users/david-smith" title="View user profile."><img src="./How to generate a random number in R   inside-R   A Community Site for R_files/picture-4.png" alt="David Smith&#39;s picture" title="David Smith&#39;s picture"></a></div>
+        
+        <div class="byline">
+          <div class="author-name">By <a href="http://www.inside-r.org/users/david-smith" title="View user profile.">David Smith</a></div> 
+                      <span class="submitted">&nbsp;on <span class="timestamp">July 21, 2010</span></span>
+                  </div>
+    </div>
+
+    <div class="content">
+      <p>As a language for statistical analysis, R has a comprehensive library of functions for generating random numbers from various statistical distributions. &nbsp;In this post, I want to focus on the simplest of questions: How do I generate a random number?</p>
+<p>The answer depends on what kind&nbsp;of random number you want to generate. &nbsp;Let's illustrate by example.</p>
+<h3>Generate a random number between 5.0 and 7.5</h3>
+<p>If you want to generate a decimal number where any value (including fractional values) between the stated minimum and maximum is equally likely, use the <span class="geshifilter"><code class="r geshifilter-r"><a href="http://inside-r.org/r-doc/stats/runif"><span style="color: #003399; font-weight: bold;">runif</span></a></code></span> function. This function generates values from the Uniform distribution. Here's how to generate one random number between 5.0 and 7.5:</p>
+<div class="geshifilter">
+<pre class="r geshifilter-r" style="font-family:monospace;"><span style="">&gt;</span> x1 <span style="">&lt;-</span> <a href="http://inside-r.org/r-doc/stats/runif"><span style="color: #003399; font-weight: bold;">runif</span></a><span style="color: #009900;">(</span><span style="color: #cc66cc;">1</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">5.0</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">7.5</span><span style="color: #009900;">)</span>
+<span style="">&gt;</span> x1
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">]</span> <span style="color: #cc66cc;">6.715697</span></pre></div>
+<p>Of course, when you run this, you'll get a different number, but it will definitely be between 5.0 and 7.5. You won't get the values 5.0 or 7.5 exactly, either.</p>
+<p>If you want to generate multiple random values, don't use a loop. You can generate several values at once by specifying the number of values you want as the first argument to <span class="geshifilter"><code class="r geshifilter-r"><a href="http://inside-r.org/r-doc/stats/runif"><span style="color: #003399; font-weight: bold;">runif</span></a></code></span>.  Here's how to generate 10 values between 5.0 and 7.5:</p>
+<div class="geshifilter">
+<pre class="r geshifilter-r" style="font-family:monospace;"><span style="">&gt;</span> x2 <span style="">&lt;-</span> <a href="http://inside-r.org/r-doc/stats/runif"><span style="color: #003399; font-weight: bold;">runif</span></a><span style="color: #009900;">(</span><span style="color: #cc66cc;">10</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">5.0</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">7.5</span><span style="color: #009900;">)</span>
+<span style="">&gt;</span> x2
+ <span style="color: #009900;">[</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">]</span> <span style="color: #cc66cc;">6.339188</span> <span style="color: #cc66cc;">5.311788</span> <span style="color: #cc66cc;">7.099009</span> <span style="color: #cc66cc;">5.746380</span> <span style="color: #cc66cc;">6.720383</span> <span style="color: #cc66cc;">7.433535</span> <span style="color: #cc66cc;">7.159988</span>
+ <span style="color: #009900;">[</span><span style="color: #cc66cc;">8</span><span style="color: #009900;">]</span> <span style="color: #cc66cc;">5.047628</span> <span style="color: #cc66cc;">7.011670</span> <span style="color: #cc66cc;">7.030854</span></pre></div>
+<h3>Generate a random integer between 1 and 10</h3>
+<p>This looks like the same exercise as the last one, but now we only want whole numbers, not fractional values. For that, we use the <span class="geshifilter"><code class="r geshifilter-r"><a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a></code></span> function:</p>
+<div class="geshifilter">
+<pre class="r geshifilter-r" style="font-family:monospace;"><span style="">&gt;</span> x3 <span style="">&lt;-</span> <a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a><span style="color: #009900;">(</span><span style="color: #cc66cc;">1</span><span style="">:</span><span style="color: #cc66cc;">10</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">1</span><span style="color: #009900;">)</span>
+<span style="">&gt;</span> x3
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">]</span> <span style="color: #cc66cc;">4</span></pre></div>
+<p>The first argument is a vector of valid numbers to generate (here, the numbers 1 to 10), and the second argument indicates one number should be returned. If we want to generate more than one random number, we have to add an additional argument to indicate that repeats are allowed:</p>
+<div class="geshifilter">
+<pre class="r geshifilter-r" style="font-family:monospace;"><span style="">&gt;</span> x4 <span style="">&lt;-</span> <a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a><span style="color: #009900;">(</span><span style="color: #cc66cc;">1</span><span style="">:</span><span style="color: #cc66cc;">10</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">5</span><span style="color: #339933;">,</span> <a href="http://inside-r.org/r-doc/base/replace"><span style="color: #003399; font-weight: bold;">replace</span></a>=T<span style="color: #009900;">)</span>
+<span style="">&gt;</span> x4
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">]</span> <span style="color: #cc66cc;">6</span> <span style="color: #cc66cc;">9</span> <span style="color: #cc66cc;">7</span> <span style="color: #cc66cc;">6</span> <span style="color: #cc66cc;">5</span></pre></div>
+<p>Note the number 6 appears twice in the 5 numbers generated. (Here's a fun exercise: what is the probability of running this command and having no repeats in the 5 numbers generated?)</p>
+<h3>Select 6 random numbers between 1 and 40, without replacement<br></h3>
+<p>If you wanted to simulate the lotto game common to many countries, where you randomly select 6 balls from 40 (each labelled with a number from 1 to 40), you'd again use the sample function, but this time without replacement:</p>
+<div class="geshifilter">
+<pre class="r geshifilter-r" style="font-family:monospace;"><span style="">&gt;</span> x5 <span style="">&lt;-</span> <a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a><span style="color: #009900;">(</span><span style="color: #cc66cc;">1</span><span style="">:</span><span style="color: #cc66cc;">40</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">6</span><span style="color: #339933;">,</span> <a href="http://inside-r.org/r-doc/base/replace"><span style="color: #003399; font-weight: bold;">replace</span></a>=F<span style="color: #009900;">)</span>
+<span style="">&gt;</span> x5
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">]</span> <span style="color: #cc66cc;">10</span> <span style="color: #cc66cc;">21</span> <span style="color: #cc66cc;">29</span> <span style="color: #cc66cc;">12</span>  <span style="color: #cc66cc;">7</span> <span style="color: #cc66cc;">31</span></pre></div>
+<p>You'll get a different 6 numbers when you run this, but they'll all be between 1 and 40 (inclusive), and no number will repeat. Also, you don't actually need to include the <span class="geshifilter"><code class="r geshifilter-r"><a href="http://inside-r.org/r-doc/base/replace"><span style="color: #003399; font-weight: bold;">replace</span></a>=F</code></span> option -- sampling without replacement is the default -- but it doesn't hurt to include it for clarity.</p>
+<h3>Select 10 items from a list of 50</h3>
+<p>You can use this same idea to generate a random subset of any vector, even one that doesn't contain numbers. For example, to select 10 distinct states of the US at random:</p>
+<div class="geshifilter">
+<pre class="r geshifilter-r" style="font-family:monospace;"><span style="">&gt;</span> <a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a><span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/datasets/state.name"><span style="color: #003399; font-weight: bold;">state.name</span></a><span style="color: #339933;">,</span> <span style="color: #cc66cc;">10</span><span style="color: #009900;">)</span>
+ <span style="color: #009900;">[</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Virginia"</span>     <span style="color: #0000ff;">"Oklahoma"</span>     <span style="color: #0000ff;">"Maryland"</span>     <span style="color: #0000ff;">"Michigan"</span>    
+ <span style="color: #009900;">[</span><span style="color: #cc66cc;">5</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Alaska"</span>       <span style="color: #0000ff;">"South Dakota"</span> <span style="color: #0000ff;">"Minnesota"</span>    <span style="color: #0000ff;">"Idaho"</span>       
+ <span style="color: #009900;">[</span><span style="color: #cc66cc;">9</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Indiana"</span>      <span style="color: #0000ff;">"Connecticut"</span> </pre></div>
+<p>You can't sample more values than you have without allowing replacements:</p>
+<div class="geshifilter">
+<pre class="r geshifilter-r" style="font-family:monospace;"><span style="">&gt;</span> <a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a><span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/datasets/state.name"><span style="color: #003399; font-weight: bold;">state.name</span></a><span style="color: #339933;">,</span> <span style="color: #cc66cc;">52</span><span style="color: #009900;">)</span>
+Error <span style="color: #000000; font-weight: bold;">in</span> <a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a><span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/datasets/state.name"><span style="color: #003399; font-weight: bold;">state.name</span></a><span style="color: #339933;">,</span> <span style="color: #cc66cc;">52</span><span style="color: #009900;">)</span> <span style="">:</span> 
+  cannot take a <a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a> larger than the population when <span style="color: #0000ff;">'replace = FALSE'</span></pre></div>
+<p>... but sampling exactly the number you do have is a great way to randomize the order of a vector. Here are the 50 states of the US, in random order:</p>
+<div class="geshifilter">
+<pre class="r geshifilter-r" style="font-family:monospace;"><span style="">&gt;</span> <a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a><span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/datasets/state.name"><span style="color: #003399; font-weight: bold;">state.name</span></a><span style="color: #339933;">,</span> <span style="color: #cc66cc;">50</span><span style="color: #009900;">)</span>
+ <span style="color: #009900;">[</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"California"</span>     <span style="color: #0000ff;">"Iowa"</span>           <span style="color: #0000ff;">"Hawaii"</span>        
+ <span style="color: #009900;">[</span><span style="color: #cc66cc;">4</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Montana"</span>        <span style="color: #0000ff;">"South Dakota"</span>   <span style="color: #0000ff;">"North Dakota"</span>  
+ <span style="color: #009900;">[</span><span style="color: #cc66cc;">7</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Louisiana"</span>      <span style="color: #0000ff;">"Maine"</span>          <span style="color: #0000ff;">"Maryland"</span>      
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">10</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"New Hampshire"</span>  <span style="color: #0000ff;">"Rhode Island"</span>   <span style="color: #0000ff;">"Texas"</span>         
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">13</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Florida"</span>        <span style="color: #0000ff;">"North Carolina"</span> <span style="color: #0000ff;">"Minnesota"</span>     
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">16</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Arkansas"</span>       <span style="color: #0000ff;">"Pennsylvania"</span>   <span style="color: #0000ff;">"Colorado"</span>      
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">19</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Idaho"</span>          <span style="color: #0000ff;">"Connecticut"</span>    <span style="color: #0000ff;">"Utah"</span>          
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">22</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"South Carolina"</span> <span style="color: #0000ff;">"Illinois"</span>       <span style="color: #0000ff;">"Ohio"</span>          
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">25</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"New Jersey"</span>     <span style="color: #0000ff;">"Indiana"</span>        <span style="color: #0000ff;">"Wisconsin"</span>     
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">28</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Mississippi"</span>    <span style="color: #0000ff;">"Michigan"</span>       <span style="color: #0000ff;">"Wyoming"</span>       
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">31</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"West Virginia"</span>  <span style="color: #0000ff;">"Alaska"</span>         <span style="color: #0000ff;">"Georgia"</span>       
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">34</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Vermont"</span>        <span style="color: #0000ff;">"Virginia"</span>       <span style="color: #0000ff;">"Oklahoma"</span>      
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">37</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Washington"</span>     <span style="color: #0000ff;">"New Mexico"</span>     <span style="color: #0000ff;">"New York"</span>      
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">40</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Delaware"</span>       <span style="color: #0000ff;">"Nevada"</span>         <span style="color: #0000ff;">"Alabama"</span>       
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">43</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Kentucky"</span>       <span style="color: #0000ff;">"Missouri"</span>       <span style="color: #0000ff;">"Oregon"</span>        
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">46</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Tennessee"</span>      <span style="color: #0000ff;">"Arizona"</span>        <span style="color: #0000ff;">"Massachusetts"</span> 
+<span style="color: #009900;">[</span><span style="color: #cc66cc;">49</span><span style="color: #009900;">]</span> <span style="color: #0000ff;">"Kansas"</span>         <span style="color: #0000ff;">"Nebraska"</span> </pre></div>
+<p>You could also have just used <span class="geshifilter"><code class="r geshifilter-r"><a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a><span style="color: #009900;">(</span><a href="http://inside-r.org/r-doc/datasets/state.name"><span style="color: #003399; font-weight: bold;">state.name</span></a><span style="color: #009900;">)</span></code></span> for the same result -- sampling as many values as provided is the default.</p>
+<h3>Further reading</h3>
+<p>For more information about how R generates random numbers, check out the following help pages: <span class="geshifilter"><code class="r geshifilter-r"><a href="http://inside-r.org/r-doc/stats/runif"><span style="color: #003399; font-weight: bold;">runif</span></a></code></span>, and <span class="geshifilter"><code class="r geshifilter-r"><a href="http://inside-r.org/r-doc/base/sample"><span style="color: #003399; font-weight: bold;">sample</span></a></code></span>. <span class="geshifilter"><code class="r geshifilter-r"><a href="http://inside-r.org/r-doc/base/.Random.seed"><span style="color: #003399; font-weight: bold;">.Random.seed</span></a></code></span> provides technical detail on the random number generator R uses, and how you can set the random seed to recreate strings of random numbers.</p>
+    </div>
+
+          <div class="tags"><ul class="links inline"><li class="taxonomy_term_54 first"><a href="http://www.inside-r.org/taxonomy/term/54" rel="tag" title="">Distributions</a></li>
+<li class="taxonomy_term_170 last"><a href="http://www.inside-r.org/category/tags/random-numbers" rel="tag" title="">random numbers</a></li>
+</ul></div>
+    
+     
+      <div class="links"> <ul class="links inline"><li class="comment_forbidden first last"></li>
+</ul></div>
+    
+  </div> <!-- /node-inner -->
+</div> <!-- /node-->
+
+<div id="comments">
+  <h2 class="title">Comments</h2>
+  <a id="comment-1100"></a>
+<div class="comment  odd clear-block">
+  <div class="comment-inner">
+
+
+    <div class="picture">
+  <img src="./How to generate a random number in R   inside-R   A Community Site for R_files/avatar-default.png" alt="Anonymous&#39;s picture" title="Anonymous&#39;s picture"></div>
+    
+    <div class="comment-content">
+    
+      <div class="submitted">
+        by <span class="username">Anonymous</span> on Jan 14, 2011      </div>
+  
+      <div class="content">
+        <p>For a more information on random number generators and True random number generators, the vignette for the "accuracy" package is worth looking at.</p>
+      </div>
+  
+              <div class="links">
+          <ul class="links"><li class="comment_forbidden first last"></li>
+</ul>        </div>
+        
+    </div><!-- /comment-content -->
+
+  </div> <!-- /comment-inner -->
+</div> <!-- /comment --><a id="comment-1102"></a>
+<div class="comment  even clear-block">
+  <div class="comment-inner">
+
+
+    <div class="picture">
+  <img src="./How to generate a random number in R   inside-R   A Community Site for R_files/avatar-default.png" alt="Anonymous&#39;s picture" title="Anonymous&#39;s picture"></div>
+    
+    <div class="comment-content">
+    
+      <div class="submitted">
+        by <span class="username">Anonymous</span> on Mar 30, 2011      </div>
+  
+      <div class="content">
+        <p>Thanks Dave, I like these how to guides.  Hope you keep them coming!</p>
+      </div>
+  
+              <div class="links">
+          <ul class="links"><li class="comment_forbidden first last"></li>
+</ul>        </div>
+        
+    </div><!-- /comment-content -->
+
+  </div> <!-- /comment-inner -->
+</div> <!-- /comment --><a id="comment-1170"></a>
+<div class="comment  odd clear-block">
+  <div class="comment-inner">
+
+
+    <div class="picture">
+  <img src="./How to generate a random number in R   inside-R   A Community Site for R_files/avatar-default.png" alt="Anonymous&#39;s picture" title="Anonymous&#39;s picture"></div>
+    
+    <div class="comment-content">
+    
+      <div class="submitted">
+        by <span class="username">Anonymous</span> on May 16, 2011      </div>
+  
+      <div class="content">
+        <p>Thanks for posting this article...</p>
+      </div>
+  
+              <div class="links">
+          <ul class="links"><li class="comment_forbidden first last"></li>
+</ul>        </div>
+        
+    </div><!-- /comment-content -->
+
+  </div> <!-- /comment-inner -->
+</div> <!-- /comment --><a id="comment-1233"></a>
+<div class="comment  even clear-block">
+  <div class="comment-inner">
+
+
+    <div class="picture">
+  <img src="./How to generate a random number in R   inside-R   A Community Site for R_files/avatar-default.png" alt="Anonymous&#39;s picture" title="Anonymous&#39;s picture"></div>
+    
+    <div class="comment-content">
+    
+      <div class="submitted">
+        by <span class="username">Anonymous</span> on Jun 22, 2011      </div>
+  
+      <div class="content">
+        <p>Hello, could you please advise me how to generate correlated random numbers for a single vector?<br>
+Thanks in advance for your help.</p>
+      </div>
+  
+              <div class="links">
+          <ul class="links"><li class="comment_forbidden first last"></li>
+</ul>        </div>
+        
+    </div><!-- /comment-content -->
+
+  </div> <!-- /comment-inner -->
+</div> <!-- /comment --></div>          </div> <!-- /#content-area -->
+
+          
+          </div>
+        </div> <!-- /content-inner /content -->
+
+      </div> <!-- /main -->
+
+      <!-- ______________________ RIGHT SIDEBAR _______________________ -->
+
+              <div id="right-sidebar" class="column sidebar grid-3 clearfix">
+          <div id="right-sidebar-inner" class="inner">
+              <div id="block-custom_search_blocks-3" class="clear-block block block-custom_search_blocks ">
+
+
+  <div class="block-inner">
+
+          <h3 class="title block-title">Search How To</h3>
+    
+    <div class="content">
+      <form action="./How to generate a random number in R   inside-R   A Community Site for R_files/How to generate a random number in R   inside-R   A Community Site for R.html" accept-charset="UTF-8" method="post" id="custom-search-blocks-form-3" class="search-form" target="_self">
+<div><div class="form-item" id="edit-custom-search-blocks-form-3-1-wrapper">
+ <label class="element-invisible" for="edit-custom-search-blocks-form-3-1">Search this site: </label>
+ <input type="text" maxlength="128" name="custom_search_blocks_form_3" id="edit-custom-search-blocks-form-3-1" size="15" value="" title="Enter the terms you wish to search for." class="form-text  custom-search-default-value custom-search-box">
+</div>
+<fieldset class="custom_search-popup custom_search-processed"><a class="custom_search-popup-close" href="http://www.inside-r.org/howto/how-generate-random-number-r#">Close</a></fieldset>
+<input type="hidden" name="custom_search_types" id="edit-custom-search-types" value="c-tutorial" class="custom-search-selector custom-search-types">
+<input type="hidden" name="delta" id="edit-delta" value="3">
+<input type="hidden" name="form_build_id" id="form-849df7b0162b3cf17fe8e42430dda1a0" value="form-849df7b0162b3cf17fe8e42430dda1a0">
+<input type="hidden" name="form_id" id="edit-custom-search-blocks-form-3" value="custom_search_blocks_form_3">
+<input type="hidden" name="default_text" id="edit-default-text" value="" class="default-text">
+<input type="submit" name="op" id="edit-submit" value="GO" class="form-submit">
+
+</div></form>
+    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->              <div id="block-block-6" class="clear-block block block-block ">
+
+
+  <div class="block-inner">
+
+          <h3 class="title block-title">About: How to...</h3>
+    
+    <div class="content">
+      <p>This section includes tips and tricks about R contributed by R users. Add your own suggestion, tips, and "How to..." guides for R by <a href="http://www.inside-r.org/user/login">logging in</a> to Inside-R.org.</p>
+<p>User contributions to this section are contributed under a <a href="http://creativecommons.org/licenses/by-sa/2.5/" target="_blank">cc-wiki</a> license with attribution (to Inside-R.org and the contributing user) required.</p>
+    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->  <div id="block-block-2" class="clear-block block block-block ">
+
+
+  <div class="block-inner">
+
+          <h3 class="title block-title">About inside-R.org</h3>
+    
+    <div class="content">
+      <p>inside-R.org is a collection of resources about the open-source <a href="http://www.r-project.org/" target="_blank">R Project</a> for the R Statistics Community. This site is sponsored by Revolution Analytics.</p>
+<p>Follow <a href="http://twitter.com/inside_R" target="_blank">@inside_R</a> on Twitter for updates about this site.</p>
+<p>If you have questions or ideas for the site, please send us an email at <a href="mailto:community@inside-R.org">community@inside-R.org</a>.</p>
+    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->  <div id="block-block-3" class="clear-block block block-block ">
+
+
+  <div class="block-inner">
+
+          <h3 class="title block-title">Information about R</h3>
+    
+    <div class="content">
+      <ul>
+<li><a href="http://www.inside-r.org/what-is-r">What is R?</a></li>
+<li><a href="http://www.inside-r.org/why-use-r">Why use R?</a></li>
+<li><a href="http://www.inside-r.org/r-resources-web">Resources for R</a></li>
+</ul>
+    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->  <div id="block-views-method_reference-block_2" class="clear-block block block-views ">
+
+
+  <div class="block-inner">
+
+          <h3 class="title block-title">How to... tags</h3>
+    
+    <div class="content">
+      <div class="view view-method-reference view-id-method_reference view-display-id-block_2 view-dom-id-1">
+    
+  
+  
+      <div class="view-content">
+      <div class="tagadelic_views"><a href="http://www.inside-r.org/category/tags/accrual" class="tagadelic level1" rel="tag">accrual</a> 
+<a href="http://www.inside-r.org/category/tags/automatic-forecast" class="tagadelic level1" rel="tag">automatic forecast</a> 
+<a href="http://www.inside-r.org/category/tags/bayesian-models" class="tagadelic level1" rel="tag">Bayesian models</a> 
+<a href="http://www.inside-r.org/category/tags/bayesian-predictive-distribution" class="tagadelic level1" rel="tag">Bayesian predictive distribution</a> 
+<a href="http://www.inside-r.org/category/tags/cluster-analysis" class="tagadelic level1" rel="tag">cluster analysis</a> 
+<a href="http://www.inside-r.org/category/tags/contest" class="tagadelic level6" rel="tag">contest</a> 
+<a href="http://www.inside-r.org/category/tags/contest-dl" class="tagadelic level5" rel="tag">contest-dl</a> 
+<a href="http://www.inside-r.org/category/tags/demonstration" class="tagadelic level1" rel="tag">Demonstration</a> 
+<a href="http://www.inside-r.org/category/tags/direct-marketing" class="tagadelic level1" rel="tag">direct marketing</a> 
+<a href="http://www.inside-r.org/category/tags/fuzzy-cluster" class="tagadelic level1" rel="tag">fuzzy cluster</a> 
+<a href="http://www.inside-r.org/category/tags/healthcare" class="tagadelic level1" rel="tag">healthcare</a> 
+<a href="http://www.inside-r.org/category/tags/hybrid-systems" class="tagadelic level1" rel="tag">hybrid systems</a> 
+<a href="http://www.inside-r.org/category/tags/large-data" class="tagadelic level1" rel="tag">large data</a> 
+<a href="http://www.inside-r.org/category/tags/manufacturing" class="tagadelic level1" rel="tag">manufacturing</a> 
+<a href="http://www.inside-r.org/category/tags/mapping" class="tagadelic level1" rel="tag">mapping</a> 
+<a href="http://www.inside-r.org/category/tags/pairs-trading" class="tagadelic level1" rel="tag">Pairs Trading</a> 
+<a href="http://www.inside-r.org/category/tags/quality-improvement" class="tagadelic level1" rel="tag">quality improvement</a> 
+<a href="http://www.inside-r.org/category/tags/r" class="tagadelic level1" rel="tag">R</a> 
+<a href="http://www.inside-r.org/category/tags/randomized-clinical-trial" class="tagadelic level1" rel="tag">randomized clinical trial</a> 
+<a href="http://www.inside-r.org/category/tags/reporting" class="tagadelic level1" rel="tag">reporting</a> 
+<a href="http://www.inside-r.org/category/tags/revolution-r" class="tagadelic level1" rel="tag">revolution r</a> 
+<a href="http://www.inside-r.org/category/tags/revolution-r-enterprise" class="tagadelic level1" rel="tag">Revolution R Enterprise</a> 
+<a href="http://www.inside-r.org/category/tags/salzgitter-ag" class="tagadelic level1" rel="tag">Salzgitter AG</a> 
+<a href="http://www.inside-r.org/category/tags/salzgitter-flachstahl-gmbh" class="tagadelic level1" rel="tag">Salzgitter Flachstahl GmbH</a> 
+<a href="http://www.inside-r.org/category/tags/salzgitter-mannesmann-forschung-gmbh" class="tagadelic level1" rel="tag">Salzgitter Mannesmann Forschung GmbH</a> 
+<a href="http://www.inside-r.org/category/tags/steel-plant" class="tagadelic level1" rel="tag">Steel Plant</a> 
+<a href="http://www.inside-r.org/category/tags/survey-models" class="tagadelic level1" rel="tag">survey models</a> 
+<a href="http://www.inside-r.org/taxonomy/term/77" class="tagadelic level1" rel="tag">Sweave</a> 
+<a href="http://www.inside-r.org/category/tags/time-series" class="tagadelic level3" rel="tag">time series</a> 
+</div>    </div>
+  
+      <div class="item-list"><ul class="pager"><li class="pager-previous first">&nbsp;</li>
+<li class="pager-current">1 of 3</li>
+<li class="pager-next last"><a href="http://www.inside-r.org/howto/how-generate-random-number-r?page=1" class="active">››</a></li>
+</ul></div>  
+  
+      
+<div class="more-link">
+  <a href="http://www.inside-r.org/howto">
+    read more  </a>
+</div>
+  
+  
+  
+</div>     </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->          </div> <!-- /sidebar-right-inner -->
+        </div> <!-- /sidebar-right -->
+       
+
+    </div> <!-- /page -->
+
+      <!-- ______________________ FOOTER _______________________ -->
+
+              <div id="footer" class="container-12 clearfix">
+          <div class="footer-menu">
+              <div id="block-menu-menu-footer" class="clear-block block block-menu ">
+
+
+  <div class="block-inner">
+
+    
+    <div class="content">
+      <ul class="menu"><li class="leaf first"><a href="http://www.inside-r.org/contact" title="">Contact us</a></li>
+<li class="leaf last"><a href="http://www.inside-r.org/terms-and-conditions" title="Terms and conditions">Terms and conditions</a></li>
+</ul>    </div>
+
+    
+  </div> <!-- /block-inner -->
+</div> <!-- /block -->          </div>
+        </div> <!-- /footer -->
+      
+        <script src="./How to generate a random number in R   inside-R   A Community Site for R_files/munchkin(1).js" type="text/javascript"></script> <script>mktoMunchkin("224-FMR-259");</script>
+
+        <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script src="./How to generate a random number in R   inside-R   A Community Site for R_files/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      try { var pageTracker = _gat._getTracker("UA-6984166-8"); pageTracker._trackPageview(); } catch(err) {}
+    </script>
+
+      
+<div><div id="SL_button" class="ImTranslatorLogo" style="display: none;"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="display: none;"><div id="SL_planshet"><div id="SL_TB"><div class="ImTranslatorLogo"></div><table cellspacing="1" border="0" id="SL_tables"><tbody><tr><td class="SL_td" align="left" width="20%"><div id="SL_lng_from">English&nbsp;»</div></td><td class="SL_td" align="left" width="20%"><div id="SL_to_"><div id="SL_tocurlng" style="margin-left:5px;">Spanish</div><div class="SL_arrow"></div><div id="SL_to_list" style="display=" none'=""><div class="SL_DDMENU"><div id="SL_af" class="SL_limenu">Afrikaans</div><div id="SL_sq" class="SL_limenu">Albanian</div><div id="SL_ar" class="SL_limenu">Arabic</div><div id="SL_hy" class="SL_limenu">Armenian</div><div id="SL_az" class="SL_limenu">Azerbaijani</div><div id="SL_eu" class="SL_limenu">Basque</div><div id="SL_bn" class="SL_limenu">Bengali</div><div id="SL_be" class="SL_limenu">Belarusian</div><div id="SL_bg" class="SL_limenu">Bulgarian</div><div id="SL_ca" class="SL_limenu">Catalan</div><div id="SL_zh_CN" class="SL_limenu">Chinese&nbsp;(Simp)</div><div id="SL_zh_TW" class="SL_limenu">Chinese&nbsp;(Trad)</div><div id="SL_hr" class="SL_limenu">Croatian</div><div id="SL_cs" class="SL_limenu">Czech</div><div id="SL_da" class="SL_limenu">Danish</div><div id="SL_nl" class="SL_limenu">Dutch</div><div id="SL_en" class="SL_limenu">English</div><div id="SL_eo" class="SL_limenu">Esperanto</div><div id="SL_et" class="SL_limenu">Estonian</div><div id="SL_tl" class="SL_limenu">Filipino</div><div id="SL_fi" class="SL_limenu">Finnish</div><div id="SL_fr" class="SL_limenu">French</div><div id="SL_gl" class="SL_limenu">Galician</div><div id="SL_ka" class="SL_limenu">Georgian</div><div id="SL_de" class="SL_limenu">German</div><div id="SL_el" class="SL_limenu">Greek</div><div id="SL_gu" class="SL_limenu">Gujarati</div><div id="SL_ht" class="SL_limenu">Haitian&nbsp;Creole</div><div id="SL_iw" class="SL_limenu">Hebrew</div><div id="SL_hi" class="SL_limenu">Hindi</div><div id="SL_hu" class="SL_limenu">Hungarian</div><div id="SL_is" class="SL_limenu">Icelandic</div><div id="SL_id" class="SL_limenu">Indonesian</div><div id="SL_ga" class="SL_limenu">Irish</div><div id="SL_it" class="SL_limenu">Italian</div><div id="SL_ja" class="SL_limenu">Japanese</div><div id="SL_kn" class="SL_limenu">Kannada</div><div id="SL_ko" class="SL_limenu">Korean</div><div id="SL_lo" class="SL_limenu">Lao</div><div id="SL_la" class="SL_limenu">Latin</div><div id="SL_lv" class="SL_limenu">Latvian</div><div id="SL_lt" class="SL_limenu">Lithuanian</div><div id="SL_mk" class="SL_limenu">Macedonian</div><div id="SL_ms" class="SL_limenu">Malay</div><div id="SL_mt" class="SL_limenu">Maltese</div><div id="SL_no" class="SL_limenu">Norwegian</div><div id="SL_fa" class="SL_limenu">Persian</div><div id="SL_pl" class="SL_limenu">Polish</div><div id="SL_pt" class="SL_limenu">Portuguese</div><div id="SL_ro" class="SL_limenu">Romanian</div><div id="SL_ru" class="SL_limenu">Russian</div><div id="SL_sr" class="SL_limenu">Serbian</div><div id="SL_sk" class="SL_limenu">Slovak</div><div id="SL_sl" class="SL_limenu">Slovenian</div><div id="SL_es" class="SL_limenu">Spanish</div><div id="SL_sw" class="SL_limenu">Swahili</div><div id="SL_sv" class="SL_limenu">Swedish</div><div id="SL_ta" class="SL_limenu">Tamil</div><div id="SL_te" class="SL_limenu">Telugu</div><div id="SL_th" class="SL_limenu">Thai</div><div id="SL_tr" class="SL_limenu">Turkish</div><div id="SL_uk" class="SL_limenu">Ukrainian</div><div id="SL_ur" class="SL_limenu">Urdu</div><div id="SL_vi" class="SL_limenu">Vietnamese</div><div id="SL_cy" class="SL_limenu">Welsh</div><div id="SL_yi" class="SL_limenu">Yiddish</div></div></div></div><select id="SL_lng_to"><option value="af">Afrikaans</option><option value="sq">Albanian</option><option value="ar">Arabic</option><option value="hy">Armenian</option><option value="az">Azerbaijani</option><option value="eu">Basque</option><option value="bn">Bengali</option><option value="be">Belarusian</option><option value="bg">Bulgarian</option><option value="ca">Catalan</option><option value="zh-CN">Chinese&nbsp;(Simp)</option><option value="zh-TW">Chinese&nbsp;(Trad)</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option value="en">English</option><option value="eo">Esperanto</option><option value="et">Estonian</option><option value="tl">Filipino</option><option value="fi">Finnish</option><option value="fr">French</option><option value="gl">Galician</option><option value="ka">Georgian</option><option value="de">German</option><option value="el">Greek</option><option value="gu">Gujarati</option><option value="ht">Haitian&nbsp;Creole</option><option value="iw">Hebrew</option><option value="hi">Hindi</option><option value="hu">Hungarian</option><option value="is">Icelandic</option><option value="id">Indonesian</option><option value="ga">Irish</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="kn">Kannada</option><option value="ko">Korean</option><option value="lo">Lao</option><option value="la">Latin</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="mk">Macedonian</option><option value="ms">Malay</option><option value="mt">Maltese</option><option value="no">Norwegian</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sr">Serbian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option selected="" value="es">Spanish</option><option value="sw">Swahili</option><option value="sv">Swedish</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="yi">Yiddish</option></select></td><td class="SL_td" width="13%" align="center">&nbsp;</td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title=""></div></td><td class="SL_td" width="8%" align="center"><div class="SL_copy_hand" id="SL_copy" title="Select text"></div></td><td class="SL_td" width="8%" align="center"><div class="SL_font_off" id="SL_bbl_font" title="Font size"></div></td><td class="SL_td" width="5%"></td><td class="SL_td" width="8%" align="right"><div class="SL_pin_off" id="SL_pin" title="Pin pup-up bubble"></div></td></tr></tbody></table></div></div><div id="SL_shadow_translation_result"></div><div id="SL_bbl_donate" title="Make a small contribution"></div><div id="SL_Balloon_options"><a href="chrome-extension://pcfaommkmdjacdkbaoohklbccfmbnnod/options-bbl.html" target="_blank" class="SL_options" title="Show options">Options</a></div></div></div><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

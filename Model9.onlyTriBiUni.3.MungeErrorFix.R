@@ -26,46 +26,42 @@ return(corpus)
 
 # My original model worked by having a nested list where each chunk contained lines, so 2 levels. Make sure process returns the same.
 
-process<- function(output) {
+process<- function(x) {
 # Text Transformations to remove odd characters #
 # replace APOSTROPHES OF 2 OR MORE with space - WHY??? that never happens..
 	# output=lapply(output,FUN= function(x) gsub("'{2}"rr, " ",x))
 # Replace numbers with spaces... not sure why to do that yet either.
 	# output=lapply(output,FUN= function(x) gsub("[0-9]", " ",x))
 # Erase commas.
-output=lapply(output,FUN=function(x) gsub(",?", "", x))
+x=gsub(",?", "", x)
 # Erase ellipsis
-output=lapply(output,FUN=function(x) gsub("\\.{3,}", "", x))
+x=gsub("\\.{3,}", "", x)
 # Erase colon
-output=lapply(output,FUN=function(x) gsub("\\:", "", x))
+x=gsub("\\:", "", x)
 ##### SENTENCE SPLITTING AND CLEANUP
 # Split into sentences only on single periods or any amount of question marks or exclamation marks and -
 # ok here is where you change structure fundamentally... 
-output<-strsplit(output[[1]],"[\\.]{1}")
-output<-strsplit(unlist(output),"\\?+")
-output<-strsplit(unlist(output),"\\!+")
-output<-strsplit(unlist(output),"\\-+")
+x<-strsplit(unlist(x),"[\\.]{1}")
+x<-strsplit(unlist(x),"\\?+")
+x<-strsplit(unlist(x),"\\!+")
+x<-strsplit(unlist(x),"\\-+")
 # Split also on parentheses
-output<-strsplit(unlist(output),"\\(+")
-output<-strsplit(unlist(output),"\\)+")
+x<-strsplit(unlist(x),"\\(+")
+x<-strsplit(unlist(x),"\\)+")
 # split also on quotation marks
-output<-strsplit(unlist(output),"\\\"")
+x<-strsplit(unlist(x),"\\\"")
 # remove spaces at start and end of sentences:
-output<-lapply(output,FUN=function(x) gsub("^\\s+", "", x))
-output<-lapply(output,FUN=function(x) gsub("\\s+$", "", x))
+x<-gsub("^\\s+", "", x)
+x<-gsub("\\s+$", "", x)
 # Replace ~ and any whitespace around with just one space
-output<-lapply(output,FUN=function(x) gsub("\\s*~\\s*", " ", x))
+x<-gsub("\\s*~\\s*", " ", x)
 # Replace forward slash with space
-output<-lapply(output,FUN=function(x) gsub("\\/", " ", x))
+x<-gsub("\\/", " ", x)
 # Replace + signs with space
-output<-lapply(output,FUN=function(x) gsub("\\+", " ", x))
+x<-gsub("\\+", " ", x)
 # Eliminate empty and single letter values (more?)
-output[which(nchar(unlist(unlist(output)))==1)]=NULL
-output[which(nchar(unlist(unlist(output)))==0)]=NULL
-# so original has chunks where each is a list
-# after all this instead i have many chunks. Which obviously will slow shit down... 
-output=unlist(output)
-# Running this puts all back in a single list. This may also be bad though because it is too long. Can I break it to chunks again?
+x=x[which(nchar(x)!=1)]
+x=x[which(nchar(x)!=0)]
 }
 
 # Tokenizer functions
@@ -77,30 +73,9 @@ UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
 
 fileMunge<- function(x) {
 text<-readLines(x) #, warn=FALSE,encoding="UTF-8",skipNul=TRUE)
-totalLines=length(text)
-chunkSize=20000
-chunks=totalLines/chunkSize
-remainder = chunks %% 1
-wholeChunks = chunks-remainder
-
-# initialize list
-output=list()
-
-# break file into chunks 
-i=1
-line=1
-while (i<=wholeChunks){
-enrr=line+chunkSize-1
-output[[i]]<-text[line:end]
-line=end+1
-i=i+1
+text=iconv(text, to='ASCII', sub=' ')
 }
-output[[i]]<-text[line:totalLines]
 
-# Text Transformations to remove odd characters #
-output=lapply(output,FUN=iconv, to='ASCII', sub=' ')
-# replaced by unix iconv --unicode-subst=" " -t ASCII "en_US.news.txt" > "newsASCII"
-}
 #=============================================#
 #=============================================#
 
@@ -113,16 +88,16 @@ output=lapply(output,FUN=iconv, to='ASCII', sub=' ')
 text=fileMunge("en_US.twitter.txt")
 text=process(text)
 
-news<-makeCorpus(text)
+corpus<-makeCorpus(text)
 
-Ttdm<- TermDocumentMatrix(news, control = list(tokenize = TgramTokenizer))
+Ttdm<- TermDocumentMatrix(corpus, control = list(tokenize = TgramTokenizer))
 gc()
-Btdm<- TermDocumentMatrix(news, control = list(tokenize = BgramTokenizer))
+Btdm<- TermDocumentMatrix(corpus, control = list(tokenize = BgramTokenizer))
 gc()
-Utdm<- TermDocumentMatrix(news, control = list(tokenize = UgramTokenizer))
+Utdm<- TermDocumentMatrix(corpus, control = list(tokenize = UgramTokenizer))
 gc()
 
-rm(news)
+rm(corpus)
 
 #########################
 #BUILD PREDICTION TABLES#
@@ -151,8 +126,23 @@ setkey(Tfreq,grams)
 gc()
 
 # Stop the clock
-proc.time() - ptm # 50000 lines: 309.74 (5.15 minutes) 530MB
+proc.time() - ptm # 10000 news lines: 74 secs 1.23 minutes
 
+# so should be 109 minutes no oops i'm doing twitter again, so
+# 2360148; 236*1.23=291/60= 5 hours! shit.
+# guess I should maybe do that sampling thang...
+# 100,000 lines would take? 12 minutes.
+### CREATE TRAINING SET ###
+
+set.seed(42)
+t.train=sample(1:2360148,100000)
+text<-readLines("en_US.twitter.txt")
+text=iconv(text, to='ASCII', sub=' ')
+train=text[t.train]
+sink('t.train')
+train
+sink()
+saveRDS(train, file="t.train.RDS")
 
 # therefore, the full text of news corpus: 889288 = 100 minutes but potentially too much memory... 
 #but wait, how much does R use up naturally? I need to get individual object sizes:
