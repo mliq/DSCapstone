@@ -1,15 +1,13 @@
-# process training set #
-
+#Predictions:#
 # Start the clock!
 ptm <- proc.time()
 # SETUP #
 gc()
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
-train=readRDS("n.train.RDS")
 library(tm)
 library(RWeka)
 
-# FUNCTION DEFINITIONS #
+## FUNCTIONS ##
 
 # Make Corpus and do transformations
 makeCorpus<- function(x) {
@@ -18,7 +16,7 @@ corpus<-Corpus(VectorSource(x))
 corpus <- tm_map(corpus, content_transformer(tolower))
 # corpus <- tm_map(corpus, removeWords, stopwords("english"))
 corpus <- tm_map(corpus, stemDocument)
-# corpus<- tm_map(corpus,removePunctuation)
+corpus<- tm_map(corpus,removePunctuation)
 # corpus<- tm_map(corpus,removeNumbers)
 return(corpus)
 }
@@ -48,66 +46,43 @@ x<-strsplit(unlist(x),"\\)+")
 # split also on quotation marks
 x<-strsplit(unlist(x),"\\\"")
 # remove spaces at start and end of sentences:
-x<-gsub("^\\s+", "", x)
-x<-gsub("\\s+$", "", x)
+# HERE is where the problem begins. why?
+x<-gsub("^\\s+", "", unlist(x))
+x<-gsub("\\s+$", "", unlist(x))
 # Replace ~ and any whitespace around with just one space
-x<-gsub("\\s*~\\s*", " ", x)
+x<-gsub("\\s*~\\s*", " ", unlist(x))
 # Replace forward slash with space
-x<-gsub("\\/", " ", x)
+x<-gsub("\\/", " ", unlist(x))
 # Replace + signs with space
-x<-gsub("\\+", " ", x)
+x<-gsub("\\+", " ", unlist(x))
 # Eliminate empty and single letter values (more?)
 x=x[which(nchar(x)!=1)]
 x=x[which(nchar(x)!=0)]
 }
 
-# Tokenizer functions
-TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
-BgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
-UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
+## INPUT MUNGING ##
 
-# Corpus, transformations, and TDM Creation
-#=============================================#
+# Take an input:
+test=readLines("Quiz2.txt")
 
-corpus<-makeCorpus(train)
+# transform as training set was (lowercase, stem, strip punctuation etc.)
+test=iconv(test, to='ASCII', sub=' ')
+test=process(test)
+corpus<-makeCorpus(test)
+corpus<-unlist(lapply(corpus, FUN=function(x){as.character(x[1])}))
 
-Ttdm<- TermDocumentMatrix(corpus, control = list(tokenize = TgramTokenizer))
-gc()
-Btdm<- TermDocumentMatrix(corpus, control = list(tokenize = BgramTokenizer))
-gc()
-Utdm<- TermDocumentMatrix(corpus, control = list(tokenize = UgramTokenizer))
-gc()
+# Split by words:
+words<-lapply(corpus,FUN=function(x){unlist(strsplit(x,"\\s+"))})
 
-rm(corpus)
+## PREDICION TABLE LOOKUPS
 
-#########################
-#BUILD PREDICTION TABLES#
-#########################
 
-library(slam)
-library(data.table)
+# ok problem is my process did not remove )
+# perhaps strsplit splits but does not remove...
+# so i should include remove punctuation in the corpus?
+# no, that's not it, it's that we have "c() wrapped around everything for some reason."
+# ah well corpus is not being used anyway doh!
+# but what is with that c?
 
-counts=row_sums(Utdm)
-rm(Utdm)
-gc()
-Ufreq<-data.table(grams=names(counts), counts=counts)
-setkey(Ufreq,grams)
-
-counts=row_sums(Btdm)
-rm(Btdm)
-gc()
-Bfreq<-data.table(grams=names(counts), counts=counts)
-setkey(Bfreq,grams)
-
-counts=row_sums(Ttdm)
-rm(Ttdm)
-gc()
-Tfreq<-data.table(grams=names(counts), counts=counts)
-setkey(Tfreq,grams)
-gc()
-
-rm(counts)
-#rm(train)
-# Stop the clock
-proc.time() - ptm # 10000 news lines: 74 secs 1.23 minutes
-
+TEST:
+grep("\\)",test2[[13]][14])

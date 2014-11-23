@@ -5,7 +5,7 @@ ptm <- proc.time()
 # SETUP #
 gc()
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
-train=readRDS("n.train.RDS")
+train=readRDS("t.train.RDS")
 library(tm)
 library(RWeka)
 
@@ -68,6 +68,7 @@ UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
 
 # Corpus, transformations, and TDM Creation
 #=============================================#
+train=process(train)
 
 corpus<-makeCorpus(train)
 

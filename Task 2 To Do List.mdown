@@ -14,6 +14,11 @@ For now though I guess we should develop for *4096* because any shrinking will s
 
 We shall see but it seems U,B,Tfreq may be about 1GB per corpus so that would work.
 
+2. 
+Sample using biased coin?
+for each line:
+rbinom 
+
 2. 	Abandoning disk-writing approaches because they are way too slow.
 
 3. Back to original TDM model, but use removesparseterms to get down to total 4 GB in each TDM at least, potentially in all combined. Don't expect 100% accuracy.

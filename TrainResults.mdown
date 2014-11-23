@@ -1,0 +1,19 @@
+Results:
+
+t.train: 518 secs 110.3 MB
+b.train: 821 secs 324.7 MB
+n.train: 776 secs 293.8 MB
+
+#Mem check
+# list all
+sort( sapply(ls(),function(x){object.size(get(x))}))
+# total
+object.size(x=lapply(ls(), get))
+# pretty print total
+print(object.size(x=lapply(ls(), get)), units="Mb")
+
+## CRAP ##
+so i realize i completely left out process().
+and, it doesn't look so horrible but, I think I should try one with process and see how it goes.
+
+Let's just do t.train2 for now. OK fixed process also in my predictions.R (unlisting gsubs).

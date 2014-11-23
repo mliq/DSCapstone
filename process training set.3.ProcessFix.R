@@ -48,14 +48,15 @@ x<-strsplit(unlist(x),"\\)+")
 # split also on quotation marks
 x<-strsplit(unlist(x),"\\\"")
 # remove spaces at start and end of sentences:
-x<-gsub("^\\s+", "", x)
-x<-gsub("\\s+$", "", x)
+# HERE is where the problem begins. why?
+x<-gsub("^\\s+", "", unlist(x))
+x<-gsub("\\s+$", "", unlist(x))
 # Replace ~ and any whitespace around with just one space
-x<-gsub("\\s*~\\s*", " ", x)
+x<-gsub("\\s*~\\s*", " ", unlist(x))
 # Replace forward slash with space
-x<-gsub("\\/", " ", x)
+x<-gsub("\\/", " ", unlist(x))
 # Replace + signs with space
-x<-gsub("\\+", " ", x)
+x<-gsub("\\+", " ", unlist(x))
 # Eliminate empty and single letter values (more?)
 x=x[which(nchar(x)!=1)]
 x=x[which(nchar(x)!=0)]
@@ -68,6 +69,7 @@ UgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 1, max = 1))
 
 # Corpus, transformations, and TDM Creation
 #=============================================#
+train=process(train)
 
 corpus<-makeCorpus(train)
 
