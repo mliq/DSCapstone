@@ -1,17 +1,17 @@
+# Start the clock!
+ptm <- proc.time()
 ##########################
 
 # SETUP #
-# setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
 #options("max.print"=1000000)
 
 # Modify fileMunge to leave sentence separators intact and only take 10 lines for now.
 
-# Start the clock!
-ptm <- proc.time()
 fileMunge<- function(x) {
 text<-readLines(x)
 totalLines=length(text)
-chunkSize=10000
+chunkSize=20000
 chunks=totalLines/chunkSize
 remainder = chunks %% 1
 wholeChunks = chunks-remainder
@@ -74,6 +74,7 @@ output=unlist(output)
 twit<-lapply(twit,FUN=function(x){lapply(x,process)})
 # OK i think that worked, taking 514MB.
 # so.. twit2[[x]][[y]][z] where x=chunk, y=line, z=sentence
+# HERE is where I must accont for this extra layer? Yet, if I keep passing in twit[[1]] why do I??
 
 # Stop the clock
 proc.time() - ptm
@@ -86,9 +87,6 @@ proc.time() - ptm
 # tdm: lowercase, stem, TDM
 
 library(tm)
-library(RWeka)
-TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
-
 makeTDM <- function(x) {
 corpus<-Corpus(VectorSource(x))
 corpus <- tm_map(corpus, content_transformer(tolower))
@@ -97,57 +95,41 @@ tdm<- TermDocumentMatrix(corpus)
 #tdm<-removeSparseTerms(tdm,0.97)
 return(tdm)}
 
-
-makeTriTDM <- function(x) {
-corpus<-Corpus(VectorSource(x))
-corpus <- tm_map(corpus, content_transformer(tolower))
-corpus <- tm_map(corpus, stemDocument)
-tdm<- TermDocumentMatrix(corpus, control = list(tokenize = TgramTokenizer))
-#tdm<-removeSparseTerms(tdm,0.97)
-return(tdm)}
-
-
 ########################## 
 ##########################
 # FOLLOWING MUST GO ONE CHUNK AT A TIME #
 ########################## 
 ########################## 
 
-# database creation (CHANGE FILENAME!)
 library("filehash")
 filehashOption("DB1")
-dbCreate("t.tri")
-db <- dbInit("t.tri", type="DB1")
+dbCreate("t.ass")
+db <- dbInit("t.ass", type="DB1")
 
-# Trigram to DB function
-library(slam)
-trigramToDB<-function(x){
-tdm <- makeTriTDM(x)
-# create vector of total frequencies
-
-counts=row_sums(b.tdm)
-# for each row x:
-# assign counts[x] to names(counts[x]) in db
-
-tris<-
-# rows<-grep(x,names(counts))
-#names=names(counts[rows]),counts=counts[rows]
-
-}
-
+# ok I need to go through this step-by-step where x is a manageable size still.
+x=twit[[1]][1:500]
+# So, if i go 500 at a time. well hell just make 500 chunsize then.
+# so that will give me 4720 chunks, and take 16520 HOURS to process lol. so 3 years. Yeah that's not real tenable.
+# so for now let's work on the 
 
 assocsToDB<-function(x){
 tdm <- makeTDM(x)
 # Create a matrix of associations.
 ass<-lapply(dimnames(tdm)$Terms,FUN=function(x){findAssocs(tdm,x,0)})
-# Clean out nulls. NOTE - why do i have stuff separated by periods though??
+# OK this above step is taking quite a while on only 1764 rows, 500 docs, so scalability may be nil. Thus the problem is find assoc? Perhaps I need to do findAssoc only after I have trimmed words found less often. Move on to the trigram database.
+# so that took maybe 3 minutes. 
+#clean out nulls. NOTE - why do i have stuff separated by periods though??
 ass[which(lapply(1:length(ass),FUN=function(x){is.null(dimnames(ass[[x]]))==1})==TRUE)]=NULL
+# that took nothing
+
 #########################################
 # Create filehash database
 # 2 is the key word, 1 are the values.
 # so names will be dimnames(t.ass[[x]][1])
 # values will be: t.ass[[1]][1:length(t.ass[[1]])]
 
+# Start the clock!
+ptm <- proc.time()
 lapply(1:length(ass),FUN=function(x){
 key=dimnames(ass[[x]])[[2]]
 new=ass[[x]][1:length(ass[[x]])]
@@ -162,21 +144,32 @@ else
 {
 db[[key]]=new
 }
-})
+}) 
+# 37 secs
+# 1MB database.
+# Stop the clock
+proc.time() - ptm
 }
 
-
+# OK so.. 
 
 # We should test this first on 1, 20000 lines might already be too much?
 assocsToDB(twit[[1]][1:100])
-
-# Start the clock!
-ptm <- proc.time()
-
+# ok this worked, but below does not, so what is the diff?
 assocsToDB(twit[[1]])
+assocsToDB(twit[[1]][1:length(twit[[1]])])
 
-# Stop the clock
-proc.time() - ptm
+
+
+
+assocsToDB(unlist(twit[[1]]))
+# OK it starts with a TDM...
+
+## OK this could be working, i mean it will take a while to make the TDM so let's give it a chance.
+# BUT this may be flawed, documents should be sentences, not lines. i neef to unlist again? changr munge end to double unlist? before null tests?
+# in fact all is built for single chunk so all needs an extra unlist!! lines are meaningless (?) perhaps not though
+
+#ALSO: remove this? "athletes/celebr" 
 
 # wow this is taking FOREVER. I'll give it until... 4 pm maybe (1 hour total?) and then I may need to end it. I should have tested it first on a smaller set... The chunk thing that is.
 # I don't really understand either why it's not expanding in size in the t.ass file...

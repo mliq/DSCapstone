@@ -56,6 +56,10 @@ But i still don't understand best way to get Corpus into that.
 # OK next step: 
 1. I need to make the filehashing a function that runs on each chunk individually so that memory is not overloaded.
 
+So, I got a running omdel of findAssoc BUT it takes 3 minutes per 500 lines therefore running twitter data would be: So, if i go 500 at a time. well hell just make 500 chunsize then. # so that will give me 4720 chunks, and take 16520 HOURS to process lol. so 3 years. Yeah that's not real tenable.
+
+So for now let's work on the trigrams and leave findAssoc possibly only for the most relevant words or even maybe just the quiz.
+
 2. Then I can run it on all Twitter to see how feasible it is size/speed-wise.
 
 Predictions:
