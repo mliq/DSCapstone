@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<!-- saved from url=(0116)http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega -->
+<html itemscope="" itemtype="http://schema.org/QAPage" hc="a3" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>R Grouping functions: sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=038622610830">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=fd7230a85918">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="R Grouping functions: sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Whenever I want to do something &quot;map&quot;py in R, I usually try to use a function in the apply family. (Side question: I still haven&#39;t learned plyr or reshape -- would plyr or reshape replace all of th...">
+    <meta property="og:url" content="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega">
+    <link rel="canonical" href="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow.html">
+
+    
+    
+    <script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/quant.js"></script><script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/beacon.js"></script><script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/analytics.js"></script><script src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;R Grouping functions: sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate&#39;" href="http://stackoverflow.com/feeds/question/3505701">
+    <script>
+        
+        StackExchange.ready(function () {
+                
+                StackExchange.using("snippets", function () {
+                    StackExchange.snippets.initSnippetRenderer();
+                });
+                
+
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({votesCast:[],autoShowCommentHelp:true,showAnswerHelp:true,totalCommentCount:4,shownCommentCount:4,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:3505701});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '3505701');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1416713956,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"74193b4a2fec862893f2b4c51bf7f436","isRegistered":true,"userType":3,"userId":3626188,"accountId":2706904,"gravatar":"<div class=\"gravatar-wrapper-32\"><img src=\"http://i.stack.imgur.com/T08bM.jpg?s=32&g=1\" alt=\"\" width=\"32\" height=\"32\"></div>","profileUrl":"http://stackoverflow.com/users/3626188/mliqu","notificationsUnviewedCount":4,"inboxUnviewedCount":0}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"a1184e3373cc","js/moderator.en.js":"13e491db892e","js/full-anon.en.js":"b66e2e146265","js/full.en.js":"65d8f153325d","js/wmd.en.js":"8309007beaf3","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"5bd9031a13ea","js/help.en.js":"1ad0e1555080","js/tageditor.en.js":"aa4ba298c4ae","js/tageditornew.en.js":"bacb1a97e79a","js/inline-tag-editing.en.js":"9d7c6b9d01c1","js/revisions.en.js":"255b536e5531","js/review.en.js":"f6a6c1f9b8ec","js/tagsuggestions.en.js":"b278f9a0b23b","js/post-validation.en.js":"b6b8e4f5fd03","js/explore-qlist.en.js":"257ba4cb7b04","js/events.en.js":"ac7be7c376d3","js/keyboard-shortcuts.en.js":"5b1043ab67ac","js/external-editor.en.js":"bc276cc6e2cd","js/external-editor.en.js":"bc276cc6e2cd","js/snippet-javascript.en.js":"19f8d2a9fba6","js/snippet-javascript-codemirror.en.js":"ee6d3cd2d945"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+    
+    
+<script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/full.en.js"></script><script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/prettify-full.en.js"></script><script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/external-editor.en.js"></script><script async="" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/wmd.en.js"></script><style type="text/css"> .wmd-snippet-button span { background-position: 0 0; } .wmd-snippet-button:hover span { background-position: 0 -40px; }</style><link href="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/company.min.css" type="text/css" rel="stylesheet"><link href="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/sidebar.min.css" type="text/css" rel="stylesheet"><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+                    <a href="http://stackoverflow.com/users/logout" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:8 })">log out</a>
+    </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+                <a href="http://stackexchange.com/users/2706904/?tab=accounts">your communities</a>
+        </h3>
+            
+            <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" id="edit-pinned-sites">edit</a>
+            <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" id="cancel-pinned-sites" style="display: none;">cancel</a>
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <ul class="my-sites">
+                    <li>
+                        
+
+
+
+    <a href="http://ebooks.stackexchange.com/" class="site-link js-gps-track" data-id="530" data-gps-track="
+            site.switch({ target_site:530, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-ebooks" title="Ebooks"></div>
+        Ebooks
+            <span class="rep-score">11</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://stackoverflow.com/" class="site-link js-gps-track" data-id="1" data-gps-track="
+            site.switch({ target_site:1, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+            <span class="rep-score">3</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://apple.stackexchange.com/" class="site-link js-gps-track" data-id="118" data-gps-track="
+            site.switch({ target_site:118, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-apple" title="Ask Different"></div>
+        Ask Different
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://expatriates.stackexchange.com/" class="site-link js-gps-track" data-id="546" data-gps-track="
+            site.switch({ target_site:546, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-expatriates" title="Expatriates"></div>
+        Expatriates
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+                    <li>
+                        
+
+
+
+    <a href="http://music.stackexchange.com/" class="site-link js-gps-track" data-id="240" data-gps-track="
+            site.switch({ target_site:240, item_type:3 }),
+        site_switcher.click({ item_type:1 })">
+        <div class="site-icon favicon favicon-music" title="Music: Practice &amp; Theory"></div>
+        Music: Practice &amp; Theory
+            <span class="rep-score">1</span>
+    </a>
+
+                    </li>
+            </ul>
+                <div class="pinned-site-editor-container" style="display: none;">
+                    <input id="js-site-search-txt" type="text" class="site-filter-input" value="" placeholder="Add a Stack Exchange community">
+                    <input type="submit" id="pin-site-btn" value="Add" disabled="disabled">
+                    <ul class="js-found-sites found-sites"></ul>
+                    <ul class="pinned-site-list sortable" data-custom-list="False">
+                    </ul>
+                    <input type="submit" value="Save" id="save-pinned-sites-btn" disabled="disabled">
+                    <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" id="reset-pinned-sites">reset to default list</a>
+                </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 131 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+                <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages">
+                    <span class="hidden-text">Inbox</span>
+                    <span class="unread-count" style="display:none"></span>
+                </a>
+                <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned">
+                    <span class="hidden-text">Reputation and Badges</span>
+                    <span class="unread-count" style="display:none">
+                        
+                    </span>
+                </a>
+        </div>
+
+        <div class="topbar-links">
+
+                <a href="http://stackoverflow.com/users/3626188/mliqu" class="profile-me js-gps-track" data-gps-track="profile_summary.click()">
+                    <div class="gravatar-wrapper-24" title="mliqu"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/T08bM.jpg" alt="" width="24" height="24" class="avatar-me js-avatar-me"></div>
+                    <div class="links-container topbar-flair">
+
+                        <span class="reputation" title="your reputation: 3">
+                            3
+                        </span>
+<span title="3 bronze badges"><span class="badge3"></span><span class="badgecount">3</span></span>                    </div>
+                </a>
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+
+
+
+
+    <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+	<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow.html" class="question-hyperlink">R Grouping functions: sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="3505701" id="question">
+
+    <div class="everyonelovesstackoverflow" id="careers1"><a href="http://careers.stackoverflow.com/" rel="nofollow" target="_blank"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/366ec8614d054ab4b8e79a7e0ab2f6e1.png"></a></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="3505701">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">348</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>475</b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+        <p>Whenever I want to do something "map"py in <code>R</code>, I usually try to use a function in the <code>apply</code> family. (Side question: I still haven't learned <code>plyr</code> or <code>reshape</code> -- would <code>plyr</code> or <code>reshape</code> replace all of these entirely?)</p>
+
+<p>However, I've never quite understood the differences between them [how {<code>sapply</code>, <code>lapply</code>, etc.} apply the function to the input/grouped input, what the output will look like, or even what the input can be], so I often just go through them all until I get what I want.</p>
+
+<p>Can someone explain how to use which one when?</p>
+
+<p>[My current (probably incorrect/incomplete) understanding is...</p>
+
+<ol>
+<li><code>sapply(vec, f)</code>: input is a vector. output is a vector/matrix, where element <code>i</code> is <code>f(vec[i])</code> [giving you a matrix if <code>f</code> has a multi-element output]</li>
+<li><code>lapply(vec, f)</code>: same as <code>sapply</code>, but output is a list?</li>
+<li><code>apply(matrix, 1/2, f)</code>: input is a matrix. output is a vector, where element <code>i</code> is f(row/col i of the matrix)</li>
+<li><code>tapply(vector, grouping, f)</code>: output is a matrix/array, where an element in the matrix/array is the value of <code>f</code> at a grouping <code>g</code> of the vector, and <code>g</code> gets pushed to the row/col names</li>
+<li><code>by(dataframe, grouping, f)</code>: let <code>g</code> be a grouping. apply <code>f</code> to each column of the group/dataframe. pretty print the grouping and the value of <code>f</code> at each column.</li>
+<li><code>aggregate(matrix, grouping, f)</code>: similar to <code>by</code>, but instead of pretty printing the output, aggregate sticks everything into a dataframe.]</li>
+</ol>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag js-gps-track" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/sapply" class="post-tag js-gps-track" title="show questions tagged &#39;sapply&#39;" rel="tag">sapply</a> <a href="http://stackoverflow.com/questions/tagged/tapply" class="post-tag js-gps-track" title="show questions tagged &#39;tapply&#39;" rel="tag">tapply</a> <a href="http://stackoverflow.com/questions/tagged/r-faq" class="post-tag js-gps-track" title="show questions tagged &#39;r-faq&#39;" rel="tag">r-faq</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/3505701/3626188" title="short permalink to this question" class="short-link" id="link-post-3505701">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3505701/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/3505701/revisions" title="show all edits to this post">edited <span title="2014-05-28 23:59:24Z" class="relativetime">May 28 at 23:59</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/559784/arun"><div><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/8fd2eba98804f3a15a2d1344f380ddbb" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/559784/arun">Arun</a><br>
+        <span class="reputation-score" title="reputation score 42164" dir="ltr">42.2k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="51 silver badges"><span class="badge2"></span><span class="badgecount">51</span></span><span title="101 bronze badges"><span class="badge3"></span><span class="badgecount">101</span></span>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2010-08-17 18:31:12Z" class="relativetime">Aug 17 '10 at 18:31</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/231588/grautur"><div class="gravatar-wrapper-32"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/k2iEi.png" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/231588/grautur">grautur</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">5,655</span><span title="15 gold badges"><span class="badge1"></span><span class="badgecount">15</span></span><span title="54 silver badges"><span class="badge2"></span><span class="badgecount">54</span></span><span title="83 bronze badges"><span class="badge3"></span><span class="badgecount">83</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3505701" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-3663783" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">10</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">to your side question: for many things plyr is a direct replacement for <code>*apply()</code> and <code>by</code>. plyr (at least to me) seems much more consistent in that I always know exactly what data format it expects and exactly what it will spit out. That saves me a lot of hassle.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/37751/jd-long" title="21661 reputation" class="comment-user">JD Long</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment3663783_3505701"><span title="2010-08-17 18:40:32Z" class="relativetime-clean">Aug 17 '10 at 18:40</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-9383866" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">6</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Also, I'd recommend adding: <code>doBy</code> and the selection &amp; apply capabilities of <code>data.table</code>.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/805808/iterator" title="10715 reputation" class="comment-user">Iterator</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment9383866_3505701"><span title="2011-10-10 15:23:57Z" class="relativetime-clean">Oct 10 '11 at 15:23</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-20228701" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy"><code>sapply</code> is just <code>lapply</code> with the addition of <code>simplify2array</code> on the output. <code>apply</code> does coerce to atomic vector, but output can be vector or list. <code>by</code> splits dataframes into sub-dataframes, but it doesn't use <code>f</code> on columns separately. Only if there is a method for 'data.frame'-class might <code>f</code> get column-wise applied by <code>by</code>.  <code>aggregate</code> is generic so different methods exist for different classes of the first argument.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1855677/bondeddust" title="110718 reputation" class="comment-user">BondedDust</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment20228701_3505701"><span title="2013-01-24 21:18:14Z" class="relativetime-clean">Jan 24 '13 at 21:18</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-40482410" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Mnemonic: l is for 'list', s is for 'simplifying', t is for 'per type' (each level of the grouping is a type)</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/2810305/lutz-prechelt" title="624 reputation" class="comment-user">Lutz Prechelt</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment40482410_3505701"><span title="2014-09-16 13:20:57Z" class="relativetime-clean">Sep 16 at 13:20</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-3505701" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" onclick=""></a>
+            </div>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								5 Answers
+                                <span style="display:none;" itemprop="answerCount">5</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="7141669"></a>
+<div id="answer-7141669" class="answer accepted-answer" data-answerid="7141669" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="7141669">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">527</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+<div class="bounty-award-container"><span class="bounty-award" title="This answer has been awarded bounties worth 100 reputation by andrewdotnich">+100</span></div></div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>R has many *apply functions which are ably described in the help files (e.g. <code>?apply</code>). There are enough of them, though, that beginning useRs may have difficulty deciding which one is appropriate for their situation or even remembering them all. They may have a general sense that "I should be using an *apply function here", but it can be tough to keep them all straight at first.</p>
+
+<p>Despite the fact (noted in other answers) that much of the functionality of the *apply family is covered by the extremely popular <code>plyr</code> package, the base functions remain useful and worth knowing.</p>
+
+<p>This answer is intended to act as a sort of <strong>signpost</strong> for new useRs to help direct them to the correct *apply function for their particular problem. Note, this is <strong>not</strong> intended to simply regurgitate or replace the R documentation! The hope is that this answer helps you to decide which *apply function suits your situation and then it is up to you to research it further. With one exception, performance differences will not be addressed.</p>
+
+<ul>
+<li><p><strong>apply</strong> - <em>When you want to apply a function to the rows or columns
+of a matrix (and higher-dimensional analogues).</em></p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="com"># Two dimensional matrix</span><span class="pln">
+M </span><span class="pun">&lt;-</span><span class="pln"> matrix</span><span class="pun">(</span><span class="pln">seq</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="lit">16</span><span class="pun">),</span><span class="pln"> </span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com"># apply min to rows</span><span class="pln">
+apply</span><span class="pun">(</span><span class="pln">M</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> min</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> </span><span class="lit">4</span><span class="pln">
+
+</span><span class="com"># apply max to columns</span><span class="pln">
+apply</span><span class="pun">(</span><span class="pln">M</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> max</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln">  </span><span class="lit">4</span><span class="pln">  </span><span class="lit">8</span><span class="pln"> </span><span class="lit">12</span><span class="pln"> </span><span class="lit">16</span><span class="pln">
+
+</span><span class="com"># 3 dimensional array</span><span class="pln">
+M </span><span class="pun">&lt;-</span><span class="pln"> array</span><span class="pun">(</span><span class="pln"> seq</span><span class="pun">(</span><span class="lit">32</span><span class="pun">),</span><span class="pln"> dim </span><span class="pun">=</span><span class="pln"> c</span><span class="pun">(</span><span class="lit">4</span><span class="pun">,</span><span class="lit">4</span><span class="pun">,</span><span class="lit">2</span><span class="pun">))</span><span class="pln">
+
+</span><span class="com"># Apply sum across each M[*, , ] - i.e Sum across 2nd and 3rd dimension</span><span class="pln">
+apply</span><span class="pun">(</span><span class="pln">M</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> sum</span><span class="pun">)</span><span class="pln">
+</span><span class="com"># Result is one-dimensional</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">120</span><span class="pln"> </span><span class="lit">128</span><span class="pln"> </span><span class="lit">136</span><span class="pln"> </span><span class="lit">144</span><span class="pln">
+
+</span><span class="com"># Apply sum across each M[*, *, ] - i.e Sum across 3rd dimension</span><span class="pln">
+apply</span><span class="pun">(</span><span class="pln">M</span><span class="pun">,</span><span class="pln"> c</span><span class="pun">(</span><span class="lit">1</span><span class="pun">,</span><span class="lit">2</span><span class="pun">),</span><span class="pln"> sum</span><span class="pun">)</span><span class="pln">
+</span><span class="com"># Result is two-dimensional</span><span class="pln">
+     </span><span class="pun">[,</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="pun">[,</span><span class="lit">2</span><span class="pun">]</span><span class="pln"> </span><span class="pun">[,</span><span class="lit">3</span><span class="pun">]</span><span class="pln"> </span><span class="pun">[,</span><span class="lit">4</span><span class="pun">]</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">,]</span><span class="pln">   </span><span class="lit">18</span><span class="pln">   </span><span class="lit">26</span><span class="pln">   </span><span class="lit">34</span><span class="pln">   </span><span class="lit">42</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">2</span><span class="pun">,]</span><span class="pln">   </span><span class="lit">20</span><span class="pln">   </span><span class="lit">28</span><span class="pln">   </span><span class="lit">36</span><span class="pln">   </span><span class="lit">44</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">3</span><span class="pun">,]</span><span class="pln">   </span><span class="lit">22</span><span class="pln">   </span><span class="lit">30</span><span class="pln">   </span><span class="lit">38</span><span class="pln">   </span><span class="lit">46</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">4</span><span class="pun">,]</span><span class="pln">   </span><span class="lit">24</span><span class="pln">   </span><span class="lit">32</span><span class="pln">   </span><span class="lit">40</span><span class="pln">   </span><span class="lit">48</span></code></pre>
+
+<p>If you want row/column means or sums for a 2D matrix, be sure to
+investigate the highly optimized, lightning-quick <code>colMeans</code>,
+<code>rowMeans</code>, <code>colSums</code>, <code>rowSums</code>.</p></li>
+<li><p><strong>lapply</strong> - <em>When you want to apply a function to each element of a
+list in turn and get a list back.</em></p>
+
+<p>This is the workhorse of many of the other *apply functions. Peel
+back their code and you will often find <code>lapply</code> underneath.</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">   x </span><span class="pun">&lt;-</span><span class="pln"> list</span><span class="pun">(</span><span class="pln">a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> b </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">100</span><span class="pun">)</span><span class="pln"> 
+   lapply</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> FUN </span><span class="pun">=</span><span class="pln"> length</span><span class="pun">)</span><span class="pln"> 
+   </span><span class="pun">$</span><span class="pln">a 
+   </span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+   </span><span class="pun">$</span><span class="pln">b 
+   </span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">3</span><span class="pln">
+   </span><span class="pun">$</span><span class="pln">c 
+   </span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">91</span><span class="pln">
+
+   lapply</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> FUN </span><span class="pun">=</span><span class="pln"> sum</span><span class="pun">)</span><span class="pln"> 
+   </span><span class="pun">$</span><span class="pln">a 
+   </span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+   </span><span class="pun">$</span><span class="pln">b 
+   </span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">6</span><span class="pln">
+   </span><span class="pun">$</span><span class="pln">c 
+   </span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">5005</span></code></pre></li>
+<li><p><strong>sapply</strong> - <em>When you want to apply a function to each element of a
+list in turn, but you want a <strong>vector</strong> back, rather than a list.</em></p>
+
+<p>If you find yourself typing <code>unlist(lapply(...))</code>, stop and consider
+<code>sapply</code>.</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">   x </span><span class="pun">&lt;-</span><span class="pln"> list</span><span class="pun">(</span><span class="pln">a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> b </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">100</span><span class="pun">)</span><span class="pln">
+   </span><span class="com">#Compare with above; a named vector, not a list </span><span class="pln">
+   sapply</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> FUN </span><span class="pun">=</span><span class="pln"> length</span><span class="pun">)</span><span class="pln">  
+   a  b  c   
+   </span><span class="lit">1</span><span class="pln">  </span><span class="lit">3</span><span class="pln"> </span><span class="lit">91</span><span class="pln">
+
+   sapply</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> FUN </span><span class="pun">=</span><span class="pln"> sum</span><span class="pun">)</span><span class="pln">   
+   a    b    c    
+   </span><span class="lit">1</span><span class="pln">    </span><span class="lit">6</span><span class="pln"> </span><span class="lit">5005</span><span class="pln"> </span></code></pre>
+
+<p>In more advanced uses of <code>sapply</code> it will attempt to coerce the
+result to a multi-dimensional array, if appropriate. For example, if our function returns vectors of the same length, <code>sapply</code> will use them as columns of a matrix:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">   sapply</span><span class="pun">(</span><span class="lit">1</span><span class="pun">:</span><span class="lit">5</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> rnorm</span><span class="pun">(</span><span class="lit">3</span><span class="pun">,</span><span class="pln">x</span><span class="pun">))</span></code></pre>
+
+<p>If our function returns a 2 dimensional matrix, <code>sapply</code> will do essentially the same thing, treating each returned matrix as a single long vector:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">   sapply</span><span class="pun">(</span><span class="lit">1</span><span class="pun">:</span><span class="lit">5</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> matrix</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="lit">2</span><span class="pun">,</span><span class="lit">2</span><span class="pun">))</span></code></pre>
+
+<p>Unless we specify <code>simplify = "array"</code>, in which case it will use the individual matrices to build a multi-dimensional array:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">   sapply</span><span class="pun">(</span><span class="lit">1</span><span class="pun">:</span><span class="lit">5</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> matrix</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="lit">2</span><span class="pun">,</span><span class="lit">2</span><span class="pun">),</span><span class="pln"> simplify </span><span class="pun">=</span><span class="pln"> </span><span class="str">"array"</span><span class="pun">)</span></code></pre>
+
+<p>Each of these behaviors is of course contingent on our function returning vectors or matrices of the same length or dimension.</p></li>
+<li><p><strong>vapply</strong> - <em>When you want to use <code>sapply</code> but perhaps need to
+squeeze some more speed out of your code.</em></p>
+
+<p>For <code>vapply</code>, you basically give R an example of what sort of thing
+your function will return, which can save some time coercing returned
+values to fit in a single atomic vector.</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">x </span><span class="pun">&lt;-</span><span class="pln"> list</span><span class="pun">(</span><span class="pln">a </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> b </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">3</span><span class="pun">,</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">100</span><span class="pun">)</span><span class="pln">
+</span><span class="com">#Note that since the advantage here is mainly speed, this</span><span class="pln">
+</span><span class="com"># example is only for illustration. We're telling R that</span><span class="pln">
+</span><span class="com"># everything returned by length() should be an integer of </span><span class="pln">
+</span><span class="com"># length 1. </span><span class="pln">
+vapply</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> FUN </span><span class="pun">=</span><span class="pln"> length</span><span class="pun">,</span><span class="pln"> FUN.VALUE </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0L</span><span class="pun">)</span><span class="pln"> 
+a  b  c  
+</span><span class="lit">1</span><span class="pln">  </span><span class="lit">3</span><span class="pln"> </span><span class="lit">91</span></code></pre></li>
+<li><p><strong>mapply</strong> - <em>For when you have several data structures (e.g.
+vectors, lists) and you want to apply a function to the 1st elements
+of each, and then the 2nd elements of each, etc., coercing the result
+to a vector/array as in <code>sapply</code>.</em></p>
+
+<p>This is multivariate in the sense that your function must accept
+multiple arguments.</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="com">#Sums the 1st elements, the 2nd elements, etc. </span><span class="pln">
+mapply</span><span class="pun">(</span><span class="pln">sum</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">5</span><span class="pun">)</span><span class="pln"> 
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln">  </span><span class="lit">3</span><span class="pln">  </span><span class="lit">6</span><span class="pln">  </span><span class="lit">9</span><span class="pln"> </span><span class="lit">12</span><span class="pln"> </span><span class="lit">15</span><span class="pln">
+</span><span class="com">#To do rep(1,4), rep(2,3), etc.</span><span class="pln">
+mapply</span><span class="pun">(</span><span class="pln">rep</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">4</span><span class="pun">,</span><span class="pln"> </span><span class="lit">4</span><span class="pun">:</span><span class="lit">1</span><span class="pun">)</span><span class="pln">   
+</span><span class="pun">[[</span><span class="lit">1</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+
+</span><span class="pun">[[</span><span class="lit">2</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="lit">2</span><span class="pln">
+
+</span><span class="pun">[[</span><span class="lit">3</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> </span><span class="lit">3</span><span class="pln">
+
+</span><span class="pun">[[</span><span class="lit">4</span><span class="pun">]]</span><span class="pln">
+</span><span class="pun">[</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="lit">4</span></code></pre></li>
+<li><p><strong>rapply</strong> - <em>For when you want to apply a function to each element of a <strong>nested list</strong> structure, recursively.</em></p>
+
+<p>To give you some idea of how uncommon <code>rapply</code> is, I forgot about it when first posting this answer! Obviously, I'm sure many people use it, but YMMV. <code>rapply</code> is best illustrated with a user-defined function to apply:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="com">#Append ! to string, otherwise increment</span><span class="pln">
+myFun </span><span class="pun">&lt;-</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">is.character</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)){</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pun">(</span><span class="pln">paste</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="str">"!"</span><span class="pun">,</span><span class="pln">sep</span><span class="pun">=</span><span class="str">""</span><span class="pun">))</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="kwd">else</span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pun">(</span><span class="pln">x </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="com">#A nested list structure</span><span class="pln">
+l </span><span class="pun">&lt;-</span><span class="pln"> list</span><span class="pun">(</span><span class="pln">a </span><span class="pun">=</span><span class="pln"> list</span><span class="pun">(</span><span class="pln">a1 </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Boo"</span><span class="pun">,</span><span class="pln"> b1 </span><span class="pun">=</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> c1 </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Eeek"</span><span class="pun">),</span><span class="pln"> 
+          b </span><span class="pun">=</span><span class="pln"> </span><span class="lit">3</span><span class="pun">,</span><span class="pln"> c </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Yikes"</span><span class="pun">,</span><span class="pln"> 
+          d </span><span class="pun">=</span><span class="pln"> list</span><span class="pun">(</span><span class="pln">a2 </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> b2 </span><span class="pun">=</span><span class="pln"> list</span><span class="pun">(</span><span class="pln">a3 </span><span class="pun">=</span><span class="pln"> </span><span class="str">"Hey"</span><span class="pun">,</span><span class="pln"> b3 </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">)))</span><span class="pln">
+
+
+</span><span class="com">#Result is named vector, coerced to character           </span><span class="pln">
+rapply</span><span class="pun">(</span><span class="pln">l</span><span class="pun">,</span><span class="pln">myFun</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com">#Result is a nested list like l, with values altered</span><span class="pln">
+rapply</span><span class="pun">(</span><span class="pln">l</span><span class="pun">,</span><span class="pln"> myFun</span><span class="pun">,</span><span class="pln"> how </span><span class="pun">=</span><span class="pln"> </span><span class="str">"replace"</span><span class="pun">)</span></code></pre></li>
+<li><p><strong>tapply</strong> - <em>For when you want to apply a function to <strong>subsets</strong> of a
+vector and the subsets are defined by some other vector, usually a
+factor.</em></p>
+
+<p>The black sheep of the *apply family, of sorts. The help file's use of
+the phrase "ragged array" can be a bit <a href="http://stackoverflow.com/questions/6297201/explain-r-tapply-description/6297396#6297396">confusing</a>, but it is actually
+quite simple.</p>
+
+<p>A vector:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">   x </span><span class="pun">&lt;-</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">20</span></code></pre>
+
+<p>A factor (of the same length!) defining groups:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">   y </span><span class="pun">&lt;-</span><span class="pln"> factor</span><span class="pun">(</span><span class="pln">rep</span><span class="pun">(</span><span class="pln">letters</span><span class="pun">[</span><span class="lit">1</span><span class="pun">:</span><span class="lit">5</span><span class="pun">],</span><span class="pln"> each </span><span class="pun">=</span><span class="pln"> </span><span class="lit">4</span><span class="pun">))</span></code></pre>
+
+<p>Add up the values in <code>x</code> within each subgroup defined by <code>y</code>:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">   tapply</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln"> y</span><span class="pun">,</span><span class="pln"> sum</span><span class="pun">)</span><span class="pln">  
+    a  b  c  d  e  
+   </span><span class="lit">10</span><span class="pln"> </span><span class="lit">26</span><span class="pln"> </span><span class="lit">42</span><span class="pln"> </span><span class="lit">58</span><span class="pln"> </span><span class="lit">74</span><span class="pln"> </span></code></pre>
+
+<p>More complex examples can be handled where the subgroups are defined
+by the unique combinations of a list of several factors. <code>tapply</code> is
+similar in spirit to the split-apply-combine functions that are
+common in R (<code>aggregate</code>, <code>by</code>, <code>ave</code>, <code>ddply</code>, etc.) Hence its
+black sheep status.</p></li>
+</ul>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/7141669/3626188" title="short permalink to this answer" class="short-link" id="link-post-7141669">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/7141669/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/7141669/revisions" title="show all edits to this post">edited <span title="2014-04-22 22:09:47Z" class="relativetime">Apr 22 at 22:09</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-08-21 22:50:17Z" class="relativetime">Aug 21 '11 at 22:50</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/324364/joran"><div class="gravatar-wrapper-32"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/KIazX.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/324364/joran">joran</a><br>
+        <span class="reputation-score" title="reputation score 69994" dir="ltr">70k</span><span title="9 gold badges"><span class="badge1"></span><span class="badgecount">9</span></span><span title="116 silver badges"><span class="badge2"></span><span class="badgecount">116</span></span><span title="167 bronze badges"><span class="badge3"></span><span class="badgecount">167</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7141669" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="9" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-8955474" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">11</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Believe you will find that <code>by</code> is pure split-lapply and <code>aggregate</code> is <code>tapply</code> at their cores. I think black sheep make excellent fabric.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/1855677/bondeddust" title="110718 reputation" class="comment-user">BondedDust</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment8955474_7141669"><span title="2011-09-14 03:42:55Z" class="relativetime-clean">Sep 14 '11 at 3:42</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-8970079" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">6</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Fantastic response! This should be part of the official R documentation :). One tiny suggestion: perhaps add some bullets on using <code>aggregate</code> and <code>by</code> as well? (I finally understand them after your description!, but they're pretty common, so it might be useful to separate out and have some specific examples for those two functions.)</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/231588/grautur" title="5655 reputation" class="comment-user owner">grautur</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment8970079_7141669"><span title="2011-09-14 18:54:28Z" class="relativetime-clean">Sep 14 '11 at 18:54</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-8973948" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@grautur I was actively pruning things from this answer to avoid it being (a) too long and (b) a re-write of the documentation. I decided that while <code>aggregate</code>, <code>by</code>, etc. are based on *apply functions, the way you approach using them is different enough from a users perspective that they ought to be summarized in a separate answer. I may attempt that if I have time, or maybe someone else will beat me to it and earn my upvote.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/324364/joran" title="69994 reputation" class="comment-user">joran</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment8973948_7141669"><span title="2011-09-14 23:03:22Z" class="relativetime-clean">Sep 14 '11 at 23:03</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-9375786" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Yeah ... what is a ragged array, anyway?</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/563329/isomorphismes" title="2102 reputation" class="comment-user">isomorphismes</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment9375786_7141669"><span title="2011-10-10 06:01:53Z" class="relativetime-clean">Oct 10 '11 at 6:01</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-11738453" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">also, <code>?Map</code> as a relative of <code>mapply</code></span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/471093/baptiste" title="21894 reputation" class="comment-user">baptiste</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment11738453_7141669"><span title="2012-02-16 05:53:24Z" class="relativetime-clean">Feb 16 '12 at 5:53</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-7141669" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link " title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" onclick="">show <b>9</b> more comments</a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+<div class="everyonelovesstackoverflow" id="careers3"><a href="http://careers.stackoverflow.com/" rel="nofollow" target="_blank"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/english-728b.png"></a></div>
+  
+<a name="3506108"></a>
+<div id="answer-3506108" class="answer" data-answerid="3506108" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="3506108">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">89</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>On the side note, here is how the various <code>plyr</code> functions correspond to the base <code>*apply</code> functions (from the intro to plyr document from the plyr webpage <a href="http://had.co.nz/plyr/">http://had.co.nz/plyr/</a>)</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">Base </span><span class="kwd">function</span><span class="pln">   Input   Output   plyr </span><span class="kwd">function</span><span class="pln"> 
+</span><span class="pun">---------------------------------------</span><span class="pln">
+aggregate        d       d       ddply </span><span class="pun">+</span><span class="pln"> colwise 
+apply            a       a</span><span class="pun">/</span><span class="pln">l     aaply </span><span class="pun">/</span><span class="pln"> alply 
+by               d       l       dlply 
+lapply           l       l       llply  
+mapply           a       a</span><span class="pun">/</span><span class="pln">l     maply </span><span class="pun">/</span><span class="pln"> mlply 
+replicate        r       a</span><span class="pun">/</span><span class="pln">l     raply </span><span class="pun">/</span><span class="pln"> rlply 
+sapply           l       a       laply </span></code></pre>
+
+<p>One of the goals of <code>plyr</code> is to provide consistent naming conventions for each of the functions, encoding the input and output data types in the function name. It also provides consistency in output, in that output from <code>dlply()</code> is easily passable to <code>ldply()</code> to produce useful output, etc.</p>
+
+<p>Conceptually, learning <code>plyr</code> is no more difficult than understanding the base <code>*apply</code> functions.</p>
+
+<p><code>plyr</code> and <code>reshape</code> functions have replaced almost all of these functions in my every day use. But, also from the Intro to Plyr document:</p>
+
+<blockquote>
+  <p>Related functions <code>tapply</code> and <code>sweep</code> have no corresponding function in <code>plyr</code>, and remain useful. <code>merge</code> is useful for combining summaries with the original data.</p>
+</blockquote>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/3506108/3626188" title="short permalink to this answer" class="short-link" id="link-post-3506108">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/3506108/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2010-08-17 19:20:09Z" class="relativetime">Aug 17 '10 at 19:20</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/159438/jofrhwld"><div class="gravatar-wrapper-32"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/005787a79e3e516fe367e4413935643f" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/159438/jofrhwld">JoFrhwld</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">4,192</span><span title="17 silver badges"><span class="badge2"></span><span class="badgecount">17</span></span><span title="21 bronze badges"><span class="badge3"></span><span class="badgecount">21</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-3506108" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="3" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-3664165" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="warm">9</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">When I started learning R from scratch I found plyr MUCH easier to learn than the <code>*apply()</code> family of functions. For me, <code>ddply()</code> was very intuitive as I was familiar with SQL aggregation functions. <code>ddply()</code> became my hammer for solving many problems, some of which could have been better solved with other commands.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/37751/jd-long" title="21661 reputation" class="comment-user">JD Long</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment3664165_3506108"><span title="2010-08-17 19:23:29Z" class="relativetime-clean">Aug 17 '10 at 19:23</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-3664339" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I guess I figured that the concept behind <code>plyr</code> functions is similar to <code>*apply</code> functions, so if you can do one, you can do the other, but <code>plyr</code> functions are easier to remember. But I totally agree on the <code>ddply()</code> hammer!</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/159438/jofrhwld" title="4192 reputation" class="comment-user">JoFrhwld</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment3664339_3506108"><span title="2010-08-17 19:36:22Z" class="relativetime-clean">Aug 17 '10 at 19:36</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-3665921" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Got it, I'll have to finally pick up plyr soon! Its prefix naming alone is gold...</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/231588/grautur" title="5655 reputation" class="comment-user owner">grautur</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment3665921_3506108"><span title="2010-08-17 22:28:44Z" class="relativetime-clean">Aug 17 '10 at 22:28</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-14639727" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">+1 For adding the note about tapply and sweep. Great to know both what plyr can and can't do.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/334911/john-robertson" title="1435 reputation" class="comment-user">John Robertson</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment14639727_3506108"><span title="2012-06-22 19:01:29Z" class="relativetime-clean">Jun 22 '12 at 19:01</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-31358823" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">The plyr package has the <code>join()</code> function that performs tasks similar to merge. Perhaps it's more to the point to mention it in the context of plyr.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/2238226/mart%c3%adn-bel" title="1724 reputation" class="comment-user">Martín Bel</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment31358823_3506108"><span title="2014-01-02 23:04:26Z" class="relativetime-clean">Jan 2 at 23:04</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-3506108" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link " title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" onclick="">show <b>3</b> more comments</a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="7701638"></a>
+<div id="answer-7701638" class="answer" data-answerid="7701638" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="7701638">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">61</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>From slide 21 of <a href="http://www.slideshare.net/hadley/plyr-one-data-analytic-strategy">http://www.slideshare.net/hadley/plyr-one-data-analytic-strategy</a>:</p>
+
+<p><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/UMzZ4.png" alt="apply, sapply, lapply, by, aggregate"></p>
+
+<p>(Hopefully it's clear that <code>apply</code> corresponds to @Hadley's <code>aaply</code> and <code>aggregate</code> corresponds to @Hadley's <code>ddply</code> etc. Slide 20 of the same slideshare will clarify if you don't get it from this image.)</p>
+
+<p>(on the left is input, on the top is output)</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/7701638/3626188" title="short permalink to this answer" class="short-link" id="link-post-7701638">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/7701638/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/7701638/revisions" title="show all edits to this post">edited <span title="2012-02-15 23:42:48Z" class="relativetime">Feb 15 '12 at 23:42</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/984532/user56"><div class="gravatar-wrapper-32"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/7692360b360e7605395e9f6ea9d92010" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/984532/user56">user56</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">731</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="10 silver badges"><span class="badge2"></span><span class="badgecount">10</span></span><span title="22 bronze badges"><span class="badge3"></span><span class="badgecount">22</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2011-10-09 05:29:32Z" class="relativetime">Oct 9 '11 at 5:29</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/563329/isomorphismes"><div class="gravatar-wrapper-32"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/91bc2613b6a42cff816cd000b3a05fbd" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/563329/isomorphismes">isomorphismes</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,102</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="21 silver badges"><span class="badge2"></span><span class="badgecount">21</span></span><span title="37 bronze badges"><span class="badge3"></span><span class="badgecount">37</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-7701638" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-7701638" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="23282110"></a>
+<div id="answer-23282110" class="answer" data-answerid="23282110" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="23282110">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">17</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>First start with <a href="http://stackoverflow.com/a/7141669/181638">Joran's excellent answer</a> -- doubtful anything can better that.</p>
+
+<p>Then the following mnemonics may help to remember the distinctions between each.  Whilst some are obvious, others may be less so --- for these you'll find justification in Joran's discussions.</p>
+
+<p><strong>Mnemonics</strong></p>
+
+<ul>
+<li><code>lapply</code> is an apply which returns a list (acts on any vector or list and returns a list)</li>
+<li><code>sapply</code> is a <em>simple</em> <code>lapply</code> (function defaults to returning a vector or matrix when possible)</li>
+<li><code>vapply</code> is <em>sometimes-faster</em> than <code>sapply</code> (allows the return object type to be prespecified)</li>
+<li><code>rapply</code> is a <em>recursive</em> apply  (for nested lists, i.e. lists within lists)</li>
+<li><code>tapply</code> is a <em>tagged</em> apply  (the tags identify the subsets)</li>
+<li><code>apply</code>  is   <em>generic</em>: (applies a function to a matrix's rows or columns)</li>
+</ul>
+
+<p><strong>Building the Right Background</strong></p>
+
+<p>If using the <code>apply</code> family still feels a bit alien to you, then it might be that you're missing a key point of view.</p>
+
+<p>These two articles can help.  They provide the necessary background to motivate the <strong>functional programming techniques</strong> that are being provided by the <code>apply</code> family of functions.  </p>
+
+<p>Users of Lisp will recognise the paradigm immediately.  If you're not familiar with Lisp, once you get your head around FP, you'll have gained a powerful point of view for use in R -- and <code>apply</code> will make a lot more sense.</p>
+
+<ul>
+<li><a href="http://adv-r.had.co.nz/Functional-programming.html" rel="nofollow">Advanced R: Functional Programming</a>, by Hadley Wickham</li>
+<li><a href="http://www.bioinformaticszen.com/post/simple-functional-programming-in-r/" rel="nofollow">Simple Functional Programming in R</a>, by Michael Barton</li>
+</ul>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/23282110/3626188" title="short permalink to this answer" class="short-link" id="link-post-23282110">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/23282110/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/23282110/revisions" title="show all edits to this post">edited <span title="2014-09-09 06:56:09Z" class="relativetime">Sep 9 at 6:56</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2233810/andreas"><div class="gravatar-wrapper-32"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/0cba4c664a92c57b13c21523c8131702" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2233810/andreas">Andreas</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">735</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-04-25 00:20:19Z" class="relativetime">Apr 25 at 0:20</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/181638/assad-ebrahim"><div class="gravatar-wrapper-32"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/5oWjh.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/181638/assad-ebrahim">Assad Ebrahim</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,406</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="14 silver badges"><span class="badge2"></span><span class="badgecount">14</span></span><span title="34 bronze badges"><span class="badge3"></span><span class="badgecount">34</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-23282110" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-40263370" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Andreas: thanks for the edits to the mnemonics list -- it is better as a result.  Cheers.</span>
+                –&nbsp;
+                    <a href="http://stackoverflow.com/users/181638/assad-ebrahim" title="1406 reputation" class="comment-user">Assad Ebrahim</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#comment40263370_23282110"><span title="2014-09-09 16:36:28Z" class="relativetime-clean">Sep 9 at 16:36</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-23282110" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="26769477"></a>
+<div id="answer-26769477" class="answer" data-answerid="26769477" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="26769477">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>It is maybe worth mentioning <code>ave</code>. <code>ave</code> is <code>tapply</code>'s friendly cousin. It returns results in a form that you can plug straight back into your data frame.</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">dfr </span><span class="pun">&lt;-</span><span class="pln"> data.frame</span><span class="pun">(</span><span class="pln">a</span><span class="pun">=</span><span class="lit">1</span><span class="pun">:</span><span class="lit">20</span><span class="pun">,</span><span class="pln"> f</span><span class="pun">=</span><span class="pln">rep</span><span class="pun">(</span><span class="pln">LETTERS</span><span class="pun">[</span><span class="lit">1</span><span class="pun">:</span><span class="lit">5</span><span class="pun">],</span><span class="pln"> each</span><span class="pun">=</span><span class="lit">4</span><span class="pun">))</span><span class="pln">
+means </span><span class="pun">&lt;-</span><span class="pln"> tapply</span><span class="pun">(</span><span class="pln">dfr</span><span class="pun">$</span><span class="pln">a</span><span class="pun">,</span><span class="pln"> dfr</span><span class="pun">$</span><span class="pln">f</span><span class="pun">,</span><span class="pln"> mean</span><span class="pun">)</span><span class="pln">
+</span><span class="com">##  A    B    C    D    E </span><span class="pln">
+</span><span class="com">## 2.5  6.5 10.5 14.5 18.5 </span><span class="pln">
+
+</span><span class="com">## great, but putting it back in the data frame is another line:</span><span class="pln">
+
+dfr</span><span class="pun">$</span><span class="pln">m </span><span class="pun">&lt;-</span><span class="pln"> means</span><span class="pun">[</span><span class="pln">dfr</span><span class="pun">$</span><span class="pln">f</span><span class="pun">]</span><span class="pln">
+
+dfr</span><span class="pun">$</span><span class="pln">m2 </span><span class="pun">&lt;-</span><span class="pln"> ave</span><span class="pun">(</span><span class="pln">dfr</span><span class="pun">$</span><span class="pln">a</span><span class="pun">,</span><span class="pln"> dfr</span><span class="pun">$</span><span class="pln">f</span><span class="pun">,</span><span class="pln"> FUN</span><span class="pun">=</span><span class="pln">mean</span><span class="pun">)</span><span class="pln"> </span><span class="com"># NB argument name FUN is needed!</span><span class="pln">
+dfr
+</span><span class="com">##   a f    m   m2</span><span class="pln">
+</span><span class="com">##   1 A  2.5  2.5</span><span class="pln">
+</span><span class="com">##   2 A  2.5  2.5</span><span class="pln">
+</span><span class="com">##   3 A  2.5  2.5</span><span class="pln">
+</span><span class="com">##   4 A  2.5  2.5</span><span class="pln">
+</span><span class="com">##   5 B  6.5  6.5</span><span class="pln">
+</span><span class="com">##   6 B  6.5  6.5</span><span class="pln">
+</span><span class="com">##   7 B  6.5  6.5</span><span class="pln">
+</span><span class="com">##   ...</span></code></pre>
+
+<p>There is nothing in the base package that works like <code>ave</code> for whole data frames (as <code>by</code> is like <code>tapply</code> for data frames). But you can fudge it:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">dfr</span><span class="pun">$</span><span class="pln">foo </span><span class="pun">&lt;-</span><span class="pln"> ave</span><span class="pun">(</span><span class="lit">1</span><span class="pun">:</span><span class="pln">nrow</span><span class="pun">(</span><span class="pln">dfr</span><span class="pun">),</span><span class="pln"> dfr</span><span class="pun">$</span><span class="pln">f</span><span class="pun">,</span><span class="pln"> FUN</span><span class="pun">=</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">x</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    x </span><span class="pun">&lt;-</span><span class="pln"> dfr</span><span class="pun">[</span><span class="pln">x</span><span class="pun">,]</span><span class="pln">
+    sum</span><span class="pun">(</span><span class="pln">x</span><span class="pun">$</span><span class="pln">m</span><span class="pun">*</span><span class="pln">x</span><span class="pun">$</span><span class="pln">m2</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">})</span><span class="pln">
+dfr
+</span><span class="com">##     a f    m   m2    foo</span><span class="pln">
+</span><span class="com">## 1   1 A  2.5  2.5    25</span><span class="pln">
+</span><span class="com">## 2   2 A  2.5  2.5    25</span><span class="pln">
+</span><span class="com">## 3   3 A  2.5  2.5    25</span><span class="pln">
+</span><span class="com">## ...</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/26769477/3626188" title="short permalink to this answer" class="short-link" id="link-post-26769477">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/26769477/edit" class="suggest-edit-post" title="revise and improve this post">edit</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-11-06 00:00:25Z" class="relativetime">Nov 6 at 0:00</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/3603486/dash2"><div class="gravatar-wrapper-32"><img src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/rMBfo.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/3603486/dash2">dash2</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">508</span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-26769477" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-26769477" data-rep="50" data-reg="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/3505701/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="3505701">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.com/">
+							<h2 class="space">Your Answer</h2>
+
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+            // Have to fire editor after snippets, if snippets enabled
+            if (StackExchange.options.snippets.enabled) {
+                StackExchange.using("snippets", function() {
+                    createEditor();
+                });
+            }
+            else {
+                createEditor();
+            }
+        });
+
+        function createEditor() {
+            prepareEditor({
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: false,
+                    discardSelector: ".discard-answer"
+                ,immediatelyShowMarkdownHelp:true
+                });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li class="wmd-button" id="wmd-bold-button" title="Strong &lt;strong&gt; Ctrl+B" style="left: 0px;"><span style="background-position: 0px 0px;"></span></li><li class="wmd-button" id="wmd-italic-button" title="Emphasis &lt;em&gt; Ctrl+I" style="left: 25px;"><span style="background-position: -20px 0px;"></span></li><li class="wmd-spacer wmd-spacer1" id="wmd-spacer1"></li><li class="wmd-button" id="wmd-link-button" title="Hyperlink &lt;a&gt; Ctrl+L" style="left: 75px;"><span style="background-position: -40px 0px;"></span></li><li class="wmd-button" id="wmd-quote-button" title="Blockquote &lt;blockquote&gt; Ctrl+Q" style="left: 100px;"><span style="background-position: -60px 0px;"></span></li><li class="wmd-button" id="wmd-code-button" title="Code Sample &lt;pre&gt;&lt;code&gt; Ctrl+K" style="left: 125px;"><span style="background-position: -80px 0px;"></span></li><li class="wmd-button" id="wmd-image-button" title="Image &lt;img&gt; Ctrl+G" style="left: 150px;"><span style="background-position: -100px 0px;"></span></li><li class="wmd-button wmd-snippet-button" style="left:175px" id="wmd-snippet-button" title="Code snippet Ctrl-M"><span style="background-image: url(http://stackoverflow.com/content/balsamiq/wmd-mockup-button.png?v=4);"></span></li><li class="wmd-spacer wmd-spacer2" id="wmd-spacer2" style="left: 200px;"></li><li class="wmd-button" id="wmd-olist-button" title="Numbered List &lt;ol&gt; Ctrl+O" style="left: 225px;"><span style="background-position: -120px 0px;"></span></li><li class="wmd-button" id="wmd-ulist-button" title="Bulleted List &lt;ul&gt; Ctrl+U" style="left: 250px;"><span style="background-position: -140px 0px;"></span></li><li class="wmd-button" id="wmd-heading-button" title="Heading &lt;h1&gt;/&lt;h2&gt; Ctrl+H" style="left: 275px;"><span style="background-position: -160px 0px;"></span></li><li class="wmd-button" id="wmd-hr-button" title="Horizontal Rule &lt;hr&gt; Ctrl+R" style="left: 300px;"><span style="background-position: -180px 0px;"></span></li><li class="wmd-spacer wmd-spacer3" id="wmd-spacer3" style="left: 325px;"></li><li class="wmd-button" id="wmd-undo-button" title="Undo - Ctrl+Z" style="left: 350px;"><span style="background-position: -200px -20px;"></span></li><li class="wmd-button" id="wmd-redo-button" title="Redo - Ctrl+Y" style="left: 375px;"><span style="background-position: -220px -20px;"></span></li><li class="wmd-button wmd-help-button active-help" id="wmd-help-button" title="Markdown Editing Help" style="right: 0px;"><span style="background-position: -240px 0px;"></span></li><div id="mdhelp" class="mdhelp" style="right: -7px; width: 667px; top: 25px;">
+    <ul id="mdhelp-tabs" class="mdhelp-tabs">
+        <li data-tab="mdhelp-links" data-buttons="link">Links</li>
+        <li data-tab="mdhelp-images" data-buttons="image">Images</li>
+        <li data-tab="mdhelp-styles" data-buttons="bold,italic,heading">Styling/Headers</li>
+        <li data-tab="mdhelp-lists" data-buttons="olist,ulist">Lists</li>
+        <li data-tab="mdhelp-blockquotes" data-buttons="quote">Blockquotes</li>
+        <li data-tab="mdhelp-code" data-buttons="code">Code</li>
+        <li data-tab="mdhelp-html"> HTML </li>
+        <li style="float:right"><a href="http://stackoverflow.com/editing-help" target="_blank">advanced help »</a></li>
+    </ul>
+    
+    <div class="mdhelp-tab" id="mdhelp-links">
+            <p>
+                In most cases, a plain URL will be recognized as such and automatically linked:
+            </p>
+            <pre>Visit http://area51.stackexchange.com/ regularly!
+Use angle brackets to force linking: Have you seen &lt;http://superuser.com&gt;?
+</pre>
+            <p>
+                To create fancier links, use Markdown:
+            </p>
+                <pre>Here's [a link](http://www.example.com/)! And a reference-style link to [a panda][1].
+References don't have to be [numbers][question].
+
+ [1]: http://notfound.stackexchange.com/
+ [question]: http://english.stackexchange.com/questions/11481
+</pre>
+                <p>You can add tooltips to links:</p>
+<pre> Click [here](http://diy.stackexchange.com<span class="spaces">&nbsp;</span>"this text appears when you mouse over")! This works with [reference links][blog] as well.   [blog]: http://blog.stackoverflow.com/<span class="spaces">&nbsp;</span>"click here for updates" </pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-images">
+        <p>Images are exactly like links, but they have an exclamation point in front of them:</p>
+        <pre>![a busy cat](http://sstatic.net/stackoverflow/img/error-lolcat-problemz.jpg)
+![two muppets][1]
+
+ [1]: http://i.imgur.com/I5DFV.jpg "tooltip"
+</pre>
+        <p>
+            The word in square brackets is the alt text, which gets displayed if the browser
+ can't show the image. Be sure to include meaningful alt text for screen-reading
+ software.
+        </p>
+   
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-styles">
+        <div class="col1">
+            <p>Be sure to use text styling sparingly; only where it helps readability.</p>
+                <pre>*This is italicized*, and so
+is _this_.
+
+**This is bold**, just like __this__.
+
+You can ***combine*** them
+if you ___really have to___.
+</pre>
+        
+        </div>
+        <div class="col2">
+            <p>
+                To break your text into sections, you can use headers:
+            </p>
+                <pre>A Large Header
+==============
+
+Smaller Subheader
+-----------------
+</pre>
+            <p>
+                Use hash marks if you need several levels of headers:</p>
+    <pre># Header 1 #
+## Header 2 ##
+### Header 3 ###
+</pre>
+
+            
+        </div>
+
+    </div>
+    <div class="mdhelp-tab" id="mdhelp-lists">
+        <p>Both bulleted and numbered lists are possible:</p>
+        <div class="col1">
+<pre> -<span class="spaces">&nbsp;</span>Use a minus sign for a bullet +<span class="spaces">&nbsp;</span>Or plus sign *<span class="spaces">&nbsp;</span>Or an asterisk  1.<span class="spaces">&nbsp;</span>Numbered lists are easy 2.<span class="spaces">&nbsp;</span>Markdown keeps track of  the numbers for you 7.<span class="spaces">&nbsp;</span>So this will be item 3. </pre>
+        </div>
+        <div class="col2">
+<pre> 1.<span class="spaces">&nbsp;</span>Lists in a list item: <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Indented four spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>*<span class="spaces">&nbsp;</span>indented eight spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>-<span class="spaces">&nbsp;</span>Four spaces again. 2.<span class="spaces">&nbsp;&nbsp;</span>You can have multiple <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>paragraphs in a list items. <span class="spaces">&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Just be sure to indent. </pre>        
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-blockquotes">
+        <div class="col1">
+            <pre>&gt; Create a blockquote by
+&gt; prepending “&gt;” to each line.
+&gt;
+&gt; Other formatting also works here, e.g.
+&gt;
+&gt; 1. Lists or
+&gt; 2. Headings:
+&gt;
+&gt; ## Quoted Heading ##
+</pre>
+        </div>
+        <div class="col2">
+                <p>
+                    You can even put blockquotes in blockquotes:
+                </p>
+                <pre>&gt; A standard blockquote is indented
+&gt; &gt; A nested blockquote is indented more
+&gt; &gt; &gt; &gt; You can nest to any depth.
+</pre>
+        </div>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-code">
+        <p>
+            To create code blocks or other preformatted text, indent by four spaces:
+        </p>
+        <pre> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>This will be displayed in a monospaced font. The first four spaces <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>will be stripped off, but all other whitespace will be preserved. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>Markdown and HTML are turned off in code blocks: <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;i&gt;This is not italic&lt;/i&gt;, and [this is not a link](http://example.com) </pre>
+        <p>
+            To create not a block, but an inline code span, use backticks:
+        </p>
+        <pre>The `$` character is just a shortcut for `window.jQuery`.
+</pre>
+        <p>
+            If you want to have a preformatted block within a list, indent by eight spaces:
+        </p>
+        <pre> 1. This is normal text. 2. So is this, but now follows a code block: <span class="spaces">&nbsp;</span> <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>Skip a line and indent eight spaces. <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>That's four spaces for the list <span class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>and four to trigger the code block. </pre>
+    </div>
+
+    <div class="mdhelp-tab" id="mdhelp-html">
+        <p>
+            If you need to do something that Markdown can't handle, use HTML. Note that <a href="http://meta.stackexchange.com/questions/1777/what-html-tags-are-allowed" target="_blank">we only support a very strict subset of HTML!</a>
+        </p>
+        <pre>Strikethrough humor is &lt;strike&gt;funny&lt;/strike&gt;.
+</pre>
+        <p>
+            Markdown is smart enough not to mangle your span-level HTML:
+        </p>
+        <pre>&lt;b&gt;Markdown works *fine* in here.&lt;/b&gt;
+</pre>
+        <p>
+            Block-level HTML elements have a few restrictions:
+        </p>
+        <ol>
+            <li>They must be separated from surrounding text by blank lines.</li>
+            <li>The begin and end tags of the outermost block element must not be indented.</li>
+            <li>Markdown can't be used within HTML blocks.</li>
+        </ol>
+        <br>
+        <pre> &lt;pre&gt;  You can &lt;em&gt;not&lt;/em&gt; use Markdown in here. &lt;/pre&gt; </pre>
+    </div>
+
+    <div class="cbt"></div>
+</div></ul></div>
+            <div style="clear: both; height: 24px;"></div><textarea id="wmd-input" class="wmd-input processed" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        <div class="grippie" style="margin-right: -7px;"></div></div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="74193b4a2fec862893f2b4c51bf7f436">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega#" class="discard-answer dno">discard</a>
+								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/sapply" class="post-tag" title="show questions tagged &#39;sapply&#39;" rel="tag">sapply</a> <a href="http://stackoverflow.com/questions/tagged/tapply" class="post-tag" title="show questions tagged &#39;tapply&#39;" rel="tag">tapply</a> <a href="http://stackoverflow.com/questions/tagged/r-faq" class="post-tag" title="show questions tagged &#39;r-faq&#39;" rel="tag">r-faq</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+
+
+
+<script>
+    window.showNewUser = false;
+
+</script>
+
+<div class="module newuser newuser-greeting" id="newuser-box" style="display:none;">
+    <h4>Hello World!</h4>
+    <div>
+        <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p><p>Got a question about the site itself? <a href="http://meta.stackoverflow.com/">meta</a> is the place to talk about things like what questions are appropriate, what tags we should use, etc.</p>
+        <p class="ar">
+                <a href="http://stackoverflow.com/tour?mnu=1">about »</a>&nbsp;&nbsp;&nbsp;
+            <a href="http://stackoverflow.com/help?mnu=1">help »</a>
+                &nbsp; <a href="http://meta.stackoverflow.com/">meta »</a>
+        </p>
+    </div>
+</div>
+    <script>
+    if (showNewUser) {
+        document.getElementById('newuser-box').style.display = '';
+    }
+    </script>						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2010-08-17 18:31:12Z"><b>4 years ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>109285 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/3505701/r-grouping-functions-sapply-vs-lapply-vs-apply-vs-tapply-vs-by-vs-aggrega?lastactivity" class="lastactivity-link" title="2014-11-06 00:00:25Z">17 days ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Featured on Meta
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="http://meta.stackoverflow.com/questions/277200/feedback-requested-stack-overflow-design-update?cb=1" class="question-hyperlink">
+<div class="favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>                </a>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/277200/feedback-requested-stack-overflow-design-update?cb=1" class="question-hyperlink">Feedback Requested: Stack Overflow design update</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="http://meta.stackoverflow.com/questions/277584/feedback-requested-search-engine-usage?cb=1" class="question-hyperlink">
+<div class="favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>                </a>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/277584/feedback-requested-search-engine-usage?cb=1" class="question-hyperlink">Feedback Requested: Search Engine Usage</a>
+                </div>
+                <br class="cbt">
+            </div>
+                <div class="bulletin-title">
+                    Hot Meta Posts
+                </div>
+                <hr>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">14</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/277544/what-to-do-when-i-am-basically-forced-to-serially-downvote-a-user-because-they-k?cb=1" class="question-hyperlink">What to do when I am basically forced to serially downvote a user because the…</a>
+                </div>
+                <br class="cbt">
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <span title="Vote score (upvotes - downvotes)">40</span>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="http://meta.stackoverflow.com/questions/277602/should-it-be-more-obvious-that-stack-snippets-are-only-meant-for-html-css-js?cb=1" class="question-hyperlink">Should it be more obvious that stack snippets are only meant for HTML/CSS/JS?</a>
+                </div>
+                <br class="cbt">
+            </div>
+    </div>
+</div>			
+			<div class="everyonelovesstackoverflow" id="careers2">
+        </div>
+        <div id="hireme" class=" orange looking tagged">  <a href="http://careers.stackoverflow.com/?a=2LAw8&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-orange-looking" class="top" target="_blank"> <span>Looking for a job?</span> </a> <ul class="jobs"> <li> <a href="http://careers.stackoverflow.com/jobs/74176/qa-manager-ndn-inc?a=oSl0UZe3K0x&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-orange-looking" target="_blank" title="QA Manager at NDN. Click to learn more."> <span class="title">QA Manager</span> <span class="company">NDN</span> <span class="location">Atlanta, GA</span> <span class="post-tag">automation</span> <span class="post-tag">linux</span> </a> </li> <li> <a href="http://careers.stackoverflow.com/jobs/70933/software-engineer-american-express?a=nMUh01z5ce6&utm_source=stackoverflow.com&utm_medium=ad&utm_campaign=jobs-small-sidebar-orange-looking" target="_blank" title="Software Engineer at American Express. Click to learn more."> <span class="title">Software Engineer</span> <span class="company">American Express</span> <span class="location">New York, NY</span> <span class="post-tag">java</span> <span class="post-tag">testing</span> </a> </li> </ul> <img alt="" class="impression" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/oSl0UZe3K0x-nMUh01z5ce6-2LAw8" style="display:none"> </div>
+			<div class="module" id="chat-feature">
+    
+
+    
+<h4><a href="http://chat.stackoverflow.com/" id="h-chat-link" title="25 users active in 13 rooms the last 60 minutes">25 People Chatting</a></h4>
+
+<div class="related" id="ad502-rooms"><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="Lounge&lt;C++&gt;"><a href="http://chat.stackoverflow.com/rooms/10">Lounge&lt;C++&gt;</a></span></h3><span title="2014-11-23 02:55:10Z" class="ad502-last-message">44 mins ago - <a href="http://chat.stackoverflow.com/users/46642">R. Martinho Fernandes</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/46642"><img height="23" width="23" title="R. Martinho Fernandes: 44 mins ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/f64914b68ff9076e46156c07c96e890f"></a><a href="http://chat.stackoverflow.com/users/560648"><img height="23" width="23" title="Lightness Races in Orbit: 46 mins ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/72fKa.jpg"></a><a href="http://chat.stackoverflow.com/users/303662"><img height="23" width="23" title="Ell: 48 mins ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/e4fe5511c802ce89b7e95c8173a7a17a"></a><a href="http://chat.stackoverflow.com/users/932887"><img height="23" width="23" title="Alex M.: 56 mins ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/6KUp0.png"></a><a href="http://chat.stackoverflow.com/users/179910"><img height="23" width="23" title="Jerry Coffin: 1 hour ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/d8962238339d771f0348967be6f97b1b"></a><a href="http://chat.stackoverflow.com/users/2369847"><img height="23" width="23" title="chmod 711 telkitty: 1 hour ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/ymkko.png"></a><a href="http://chat.stackoverflow.com/users/583833"><img height="23" width="23" title="Borgleader: 1 hour ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/791a00235c66b6c32effd4291101087f"></a></div></div><div class="ad502-room"><h3 class="ad502-room-h3"><span class="ad502-room-title" title="PHP"><a href="http://chat.stackoverflow.com/rooms/11">PHP</a></span></h3><span title="2014-11-23 02:54:09Z" class="ad502-last-message">45 mins ago - <a href="http://chat.stackoverflow.com/users/538216">Levi Morrison</a></span><br><div class="ad502-users"><a href="http://chat.stackoverflow.com/users/538216"><img height="23" width="23" title="Levi Morrison: 45 mins ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/e91a4b631b4bb7f0c477626617dd3926"></a><a href="http://chat.stackoverflow.com/users/1521771"><img height="23" width="23" title="underscore: 57 mins ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/bJjdD.png"></a><a href="http://chat.stackoverflow.com/users/1063823"><img height="23" width="23" title="Duikboot: 1 hour ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/mFbX3.jpg"></a><a href="http://chat.stackoverflow.com/users/778719"><img height="23" width="23" title="Danack: 1 hour ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/01t5l.jpg"></a><a href="http://chat.stackoverflow.com/users/736162"><img height="23" width="23" title="Andrea Faulds: 2 hours ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/eb6854f56cb2aa14ce798b53ea667639"></a><a href="http://chat.stackoverflow.com/users/338665"><img height="23" width="23" title="ircmaxell: 2 hours ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/a32a990c257433d3252980e059341546"></a><a href="http://chat.stackoverflow.com/users/2153758"><img height="23" width="23" title="bwoebi: 3 hours ago" src="./R Grouping functions  sapply vs. lapply vs. apply. vs. tapply vs. by vs. aggregate - Stack Overflow_files/3659fff22e890aaa5d7b03e799f9047f"></a></div></div></div>
+<script>
+// <!--
+    StackExchange.ready(
+    function () {
+        var options = {
+            chatUrl: 'http://chat.stackoverflow.com',
+            reloadUrl: '/api/recent-chat',
+            preloadData: {"activeUsers":25,"activeRooms":13,"rooms":[{"name":"Lounge\u003cC++\u003e","id":10,"lastPost":1416711310,"posts":3222164,"users":[{"name":"R. Martinho Fernandes","id":46642,"emailhash":"f64914b68ff9076e46156c07c96e890f","lastPost":1416711310},{"name":"Lightness Races in Orbit","id":560648,"emailhash":"!http://i.stack.imgur.com/72fKa.jpg?s=128\u0026g=1","lastPost":1416711164},{"name":"Ell","id":303662,"emailhash":"e4fe5511c802ce89b7e95c8173a7a17a","lastPost":1416711021},{"name":"Alex M.","id":932887,"emailhash":"!http://i.stack.imgur.com/6KUp0.png?s=128\u0026g=1","lastPost":1416710567},{"name":"Jerry Coffin","id":179910,"emailhash":"d8962238339d771f0348967be6f97b1b","lastPost":1416708963},{"name":"chmod 711 telkitty","id":2369847,"emailhash":"!http://i.stack.imgur.com/ymkko.png?s=128\u0026g=1","lastPost":1416708485},{"name":"Borgleader","id":583833,"emailhash":"791a00235c66b6c32effd4291101087f","lastPost":1416708048}],"messages":[{"date":1416711310,"user":"R. Martinho Fernandes","userid":46642}],"singleImage":false,"tags":["c++","c++11","c++14","c++-faq"]},{"name":"PHP","id":11,"lastPost":1416711249,"posts":1717843,"users":[{"name":"Levi Morrison","id":538216,"emailhash":"e91a4b631b4bb7f0c477626617dd3926","lastPost":1416711249},{"name":"underscore","id":1521771,"emailhash":"!http://i.stack.imgur.com/bJjdD.png?s=128\u0026g=1","lastPost":1416710500},{"name":"Duikboot","id":1063823,"emailhash":"!http://i.stack.imgur.com/mFbX3.jpg?s=128\u0026g=1","lastPost":1416709932},{"name":"Danack","id":778719,"emailhash":"!http://i.stack.imgur.com/01t5l.jpg?s=128\u0026g=1","lastPost":1416706970},{"name":"Andrea Faulds","id":736162,"emailhash":"eb6854f56cb2aa14ce798b53ea667639","lastPost":1416705780},{"name":"ircmaxell","id":338665,"emailhash":"a32a990c257433d3252980e059341546","lastPost":1416704100},{"name":"bwoebi","id":2153758,"emailhash":"3659fff22e890aaa5d7b03e799f9047f","lastPost":1416700380}],"messages":[{"date":1416711249,"user":"Levi Morrison","userid":538216}],"singleImage":false,"tags":["php"]}]} 
+        };
+
+        StackExchange.chatAd.init(options);
+    });
+// -->
+</script>
+
+</div>  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/13425367?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/13425367/calculating-column-means-based-on-values-in-another-column?lq=1" class="question-hyperlink">Calculating column means based on values in another column</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/14857838?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/14857838/how-to-apply-functions-to-a-subset-of-the-data-in-a-vectorized-manner?lq=1" class="question-hyperlink">How to apply functions to a subset of the data in a vectorized manner</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/13692532?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/13692532/how-apply-a-function-across-runs?lq=1" class="question-hyperlink">how apply a function across runs</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/7410684?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/7410684/rs-apply-functions-family?lq=1" class="question-hyperlink">R's apply functions family</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/17413445?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/17413445/combining-binary-variables-in-r?lq=1" class="question-hyperlink">Combining binary variables in R</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/20134101?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/20134101/calculating-value-means-for-each-site-and-year-in-a-data-frame-in-r?lq=1" class="question-hyperlink">Calculating value means for each site and year in a data frame in R</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/14843549?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes answered-accepted default">-3</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/14843549/generate-per-month-summaries-and-single-boxplot?lq=1" class="question-hyperlink">Generate per-month summaries, and single boxplot</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/12523379?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">-2</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/12523379/sample-mean-by-segment-in-r?lq=1" class="question-hyperlink">sample mean by segment in R</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/19693191?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/19693191/how-can-i-write-the-code-to-generate-a-summarized-table-in-r?lq=1" class="question-hyperlink">How can I write the code to generate a summarized table in R?</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/23788356?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/23788356/apply-sapply-function-in-r-for-different-variables-in-one-function?lq=1" class="question-hyperlink">Apply “sapply” function in R for different variables in one function</a>
+</div>					<div class="spacer more">
+				<a href="http://stackoverflow.com/questions/linked/3505701?lq=1">see more linked questions…</a>
+			</div>
+	</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/15215076?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">4
+    </div>
+</a><a href="http://stackoverflow.com/questions/15215076/multiple-functions-in-a-single-tapply-or-aggregate-statement?rq=1" class="question-hyperlink">multiple functions in a single tapply or aggregate statement</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/16145440?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/16145440/problems-with-grouping-factor-data-frame-and-tapply?rq=1" class="question-hyperlink">Problems with grouping factor, data frame, and tapply</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/16658124?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/16658124/sapply-different-than-individual-application-of-function?rq=1" class="question-hyperlink">Sapply different than individual application of function</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/17903205?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">7
+    </div>
+</a><a href="http://stackoverflow.com/questions/17903205/sum-multiple-columns-by-group-with-tapply?rq=1" class="question-hyperlink">sum multiple columns by group with tapply</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/18566581?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">-1
+    </div>
+</a><a href="http://stackoverflow.com/questions/18566581/how-to-use-sapply-to-apply-function-to-vector-ai-returning-value-from-vector-b?rq=1" class="question-hyperlink">How to use sapply to apply function to vector_a[i] returning value from vector_b[i]</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21243499?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/21243499/how-to-use-sapply-or-lapply-to-count-the-number-of-lines-in-n-csv-files?rq=1" class="question-hyperlink">How to use 'sapply' or 'lapply' to count the number of lines in n csv files?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21433747?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://stackoverflow.com/questions/21433747/tapply-a-row-based-function-to-subsets?rq=1" class="question-hyperlink">tapply a row based function to subsets</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/22065044?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/22065044/applying-a-function-to-a-group-of-a-group-tapply-in-ddply?rq=1" class="question-hyperlink">Applying a function to a group of a group (tapply in ddply)</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25702361?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/25702361/aggregate-over-2-groups?rq=1" class="question-hyperlink">aggregate over 2 groups</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25929960?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/25929960/grouping-an-entire-data-set-and-aggregating?rq=1" class="question-hyperlink">Grouping an entire data set and aggregating</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/139722/is-there-any-way-to-use-half-bits" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there any way to use half-bits?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-webmasters" title="Webmasters Stack Exchange"></div><a href="http://webmasters.stackexchange.com/questions/72211/why-do-big-sites-use-multiple-servers-instead-of-one-server-with-better-specific" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:45 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do big sites use multiple servers instead of one server with better specifications?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/125084/does-mean-median-imply-that-a-unimodal-distribution-is-symmetric" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does mean = median imply that a unimodal distribution is symmetric?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/213387/how-to-set-actual-width-for-a-rounded-corners-image-using-tikz" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to set actual width for a rounded corners image using TikZ?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/213482/how-can-i-draw-a-twisted-3d-arrow" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I draw a twisted 3D arrow?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/36580/do-interview-brainteaser-questions-predict-performance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Do interview brainteaser questions predict performance?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/73175/where-did-king-arthur-get-his-sword-excalibur" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where did King Arthur get his sword, Excalibur?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/9854/can-a-fighter-jet-land-on-a-modified-airliner" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a fighter jet land on a modified airliner
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1034455/defeating-russells-paradox" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Defeating Russell's paradox
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/209605/is-there-a-word-for-a-fake-radar-reading" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a word for a fake radar reading?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/139688/how-can-a-resistor-affect-current-and-potential-at-the-same-time" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can a resistor affect current AND potential at the same time?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/51258/how-is-counterspell-a-fair-spell" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How is counterspell a fair spell?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/41719/find-in-given-n" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Find i^n, given n
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/148177/what-do-we-see-while-watching-light-waves-or-particles" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do we see while watching light? Waves or particles?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/213490/different-chapter-title" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Different chapter title
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/41711/say-hello-to-the-pioneers-of-computer-science" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Say Hello to the Pioneers of Computer Science
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/209439/what-does-tldr-mean-and-how-is-it-used" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does 'TL;DR' mean and how is it used?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-spanish" title="Spanish Language Stack Exchange"></div><a href="http://spanish.stackexchange.com/questions/10314/is-a-wrist-a-toy-mu%c3%b1eca" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:353 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is a Wrist a Toy (muñeca)?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/213481/with-tikz-is-it-possible-to-pass-the-node-content-through-a-preprocessor" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    With TikZ is it possible to pass the node content through a preprocessor?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-puzzling" title="Puzzling Stack Exchange"></div><a href="http://puzzling.stackexchange.com/questions/5436/riddle-of-the-mysterious-salesman" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:559 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Riddle of the Mysterious Salesman
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1034456/suppose-that-half-of-the-elements-of-g-have-order-2-and-the-other-half-forma-a-s" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Suppose that half of the elements of G have order 2 and the other half forma a subgroup H of oder n. Prove that H is an abelian subgroup of G.
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codereview" title="Code Review Stack Exchange"></div><a href="http://codereview.stackexchange.com/questions/70598/using-stdunique-ptr-and-stdmove" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:196 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Using std::unique_ptr and std::move
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/73270/short-story-about-if-you-die-you-are-reborn-as-someone-else-in-a-different-time" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Short story about if you die you are reborn as someone else in a different time
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/209814/what-is-a-metaphor-for-being-thrown-into-a-completely-new-environment" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is a Metaphor for "Being Thrown Into a Completely New Environment"
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/3505701" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/3505701/ivc/a6ab');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/3505701/ivc/a6ab" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-r</div></div>
+
+    <script>
+        $('#wmd-input').one("keypress", function() {
+            $.ajax({
+                url: '/accounts/email-settings-form',
+                cache: false,
+                success: function(data) {
+                    $('#submit-button').parent().prepend(data);
+                }
+            });
+        });
+
+    </script>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=footerlink">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>                   with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.11.22.2040
+            </div>
+            
+        </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        ga('set', 'dimension1', '2706904');         
+        ga('set', 'dimension2', '|r|sapply|tapply|r-faq|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<div><div id="SL_button" class="ImTranslatorLogo"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="display: none;"><div id="SL_planshet"><div id="SL_TB"><div class="ImTranslatorLogo"></div><table cellspacing="1" border="0" id="SL_tables"><tbody><tr><td class="SL_td" align="left" width="20%"><div id="SL_lng_from">English&nbsp;»</div></td><td class="SL_td" align="left" width="20%"><div id="SL_to_"><div id="SL_tocurlng" style="margin-left:5px;">Georgian</div><div class="SL_arrow"></div><div id="SL_to_list" style="display=" none'=""><div class="SL_DDMENU"><div id="SL_af" class="SL_limenu">Afrikaans</div><div id="SL_sq" class="SL_limenu">Albanian</div><div id="SL_ar" class="SL_limenu">Arabic</div><div id="SL_hy" class="SL_limenu">Armenian</div><div id="SL_az" class="SL_limenu">Azerbaijani</div><div id="SL_eu" class="SL_limenu">Basque</div><div id="SL_bn" class="SL_limenu">Bengali</div><div id="SL_be" class="SL_limenu">Belarusian</div><div id="SL_bg" class="SL_limenu">Bulgarian</div><div id="SL_ca" class="SL_limenu">Catalan</div><div id="SL_zh_CN" class="SL_limenu">Chinese&nbsp;(Simp)</div><div id="SL_zh_TW" class="SL_limenu">Chinese&nbsp;(Trad)</div><div id="SL_hr" class="SL_limenu">Croatian</div><div id="SL_cs" class="SL_limenu">Czech</div><div id="SL_da" class="SL_limenu">Danish</div><div id="SL_nl" class="SL_limenu">Dutch</div><div id="SL_en" class="SL_limenu">English</div><div id="SL_eo" class="SL_limenu">Esperanto</div><div id="SL_et" class="SL_limenu">Estonian</div><div id="SL_tl" class="SL_limenu">Filipino</div><div id="SL_fi" class="SL_limenu">Finnish</div><div id="SL_fr" class="SL_limenu">French</div><div id="SL_gl" class="SL_limenu">Galician</div><div id="SL_ka" class="SL_limenu">Georgian</div><div id="SL_de" class="SL_limenu">German</div><div id="SL_el" class="SL_limenu">Greek</div><div id="SL_gu" class="SL_limenu">Gujarati</div><div id="SL_ht" class="SL_limenu">Haitian&nbsp;Creole</div><div id="SL_iw" class="SL_limenu">Hebrew</div><div id="SL_hi" class="SL_limenu">Hindi</div><div id="SL_hu" class="SL_limenu">Hungarian</div><div id="SL_is" class="SL_limenu">Icelandic</div><div id="SL_id" class="SL_limenu">Indonesian</div><div id="SL_ga" class="SL_limenu">Irish</div><div id="SL_it" class="SL_limenu">Italian</div><div id="SL_ja" class="SL_limenu">Japanese</div><div id="SL_kn" class="SL_limenu">Kannada</div><div id="SL_ko" class="SL_limenu">Korean</div><div id="SL_lo" class="SL_limenu">Lao</div><div id="SL_la" class="SL_limenu">Latin</div><div id="SL_lv" class="SL_limenu">Latvian</div><div id="SL_lt" class="SL_limenu">Lithuanian</div><div id="SL_mk" class="SL_limenu">Macedonian</div><div id="SL_ms" class="SL_limenu">Malay</div><div id="SL_mt" class="SL_limenu">Maltese</div><div id="SL_no" class="SL_limenu">Norwegian</div><div id="SL_fa" class="SL_limenu">Persian</div><div id="SL_pl" class="SL_limenu">Polish</div><div id="SL_pt" class="SL_limenu">Portuguese</div><div id="SL_ro" class="SL_limenu">Romanian</div><div id="SL_ru" class="SL_limenu">Russian</div><div id="SL_sr" class="SL_limenu">Serbian</div><div id="SL_sk" class="SL_limenu">Slovak</div><div id="SL_sl" class="SL_limenu">Slovenian</div><div id="SL_es" class="SL_limenu">Spanish</div><div id="SL_sw" class="SL_limenu">Swahili</div><div id="SL_sv" class="SL_limenu">Swedish</div><div id="SL_ta" class="SL_limenu">Tamil</div><div id="SL_te" class="SL_limenu">Telugu</div><div id="SL_th" class="SL_limenu">Thai</div><div id="SL_tr" class="SL_limenu">Turkish</div><div id="SL_uk" class="SL_limenu">Ukrainian</div><div id="SL_ur" class="SL_limenu">Urdu</div><div id="SL_vi" class="SL_limenu">Vietnamese</div><div id="SL_cy" class="SL_limenu">Welsh</div><div id="SL_yi" class="SL_limenu">Yiddish</div></div></div></div><select id="SL_lng_to"><option value="af">Afrikaans</option><option value="sq">Albanian</option><option value="ar">Arabic</option><option value="hy">Armenian</option><option value="az">Azerbaijani</option><option value="eu">Basque</option><option value="bn">Bengali</option><option value="be">Belarusian</option><option value="bg">Bulgarian</option><option value="ca">Catalan</option><option value="zh-CN">Chinese&nbsp;(Simp)</option><option value="zh-TW">Chinese&nbsp;(Trad)</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option value="en">English</option><option value="eo">Esperanto</option><option value="et">Estonian</option><option value="tl">Filipino</option><option value="fi">Finnish</option><option value="fr">French</option><option value="gl">Galician</option><option value="ka">Georgian</option><option value="de">German</option><option value="el">Greek</option><option value="gu">Gujarati</option><option value="ht">Haitian&nbsp;Creole</option><option value="iw">Hebrew</option><option value="hi">Hindi</option><option value="hu">Hungarian</option><option value="is">Icelandic</option><option value="id">Indonesian</option><option value="ga">Irish</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="kn">Kannada</option><option value="ko">Korean</option><option value="lo">Lao</option><option value="la">Latin</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="mk">Macedonian</option><option value="ms">Malay</option><option value="mt">Maltese</option><option value="no">Norwegian</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sr">Serbian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option selected="" value="es">Spanish</option><option value="sw">Swahili</option><option value="sv">Swedish</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="yi">Yiddish</option></select></td><td class="SL_td" width="13%" align="center">&nbsp;</td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title=""></div></td><td class="SL_td" width="8%" align="center"><div class="SL_copy_hand" id="SL_copy" title="Select text"></div></td><td class="SL_td" width="8%" align="center"><div class="SL_font_off" id="SL_bbl_font" title="Font size"></div></td><td class="SL_td" width="5%"></td><td class="SL_td" width="8%" align="right"><div class="SL_pin_off" id="SL_pin" title="Pin pup-up bubble"></div></td></tr></tbody></table></div></div><div id="SL_shadow_translation_result"></div><div id="SL_bbl_donate" title="Make a small contribution"></div><div id="SL_Balloon_options"><a href="chrome-extension://pcfaommkmdjacdkbaoohklbccfmbnnod/options-bbl.html" target="_blank" class="SL_options" title="Show options">Options</a></div></div></div><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

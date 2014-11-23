@@ -1,0 +1,24 @@
+library(RWeka)
+TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+
+trigramToDB<-function(x){
+tdm <- makeTriTDM(x)
+# create vector of total frequencies
+counts=row_sums(tdm)
+rm(tdm)
+gc()
+# put to database
+lapply(1:length(counts),FUN=function(x){
+key=names(counts[x])
+c=counts[x]
+if(dbExists(db,key)==TRUE)
+{
+existing=db[[key]]
+db[[key]]=(existing+c)
+}
+else
+{
+db[[key]]=c
+}
+})
+}

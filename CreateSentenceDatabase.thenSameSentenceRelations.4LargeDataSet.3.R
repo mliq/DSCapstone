@@ -65,6 +65,8 @@ output<-lapply(output,FUN=function(x) gsub("\\s+$", "", x))
 output<-lapply(output,FUN=function(x) gsub("\\s*~\\s*", " ", x))
 # Replace forward slash with space
 output<-lapply(output,FUN=function(x) gsub("\\/", " ", x))
+# Replace + signs with space
+output<-lapply(output,FUN=function(x) gsub("\\+", " ", x))
 # Eliminate empty and single letter values (more?)
 output[which(nchar(unlist(unlist(output)))==1)]=NULL
 output[which(nchar(unlist(unlist(output)))==0)]=NULL

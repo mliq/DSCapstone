@@ -65,6 +65,8 @@ output<-lapply(output,FUN=function(x) gsub("\\s+$", "", x))
 output<-lapply(output,FUN=function(x) gsub("\\s*~\\s*", " ", x))
 # Replace forward slash with space
 output<-lapply(output,FUN=function(x) gsub("\\/", " ", x))
+# Replace + signs with space
+output<-lapply(output,FUN=function(x) gsub("\\+", " ", x))
 # Eliminate empty and single letter values (more?)
 output[which(nchar(unlist(unlist(output)))==1)]=NULL
 output[which(nchar(unlist(unlist(output)))==0)]=NULL
@@ -89,15 +91,6 @@ library(tm)
 library(RWeka)
 TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
 
-makeTDM <- function(x) {
-corpus<-Corpus(VectorSource(x))
-corpus <- tm_map(corpus, content_transformer(tolower))
-corpus <- tm_map(corpus, stemDocument)
-tdm<- TermDocumentMatrix(corpus)
-#tdm<-removeSparseTerms(tdm,0.97)
-return(tdm)}
-
-
 makeTriTDM <- function(x) {
 corpus<-Corpus(VectorSource(x))
 corpus <- tm_map(corpus, content_transformer(tolower))
@@ -121,66 +114,37 @@ db <- dbInit("t.tri", type="DB1")
 
 # Trigram to DB function
 library(slam)
-trigramToDB<-function(x){
-tdm <- makeTriTDM(x)
-# create vector of total frequencies
-
-counts=row_sums(b.tdm)
-# for each row x:
-# assign counts[x] to names(counts[x]) in db
-
-tris<-
-# rows<-grep(x,names(counts))
-#names=names(counts[rows]),counts=counts[rows]
-
-}
-
-
-assocsToDB<-function(x){
-tdm <- makeTDM(x)
-# Create a matrix of associations.
-ass<-lapply(dimnames(tdm)$Terms,FUN=function(x){findAssocs(tdm,x,0)})
-# Clean out nulls. NOTE - why do i have stuff separated by periods though??
-ass[which(lapply(1:length(ass),FUN=function(x){is.null(dimnames(ass[[x]]))==1})==TRUE)]=NULL
-#########################################
-# Create filehash database
-# 2 is the key word, 1 are the values.
-# so names will be dimnames(t.ass[[x]][1])
-# values will be: t.ass[[1]][1:length(t.ass[[1]])]
-
-lapply(1:length(ass),FUN=function(x){
-key=dimnames(ass[[x]])[[2]]
-new=ass[[x]][1:length(ass[[x]])]
-names(new)=dimnames(ass[[x]])[[1]]
-
-if(dbExists(db,key)==TRUE)
-{
-existing=db[[key]]
-db[[key]]=c(new,existing)
-}
-else
-{
-db[[key]]=new
-}
-})
-}
-
-
-
-# We should test this first on 1, 20000 lines might already be too much?
-assocsToDB(twit[[1]][1:100])
 
 # Start the clock!
 ptm <- proc.time()
-
-assocsToDB(twit[[1]])
-
+trigramToDB(twit[[1]][1:3191])
 # Stop the clock
 proc.time() - ptm
+# 500 lines takes: 94 seconds.
+# SO, 2.36e6, whole twitter will take: 4720*94=443680 seconds, 7394.66666666666666666667 min, 123 hours.
+# So why was I able to do this before...
 
-# wow this is taking FOREVER. I'll give it until... 4 pm maybe (1 hour total?) and then I may need to end it. I should have tested it first on a smaller set... The chunk thing that is.
-# I don't really understand either why it's not expanding in size in the t.ass file...
+# Walk through this with a small set first.
+x=twit[[1]][1:500]
 
-#lapply(twit,assocsToDB)
-
-
+trigramToDB<-function(x){
+tdm <- makeTriTDM(x)
+# create vector of total frequencies
+counts=row_sums(tdm)
+rm(tdm)
+gc()
+# put to database
+lapply(1:length(counts),FUN=function(x){
+key=names(counts[x])
+c=counts[x]
+if(dbExists(db,key)==TRUE)
+{
+existing=db[[key]]
+db[[key]]=(existing+c)
+}
+else
+{
+db[[key]]=c
+}
+})
+}

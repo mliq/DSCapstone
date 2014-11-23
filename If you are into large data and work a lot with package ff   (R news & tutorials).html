@@ -1,0 +1,1241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0084)http://www.r-bloggers.com/if-you-are-into-large-data-and-work-a-lot-with-package-ff/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" hc="a3" style=""><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>If you are into large data and work a lot with package ff | (R news &amp; tutorials)</title>
+
+<script src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/cb=gapi.loaded_1" async=""></script><script src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/ga.js"></script><script async="" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/cloudflare.min.js"></script><script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok2v=1613a3a185/"},atok:"ba2c88d8460194a428288bb6e79664ef",petok:"fcb0eea2015d06072f9c9350e61907f138b90454-1416717123-1800",zone:"r-bloggers.com",rocket:"0",apps:{}}];CloudFlare.push({"apps":{"ape":"5a8c0231f3a0c42144126d6b975f4aca"}});!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dok2v=919620257c/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
+//]]>
+</script>
+<link rel="stylesheet" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/style.css" type="text/css" media="screen">
+
+<style type="text/css">
+
+body { width: 1024px; }
+
+#mainwrapper { width: 1004px; }
+
+#sidebar { width: 180px; }
+
+#sidebar .side-widget { width: 160px; }
+
+
+#secondsidebar { width: 300px; }
+
+#secondsidebar .side-widget { width: 300px; }
+
+
+#leftcontent, #twocol, #threecol, #threecol2, .commentlist { width: 456px; }
+
+#leftcontent img, .wp-caption { max-width: 456px; }
+
+#leftcontent .wp-caption img, #leftcontent .gallery-thumb img { max-width: 444px; }
+
+<!-- fix for IE & Safari -->
+
+.threepost embed { width: 132.24px !important; }
+
+.twopost embed { width: 209.76px !important; }
+
+<!-- end fix for Safari -->
+
+</style>
+
+	<link rel="pingback" href="http://www.r-bloggers.com/xmlrpc.php">
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" href="http://www.r-bloggers.com/wp-content/themes/magazine-basic/iestyles.css" />
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="R-bloggers » Feed" href="http://www.r-bloggers.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="R-bloggers » Comments Feed" href="http://www.r-bloggers.com/comments/feed/">
+<link rel="stylesheet" id="jetpack-subscriptions-css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/subscriptions.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpt-twitter-feed-css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/twitter-feed.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack-widgets-css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/widgets.css" type="text/css" media="all">
+<link rel="stylesheet" id="codebox-css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/codebox.css" type="text/css" media="screen">
+<link rel="stylesheet" id="widget-grid-and-list-css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/widget-grid-and-list.css" type="text/css" media="all">
+<!-- This site uses the Yoast Google Analytics plugin v5.0.5 - Universal disabled - https://yoast.com/wordpress/plugins/google-analytics/ -->
+<script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-419807-53']);
+	_gaq.push(['_gat._forceSSL']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+</script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style>
+<!-- / Yoast Google Analytics -->
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/jquery.min.js"></script>
+<script type="text/javascript">try{jQuery.noConflict();}catch(e){};</script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/codebox.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.r-bloggers.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.r-bloggers.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Get a path to your Dropbox folder" href="http://www.r-bloggers.com/get-a-path-to-your-dropbox-folder/">
+<link rel="next" title="“Trend is Not Your Friend” Applied to 48 Industries" href="http://www.r-bloggers.com/trend-is-not-your-friend-applied-to-48-industries/">
+<meta name="generator" content="WordPress 3.9.2">
+<link rel="shortlink" href="http://wp.me/pMm6L-gku">
+<!-- This site is powered by Tweet, Like, Plusone and Share Plugin - http://techxt.com/tweet-like-google-1-and-share-plugin-wordpress/ -->
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="If you are into large data and work a lot with package ff">
+		<meta property="og:url" content="http://www.r-bloggers.com/if-you-are-into-large-data-and-work-a-lot-with-package-ff/">
+		<meta property="og:site_name" content="R-bloggers">
+		<meta property="og:description" content="
+	
+
+	The ff package is a great and efficient way of working with large datasets. 
+
+	One of the main reasons why I prefer to use it above other packages that allow working with large datasets is that it is a complete set of tools.
+
+	When comparing it to the other open source &#39;bigdata&#39; packages in R
+
+		It is not restricted to work basically with numeric data matrices like the bigmemory set of packages but allows relatively easy access to character vectors through factors
+	
+		It has efficient data loading functionality from flat/csv files, you can interact with SQL databases as explained here.
+	
+		You don&#39;t need to use the sqldf package to get and insert all the time your data in the right (RAM-limited) sized to and from an SQLite database
+	
+		It has higher level functionality (e.g. apply set of family, sorting, ...) which package mmap seems to be lacking
+	
+		And it allows you to work with datasets which you can not put in memory which the datatable package does not allow. 
+
+	If you disagree, do comment.
+
+	 
+
+	In my dayly work, I encountered frequently that some bits are still missing in package ff to make it suited for easy day-to-day analysis of large data. Apparently I was not alone as Edwin de Jonge started already package ffbase (available at http://code.google.com/p/fffunctions/). For a predictive modelling project BNOSAC has made for https://additionly.com/ we have made some nice progress in the package.
+
+	 
+
+	The package ffbase now contains quite some extensions that are really usefull. It contains a lot of the functionality from the R&#39;s base package for usage with large datasets through package ff. 
+
+	Namely 
+
+		Basic operations (c, unique, duplicated, ffmatch, ffdfmatch, %in%, is.na, all, any, cut, ffwhich, ffappend, ffdfappend)
+	
+		Standard operators (+, -, *, /, ^, %%, %/%, ==, !=, &lt;, &lt;=, &gt;=, &gt;, &amp;, |, !) on ff vectors
+	
+		Math operators (abs, sign, sqrt, ceiling, floor, trunc, round, signif, log, log10, log2, log1p, exp, expm1, acos, acosh, asin, asinh, atan, atanh, cos, cosh, sin, sinh, tan, tanh, gamma, lgamma, digamma, trigamma)
+	
+		Selections &amp; data manipulations (subset, transform, with, within, ffwhich)
+	
+		Summary statistics (sum, min, max, range, quantile, hist)
+	
+		Data transformations (cumsum, cumprod, cummin, cummax, table, tabulate, merge, ffdfdply)
+
+	These functions work all on either ff objects or objects of class ffdf from the ff package
+
+	Next to that there are some extra goodies allowing faster grouping by - not restricted to the ff package alone (Fast groupwise aggregations: bySum, byMean, binned_sum, binned_sumsq, binned_tabulate)
+
+	
+		This makes it a lot more easy to work with the ff package and large data.
+	
+		 
+
+
+	Let me show some R-code to show what this means using a simple dataset of the Heritage Health Prize competition of only 2.6Mio records available for download for download here (http://www.heritagehealthprize.com/c/hhp/data). It is a dataset with claims.
+
+	The code is for objects of ff/ffdf class and is based on version 0.6 of the package for download here.
+
+	 
+
+	
+		&gt; require(ffbase)
+	
+		&gt; hhp &lt;- read.table.ffdf(file=&quot;/home/jan/Work/RForgeBNOSAC/github/RBelgium_HeritageHealthPrize/Data/Claims.csv&quot;, FUN = &quot;read.csv&quot;, na.strings = &quot;&quot;)
+	
+		&gt; class(hhp)
+	
+		[1] &quot;ffdf&quot;
+	
+		&gt; dim(hhp)
+	
+		[1] 2668990      14
+	
+		&gt; str(hhp[1:10,])
+	
+		&#39;data.frame&#39;: 10 obs. of  14 variables:
+	
+		 $ MemberID             : int  42286978 97903248 2759427 73570559 11837054 45844561 99829076 54666321 60497718 72200595
+	
+		 $ ProviderID           : int  8013252 3316066 2997752 7053364 7557061 1963488 6721023 9932074 363858 6251259
+	
+		 $ Vendor               : int  172193 726296 140343 240043 496247 4042 265273 35565 293107 791272
+	
+		 $ PCP                  : int  37796 5300 91972 70119 68968 55823 91972 27294 64913 49465
+	
+		 $ Year                 : Factor w/ 3 levels &quot;Y1&quot;,&quot;Y2&quot;,&quot;Y3&quot;: 1 3 3 3 2 3 1 1 2 3
+	
+		 $ Specialty            : Factor w/ 12 levels &quot;Anesthesiology&quot;,..: 12 5 5 6 12 10 11 2 11 5
+	
+		 $ PlaceSvc             : Factor w/ 8 levels &quot;Ambulance&quot;,&quot;Home&quot;,..: 5 5 5 3 7 5 5 5 5 5
+	
+		 $ PayDelay             : Factor w/ 163 levels &quot;0&quot;,&quot;10&quot;,&quot;101&quot;,..: 52 76 29 48 51 49 40 53 67 82
+	
+		 $ LengthOfStay         : Factor w/ 10 levels &quot;1 day&quot;,&quot;2- 4 weeks&quot;,..: NA NA NA NA NA NA NA NA NA NA
+	
+		 $ DSFS                 : Factor w/ 12 levels &quot;0- 1 month&quot;,&quot;10-11 months&quot;,..: 11 10 1 8 7 6 1 1 4 10
+	
+		 $ PrimaryConditionGroup: Factor w/ 45 levels &quot;AMI&quot;,&quot;APPCHOL&quot;,..: 26 26 21 21 10 26 38 33 19 22
+	
+		 $ CharlsonIndex        : Factor w/ 4 levels &quot;0&quot;,&quot;1-2&quot;,&quot;3-4&quot;,..: 1 2 1 2 2 1 1 1 1 2
+	
+		 $ ProcedureGroup       : Factor w/ 17 levels &quot;ANES&quot;,&quot;EM&quot;,&quot;MED&quot;,..: 3 2 2 7 2 2 3 5 2 7
+	
+		 $ SupLOS               : int  0 0 0 0 0 0 0 0 0 0
+	
+		&gt; ## Some basic showoff
+	
+		&gt; result &lt;- list()
+	
+		&gt; ## Unique members, Unique combination of members and health care providers, find unexpected duplicated records
+	
+		&gt; result$members &lt;- unique(hhp$MemberID)
+	
+		&gt; result$members.providers &lt;- unique(hhp[c(&quot;MemberID&quot;,&quot;ProviderID&quot;)])
+	
+		&gt; sum(duplicated(hhp[c(&quot;MemberID&quot;,&quot;ProviderID&quot;,&quot;Year&quot;,&quot;DSFS&quot;)]))
+	
+		[1] 936859
+	
+		&gt; ## c operator
+	
+		&gt; sum(duplicated(c(result$members, result$members))) # == length(result$members)
+	
+		[1] 113000
+	
+		&gt; ## Basic example of operators is.na.ff, the ! operator and sum.ff
+	
+		&gt; sum(!is.na(hhp$LengthOfStay))
+	
+		[1] 71598
+	
+		&gt; sum(is.na(hhp$LengthOfStay))
+	
+		[1] 2597392
+	
+		&gt; ## all and any
+	
+		&gt; any(is.na(hhp$LengthOfStay))
+	
+		[1] TRUE
+	
+		&gt; all(!is.na(hhp$PayDelay))
+	
+		[1] TRUE
+	
+		&gt; ## Frequency table of Specialities and example of a 2-way table
+	
+		&gt; result$speciality &lt;- table.ff(hhp$Specialty, exclude=NA)
+	
+		&gt; options(scipen = 1)
+	
+		&gt; barplot(result$speciality[order(result$speciality)], col = &quot;steelblue&quot;, horiz = FALSE, cex.names=0.6, main=&quot;Frequency table&quot;)
+	
+		
+	
+		&gt; hhp$ProviderFactor &lt;- with(data=hhp[c(&quot;ProviderID&quot;)], expr = as.character(ProviderID))
+	
+		&gt; result$providerspeciality &lt;- table.ff(hhp$Specialty, hhp$ProviderFactor, exclude=NA)
+	
+		&gt; ## Let&#39;s see if the member id&#39;s are uniformly distributed
+	
+		&gt; hist(hhp$MemberID, col = &quot;steelblue&quot;, main = &quot;MemberID&#39;s histogram&quot;, xlab = &quot;MemberID&quot;)
+	
+		&gt; ## %in% operator is overloaded
+	
+		&gt; hhp$gp.laboratory &lt;- hhp$Specialty %in% ff(factor(c(&quot;General Practice&quot;,&quot;Laboratory&quot;)))
+	
+		&gt; hhp$gp.laboratory
+	
+		ff (open) logical length=2668990 (2668990)
+	
+		      [1]       [2]       [3]       [4]       [5]       [6]       [7]       [8] 
+	
+		    FALSE     FALSE     FALSE      TRUE     FALSE     FALSE     FALSE     FALSE 
+	
+		          [2668983] [2668984] [2668985] [2668986] [2668987] [2668988] [2668989] 
+	
+		        :     FALSE      TRUE     FALSE     FALSE     FALSE     FALSE     FALSE 
+	
+		[2668990] 
+	
+		    FALSE 
+	
+		&gt; ## Some data cleaning
+	
+		&gt; hhp$pdelay &lt;- with(hhp[c(&quot;PayDelay&quot;)], as.numeric(PayDelay))
+	
+		&gt; ## Summary stats
+	
+		&gt; mean(hhp$pdelay)
+	
+		[1] 59.78436
+	
+		&gt; range(hhp$pdelay)
+	
+		[1]   1 163
+	
+		&gt; quantile(hhp$pdelay)
+	
+		  0%  25%  50%  75% 100% 
+	
+		   1   45   55   73  163 
+	
+		&gt; ## cumsum
+	
+		&gt; hist(cumsum.ff(hhp$pdelay), col = &quot;steelblue&quot;)
+	
+		&gt; max(cumsum.ff(hhp$pdelay))
+	
+		[1] 159556245
+	
+		&gt; ## cut
+	
+		&gt; table.ff(cut(hhp$pdelay, breaks = c(-Inf, 1, 10, 100, +Inf)), exclude=NA)
+	
+		  (-Inf,1]     (1,10]   (10,100] (100, Inf] 
+	
+		    141451      46720    2237723     243096 
+	
+		&gt; ## apply a function to a group of data - ddply type of logic from package plyr
+	
+		&gt; hhp$MemberIDFactor &lt;- with(data=hhp[c(&quot;MemberID&quot;)], expr = as.character(MemberID))
+	
+		&gt; require(doBy)
+	
+		&gt; result$delaybyperson &lt;- ffdfdply(hhp[c(&quot;MemberID&quot;,&quot;pdelay&quot;)], split = hhp$MemberIDFactor, FUN=function(x){ 
+	
+		+  summaryBy(pdelay ~ MemberID, data=x, FUN=sum, keep.names=FALSE)
+	
+		+ }, trace=FALSE)
+	
+		&gt; result$delaybyperson[1:5,]
+	
+		  MemberID pdelay.sum
+	
+		1    18190       3158
+	
+		2    20072       4915
+	
+		3    20482       4189
+	
+		4    21207       2548
+	
+		5    32317       1064
+	
+		&gt; ## merging (in fact joining based on ffmatch or ffdfmatch)
+	
+		&gt; hhp &lt;- merge(hhp, result$delaybyperson, by = &quot;MemberID&quot;, all.x=TRUE, all.y=FALSE)
+	
+		&gt; names(hhp)
+	
+		 [1] &quot;MemberID&quot;              &quot;ProviderID&quot;            &quot;Vendor&quot;               
+	
+		 [4] &quot;PCP&quot;                   &quot;Year&quot;                  &quot;Specialty&quot;            
+	
+		 [7] &quot;PlaceSvc&quot;              &quot;PayDelay&quot;              &quot;LengthOfStay&quot;         
+	
+		[10] &quot;DSFS&quot;                  &quot;PrimaryConditionGroup&quot; &quot;CharlsonIndex&quot;        
+	
+		[13] &quot;ProcedureGroup&quot;        &quot;SupLOS&quot;                &quot;ProviderFactor&quot;       
+	
+		[16] &quot;gp.laboratory&quot;         &quot;pdelay&quot;                &quot;MemberIDFactor&quot;       
+	
+		[19] &quot;pdelay.sum&quot;           
+	
+		&gt; ## Let&#39;s add a key (in version 0.6 of the package for download here)
+	
+		&gt; hhp$key &lt;- key(hhp[c(&quot;MemberID&quot;,&quot;ProviderID&quot;)])
+	
+		&gt; max(hhp$key) == nrow(result$members.providers)
+	
+		[1] TRUE
+	
+		&gt; ## A small example of operators
+	
+		&gt; idx &lt;- ffwhich(hhp[c(&quot;Specialty&quot;,&quot;PlaceSvc&quot;)], Specialty == &quot;General Practice&quot;)
+	
+		&gt; idx
+	
+		ff (open) integer length=473655 (473655)
+	
+		     [1]      [2]      [3]      [4]      [5]      [6]      [7]      [8] 
+	
+		      18       19       20       31       35       42       45       62 
+	
+		         [473648] [473649] [473650] [473651] [473652] [473653] [473654] 
+	
+		       :  2668922  2668929  2668930  2668947  2668952  2668965  2668974 
+	
+		[473655] 
+	
+		 2668984 
+	
+		&gt; hhp.gp &lt;- hhp[idx, ]
+	
+		&gt; class(hhp.gp)
+	
+		[1] &quot;ffdf&quot;
+	
+		&gt; nrow(hhp.gp)
+	
+		[1] 473655
+	
+		&gt; sum(is.na(idx))
+	
+		[1] 0
+	
+		&gt; sum(hhp$Specialty == &quot;General Practice&quot;, na.rm=TRUE)
+	
+		[1] 473655
+	
+		&gt; ## Or apply subset
+	
+		&gt; table.ff(hhp$Year, exclude=NA)
+	
+		    Y1     Y2     Y3 
+	
+		865689 898872 904429 
+	
+		&gt; hhp.y1 &lt;- subset(hhp, hhp$Year == &quot;Y1&quot;)
+	
+		&gt; nrow(hhp.y1)
+	
+		[1] 865689
+
+
+	 
+
+	We welcome you to use the package if it suits your applications and if you have any requests, do post some comments to see how the package can be extended for your needs.
+
+	 
+
+	 ">
+		<!--[if lt IE 9]>
+	  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+					<meta property="og:image" content="http://www.bnosac.be/images/blog/r_ff.png">
+			<style type="text/css">div.socialicons{float:left;display:block;margin-right: 10px;line-height: 1;}div.socialiconsv{line-height: 1;}div.socialicons p{margin-bottom: 0px !important;margin-top: 0px !important;padding-bottom: 0px !important;padding-top: 0px !important;}div.social4iv{background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #aaa;border-radius: 3px 3px 3px 3px;box-shadow: 3px 3px 3px #DDDDDD;padding: 3px;position: fixed;text-align: center;top: 55px;width: 68px;display:none;}div.socialiconsv{padding-bottom: 5px;}</style>
+
+<!-- All in One SEO Pack 2.2.3.1 by Michael Torbert of Semper Fi Web Design[290,369] -->
+<meta name="description" content="The ff package is a great and efficient way of working with large datasets.  One of the main reasons why I prefer to use it above other packages that allow">
+
+<link rel="canonical" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/If you are into large data and work a lot with package ff   (R news & tutorials).html">
+<!-- /all in one seo pack -->
+<link rel="stylesheet" type="text/css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shCore.css"><link rel="stylesheet" type="text/css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shThemeDefault.css"><style type="text/css" id="syntaxhighlighteranchor"></style>
+<script src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/secureAnonymousFramework"></script><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/services.css"><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+
+<body class="single single-post postid-62774 single-format-standard" data-twttr-rendered="true">
+<!-- begin header -->
+<div id="header">
+		    	    	<a href="http://www.r-bloggers.com/" class="headerimage"><img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/R_02.png" alt="R-bloggers" class="aligncenter" scale="0"></a>
+        <div id="description" class="aligncenter">
+        R news and tutorials contributed by (563) R bloggers    </div>     
+    <div class="main-navigation"><ul id="menu-top-nav" class="sf-menu sf-js-enabled sf-shadow"><li id="menu-item-48314" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-48314"><a href="http://www.r-bloggers.com/">Home</a></li>
+<li id="menu-item-48312" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48312"><a href="http://www.r-bloggers.com/about/">About</a></li>
+<li id="menu-item-50111" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-50111"><a href="http://feeds.feedburner.com/RBloggers">RSS</a></li>
+<li id="menu-item-48313" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48313"><a href="http://www.r-bloggers.com/add-your-blog/">add your blog!</a></li>
+<li id="menu-item-75513" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-75513"><a href="http://www.r-users.com/" class="sf-with-ul">R jobs<span class="sf-sub-indicator">�</span><span class="sf-sub-indicator">�</span><span class="sf-sub-indicator">�</span></a>
+<ul class="sub-menu" style="display: none; float: none; width: 12em; visibility: hidden;">
+	<li id="menu-item-76945" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76945" style="float: left; width: 100%; white-space: normal;"><a href="http://www.r-users.com/submit-job/" style="float: none; width: auto;">Submit a new job (it’s free)</a></li>
+	<li id="menu-item-76946" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76946" style="float: left; width: 100%; white-space: normal;"><a href="http://www.r-users.com/" style="float: none; width: auto;">Browse latest jobs (also free)</a></li>
+</ul>
+</li>
+<li id="menu-item-48311" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48311"><a href="http://www.r-bloggers.com/contact-us/">Contact us</a></li>
+</ul></div>
+</div>
+<!-- end header -->
+
+
+<div id="mainwrapper">
+<!-- begin sidebar -->
+    <div id="sidebar">
+		<div class="side-widget"><h2>Welcome!</h2>			<div class="textwidget">Here you will find daily <strong>news and tutorials about R</strong>, contributed by over 555 bloggers. 
+<br>
+There are many ways to <strong>follow us - </strong>
+<br>
+<a href="http://feedburner.google.com/fb/a/mailverify?uri=RBloggers" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-widget&#39;, &#39;http://feedburner.google.com/fb/a/mailverify?uri=RBloggers&#39;, &#39;By e-mail:&#39;]);">By e-mail:</a>
+
+<form style="border:1px solid #ccc;padding:3px;text-align:center;" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#39;http://feedburner.google.com/fb/a/mailverify?uri=RBloggers&#39;, &#39;popupwindow&#39;, &#39;scrollbars=yes,width=550,height=520&#39;);return true">
+<input type="text" style="width:110px" onclick="if (this.value == &#39;Your e-mail here&#39;) this.value = &#39;&#39;;" value="Your e-mail here" name="email">
+<input type="hidden" value="RBloggers" name="uri"><input type="hidden" name="loc" value="en_US"><input type="submit" value="Subscribe">
+<a href="http://feeds.feedburner.com/RBloggers" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-widget&#39;, &#39;http://feeds.feedburner.com/RBloggers&#39;, &#39;&#39;]);"><img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/RBloggers" height="26" width="88" style="border:0" alt="" scale="0"></a>
+</form>
+
+<a href="https://twitter.com/rbloggers" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-widget&#39;, &#39;https://twitter.com/rbloggers&#39;, &#39;On Twitter:&#39;]);">On Twitter:</a>
+
+<iframe allowtransparency="true" frameborder="0" scrolling="no" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/follow_button.html" style="width:164px; height:30px;"></iframe>
+
+
+<a href="https://www.facebook.com/rbloggers" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-widget&#39;, &#39;https://www.facebook.com/rbloggers&#39;, &#39;On Facebook:&#39;]);">On Facebook:</a>
+<iframe src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/likebox.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:160px; height:298px;" allowtransparency="true"></iframe>
+
+
+<br>
+<strong>If you are an R blogger yourself</strong> you are invited to <a href="http://www.r-bloggers.com/add-your-blog/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-widget-&#39;, &#39;http://www.r-bloggers.com/add-your-blog/&#39;, &#39;add your own R content feed to this site&#39;]);">add your own R content feed to this site</a> (<strong>Non-English</strong> R bloggers should add themselves- <a href="http://www.r-bloggers.com/lang/add-your-blog" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-widget-&#39;, &#39;http://www.r-bloggers.com/lang/add-your-blog&#39;, &#39;here&#39;]);">here</a>)</div>
+		</div><div class="side-widget"><form method="get" id="searchform" action="http://www.r-bloggers.com/">
+<div>
+<input type="text" class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == &#39;Search &amp; Hit Enter&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search &amp; Hit Enter&#39;;}">
+<input type="hidden" id="searchsubmit">
+</div>
+</form></div><div class="side-widget"><h2><a class="rsswidget" href="http://feeds.feedburner.com/R-usersLetsWorkTogetherJobs" title="Syndicate this content"><img style="border:0" width="14" height="14" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/rss.png" alt="RSS" scale="0"></a> <a class="rsswidget" href="http://www.r-users.com/" title="A job board for people and companies looking to hire R users">Jobs for R-users</a></h2><ul><li><a class="rsswidget" href="http://feedproxy.google.com/~r/R-usersLetsWorkTogetherJobs/~3/2YFec9EzVCE/" title="JOB DESCRIPTION The business analyst is a key position in our group and requires a broad base of knowledge across functional areas, the ability to comfortably operate in ambiguous environments, to develop and test hypotheses, to design and conduct complex analyses with large data sets, to effectively balance multiple priorities, to communicate effectively an">Business Analyst, Casino &amp; Onboard Revenue</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/~r/R-usersLetsWorkTogetherJobs/~3/LpGpyUUXEz8/" title="The Food and Agriculture Organization of the United Nations based in Rome is seeking a young talented statistician to join the Statistics division to eliminate hunger by means of better decision making through providing quality data and analysis. We value people with technical skills, in particularly individuals who are able to translate numbers to actions [">Statistician to help eliminate hunger by means of better decision making</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/~r/R-usersLetsWorkTogetherJobs/~3/w-h0edXQt8E/" title="We’re creating a comprehensive database of cell phone towers, cell phone signal strength readings, and Wi-Fi access points around the world. Our goal is to become the global authority on wireless networks. We publish analysis regularly covered by The BBC, The Guardian, Gigaom, The Verge and much more. We also deliver reports to network operators […] The post">Statistical Data Analyst for analyzing wireless networks</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/~r/R-usersLetsWorkTogetherJobs/~3/LqqbpnHQ7Ww/" title="Revenue Analytics has an immediate need to hire a Senior Operations Research Consultant for our Operations Research Group.  We offer a competitive base salary, bonus incentive, full benefits, 401K and an opportunity for advancement! Revenue Analytics assists global organizations in bringing science and discipline to decisions that impact revenue.  We work wi">Senior Operations Research Consultant</a></li><li><a class="rsswidget" href="http://feedproxy.google.com/~r/R-usersLetsWorkTogetherJobs/~3/q4SVihFeXEg/" title="Job description The Algorithmic Research Team in F5’s Tel-Aviv R&amp;D center is looking for an Applied Researcherto help solve hard real world problems. We call this an innovation catalyst. The successful candidate will conduct independent and joint research, create PoCs and work closely with development managers, sales, customers and engineers to define re">Applied Researcher in Algorithmic Research</a></li></ul></div><div class="side-widget"><h2>Popular Searches</h2>
+<ul>
+<li><a href="http://www.r-bloggers.com/search/heatmap">heatmap</a></li>
+<li><a href="http://www.r-bloggers.com/search/hadoop">hadoop</a></li>
+<li><a href="http://www.r-bloggers.com/search/web%20scraping">web scraping</a></li>
+<li><a href="http://www.r-bloggers.com/search/pca">pca</a></li>
+<li><a href="http://www.r-bloggers.com/search/maps">maps</a></li>
+<li><a href="http://www.r-bloggers.com/search/twitter">twitter</a></li>
+<li><a href="http://www.r-bloggers.com/search/ggplot">ggplot</a></li>
+<li><a href="http://www.r-bloggers.com/search/finance">finance</a></li>
+<li><a href="http://www.r-bloggers.com/search/boxplot">boxplot</a></li>
+<li><a href="http://www.r-bloggers.com/search/excel">excel</a></li>
+<li><a href="http://www.r-bloggers.com/search/shiny">shiny</a></li>
+<li><a href="http://www.r-bloggers.com/search/LaTeX">LaTeX</a></li>
+<li><a href="http://www.r-bloggers.com/search/trading">trading</a></li>
+<li><a href="http://www.r-bloggers.com/search/ggplot2">ggplot2</a></li>
+<li><a href="http://www.r-bloggers.com/search/googlevis">googlevis</a></li>
+<li><a href="http://www.r-bloggers.com/search/eclipse">eclipse</a></li>
+<li><a href="http://www.r-bloggers.com/search/animation">animation</a></li>
+<li><a href="http://www.r-bloggers.com/search/quantmod">quantmod</a></li>
+<li><a href="http://www.r-bloggers.com/search/RStudio">RStudio</a></li>
+<li><a href="http://www.r-bloggers.com/search/time%20series">time series</a></li>
+<li><a href="http://www.r-bloggers.com/search/alt%3D">alt=</a></li>
+<li><a href="http://www.r-bloggers.com/search/knitr">knitr</a></li>
+<li><a href="http://www.r-bloggers.com/search/how%20to%20import%20image%20file%20to%20R">how to import image file to R</a></li>
+<li><a href="http://www.r-bloggers.com/search/tutorial">tutorial</a></li>
+<li><a href="http://www.r-bloggers.com/search/market%20research">market research</a></li>
+<li><a href="http://www.r-bloggers.com/search/gis">gis</a></li>
+<li><a href="http://www.r-bloggers.com/search/ecdf">ecdf</a></li>
+<li><a href="http://www.r-bloggers.com/search/rattle">rattle</a></li>
+<li><a href="http://www.r-bloggers.com/search/rcmdr">rcmdr</a></li>
+<li><a href="http://www.r-bloggers.com/search/sweave">sweave</a></li>
+</ul>
+
+</div>		<div class="side-widget">		<h2>Recent Posts</h2>		<ul>
+					<li>
+				<a href="http://www.r-bloggers.com/top-open-r-jobs-for-september-25th-2014/">Top open R jobs (for September 25th 2014)</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/estimating-generalization-error-with-the-press-statistic/">Estimating Generalization Error with the PRESS statistic</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/desctools-a-new-r-misc-package/">DescTools: a new R "misc package"</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/aggregate-portfolio-contributions-through-time/">Aggregate portfolio contributions through time</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/how-many-paths-are-possible-in-an-18-hole-round-of-match-play-golf/">How Many Paths are Possible in an 18 Hole Round of Match Play Golf?</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/effective-applications-of-the-r-language-conference-2014/">Effective Applications of the R Language Conference 2014</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/rmoa-package-for-running-streaming-classifcation-regression-models-now-at-cran/">RMOA package for running streaming classifcation &amp; regression models now at CRAN</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/joint-models-for-longitudinal-and-survival-data/">Joint Models for Longitudinal and Survival Data</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/r-for-developers-course-oct-16-17-milano-italy/">“R for Developers” course – Oct 16-17 @ Milano, Italy</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/become-an-effective-data-hacker-with-the-r-hadoop-stack/">Become an effective data hacker with the R-Hadoop stack</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/nuts-and-bolts-of-quantstrat-part-iv/">Nuts and Bolts of Quantstrat, Part IV</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/multiple-tests-an-introduction/">Multiple Tests, an Introduction</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/adding-google-drive-times-and-distance-coefficients-to-regression-models-with-ggmap-and-sp/">Adding Google Drive Times and Distance Coefficients to Regression Models with ggmap and sp</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/data-science-toolbox-survey-results-surprise-r-and-python-win/">Data Science Toolbox Survey Results… Surprise! R and Python win</a>
+						</li>
+					<li>
+				<a href="http://www.r-bloggers.com/dvi-performance/">DVI Performance</a>
+						</li>
+				</ul>
+		</div><div class="side-widget"><h2>Other sites</h2>
+	<ul class="xoxo blogroll">
+<li><a href="http://statil.org/" rel="nofollow" title="25,000 data sets of time series from the Israeli Central Bureau of Statistics ">Statistics of Israel</a></li>
+<li><a href="http://www.r-users.com/" rel="nofollow">Jobs for R-users</a></li>
+<li><a href="http://www.proc-x.com/" rel="nofollow" title="SAS news gathered from bloggers">SAS blogs</a></li>
+
+	</ul>
+</div>
+    </div>
+<!-- end sidebar -->	<div id="leftcontent">
+	
+		
+
+	<div id="post-62774" class="post-62774 post type-post status-publish format-standard hentry category-r-bloggers">
+					
+				
+                <h1>If you are into large data and work a lot with package ff</h1>
+                <div class="meta"><div class="date">August 8, 2012</div>By <a href="http://www.r-bloggers.com/author/jwijffels/" title="Posts by jwijffels" rel="author">jwijffels</a></div><div class="entry"><p class="syndicated-attribution"></p><div class="social4i" style="height:29px;"><div class="social4in" style="height:29px;float: left;"><div class="socialicons s4fblike" style="float:left;margin-right: 10px;"><div class="fb-like fb_iframe_widget" data-href="http://www.r-bloggers.com/if-you-are-into-large-data-and-work-a-lot-with-package-ff/" data-send="true" data-layout="button_count" data-width="100" data-height="21" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;height=21&amp;href=http%3A%2F%2Fwww.r-bloggers.com%2Fif-you-are-into-large-data-and-work-a-lot-with-package-ff%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=true&amp;show_faces=false&amp;width=100"><span style="vertical-align: bottom; width: 121px; height: 20px;"><iframe name="f26683ee74" width="100px" height="21px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/like.html" style="border: none; visibility: visible; width: 121px; height: 20px;" class=""></iframe></span></div></div><div class="socialicons s4twitter" style="float:left;margin-right: 10px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/tweet_button.3c2cf6c04ef79ac64fb26744da5cc1b0.en.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 109px; height: 20px;"></iframe></div><div class="socialicons s4plusone" style="float:left;margin-right: 10px;"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1416717123961" name="I0_1416717123961" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div></div></div><div style="clear:both"></div></div>
+
+<div style="border: 1px solid; background: none repeat scroll 0 0 #EDEDED; margin: 1px; font-size: 12px;">
+(This article was first published on  <strong><a href="http://www.bnosac.be/index.php/blog/22-if-you-are-into-large-data-and-work-a-lot-package-ff"> BNOSAC - Belgium Network of Open Source Analytical Consultants</a></strong>, and kindly contributed to <a href="http://www.r-bloggers.com/" rel="nofollow">R-bloggers)</a>      
+</div><p></p>
+<p>
+	<a href="http://ff.r-forge.r-project.org/" ref="nofollow" target="_blank"><img alt="" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/r_ff.png" style="width: 150px; height: 101px; " width="150" height="101" src-orig="http://i1.wp.com/www.bnosac.be/images/blog/r_ff.png?w=456" scale="2"></a></p>
+<div>
+	The <a href="http://ff.r-forge.r-project.org/" ref="nofollow" target="_blank">ff</a> package is a great and efficient way of working with large datasets.&nbsp;</div>
+<div>
+	One of the main reasons why I prefer to use it above other packages that allow working with large datasets is that it is a <strong>complete set of tools</strong>.</div>
+<div>
+	When comparing it to the other open source 'bigdata' packages in R</div>
+<ol style="margin-left: 40px; ">
+	<li>
+		It is not restricted to work basically with numeric data matrices like the <a href="http://www.bigmemory.org/" ref="nofollow" target="_blank">bigmemory</a> set of packages but allows relatively easy access to character vectors through factors</li>
+	<li>
+		It has efficient data loading functionality from flat/csv files, you can interact with SQL databases as explained <a href="http://www.bnosac.be/index.php/blog/21-readodbcffdf-a-readdbiffdf-for-fetching-large-corporate-sql-data" ref="nofollow" target="_blank">here</a>.</li>
+	<li>
+		You don't need to use the <a href="http://cran.r-project.org/web/packages/sqldf/index.html" ref="nofollow" target="_blank">sqldf</a> package to get and insert all the time your data in the right (RAM-limited) sized to and from an SQLite database</li>
+	<li>
+		It has higher level functionality (e.g. apply set of family, sorting, ...) which package <a href="http://cran.r-project.org/web/packages/mmap/index.html" ref="nofollow" target="_blank">mmap</a> seems to be lacking</li>
+	<li>
+		And it allows you to work with datasets which you can not put in memory which the <a href="http://cran.r-project.org/web/packages/data.table/index.html" ref="nofollow" target="_blank">datatable</a> package does not allow.&nbsp;</li>
+</ol>
+<div>
+	If you disagree, do comment.</div>
+<div>
+	&nbsp;</div>
+<div>
+	In my dayly work, I encountered frequently that some bits are still missing in package ff to make it suited for easy day-to-day analysis of large data. Apparently I was not alone as Edwin de Jonge started already package <a href="http://cran.r-project.org/web/packages/ffbase/index.html" ref="nofollow" target="_blank">ffbase</a> (available at&nbsp;<a href="http://code.google.com/p/fffunctions/" ref="nofollow" target="_blank">http://code.google.com/p/fffunctions/</a>). For a predictive modelling project BNOSAC has made for <a href="https://additionly.com/" ref="nofollow" target="_blank">https://additionly.com</a>/ we have made some nice progress in the package.</div>
+<div>
+	&nbsp;</div>
+<div style="text-align: justify; ">
+	The package <a href="http://cran.r-project.org/web/packages/ffbase/index.html" ref="nofollow" target="_blank">ffbase</a> now contains quite some extensions that are really usefull. It contains a lot of the functionality from the R's base package for usage with large datasets through package ff.&nbsp;</div>
+<div>
+	Namely&nbsp;</div>
+<ol style="margin-left: 40px; ">
+	<li>
+		Basic operations (c, unique, duplicated, ffmatch, ffdfmatch, %in%, is.na, all, any, cut, ffwhich, ffappend, ffdfappend)</li>
+	<li>
+		Standard operators (+, -, *, /, ^, %%, %/%, ==, !=, &lt;, &lt;=, &gt;=, &gt;, &amp;, |, !) on ff vectors</li>
+	<li>
+		Math operators (abs, sign, sqrt, ceiling, floor, trunc, round, signif, log, log10, log2, log1p, exp, expm1, acos, acosh, asin, asinh, atan, atanh, cos, cosh, sin, sinh, tan, tanh, gamma, lgamma, digamma, trigamma)</li>
+	<li>
+		Selections &amp; data manipulations (subset, transform, with, within, ffwhich)</li>
+	<li>
+		Summary statistics (sum, min, max, range, quantile, hist)</li>
+	<li>
+		Data transformations (cumsum, cumprod, cummin, cummax, table, tabulate, merge, ffdfdply)</li>
+</ol>
+<div>
+	These functions work all on either ff objects or objects of class ffdf from the&nbsp;<a href="http://ff.r-forge.r-project.org/" ref="nofollow" target="_blank">ff</a>&nbsp;package</div>
+<div>
+	Next to that there are some extra goodies allowing faster grouping by - not restricted to the ff package alone (Fast groupwise aggregations: bySum, byMean, binned_sum, binned_sumsq, binned_tabulate)</div>
+<blockquote>
+	<div>
+		<strong><em>This makes it a lot more easy to work with the ff package and large data.</em></strong></div>
+	<div>
+		&nbsp;</div>
+</blockquote>
+<div>
+	Let me show some R-code to show what this means using a simple dataset of the Heritage Health Prize competition of only 2.6Mio records available for download for download here (<a href="http://www.heritagehealthprize.com/c/hhp/data" ref="nofollow" target="_blank">http://www.heritagehealthprize.com/c/hhp/data</a>). It is a dataset with claims.</div>
+<div>
+	The code is for objects of ff/ffdf class and is based on version 0.6 of the package for download <a href="http://fffunctions.googlecode.com/git-history/3d7146d3d5d6ea95a1036ed63740e3bc921754f1/output/ffbase_0.6.tar.gz" ref="nofollow" target="_blank">here</a>.</div>
+<div>
+	&nbsp;</div>
+<div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; require(ffbase)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp &lt;- read.table.ffdf(file="/home/jan/Work/RForgeBNOSAC/github/RBelgium_HeritageHealthPrize/Data/Claims.csv", FUN = "read.csv", na.strings = "")</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; class(hhp)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] "ffdf"</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; dim(hhp)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 2668990 &nbsp; &nbsp; &nbsp;14</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; str(hhp[1:10,])</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">'data.frame':<span class="Apple-tab-span" style="white-space:pre"> </span>10 obs. of &nbsp;14 variables:</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ MemberID &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : int &nbsp;42286978 97903248 2759427 73570559 11837054 45844561 99829076 54666321 60497718 72200595</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ ProviderID &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : int &nbsp;8013252 3316066 2997752 7053364 7557061 1963488 6721023 9932074 363858 6251259</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ Vendor &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : int &nbsp;172193 726296 140343 240043 496247 4042 265273 35565 293107 791272</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ PCP &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: int &nbsp;37796 5300 91972 70119 68968 55823 91972 27294 64913 49465</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ Year &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : Factor w/ 3 levels "Y1","Y2","Y3": 1 3 3 3 2 3 1 1 2 3</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ Specialty &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: Factor w/ 12 levels "Anesthesiology",..: 12 5 5 6 12 10 11 2 11 5</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ PlaceSvc &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : Factor w/ 8 levels "Ambulance","Home",..: 5 5 5 3 7 5 5 5 5 5</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ PayDelay &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : Factor w/ 163 levels "0","10","101",..: 52 76 29 48 51 49 40 53 67 82</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ LengthOfStay &nbsp; &nbsp; &nbsp; &nbsp; : Factor w/ 10 levels "1 day","2- 4 weeks",..: NA NA NA NA NA NA NA NA NA NA</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ DSFS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : Factor w/ 12 levels "0- 1 month","10-11 months",..: 11 10 1 8 7 6 1 1 4 10</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ PrimaryConditionGroup: Factor w/ 45 levels "AMI","APPCHOL",..: 26 26 21 21 10 26 38 33 19 22</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ CharlsonIndex &nbsp; &nbsp; &nbsp; &nbsp;: Factor w/ 4 levels "0","1-2","3-4",..: 1 2 1 2 2 1 1 1 1 2</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ ProcedureGroup &nbsp; &nbsp; &nbsp; : Factor w/ 17 levels "ANES","EM","MED",..: 3 2 2 7 2 2 3 5 2 7</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;$ SupLOS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : int &nbsp;0 0 0 0 0 0 0 0 0 0</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## Some basic showoff</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; result &lt;- list()</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## Unique members, Unique combination of members and health care providers, find unexpected duplicated records</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; result$members &lt;- unique(hhp$MemberID)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; result$members.providers &lt;- unique(hhp[c("MemberID","ProviderID")])</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; sum(duplicated(hhp[c("MemberID","ProviderID","Year","DSFS")]))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 936859</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## c operator</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; sum(duplicated(c(result$members, result$members))) # == length(result$members)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 113000</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## Basic example of operators is.na.ff, the ! operator and sum.ff</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; sum(!is.na(hhp$LengthOfStay))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 71598</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; sum(is.na(hhp$LengthOfStay))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 2597392</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## all and any</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; any(is.na(hhp$LengthOfStay))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] TRUE</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; all(!is.na(hhp$PayDelay))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] TRUE</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## Frequency table of Specialities and example of a 2-way table</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; result$speciality &lt;- table.ff(hhp$Specialty, exclude=NA)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; options(scipen = 1)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; barplot(result$speciality[order(result$speciality)], col = "steelblue", horiz = FALSE, cex.names=0.6, main="Frequency table")</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;"><img alt="" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/ffbase_barplot_table.ff.png" style="width: 400px; height: 229px; " width="400" height="229" src-orig="http://i2.wp.com/www.bnosac.be/images/blog/ffbase_barplot_table.ff.png?w=456" scale="2"></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp$ProviderFactor &lt;- with(data=hhp[c("ProviderID")], expr = as.character(ProviderID))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; result$providerspeciality &lt;- table.ff(hhp$Specialty, hhp$ProviderFactor, exclude=NA)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## Let's see if the member id's are uniformly distributed</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hist(hhp$MemberID, col = "steelblue", main = "MemberID's histogram", xlab = "MemberID")</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## %in% operator is overloaded</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp$gp.laboratory &lt;- hhp$Specialty %in% ff(factor(c("General Practice","Laboratory")))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp$gp.laboratory</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">ff (open) logical length=2668990 (2668990)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; &nbsp; [1] &nbsp; &nbsp; &nbsp; [2] &nbsp; &nbsp; &nbsp; [3] &nbsp; &nbsp; &nbsp; [4] &nbsp; &nbsp; &nbsp; [5] &nbsp; &nbsp; &nbsp; [6] &nbsp; &nbsp; &nbsp; [7] &nbsp; &nbsp; &nbsp; [8]&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE &nbsp; &nbsp; &nbsp;TRUE &nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; [2668983] [2668984] [2668985] [2668986] [2668987] [2668988] [2668989]&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp; FALSE &nbsp; &nbsp; &nbsp;TRUE &nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE &nbsp; &nbsp; FALSE&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[2668990]&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; FALSE&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## Some data cleaning</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp$pdelay &lt;- with(hhp[c("PayDelay")], as.numeric(PayDelay))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; ## Summary stats</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; mean(hhp$pdelay)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 59.78436</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; range(hhp$pdelay)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] &nbsp; 1 163</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; quantile(hhp$pdelay)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; 0% &nbsp;25% &nbsp;50% &nbsp;75% 100%&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp;1 &nbsp; 45 &nbsp; 55 &nbsp; 73 &nbsp;163&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## cumsum</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hist(cumsum.ff(hhp$pdelay), col = "steelblue")</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; max(cumsum.ff(hhp$pdelay))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 159556245</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## cut</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; table.ff(cut(hhp$pdelay, breaks = c(-Inf, 1, 10, 100, +Inf)), exclude=NA)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; (-Inf,1] &nbsp; &nbsp; (1,10] &nbsp; (10,100] (100, Inf]&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; 141451 &nbsp; &nbsp; &nbsp;46720 &nbsp; &nbsp;2237723 &nbsp; &nbsp; 243096&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## apply a function to a group of data - ddply type of logic from package plyr</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp$MemberIDFactor &lt;- with(data=hhp[c("MemberID")], expr = as.character(MemberID))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; require(doBy)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; result$delaybyperson &lt;- ffdfdply(hhp[c("MemberID","pdelay")], split = hhp$MemberIDFactor, FUN=function(x){<span class="Apple-tab-span" style="white-space:pre"> </span></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">+ <span class="Apple-tab-span" style="white-space:pre"> </span>summaryBy(pdelay ~ MemberID, data=x, FUN=sum, keep.names=FALSE)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">+ }, trace=FALSE)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; result$delaybyperson[1:5,]</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; MemberID pdelay.sum</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">1 &nbsp; &nbsp;18190 &nbsp; &nbsp; &nbsp; 3158</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">2 &nbsp; &nbsp;20072 &nbsp; &nbsp; &nbsp; 4915</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">3 &nbsp; &nbsp;20482 &nbsp; &nbsp; &nbsp; 4189</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">4 &nbsp; &nbsp;21207 &nbsp; &nbsp; &nbsp; 2548</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">5 &nbsp; &nbsp;32317 &nbsp; &nbsp; &nbsp; 1064</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## merging (in fact joining based on ffmatch or ffdfmatch)</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp &lt;- merge(hhp, result$delaybyperson, by = "MemberID", all.x=TRUE, all.y=FALSE)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; names(hhp)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;[1] "MemberID" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"ProviderID" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"Vendor" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;[4] "PCP" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "Year" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"Specialty" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;[7] "PlaceSvc" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"PayDelay" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"LengthOfStay" &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[10] "DSFS" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"PrimaryConditionGroup" "CharlsonIndex" &nbsp; &nbsp; &nbsp; &nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[13] "ProcedureGroup" &nbsp; &nbsp; &nbsp; &nbsp;"SupLOS" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"ProviderFactor" &nbsp; &nbsp; &nbsp;&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[16] "gp.laboratory" &nbsp; &nbsp; &nbsp; &nbsp; "pdelay" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"MemberIDFactor" &nbsp; &nbsp; &nbsp;&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[19] "pdelay.sum" &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## Let's add a key (in version 0.6 of the package for download <a href="http://fffunctions.googlecode.com/git-history/3d7146d3d5d6ea95a1036ed63740e3bc921754f1/output/ffbase_0.6.tar.gz" ref="nofollow" target="_blank">here</a>)</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp$key &lt;- key(hhp[c("MemberID","ProviderID")])</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; max(hhp$key) == nrow(result$members.providers)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] TRUE</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## A small example of operators</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; idx &lt;- ffwhich(hhp[c("Specialty","PlaceSvc")], Specialty == "General Practice")</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; idx</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">ff (open) integer length=473655 (473655)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; &nbsp;[1] &nbsp; &nbsp; &nbsp;[2] &nbsp; &nbsp; &nbsp;[3] &nbsp; &nbsp; &nbsp;[4] &nbsp; &nbsp; &nbsp;[5] &nbsp; &nbsp; &nbsp;[6] &nbsp; &nbsp; &nbsp;[7] &nbsp; &nbsp; &nbsp;[8]&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; &nbsp; 18 &nbsp; &nbsp; &nbsp; 19 &nbsp; &nbsp; &nbsp; 20 &nbsp; &nbsp; &nbsp; 31 &nbsp; &nbsp; &nbsp; 35 &nbsp; &nbsp; &nbsp; 42 &nbsp; &nbsp; &nbsp; 45 &nbsp; &nbsp; &nbsp; 62&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;[473648] [473649] [473650] [473651] [473652] [473653] [473654]&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; &nbsp; &nbsp;: &nbsp;2668922 &nbsp;2668929 &nbsp;2668930 &nbsp;2668947 &nbsp;2668952 &nbsp;2668965 &nbsp;2668974&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[473655]&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp;2668984&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp.gp &lt;- hhp[idx, ]</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; class(hhp.gp)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] "ffdf"</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; nrow(hhp.gp)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 473655</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; sum(is.na(idx))</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 0</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; sum(hhp$Specialty == "General Practice", na.rm=TRUE)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 473655</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; <strong>## Or apply subset</strong></span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; table.ff(hhp$Year, exclude=NA)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&nbsp; &nbsp; Y1 &nbsp; &nbsp; Y2 &nbsp; &nbsp; Y3&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">865689 898872 904429&nbsp;</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; hhp.y1 &lt;- subset(hhp, hhp$Year == "Y1")</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">&gt; nrow(hhp.y1)</span></div>
+	<div style="margin-left: 40px; ">
+		<span style="font-family:courier new,courier,monospace;">[1] 865689</span></div>
+</div>
+<p>
+	&nbsp;</p>
+<h4>
+	<strong style="color: rgb(128, 128, 128); ">We welcome you to use the package if it suits your applications and if you have any requests, do post some comments to see how the package can be extended for your needs.</strong></h4>
+<p>
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+
+<p class="syndicated-attribution"></p><div class="social4i" style="height:82px;"><div class="social4in" style="height:82px;float: left;"><div class="socialicons s4fblike" style="float:left;margin-right: 10px;"><div class="fb-like fb_iframe_widget" data-href="http://www.r-bloggers.com/if-you-are-into-large-data-and-work-a-lot-with-package-ff/" data-send="true" data-layout="box_count" data-width="55" data-height="62" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;height=62&amp;href=http%3A%2F%2Fwww.r-bloggers.com%2Fif-you-are-into-large-data-and-work-a-lot-with-package-ff%2F&amp;layout=box_count&amp;locale=en_US&amp;sdk=joey&amp;send=true&amp;show_faces=false&amp;width=55"><span style="vertical-align: bottom; width: 47px; height: 86px;"><iframe name="f3e625d57" width="55px" height="62px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/like(1).html" style="border: none; visibility: visible; width: 47px; height: 86px;" class=""></iframe></span></div></div><div class="socialicons s4twitter" style="float:left;margin-right: 10px;"><iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/tweet_button.3c2cf6c04ef79ac64fb26744da5cc1b0.en(2).html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-vertical" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 57px; height: 62px;"></iframe></div><div class="socialicons s4plusone" style="float:left;margin-right: 10px;"><div id="___plusone_1" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 50px; height: 60px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 50px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 60px;" tabindex="0" vspace="0" width="100%" id="I1_1416717123961" name="I1_1416717123961" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/fastbutton(2).html" data-gapiattached="true" title="+1"></iframe></div></div></div><div style="clear:both"></div></div>
+
+<div style="border: 1px solid; background: none repeat scroll 0 0 #EDEDED; margin: 1px; font-size: 13px;">
+<div style="text-align: center;">To <strong>leave a comment</strong> for the author, please follow the link and comment on his blog: <strong><a href="http://www.bnosac.be/index.php/blog/22-if-you-are-into-large-data-and-work-a-lot-package-ff"> BNOSAC - Belgium Network of Open Source Analytical Consultants</a></strong>.</div>
+<hr>
+<a href="http://www.r-bloggers.com/" rel="nofollow">R-bloggers.com</a> offers <strong><a href="http://feedburner.google.com/fb/a/mailverify?uri=RBloggers" rel="nofollow">daily e-mail updates</a></strong> about <a title="The R Project for Statistical Computing" href="http://www.r-project.org/" rel="nofollow">R</a> news and <a title="R tutorials" href="http://www.r-bloggers.com/?s=tutorial" rel="nofollow">tutorials</a> on topics such as: visualization (<a title="ggplot and ggplot2 tutorials" href="http://www.r-bloggers.com/?s=ggplot2" rel="nofollow">ggplot2</a>, <a title="Boxplots using lattice and ggplot2 tutorials" href="http://www.r-bloggers.com/?s=boxplot" rel="nofollow">Boxplots</a>, <a title="Maps and gis" href="http://www.r-bloggers.com/?s=map" rel="nofollow">maps</a>, <a title="Animation in R" href="http://www.r-bloggers.com/?s=animation" rel="nofollow">animation</a>), programming (<a title="RStudio IDE for R" href="http://www.r-bloggers.com/?s=RStudio" rel="nofollow">RStudio</a>, <a title="Sweave and literate programming" href="http://www.r-bloggers.com/?s=sweave" rel="nofollow">Sweave</a>, <a title="LaTeX in R" href="http://www.r-bloggers.com/?s=LaTeX" rel="nofollow">LaTeX</a>, <a title="SQL and databases" href="http://www.r-bloggers.com/?s=SQL" rel="nofollow">SQL</a>, <a title="Eclipse IDE for R" href="http://www.r-bloggers.com/?s=eclipse" rel="nofollow">Eclipse</a>, <a title="git and github, Version Control System" href="http://www.r-bloggers.com/?s=git" rel="nofollow">git</a>, <a title="Large data in R using Hadoop" href="http://www.r-bloggers.com/?s=hadoop" rel="nofollow">hadoop</a>, <a title="Web Scraping of google, facebook, yahoo, twitter and more using R" href="http://www.r-bloggers.com/?s=Web+Scraping" rel="nofollow">Web Scraping</a>) statistics (<a title="Regressions and ANOVA analysis tutorials" href="http://www.r-bloggers.com/?s=regression" rel="nofollow">regression</a>, <a title="principal component analysis tutorial" href="http://www.r-bloggers.com/?s=PCA" rel="nofollow">PCA</a>, <a title="Time series" href="http://www.r-bloggers.com/?s=time+series" rel="nofollow">time series</a>, <a title="finance trading" href="http://www.r-bloggers.com/?s=trading" rel="nofollow">trading</a>) and more...
+</div><p></p><hr><hr>
+<div style="border: 1px solid #EB9349; background: none repeat scroll 0 0 #FDEADA; text-align: center; margin: 10px; font-size: 16px;">
+If you got this far, why not <strong><u>subscribe for updates</u> </strong>from the site?  Choose your flavor: <a href="http://feedburner.google.com/fb/a/mailverify?uri=RBloggers" rel="nofollow">e-mail</a>, <a href="https://twitter.com/#!/rbloggers" rel="nofollow">twitter</a>, <a href="http://feeds.feedburner.com/RBloggers" rel="nofollow">RSS</a>, or <a href="http://www.facebook.com/pages/R-bloggers/191414254890" rel="nofollow">facebook</a>...
+</div><div class="social4i" style="height:29px;"><div class="social4in" style="height:29px;float: left;"><div class="socialicons s4fblike" style="float:left;margin-right: 10px;"><div class="fb-like fb_iframe_widget" data-href="http://www.r-bloggers.com/if-you-are-into-large-data-and-work-a-lot-with-package-ff/" data-send="true" data-layout="button_count" data-width="100" data-height="21" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;height=21&amp;href=http%3A%2F%2Fwww.r-bloggers.com%2Fif-you-are-into-large-data-and-work-a-lot-with-package-ff%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=true&amp;show_faces=false&amp;width=100"><span style="vertical-align: bottom; width: 121px; height: 20px;"><iframe name="ffaabfa3c" width="100px" height="21px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/like(2).html" style="border: none; visibility: visible; width: 121px; height: 20px;" class=""></iframe></span></div></div><div class="socialicons s4twitter" style="float:left;margin-right: 10px;"><iframe id="twitter-widget-2" scrolling="no" frameborder="0" allowtransparency="true" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/tweet_button.3c2cf6c04ef79ac64fb26744da5cc1b0.en(1).html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 109px; height: 20px;"></iframe></div><div class="socialicons s4plusone" style="float:left;margin-right: 10px;"><div id="___plusone_2" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I2_1416717123976" name="I2_1416717123976" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/fastbutton(1).html" data-gapiattached="true" title="+1"></iframe></div></div></div><div style="clear:both"></div></div></div>
+
+	</div><!-- #post-## -->
+
+
+
+   				<div id="comments">
+
+
+<div id="comment-user-details">
+
+
+
+
+
+		<p class="nocomments">Comments are closed.</p>
+
+
+
+		</div>
+
+</div><!-- #comments -->
+
+       
+	</div>
+    <!-- begin second sidebar -->
+    <div id="secondsidebar">
+
+		
+		<div class="side-widget"><h2>Top 3 Posts from the past 2 days</h2><ul><li><a href="http://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/" class="bump-view" data-bump-view="tp">In-depth introduction to machine learning in 15 hours of expert videos</a></li>
+<li><a href="http://www.r-bloggers.com/data-science-toolbox-survey-results-surprise-r-and-python-win/" class="bump-view" data-bump-view="tp">Data Science Toolbox Survey Results… Surprise! R and Python win</a></li>
+<li><a href="http://www.r-bloggers.com/installing-r-packages/" class="bump-view" data-bump-view="tp">Installing R packages</a></li>
+</ul></div><div class="side-widget"><form method="get" id="searchform" action="http://www.r-bloggers.com/">
+<div>
+<input type="text" class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == &#39;Search &amp; Hit Enter&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search &amp; Hit Enter&#39;;}">
+<input type="hidden" id="searchsubmit">
+</div>
+</form></div><div class="side-widget"><h2>Top 9 articles of the week</h2>
+<ol class="wppp_list">
+	<li><a href="http://www.r-bloggers.com/in-depth-introduction-to-machine-learning-in-15-hours-of-expert-videos/" title="In-depth introduction to machine learning in 15 hours of expert videos">In-depth introduction to machine learning in 15 hours of expert videos</a></li>
+	<li><a href="http://www.r-bloggers.com/installing-r-packages/" title="Installing R packages">Installing R packages</a></li>
+	<li><a href="http://www.r-bloggers.com/using-apply-sapply-lapply-in-r/" title="Using apply, sapply, lapply in R">Using apply, sapply, lapply in R</a></li>
+	<li><a href="http://www.r-bloggers.com/basics-of-histograms/" title="Basics of Histograms">Basics of Histograms</a></li>
+	<li><a href="http://www.r-bloggers.com/hands-on-dplyr-tutorial-for-faster-data-manipulation-in-r/" title="Hands-on dplyr tutorial for faster data manipulation in R">Hands-on dplyr tutorial for faster data manipulation in R</a></li>
+	<li><a href="http://www.r-bloggers.com/interactive-visualizations-from-r-using-rcharts/" title="Interactive Visualizations from R using rCharts">Interactive Visualizations from R using rCharts</a></li>
+	<li><a href="http://www.r-bloggers.com/box-plot-with-r-tutorial/" title="Box-plot with R – Tutorial">Box-plot with R – Tutorial</a></li>
+	<li><a href="http://www.r-bloggers.com/read-excel-files-from-r/" title="Read Excel files from R">Read Excel files from R</a></li>
+	<li><a href="http://www.r-bloggers.com/fpp-now-available-as-a-downloadable-e-book/" title="FPP now available as a downloadable e-book">FPP now available as a downloadable e-book</a></li>
+</ol>
+</div><div class="side-widget"><h2>Sponsors</h2>			<div class="textwidget"><a href="http://www.mango-solutions.com/" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/R-Bloggers-ad.jpg" alt="Mango solutions" scale="0">
+</a>
+
+<br><hr>
+
+<a href="http://www.highstat.com/" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/highland_stat_banner_300_1251.jpg" alt="Zero Inflated Models and Generalized Linear Mixed Models with R" scale="0">
+</a>
+
+
+<br><hr>
+
+<a href="http://www.quantide.com/" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/quantide4rbloggers.png" alt="Quantide: statistical consulting and training" scale="0">
+</a>
+
+
+<br><hr>
+
+<a href="http://www.rstudio.org/" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/R-Bloggernoanima.png" alt="RStudio homepage" scale="0">
+</a>
+
+<br><hr>
+
+<a href="http://www.revolutionanalytics.com/" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/Revolution-Analytics-Ad.png" alt="REvolution analytics" scale="0">
+</a>
+
+
+
+
+<br><hr>
+
+<a href="http://www.eoda.de/en/" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/eoda_logo_3001.png" alt="http://www.eoda.de" scale="0">
+</a>
+
+
+<br><hr>
+
+<a href="https://plot.ly/api/r/" rel="nofollow">
+    <img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/plotly_ad_r_bloggers.jpg" alt="" title="Plotly" scale="0">
+Plotly: collaborative, publication-quality graphing.
+</a>
+
+<br><hr>
+
+
+
+<a href="http://www.statisticsviews.com/view/index.html?utm_source=RBlogger&utm_medium=banner&utm_term=StatViews&utm_content=StatViewsAd&utm_campaign=webbanner" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/SVbanner300x125.jpg" scale="0">
+</a>
+
+
+<br><hr>
+<a href="http://intuitics.co/?utm_source=rblg&utm_medium=banner&utm_campaign=v1" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/r-blg-ad-v1.png" scale="0">
+</a>
+
+<br><hr>
+<a href="http://www.datacamp.com/?utm_source=R-bloggers&utm_medium=Add&utm_content=The%20r-blogger%20add&utm_campaign=R-bloggers-add" rel="nofollow">
+<img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/DataCamp_banner_rbloggers.jpg" scale="0">
+</a>
+
+<br><hr>
+<a href="http://rapporter.net/" rel="nofollow">
+    <img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/rapporter-300x1252.png" alt="rapporter.net: An R based reporting and data analysis platform in the cloud" title="An R based reporting and data analysis platform in the cloud" scale="0">
+</a>
+
+
+<br><hr>
+<a href="http://www.edureka.in/r-for-analytics?utm_source=R-Bloggers&utm_medium=Banner&utm_campaign=Display+Ad" rel="nofollow">
+    <img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/Data-science-creative.jpg" alt="" title="" scale="0">
+</a>
+
+
+
+<br><hr>
+<a href="http://www.nycdatascience.com/" rel="nofollow">
+    <img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/ok.jpg" alt="" title="" scale="0">
+</a>
+
+
+
+<br><hr>
+<a href="http://www.dotplot.com/data_analysis_signup/" rel="nofollow">
+    <img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/dotplot_banner300x150_1a.png" alt="" title="dotplot" scale="0">
+</a>
+
+
+
+<br><hr>
+<a href="http://www2.angoss.com/l/12172/2014-06-10/mlhnr" rel="nofollow">
+    <img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/rbloggers-Angoss_Final.png" alt="" title="Agnoss" scale="0">
+</a>
+
+
+<br><hr>
+<a href="http://www.statworx.de/r-statistik/" rel="nofollow">
+    <img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/STATWORX-R-Bloggers.png" alt="" title="STATWORX" scale="0">
+</a>
+
+
+<br><hr>
+<a href="http://yottamine.com/try-yottamine-now" rel="nofollow">
+    <img src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/R-Blog_Speed.png" alt="" title="yottamine" scale="0">
+</a>
+</div>
+		</div><div class="side-widget"><form method="get" id="searchform" action="http://www.r-bloggers.com/">
+<div>
+<input type="text" class="search_input" value="Search &amp; Hit Enter" name="s" id="s" onfocus="if (this.value == &#39;Search &amp; Hit Enter&#39;) {this.value = &#39;&#39;;}" onblur="if (this.value == &#39;&#39;) {this.value = &#39;Search &amp; Hit Enter&#39;;}">
+<input type="hidden" id="searchsubmit">
+</div>
+</form></div><div class="side-widget">			<div class="textwidget"><strong><a href="http://www.r-bloggers.com/blogs-list/" onclick="_gaq.push([&#39;_trackEvent&#39;, &#39;outbound-widget-&#39;, &#39;http://www.r-bloggers.com/blogs-list/&#39;, &#39;Full list of contributing R-bloggers&#39;]);">Full list of contributing R-bloggers</a></strong></div>
+		</div>    </div>
+<!-- end second sidebar --></div>
+<!-- begin footer -->
+<div id="footer">
+	<strong><a href="http://www.r-bloggers.com/">R-bloggers</a></strong> was founded by <a href="http://www.r-statistics.com/about/">Tal Galili</a>, with gratitude to the <a href="http://www.r-project.org/">R</a> community.  <br>
+    Is powered by <a href="http://www.wordpress.org/">WordPress</a> using a <a href="http://themes.bavotasan.com/" rel="nofollow">bavotasan.com</a> design.<br>
+    Copyright © 2014 <strong>R-bloggers</strong>. All Rights Reserved. <a href="http://www.r-bloggers.com/terms/">Terms and Conditions</a> for this website<br>
+</div>
+<!-- MathJax Latex Plugin installed: Disabled as no shortcodes on this page -->
+<!--
+TPC! Memory Usage (http://webjawns.com)
+Memory Usage: 69536504
+Memory Peak Usage: 70008192
+WP Memory Limit: 520M
+PHP Memory Limit: 512M
+Checkpoints: 11
+-->
+
+	<div style="display:none">
+	</div>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shCore.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushBash.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushClojure.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushErlang.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushFSharp.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushJava.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushLatex.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushMatlabKey.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushObjC.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushR.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushScala.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushSql.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/shBrushXml.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.r-bloggers.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/comment-reply.min.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/effects.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/photon.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/wpgroho.js"></script>
+	<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/7r8gQb8MIqE.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/7r8gQb8MIqE(1).html" style="border: none;"></iframe></div></div></div>
+	<script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/widgets.js"></script><script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/all.js"></script><script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/plusone.js" gapi_processed="true"></script><script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/in.js"></script>
+	<script src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/e-201439.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:3.1.1',blog:'11524731',post:'62774',tz:'-6'});
+	var load_cmc = function(){linktracker_init(11524731,62774,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img id="wpstats" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/g.gif" alt="" scale="0"><script type="text/javascript" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/effects(1).js"></script> 
+<script type="text/javascript">
+/* <![CDATA[ */
+jQuery(function(){
+	jQuery("ul.sf-menu").supersubs({ 
+		minWidth:    12,
+		maxWidth:    27,
+		extraWidth:  1
+	}).superfish({ 
+		delay:       100,
+		speed:       250 
+	});	});
+/* ]]> */
+</script>
+
+
+
+
+
+<!-- Dynamic page generated in 0.805 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2014-09-25 16:31:48 -->
+
+<!-- Compression = gzip --><iframe name="oauth2relay2136615449" id="oauth2relay2136615449" src="./If you are into large data and work a lot with package ff   (R news & tutorials)_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><div><div id="SL_button" class="ImTranslatorLogo"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="display: none;"><div id="SL_planshet"><div id="SL_TB"><div class="ImTranslatorLogo"></div><table cellspacing="1" border="0" id="SL_tables"><tbody><tr><td class="SL_td" align="left" width="20%"><div id="SL_lng_from">English&nbsp;»</div></td><td class="SL_td" align="left" width="20%"><div id="SL_to_"><div id="SL_tocurlng" style="margin-left:5px;">Georgian</div><div class="SL_arrow"></div><div id="SL_to_list" style="display=" none'=""><div class="SL_DDMENU"><div id="SL_af" class="SL_limenu">Afrikaans</div><div id="SL_sq" class="SL_limenu">Albanian</div><div id="SL_ar" class="SL_limenu">Arabic</div><div id="SL_hy" class="SL_limenu">Armenian</div><div id="SL_az" class="SL_limenu">Azerbaijani</div><div id="SL_eu" class="SL_limenu">Basque</div><div id="SL_bn" class="SL_limenu">Bengali</div><div id="SL_be" class="SL_limenu">Belarusian</div><div id="SL_bg" class="SL_limenu">Bulgarian</div><div id="SL_ca" class="SL_limenu">Catalan</div><div id="SL_zh_CN" class="SL_limenu">Chinese&nbsp;(Simp)</div><div id="SL_zh_TW" class="SL_limenu">Chinese&nbsp;(Trad)</div><div id="SL_hr" class="SL_limenu">Croatian</div><div id="SL_cs" class="SL_limenu">Czech</div><div id="SL_da" class="SL_limenu">Danish</div><div id="SL_nl" class="SL_limenu">Dutch</div><div id="SL_en" class="SL_limenu">English</div><div id="SL_eo" class="SL_limenu">Esperanto</div><div id="SL_et" class="SL_limenu">Estonian</div><div id="SL_tl" class="SL_limenu">Filipino</div><div id="SL_fi" class="SL_limenu">Finnish</div><div id="SL_fr" class="SL_limenu">French</div><div id="SL_gl" class="SL_limenu">Galician</div><div id="SL_ka" class="SL_limenu">Georgian</div><div id="SL_de" class="SL_limenu">German</div><div id="SL_el" class="SL_limenu">Greek</div><div id="SL_gu" class="SL_limenu">Gujarati</div><div id="SL_ht" class="SL_limenu">Haitian&nbsp;Creole</div><div id="SL_iw" class="SL_limenu">Hebrew</div><div id="SL_hi" class="SL_limenu">Hindi</div><div id="SL_hu" class="SL_limenu">Hungarian</div><div id="SL_is" class="SL_limenu">Icelandic</div><div id="SL_id" class="SL_limenu">Indonesian</div><div id="SL_ga" class="SL_limenu">Irish</div><div id="SL_it" class="SL_limenu">Italian</div><div id="SL_ja" class="SL_limenu">Japanese</div><div id="SL_kn" class="SL_limenu">Kannada</div><div id="SL_ko" class="SL_limenu">Korean</div><div id="SL_lo" class="SL_limenu">Lao</div><div id="SL_la" class="SL_limenu">Latin</div><div id="SL_lv" class="SL_limenu">Latvian</div><div id="SL_lt" class="SL_limenu">Lithuanian</div><div id="SL_mk" class="SL_limenu">Macedonian</div><div id="SL_ms" class="SL_limenu">Malay</div><div id="SL_mt" class="SL_limenu">Maltese</div><div id="SL_no" class="SL_limenu">Norwegian</div><div id="SL_fa" class="SL_limenu">Persian</div><div id="SL_pl" class="SL_limenu">Polish</div><div id="SL_pt" class="SL_limenu">Portuguese</div><div id="SL_ro" class="SL_limenu">Romanian</div><div id="SL_ru" class="SL_limenu">Russian</div><div id="SL_sr" class="SL_limenu">Serbian</div><div id="SL_sk" class="SL_limenu">Slovak</div><div id="SL_sl" class="SL_limenu">Slovenian</div><div id="SL_es" class="SL_limenu">Spanish</div><div id="SL_sw" class="SL_limenu">Swahili</div><div id="SL_sv" class="SL_limenu">Swedish</div><div id="SL_ta" class="SL_limenu">Tamil</div><div id="SL_te" class="SL_limenu">Telugu</div><div id="SL_th" class="SL_limenu">Thai</div><div id="SL_tr" class="SL_limenu">Turkish</div><div id="SL_uk" class="SL_limenu">Ukrainian</div><div id="SL_ur" class="SL_limenu">Urdu</div><div id="SL_vi" class="SL_limenu">Vietnamese</div><div id="SL_cy" class="SL_limenu">Welsh</div><div id="SL_yi" class="SL_limenu">Yiddish</div></div></div></div><select id="SL_lng_to"><option value="af">Afrikaans</option><option value="sq">Albanian</option><option value="ar">Arabic</option><option value="hy">Armenian</option><option value="az">Azerbaijani</option><option value="eu">Basque</option><option value="bn">Bengali</option><option value="be">Belarusian</option><option value="bg">Bulgarian</option><option value="ca">Catalan</option><option value="zh-CN">Chinese&nbsp;(Simp)</option><option value="zh-TW">Chinese&nbsp;(Trad)</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option value="en">English</option><option value="eo">Esperanto</option><option value="et">Estonian</option><option value="tl">Filipino</option><option value="fi">Finnish</option><option value="fr">French</option><option value="gl">Galician</option><option value="ka">Georgian</option><option value="de">German</option><option value="el">Greek</option><option value="gu">Gujarati</option><option value="ht">Haitian&nbsp;Creole</option><option value="iw">Hebrew</option><option value="hi">Hindi</option><option value="hu">Hungarian</option><option value="is">Icelandic</option><option value="id">Indonesian</option><option value="ga">Irish</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="kn">Kannada</option><option value="ko">Korean</option><option value="lo">Lao</option><option value="la">Latin</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="mk">Macedonian</option><option value="ms">Malay</option><option value="mt">Maltese</option><option value="no">Norwegian</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sr">Serbian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option selected="" value="es">Spanish</option><option value="sw">Swahili</option><option value="sv">Swedish</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="yi">Yiddish</option></select></td><td class="SL_td" width="13%" align="center">&nbsp;</td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title=""></div></td><td class="SL_td" width="8%" align="center"><div class="SL_copy_hand" id="SL_copy" title="Select text"></div></td><td class="SL_td" width="8%" align="center"><div class="SL_font_off" id="SL_bbl_font" title="Font size"></div></td><td class="SL_td" width="5%"></td><td class="SL_td" width="8%" align="right"><div class="SL_pin_off" id="SL_pin" title="Pin pup-up bubble"></div></td></tr></tbody></table></div></div><div id="SL_shadow_translation_result"></div><div id="SL_bbl_donate" title="Make a small contribution"></div><div id="SL_Balloon_options"><a href="chrome-extension://pcfaommkmdjacdkbaoohklbccfmbnnod/options-bbl.html" target="_blank" class="SL_options" title="Show options">Options</a></div></div></div><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

@@ -1,7 +1,34 @@
 Task 2 To do List
 ----
+# Next steps
+data.table... 
+Try Model8.6.5grams.blogsCorpus.R with data.tables instead.
+potential to run findAssoc ever?
 
-Overview:
+1. a key issue is how much memory i can use.
+Apparently I could use up to 4096 MB on shiny by running:
+`shinyapps::configureApp("APPNAME", size="xxlarge")`
+but potential for being forced down to 256.
+
+For now though I guess we should develop for 4096 because any shrinking will sacrifice speed and accuracy.
+
+2. 	Abandoning disk-writing approaches because they are way too slow.
+
+3. Back to original TDM model, but use removesparseterms to get down to total 4 GB in each TDM at least, potentially in all combined. Don't expect 100% accuracy.
+
+4. Need to separate tri/bi/unigrams or all in one TDM?
+
+5. Prediction:
+basic model is the probability = count of trigram/count of bigram
+
+6. Tree structure:
+Naturally, much speedier than searching through all trigrams, all bigrams and all unigrams separately would be a tree structure.
+
+it would be built unigram-bigram-trigram, but then you would go up it (backwards) for the prediction.
+
+Peng indicaes this is not effective.
+
+#Overview:
 Our aim is to get a finite list of probabilities for what the next word is. We are building an equation that tells us this.
 
 1. Figure out how to efficiently (memory-wise) do a unigram model to start. 
@@ -65,4 +92,22 @@ So for now let's work on the trigrams and leave findAssoc possibly only for the 
 Predictions:
 1. will need to deal with unfound terms like "ain't"..
 
-3. 
+#*all of these things take too long: but would it be faster if I somehow did all in memory and then wrote it all at once?*
+
+To test this, let's time it on 10000 and see how it is. 
+Because 500 was 94 seconds. no let pick a smaller test.
+what should be 10 minutes is: 3191 lines.
+so we'll run that and time it.
+now, everything in database is getting double-counted which could have some affect. well only the first 500 though so negligible.
+
+Now, AWS gives 750 hours free, and I could use those in parallel.
+That would be enough to process the Trigram at least.
+
+I believe the reason trigram was so fast before is that I was abandoning the TDM document aspect? Maybe I need to do that again (probably).
+
+But actually, the slow part is not the TDM making, it is the writing to database?
+This is taking even more than 10 minutes I think (3191 lines)
+
+Can I skip the TDM process?
+
+# spelling correction would help...
