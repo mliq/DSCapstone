@@ -117,7 +117,7 @@ Bpred=Bpred[,{s=strsplit(grams," ");list(prediction=unlist(s)[c(FALSE,TRUE)],cou
 # Calculate probabilities:
 Bpred[,probability:=counts/bTotal]
 
-#### Join the two tables to get overall probabilities ####
+#### MERGE BI AND TRI PREDICTION TABLES ####
 setkey(Bpred,prediction)
 setkey(Tpred,prediction)
 
@@ -126,9 +126,32 @@ TBpred[,probability:=(10^(sum(log(probability.T),log(probability.B),na.rm=TRUE))
 TBpred[,c("probability.T","probability.B") := NULL]
 TBpred=TBpred[order(-probability)]
 
-#### UNIGRAM
+#### UNIGRAM PREDICTION TABLES ####
 
+# Load Twitter Unigram Table
+Ufreq=readRDS("t.Ufreq.RDS")
 
+# No predictions in unigram case
+
+#### UNIGRAM Prediction Probabilities: ####
+
+uTotal=Ufreq[,sum(counts)]
+
+# Calculate probabilities:
+Ufreq[,probability:=counts/uTotal]
+
+#### MERGE UNI WITH BI+TRI PREDICTION TABLE ####
+setnames(Ufreq,"grams","prediction")
+setkey(Ufreq,prediction)
+setkey(TBpred,prediction)
+
+UBTpred=merge(TBpred,Ufreq,all=TRUE,suffixes=c(".TB",".U"))
+UBTpred[,probability:=(10^(sum(log(probability.TB),log(probability.U),na.rm=TRUE))), by = prediction]
+UBTpred[,c("probability.TB","probability.U") := NULL]
+UBTpred=UBTpred[order(-probability)]
+
+# ok so now all is dandy except my predictions blow.
+# study model again.
 ####DATA.TABLE REFERENCE####
 # Subset listed predictions:
 # Tpred[[1]][Tpred[[1]]$counts>5]
@@ -145,4 +168,6 @@ TBpred=TBpred[order(-probability)]
 # DT[,counts:=sum(counts.x,counts.y,na.rm=TRUE), by = names]
 # DT[,c("counts.x","counts.y") := NULL]
 # help(":=")
+# rename a column quickly:
+# setnames(Ufreq,"old","new")
 ####DATA.TABLE REFERENCE####
