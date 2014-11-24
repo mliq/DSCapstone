@@ -1,0 +1,6 @@
+# Harvard PDF
+
+## 2.2 Good-Turing smoothing
+
+essentially gives a much bigger boost to words that occur a certain number of times that not many other words do. So basically, bigger boost to more common words.
+

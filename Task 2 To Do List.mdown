@@ -7,7 +7,14 @@ Task 2 To do List
 
 3. Spell correction would be a great addition, and reprocess with some specifics, but that's not top priority right this moment.
 
+4. do log probabilities in the data.table rather than on prediction?
 
+## Results testing on prediction 5, first Upred.nbt.RDS:
+Quiz2.1 - beer was #10 with just trigrams, bigrams screwed it up.
+a case of AMERICA?? 
+Unigrams: a case of SURE??? WTF?
+
+I think i should do trigrams only, posibly even quadrigrams and above instead of this.
 
 ----------------
 

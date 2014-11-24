@@ -81,41 +81,26 @@ history=paste(as.character(history),collapse=' ')
 
 #### TRIGRAM PREDICTION TABLES ####
 
-# Load the twitter trigram data.table
+# Load the All corpus trigram data.table
 library(data.table)
-Tfreq=readRDS("t.Tfreq.RDS")
+Tfreq=readRDS("Tpred.nbt.RDS")
 
 # Make prediction list of matches:
 Tpred=data.table(Tfreq[grep(paste0("^",history),Tfreq$grams),][order(-counts)])
 
-#### TRIGRAM Prediction Probabilities: ####
-
-# First get the total number of trigrams
-tTotal=Tfreq[,sum(counts)]
-
-# Edit trigrams to just the prediction and the count
-Tpred=Tpred[,{s=strsplit(grams," ");list(prediction=unlist(s)[c(FALSE,FALSE,TRUE)],counts=counts)}]
-
-# Calculate probabilities:
-Tpred[,probability:=counts/tTotal]
+# Edit trigrams to just the prediction and the count and the probabilities
+Tpred=Tpred[,{s=strsplit(grams," ");list(prediction=unlist(s)[c(FALSE,FALSE,TRUE)],counts=counts,probability=probability)}]
 
 #### BIGRAM PREDICTION TABLES #####
 
 # Load Twitter Bigram Table
-Bfreq=readRDS("t.Bfreq.RDS")
+Bfreq=readRDS("Bpred.nbt.RDS")
 
 # Make prediction list of matches
 Bpred=data.table(Bfreq[grep(paste0("^",nMin1),Bfreq$grams),][order(-counts)])
 
-#### BIGRAM Prediction Probabilities: ####
-
-bTotal=Bfreq[,sum(counts)]
-
-# Edit bigrams to just the prediction and the count
-Bpred=Bpred[,{s=strsplit(grams," ");list(prediction=unlist(s)[c(FALSE,TRUE)],counts=counts)}]
-
-# Calculate probabilities:
-Bpred[,probability:=counts/bTotal]
+# Edit bigrams to just the prediction and the count and probability
+Bpred=Bpred[,{s=strsplit(grams," ");list(prediction=unlist(s)[c(FALSE,TRUE)],counts=counts,probability=probability)}]
 
 #### MERGE BI AND TRI PREDICTION TABLES ####
 setkey(Bpred,prediction)
@@ -129,16 +114,9 @@ TBpred=TBpred[order(-probability)]
 #### UNIGRAM PREDICTION TABLES ####
 
 # Load Twitter Unigram Table
-Ufreq=readRDS("t.Ufreq.RDS")
+Ufreq=readRDS("Upred.nbt.RDS")
 
 # No predictions in unigram case
-
-#### UNIGRAM Prediction Probabilities: ####
-
-uTotal=Ufreq[,sum(counts)]
-
-# Calculate probabilities:
-Ufreq[,probability:=counts/uTotal]
 
 #### MERGE UNI WITH BI+TRI PREDICTION TABLE ####
 setnames(Ufreq,"grams","prediction")
@@ -149,6 +127,9 @@ UBTpred=merge(TBpred,Ufreq,all=TRUE,suffixes=c(".TB",".U"))
 UBTpred[,probability:=(10^(sum(log(probability.TB),log(probability.U),na.rm=TRUE))), by = prediction]
 UBTpred[,c("probability.TB","probability.U") := NULL]
 UBTpred=UBTpred[order(-probability)]
+
+# Stop the clock
+proc.time() - ptm # 10000 news lines: 74 secs 1.23 minutes
 
 # ok so now all is dandy except my predictions blow.
 # study model again.
