@@ -1,15 +1,45 @@
 Task 2 To do List
 ----
 
+# OK holy shit so 
+My crazy plan of doing the much larger trigram DID pay off at least according to Quiz2.1 which, note, actually IS twitter writing.
+                grams counts
+  1:      case of the     59
+  2:     case of beer     10
+  3:        case of a      8
+  4:    case of emerg      5
+  5:       case of an      4
+
+ And actually, since you can combine data.tables, and use "scan" to start at later lines, you did not even need to take this risk.
+ 
+
 # Model concepts that I could implement:
 
 1. identify which corpus the test text is most similar to using 3 separate unigram models.
 
-# professorial advice I have yet to understand:
+# TOP Professorial advice I have yet to understand:
+00. 
 
+* [Markov Chain](file:///C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Markov%20chain%20-%20Wikipedia,%20the%20free%20encyclopedia.html)
+
+* [Katz's Backoff Model](file:///C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Katz's%20back-off%20model%20-%20Wikipedia,%20the%20free%20encyclopedia.html)
+
+* Katz requires first: [Good-Turing](file:///C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Good–Turing%20frequency%20estimation%20-%20Wikipedia,%20the%20free%20encyclopedia.html)
+
+## More Professorial advice I have yet to understand:
 1. How many unique words do you need in a frequency sorted dictionary to cover 50% of all word instances in the language? 90%? 
 
+- How can you efficiently store an n-gram model (think Markov Chains)?
+
+- How do you evaluate whether your model is any good?
+
+- How can you use backoff models to estimate the probability of unobserved n-grams? http://en.wikipedia.org/wiki/Katz%27s_back-off_model
+
 2. Can you think of a way to increase the coverage -- identifying words that may not be in the corpora or using a smaller number of words in the dictionary to cover the same number of phrases?
+
+3. Rprof(): this function runs the profiler in R that can be used to determine where bottlenecks in your function may exist. The profr package (available on CRAN) provides some additional tools for visualizing and summarizing profiling data.
+
+4. Does perplexity correlate with the other measures of accuracy?
 
 # Stuff I know I am supposed to do but have not quite grasped WHY or how this would help prediction at all
 

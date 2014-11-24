@@ -112,5 +112,6 @@ gc()
 rm(counts)
 #rm(train)
 # Stop the clock
-proc.time() - ptm # 1e6 twitter lines: 
+proc.time() - ptm # 1e6 twitter lines: 5095.00 85 min.
+# object.size(Tfreq) 405358064 bytes
 
