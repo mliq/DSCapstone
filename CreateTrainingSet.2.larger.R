@@ -41,3 +41,17 @@ saveRDS(Ufreq, file="n.Ufreq4.RDS")
 saveRDS(Bfreq, file="t.Bfreq4.RDS")
 saveRDS(Tfreq, file="t.Tfreq4.RDS")
 saveRDS(Ufreq, file="t.Ufreq4.RDS")
+
+
+
+# 1e6 twitter lines: 5095.00 85 min.
+# object.size(Tfreq) 405358064 bytes
+saveRDS(Tfreq, file="t.Tfreq6.RDS")
+# Length:5266289
+# Tfreq[counts>1] 791025
+
+# Save to text file
+options("max.print"=10000000)
+sink('t.Tfreq6.txt')
+Tfreq[order(-counts)]
+sink()

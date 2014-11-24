@@ -1,0 +1,42 @@
+# Results of predict t.process training set.6.ProcessFix3.TriGramsOnly.R 
+
+## Quiz 2
+Great = correct answer is in the top 4.
+Good = correct answer among multi-choice was at top.
+
+\# |Corpus | Result
+------------------
+1. Twitter, Great (only "the" above)
+2. Twitter, Bad (no preds)
+3. Twitter, Good among multi-choice, but #12 overall.
+4. News, Bad.
+5. News?, Good, tie actually between beach and mall...
+6. Twitter, Great. By far #1
+7. Twitter, Great. By far #1
+8. Blog/News?, Bad. No choice appears.
+9. Blog/News, Bad, no choice appears
+10. Blog/News, Bad, few choices very low.
+
+
+Totals by corpus:
+-----
+Twitter: 4/5
+News: 1/5
+Blog: 
+
+>So, it appears that perhaps news and blog could be combined and run on those questions. How can we identify?
+I CAN"T EVEN IDENTIFY most times, so that will be damn hard. 
+*The only question then is whether a purely blog/news corpus could outperform twitter overall*
+
+## Quiz 3
+
+1. Twitter?, Bad, Only give appears with one count... and is wrong. (is die)
+2. Twitter? Bad, none.
+3. Twitter, Great, just 1 count though.
+4. News?, Bad, nothin
+5. Twitter, Good (look is #1 and wrong but picture is correct and #4.)
+6. News?, Bad none appear.
+7. Twitter/Blog/News, Great? (hand)
+8. Twitter, Good.
+9. News/Blog, Bad.
+10. Twitter, Good.
