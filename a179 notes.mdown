@@ -1,0 +1,14 @@
+a179 notes
+
+The rationale of this method is that LM performance should
+not be affected by eliminating rare events from the training
+sample. Moreover, this method provides large reductions as
+rare events constitute the majority of events.
+
+x,y,z are the 3 words of a trigram (or yz for bigram)
+
+only trigrams such that c(xy ) > 10
+have been considered for selection.
+
+Frequency based selection - simplest way, (what i have currently implemented)
+

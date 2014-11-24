@@ -4,3 +4,6 @@
 
 essentially gives a much bigger boost to words that occur a certain number of times that not many other words do. So basically, bigger boost to more common words.
 
+## 2.3 Jelinek-Mercer
+
+SO, the unigrams would mainly be useful for unseen trigrams... deciding between a set of 0 probability options. (which are somehow given probability here...)

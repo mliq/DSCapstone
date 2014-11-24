@@ -1,6 +1,12 @@
 Task 2 To do List
 ----
 # Next steps
+0. Perhaps I should insert the sentence tokens, 
+because this enables trigrams that would not otherwise exist because they only start or end sentences. Although that would mean I would sometimes be predicting the end of the sentence which I do not want to do...
+
+1. Right now I'm runing twitter on 1e6 lines after previously only using 1e5. 1e5 took 13.78 minutes, so this: 130.78. Probably I should have done less, especially knowing that this may crash at some point.
+
+----
 1. Let's try to combine the corpora tables to have something to do while we read the PDF?
 
 2. Read PDF

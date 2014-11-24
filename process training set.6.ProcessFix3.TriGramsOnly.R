@@ -5,7 +5,7 @@ ptm <- proc.time()
 # SETUP #
 gc()
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
-train=readRDS("t.train.RDS")
+train=readRDS("t.train3.RDS")
 library(tm)
 library(RWeka)
 
@@ -112,5 +112,5 @@ gc()
 rm(counts)
 #rm(train)
 # Stop the clock
-proc.time() - ptm # 10000 news lines: 74 secs 1.23 minutes
+proc.time() - ptm # 1e6 twitter lines: 
 
