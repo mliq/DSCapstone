@@ -12,6 +12,8 @@ object.size(x=lapply(ls(), get))
 # pretty print total
 print(object.size(x=lapply(ls(), get)), units="Mb")
 
+# currently Bfreq is 71 bytes/ngram.
+
 ## CRAP ##
 so i realize i completely left out process().
 and, it doesn't look so horrible but, I think I should try one with process and see how it goes.

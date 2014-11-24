@@ -30,14 +30,14 @@ trainRows[1]
 # Save to text file
 # Save to R object
 # Blog time w/3.ProcessFix.R : 1938 secs
-saveRDS(Bfreq, file="b.Bfreq.RDS")
-saveRDS(Tfreq, file="b.Tfreq.RDS")
-saveRDS(Ufreq, file="b.Ufreq.RDS")
+saveRDS(Bfreq, file="b.Bfreq4.RDS")
+saveRDS(Tfreq, file="b.Tfreq4.RDS")
+saveRDS(Ufreq, file="b.Ufreq4.RDS")
 # News time w/3.ProcessFix.R : 1778 secs
-saveRDS(Bfreq, file="n.Bfreq.RDS")
-saveRDS(Tfreq, file="n.Tfreq.RDS")
-saveRDS(Ufreq, file="n.Ufreq.RDS")
+saveRDS(Bfreq, file="n.Bfreq4.RDS")
+saveRDS(Tfreq, file="n.Tfreq4.RDS")
+saveRDS(Ufreq, file="n.Ufreq4.RDS")
 # Twit time w/3.ProcessFix.R : 827 secs
-saveRDS(Bfreq, file="t.Bfreq.RDS")
-saveRDS(Tfreq, file="t.Tfreq.RDS")
-saveRDS(Ufreq, file="t.Ufreq.RDS")
+saveRDS(Bfreq, file="t.Bfreq4.RDS")
+saveRDS(Tfreq, file="t.Tfreq4.RDS")
+saveRDS(Ufreq, file="t.Ufreq4.RDS")
