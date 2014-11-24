@@ -95,9 +95,11 @@ Tfreq=readRDS("t.Tfreq.RDS")
 # Make prediction list of matches:
 Tpred=data.table(Tfreq[grep(paste0("^",history),Tfreq$grams),][order(-counts)])
 
-# First Prediction Probability:
-# isolate trigram back to only the predicted word.
-Tpred[,{s=strsplit(grams," ");list(grams=rep(grams,sapply(s,length)), prediction=unlist(s))}]
+# Prediction Probabilities:
+# Edit trigrams to just the prediction and the count
+Tpred[,{s=strsplit(grams," ");list(prediction=unlist(s)[c(FALSE,FALSE,TRUE)],counts=counts)}]
+
+
 
 Tpred[,{s=strsplit(grams," ");list(grams=rep(grams,sapply(s,length)), prediction=unlist(s))}]
 
