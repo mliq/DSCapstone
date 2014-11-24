@@ -74,11 +74,49 @@ corpus<-unlist(lapply(corpus, FUN=function(x){as.character(x[1])}))
 # Split by words:
 words<-lapply(corpus,FUN=function(x){unlist(strsplit(x,"\\s+"))})
 
-## PREDICION TABLE LOOKUPS
+## PREDICTION TABLE LOOKUPS
 
 # starting with trigram probabilities #
 
 # First get the total number of trigrams
 tTotal=Tfreq[,sum(counts)]
 
-# now get the top predicted trigram
+# now get the count of the top predicted trigram
+
+# first I need the last two words of the sentence(s)
+history=lapply(words,function(x){x[(length(x)-1):length(x)]})
+history=lapply(history,function(x){paste(as.character(x),collapse=' ')})
+
+# Load the twitter trigram data.table
+library(data.table)
+Tfreq=readRDS("t.Tfreq.RDS")
+
+# Make prediction list of matches:
+Tpred=lapply(history,function(x){Tfreq[grep(paste0("^",x),Tfreq$grams),][order(-counts)]})
+
+# First Prediction Probability:
+
+# isolate trigram back to only the predicted word.
+pred=data.table(gram=Tpred[[1]][1]$grams,triProb=(Tpred[[1]][1]$counts/tTotal))
+
+# bigram probability:
+Bfreq=readRDS("t.Bfreq.RDS")
+bHistory=lapply(words,function(x){x[(length(x)-1)]})
+Bpred=lapply(bHistory,function(x){Bfreq[grep(paste0("^",x),Bfreq$grams),][order(-counts)]})
+
+####DATA.TABLE REFERENCE####
+# Subset listed predictions:
+# Tpred[[1]][Tpred[[1]]$counts>5]
+# how about search:
+# test=Tfreq[counts>2]
+# Fuzzy / Inexact Matches:
+# test[grep("a lot",test$grams)]
+# Only the first two words of trigram:
+# test[grep("^mani time",test$grams)]
+# grepl to get line numbers?
+# example(data.table)
+# Join two tables and match the keys, summing the values:
+# DT=merge(DT1,DT2,all=TRUE)
+# DT[,counts:=sum(counts.x,counts.y,na.rm=TRUE), by = names]
+# DT[,c("counts.x","counts.y") := NULL]
+####DATA.TABLE REFERENCE####
