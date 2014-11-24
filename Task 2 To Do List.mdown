@@ -1,5 +1,22 @@
 Task 2 To do List
 ----
+
+# Model concepts that I could implement:
+
+1. identify which corpus the test text is most similar to using 3 separate unigram models.
+
+# professorial advice I have yet to understand:
+
+1. How many unique words do you need in a frequency sorted dictionary to cover 50% of all word instances in the language? 90%? 
+
+2. Can you think of a way to increase the coverage -- identifying words that may not be in the corpora or using a smaller number of words in the dictionary to cover the same number of phrases?
+
+# Stuff I know I am supposed to do but have not quite grasped WHY or how this would help prediction at all
+
+1. Build a model to handle unseen n-grams - in some cases people will want to type a combination of words that does not appear in the corpora. Build a model to handle cases where a particular n-gram isn't observed.
+
+2. Begin/end sentence tokens.
+
 # Next steps
 0. Perhaps I should insert the sentence tokens, 
 because this enables trigrams that would not otherwise exist because they only start or end sentences. Although that would mean I would sometimes be predicting the end of the sentence which I do not want to do...

@@ -12,3 +12,14 @@ have been considered for selection.
 
 Frequency based selection - simplest way, (what i have currently implemented)
 
+# back-off
+## Some  bigram probabilities are 'weaker' than others.
+A way to measure this is probability of resorting to unigrams expressed by Pr(y)λ(y) 
+
+# Entropy
+A way of evaluating the degree of ambiguity of a context.
+
+Sum of probabilities of bigram multiplied by H(wd|wt-1) which is the probability times the log of the probability.
+
+Rational is that trigrams are mostly useful when bigrams provide high entropy or, similarly, high perplexity.
+
