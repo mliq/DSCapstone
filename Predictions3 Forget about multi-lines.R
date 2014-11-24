@@ -63,16 +63,16 @@ x=x[which(nchar(x)!=0)]
 ## INPUT MUNGING ##
 
 # Take an input:
-test=readLines("Quiz2.txt")
+test=scan("Quiz2.txt", what="character",n=1,skip=0)
 
 # transform as training set was (lowercase, stem, strip punctuation etc.)
 test=iconv(test, to='ASCII', sub=' ')
 test=process(test)
 corpus<-makeCorpus(test)
-corpus<-unlist(lapply(corpus, FUN=function(x){as.character(x[1])}))
+corpus=as.character(corpus[[1]][1])
 
 # Split by words:
-words<-lapply(corpus,FUN=function(x){unlist(strsplit(x,"\\s+"))})
+words<-unlist(strsplit(corpus,"\\s+"))
 
 ## PREDICTION TABLE LOOKUPS
 
@@ -84,21 +84,31 @@ tTotal=Tfreq[,sum(counts)]
 # now get the count of the top predicted trigram
 
 # first I need the last two words of the sentence(s)
-history=lapply(words,function(x){x[(length(x)-1):length(x)]})
-history=lapply(history,function(x){paste(as.character(x),collapse=' ')})
+history=words[(length(words)-1):length(words)]
+nMin1=words[length(words)-1]
+history=paste(as.character(history),collapse=' ')
 
 # Load the twitter trigram data.table
 library(data.table)
 Tfreq=readRDS("t.Tfreq.RDS")
 
 # Make prediction list of matches:
-Tpred=lapply(history,function(x){Tfreq[grep(paste0("^",x),Tfreq$grams),][order(-counts)]})
+Tpred=data.table(Tfreq[grep(paste0("^",history),Tfreq$grams),][order(-counts)])
 
 # First Prediction Probability:
-x=1 # line number (perhaps a mistake because in the end i will be attacking one thing at a time?)
-y=1 # 
 # isolate trigram back to only the predicted word.
-strsplit(Tpred[[1]][1]$grams," ")
+Tpred[,{s=strsplit(grams," ");list(grams=rep(grams,sapply(s,length)), prediction=unlist(s))}]
+
+Tpred[,{s=strsplit(grams," ");list(grams=rep(grams,sapply(s,length)), prediction=unlist(s))}]
+
+Tpred[,prediction:=list(strsplit(Tpred[,grams]," ")[[1:16]][3])]
+
+sum(counts.x,counts.y,na.rm=TRUE), by = names]
+strsplit(Tpred[,grams]," ")
+
+
+Tpred[,]
+ly(Tpred$grams,function(x){strsplit(x," ")})
 
 pred=data.table(gram=Tpred[[1]][1]$grams,triProb=(Tpred[[1]][1]$counts/tTotal))
 
@@ -122,4 +132,5 @@ Bpred=lapply(bHistory,function(x){Bfreq[grep(paste0("^",x),Bfreq$grams),][order(
 # DT=merge(DT1,DT2,all=TRUE)
 # DT[,counts:=sum(counts.x,counts.y,na.rm=TRUE), by = names]
 # DT[,c("counts.x","counts.y") := NULL]
+# help(":=")
 ####DATA.TABLE REFERENCE####
