@@ -1,5 +1,9 @@
 Task 2 To do List
 ----
+# next:
+1. go over quiz results with blog.
+2. Run freqtable creator on news 333,333: process training set.6.ProcessFix3.TriGramsOnly.WITHSAVE..R
+3. Results of predict t.process training set.6.ProcessFix3.TriGramsOnly.mdown
 
 # OK holy shit so 
 My crazy plan of doing the much larger trigram DID pay off at least according to Quiz2.1 which, note, actually IS twitter writing.

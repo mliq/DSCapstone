@@ -2,7 +2,7 @@
 
 ## Quiz 2
 Great = correct answer is in the top 4.
-Good = correct answer among multi-choice was at top.
+Good = correct answer among multi-choice was higher.
 
 \# |Corpus | Result
 ------------------
@@ -24,6 +24,7 @@ Twitter: 4/5
 News: 1/5
 Blog: 
 
+
 >So, it appears that perhaps news and blog could be combined and run on those questions. How can we identify?
 I CAN"T EVEN IDENTIFY most times, so that will be damn hard. 
 *The only question then is whether a purely blog/news corpus could outperform twitter overall*
@@ -40,3 +41,11 @@ I CAN"T EVEN IDENTIFY most times, so that will be damn hard.
 8. Twitter, Good.
 9. News/Blog, Bad.
 10. Twitter, Good.
+
+### Results using blog 333,333 lines corpus (b.Tfreq6.RDS):
+1. Twitter? Bad
+2. Twitter? Bad, but possibly better.
+3. Twitter? Bad, none.
+4. News? Good, highest among multi-choice but #17
+5. Twitter, Great (look, few, pictur)
+6. News? 

@@ -6,7 +6,7 @@ library(RWeka)
 
 # Load the large twitter data.table trigram
 library(data.table)
-Tfreq=readRDS("t.Tfreq6.RDS")
+Tfreq=readRDS("b.Tfreq6.RDS")
 
 ## FUNCTIONS ##
 

@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0103)http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+   <title>Starting data analysis/wrangling with R: Things I wish I'd been told</title>
+   <meta name="author" content="{{ site.author.name }}">
+
+   <link rel="start" href="http://reganmian.net/blog">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://reganmian.net/blog/feed/index.xml">
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="./Starting data analysis wrangling with R  Things I wish I'd been told_files/syntax.css" type="text/css">
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="./Starting data analysis wrangling with R  Things I wish I'd been told_files/screen.css" type="text/css">
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-78507-5");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<script type="text/javascript" async="" src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/embed.js"></script><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body>
+<div id="site">
+
+  <div id="header">
+    <h1>
+      <a href="http://reganmian.net/blog" title="Random Stuff that Matters">Random Stuff that Matters</a>
+      <span class="byline">← <a href="http://reganmian.net/blog/about-me">Stian Haklev</a></span>
+    </h1>
+    <ul class="nav">
+      <li><a class="home" href="http://reganmian.net/blog">Home</a></li>
+      <li><a href="http://reganmian.net/blog/archive">Archive</a></li>
+      <li><a href="http://reganmian.net/blog/about-me">About</a></li>
+      <li><a href="http://reganmian.net/blog/publications-and-presentations">Pubs&amp;Pres</a></li>
+      <li><a href="http://reganmian.net/blog/tools-and-hacks">Tools&amp;Hacks</a></li>
+      <li><a href="http://reganmian.net/wiki/">Wiki</a></li>
+    </ul>
+  </div>
+
+  
+
+<div id="page">
+
+  <h1 class="emphnext">Starting data analysis/wrangling with R: Things I wish I'd been told</h1>
+  <p class="emphnext2">October 14, 2014, <a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told//index.md">[MD]</a>
+  </p><div style="float:right;font-size:80%;margin:30px;"><ul><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#0">Use RStudio</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#1">Use Knitr</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#2">Learn from others</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#3">Separate cleaning and organizing from analysis</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#4">Use version control</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#5">Learn the DSLs in R</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#6">DRY - Don't repeat yourself</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#7">Keeping track of types in R</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#8">Asking questions - providing reproducible examples</a></li><li><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/#9">Packages to use</a></li></ul></div><p><a href="http://www.r-project.org/">R</a> is a very powerful open source environment for data analysis, statistics and graphing, with thousands of <a href="http://cran.r-project.org/web/packages/">packages</a> available. After my previous blog post about <a href="http://reganmian.net/blog/2013/10/02/likert-graphs-in-r-embedding-metadata-for-easier-plotting">likert-scales and metadata in R</a>, a few of my colleagues mentioned that they were learning R through <a href="https://class.coursera.org/compdata-003/class">a Coursera course on data analysis</a>. I have been working quite intensively with R for the last half year, and thought I'd try to document and share a few tricks, and things I wish I'd have known when I started out.</p>
+
+<p><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_whole-05.png" style="none"></p>
+
+<p>I don't pretend to be a statistics whiz – I don't have a strong background in math, and much of my training in statistics was of the social science <em>"click here, then here in SPSS"</em> kind, using flowcharts to divine which tests to run, given the kinds of variables you wanted to compare. I'm eager to learn more, but the fact is that running complex statistical functions in R is typically quite easy. The difficult part is acquiring data, cleaning it up, combining different data sources, and preparing it for analysis (they say 90% of a data scientist's job is data wrangling). <em>Of course, knowing which tests to run, and how to analyze the results is also a challenge, but that is general statistical knowledge that applies to all statistics packages.</em></p>
+
+<p>So here are some of my suggestions and "lessons learnt", in no particular order. Some will find the code samples scary, others will find the suggestion to use for-loops far too basic, but hopefully you will find something useful here.</p>
+
+<!-- more -->
+
+<h2 id="0">Use RStudio</h2>
+
+<p><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told-_-whole-01.png" style="none"></p>
+
+<p><a href="http://www.rstudio.com/">RStudio</a> is an great open source <em>integrated development environment</em> for R. It is free and open-source, and integrates</p>
+
+<ul>
+<li>a project manager</li>
+<li>a text editor with syntax highlighting and tab-completion</li>
+<li>package management</li>
+<li>previewing plots</li>
+<li>previewing tables (see columns and rows in your dataset)</li>
+<li>integrated help (click F1 on any function)</li>
+<li>jump to source (click F2 on any function)</li>
+<li>and <a href="http://yihui.name/knitr/">Knitr</a> (write reports in <a href="http://daringfireball.net/projects/markdown/">Markdown</a>, see below)</li>
+</ul><p>There's even a version of RStudio <a href="http://www.rstudio.com/ide/docs/server/getting_started">that runs in the browser</a> – we're currently using it to coordinate data analysis among a geographically dispersed team on many gigabytes of data. Keeping it on a central server, and letting people run analyses directly on the data is much more convenient and secure than having everyone store tens of gigabytes of data on their personal computers.</p>
+
+<h2 id="1">Use Knitr</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Literate_programming">Literate programming</a> is the idea of mixing executable code with documentation in the same document. Knitr brings this functionality to R, and it's integrated beautifully with RStudio. By default, all the text you write in a Knitr document is interpreted as <a href="http://daringfireball.net/projects/markdown/">Markdown</a> (a light-weight markup language, which I'm also using to author this blog). Press <code>Alt+Cmd I</code> to insert an R code block. You can run the code either by pressing <code>Cmd+Enter</code> on a single line, or <code>Alt+Cmd C</code> to execute an entire code block. When you're done, you can press "Knit HTML", which executes the whole document and produces a report.</p>
+
+<p>Here's an example from some recent work analyzing a questionnaire, we're introducing the graph, and then adding the code that will produce the graph (<a href="http://reganmian.net/blog/2013/10/02/likert-graphs-in-r-embedding-metadata-for-easier-plotting">see my previous blog post on likert-graphs</a>):</p>
+
+<p><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_whole-04.png" style="none"></p>
+
+<p>Running <code>Knit HTML</code> combines the text, formatted nicely, the code used to generate the graph, and the actual graph:</p>
+
+<p><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_whole-03.png" style="none"></p>
+
+<p>For the final report, you might choose to hide all the code segments with this invocation:</p>
+
+<pre><code class="language-r">library<span class="p">(</span>knitr<span class="p">)</span>
+opts_chunk<span class="o">$</span>set<span class="p">(</span>echo<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span> warning<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>message<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>results<span class="o">=</span><span class="s">"asis"</span><span class="p">,</span> prompt<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span> error<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span></code></pre>
+
+<p>Not only is this a great way of writing reports (you can also export to PDF, or even write in LaTeX instead of Markdown), but it's a very nice way of organizing your code. I now do all my development in this mode, even for scripts where I'm not interested in the final report. I like the ease of documenting, the clear visual separation of the different code blocks, and the ease of pressing <code>Alt+Cmd C</code> to execute a single code block.</p>
+
+<p><em>I recently gave a small demo to a research group, showing them RStudio, using Markdown to write knitr reports, and Shiny to make interactive webpages:</em></p>
+
+<iframe width="459" height="344" src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/LIIC8cViC54.html" frameborder="0" allowfullscreen=""></iframe>
+
+<h2 id="2">Learn from others</h2>
+
+<p>There are lot's of R textbooks and documentation out there. Two other great sources of ideas are <a href="http://rpubs.com/">RPubs</a> and <a href="http://www.r-bloggers.com/">r-bloggers</a>. Using knitr to write reports in RStudio, as described above, you have the option to upload your report to RPubs. You can also see all the reports that others have written. These are great to learn from, since they typically contain both all the code, and the output and graphs, tying it all together into an analytical narrative. Unfortunately, there is no good way of searching the site, so you will find people's homework nestled between great expository writing, but it's still well worth a visit. You can also visit <a href="http://yihui.name/knitr/demo/showcase/">the knitr notebook showcase</a> to see some select examples.</p>
+
+<p><a href="http://www.r-bloggers.com/">R-bloggers</a> is an aggregator for blog-posts about R and statistics, and it's a great way to discover new packages or R features, and see how other people attack various data analysis challenges, often using publicly available datasets.</p>
+
+<p><a href="http://rpubs.com/"><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2014-10-14-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_whole-01.png" style="none"></a></p>
+
+<h2 id="3">Separate cleaning and organizing from analysis</h2>
+
+<p>Although R is a fully-fledged (although a bit crufty) programming language with object-orientation and functions, the code that users typically write is very different from an R package. Users usually write very imperative code, <em>"load this file, then transform the second column, then add the third column, then graph it"</em>. However, acquiring some good habits of organizing the code and working with the data, might save you a lot of time in the long run. <em>(Also see the section on DRY below)</em></p>
+
+<p>I usually separate data importing and cleaning from the analysis. My goal is to leave the raw data completely unchanged, and do all the transformation in code, which can be rerun at any time. While I'm writing the scripts, I'm often jumping around, selectively executing individual lines or code blocks, running commands to inspect the data in the REPL (read-evaluate-print-loop, where each command is executed as soon as you type enter, in the picture above it's the pane to the right), etc. But I try to make sure that when I finish up, the script is runnable by itself.</p>
+
+<p>Knitr helps impose this - when you choose <code>Knit HTML</code>, it begins with a clean slate. When you are working in RStudio, you might have objects lying around from calculations you did a while ago (with code that you've already changed), but if the "knitting" is successful, you know that the current code is valid and produces exactly what you see.</p>
+
+<p><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_whole-06.png" style="none"></p>
+
+<p><strong>Example of preparing data</strong></p>
+
+<p>In one example, I had gotten spreadsheets from several students who had helped me enter data from a large survey. I could have opened these in Excel, and copied and pasted the information into one sheet, but instead I left the files as they were, and read them into R. I tag the columns from each spreadsheet with provenance, if I want to run any quick tests, or even more formal <a href="http://en.wikipedia.org/wiki/Inter-rater_reliability">interrater reliability tests</a>, and merge them into one table. In some spreadsheets, there was an extra empty column, so I remove that programmatically (rather than editing the Excel spreadsheet). First I load <code>xlsx</code> to read the Excel spreadsheets, and <code>plyr</code> to rename fields later.</p>
+
+<pre><code class="language-r">library<span class="p">(</span>xlsx<span class="p">)</span>
+library<span class="p">(</span>plyr<span class="p">)</span></code></pre>
+
+<p>Then I read in and join the spreadsheet files:</p>
+
+<pre><code class="language-r">ana <span class="o">&lt;-</span> read.xlsx<span class="p">(</span>file<span class="o">=</span><span class="s">"ana.xlsx"</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>stringsAsFactors<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+ana<span class="o">$</span>by <span class="o">&lt;-</span> <span class="s">"Ana"</span>
+
+chad <span class="o">&lt;-</span> read.xlsx<span class="p">(</span>file<span class="o">=</span><span class="s">"chad.xlsx"</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>stringsAsFactors<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+chad<span class="p">[[</span><span class="s">"NA."</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="kc">NULL</span>
+chad<span class="o">$</span>by <span class="o">&lt;-</span> <span class="s">"Chad"</span>
+
+dd <span class="o">&lt;-</span> read.xlsx<span class="p">(</span>file<span class="o">=</span><span class="s">"DD.xls"</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span>stringsAsFactors<span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+dd<span class="o">$</span>by <span class="o">&lt;-</span> <span class="s">"DD"</span>
+
+db <span class="o">&lt;-</span> rbind<span class="p">(</span>ana<span class="p">,</span> chad<span class="p">,</span> dd<span class="p">)</span></code></pre>
+
+<p>I noticed that some of the spreadsheets had a bunch of empty rows at the bottom. This might not be the most elegant way, but I used this function to remove all the spreadsheets with all empty values. The way this works is that is.na(x) produces a list of "TRUE TRUE FALSE FALSE TRUE" depending on which of the columns has an NA for that particular row, and sum() adds up the TRUE's as 1, and FALSE's as 0.</p>
+
+<pre><code class="language-r">db2 <span class="o">&lt;-</span> db<span class="p">[</span>apply<span class="p">(</span>db<span class="p">,</span><span class="m">1</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+  sum<span class="p">(</span>is.na<span class="p">(</span>x<span class="p">))</span> <span class="o">&lt;</span> <span class="m">43</span><span class="p">}),]</span></code></pre>
+
+<p>Then I move on to turn all the various versions of "empty cell" into NA:</p>
+
+<pre><code class="language-r">db <span class="o">&lt;-</span> as.data.frame<span class="p">(</span>lapply<span class="p">(</span>db2<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">){</span>
+  x <span class="o">&lt;-</span> replace<span class="p">(</span>x<span class="p">,</span> x <span class="o">%in%</span> c<span class="p">(</span><span class="s">"n"</span><span class="p">,</span> <span class="s">"N"</span><span class="p">,</span> <span class="s">""</span><span class="p">),</span> <span class="kc">NA</span><span class="p">)</span>
+  x <span class="o">&lt;-</span> as.factor<span class="p">(</span>x<span class="p">)}))</span></code></pre>
+
+<p>Some of the columns are demographic values, so I'll change these from numeric to categorical variables with the actual values:</p>
+
+<pre><code class="language-r">db<span class="o">$</span>gender <span class="o">&lt;-</span> revalue<span class="p">(</span>db<span class="o">$</span>X1<span class="p">,</span> c<span class="p">(</span><span class="s">"1"</span><span class="o">=</span><span class="s">"Male"</span><span class="p">,</span> <span class="s">"2"</span><span class="o">=</span><span class="s">"Female"</span><span class="p">,</span> <span class="s">"3"</span><span class="o">=</span><span class="s">"Trans"</span><span class="p">,</span> <span class="s">"4"</span><span class="o">=</span><span class="s">"Other"</span><span class="p">,</span> <span class="s">"5"</span><span class="o">=</span><span class="kc">NA</span><span class="p">))</span>
+db<span class="o">$</span>major <span class="o">&lt;-</span> revalue<span class="p">(</span>db<span class="o">$</span>X2<span class="p">,</span> c<span class="p">(</span><span class="s">"1"</span><span class="o">=</span><span class="s">"History"</span><span class="p">,</span> <span class="s">"2"</span><span class="o">=</span><span class="s">"Religion"</span><span class="p">,</span> <span class="s">"3"</span><span class="o">=</span><span class="s">"Other"</span><span class="p">))</span></code></pre>
+
+<p>And the rest of the questions are likert-style questions with the same categories, so I'll both rename them and order them in one swoop:</p>
+
+<pre><code class="language-r">likertcat <span class="o">&lt;-</span> c<span class="p">(</span><span class="s">"1"</span><span class="o">=</span><span class="s">"Not at all"</span><span class="p">,</span> <span class="s">"2"</span><span class="o">=</span><span class="s">"To a small extent"</span><span class="p">,</span> <span class="s">"3"</span><span class="o">=</span><span class="s">"To some extent"</span><span class="p">,</span>
+  <span class="s">"4"</span><span class="o">=</span><span class="s">"To a moderate extent"</span><span class="p">,</span> <span class="s">"5"</span><span class="o">=</span><span class="s">"To a large extent"</span><span class="p">)</span>
+
+<span class="kr">for</span><span class="p">(</span>e <span class="kr">in</span> names<span class="p">(</span>db<span class="p">[,</span><span class="m">9</span><span class="o">:</span><span class="m">44</span><span class="p">]))</span> <span class="p">{</span>
+  db<span class="p">[[</span>e<span class="p">]]</span> <span class="o">&lt;-</span> revalue<span class="p">(</span>db<span class="p">[[</span>e<span class="p">]],</span> likertcat<span class="p">)</span>
+  db<span class="p">[[</span>e<span class="p">]]</span> <span class="o">&lt;-</span> ordered<span class="p">(</span>db<span class="p">[[</span>e<span class="p">]],</span> levels<span class="o">=</span> c<span class="p">(</span><span class="s">"Not at all"</span><span class="p">,</span><span class="s">"To a small extent"</span><span class="p">,</span>
+    <span class="s">"To some extent"</span><span class="p">,</span><span class="s">"To a moderate extent"</span><span class="p">,</span><span class="s">"To a large extent"</span><span class="p">))</span>
+<span class="p">}</span></code></pre>
+
+<p>I also add categories and groupings using my own addition, which <a href="http://reganmian.net/blog/2013/10/02/likert-graphs-in-r-embedding-metadata-for-easier-plotting">you can read more about</a>, and finally I save the new table as an RData file:</p>
+
+<pre><code class="language-r">save<span class="p">(</span>db<span class="p">,</span> file<span class="o">=</span><span class="s">"db.RData"</span><span class="p">)</span></code></pre>
+
+<p>I should always be able to re-run this script, and re-generate the exactly same RData file, but typically the only time I'll re-run the script is if I get additional data (let's say two other students send me their data entry files).</p>
+
+<p>I then begin the data analysis script with</p>
+
+<pre><code class="language-r">load<span class="p">(</span>file<span class="o">=</span><span class="s">"db.RData"</span><span class="p">)</span></code></pre>
+
+<p>And we have a nicely prepared table that we can begin exploring.</p>
+
+<p><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_whole-07.png" style="none"></p>
+
+<h2 id="4">Use version control</h2>
+
+<p><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_half-02.png" style="float:left; margin-right: 10px">
+RStudio comes with support for <a href="http://git-scm.com/">git</a> baked in, and it's a great practice to use it. When you create a new project, check the box for <em>"Create a git repository for this project"</em>, and you get all this functionality for free. Once you have a functioning version of your script, commit it to Git, and when you later make changes, you can easily track those changes back in history, restore earlier versions, etc. This is great for people collaborating, but it's actually a great idea to start doing it even on solo-projects, and can save you a lot of grief in the future. RStudio has a good <a href="http://www.rstudio.com/ide/docs/version_control/overview">writeup</a> of this functionality.</p>
+
+<p><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_whole-08.png" style="none"></p>
+
+<p>Of course, if you are able to do so, it would be great if you could share your scripts (and data) on <a href="https://github.com/">GitHub</a> or another public repository. Even in cases where you can't share your raw data (because of ethics, etc), your code could be useful to others. (I have shared some of the code we used <a href="http://www.ocw.utoronto.ca/demographic-reports/">to analyze Coursera MOOC data</a> in <a href="https://github.com/houshuang/coursera-scripts">a GitHub repository</a>, but I could probably go through my folders and find more snippets of code to share).</p>
+
+<h2 id="5">Learn the DSLs in R</h2>
+
+<p>DSL stands for domain-specific language, and the key to being efficient in R (and one of the reasons beginners might feel that the learning curve is very steep), is to realize that R is actually composed of several different embedded languages. Most end-users of R actually don't need to know very much about the R programming language, mostly people write scripts in a very imperative way "first do this, then do this, then do that". There are probably data analysts that have used R for years, and never written a function or a loop statement.</p>
+
+<p>However, if you want to plot graphics with <a href="http://ggplot2.org/">ggplot</a>, you will have to learn an entirely new way of thinking. It is based on the <a href="http://vita.had.co.nz/papers/layered-grammar.html">Grammar of Graphics</a>, and makes it possible to intuitively build up exactly the kind of graph you want, based on layers, mapping data to geometries such as bar-charts, etc. However, if you don't understand the underlying logic, even making the simplest plot will seem like a strange incantation.</p>
+
+<p>Similarly, for data wrangling, there are several options. The <a href="http://www.stat.ubc.ca/~jenny/STAT545A/block04_dataAggregation.html">plyr</a> family of functions is very powerful, for example here is how you would take a data.frame with per-country data, and calculate per-continent summary statistics:</p>
+
+<pre><code class="language-r">ddply<span class="p">(</span>gDat<span class="p">,</span> <span class="o">~</span> continent<span class="p">,</span> summarize<span class="p">,</span>
+      minLifeExp <span class="o">=</span> min<span class="p">(</span>lifeExp<span class="p">),</span> maxLifeExp <span class="o">=</span> max<span class="p">(</span>lifeExp<span class="p">),</span>
+      medGdpPercap <span class="o">=</span> median<span class="p">(</span>gdpPercap<span class="p">))</span></code></pre>
+
+<p>An alternative is to use <a href="http://blog.yhathq.com/posts/fast-summary-statistics-with-data-dot-table.html">data.table</a>. Data.table is an alternative to the built-in data.frame, which is much more performant for large datasets, and also offers powerful indexing, transformation/grouping, and merging/joining. It has a very dense syntax, which is powerful once you understand the logic. Here is an example of calculating a number of statistics on a football dataset:</p>
+
+<pre><code class="language-r">dt.statsPlayer <span class="o">&lt;-</span> dt.boxscore.subset<span class="p">[,</span>list<span class="p">(</span>minutes<span class="o">=</span>sum<span class="p">(</span>minutes<span class="p">),</span>
+                                           mean<span class="o">=</span>mean<span class="p">(</span>pp48<span class="p">),</span>
+                                           min<span class="o">=</span>min<span class="p">(</span>pp48<span class="p">),</span>
+                                           lower<span class="o">=</span>quantile<span class="p">(</span>pp48<span class="p">,</span> <span class="m">.25</span><span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span>
+                                           middle<span class="o">=</span>quantile<span class="p">(</span>pp48<span class="p">,</span> <span class="m">.50</span><span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span>
+                                           upper<span class="o">=</span>quantile<span class="p">(</span>pp48<span class="p">,</span> <span class="m">.75</span><span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span>
+                                           max<span class="o">=</span>max<span class="p">(</span>pp48<span class="p">)),</span>
+                                     by<span class="o">=</span><span class="s">'player'</span><span class="p">]</span></code></pre>
+
+<p>(Note also the use of white-space, R often let's you space expression out over several lines, which can help a lot with readability).</p>
+
+<p>The key to getting proficient in R is to choose one main way of doing things, for example ggplot2 for all graphics (and not worrying about learning grid and lattice plotting), and either data.table or plyr, and focusing on understanding their underlying logic, and using them frequently.</p>
+
+<h2 id="6">DRY - Don't repeat yourself</h2>
+
+<p>This used to be a mantra when programming Ruby, but is often overlooked in R code. Since many people think of doing analysis in R as simply writing a number of instructions to be executed linearly, we forget that the language let's us be much more efficient. I did say above that you don't need to understand the R programming language in depth to use R profitably, however, a few features are very useful.</p>
+
+<p>The advantage of avoiding repetition is that your code becomes easier to read (because your intention stands out), and it becomes much easier to reuse code, and to update. Let's say you are plotting five or six similar plots, and in each case you have a big blob of ggplot2 code, with layers, themes, etc. Now your boss tells you to change the theme of all the plots. Rather than jumping around and editing a bunch of lines, perhaps introducing new errors, you could try to abstract out the plotting code to a function, which you'd only need to edit once.</p>
+
+<p><strong>Turning often used code into functions</strong></p>
+
+<p><a href="http://reganmian.net/blog/images/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_half-03-orig.png"><img src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/2013-10-09-starting-data-analysiswrangling-with-r-things-i-wish-id-been-told_-_half-03.png" style="float:right; margin-left: 10px"></a>
+Here's an example of a simple plot I used frequently in an exploratory report I wrote about MOOC data. I first clean out the NAs from the dataframe, and then display it as a colored bar chart, where each bar corresponds to a region, and the colors correspond to age groups. The first line defines the plot, and the two subsequent lines formats it (flipping the axis, removing some clutter, adding a legend title). <em>(Click the image to the right to see the full graph.)</em></p>
+
+<pre><code class="language-r">dbgen <span class="o">&lt;-</span> db<span class="p">[</span><span class="o">!</span>is.na<span class="p">(</span>db<span class="o">$</span>gender<span class="p">),</span> <span class="p">]</span>
+ggplot<span class="p">(</span>data<span class="o">=</span>dbgen<span class="p">,</span> aes<span class="p">(</span>region<span class="p">,</span> fill<span class="o">=</span>age<span class="p">))</span> <span class="o">+</span> geom_bar<span class="p">(</span>position<span class="o">=</span><span class="s">"fill"</span><span class="p">)</span> <span class="o">+</span>
+  coord_flip<span class="p">()</span> <span class="o">+</span> scale_y_continuous<span class="p">(</span>labels <span class="o">=</span> percent<span class="p">)</span> <span class="o">+</span> ylab<span class="p">(</span><span class="s">""</span><span class="p">)</span> <span class="o">+</span> xlab<span class="p">(</span><span class="s">""</span><span class="p">)</span> <span class="o">+</span>
+  guides<span class="p">(</span>fill<span class="o">=</span>guide_legend<span class="p">(</span>title<span class="o">=</span><span class="s">"Age"</span><span class="p">))</span></code></pre>
+
+<p>Since I needed a few graphs, the initial impulse would be to copy it and modify a few parameters. But how can we instead make this into a generic function? Turns out that in general we'd want to remove NAs from both the grouping and the fill column (the region column just didn't happen to have any NAs, so we didn't need to check that above), and we also need to switch to using aes_string because of how ggplot implements its "DSL", otherwise it's quite simple.</p>
+
+<p>We define a function <code>my_sideplot</code>, which takes the full dataframe, the grouping variable, the fill variable, and an optional title for the fill legend, and generates a plot similar to the one above.</p>
+
+<pre><code class="language-r">my_sideplot <span class="o">=</span> <span class="kr">function</span><span class="p">(</span>db<span class="p">,</span> group<span class="p">,</span> fill<span class="p">,</span> fill_title<span class="o">=</span><span class="s">""</span><span class="p">)</span> <span class="p">{</span>
+  db <span class="o">=</span> db<span class="p">[</span><span class="o">!</span>is.na<span class="p">(</span>db<span class="p">[[</span>fill<span class="p">]])</span> <span class="o">&amp;</span> <span class="o">!</span>is.na<span class="p">(</span>db<span class="p">[[</span>group<span class="p">]]),]</span>
+  ggplot<span class="p">(</span>data<span class="o">=</span>db<span class="p">,</span> aes_string<span class="p">(</span>group<span class="p">,</span> fill<span class="o">=</span>fill<span class="p">))</span> <span class="o">+</span>
+    geom_bar<span class="p">(</span>position<span class="o">=</span><span class="s">"fill"</span><span class="p">)</span> <span class="o">+</span> coord_flip<span class="p">()</span> <span class="o">+</span>
+    scale_y_continuous<span class="p">(</span>labels <span class="o">=</span> percent<span class="p">)</span> <span class="o">+</span> ylab<span class="p">(</span><span class="s">""</span><span class="p">)</span> <span class="o">+</span> xlab<span class="p">(</span><span class="s">""</span><span class="p">)</span> <span class="o">+</span>
+    guides<span class="p">(</span>fill<span class="o">=</span>guide_legend<span class="p">(</span>title<span class="o">=</span>fill_title<span class="p">))</span>
+<span class="p">}</span></code></pre>
+
+<p>The advantage is that I can now very easily experiment with different versions. Perhaps using the age variable for grouping, and the regions for fill is better?</p>
+
+<pre><code class="language-r">my_sideplot<span class="p">(</span>db<span class="p">,</span> <span class="s">"age"</span><span class="p">,</span> <span class="s">"region"</span><span class="p">,</span> <span class="s">"Regions"</span><span class="p">)</span></code></pre>
+
+<p>This makes my code much easier to read, since I see right away that this is doing exactly the same as the code above (otherwise you need to look very closely at the ggplot code to see what is different), and if I have a knitr report with 10-15 of these graphs, and I want them all to use <code>theme_bw()</code> – a black-and-white theme – I can simply modify the function, and rerun the graph.</p>
+
+<p>Functions can of course be much more advanced than this, with branches and sanity checks, etc. However, as a first approximation, just taking chunks of code that are repeated with very few changes, identifying the changes and making them into parameters, and turning the code chunk into a function, can already be very useful.</p>
+
+<p><strong>Using lists and iteration</strong></p>
+
+<p>The second approach to cleaning up code is to use lists and for-loops. For example, we might want to generate plots of six different categorical variables grouped by region. Or perhaps we want them grouped by region, age, and English-skill? Now we are talking about a total of 20 graphs. We could copy and paste the one-line <code>my_sideplot</code> invocation above, which is already a big improvement, but we can do much better.</p>
+
+<pre><code class="language-r">group_vars <span class="o">=</span> c<span class="p">(</span><span class="s">"region"</span><span class="p">,</span> <span class="s">"age"</span><span class="p">,</span> <span class="s">"english.skill"</span><span class="p">)</span>
+fill_vars <span class="o">=</span> c<span class="p">(</span><span class="s">"usercat"</span><span class="p">,</span> <span class="s">"education.level"</span><span class="p">,</span> <span class="s">"degree.program"</span><span class="p">)</span>
+<span class="kr">for</span> <span class="p">(</span>groupv <span class="kr">in</span> group_vars<span class="p">)</span> <span class="p">{</span>
+  <span class="kr">for</span> <span class="p">(</span>fillv <span class="kr">in</span> fill_vars<span class="p">)</span> <span class="p">{</span>
+    my_sideplot<span class="p">(</span>db<span class="p">,</span> groupv<span class="p">,</span> fillv<span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<p>This code will iterate through the <code>group_vars</code>, and for each <code>group_var</code>, it will iterate through the <code>fill_vars</code>. For each <code>fill_var</code>, it will render an appropriate plot.</p>
+
+<p>You can also iterate through for example the columns in a data.frame. Let's say we want to turn all the character columns into factors:</p>
+
+<pre><code class="language-r"><span class="kr">for</span> <span class="p">(</span>e <span class="kr">in</span> names<span class="p">(</span>db<span class="p">))</span> <span class="p">{</span>
+  <span class="kr">if</span> <span class="p">(</span>is.character<span class="p">(</span>db<span class="p">[[</span>e<span class="p">]]))</span> <span class="p">{</span> db<span class="p">[[</span>e<span class="p">]]</span> <span class="o">&lt;-</span> as.factor<span class="p">(</span>db<span class="p">[[</span>e<span class="p">]])}</span>
+<span class="p">}</span></code></pre>
+
+<h2 id="7">Keeping track of types in R</h2>
+
+<p>Again breaking against my statement that you don't need to know much of the R language, but <a href="http://www.statmethods.net/input/datatypes.html">the various data types</a> is one of the things that has tripped me up the most. This is because certain operations can return different data types than you were expecting.</p>
+
+<p>There are many R tutorials, and I am not going to give a full introduction here. The most basic datatype is the vector, and one of the peculiarities of R is that even single numbers or strings, are vectors of size one.</p>
+
+<pre><code class="language-r">identical<span class="p">(</span>c<span class="p">(</span><span class="s">"hi"</span><span class="p">),</span> <span class="s">"hi"</span><span class="p">)</span> <span class="c1"># =&gt; TRUE</span>
+identical<span class="p">(</span>c<span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="m">1</span><span class="p">)</span> <span class="c1"># =&gt; TRUE</span></code></pre>
+
+<p>A dataframe is a collection of vectors. Sometimes when you do an operation on a data.frame, you might get a vector back, or a matrix. You can usually cast one data type to another with <code>as.*</code>, for example <code>as.data.frame()</code></p>
+
+<pre><code class="language-r"><span class="o">&gt;</span> as.data.frame<span class="p">(</span>list<span class="p">(</span><span class="s">"A"</span> <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="s">"B"</span> <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">)))</span>
+  A B
+<span class="m">1</span> <span class="m">1</span> <span class="m">2</span>
+<span class="m">2</span> <span class="m">2</span> <span class="m">3</span>
+<span class="m">3</span> <span class="m">3</span> <span class="m">4</span></code></pre>
+
+<p>You can check the class of an object with <code>class()</code>,</p>
+
+<pre><code class="language-r"><span class="o">&gt;</span> class<span class="p">(</span>db<span class="p">)</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s">"data.frame"</span>
+<span class="o">&gt;</span> class<span class="p">(</span>db<span class="o">$</span>age<span class="p">)</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="s">"ordered"</span> <span class="s">"factor"</span></code></pre>
+
+<p>If you run into weird bugs, make sure that every step of the pipeline returns the data type that the next function is expecting (or explicitly cast). Also remember that certain functions work differently depending on different data types. For example, <code>length()</code> on a list or vector returns the number of elements. <code>length()</code> on a data.frame returns the number of columns, if you want the number of rows, you need <code>nrow()</code>.</p>
+
+<h2 id="8">Asking questions - providing reproducible examples</h2>
+
+<p>There are many great resources for getting help with R, including all the books I showed pictures of at the beginning of this post. An advantage of R being text-oriented is that it is easy to paste exactly the code that is misbehaving, and for others to help out. <a href="http://stackoverflow.com/questions/tagged/r">StackOverflow</a> has a very active R community, however you have a much higher chance of getting help if you make your problem reproducible.</p>
+
+<p>Sometimes you can use the built-in data sets in R, which you can list with the command <code>data()</code>. For example, with the command <code>data(swiss)</code>, I load a dataset with data on fertility and education in Swiss cantons. I can use this to illustrate a problem, and anyone else using R will have the same dataset, and can perfectly reproduce my problem, or check that their solution works correctly.</p>
+
+<p>If none of the built-in datasets work, you can create a minimal example dataset that illustrates your problem. Let's say we had a problem with the <code>a</code> data.frame we constructed above. The command <code>dput(a)</code> gives us</p>
+
+<pre><code class="language-r">structure<span class="p">(</span>list<span class="p">(</span>A <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> B <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">)),</span> .Names <span class="o">=</span> c<span class="p">(</span><span class="s">"A"</span><span class="p">,</span>
+<span class="s">"B"</span><span class="p">),</span> row.names <span class="o">=</span> c<span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="m">-3L</span><span class="p">),</span> class <span class="o">=</span> <span class="s">"data.frame"</span><span class="p">)</span></code></pre>
+
+<p>We can now construct our example:</p>
+
+<pre><code class="language-r">a <span class="o">=</span> structure<span class="p">(</span>list<span class="p">(</span>A <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> B <span class="o">=</span> c<span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">)),</span> .Names <span class="o">=</span> c<span class="p">(</span><span class="s">"A"</span><span class="p">,</span>
+<span class="s">"B"</span><span class="p">),</span> row.names <span class="o">=</span> c<span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="m">-3L</span><span class="p">),</span> class <span class="o">=</span> <span class="s">"data.frame"</span><span class="p">)</span>
+
+ggplot<span class="p">(</span>a<span class="p">,</span> aes<span class="p">(</span>x<span class="o">=</span>A<span class="p">,</span> y<span class="o">=</span>B<span class="p">))</span> <span class="o">+</span> geom_point<span class="p">()</span></code></pre>
+
+<p>...and anyone can paste this into their R interpreter, and see the same output that you get. <a href="http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example">Longer explanation</a> and here's <a href="http://stackoverflow.com/questions/1299871/how-to-join-data-frames-in-r-inner-outer-left-right">a small example</a>.</p>
+
+<h2 id="9">Packages to use</h2>
+
+<p>One of the strengths of R is the incredible selection of packages available, but this can also be quite disorienting to a beginner. Here are just a few packages that are often useful:</p>
+
+<table>
+<thead><tr>
+<th style="text-align: left">Package</th>
+<th style="text-align: left">Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align: left"><a href="http://plyr.had.co.nz/">plyr</a></td>
+<td style="text-align: left">Plyr applies the "split-apply-combine" approach to R data. You might want to calculate the average height of players, grouped by nationality and year of birth - a one-liner in Plyr. Hadley Wickham is currently developing <a href="https://github.com/hadley/dplyr">dplyr</a>, a faster and more powerful version</td>
+</tr>
+<tr>
+<td style="text-align: left"><a href="http://shiny.rstudio.com/">Shiny</a></td>
+<td style="text-align: left">Shiny let's you make interactive graphical websites with R (similar to the way we created the function above, by substituting the parts of the code that vary with variables, and letting the end-user choose the variables). Also see the <a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/iframe%20width=%22459%22%20height=%22344%22%20src=%22http://www.youtube.com/embed/LIIC8cViC54?feature=oembed%22%20frameborder=%220%22%20allowfullscreen%3E%3C/iframe">video</a> above</td>
+</tr>
+<tr>
+<td style="text-align: left"><a href="http://reganmian.net/blog/2014/10/14/starting-data-analysiswrangling-with-r-things-i-wish-id-been-told/cran.r-project.org/package=data.table">data.table</a></td>
+<td style="text-align: left">As mentioned above, a much faster version of data.frame, very well suite to larger datasets, with powerful split+apply, merge, etc. functionality offering an alternative to plyr</td>
+</tr>
+<tr>
+<td style="text-align: left"><a href="http://jason.bryer.org/likert/">likert</a></td>
+<td style="text-align: left">If you ever deal with likert-style questionnaire data, this package makes it very easily to visualize the results. See also <a href="http://reganmian.net/blog/2013/10/02/likert-graphs-in-r-embedding-metadata-for-easier-plotting">my addition</a> to this package</td>
+</tr>
+</tbody>
+</table><p>Hope that was useful. Once you want more, you could do worse than checking out Hadley Wickham's <a href="http://adv-r.had.co.nz/">Advanced R</a> book. There's also an incredible amount of good textbooks, examples, blog posts, etc.</p>
+
+  <address class="signature">
+    <a class="author" href="http://reganmian.net/blog/about-me">Stian Håklev</a>
+    <span class="date">October 14, 2014</span>
+    <span class="location">Toronto, Canada</span>
+  </address>
+ <div id="disqus_thread"><iframe id="dsq-2" data-disqus-uid="2" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Starting data analysis wrangling with R  Things I wish I'd been told_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 2592px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe><iframe id="dsq-indicator-north" data-disqus-uid="indicator-north" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 540px !important; border: none !important; overflow: hidden !important; top: 0px !important; min-width: 540px !important; max-width: 540px !important; position: fixed !important; z-index: 2147483646 !important; height: 29px !important; min-height: 29px !important; max-height: 29px !important; display: none !important;"></iframe><iframe id="dsq-indicator-south" data-disqus-uid="indicator-south" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" style="width: 540px !important; border: none !important; overflow: hidden !important; bottom: 0px !important; min-width: 540px !important; max-width: 540px !important; position: fixed !important; z-index: 2147483646 !important; height: 29px !important; min-height: 29px !important; max-height: 29px !important; display: none !important;"></iframe></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'randomstian'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+    
+
+
+</div><!-- End Page -->
+
+
+
+</div>
+
+<!--[if IE 6]>
+<script type="text/javascript">
+  /*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; }
+  var IE6UPDATE_OPTIONS = {
+    icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+  }
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+
+
+
+<div><div id="SL_button" class="ImTranslatorLogo" style="display: none;"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="display: none;"><div id="SL_planshet"><div id="SL_TB"><div class="ImTranslatorLogo"></div><table cellspacing="1" border="0" id="SL_tables"><tbody><tr><td class="SL_td" align="left" width="20%"><div id="SL_lng_from">English&nbsp;»</div></td><td class="SL_td" align="left" width="20%"><div id="SL_to_"><div id="SL_tocurlng" style="margin-left:5px;">Spanish</div><div class="SL_arrow"></div><div id="SL_to_list" style="display=" none'=""><div class="SL_DDMENU"><div id="SL_af" class="SL_limenu">Afrikaans</div><div id="SL_sq" class="SL_limenu">Albanian</div><div id="SL_ar" class="SL_limenu">Arabic</div><div id="SL_hy" class="SL_limenu">Armenian</div><div id="SL_az" class="SL_limenu">Azerbaijani</div><div id="SL_eu" class="SL_limenu">Basque</div><div id="SL_bn" class="SL_limenu">Bengali</div><div id="SL_be" class="SL_limenu">Belarusian</div><div id="SL_bg" class="SL_limenu">Bulgarian</div><div id="SL_ca" class="SL_limenu">Catalan</div><div id="SL_zh_CN" class="SL_limenu">Chinese&nbsp;(Simp)</div><div id="SL_zh_TW" class="SL_limenu">Chinese&nbsp;(Trad)</div><div id="SL_hr" class="SL_limenu">Croatian</div><div id="SL_cs" class="SL_limenu">Czech</div><div id="SL_da" class="SL_limenu">Danish</div><div id="SL_nl" class="SL_limenu">Dutch</div><div id="SL_en" class="SL_limenu">English</div><div id="SL_eo" class="SL_limenu">Esperanto</div><div id="SL_et" class="SL_limenu">Estonian</div><div id="SL_tl" class="SL_limenu">Filipino</div><div id="SL_fi" class="SL_limenu">Finnish</div><div id="SL_fr" class="SL_limenu">French</div><div id="SL_gl" class="SL_limenu">Galician</div><div id="SL_ka" class="SL_limenu">Georgian</div><div id="SL_de" class="SL_limenu">German</div><div id="SL_el" class="SL_limenu">Greek</div><div id="SL_gu" class="SL_limenu">Gujarati</div><div id="SL_ht" class="SL_limenu">Haitian&nbsp;Creole</div><div id="SL_iw" class="SL_limenu">Hebrew</div><div id="SL_hi" class="SL_limenu">Hindi</div><div id="SL_hu" class="SL_limenu">Hungarian</div><div id="SL_is" class="SL_limenu">Icelandic</div><div id="SL_id" class="SL_limenu">Indonesian</div><div id="SL_ga" class="SL_limenu">Irish</div><div id="SL_it" class="SL_limenu">Italian</div><div id="SL_ja" class="SL_limenu">Japanese</div><div id="SL_kn" class="SL_limenu">Kannada</div><div id="SL_ko" class="SL_limenu">Korean</div><div id="SL_lo" class="SL_limenu">Lao</div><div id="SL_la" class="SL_limenu">Latin</div><div id="SL_lv" class="SL_limenu">Latvian</div><div id="SL_lt" class="SL_limenu">Lithuanian</div><div id="SL_mk" class="SL_limenu">Macedonian</div><div id="SL_ms" class="SL_limenu">Malay</div><div id="SL_mt" class="SL_limenu">Maltese</div><div id="SL_no" class="SL_limenu">Norwegian</div><div id="SL_fa" class="SL_limenu">Persian</div><div id="SL_pl" class="SL_limenu">Polish</div><div id="SL_pt" class="SL_limenu">Portuguese</div><div id="SL_ro" class="SL_limenu">Romanian</div><div id="SL_ru" class="SL_limenu">Russian</div><div id="SL_sr" class="SL_limenu">Serbian</div><div id="SL_sk" class="SL_limenu">Slovak</div><div id="SL_sl" class="SL_limenu">Slovenian</div><div id="SL_es" class="SL_limenu">Spanish</div><div id="SL_sw" class="SL_limenu">Swahili</div><div id="SL_sv" class="SL_limenu">Swedish</div><div id="SL_ta" class="SL_limenu">Tamil</div><div id="SL_te" class="SL_limenu">Telugu</div><div id="SL_th" class="SL_limenu">Thai</div><div id="SL_tr" class="SL_limenu">Turkish</div><div id="SL_uk" class="SL_limenu">Ukrainian</div><div id="SL_ur" class="SL_limenu">Urdu</div><div id="SL_vi" class="SL_limenu">Vietnamese</div><div id="SL_cy" class="SL_limenu">Welsh</div><div id="SL_yi" class="SL_limenu">Yiddish</div></div></div></div><select id="SL_lng_to"><option value="af">Afrikaans</option><option value="sq">Albanian</option><option value="ar">Arabic</option><option value="hy">Armenian</option><option value="az">Azerbaijani</option><option value="eu">Basque</option><option value="bn">Bengali</option><option value="be">Belarusian</option><option value="bg">Bulgarian</option><option value="ca">Catalan</option><option value="zh-CN">Chinese&nbsp;(Simp)</option><option value="zh-TW">Chinese&nbsp;(Trad)</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option value="en">English</option><option value="eo">Esperanto</option><option value="et">Estonian</option><option value="tl">Filipino</option><option value="fi">Finnish</option><option value="fr">French</option><option value="gl">Galician</option><option value="ka">Georgian</option><option value="de">German</option><option value="el">Greek</option><option value="gu">Gujarati</option><option value="ht">Haitian&nbsp;Creole</option><option value="iw">Hebrew</option><option value="hi">Hindi</option><option value="hu">Hungarian</option><option value="is">Icelandic</option><option value="id">Indonesian</option><option value="ga">Irish</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="kn">Kannada</option><option value="ko">Korean</option><option value="lo">Lao</option><option value="la">Latin</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="mk">Macedonian</option><option value="ms">Malay</option><option value="mt">Maltese</option><option value="no">Norwegian</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sr">Serbian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option selected="" value="es">Spanish</option><option value="sw">Swahili</option><option value="sv">Swedish</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="yi">Yiddish</option></select></td><td class="SL_td" width="13%" align="center">&nbsp;</td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title=""></div></td><td class="SL_td" width="8%" align="center"><div class="SL_copy_hand" id="SL_copy" title="Select text"></div></td><td class="SL_td" width="8%" align="center"><div class="SL_font_off" id="SL_bbl_font" title="Font size"></div></td><td class="SL_td" width="5%"></td><td class="SL_td" width="8%" align="right"><div class="SL_pin_off" id="SL_pin" title="Pin pup-up bubble"></div></td></tr></tbody></table></div></div><div id="SL_shadow_translation_result"></div><div id="SL_bbl_donate" title="Make a small contribution"></div><div id="SL_Balloon_options"><a href="chrome-extension://pcfaommkmdjacdkbaoohklbccfmbnnod/options-bbl.html" target="_blank" class="SL_options" title="Show options">Options</a></div></div></div></body></html>

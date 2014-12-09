@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations -->
+<html lang="en-US" dir="ltr" hc="a3" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- v5247 -->
+  <title>Authoring R Presentations – RStudio Support</title>
+
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="Ad9l9uNJuKB41tue+O997LHEKTTcs1jkq4vJ6fZa7zY=" name="csrf-token">
+  <meta content="http://p6.zdassets.com/hc/settings_assets/267570/200010388/skB5KdLlPKJnxt3QOlDGPQ-RStudio-Logo-White_small.png" property="og:image">
+<meta content="website" property="og:type">
+<meta content="RStudio Support" property="og:site_name">
+<meta content="Authoring R Presentations" property="og:title">
+<meta content="Authoring R Presentations
+NOTE: R Presentations require RStudio v0.98 or later versions.
+Overview
+R Presentations are a feature of RStudio that enable easy authoring of HTML5 presentations. R Pr..." property="og:description">
+<meta content="http://support.rstudio.com/hc/en-us/articles/200486468-Authoring-R-Presentations" property="og:url">
+
+  <link href="./Authoring R Presentations – RStudio Support_files/Authoring R Presentations – RStudio Support.html" rel="canonical">
+
+  <!-- Entypo pictograms by Daniel Bruce — www.entypo.com -->
+  <link href="https://p6.zdassets.com/hc/assets/application-433a3475e04870b52e0af89928df443e.css" id="stylesheet" media="all" rel="stylesheet">
+  <link href="./Authoring R Presentations – RStudio Support_files/style-4f087e40e48348b7befd983d62f82dcb.css" rel="stylesheet" type="text/css">
+  <link href="https://p6.zdassets.com/hc/settings_assets/267570/200010388/Y0F8DITX8yNtQRm14HfxJw-rstudio.png" rel="shortcut icon">
+
+  <!--[if lt IE 9]>
+  <script>
+    //Enable HTML5 elements for <IE9
+    'abbr article aside audio bdi canvas data datalist details dialog \
+    figcaption figure footer header hgroup main mark meter nav output \
+    progress section summary template time video'.replace(/\w+/g,function(n){document.createElement(n)});
+  </script>
+<![endif]-->
+
+  <script async="" src="./Authoring R Presentations – RStudio Support_files/analytics.js"></script><script src="./Authoring R Presentations – RStudio Support_files/jquery-5a08650d795ef9efafdc55c72fab5e6d.js"></script>
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-20375833-11', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+  
+
+  
+
+  <!-- add code here that should appear in the document head -->
+<link rel="stylesheet" type="text/css" href="./Authoring R Presentations – RStudio Support_files/prettify.css">
+  <script src="./Authoring R Presentations – RStudio Support_files/script-4f087e40e48348b7befd983d62f82dcb.js" type="text/javascript"></script>
+<style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+<body class="community-enabled">
+
+
+  
+
+
+  <header class="header">
+  <div class="header-inner clearfix">
+    <div class="logo"><a href="https://support.rstudio.com/hc/en-us" title="Home"><img alt="Logo" src="./Authoring R Presentations – RStudio Support_files/skB5KdLlPKJnxt3QOlDGPQ-RStudio-Logo-White_small.png"></a></div>
+    <h2 style="
+    margin-top: 28px;
+    margin-left: 20px;
+    color: white;
+    float: left;
+    font-size: 2.3em;
+    text-shadow: 0 1px 0 #000000
+    ">Support</h2>
+    <nav class="user-nav">
+      
+      
+  <a href="https://support.rstudio.com/hc/en-us/requests/new" class="submit-a-request">Premium support</a>
+
+
+      
+<a class="login" data-sso-action="signin" href="https://support.rstudio.com/access/login?theme=hc&hc=true&force_unaltered_return_to=true&return_to=https%3A%2F%2Fsupport.rstudio.com%2Fhc%2Fen-us%2Farticles%2F200486468-Authoring-R-Presentations&locale=1" role="button">Sign in</a>
+
+    </nav>
+  </div>
+</header>
+
+
+  <main role="main">
+    <nav class="sub-nav sub-nav-far clearfix">
+  <ol class="breadcrumbs"><li>
+  <a href="https://support.rstudio.com/hc/en-us">RStudio Support</a>
+</li>
+<li>
+  <a href="https://support.rstudio.com/hc/en-us/categories/200035113-Documentation">Documentation</a>
+</li>
+<li>
+  <a href="https://support.rstudio.com/hc/en-us/sections/200130218-R-Presentations">R Presentations</a>
+</li>
+</ol>
+  <form accept-charset="UTF-8" action="https://support.rstudio.com/hc/en-us/search" class="search-small" method="get" role="search"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+  <input id="query" name="query" placeholder="Search" type="search">
+</form>
+</nav>
+
+<div class="clearfix">
+
+  <article class="main-column">
+
+    <header class="article-header clearfix">
+      <h1>
+ Authoring R Presentations</h1>
+      <div class="article-metadata">
+        <div class="article-avatar"><img src="./Authoring R Presentations – RStudio Support_files/joshpaulson.2x.jpg" alt="Avatar">
+</div>
+        <div class="article-author">Josh Paulson</div>
+        <div class="article-updated"><time data-datetime="calendar" datetime="2014-09-23T14:44:54Z" title="2014-09-23 08:44">September 23, 2014 08:44</time></div>
+      </div>
+      
+
+    </header>
+
+    <div class="article-body">
+      <h1>Authoring R Presentations</h1>
+<p><strong>NOTE:</strong> R Presentations require <a href="http://www.rstudio.com/ide/download/">RStudio v0.98</a> or later versions.</p>
+<h2>Overview</h2>
+<p>R Presentations are a feature of RStudio that enable easy authoring of HTML5 presentations. R Presentations are based on <a href="http://rmarkdown.rstudio.com/">R Markdown</a>, and include the following features:</p>
+<ul>
+<li>Very straightforward authoring syntax (Markdown)</li>
+<li>Easy incorporation of R code and it's output (including plots)</li>
+<li>Support for LaTeX equations using MathJax</li>
+<li>Flexible two column layouts</li>
+<li>Many options for slide transitions and slide navigation</li>
+<li>Ability to customize the appearance of slides using CSS</li>
+<li>Extensive support for authoring and previewing presentations within the RStudio IDE</li>
+<li>Can be played back either inside the RStudio IDE or as standalone HTML5 presentations in a web browser.</li>
+<li>Can be easily published as either a standalone HTML file or to <a href="http://rpubs.com/">RPubs</a></li>
+</ul>
+<p>The goal of R Presentations is to make authoring slides that make use of R code and LaTeX equations as straightforward as possible. They are especially useful for classroom or teaching use since you can present from the same program you're using to write and display your code. Several options for customizing the appearance of presentations are provided, however we recommend using&nbsp;<a href="http://rmarkdown.rstudio.com/">R Markdown</a>&nbsp;to create presentations if you're looking for more fine-grained control.</p>
+<p>Getting Started</p>
+<p>To create a new R Presentation you execute the <strong>New File -&gt; R Presentation</strong> command:</p>
+<p><img class="bordered_figure" src="./Authoring R Presentations – RStudio Support_files/presentation_new.png" alt="" width="492" height="274"></p>
+<p>After specifying the location to save the presentation, a new presentation will be created and a preview will show within the Presentation tab in the upper right corner of the IDE.</p>
+<h3>Slide Basics</h3>
+<p>Slides are composed using markdown and delimited by section headings that use <code>=============</code>.</p>
+<p>The very first slide in a deck is the title slide. It will automatically be displayed with a larger heading (H1) and a special background color. It can also include special <code>author</code> and <code>date</code> fields. For example:</p>
+<pre class="code"><code>Title Slide
+====================================
+author: John Doe
+date: February 7th, 2013
+</code></pre>
+<p>To create a slide with bullets you simply use standard Markdown bullets:</p>
+<pre class="code"><code>Slide 1
+====================================
+- Bullet 1
+- Bullet 2
+- Bullet 3
+</code></pre>
+<p>Slides automatically display their titles unless <code>title: false</code> is specified. For example:</p>
+<pre class="code"><code>Slide 1
+====================================
+title: false
+</code></pre>
+<h3>Editing Presentations</h3>
+<p>There are a number of tools within the RStudio IDE designed to make editing presentations more productive:</p>
+<ol>
+<li>Every time you save your presentation the preview is refreshed and navigated to whatever slide you were editing.</li>
+<li>You can use code folding within the source code editor to expand and collapse slides.</li>
+<li>You can use the navigation menu at the bottom of the source code editor to quickly switch between slides.</li>
+<li>If you are looking at a slide within the preview pane you can press the <strong>Edit</strong> button on the toolbar to jump immediately to it's location in the source file.</li>
+</ol>
+<h2>Authoring Content</h2>
+<h3>Formatted Text</h3>
+<p>Content within R Presentations is formatted using standard Markdown syntax (the bullets example above is one example of this syntax).</p>
+<p>If you aren't familiar with Markdown, the following resources might be helpful:</p>
+<ul>
+<li><a href="http://rmarkdown.rstudio.com/">Using Markdown with RStudio</a></li>
+<li>The <strong>Markdown Quick Reference</strong> available from the help menu on the source editor toolbar</li>
+</ul>
+<h3>R Code Chunks</h3>
+<p>Since they are R Markdown documents, R Presentations can include R code chunks. Code chunks can be used as a means of displaying code for illustration or to actually render output into slides. Here is a simple R code chunk that will result in both the code and it's output being included in the slide:</p>
+<pre class="code"><code>Slide With Code
+====================================
+```{r}
+summary(cars)
+```
+</code></pre>
+<h4>Displaying Code Only</h4>
+<p>To display R code without evaluating it, you specify the <code>eval=FALSE</code> option:</p>
+<pre class="code"><code>Code Only Slide
+====================================
+```{r, eval=FALSE}
+summary(cars)
+```
+</code></pre>
+<h4>Displaying Output Only</h4>
+<p>To display the output of a code chunk but not the underlying R code, you specify the <code>echo=FALSE</code> option:</p>
+<pre class="code"><code>Output Only Slide
+====================================
+```{r, echo=FALSE}
+summary(cars)
+```
+</code></pre>
+<p>Note that R code chunks can also be used to include plots within Presentations. To display a plot while omitting the code used to generate the plot you'd do this:</p>
+<pre class="code"><code>Plot Slide
+====================================
+```{r, echo=FALSE}
+plot(cars)
+```
+</code></pre>
+<h4>Caching</h4>
+<p>Every time a presentation is saved it's preview is automatically updated by re-running knitr for the presentation. If doing this becomes time consuming due to long computations or plots that are expensive to render you can use knitr caching to improve performance. The documentation on <a href="http://yihui.name/knitr/options">knitr chunk and package options</a> describe how caching works and the <a href="http://yihui.name/knitr/demo/cache/">cache examples</a> provide additional details.</p>
+<p>If you want to enable caching globally for your presentation you can include a code chunk like this at the top of the document:</p>
+<pre class="code"><code>```{r setup, include=FALSE}
+opts_chunk$set(cache=TRUE)
+```
+</code></pre>
+<p>If you run into problems with cached output you can always use the <strong>Clear Knitr Cache</strong> command on the <strong>More</strong> menu to rebuild your presentation without previously cached output.</p>
+<h3>Images</h3>
+<p>You can embed images within slides using standard markdown syntax. For example:</p>
+<pre class="code"><code>![alt text](myimage.png)
+</code></pre>
+<p>If you want to float an image to the left or right, simply include it within a column (two-column layouts are discussed in more detail below). For example:</p>
+<pre class="code"><code>Slide With Image Left
+====================================
+![alt text](myimage.png)
+***
+This text will appear to the right
+</code></pre>
+<p>There are a few special rules regarding how images within presentations are rendered:</p>
+<ol>
+<li>When contained within a column, images fill all available space within the column.</li>
+<li>When the only content on a slide is an image, then the image will fill all available space on the slide</li>
+<li>Standalone images (images that appear in their own paragraph) that appear along with text are limited to 50% of vertical space.</li>
+</ol>
+<p>Note that these rules also govern how plot images generated from within R code chunks are laid out.</p>
+<h3>Equations with MathJax</h3>
+<p>You can embed LaTeX or MathML equations in R Presentations using the following syntax:</p>
+<ul>
+<li><code>$<em>equation</em>$</code> for inline equations (note there must not be whitespace adjacent to the $ delimiters)</li>
+<li><code>$$ <em>equation</em> $$</code> for display equations</li>
+<li><code> </code> for MathML equations.</li>
+</ul>
+<p>Here are examples of the syntax used for inline and display equations respectively:</p>
+<p><img class="bordered_figure" src="./Authoring R Presentations – RStudio Support_files/equations_inline.png" alt="" width="544" height="68"> <img class="bordered_figure" src="./Authoring R Presentations – RStudio Support_files/equations_display.png" alt="" width="544" height="153"></p>
+<p>The article on <a href="https://support.rstudio.com/hc/en-us/articles/200486328-Equations-in-R-Markdown">Equations in R Markdown</a> includes more detailed information on embedded equations.</p>
+<h3>Two Column Layouts</h3>
+<p>You can create a two-column slide layout by using a markdown horizontal rule (<code>***</code>). For example:</p>
+<pre class="code"><code>Two-Column Slide
+====================================
+First column
+***
+Second column
+</code></pre>
+<p>By default the columns are split equally across the slide. If you want to specify that one column gets proportionally more space you can use the <code>left</code> or <code>right</code> field. For example</p>
+<pre class="code"><code>Two-Column Slide
+====================================
+left: 70%
+</code></pre>
+<h2>Learning More</h2>
+<p>These articles include documentation on more advanced features and customization options of R presentations, as well as details on displaying and distributing presentations:</p>
+<ul>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200714013-Slide-Transitions-and-Navigation">Slide Transitions and Navigation</a></li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200532307-Customizing-Fonts-and-Appearance">Customizing Fonts and Appearance</a></li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200714023-Displaying-and-Distributing-Presentations">Displaying and Distributing Presentations</a></li>
+</ul>
+    </div>
+
+    <div class="article-attachments">
+      <ul class="attachments">
+  
+</ul>
+
+    </div>
+
+    <footer class="article-footer clearfix">
+      <div class="article-vote">
+  <span class="article-vote-question">
+    Was this article helpful?
+  </span>
+  <div class="article-vote-controls">
+    <a class="article-vote-up" href="https://support.rstudio.com/access/login?theme=hc&hc=true&force_unaltered_return_to=true&return_to=https%3A%2F%2Fsupport.rstudio.com%2Fhc%2Fen-us%2Farticles%2F200486468-Authoring-R-Presentations" rel="tooltip" role="button" title="" data-original-title="Yes"></a>
+    <a class="article-vote-down" href="https://support.rstudio.com/access/login?theme=hc&hc=true&force_unaltered_return_to=true&return_to=https%3A%2F%2Fsupport.rstudio.com%2Fhc%2Fen-us%2Farticles%2F200486468-Authoring-R-Presentations" rel="tooltip" role="button" title="" data-original-title="No"></a>
+  </div>
+  <small class="article-vote-count">
+    4 out of 4 found this helpful
+  </small>
+</div>
+
+      <ul class="share">
+  <li><a href="http://www.facebook.com/share.php?title=Authoring+R+Presentations&u=https%3A%2F%2Fsupport.rstudio.com%2Fhc%2Fen-us%2Farticles%2F200486468-Authoring-R-Presentations" class="share-facebook">Facebook</a></li>
+  <li><a href="https://twitter.com/share?lang=en&text=Authoring+R+Presentations&url=https%3A%2F%2Fsupport.rstudio.com%2Fhc%2Fen-us%2Farticles%2F200486468-Authoring-R-Presentations" class="share-twitter">Twitter</a></li>
+  <li><a href="http://www.linkedin.com/shareArticle?mini=true&source=RStudio+Support&title=Authoring+R+Presentations&url=https%3A%2F%2Fsupport.rstudio.com%2Fhc%2Fen-us%2Farticles%2F200486468-Authoring-R-Presentations" class="share-linkedin">LinkedIn</a></li>
+  <li><a href="https://plus.google.com/share?hl=en-us&url=https%3A%2F%2Fsupport.rstudio.com%2Fhc%2Fen-us%2Farticles%2F200486468-Authoring-R-Presentations" class="share-googleplus">Google+</a></li>
+</ul>
+
+    </footer>
+
+    <div class="article-more-questions">
+      Have more questions? <a href="https://support.rstudio.com/hc/en-us/requests/new">Submit a request</a>
+    </div>
+
+    <section class="article-comments">
+      <h2>Comments</h2>
+      
+      
+      
+
+  <p class="comment-closed-notification">Article is closed for comments.</p>
+
+
+    </section>
+
+  </article>
+
+  <aside class="article-sidebar side-column">
+    
+
+    
+  <section class="related-articles">
+    <h3>Related articles</h3>
+    <ul>
+      
+        <li>
+          <a href="https://support.rstudio.com/hc/en-us/articles/200532307-Customizing-Fonts-and-Appearance">Customizing Fonts and Appearance</a>
+        </li>
+      
+        <li>
+          <a href="https://support.rstudio.com/hc/en-us/articles/200714023-Displaying-and-Distributing-Presentations">Displaying and Distributing Presentations</a>
+        </li>
+      
+        <li>
+          <a href="https://support.rstudio.com/hc/en-us/articles/200714013-Slide-Transitions-and-Navigation">Slide Transitions and Navigation</a>
+        </li>
+      
+        <li>
+          <a href="https://support.rstudio.com/hc/en-us/articles/200486328-Equations-in-R-Markdown">Equations in R Markdown</a>
+        </li>
+      
+        <li>
+          <a href="https://support.rstudio.com/hc/en-us/articles/201738436-Compatible-browsers-for-RPresentations">Compatible browsers for RPresentations</a>
+        </li>
+      
+    </ul>
+  </section>
+
+
+  </aside>
+
+</div>
+
+
+  </main>
+
+    <footer class="footer">
+  <div class="footer-inner">
+    <!-- Footer content -->
+  </div>
+</footer>
+
+
+  <!-- / -->
+  
+
+  <script src="./Authoring R Presentations – RStudio Support_files/locales-be1dcfcc2d901f260e931ec030a142d1b9d611be.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  /*
+
+    Greetings sourcecode lurker!
+
+    This is for internal Zendesk and legacy usage,
+    we don't support or guarentee any of these values
+    so please don't build stuff on top of them.
+
+  */
+
+  HelpCenter = {};
+  HelpCenter.account = {"subdomain":"rstudioide","environment":"production","name":"RStudio Support"};
+  HelpCenter.user = {"identifier":"da39a3ee5e6b4b0d3255bfef95601890afd80709","email":null,"name":null,"role":"anonymous","avatar_url":"https://assets.zendesk.com/images/frame_user.png","organizations":[],"groups":[]};
+  HelpCenter.internal = {"current_session":{"locale":"en-us","legacy_locale_id":1,"csrf_token":"Ad9l9uNJuKB41tue+O997LHEKTTcs1jkq4vJ6fZa7zY=","shared_csrf_token":null},"settings":{"zopim_enabled":false,"spam_filter_enabled":true},"sso":{"enabled":false,"action":null,"return_to":"https://support.rstudio.com/hc/en-us","auth_domain":"https://rstudioide.zendesk.com","brand_id":2321856}};
+</script>
+
+  
+  <script data-modules="pages/enduser/common,pages/enduser/articles" id="zendesk-js" src="./Authoring R Presentations – RStudio Support_files/hc_enduser-354de7f9a3e2206effd8c320d057dd30.js"></script>
+  
+
+  
+
+
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script><div><div id="SL_button" class="ImTranslatorLogo" style="display: none;"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="display: none;"><div id="SL_planshet"><div id="SL_TB"><div class="ImTranslatorLogo"></div><table cellspacing="1" border="0" id="SL_tables"><tbody><tr><td class="SL_td" align="left" width="20%"><div id="SL_lng_from">English&nbsp;»</div></td><td class="SL_td" align="left" width="20%"><div id="SL_to_"><div id="SL_tocurlng" style="margin-left:5px;">Spanish</div><div class="SL_arrow"></div><div id="SL_to_list" style="display=" none'=""><div class="SL_DDMENU"><div id="SL_af" class="SL_limenu">Afrikaans</div><div id="SL_sq" class="SL_limenu">Albanian</div><div id="SL_ar" class="SL_limenu">Arabic</div><div id="SL_hy" class="SL_limenu">Armenian</div><div id="SL_az" class="SL_limenu">Azerbaijani</div><div id="SL_eu" class="SL_limenu">Basque</div><div id="SL_bn" class="SL_limenu">Bengali</div><div id="SL_be" class="SL_limenu">Belarusian</div><div id="SL_bg" class="SL_limenu">Bulgarian</div><div id="SL_ca" class="SL_limenu">Catalan</div><div id="SL_zh_CN" class="SL_limenu">Chinese&nbsp;(Simp)</div><div id="SL_zh_TW" class="SL_limenu">Chinese&nbsp;(Trad)</div><div id="SL_hr" class="SL_limenu">Croatian</div><div id="SL_cs" class="SL_limenu">Czech</div><div id="SL_da" class="SL_limenu">Danish</div><div id="SL_nl" class="SL_limenu">Dutch</div><div id="SL_en" class="SL_limenu">English</div><div id="SL_eo" class="SL_limenu">Esperanto</div><div id="SL_et" class="SL_limenu">Estonian</div><div id="SL_tl" class="SL_limenu">Filipino</div><div id="SL_fi" class="SL_limenu">Finnish</div><div id="SL_fr" class="SL_limenu">French</div><div id="SL_gl" class="SL_limenu">Galician</div><div id="SL_ka" class="SL_limenu">Georgian</div><div id="SL_de" class="SL_limenu">German</div><div id="SL_el" class="SL_limenu">Greek</div><div id="SL_gu" class="SL_limenu">Gujarati</div><div id="SL_ht" class="SL_limenu">Haitian&nbsp;Creole</div><div id="SL_iw" class="SL_limenu">Hebrew</div><div id="SL_hi" class="SL_limenu">Hindi</div><div id="SL_hu" class="SL_limenu">Hungarian</div><div id="SL_is" class="SL_limenu">Icelandic</div><div id="SL_id" class="SL_limenu">Indonesian</div><div id="SL_ga" class="SL_limenu">Irish</div><div id="SL_it" class="SL_limenu">Italian</div><div id="SL_ja" class="SL_limenu">Japanese</div><div id="SL_kn" class="SL_limenu">Kannada</div><div id="SL_ko" class="SL_limenu">Korean</div><div id="SL_lo" class="SL_limenu">Lao</div><div id="SL_la" class="SL_limenu">Latin</div><div id="SL_lv" class="SL_limenu">Latvian</div><div id="SL_lt" class="SL_limenu">Lithuanian</div><div id="SL_mk" class="SL_limenu">Macedonian</div><div id="SL_ms" class="SL_limenu">Malay</div><div id="SL_mt" class="SL_limenu">Maltese</div><div id="SL_no" class="SL_limenu">Norwegian</div><div id="SL_fa" class="SL_limenu">Persian</div><div id="SL_pl" class="SL_limenu">Polish</div><div id="SL_pt" class="SL_limenu">Portuguese</div><div id="SL_ro" class="SL_limenu">Romanian</div><div id="SL_ru" class="SL_limenu">Russian</div><div id="SL_sr" class="SL_limenu">Serbian</div><div id="SL_sk" class="SL_limenu">Slovak</div><div id="SL_sl" class="SL_limenu">Slovenian</div><div id="SL_es" class="SL_limenu">Spanish</div><div id="SL_sw" class="SL_limenu">Swahili</div><div id="SL_sv" class="SL_limenu">Swedish</div><div id="SL_ta" class="SL_limenu">Tamil</div><div id="SL_te" class="SL_limenu">Telugu</div><div id="SL_th" class="SL_limenu">Thai</div><div id="SL_tr" class="SL_limenu">Turkish</div><div id="SL_uk" class="SL_limenu">Ukrainian</div><div id="SL_ur" class="SL_limenu">Urdu</div><div id="SL_vi" class="SL_limenu">Vietnamese</div><div id="SL_cy" class="SL_limenu">Welsh</div><div id="SL_yi" class="SL_limenu">Yiddish</div></div></div></div><select id="SL_lng_to"><option value="af">Afrikaans</option><option value="sq">Albanian</option><option value="ar">Arabic</option><option value="hy">Armenian</option><option value="az">Azerbaijani</option><option value="eu">Basque</option><option value="bn">Bengali</option><option value="be">Belarusian</option><option value="bg">Bulgarian</option><option value="ca">Catalan</option><option value="zh-CN">Chinese&nbsp;(Simp)</option><option value="zh-TW">Chinese&nbsp;(Trad)</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option value="en">English</option><option value="eo">Esperanto</option><option value="et">Estonian</option><option value="tl">Filipino</option><option value="fi">Finnish</option><option value="fr">French</option><option value="gl">Galician</option><option value="ka">Georgian</option><option value="de">German</option><option value="el">Greek</option><option value="gu">Gujarati</option><option value="ht">Haitian&nbsp;Creole</option><option value="iw">Hebrew</option><option value="hi">Hindi</option><option value="hu">Hungarian</option><option value="is">Icelandic</option><option value="id">Indonesian</option><option value="ga">Irish</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="kn">Kannada</option><option value="ko">Korean</option><option value="lo">Lao</option><option value="la">Latin</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="mk">Macedonian</option><option value="ms">Malay</option><option value="mt">Maltese</option><option value="no">Norwegian</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sr">Serbian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option selected="" value="es">Spanish</option><option value="sw">Swahili</option><option value="sv">Swedish</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="yi">Yiddish</option></select></td><td class="SL_td" width="13%" align="center">&nbsp;</td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title=""></div></td><td class="SL_td" width="8%" align="center"><div class="SL_copy_hand" id="SL_copy" title="Select text"></div></td><td class="SL_td" width="8%" align="center"><div class="SL_font_off" id="SL_bbl_font" title="Font size"></div></td><td class="SL_td" width="5%"></td><td class="SL_td" width="8%" align="right"><div class="SL_pin_off" id="SL_pin" title="Pin pup-up bubble"></div></td></tr></tbody></table></div></div><div id="SL_shadow_translation_result"></div><div id="SL_bbl_donate" title="Make a small contribution"></div><div id="SL_Balloon_options"><a href="chrome-extension://pcfaommkmdjacdkbaoohklbccfmbnnod/options-bbl.html" target="_blank" class="SL_options" title="Show options">Options</a></div></div></div></body></html>

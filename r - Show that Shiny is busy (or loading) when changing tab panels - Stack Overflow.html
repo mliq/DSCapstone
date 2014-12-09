@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels -->
+<html itemscope="" itemtype="http://schema.org/QAPage" hc="a3" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico?v=038622610830">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=fd7230a85918">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=fde65a5a78c6">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Show that Shiny is busy (or loading) when changing tab panels">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="(Code follows after problem description)
+
+I am working on making a web app with Shiny, and some of the R commands that I am executing take minutes to complete. I found that I need to provide the user ">
+    <meta property="og:url" content="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels">
+    <link rel="canonical" href="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow.html">
+
+    
+    
+    <script type="text/javascript" async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/ados"></script><script async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/quant.js"></script><script async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/beacon.js"></script><script async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/ados.js"></script><script src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Show that Shiny is busy (or loading) when changing tab panels&#39;" href="http://stackoverflow.com/feeds/question/18237987">
+    <script>
+        
+        StackExchange.ready(function () {
+                
+                StackExchange.using("snippets", function () {
+                    StackExchange.snippets.initSnippetRenderer();
+                });
+                
+
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:18237987});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('1', '18237987');
+            
+                    });
+    </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1418006944,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"c86e770eccb8c433d2ca376b991288a7","isAnonymous":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"aa80fa8d9f57","js/moderator.en.js":"e28c737d71c2","js/full-anon.en.js":"e7df9bf6c2c8","js/full.en.js":"3212ab1e8079","js/wmd.en.js":"7c965e666de8","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"1871f23e40dd","js/help.en.js":"56d0a3a560ae","js/tageditor.en.js":"9c54855bf167","js/tageditornew.en.js":"9db9eaed22a8","js/inline-tag-editing.en.js":"48f13b102998","js/revisions.en.js":"989c474e85a9","js/review.en.js":"9fbaf8fb25e8","js/tagsuggestions.en.js":"bb4721d888d2","js/post-validation.en.js":"5c280797e81f","js/explore-qlist.en.js":"257ba4cb7b04","js/events.en.js":"41bc662b4db0","js/keyboard-shortcuts.en.js":"67653b7b59eb","js/external-editor.en.js":"468e2ef62084","js/external-editor.en.js":"468e2ef62084","js/snippet-javascript.en.js":"4ddac7652103","js/snippet-javascript-codemirror.en.js":"ada8458f49e4"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/full-anon.en.js"></script><script async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/prettify-full.en.js"></script><script async="" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/external-editor.en.js"></script><script type="text/javascript" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/adFeedback.js"></script><link rel="stylesheet" href="http://static.adzerk.net/Extensions/adFeedback.css"><style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style><link type="text/css" rel="stylesheet" href="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/sidebar.min.css"></head>
+<body class="question-page new-topbar">
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://stackoverflow.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+            </div>
+
+
+
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                </li>
+                            <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    <a class="site-link js-gps-track" href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })">
+                        <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div>
+                        Stack Overflow Careers
+                    </a>
+                </li>
+        </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f18237987%2fshow-that-shiny-is-busy-or-loading-when-changing-tab-panels" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f18237987%2fshow-that-shiny-is-busy-or-loading-when-changing-tab-panels" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 132 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+                            <a href="https://stackoverflow.com/users/signup?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f18237987%2fshow-that-shiny-is-busy-or-loading-when-changing-tab-panels" class="login-link">sign up</a>
+                            <a href="https://stackoverflow.com/users/login?returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f18237987%2fshow-that-shiny-is-busy-or-loading-when-changing-tab-panels" class="login-link">log in</a>
+                            <a href="http://stackoverflow.com/tour">tour</a>
+
+                            <a href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                            <a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=anon-topbar">stack overflow careers</a>
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://stackoverflow.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">
+                    Stack Overflow
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content" class="snippet-hidden">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+	<link itemprop="image" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+            <a href="http://stackoverflow.com/tour" id="tell-me-more" class="button">Take the 2-minute tour</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Stack Overflow is a question and answer site for professional and enthusiast programmers. It's 100% free, no registration required.
+        </div>        
+    </div>
+    <script>
+        $('#tell-me-more').click(function () {
+            var clickSource = $("body").attr("class") + '-mini';
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+            }
+
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("aboutpage.click", { aboutclick_location: clickSource } , true);
+            });
+        });
+        $('#herobox-mini #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "close" }, true);
+            });
+            $.cookie("hero", "none", { path: "/", expires: 365 });
+            var $hero = $("#herobox-mini");
+            $hero.slideUp('fast', function () { $hero.remove(); });
+            return false;
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow.html" class="question-hyperlink">Show that Shiny is busy (or loading) when changing tab panels</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="18237987" id="question">
+
+    <script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk777760013",4).setZone(43) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk777760013"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjoxODY2MjQsImNoIjoxMTc4LCJjciI6Njg0MjgyLCJkaSI6ImUzN2E4ZWY4NTVmYTQ3ODliODdkZGE1MTk5YWQzYjQwIiwiZG0iOjEsImZjIjo3MDg0MzYsImZsIjo0MzE3ODAsImlwIjoiNzUuNzMuNi42MiIsImt3IjoicixzaGlueSIsIm53IjoyMiwicGMiOjAsInByIjoxNjA0LCJydCI6MSwicmYiOiJodHRwczovL3d3dy5nb29nbGUuY29tLyIsInN0Ijo4Mjc3LCJ1ayI6InVlMS1mMWUwMmYyZWVjMjA0M2Y3ODFiNGEyYTc3OGIwOTlmNyIsInpuIjo0MywidHMiOjE0MTgwMDY5NDU0MzQsImJmIjp0cnVlLCJ1ciI6Imh0dHA6Ly9jYXJlZXJzLnN0YWNrb3ZlcmZsb3cuY29tL3Byb2R1Y3RzP3V0bV9zb3VyY2U9c3RhY2tvdmVyZmxvdy5jb20mdXRtX21lZGl1bT1hZCZ1dG1fY2FtcGFpZ249ZW1wbG95ZXJzLXN1cGVyaGVyb2VzJnV0bV9jb250ZW50PWxiLXN1cGVyaGVyb2VzIn0&s=wkW8PhriNqjXSEhEQQqzbt1IwOM" rel="nofollow" target="_blank" title=""><img src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/7b03b9d327834757b98b657002b37789.png" title="" alt="" border="0" width="728" height="90"></a><div class="adzerk-vote-controls" style="display: none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/i.gif"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="18237987">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">18</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>8</b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+        <p>(Code follows after problem description)</p>
+
+<p>I am working on making a web app with Shiny, and some of the R commands that I am executing take minutes to complete. I found that I need to provide the user with some indication that Shiny is working, or they will continuously change the parameters I provide in the side panel, which just causes Shiny to reactively restart the calculations once the initial run is completed.</p>
+
+<p>So, I created a conditional panel that shows a "Loading" message (referred to as a modal) with the following (thanks to Joe Cheng on the Shiny Google group for the conditional statement):</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="com"># generateButton is the name of my action button</span><span class="pln">
+loadPanel </span><span class="pun">&lt;-</span><span class="pln"> conditionalPanel</span><span class="pun">(</span><span class="str">"input.generateButton &gt; 0 &amp;&amp; $('html').hasClass('shiny-busy')"</span><span class="pun">),</span><span class="pln">
+                              loadingMsg</span><span class="pun">)</span></code></pre>
+
+<p>This is working as intended if the user remains on the current tab. However, the user can switch to another tab (that may contain some calculations that need to be run for some time), but the loading panel appears and disappears immediately, all while R chugs away at the calculations, and then refreshing the content only after it is done.</p>
+
+<p>Since this may be hard to visualize, I provided some code to run below. You will notice that clicking the button to start the calculations will produce a nice loading message. However, when you switch to tab 2, R starts running some calculations, but fails to show the loading message (maybe Shiny does not register as being busy?). If you restart the calculations by pressing the button again, the loading screen will show up correctly. </p>
+
+<p>I want the loading message to appear when switching to a tab that is loading!</p>
+
+<p><strong>ui.R</strong></p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">library</span><span class="pun">(</span><span class="pln">shiny</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com"># Code to make a message that shiny is loading</span><span class="pln">
+</span><span class="com"># Make the loading bar</span><span class="pln">
+loadingBar </span><span class="pun">&lt;-</span><span class="pln"> tags</span><span class="pun">$</span><span class="pln">div</span><span class="pun">(</span><span class="pln">class</span><span class="pun">=</span><span class="str">"progress progress-striped active"</span><span class="pun">,</span><span class="pln">
+                       tags</span><span class="pun">$</span><span class="pln">div</span><span class="pun">(</span><span class="pln">class</span><span class="pun">=</span><span class="str">"bar"</span><span class="pun">,</span><span class="pln"> style</span><span class="pun">=</span><span class="str">"width: 100%;"</span><span class="pun">))</span><span class="pln">
+</span><span class="com"># Code for loading message</span><span class="pln">
+loadingMsg </span><span class="pun">&lt;-</span><span class="pln"> tags</span><span class="pun">$</span><span class="pln">div</span><span class="pun">(</span><span class="pln">class</span><span class="pun">=</span><span class="str">"modal"</span><span class="pun">,</span><span class="pln"> tabindex</span><span class="pun">=</span><span class="str">"-1"</span><span class="pun">,</span><span class="pln"> role</span><span class="pun">=</span><span class="str">"dialog"</span><span class="pun">,</span><span class="pln"> 
+                       </span><span class="str">"aria-labelledby"</span><span class="pun">=</span><span class="str">"myModalLabel"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"aria-hidden"</span><span class="pun">=</span><span class="str">"true"</span><span class="pun">,</span><span class="pln">
+                       tags</span><span class="pun">$</span><span class="pln">div</span><span class="pun">(</span><span class="pln">class</span><span class="pun">=</span><span class="str">"modal-header"</span><span class="pun">,</span><span class="pln">
+                                tags</span><span class="pun">$</span><span class="pln">h3</span><span class="pun">(</span><span class="pln">id</span><span class="pun">=</span><span class="str">"myModalHeader"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Loading..."</span><span class="pun">)),</span><span class="pln">
+                       tags</span><span class="pun">$</span><span class="pln">div</span><span class="pun">(</span><span class="pln">class</span><span class="pun">=</span><span class="str">"modal-footer"</span><span class="pun">,</span><span class="pln">
+                                loadingBar</span><span class="pun">))</span><span class="pln">
+</span><span class="com"># The conditional panel to show when shiny is busy</span><span class="pln">
+loadingPanel </span><span class="pun">&lt;-</span><span class="pln"> conditionalPanel</span><span class="pun">(</span><span class="pln">paste</span><span class="pun">(</span><span class="str">"input.goButton &gt; 0 &amp;&amp;"</span><span class="pun">,</span><span class="pln"> 
+                                       </span><span class="str">"$('html').hasClass('shiny-busy')"</span><span class="pun">),</span><span class="pln">
+                                 loadingMsg</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com"># Now the UI code</span><span class="pln">
+shinyUI</span><span class="pun">(</span><span class="pln">pageWithSidebar</span><span class="pun">(</span><span class="pln">
+  headerPanel</span><span class="pun">(</span><span class="str">"Tabsets"</span><span class="pun">),</span><span class="pln">
+  sidebarPanel</span><span class="pun">(</span><span class="pln">
+    sliderInput</span><span class="pun">(</span><span class="pln">inputId</span><span class="pun">=</span><span class="str">"time"</span><span class="pun">,</span><span class="pln"> label</span><span class="pun">=</span><span class="str">"System sleep time (in seconds)"</span><span class="pun">,</span><span class="pln"> 
+                value</span><span class="pun">=</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> min</span><span class="pun">=</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> max</span><span class="pun">=</span><span class="lit">5</span><span class="pun">),</span><span class="pln">
+    actionButton</span><span class="pun">(</span><span class="str">"goButton"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Let's go!"</span><span class="pun">)</span><span class="pln">
+  </span><span class="pun">),</span><span class="pln">
+
+  mainPanel</span><span class="pun">(</span><span class="pln">
+    tabsetPanel</span><span class="pun">(</span><span class="pln">
+      tabPanel</span><span class="pun">(</span><span class="pln">title</span><span class="pun">=</span><span class="str">"Tab 1"</span><span class="pun">,</span><span class="pln"> loadingPanel</span><span class="pun">,</span><span class="pln"> textOutput</span><span class="pun">(</span><span class="str">"tabText1"</span><span class="pun">)),</span><span class="pln"> 
+      tabPanel</span><span class="pun">(</span><span class="pln">title</span><span class="pun">=</span><span class="str">"Tab 2"</span><span class="pun">,</span><span class="pln"> loadingPanel</span><span class="pun">,</span><span class="pln"> textOutput</span><span class="pun">(</span><span class="str">"tabText2"</span><span class="pun">))</span><span class="pln"> 
+    </span><span class="pun">)</span><span class="pln">
+  </span><span class="pun">)</span><span class="pln">
+</span><span class="pun">))</span></code></pre>
+
+<p><strong>server.R</strong></p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">library</span><span class="pun">(</span><span class="pln">shiny</span><span class="pun">)</span><span class="pln">
+
+</span><span class="com"># Define server logic for sleeping</span><span class="pln">
+shinyServer</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">input</span><span class="pun">,</span><span class="pln"> output</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  sleep1 </span><span class="pun">&lt;-</span><span class="pln"> reactive</span><span class="pun">({</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">goButton</span><span class="pun">==</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">return</span><span class="pun">(</span><span class="lit">NULL</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pun">(</span><span class="pln">isolate</span><span class="pun">({</span><span class="pln">
+      Sys.sleep</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">time</span><span class="pun">)</span><span class="pln">
+      input</span><span class="pun">$</span><span class="pln">time
+    </span><span class="pun">}))</span><span class="pln">
+  </span><span class="pun">})</span><span class="pln">
+
+  sleep2 </span><span class="pun">&lt;-</span><span class="pln"> reactive</span><span class="pun">({</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">goButton</span><span class="pun">==</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">return</span><span class="pun">(</span><span class="lit">NULL</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pun">(</span><span class="pln">isolate</span><span class="pun">({</span><span class="pln">
+      Sys.sleep</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">time</span><span class="pun">*</span><span class="lit">2</span><span class="pun">)</span><span class="pln">
+      input</span><span class="pun">$</span><span class="pln">time</span><span class="pun">*</span><span class="lit">2</span><span class="pln">
+    </span><span class="pun">}))</span><span class="pln">
+  </span><span class="pun">})</span><span class="pln">
+
+  output</span><span class="pun">$</span><span class="pln">tabText1 </span><span class="pun">&lt;-</span><span class="pln"> renderText</span><span class="pun">({</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">goButton</span><span class="pun">==</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">return</span><span class="pun">(</span><span class="lit">NULL</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pun">({</span><span class="pln">
+      print</span><span class="pun">(</span><span class="pln">paste</span><span class="pun">(</span><span class="str">"Slept for"</span><span class="pun">,</span><span class="pln"> sleep1</span><span class="pun">(),</span><span class="pln"> </span><span class="str">"seconds."</span><span class="pun">))</span><span class="pln">
+    </span><span class="pun">})</span><span class="pln">
+  </span><span class="pun">})</span><span class="pln">
+
+  output</span><span class="pun">$</span><span class="pln">tabText2 </span><span class="pun">&lt;-</span><span class="pln"> renderText</span><span class="pun">({</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">goButton</span><span class="pun">==</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">return</span><span class="pun">(</span><span class="lit">NULL</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pun">({</span><span class="pln">
+      print</span><span class="pun">(</span><span class="pln">paste</span><span class="pun">(</span><span class="str">"Multiplied by 2, that is"</span><span class="pun">,</span><span class="pln"> sleep2</span><span class="pun">(),</span><span class="pln"> </span><span class="str">"seconds."</span><span class="pun">))</span><span class="pln">
+    </span><span class="pun">})</span><span class="pln">
+  </span><span class="pun">})</span><span class="pln">
+</span><span class="pun">})</span></code></pre>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag js-gps-track" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/shiny" class="post-tag js-gps-track" title="show questions tagged &#39;shiny&#39;" rel="tag">shiny</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/18237987" title="short permalink to this question" class="short-link" id="link-post-18237987">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/18237987/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/18237987/revisions" title="show all edits to this post">edited <span title="2013-08-15 16:07:24Z" class="relativetime">Aug 15 '13 at 16:07</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2013-08-14 17:07:29Z" class="relativetime">Aug 14 '13 at 17:07</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1773432/ialm"><div class="gravatar-wrapper-32"><img src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/de0173084fa2fccdcea869a7acffca83" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1773432/ialm">ialm</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,557</span><span title="12 silver badges"><span class="badge2"></span><span class="badgecount">12</span></span><span title="27 bronze badges"><span class="badge3"></span><span class="badgecount">27</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18237987" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-18237987" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels#" onclick=""></a>
+            </div>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								2 Answers
+                                <span style="display:none;" itemprop="answerCount">2</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="18624844"></a>
+<div id="answer-18624844" class="answer accepted-answer" data-answerid="18624844" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="18624844">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">15</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Via the <a href="https://groups.google.com/d/msg/shiny-discuss/ZfPCt0QqUuA/KS6yBD6vMv4J">Shiny Google group</a>, Joe Cheng pointed me to the <a href="https://github.com/rstudio/shiny-incubator"><code>shinyIncubator</code></a> package, where there is a progress bar function that is being implemented (see <code>?withProgress</code> after installing the <code>shinyIncubator</code> package). </p>
+
+<p>Maybe this function will be added to the Shiny package in the future, but this works for now.</p>
+
+<p>Example:</p>
+
+<p><strong>UI.R</strong></p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">library</span><span class="pun">(</span><span class="pln">shiny</span><span class="pun">)</span><span class="pln">
+library</span><span class="pun">(</span><span class="pln">shinyIncubator</span><span class="pun">)</span><span class="pln">
+
+shinyUI</span><span class="pun">(</span><span class="pln">pageWithSidebar</span><span class="pun">(</span><span class="pln">
+  headerPanel</span><span class="pun">(</span><span class="str">"Testing"</span><span class="pun">),</span><span class="pln">
+  sidebarPanel</span><span class="pun">(</span><span class="pln">
+    </span><span class="com"># Action button</span><span class="pln">
+    actionButton</span><span class="pun">(</span><span class="str">"aButton"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Let's go!"</span><span class="pun">)</span><span class="pln">
+  </span><span class="pun">),</span><span class="pln">
+
+  mainPanel</span><span class="pun">(</span><span class="pln">
+    progressInit</span><span class="pun">(),</span><span class="pln">
+    tabsetPanel</span><span class="pun">(</span><span class="pln">
+      tabPanel</span><span class="pun">(</span><span class="pln">title</span><span class="pun">=</span><span class="str">"Tab1"</span><span class="pun">,</span><span class="pln"> plotOutput</span><span class="pun">(</span><span class="str">"plot1"</span><span class="pun">)),</span><span class="pln">
+      tabPanel</span><span class="pun">(</span><span class="pln">title</span><span class="pun">=</span><span class="str">"Tab2"</span><span class="pun">,</span><span class="pln"> plotOutput</span><span class="pun">(</span><span class="str">"plot2"</span><span class="pun">)))</span><span class="pln">
+  </span><span class="pun">)</span><span class="pln">
+</span><span class="pun">))</span></code></pre>
+
+<p><strong>SERVER.R</strong></p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">library</span><span class="pun">(</span><span class="pln">shiny</span><span class="pun">)</span><span class="pln">
+library</span><span class="pun">(</span><span class="pln">shinyIncubator</span><span class="pun">)</span><span class="pln">
+
+shinyServer</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">input</span><span class="pun">,</span><span class="pln"> output</span><span class="pun">,</span><span class="pln"> session</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  output</span><span class="pun">$</span><span class="pln">plot1 </span><span class="pun">&lt;-</span><span class="pln"> renderPlot</span><span class="pun">({</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">aButton</span><span class="pun">==</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">return</span><span class="pun">(</span><span class="lit">NULL</span><span class="pun">)</span><span class="pln">
+
+    withProgress</span><span class="pun">(</span><span class="pln">session</span><span class="pun">,</span><span class="pln"> min</span><span class="pun">=</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> max</span><span class="pun">=</span><span class="lit">15</span><span class="pun">,</span><span class="pln"> expr</span><span class="pun">={</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pun">(</span><span class="pln">i </span><span class="kwd">in</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">15</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        setProgress</span><span class="pun">(</span><span class="pln">message </span><span class="pun">=</span><span class="pln"> </span><span class="str">'Calculation in progress'</span><span class="pun">,</span><span class="pln">
+                    detail </span><span class="pun">=</span><span class="pln"> </span><span class="str">'This may take a while...'</span><span class="pun">,</span><span class="pln">
+                    value</span><span class="pun">=</span><span class="pln">i</span><span class="pun">)</span><span class="pln">
+        print</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)</span><span class="pln">
+        Sys.sleep</span><span class="pun">(</span><span class="lit">0.1</span><span class="pun">)</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">})</span><span class="pln">
+    temp </span><span class="pun">&lt;-</span><span class="pln"> cars </span><span class="pun">+</span><span class="pln"> matrix</span><span class="pun">(</span><span class="pln">rnorm</span><span class="pun">(</span><span class="pln">prod</span><span class="pun">(</span><span class="pln">dim</span><span class="pun">(</span><span class="pln">cars</span><span class="pun">))),</span><span class="pln"> nrow</span><span class="pun">=</span><span class="pln">nrow</span><span class="pun">(</span><span class="pln">cars</span><span class="pun">),</span><span class="pln"> ncol</span><span class="pun">=</span><span class="pln">ncol</span><span class="pun">(</span><span class="pln">cars</span><span class="pun">))</span><span class="pln">
+    plot</span><span class="pun">(</span><span class="pln">temp</span><span class="pun">)</span><span class="pln">
+  </span><span class="pun">})</span><span class="pln">
+
+  output</span><span class="pun">$</span><span class="pln">plot2 </span><span class="pun">&lt;-</span><span class="pln"> renderPlot</span><span class="pun">({</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">aButton</span><span class="pun">==</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">return</span><span class="pun">(</span><span class="lit">NULL</span><span class="pun">)</span><span class="pln">
+
+    withProgress</span><span class="pun">(</span><span class="pln">session</span><span class="pun">,</span><span class="pln"> min</span><span class="pun">=</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> max</span><span class="pun">=</span><span class="lit">15</span><span class="pun">,</span><span class="pln"> expr</span><span class="pun">={</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pun">(</span><span class="pln">i </span><span class="kwd">in</span><span class="pln"> </span><span class="lit">1</span><span class="pun">:</span><span class="lit">15</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        setProgress</span><span class="pun">(</span><span class="pln">message </span><span class="pun">=</span><span class="pln"> </span><span class="str">'Calculation in progress'</span><span class="pun">,</span><span class="pln">
+                    detail </span><span class="pun">=</span><span class="pln"> </span><span class="str">'This may take a while...'</span><span class="pun">,</span><span class="pln">
+                    value</span><span class="pun">=</span><span class="pln">i</span><span class="pun">)</span><span class="pln">
+        print</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)</span><span class="pln">
+        Sys.sleep</span><span class="pun">(</span><span class="lit">0.1</span><span class="pun">)</span><span class="pln">
+      </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">})</span><span class="pln">
+    temp </span><span class="pun">&lt;-</span><span class="pln"> cars </span><span class="pun">+</span><span class="pln"> matrix</span><span class="pun">(</span><span class="pln">rnorm</span><span class="pun">(</span><span class="pln">prod</span><span class="pun">(</span><span class="pln">dim</span><span class="pun">(</span><span class="pln">cars</span><span class="pun">))),</span><span class="pln"> nrow</span><span class="pun">=</span><span class="pln">nrow</span><span class="pun">(</span><span class="pln">cars</span><span class="pun">),</span><span class="pln"> ncol</span><span class="pun">=</span><span class="pln">ncol</span><span class="pun">(</span><span class="pln">cars</span><span class="pun">))</span><span class="pln">
+    plot</span><span class="pun">(</span><span class="pln">temp</span><span class="pun">)</span><span class="pln">
+  </span><span class="pun">})</span><span class="pln">
+</span><span class="pun">})</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/18624844" title="short permalink to this answer" class="short-link" id="link-post-18624844">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/18624844/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature owner">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2013-09-04 22:27:39Z" class="relativetime">Sep 4 '13 at 22:27</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1773432/ialm"><div class="gravatar-wrapper-32"><img src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/de0173084fa2fccdcea869a7acffca83" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1773432/ialm">ialm</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">2,557</span><span title="12 silver badges"><span class="badge2"></span><span class="badgecount">12</span></span><span title="27 bronze badges"><span class="badge3"></span><span class="badgecount">27</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18624844" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-18624844" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk1663378322",4).setZone(44) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1663378322">
+            </div>
+  
+<a name="21565458"></a>
+<div id="answer-21565458" class="answer" data-answerid="21565458" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="21565458">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">3</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Here is a possible solution using your original approach. </p>
+
+<p>First use an identifier for the tabs:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">tabsetPanel</span><span class="pun">(</span><span class="pln">
+  tabPanel</span><span class="pun">(</span><span class="pln">title</span><span class="pun">=</span><span class="str">"Tab 1"</span><span class="pun">,</span><span class="pln"> loadingPanel</span><span class="pun">,</span><span class="pln"> textOutput</span><span class="pun">(</span><span class="str">"tabText1"</span><span class="pun">)),</span><span class="pln"> 
+  tabPanel</span><span class="pun">(</span><span class="pln">title</span><span class="pun">=</span><span class="str">"Tab 2"</span><span class="pun">,</span><span class="pln"> loadingPanel</span><span class="pun">,</span><span class="pln"> textOutput</span><span class="pun">(</span><span class="str">"tabText2"</span><span class="pun">)),</span><span class="pln">
+  id</span><span class="pun">=</span><span class="str">"tab"</span><span class="pln">
+</span><span class="pun">)</span></code></pre>
+
+<p>Then, if you connect <code>tabText1</code> to <code>input$tab</code>:</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">  output</span><span class="pun">$</span><span class="pln">tabText1 </span><span class="pun">&lt;-</span><span class="pln"> renderText</span><span class="pun">({</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">goButton</span><span class="pun">==</span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">return</span><span class="pun">(</span><span class="lit">NULL</span><span class="pun">)</span><span class="pln">
+    input</span><span class="pun">$</span><span class="pln">tab
+    </span><span class="kwd">return</span><span class="pun">({</span><span class="pln">
+      print</span><span class="pun">(</span><span class="pln">paste</span><span class="pun">(</span><span class="str">"Slept for"</span><span class="pun">,</span><span class="pln"> sleep1</span><span class="pun">(),</span><span class="pln"> </span><span class="str">"seconds."</span><span class="pun">))</span><span class="pln">
+    </span><span class="pun">})</span><span class="pln">
+  </span><span class="pun">})</span></code></pre>
+
+<p>you will see that it works when you go from the first tab to the second one.</p>
+
+<h1>Update</h1>
+
+<p>A cleanest option consists in defining a reactive object catching the active tabset. Just write this anywhere in <code>server.R</code> :</p>
+
+<pre class="lang-r prettyprint prettyprinted"><code><span class="pln">  output</span><span class="pun">$</span><span class="pln">activeTab </span><span class="pun">&lt;-</span><span class="pln"> reactive</span><span class="pun">({</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pun">(</span><span class="pln">input</span><span class="pun">$</span><span class="pln">tab</span><span class="pun">)</span><span class="pln">
+  </span><span class="pun">})</span><span class="pln">
+  outputOptions</span><span class="pun">(</span><span class="pln">output</span><span class="pun">,</span><span class="pln"> </span><span class="str">'activeTab'</span><span class="pun">,</span><span class="pln"> suspendWhenHidden</span><span class="pun">=</span><span class="lit">FALSE</span><span class="pun">)</span></code></pre>
+
+<p>See <a href="https://groups.google.com/d/msg/shiny-discuss/PzlSAmAxxwo/eGx187UUHvcJ" rel="nofollow">https://groups.google.com/d/msg/shiny-discuss/PzlSAmAxxwo/eGx187UUHvcJ</a> for some explanation.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/21565458" title="short permalink to this answer" class="short-link" id="link-post-21565458">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/21565458/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/21565458/revisions" title="show all edits to this post">edited <span title="2014-02-13 10:34:29Z" class="relativetime">Feb 13 at 10:34</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2014-02-04 23:08:15Z" class="relativetime">Feb 4 at 23:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1100107/st%c3%a9phane-laurent"><div class="gravatar-wrapper-32"><img src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/8789d3da0b482bcd8e562bfdf3687c74" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1100107/st%c3%a9phane-laurent">Stéphane Laurent</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,677</span><span title="9 silver badges"><span class="badge2"></span><span class="badgecount">9</span></span><span title="30 bronze badges"><span class="badge3"></span><span class="badgecount">30</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-21565458" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-21565458" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://stackoverflow.com/questions/18237987/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="18237987">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.com/">
+							<h2 class="space">Your Answer</h2>
+
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+            // Have to fire editor after snippets, if snippets enabled
+            if (StackExchange.options.snippets.enabled) {
+                StackExchange.using("snippets", function() {
+                    createEditor();
+                });
+            }
+            else {
+                createEditor();
+            }
+        });
+
+        function createEditor() {
+            prepareEditor({
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                ,immediatelyShowMarkdownHelp:true
+                });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="c86e770eccb8c433d2ca376b991288a7">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f18237987%2fshow-that-shiny-is-busy-or-loading-when-changing-tab-panels%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Stack Exchange</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid">
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="hidden" name="use-google" class="use-google" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', '%2fquestions%2f18237987%2fshow-that-shiny-is-busy-or-loading-when-changing-tab-panels%23new-answer');
+                    }
+                );
+            </script>
+            <noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;script&gt;
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            &lt;/script&gt;
+            &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106"&gt;
+                    &lt;span class="edit-field-overlay"&gt;required, but not shown&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/r" class="post-tag" title="show questions tagged &#39;r&#39;" rel="tag">r</a> <a href="http://stackoverflow.com/questions/tagged/shiny" class="post-tag" title="show questions tagged &#39;shiny&#39;" rel="tag">shiny</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2013-08-14 17:07:29Z"><b>1 year ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>3736 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels?lastactivity" class="lastactivity-link" title="2014-02-13 10:34:29Z">9 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {};ados.run = ados.run || [];
+                ados.run.push(function() { ados_add_placement(22,8277,"adzerk1980908779",[17,2221]).setZone(45) ; });                    
+            </script>
+            <div class="everyonelovesstackoverflow adzerk-vote" id="adzerk1980908779">
+            <iframe id="ados_frame_adzerk1980908779_429679" frameborder="0" scrolling="no" height="250" width="220"></iframe><div class="adzerk-vote-controls" style="display:none;"><div class="adzerk-vote-option adzerk-vote-up"><div class="adzerk-vote-icon"></div></div><div class="adzerk-vote-option adzerk-vote-down"><div class="adzerk-vote-icon"></div></div></div><div class="adzerk-vote-survey" style="display:none;"><form><span>No problem. We won't show you that ad again. Why didn't you like it?</span><ul><li><label><input type="radio" value="12" name="downvoteReason">Uninteresting</label></li><li><label><input type="radio" value="13" name="downvoteReason">Misleading</label></li><li><label><input type="radio" value="14" name="downvoteReason">Offensive</label></li><li><label><input type="radio" value="15" name="downvoteReason">Repetitive</label></li></ul><a href="http://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels#" class="adzerk-vote-cancel">Oops! I didn't mean to do this.</a></form></div><img height="0px" width="0px" border="0" style="position:absolute;" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/i(1).gif"></div>  
+        <div id="hireme" class="orange near-you tagged"><a href="http://careers.stackoverflow.com/jobs/location/Minneapolis%2C%20Minnesota?a=94CBgUU" target="_blank" class="top"> <span>Jobs near you</span></a><ul class="jobs"><li><a href="http://careers.stackoverflow.com/jobs/73908/software-engineer-java-findlaw-thomson-reuters?a=oMLwppxJGeJ" target="_blank" title="Software Engineer (Java) at FindLaw-Thomson Reuters. Click to learn more.">Software Engineer (Java)<br><span class="company">FindLaw-Thomson Reuters</span><span class="location">Eagan, MN</span><span class="post-tag">java</span><span class="post-tag">rest</span></a></li><li><a href="http://careers.stackoverflow.com/jobs/75345/software-application-administrator-university-of-minnesota?a=pgE2Aw0ym30" target="_blank" title="Software Application Administrator at University of Minnesota. Click to learn more.">Software Application Administrator<br><span class="company">University of Minnesota</span><span class="location">Minneapolis, MN</span><span class="post-tag">lamp</span><span class="post-tag">apache</span></a></li><li class="city"><a href="http://careers.stackoverflow.com/jobs/location/Minneapolis%2C%20Minnesota?a=94CBgUU">More jobs near Minneapolis…</a></li></ul><img class="impression" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/i" style="display:none;"><img class="impression" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/oMLwppxJGeJ-pgE2Aw0ym30-2LRza" style="display:none;"></div>
+			  
+    
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/22773207?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">4</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22773207/add-calculation-in-process-indicator-for-shiny-application?lq=1" class="question-hyperlink">Add 'Calculation In Process' Indicator for Shiny Application</a>
+</div><div class="spacer">
+	<a href="http://stackoverflow.com/q/22921411?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">1</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/22921411/r-progress-bar-in-separate-window?lq=1" class="question-hyperlink">R Progress Bar in Separate Window</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/16405077?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/16405077/how-to-implement-a-progressbar-in-index-html-using-shiny-when-a-long-calculation?rq=1" class="question-hyperlink">How to implement a progressbar in index.html using Shiny when a long calculation is performed</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/18118861?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/18118861/why-is-my-googlevis-chart-causing-a-r-encountered-a-fatal-error-when-trying-to?rq=1" class="question-hyperlink">Why is my googleVis chart causing a “R encountered a fatal error” when trying to upload 5+MB files in R Shiny?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/19579067?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/19579067/conditional-panels-in-sidebar-of-shiny?rq=1" class="question-hyperlink">conditional panels in sidebar of Shiny</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/19724022?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">3
+    </div>
+</a><a href="http://stackoverflow.com/questions/19724022/rstudio-shiny-conditionalpanel-for-mainpanel?rq=1" class="question-hyperlink">Rstudio shiny conditionalPanel for mainPanel</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/21123575?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/21123575/change-height-parameter-of-rickshaw-rchart-within-shiny-tabpanel-to-avoid-scroll?rq=1" class="question-hyperlink">Change height parameter of rickshaw rChart within Shiny tabPanel to avoid scrollbar</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/22622609?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/22622609/load-image-or-text-in-shiny-r?rq=1" class="question-hyperlink">Load image or text in Shiny R</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/23469488?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://stackoverflow.com/questions/23469488/r-shiny-cannot-get-conditional-checkboxgroupinput-to-work-based-on-active-tab?rq=1" class="question-hyperlink">R Shiny Cannot get conditional checkboxGroupInput to work based on active tab</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25289223?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/25289223/fileinput-breaks-when-using-multiple-tabpanel-with-navbarmenu-in-shiny?rq=1" class="question-hyperlink">fileInput breaks when using multiple tabPanel with navbarMenu in shiny</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25306519?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://stackoverflow.com/questions/25306519/shiny-saving-url-state-subpages-and-tabs?rq=1" class="question-hyperlink">Shiny saving URL state subpages and tabs</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://stackoverflow.com/q/25577525?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://stackoverflow.com/questions/25577525/shiny-how-to-return-variables-from-observe?rq=1" class="question-hyperlink">Shiny: How to return variables from observe()</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/126904/are-all-simulation-methods-some-form-of-monte-carlo" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are all simulation methods some form of Monte Carlo?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1055365/what-is-wrong-with-this-proposed-proof-of-the-twin-prime-conjecture" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is wrong with this proposed proof of the twin prime conjecture?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/10034/if-jets-carried-pure-o2-to-use-for-combustion-would-they-be-more-efficient" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    If jets carried pure O2 to use for combustion, would they be more efficient?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/141921/why-is-my-dcdc-getting-fried-when-driving-a-stepper-motor" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why is my DCDC getting fried when driving a stepper motor
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-writers" title="Writers Stack Exchange"></div><a href="http://writers.stackexchange.com/questions/14584/how-can-i-turn-my-short-story-into-a-novel" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:166 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I turn my short story into a novel?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1056282/adding-trig-identity-fractions" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    adding trig identity fractions
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-communitybuilding" title="Community Building Stack Exchange"></div><a href="http://communitybuilding.stackexchange.com/questions/922/how-can-i-tell-if-a-small-specialized-community-is-dying-or-if-the-long-time-sca" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:571 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can I tell if a small specialized community is dying or if the long time-scale of activity is natural?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/189141/is-a-particular-type-of-question-about-certain-infinite-sets-still-being-asked" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is a particular type of question about certain infinite sets still being asked?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-history" title="History Stack Exchange"></div><a href="http://history.stackexchange.com/questions/17419/how-did-people-distinguish-slaves-from-free-people-in-ancient-rome" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:324 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How did people distinguish slaves from free people in Ancient Rome?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="http://superuser.com/questions/849413/why-would-you-cat-dev-null-messages" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why would you `cat /dev/null &gt;messages`?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-serverfault" title="Server Fault"></div><a href="http://serverfault.com/questions/648573/linux-is-there-a-way-to-prevent-protect-a-file-from-being-deleted-even-by-root" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:2 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Linux - Is there a way to prevent/protect a file from being deleted even by root?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/10018/aircraft-emergency-oxygen-how-hard-do-i-pull-on-the-mask" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Aircraft emergency oxygen: how hard do I pull on the mask?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-biology" title="Biology Stack Exchange"></div><a href="http://biology.stackexchange.com/questions/24643/can-a-human-acquire-a-memory-of-an-animal" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:375 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can a human acquire a memory of an animal?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-cooking" title="Seasoned Advice"></div><a href="http://cooking.stackexchange.com/questions/50397/what-direction-must-one-stir-molten-chocolate" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What direction must one stir molten chocolate
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/32700/why-are-some-professors-critical-of-even-casual-use-of-wikipedia" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why are some professors critical of even casual use of Wikipedia?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/5130/could-people-survive-intense-global-warming" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Could people survive intense global warming?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/172000/remove-escape-characters-using-sed" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    remove escape characters using sed
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/41407/meaning-of-youd-of-thought" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Meaning of "you'd of thought"
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/32855/should-i-start-my-cv-by-telling-about-myself" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should I start my CV by telling about myself?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/32870/how-do-you-balance-producing-results-with-learning-new-skills" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do you balance producing results with learning new skills?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/215865/how-to-remove-the-section-title-in-header-using-scrpage2" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to remove the section title in header using scrpage2
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/74501/pbkdf2-can-the-salt-be-known-from-the-hash" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    PBKDF2: can the salt be known from the hash?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-genealogy" title="Genealogy &amp; Family History Stack Exchange"></div><a href="http://genealogy.stackexchange.com/questions/6702/what-does-this-y-symbol-abbreviate-in-a-quaker-birth-record" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:467 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What does this Y symbol abbreviate in a Quaker birth record?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/212415/any-compact-ways-to-say-reduce-the-model-to-less-than-25-of-its-original-size" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Any compact ways to say “reduce the model to less than 25% of its original size”?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/18237987" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/18237987/ivc/cafb');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/18237987/ivc/cafb" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-r</div></div>
+
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="http://blog.stackoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=footerlink">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>                   with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.12.6.2081
+            </div>
+            
+        </div>
+    <iframe id="global-auth-frame" style="display:none" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/read.html"></iframe></div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('r,shiny');; ados_load(); });         
+</script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');        
+        
+        ga('set', 'dimension2', '|r|shiny|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<div><div id="SL_button" class="ImTranslatorLogo"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="display: none;"><div id="SL_planshet"><div id="SL_TB"><div class="ImTranslatorLogo"></div><table cellspacing="1" border="0" id="SL_tables"><tbody><tr><td class="SL_td" align="left" width="20%"><div id="SL_lng_from">English&nbsp;»</div></td><td class="SL_td" align="left" width="20%"><div id="SL_to_"><div id="SL_tocurlng" style="margin-left:5px;">Georgian</div><div class="SL_arrow"></div><div id="SL_to_list" style="display=" none'=""><div class="SL_DDMENU"><div id="SL_af" class="SL_limenu">Afrikaans</div><div id="SL_sq" class="SL_limenu">Albanian</div><div id="SL_ar" class="SL_limenu">Arabic</div><div id="SL_hy" class="SL_limenu">Armenian</div><div id="SL_az" class="SL_limenu">Azerbaijani</div><div id="SL_eu" class="SL_limenu">Basque</div><div id="SL_bn" class="SL_limenu">Bengali</div><div id="SL_be" class="SL_limenu">Belarusian</div><div id="SL_bg" class="SL_limenu">Bulgarian</div><div id="SL_ca" class="SL_limenu">Catalan</div><div id="SL_zh_CN" class="SL_limenu">Chinese&nbsp;(Simp)</div><div id="SL_zh_TW" class="SL_limenu">Chinese&nbsp;(Trad)</div><div id="SL_hr" class="SL_limenu">Croatian</div><div id="SL_cs" class="SL_limenu">Czech</div><div id="SL_da" class="SL_limenu">Danish</div><div id="SL_nl" class="SL_limenu">Dutch</div><div id="SL_en" class="SL_limenu">English</div><div id="SL_eo" class="SL_limenu">Esperanto</div><div id="SL_et" class="SL_limenu">Estonian</div><div id="SL_tl" class="SL_limenu">Filipino</div><div id="SL_fi" class="SL_limenu">Finnish</div><div id="SL_fr" class="SL_limenu">French</div><div id="SL_gl" class="SL_limenu">Galician</div><div id="SL_ka" class="SL_limenu">Georgian</div><div id="SL_de" class="SL_limenu">German</div><div id="SL_el" class="SL_limenu">Greek</div><div id="SL_gu" class="SL_limenu">Gujarati</div><div id="SL_ht" class="SL_limenu">Haitian&nbsp;Creole</div><div id="SL_iw" class="SL_limenu">Hebrew</div><div id="SL_hi" class="SL_limenu">Hindi</div><div id="SL_hu" class="SL_limenu">Hungarian</div><div id="SL_is" class="SL_limenu">Icelandic</div><div id="SL_id" class="SL_limenu">Indonesian</div><div id="SL_ga" class="SL_limenu">Irish</div><div id="SL_it" class="SL_limenu">Italian</div><div id="SL_ja" class="SL_limenu">Japanese</div><div id="SL_kn" class="SL_limenu">Kannada</div><div id="SL_ko" class="SL_limenu">Korean</div><div id="SL_lo" class="SL_limenu">Lao</div><div id="SL_la" class="SL_limenu">Latin</div><div id="SL_lv" class="SL_limenu">Latvian</div><div id="SL_lt" class="SL_limenu">Lithuanian</div><div id="SL_mk" class="SL_limenu">Macedonian</div><div id="SL_ms" class="SL_limenu">Malay</div><div id="SL_mt" class="SL_limenu">Maltese</div><div id="SL_no" class="SL_limenu">Norwegian</div><div id="SL_fa" class="SL_limenu">Persian</div><div id="SL_pl" class="SL_limenu">Polish</div><div id="SL_pt" class="SL_limenu">Portuguese</div><div id="SL_ro" class="SL_limenu">Romanian</div><div id="SL_ru" class="SL_limenu">Russian</div><div id="SL_sr" class="SL_limenu">Serbian</div><div id="SL_sk" class="SL_limenu">Slovak</div><div id="SL_sl" class="SL_limenu">Slovenian</div><div id="SL_es" class="SL_limenu">Spanish</div><div id="SL_sw" class="SL_limenu">Swahili</div><div id="SL_sv" class="SL_limenu">Swedish</div><div id="SL_ta" class="SL_limenu">Tamil</div><div id="SL_te" class="SL_limenu">Telugu</div><div id="SL_th" class="SL_limenu">Thai</div><div id="SL_tr" class="SL_limenu">Turkish</div><div id="SL_uk" class="SL_limenu">Ukrainian</div><div id="SL_ur" class="SL_limenu">Urdu</div><div id="SL_vi" class="SL_limenu">Vietnamese</div><div id="SL_cy" class="SL_limenu">Welsh</div><div id="SL_yi" class="SL_limenu">Yiddish</div></div></div></div><select id="SL_lng_to"><option value="af">Afrikaans</option><option value="sq">Albanian</option><option value="ar">Arabic</option><option value="hy">Armenian</option><option value="az">Azerbaijani</option><option value="eu">Basque</option><option value="bn">Bengali</option><option value="be">Belarusian</option><option value="bg">Bulgarian</option><option value="ca">Catalan</option><option value="zh-CN">Chinese&nbsp;(Simp)</option><option value="zh-TW">Chinese&nbsp;(Trad)</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option value="en">English</option><option value="eo">Esperanto</option><option value="et">Estonian</option><option value="tl">Filipino</option><option value="fi">Finnish</option><option value="fr">French</option><option value="gl">Galician</option><option value="ka">Georgian</option><option value="de">German</option><option value="el">Greek</option><option value="gu">Gujarati</option><option value="ht">Haitian&nbsp;Creole</option><option value="iw">Hebrew</option><option value="hi">Hindi</option><option value="hu">Hungarian</option><option value="is">Icelandic</option><option value="id">Indonesian</option><option value="ga">Irish</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="kn">Kannada</option><option value="ko">Korean</option><option value="lo">Lao</option><option value="la">Latin</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="mk">Macedonian</option><option value="ms">Malay</option><option value="mt">Maltese</option><option value="no">Norwegian</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sr">Serbian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option selected="" value="es">Spanish</option><option value="sw">Swahili</option><option value="sv">Swedish</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="yi">Yiddish</option></select></td><td class="SL_td" width="13%" align="center">&nbsp;</td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title=""></div></td><td class="SL_td" width="8%" align="center"><div class="SL_copy_hand" id="SL_copy" title="Select text"></div></td><td class="SL_td" width="8%" align="center"><div class="SL_font_off" id="SL_bbl_font" title="Font size"></div></td><td class="SL_td" width="5%"></td><td class="SL_td" width="8%" align="right"><div class="SL_pin_off" id="SL_pin" title="Pin pup-up bubble"></div></td></tr></tbody></table></div></div><div id="SL_shadow_translation_result"></div><div id="SL_bbl_donate" title="Make a small contribution"></div><div id="SL_Balloon_options"><a href="chrome-extension://pcfaommkmdjacdkbaoohklbccfmbnnod/options-bbl.html" target="_blank" class="SL_options" title="Show options">Options</a></div></div></div><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script><script type="text/javascript" src="./r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/p"></script></body></html>

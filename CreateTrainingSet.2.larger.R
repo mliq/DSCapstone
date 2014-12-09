@@ -1,21 +1,21 @@
 ### CREATE TRAINING SET ###
 
 # Read in
-text<-readLines("en_US.news.txt")
+text<-readLines("en_US.blogs.txt")
 
 # randomly choose rows and set to train
 set.seed(42)
-trainRows=sample(1:length(text),1000000)
+trainRows=sample(1:length(text),333333)
 train=text[trainRows]
 train=iconv(train, to='ASCII', sub=' ')
 
 # Save to text file
-sink('b.train3')
+sink('b.train4')
 train
 sink()
 
 # Save to R object
-saveRDS(train, file="b.train3.RDS")
+saveRDS(train, file="b.train4.RDS")
 
 #########
 #TESTING#
