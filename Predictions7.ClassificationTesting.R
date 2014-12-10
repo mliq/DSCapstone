@@ -86,37 +86,74 @@ ptm <- proc.time()
 
 #### INPUT MUNGING ####
 getPred=function(x){
-# Take an input:
-test=scan("Quiz3.txt", what="character",n=1,skip=x)
+	#TEST:
+	#x=0
+	# Take an input:
+	test=scan("Quiz3.txt", what="character",n=1,skip=x)
 
-# transform as training set was (lowercase, stem, strip punctuation etc.)
-test=iconv(test, to='ASCII', sub=' ')
-test=process(test)
-test=paste0(test, collapse=" ")
-corpus<-makeCorpus(test)
-corpus=as.character(corpus[[1]][1])
+	# transform as training set was (lowercase, stem, strip punctuation etc.)
+	test=iconv(test, to='ASCII', sub=' ')
+	test=process(test)
+	test=paste0(test, collapse=" ")
+	corpus<-makeCorpus(test)
+	corpus=as.character(corpus[[1]][1])
 
-# Split by words:
-words<-unlist(strsplit(corpus,"\\s+"))
+	# Split by words:
+	words<-unlist(strsplit(corpus,"\\s+"))
 
-# Isolate last two words of the sentence
-history=words[(length(words)-1):length(words)]
-nMin1=words[length(words)]
-history=paste(as.character(history),collapse=' ')
-
-
-# Make prediction list of matches:
-Tpred=data.table(Tfreq[grep(paste0("^",history," "),Tfreq$grams),][order(-counts)])
-
-# Print out top 5 possibilities:
-print(Tpred[1:25])
-Tpred<<-Tpred
+	# Isolate last two words of the sentence
+	# Loop here to make set of trigrams.
+	correct=0
+	total=length(words)-2
+	# how many trigrams will there be? 
+	# in a 4 word sentence, 2 so length-2.
+	# therefore, need exception not to run this when length is less than 3 words.
+	if(length(words)>=3){
+		lapply(1:total,FUN=function(x){
+			# loop through sentence making bigram and answer, 
+			bigram=paste(words[x], words[x+1])
+			answer=paste(words[x+2])
+			# then check answer against predicted answer.
+			# Get answer
+			Xpred=data.table(Tfreq[grep(paste0("^",bigram," "),Tfreq$grams),][order(-counts)])	
+			# isolate the answer from prediction table.
+			Xpred=unlist(strsplit(Xpred[1]$grams,"\\s+"))
+			Xpred=Xpred[length(Xpred)]
+			# Test equality of prediction to actual and counter for the accuracy measure
+			if(!is.na(Xpred)){
+				if(Xpred==answer){correct=correct+1}	
+				correct<<-correct
+			}
+		})
+	}
+	accuracy = correct/total
+	paste("Correct: ", correct, "total: ", total, "Accuracy: ", accuracy)
 }
 
-# Find function
-find=function(x){
-Tpred[grep(x,Tpred$grams),]
+check<-function(x){
+	bigram=x
+	Xpred=data.table(Tfreq[grep(paste0("^",bigram," "),Tfreq$grams),][order(-counts)])
+	Xpred=unlist(strsplit(Xpred[1]$grams,"\\s+"))
+	Xpred=Xpred[length(Xpred)]
+	paste(bigram, Xpred)
 }
+# history=words[(length(words)-1):length(words)]
+# nMin1=words[length(words)]
+# history=paste(as.character(history),collapse=' ')
+
+
+# # Make prediction list of matches:
+# Tpred=data.table(Tfreq[grep(paste0("^",history," "),Tfreq$grams),][order(-counts)])
+
+# # Print out top 5 possibilities:
+# print(Tpred[1:25])
+# Tpred<<-Tpred
+# }
+
+# # Find function
+# find=function(x){
+# Tpred[grep(x,Tpred$grams),]
+# }
 
 # Calculate Probabilities?
 # Edit trigrams to just the prediction and the count and the probabilities

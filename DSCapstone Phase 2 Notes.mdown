@@ -12,10 +12,11 @@ DS Phase 2
 
 2. Write an algorithm which classifies text by testing all previous trigrams.
 
-	
+So it will load t.TFreq4.RDS first.
+
+
+* UNSTEM the prediction finally.
 		
-
-
 
 
 ----
