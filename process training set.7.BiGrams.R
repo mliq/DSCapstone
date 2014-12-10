@@ -82,7 +82,7 @@ x=x[which(nchar(x)!=0)]
 }
 
 # Tokenizer functions
-TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 3, max = 3))
+TgramTokenizer <- function(x) NGramTokenizer(x, Weka_control(min = 2, max = 2))
 
 # Corpus, transformations, and TDM Creation
 #=============================================#
@@ -113,5 +113,6 @@ rm(counts)
 #rm(train)
 # Stop the clock
 proc.time() - ptm # 1e6 twitter lines: 5095.00 85 min., 2747 for blog 333,333 lines
-# object.size(Tfreq) 405358064 bytes
-saveRDS(Tfreq,file="n.Bfreq4.RDS")
+
+object.size(Tfreq) 405358064 bytes
+saveRDS(Tfreq,file="n.Tfreq4.RDS")

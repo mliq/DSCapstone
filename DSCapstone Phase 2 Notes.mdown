@@ -14,6 +14,23 @@ DS Phase 2
 
 So it will load t.TFreq4.RDS first.
 
+3. Add all 3 corpuses to shiny app and classification test (getPred())
+
+4. OK i have a feeling this will be too slow.
+
+* Try reducing size of corpus and doing accuracy measurements again.
+
+	*Predictions8.FunctionalizeForTableOptimization.R*
+
+	OK while it made no diff on T corpus at 16%, it did bring blog corpus down from 17.3% to 15.5%. Since I am aiming towards 20%, this is not good. I need to improve the algorithm first, then reduce.
+
+* *idea* so, the trigram is the trigram and that's that, but if I could come up with a better prediction for the NA cases, THAT could push me over 20% (The 'unseen' trigrams).
+
+This could be done by stepping to bigrams of course.
+
+So let's create bigram database?
+
+First, how many NAs do i get ?
 
 * UNSTEM the prediction finally.
 		
