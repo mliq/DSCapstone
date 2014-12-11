@@ -2,7 +2,9 @@ DS Phase 2
 ====
 # WHAT IS HAPPENING NOW
 
->I am running "process training set.6.ProcessFix3.TriGramsOnly.RunningonNewsNow.R" to create n.Tfreq4.RDS. Then I will have three corpus frequency tables approx 30 MB each.
+> I am running process training set.7.BiGrams.R to create backoff bigrams for NA results and try to hit 20% accuracy. I may want to redo the Blog one because I think I ran prediction 6 on it, but is that even any different? not sure. Actually! I don't think so! Did I use correct train4? dunno maybe used train3 by mistake?
+
+X I am running "process training set.6.ProcessFix3.TriGramsOnly.RunningonNewsNow.R" to create n.Tfreq4.RDS. Then I will have three corpus frequency tables approx 30 MB each.
 
 *Next steps*
 1. develop algorithm which can classify and test accuracy by going back in sentence and isolating/testing each known trigram.
@@ -32,8 +34,25 @@ So let's create bigram database?
 
 First, how many NAs do i get ?
 
+* Now, test accuracy with bigram stepback.
+	
+	*Quiz 3 Accuracy Measures*
+
+	*bigram stepback*
+	# 0.1593463 for t.Tfreq6.RDS
+	
+	*no bigram stepback*
+	# 0.1593463 for t.Tfreq6.shrink.RDS : ok no drop
+	# 0.1545497 for b.Tfreq4.shrink.RDS : some drop
+	# 0.1593463 for t.Tfreq6.RDS
+	# 0.1361028 for n.Tfreq4.RDS
+	# 0.1737417 for b.Tfreq4.RDS
+
+	# 0.063259 for t.Tfreq4.RDS
+
 * UNSTEM the prediction finally.
-		
+
+* do nrows instead of is.na in predict function.
 
 
 ----

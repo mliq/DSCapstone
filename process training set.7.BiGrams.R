@@ -5,7 +5,7 @@ ptm <- proc.time()
 # SETUP #
 gc()
 setwd("C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US")
-train=readRDS("n.train4.RDS")
+train=readRDS("b.train4.RDS")
 library(tm)
 library(RWeka)
 
@@ -115,4 +115,4 @@ rm(counts)
 proc.time() - ptm # 1e6 twitter lines: 5095.00 85 min., 2747 for blog 333,333 lines
 
 object.size(Tfreq) 405358064 bytes
-saveRDS(Tfreq,file="n.Tfreq4.RDS")
+saveRDS(Tfreq,file="b.Bfreq4.2.RDS")
