@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://www.stat.yale.edu/~jay/EC2/CreateFromScratch.html -->
+<html hc="a3" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>R on Amazon EC2</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+<style class="winnerfm-style">.freefl-overlay{
+    cursor: pointer;
+    background-color: #3c3c3c;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTEyQjEzQkZENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTEyQjEzQkVENTAyMTFFM0I2ODg5NjQ1MjUxOERCMjIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjkyNzk5YmExLWM3MjAtMTk0YS1hNzU3LWM1YjE4NjI1MTZlNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5Mjc5OWJhMS1jNzIwLTE5NGEtYTc1Ny1jNWIxODYyNTE2ZTciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5GhQdBAAAFFklEQVR42uyc3VKzQAyGt5FWbXX0wBnv/7r0Bjzx31Zb234vBCNdYMlXgULJHnSg0JB9Jhv27+3o/v5+u926YDk7Ozs5OQnfAyOLxaIuU5+fn5vNJnzb6elpFEW1mJpMJuPx2FUVMlJKUjBFRkpJar1ek5FSkoqboZFSkiqFZaTypIphGalCUgWwjFQZKR+WkQqQ2oFlpMKkfmEZqUpSKSwjpSEVwzJSSlIxLCOlJAVT0RGT0pjSkwJ0MlJKUqGxoZHKN2QyUvqUR0ZK/3KIhkYKpr6+vvYg5UeWkQp3OH6twxv4ZKQCXbOoaVK3t7fZq+/v7x8fH3uQms1mFxcX2asPDw9iHHd+f3+DRXOkUlhNxxROxUt+yt4xBSKenzjFPXAMlcTBarVqiFQMq4XWBy8fHx9raX0ITC98cA/yLAzCw9Fo1BypGFb7eQpuERG8h038iquBY1R1kxQ2xTfjs6xx8dWm89QOrBZIgQJXDA7hTkQBnGNY+MQPs49A3V5fX/HN5eWlNL2np6fU3Z+QpKTIl4VVrZcU/IxaiClU5vr6WtqREFwul8wOj+C8BqfhOo6n02nqX1LOz8/5V5Ljl0nhkGQPOcc3RwqmohZaHx6DvCuBILXlusFdPuXczK7jubj68vKCkBTQ7DSHlTwRB2wHn/JlE6QKevBN5CmuSfgGbpJZoAg9dBe8VwHuyb8NOcQajani4U4TpDRlnBQPn9exkohrLaN7Q8io6XefEhZymUcBp5LgcJwH1zIpt/cia41DEE5VXE88HU1PmiF3GmZJ8VJe+6T8yDrIuI8TPDoKeANy5uJQws9vbm7Yn8rHtUDK7bHIWvsIGZ/z+ZyHLPwGxFV0tXDMvdZVUg5OKg72u7u7vs8ltLbMEzlbZFVPn9oi639MNNsiq5ZUxbqhkcqSiidLjJSSlDvWRdYmSJWODY1UoSkyUnpTZKT0pshI6U2RkdKbIiOlN0VGSm+KjJTeFBkp176S9ehJtbTIepBJwdpJ1aNkHQgp93cl63BIuT8qWQdFyv1FyTo0Uq4Li6x9IeX2U7IOk9TO5N+QtyEroZOR0ocnGSl9QyYjpU95ZKRcjYusRsopF1mNlFMushopV7nIOkmKS3bj8TdZSRFvP3t7e+s1Kd6hKvtURX4VIOUCW7vzkiLZ1z+dTtdJ6W9MuSL5VZiUK1SyrlYr3JSXFLFeCV2Nq6srGCpUFfWl9SGmPPlVJakUFqrNHQhggiHRfpT57RKNw5HlKRCAJyAQdxF+hEFZ+VUMC9dktzqOWe/hMpIitEe2znol2Xrdd1Iiv3KJugotBuHGu6QL5VfgmOqpWFuDa3lJkSQ/0St5kqKexlRWfoU3WNpHJyqTX8WwWPr3/PyMrzxJkQiIJCPmJUX9bX04XSwW3m15+RVOOYx+EzwCyvMe1r0En5cU9TpPwc9sd6Fw2Ac/QUpeZZErkRR5k4It56n2t/eVwfLfhp6kyEMzqI2Q+VYpniDSye1Kijwd15BJyauM1bTxgScpkq7DwEmxG3Cbu13pIqtIinB5npRwMz4aUmhPgZgCE/QV4BVIifwqFTrlM/qQW58UZKdsjzIaICmlKY9UASwjFTBFRkpvioyU3hQZKb0pMlJ6U2Sk9KbISLn+LrJ2llTnFlm7TMp1apG146Rc4O+CjVR+CElGSj/Yjg5OqjtbRiunJchI6SdwyEjpp7rISOknBclIKUmlCX6blE6ROuymtbLyT4ABAI0sAxAZwQU9AAAAAElFTkSuQmCC);
+    background-position: 0 0;
+    background-repeat: repeat;
+    z-index: 999999;
+    position: relative;
+}
+</style></head>
+
+<body>
+<h1>R on Amazon EC2</h1>
+
+<p><strong>by Jay Emerson and Xiaofei Wang<br>
+Department of Statistics, Yale University</strong></p>
+
+<p>This guide is divided into several sections.
+The first section should help you create an EC2 instance on your
+own from one of the Amazon basic images.  The second section
+describes customizations relatex to R. 
+This process is essentially what
+<a href="http://www.bioconductor.org/help/bioconductor-cloud-ami/">Bioconductor</a>
+would have done in creating its image(s) with customizations.</p>
+
+<p>Finally, we show how to take this basic process to create an instance for
+the purpose of building an on-demand cluster.  With only a few extra steps
+this cluster can be used with R's <code>foreach</code> (via <code>doSNOW</code>) for parallel
+computing.</p>
+
+<h2>Step-by-step instructions for setting up a (possibly free) T1 Micro instance</h2>
+
+<ol>
+<li><p>Sign up for an account (if you haven't)!  I set up my account for whatever
+region is appropriate.</p></li>
+<li><p>From the <code>EC2 Dashboard</code> choose <code>Security Groups</code> under
+<code>Network and Security</code>.  I added a group
+with SSH and HTTP, called <code>SSHandHTTP</code> which I'll make use of.  Make the
+obvious choices (SSH and HTTP on ports 22 and 80).  If you will be using
+Shiny, also open up port 3838.</p></li>
+<li><p>From the <code>EC2 Dashboard</code> under <code>Create Instance</code> choose <code>Launch Instance</code>.
+My account is in the US East (N. Virginia) region.</p></li>
+<li><p>I'll make use of the <code>Classic Wizard</code>.  On the next screen, I selected
+<code>Ubuntu Server 12.04 LTS</code> with the 64-bit version.  This is eligible for
+the free tier model (as denoted by the gold star).</p></li>
+<li><p>I'll create one (1) instance of the <code>T1 Micro</code> instance type.  So I
+didn't need to modify anything on this page.  Hit <code>continue</code>.</p></li>
+<li><p>Wait while it loads the kernel and RAM disk IDs.  It may take a minute.
+But then I took the defaults, then hit <code>continue</code> without further changes.</p></li>
+<li><p>I also too the default storage configuration on the subsequent screen.</p></li>
+<li><p>I did not request any tags.</p></li>
+<li><p>I created a key pair, which I named <code>jaykey</code>.  Make sure you save this
+as instructed (or else things are a real pain).  This gave me <code>jaykey.pem</code>.</p></li>
+<li><p>I chose my <code>SSHandHTTP</code> security group, which I created above.</p></li>
+<li><p><code>Launch</code>!  I then closed the window and waited while the instance
+initialized.  You can watch from <code>EC2 Dashboard</code>.  Wait until the
+state is given with a green circle as <code>running</code>.</p></li>
+<li><p>Finally, log in via SSH.  On your local machine (MacOS or Linux),
+move your key file (mine was <code>jaykey.pem</code>) into <code>~/.ssh/</code>.  If you didn't
+grab it the first time (above) you're hosed and may have to create
+a new one or start over.  You may also
+have to set the permissions (<code>chmod 400 jaykey.pem</code> for me). Next,
+in the EC2 Management Console, select your instance.  At the bottom
+of the screen, under the <code>Description</code> tag, look for the entry under
+<code>Public DNS</code>.  Mine was <code>ec2-54-242-39-67.compute-1.amazonaws.com</code>,
+so I did the following to log in (the default user name is always
+<code>ubuntu</code>):</p>
+
+<blockquote>
+<p>ssh -i ~/.ssh/jaykey.pem <a href="mailto:ubuntu@ec2-54-242-39-67.compute-1.amazonaws.com">ubuntu@ec2-54-242-39-67.compute-1.amazonaws.com</a></p>
+</blockquote></li>
+<li><p>Voila!  I'm in.</p></li>
+</ol>
+
+<h2>Customization of the instance</h2>
+
+<p>We provide several scripts: a shell script and some R scripts.  These 
+basically install R (either 2.15.3 or 3.0.1 but can be modified
+easily) and add-on packages.  The scripts are set up
+Simon Urbanek's <code>Rserve</code> and <code>FastRWeb</code> framework for CGI
+scripting with R.  You can add anything else you might want (I add the Shiny
+server from R Studio, and this part of the installation might require
+that you hit <code>return</code> at some point).</p>
+
+<p>To do this customization, SSH into the instance, and pick up
+the shell script (if you want to run my version without modification).
+Otherwise, edit <code>InstallR.sh</code> to use your own R scripts (at your own risk).</p>
+
+<pre><code>instance-prompt$ sudo su
+instance-prompt$ wget http://www.stat.yale.edu/~jay/EC2/InstallR.sh
+instance-prompt$ chmod +x InstallR.sh
+instance-prompt$ ./InstallR.sh
+</code></pre>
+
+<p>Once this is complete, you're good to go.</p>
+
+<h2>Building an on-demand cluster for parallel computing</h2>
+
+<p>This section simply extends material discussed above.  You can build
+a compute cluster (CC) of any number of nodes of a certain type.  Amazon's
+CC1 instance is 4 cores, and a CC2 instance is 8 cores (CHECK, EXPAND).
+Options may be limited depending on the Amazon region (we are using
+<code>N. Virginia</code>.</p>
+
+<ol>
+<li><p>On your Dashboard, click <code>AMIs</code> under <code>Images</code>. Modify the filter for public
+images, and search for <code>ami-0745d26e</code>.  Select it, and launch.  Choose your
+instance type (we use <code>cc1.4xlarge</code> which may be 4 core, 23 GB RAM, with
+over 800 GB of dedicated – not shared – disk space).  You
+need to specify a placement group; we called ours <code>CC1-cluster</code>.  Click through
+stuff as above (including your key pair), specify your security group, and
+launch.</p></li>
+<li><p>Back in the dashboard, click <code>Volumes</code> under <code>Elastic Block Store</code>.
+Create a 200 GB standard volume. Be sure that the volume resides in the same
+<code>Availability Zone</code> as the instance. Attach the volume to the instance, picking
+<code>dev/sdh</code> as the mount point.  This will be shared across your cluster.</p></li>
+<li><p>Login and sudo su.</p></li>
+<li><p>Format and mount (note that the “s” in the path has been replaced by “xv”)</p>
+
+<blockquote>
+<p>mkfs.ext4 /dev/xvdh<br>
+mkdir -m 000 /vol<br>
+echo “/dev/xvdh /vol auto noatime 0 0” | sudo tee -a /etc/fstab<br>
+sudo mount /vol  </p>
+</blockquote></li>
+<li><p>Install stuff (InstallR.sh) as explained above.</p></li>
+<li><p>Deal with SSH keys.  To do this, do <strong>not</strong> be root!  You are user <code>ubuntu</code>.  Just hit
+<code>return</code> when asked any question about a passphrase.</p>
+
+<blockquote>
+<p>su ubuntu<br>
+cd<br>
+ssh-keygen -t dsa<br>
+cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys<br>
+chmod 644 ~/.ssh/authorized_keys</p>
+</blockquote></li>
+<li><p>Go back to EC2 Dashboard, click on instance and under Actions, select “Create Image”. </p></li>
+<li><p>Maybe name your image something like <code>CC1-image</code> and then <code>Yes, Create</code>.  This will
+add the image to <code>Images</code> under <code>AMIs</code>, and will take a little while (rebooting your
+master instance in the process).</p></li>
+<li><p>Select the image, click Launch. Select the CC1 instance type with quantity 1. 
+If we wanted, say, 10 slaves, then we would pick 10 here. Make sure this instance shares the
+same security group and placement group as the master.</p></li>
+<li><p>Log into the master, and copy the <code>Public DNS</code> names of the slave machines into a new
+file <code>/vol/nodelist</code>, one per line.  Do not include the master.</p></li>
+<li><p>Edit Security Group to have port 10187 opened (could reconsider this later).</p></li>
+<li><p>Fire up R. We will now do the same sort of exercise as before, making use of 
+8 cores, 4 of which reside in the master “localhost”, and 4 others that come from
+the slave in the “nodelist” file. </p></li>
+</ol>
+
+<p>Here, we show a simple calculation done in parallel via <code>doSNOW</code> with 8 cores on the
+2 nodes:</p>
+
+<pre><code>library(doSNOW)
+library(itertools)
+setDefaultClusterOptions(port=10187)
+machines &lt;- readLines("/vol/nodelist")
+machines &lt;- rep(c("localhost", machines), each = 4)
+cl &lt;- makeCluster(machines, type = "SOCK")
+registerDoSNOW(cl)
+N &lt;- 1e6
+a &lt;- matrix(1:N, nrow=4)
+system.time({
+    b &lt;- foreach(j=isplitIndices(ncol(a), chunks=length(machines)),
+                 .combine=c) %dopar% (apply(a[,j], 2, sum))
+})
+stopCluster(cl)
+</code></pre>
+
+<h2>Terminating your cluster</h2>
+
+<p>This is important, otherwise you'll get billed about $2.50 an hour for these two
+nodes!  In the Dashboard, select all the machines and terminate.  Alternatively,
+you may just <code>stop</code> and we're trying to figure out what the billing implications are
+of having this stuff stopped (not running) but available.  This could be a nice
+option if you use this regularly.</p>
+
+
+
+
+
+<div><div id="SL_button" class="ImTranslatorLogo"></div><div id="SL_shadow_translation_result2" style="display: none;"></div><div id="SL_shadow_translator" style="display: none;"><div id="SL_planshet"><div id="SL_TB"><div class="ImTranslatorLogo"></div><table cellspacing="1" border="0" id="SL_tables"><tbody><tr><td class="SL_td" align="left" width="20%"><div id="SL_lng_from">English&nbsp;»</div></td><td class="SL_td" align="left" width="20%"><div id="SL_to_"><div id="SL_tocurlng" style="margin-left:5px;">Georgian</div><div class="SL_arrow"></div><div id="SL_to_list" style="display=" none'=""><div class="SL_DDMENU"><div id="SL_af" class="SL_limenu">Afrikaans</div><div id="SL_sq" class="SL_limenu">Albanian</div><div id="SL_ar" class="SL_limenu">Arabic</div><div id="SL_hy" class="SL_limenu">Armenian</div><div id="SL_az" class="SL_limenu">Azerbaijani</div><div id="SL_eu" class="SL_limenu">Basque</div><div id="SL_bn" class="SL_limenu">Bengali</div><div id="SL_be" class="SL_limenu">Belarusian</div><div id="SL_bg" class="SL_limenu">Bulgarian</div><div id="SL_ca" class="SL_limenu">Catalan</div><div id="SL_zh_CN" class="SL_limenu">Chinese&nbsp;(Simp)</div><div id="SL_zh_TW" class="SL_limenu">Chinese&nbsp;(Trad)</div><div id="SL_hr" class="SL_limenu">Croatian</div><div id="SL_cs" class="SL_limenu">Czech</div><div id="SL_da" class="SL_limenu">Danish</div><div id="SL_nl" class="SL_limenu">Dutch</div><div id="SL_en" class="SL_limenu">English</div><div id="SL_eo" class="SL_limenu">Esperanto</div><div id="SL_et" class="SL_limenu">Estonian</div><div id="SL_tl" class="SL_limenu">Filipino</div><div id="SL_fi" class="SL_limenu">Finnish</div><div id="SL_fr" class="SL_limenu">French</div><div id="SL_gl" class="SL_limenu">Galician</div><div id="SL_ka" class="SL_limenu">Georgian</div><div id="SL_de" class="SL_limenu">German</div><div id="SL_el" class="SL_limenu">Greek</div><div id="SL_gu" class="SL_limenu">Gujarati</div><div id="SL_ht" class="SL_limenu">Haitian&nbsp;Creole</div><div id="SL_iw" class="SL_limenu">Hebrew</div><div id="SL_hi" class="SL_limenu">Hindi</div><div id="SL_hu" class="SL_limenu">Hungarian</div><div id="SL_is" class="SL_limenu">Icelandic</div><div id="SL_id" class="SL_limenu">Indonesian</div><div id="SL_ga" class="SL_limenu">Irish</div><div id="SL_it" class="SL_limenu">Italian</div><div id="SL_ja" class="SL_limenu">Japanese</div><div id="SL_kn" class="SL_limenu">Kannada</div><div id="SL_ko" class="SL_limenu">Korean</div><div id="SL_lo" class="SL_limenu">Lao</div><div id="SL_la" class="SL_limenu">Latin</div><div id="SL_lv" class="SL_limenu">Latvian</div><div id="SL_lt" class="SL_limenu">Lithuanian</div><div id="SL_mk" class="SL_limenu">Macedonian</div><div id="SL_ms" class="SL_limenu">Malay</div><div id="SL_mt" class="SL_limenu">Maltese</div><div id="SL_no" class="SL_limenu">Norwegian</div><div id="SL_fa" class="SL_limenu">Persian</div><div id="SL_pl" class="SL_limenu">Polish</div><div id="SL_pt" class="SL_limenu">Portuguese</div><div id="SL_ro" class="SL_limenu">Romanian</div><div id="SL_ru" class="SL_limenu">Russian</div><div id="SL_sr" class="SL_limenu">Serbian</div><div id="SL_sk" class="SL_limenu">Slovak</div><div id="SL_sl" class="SL_limenu">Slovenian</div><div id="SL_es" class="SL_limenu">Spanish</div><div id="SL_sw" class="SL_limenu">Swahili</div><div id="SL_sv" class="SL_limenu">Swedish</div><div id="SL_ta" class="SL_limenu">Tamil</div><div id="SL_te" class="SL_limenu">Telugu</div><div id="SL_th" class="SL_limenu">Thai</div><div id="SL_tr" class="SL_limenu">Turkish</div><div id="SL_uk" class="SL_limenu">Ukrainian</div><div id="SL_ur" class="SL_limenu">Urdu</div><div id="SL_vi" class="SL_limenu">Vietnamese</div><div id="SL_cy" class="SL_limenu">Welsh</div><div id="SL_yi" class="SL_limenu">Yiddish</div></div></div></div><select id="SL_lng_to"><option value="af">Afrikaans</option><option value="sq">Albanian</option><option value="ar">Arabic</option><option value="hy">Armenian</option><option value="az">Azerbaijani</option><option value="eu">Basque</option><option value="bn">Bengali</option><option value="be">Belarusian</option><option value="bg">Bulgarian</option><option value="ca">Catalan</option><option value="zh-CN">Chinese&nbsp;(Simp)</option><option value="zh-TW">Chinese&nbsp;(Trad)</option><option value="hr">Croatian</option><option value="cs">Czech</option><option value="da">Danish</option><option value="nl">Dutch</option><option value="en">English</option><option value="eo">Esperanto</option><option value="et">Estonian</option><option value="tl">Filipino</option><option value="fi">Finnish</option><option value="fr">French</option><option value="gl">Galician</option><option value="ka">Georgian</option><option value="de">German</option><option value="el">Greek</option><option value="gu">Gujarati</option><option value="ht">Haitian&nbsp;Creole</option><option value="iw">Hebrew</option><option value="hi">Hindi</option><option value="hu">Hungarian</option><option value="is">Icelandic</option><option value="id">Indonesian</option><option value="ga">Irish</option><option value="it">Italian</option><option value="ja">Japanese</option><option value="kn">Kannada</option><option value="ko">Korean</option><option value="lo">Lao</option><option value="la">Latin</option><option value="lv">Latvian</option><option value="lt">Lithuanian</option><option value="mk">Macedonian</option><option value="ms">Malay</option><option value="mt">Maltese</option><option value="no">Norwegian</option><option value="fa">Persian</option><option value="pl">Polish</option><option value="pt">Portuguese</option><option value="ro">Romanian</option><option value="ru">Russian</option><option value="sr">Serbian</option><option value="sk">Slovak</option><option value="sl">Slovenian</option><option selected="" value="es">Spanish</option><option value="sw">Swahili</option><option value="sv">Swedish</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thai</option><option value="tr">Turkish</option><option value="uk">Ukrainian</option><option value="ur">Urdu</option><option value="vi">Vietnamese</option><option value="cy">Welsh</option><option value="yi">Yiddish</option></select></td><td class="SL_td" width="13%" align="center">&nbsp;</td><td class="SL_td" width="8%" align="center"><div id="SL_TTS_voice" title=""></div></td><td class="SL_td" width="8%" align="center"><div class="SL_copy_hand" id="SL_copy" title="Select text"></div></td><td class="SL_td" width="8%" align="center"><div class="SL_font_off" id="SL_bbl_font" title="Font size"></div></td><td class="SL_td" width="5%"></td><td class="SL_td" width="8%" align="right"><div class="SL_pin_off" id="SL_pin" title="Pin pup-up bubble"></div></td></tr></tbody></table></div></div><div id="SL_shadow_translation_result"></div><div id="SL_bbl_donate" title="Make a small contribution"></div><div id="SL_Balloon_options"><a href="chrome-extension://pcfaommkmdjacdkbaoohklbccfmbnnod/options-bbl.html" target="_blank" class="SL_options" title="Show options">Options</a></div></div></div></body></html>

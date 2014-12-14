@@ -1,0 +1,36 @@
+#Make faster lookup table.R
+
+x=readRDS("n.no4counts.RDS")
+
+lapply(1:nrow(x[1:10]),function(y){
+	# get gram, separate words
+		gram=x[y,]$grams
+		words<-unlist(strsplit(gram,"\\s+"))
+		
+	# Isolate FIRST two words of the sentence
+		history=words[(length(words)-2):(length(words)-1)]
+		prediction=words[length(words)]
+		history=paste(as.character(history),collapse=' ')
+
+	# Skip the rest if it's already been done
+		if(is.na(Trigrams[history])[2]==FALSE){
+
+			# find all rows with that history, only keep the top one.
+			matches=data.table(x[grep(paste0("^",history," "),x$grams),][order(-counts)])
+
+			# Isolate prediction words
+			pred=matches[1]$grams
+			pred=unlist(strsplit(pred,"\\s+"))
+			pred=pred[length(pred)]
+
+			# Set in data.table
+			Trigram=data.table(hist=history,pred=pred)
+			setkey(Trigram,hist)
+
+			#Add to Trigrams list after it already exists.
+			if(nrow(Trigrams)>1){
+				Trigrams=rbindlist(list(Trigram,Trigrams), use.names=TRUE)
+				#merge(Trigram,Trigrams,all=TRUE)
+			}
+		}
+})

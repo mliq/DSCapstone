@@ -1,0 +1,21 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "."
+		},
+		{
+			"follow_symlinks": true,
+			"path": "Predictor"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "Coursera-SwiftKey\\final\\en_US"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "C:\\Users\\Michael\\SkyDrive\\Code\\GitHub\\Notes"
+		}
+	]
+}

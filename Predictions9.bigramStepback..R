@@ -17,7 +17,7 @@ library(data.table)
 	#saveRDS(Tfreq,file="b.Tfreq4.shrink.RDS")
 
 Tfreq=readRDS("b.Tfreq4.RDS")
-Bfreq=readRDS("b.Bfreq4.RDS")
+Bfreq=readRDS("b.Bfreq4.2.RDS")
 	
 ## FUNCTIONS ##
 
@@ -172,6 +172,8 @@ check<-function(x){
 results=unlist(lapply(0:9,getPred))
 mean(results)
 
+
+############################
 countNAs=function(x){
 	
 	# Take an input:

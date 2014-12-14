@@ -1,0 +1,162 @@
+Accuracy Measures
+=====
+
+* bigrams would be important in a prediction model for live typing, but not for predicting the end of a sentence.
+
+>So, 2 count reduction with classification definitely outperforms simply using the combined database. Let's try 3 counts.
+
+>Also, let's see if any corpus are never being chosen, to eliminate them!
+
+Quiz2  [1] "TWITTER" "NONE"    "NONE"    "NONE"    "TWITTER"
+ [6] "NONE"    "NONE"    "NONE"    "ALL"     "NONE"  
+Quiz3  [1] "TWITTER" "NONE"    "NONE"    "NONE"    "NONE"   
+ [6] "NEWS"    "NONE"    "ALL"     "NONE"    "NONE"  
+
+I guess I would like to know which corpus works best on the NONE classifiers...
+
+#nonClassifiers.txt
+
+afreq 0.1523606
+tfreq 0.1309044
+bfreq 0.1194708
+nfreq 0.112611
+
+# no 6 counts
+
+Quiz2
+Quiz3 # no 5 counts
+
+Quiz2 0.2012891
+Quiz3 0.1855361
+
+# no 4 counts
+
+Quiz2 0.2012891
+Quiz3 0.1917861
+
+# no 3 counts
+
+Quiz2 0.2012891
+Quiz3 0.1917861
+
+# idea to improve speed - use a smaller database for classification.
+# Also, how do we do only using the ALL database?
+
+# no 2 counts
+
+Quiz2 0.21038
+Quiz3 0.1976684
+
+>Still too slow though, with classification that is. So i need to either reduce number of corpus **(See which corpuses are being used!)**
+>Or just use one.
+
+# just allfreq 2 counts.
+Quiz2 0.1750391
+Quiz3 0.1858629
+
+# Classify per line, default to ALL corpus, no reduction in corpus
+	
+Quiz2 0.21038
+Quiz3 0.2126417
+
+# After eliminating 1 counts from ALL and also adding to use a.acc if larger than others, not just as fall back (Any possible difference? *Well yeah, as fallback i don't think it was ever used! Because one of them should be larger than the others...)*
+
+Quiz2 0.21038
+Quiz3 0.2126417
+
+# So now do with large a.acc again
+
+Quiz2 0.21038
+
+>So, no loss on Quiz2 with eliminating 1-counts from all, how about when eliminating from the others?
+
+# no 1 counts in all
+
+Quiz2 0.21038
+Quiz3 0.2126417
+
+# Total Corpus
+
+ALL.Tfreq.RDS
+	Quiz2 0.1750391
+	Quiz3 0.1962907
+
+t.all3.Tfreq.RDS
+	Quiz2 0.1812891
+	Quiz3 0.138123
+
+n.all3.Tfreq.RDS
+	Quiz2 0.1597896
+	Quiz3 0.1325091
+
+b.all3.Tfreq.RDS
+	Quiz2 0.1482534
+	Quiz3 0.1727316
+
+# Set of 3 parts
+
+*Twitter*
+t.1of3.Tfreq.RDS
+	Quiz2 0.1793411
+	Quiz3 0.1361028
+t.2of3.Tfreq.RDS
+	Quiz2 0.1754068
+	Quiz3 0.138123
+t.3of3.Tfreq.RDS
+	Quiz2
+	Quiz3
+
+>Disappointingly, my first random set performs better than the total set! However, this should not be the case in a larger test sample. Furthermore, if I combine ALL the sets, should do better.
+
+#Second Training Set Alone and Combined with First
+
+*Alone*
+`t.TSet2.TFreq.RDS `
+Quiz2 0.1673468
+Quiz3 0.1339661
+
+*Combined with first test set*
+`t1.t2.TFreq.RDS`
+Quiz2 0.1582559
+Quiz3 0.1304307
+
+>HM, it actually got worse?? that's odd...
+
+#Combining all 3 first sets:
+
+`b4.t6.n4.Tfreq.RDS`
+Quiz2: 0.1903023
+Quiz3: 0.1768337
+
+>Marginal improvement in accuracy, but seemingly a large time trade-off, possibly ameliorated by trimming.
+
+#First Training Set with and without Bigram Backoff
+
+*Quiz 2*
+
+*WITH bigram stepback*
+0.1391625 b.Bfreq4.2.RDS / b.Tfreq4.RDS
+0.1395905 n.Bfreq4.2.RDS / n.Tfreq4.RDS
+0.1831619 for t.Bfreq4.RDS / t.Tfreq6.RDS
+
+*NO bigram stepback*
+0.1391625 b.Tfreq4.RDS
+0.1395905 n.Tfreq4.RDS
+0.1831619 t.Tfreq6.RDS
+
+*Quiz 3*
+
+*WITH bigram stepback*
+0.1593463 for t.Bfreqr.RDS / t.Tfreq6.RDS
+0.1737417 b.Bfreq4.2.RDS / b.Tfreq4.RDS
+0.1361028 n.Bfreq4.2.RDS / n.Tfreq4.RDS
+
+*no bigram stepback*
+0.1593463 for t.Tfreq6.shrink.RDS : ok no drop
+0.1545497 for b.Tfreq4.shrink.RDS : some drop
+0.1593463 for t.Tfreq6.RDS
+0.1361028 for n.Tfreq4.RDS
+0.1737417 for b.Tfreq4.RDS
+
+0.063259 for t.Tfreq4.RDS 
+

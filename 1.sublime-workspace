@@ -1,0 +1,808 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"t",
+				"t"
+			],
+			[
+				"bt",
+				"bt"
+			],
+			[
+				"j",
+				"j"
+			],
+			[
+				"b",
+				"b"
+			],
+			[
+				"make",
+				"makeTriTDM"
+			],
+			[
+				"Term",
+				"TermDocumentMatrix"
+			],
+			[
+				"corpus",
+				"corpus"
+			],
+			[
+				"Act",
+				"ActiveWindow"
+			],
+			[
+				"oth",
+				"otherOtherName"
+			],
+			[
+				"get",
+				"get	Get Elements"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "DS Phase 2\n====\n# WHAT IS HAPPENING NOW\n\n> I am running process training set.7.BiGrams.R to create backoff bigrams for NA results and try to hit 20% accuracy. I may want to redo the Blog one because I think I ran prediction 6 on it, but is that even any different? not sure. Actually! I don't think so! Did I use correct train4? dunno maybe used train3 by mistake?\n\nX I am running \"process training set.6.ProcessFix3.TriGramsOnly.RunningonNewsNow.R\" to create n.Tfreq4.RDS. Then I will have three corpus frequency tables approx 30 MB each.\n\n*Next steps*\n1. develop algorithm which can classify and test accuracy by going back in sentence and isolating/testing each known trigram.\n\n1.  OK what's my last prediction file? Predictions6.Large.t.Tfreq6..2.functionalize.R\n	Now working as *Predictions7.ClassificationTesting.R*\n\n2. Write an algorithm which classifies text by testing all previous trigrams.\n\nSo it will load t.TFreq4.RDS first.\n\n3. Add all 3 corpuses to shiny app and classification test (getPred())\n\n4. OK i have a feeling this will be too slow.\n\n* Try reducing size of corpus and doing accuracy measurements again.\n\n	*Predictions8.FunctionalizeForTableOptimization.R*\n\n	OK while it made no diff on T corpus at 16%, it did bring blog corpus down from 17.3% to 15.5%. Since I am aiming towards 20%, this is not good. I need to improve the algorithm first, then reduce.\n\n* *idea* so, the trigram is the trigram and that's that, but if I could come up with a better prediction for the NA cases, THAT could push me over 20% (The 'unseen' trigrams).\n\nThis could be done by stepping to bigrams of course.\n\nSo let's create bigram database?\n\nFirst, how many NAs do i get ?\n\n* Now, test accuracy with bigram stepback.\n	\n	*Quiz 3 Accuracy Measures*\n\n	*WITH bigram stepback*\n	# 0.1593463 for t.Tfreq6.RDS\n	#  b.Bfreq4.2.RDS\n	# \n	*no bigram stepback*\n	# 0.1593463 for t.Tfreq6.shrink.RDS : ok no drop\n	# 0.1545497 for b.Tfreq4.shrink.RDS : some drop\n	# 0.1593463 for t.Tfreq6.RDS\n	# 0.1361028 for n.Tfreq4.RDS\n	# 0.1737417 for b.Tfreq4.RDS\n\n	# 0.063259 for t.Tfreq4.RDS\n\n* UNSTEM the prediction finally.\n\n* do nrows instead of is.na in predict function.\n\n\n----\n\n# A is for ALGORITHM - Now I want to improve my model.\n\n## Measures of accuracy\n\n* cross-entropy\n\n* Perplexity\n\nIn 1991, a trigram model was used on a large cor-\npus of one million English words to achieve a perplex-\nity score of 247 per word, corresponding to a cross en-\ntropy of 7.95 bits per word or 1.75 bits per letter (Brown,\nDella Pietra, Della Pietra, Lai, Mercer, 1992). On this\ncorpus, ASCII coding has a cross entropy of 8 bits per\ncharacter, Huffman coding has 4.46, and the UNIX com-\nmand compress has 4.43. On more specialized cor-\npora it is possible to achieve lower perplexity scores than\nfor more general corpora. Recently, a word perplexity\nscore of 96.9 was reported on the Associated Press corpus\nusing a technique called stochastic memoization (Wood,\nArchambeau, Gasthaus, James, and Teh, 2009). This is\nsignificantly lower than the perplexity scores reported for\ncompeting approaches.\n\n## Classification\n\n each training category can be used as a separate\ntraining set for the prediction/classification algorithm. In\nthe case of prediction, the prediction error for the data\nis compared using each category as a training set  The\ndata can be classified as being in the category which re-\nsults in the lowest prediction error.\n\n*SO, what you would do is, run each trigram of the sentence which is KNOWN through the two sets to find the lowest error*\n\nok cool, that is actionable info.\n\nSteps to build algorithm:\n\n1. Take a test sentence\n2. Break into trigrams\n3. Run Prediction.\n4. Get a measure of accuracy.\nSo: n.train4.RDS & t.Tfreq6.RDS ?\ndid i never build the freq table for news perhaps?\nnope.\n\n\n\n\n# B. DESIGN\nkeep the default screen extremely simple Google and Apple but have a button that turns on advanced visualizations where you can put some cool word cloud or something like inverse perfect list of the other options and the probability is even perhaps perhaps and maybe something that tells the identification whether this is from Twitter or news\n================\n# Initial loading pop-up of some sort\n\nhttp://stackoverflow.com/questions/18237987/show-that-shiny-is-busy-or-loading-when-changing-tab-panels\n\n# Model Analytics\n\n* Perplexity\n\n* performance vs. accuracy\n\n* Create a test set you can run on different corpus to get automatic accuracies.\n\n* Use 1, 2, and 3 n-grams?\n\n* Markov Chains?\n\n* smooth probabilities\n\n* katz back-off model\n\n* Can you estimate how uncertain you are about the words you are predicting? \n\n* What are the most commonly missed n-grams? Can you think of a reason why they would be missed and fix that? \n\n* Other Data Visualizations?\n	\n	* Word Cloud\n\n	* Graphs of probability?\n\n# *Elements for Presentation*\n\n* Fix for commonly missed\n\n* text cleanup, unstemming\n\n* Different corpuses, classifying\n\n* estimating uncertainty\n\n* How should you document the use of your data product (separately from how you created it) so that others can rapidly deploy your algorithm?\n\n# Improving accuracy\n\n\n#Unstem:\n\"dog is my\" produces \"favorit\"\n\n#Shinysky:\n----\n* Busy indicator for initial loading\n\n```r\n# Server.R:\noutput$plot1 <- renderPlot({\n	if (input$busyBtn == 0) \n		return()\n	Sys.sleep(3)\n	hist(rnorm(10^3))\n})\n# UI\nbusyIndicator(\"Calculation In progress\",wait = 0)\n	,actionButton(\"busyBtn\",\"Show busyInidcator\")\n	,plotOutput(\"plot1\")\n```\n\n* Typeahead for word selection?\n\nhttps://github.com/AnalytixWare/ShinySky\n\n#Examples:\n----\nhttps://www.google.com/search?client=opera&q=site%3A+shinyapps.io+prediction&sourceid=opera&ie=UTF-8&oe=UTF-8\n\n# TO DO\n----\n0. \n\n* Loading message?\n\n# display something else for NA?\n\n\n# Classify the text \nto use a particular corpus based on how highly the words score in the unigram frequency database of that corpus (stop words removed)\n\n# X Get the basics of the Shiny App up and running:\n	1. A Shiny app that takes as input a phrase (multiple words) in a text box input and outputs a prediction of the next word (SINGLE).\n\nNOTE: top score requires only correct prediction in 20% of cases, 1/5! (Drawn from Twitter and news)\n\n# Ways to make it more awesome:\n	\n* have text prediction appear inline, letter-by-letter even?\n\n* have a word cloud or top 5 list appear separately?\n\n\n----\n#Shiny issues\n\nsetwd(\"C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictor\")\nshinyapps::configureApp(\"Predictor\", size=\"xxlarge\") \n\n\nYou can access the error log with ShinyApps::showLogs()\n\nBy default, Shiny limits file uploads to 5MB per file. You can modify this limit by using the shiny.maxRequestSize option. For example, adding options(shiny.maxRequestSize=30*1024^2) to the top of server.R would increase the limit to 30MB.\n\nhttp://shiny.rstudio.com/articles/shinyapps.html",
+			"file": "DSCapstone Phase 2 Notes.mdown",
+			"file_size": 7192,
+			"file_write_time": 130627506586588901,
+			"settings":
+			{
+				"buffer_size": 6820,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "# SETUP #\ngc()\nsetwd(\"C:/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US\")\nlibrary(tm)\nlibrary(RWeka)\n\n# Load the large twitter data.table trigram\nlibrary(data.table)\n\n#Shrink procedure:\n	#Tfreq=readRDS(\"b.Tfreq4.RDS\")\n	# For t: counts>2 = 396763/5266289 0.07534014939172536866%\n		# counts>=2 791025/5266289 .15% OK\n	# b: counts>=2 1056188/6717146=0.15723761252174658702\n	#Tfreq=Tfreq[counts>=2,] # 791025/5266289 .15% OK\n\n	#saveRDS(Tfreq,file=\"b.Tfreq4.shrink.RDS\")\n\nTfreq=readRDS(\"n.Tfreq4.RDS\")\nBfreq=readRDS(\"n.Bfreq4.2.RDS\")\n	\n## FUNCTIONS ##\n\n# Make Corpus and do transformations\nmakeCorpus<- function(x) {\ncorpus<-Corpus(VectorSource(x))\n# corpus <- tm_map(corpus, stripWhitespace)\ncorpus <- tm_map(corpus, content_transformer(tolower))\n# corpus <- tm_map(corpus, removeWords, stopwords(\"english\"))\ncorpus <- tm_map(corpus, stemDocument)\ncorpus<- tm_map(corpus,removePunctuation)\n# corpus<- tm_map(corpus,removeNumbers)\nreturn(corpus)\n}\n\nprocess<- function(x) {\n# Text Transformations to remove odd characters #\n# replace APOSTROPHES OF 2 OR MORE with space - WHY??? that never happens..\n	# output=lapply(output,FUN= function(x) gsub(\"'{2}\"rr, \" \",x))\n# Replace numbers with spaces... not sure why to do that yet either.\n	# output=lapply(output,FUN= function(x) gsub(\"[0-9]\", \" \",x))\n# Erase commas.\nx=gsub(\",?\", \"\", x)\n# Erase ellipsis\nx=gsub(\"\\\\.{3,}\", \"\", x)\n# Erase colon\nx=gsub(\"\\\\:\", \"\", x)\n# Merge on contractions (apostrophe):\nx=gsub(\"\\\\'\", \"\", x)\n# Erase |:\nx=gsub(\"\\\\|\", \"\", x)\n# Erase {}:\nx=gsub(\"\\\\{\", \"\", x)\nx=gsub(\"\\\\}\", \"\", x)\n##### SENTENCE SPLITTING AND CLEANUP\n# Split into sentences only on single periods or any amount of question marks or exclamation marks and -\n# ok here is where you change structure fundamentally... \n# Faster if I unlist once? no i guess it keeps getting relisted.\nx<-strsplit(unlist(x),\"[\\\\.]{1}\")\nx<-strsplit(unlist(x),\"\\\\?+\")\nx<-strsplit(unlist(x),\"\\\\!+\")\nx<-strsplit(unlist(x),\"\\\\-+\")\n# Split also on parentheses\nx<-strsplit(unlist(x),\"\\\\(+\")\nx<-strsplit(unlist(x),\"\\\\)+\")\n# split also on quotation marks\nx<-strsplit(unlist(x),\"\\\\\\\"\")\n# remove spaces at start and end of sentences:\n# HERE is where the problem begins. why?\nx<-gsub(\"^\\\\s+\", \"\", unlist(x))\nx<-gsub(\"\\\\s+$\", \"\", unlist(x))\n# Replace ~ and any whitespace around with just one space\nx<-gsub(\"\\\\s*~\\\\s*\", \" \", unlist(x))\n# Replace forward slash with space\nx<-gsub(\"\\\\/\", \" \", unlist(x))\n# Replace + signs with space\nx<-gsub(\"\\\\+\", \" \", unlist(x))\n# it s a \nx<-gsub(\"it s \", \"its \", unlist(x))\n# 'i m not'\nx<-gsub(\"i m not\", \"im not\", unlist(x))\n# 'i didn t'\nx<-gsub(\"i didn t\", \"i didnt\", unlist(x))\n# 'i don t'\nx<-gsub(\"i don t\", \"i dont\", unlist(x))\n# ' i m '\nx<-gsub(\" i m \", \" im \", unlist(x))\n\n# Eliminate empty and single letter values (more?)\nx=x[which(nchar(x)!=1)]\nx=x[which(nchar(x)!=0)]\n}\n#####################################################\n#Predictions:#\n# Start the clock!\nptm <- proc.time()\n\n#### INPUT MUNGING ####\ngetPred=function(x){\n	#TEST:\n	#x=0\n	# Take an input:\n	test=scan(\"Quiz3.txt\", what=\"character\",n=1,skip=x)\n\n	# transform as training set was (lowercase, stem, strip punctuation etc.)\n	test=iconv(test, to='ASCII', sub=' ')\n	test=process(test)\n	test=paste0(test, collapse=\" \")\n	corpus<-makeCorpus(test)\n	corpus=as.character(corpus[[1]][1])\n\n	# Split by words:\n	words<-unlist(strsplit(corpus,\"\\\\s+\"))\n\n	# Isolate last two words of the sentence\n	# Loop here to make set of trigrams.\n	correct=0\n	total=length(words)-2\n	# how many trigrams will there be? \n	# in a 4 word sentence, 2 so length-2.\n	# therefore, need exception not to run this when length is less than 3 words.\n	if(length(words)>=3){\n		lapply(1:total,FUN=function(x){\n			# loop through sentence making bigram and answer, \n			bigram=paste(words[x], words[x+1])\n			answer=paste(words[x+2])\n			# then check answer against predicted answer.\n			# Get answer\n			Xpred=data.table(Tfreq[grep(paste0(\"^\",bigram,\" \"),Tfreq$grams),][order(-counts)])	\n			# isolate the answer from prediction table.\n			Xpred=unlist(strsplit(Xpred[1]$grams,\"\\\\s+\"))\n			Xpred=Xpred[length(Xpred)]\n			# Test equality of prediction to actual and counter for the accuracy measure\n			if(!is.na(Xpred)){\n				if(Xpred==answer){correct=correct+1}	\n				correct<<-correct\n			} else {\n				\n				# If NA, do Bigram Stepback\n				\n				unigram=paste(words[x+1])\n				answer=paste(words[x+2])\n				Xpred=data.table(Bfreq[grep(paste0(\"^\",bigram,\" \"),Tfreq$grams),][order(-counts)])	\n				Xpred=unlist(strsplit(Xpred[1]$grams,\"\\\\s+\"))\n				Xpred=Xpred[length(Xpred)]\n\n				# Test equality of prediction to actual and counter for the accuracy measure\n\n				if(!is.na(Xpred)){\n				if(Xpred==answer){correct=correct+1}	\n				correct<<-correct\n				}\n			}\n		})\n	}\n	accuracy = correct/total\n	# paste(\"Correct: \", correct, \"total: \", total, \"Accuracy: \", accuracy)\n	return(accuracy)\n}\n\ncheck<-function(x){\n	bigram=x\n	Xpred=data.table(Tfreq[grep(paste0(\"^\",bigram,\" \"),Tfreq$grams),][order(-counts)])\n	Xpred=unlist(strsplit(Xpred[1]$grams,\"\\\\s+\"))\n	Xpred=Xpred[length(Xpred)]\n	paste(bigram, Xpred)\n}\n\n# Do get pred over each line of a document and print all results\n\n# Quiz 3 Test\nresults=unlist(lapply(0:9,getPred))\nmean(results)\n\n\n############################\ncountNAs=function(x){\n	\n	# Take an input:\n	test=scan(\"Quiz3.txt\", what=\"character\",n=1,skip=x)\n\n	# transform as training set was (lowercase, stem, strip punctuation etc.)\n	test=iconv(test, to='ASCII', sub=' ')\n	test=process(test)\n	test=paste0(test, collapse=\" \")\n	corpus<-makeCorpus(test)\n	corpus=as.character(corpus[[1]][1])\n\n	# Split by words:\n	words<-unlist(strsplit(corpus,\"\\\\s+\"))\n\n	# Isolate last two words of the sentence\n	# Loop here to make set of trigrams.\n	NACount=0\n	total=length(words)-2\n	# how many trigrams will there be? \n	# in a 4 word sentence, 2 so length-2.\n	# therefore, need exception not to run this when length is less than 3 words.\n	if(length(words)>=3){\n		count=lapply(1:total,FUN=function(x){\n			# loop through sentence making bigram and answer, \n			bigram=paste(words[x], words[x+1])\n			answer=paste(words[x+2])\n			# then check answer against predicted answer.\n			# Get answer\n			Xpred=data.table(Tfreq[grep(paste0(\"^\",bigram,\" \"),Tfreq$grams),][order(-counts)])	\n			# isolate the answer from prediction table.\n			# why not test for nrows and skip this?\n			Xpred=unlist(strsplit(Xpred[1]$grams,\"\\\\s+\"))\n			Xpred=Xpred[length(Xpred)]\n			# Test for na\n			if(is.na(Xpred)){\n				NACount=NACount+1\n			}\n		})\n	}\n	return(count)\n}\n\nCount=lapply(0:9,countNAs)\nsum(unlist(Count))\n\nsum(as.numeric(summary(Count)[1:length(Count)]))\n\n# b.Tfreq4.shrink.RDS  20 / ?\n# t.Tfreq6.shrink.RDS 23 / 141 = 16%\n----\nAccuracy Measures\n# 0.1593463 for t.Tfreq6.shrink.RDS : ok no drop that's cool...\n# 0.1545497 for b.Tfreq4.shrink.RDS : some drop. darn.\n\n# 0.063259 for t.Tfreq4.RDS\n# 0.1593463 for t.Tfreq6.RDS\n\n# 0.1361028 for n.Tfreq4.RDS\n# 0.1737417 for b.Tfreq4.RDS\n\n# history=words[(length(words)-1):length(words)]\n# nMin1=words[length(words)]\n# history=paste(as.character(history),collapse=' ')\n\n\n# # Make prediction list of matches:\n# Tpred=data.table(Tfreq[grep(paste0(\"^\",history,\" \"),Tfreq$grams),][order(-counts)])\n\n# # Print out top 5 possibilities:\n# print(Tpred[1:25])\n# Tpred<<-Tpred\n# }\n\n# # Find function\n# find=function(x){\n# Tpred[grep(x,Tpred$grams),]\n# }\n\n# Calculate Probabilities?\n# Edit trigrams to just the prediction and the count and the probabilities\n# Tpred=Tpred[,{s=strsplit(grams,\" \");list(prediction=unlist(s)[c(FALSE,FALSE,TRUE)],counts=counts,probability=probability)}]\n\n# Stop the clock\nproc.time() - ptm # 1e6 twit: 35.15 secs\n\n# ok so now all is dandy except my predictions blow.\n# study model again.\n####DATA.TABLE REFERENCE####\n# Subset listed predictions:\n# Tpred[[1]][Tpred[[1]]$counts>5]\n# how about search:\n# test=Tfreq[counts>2]\n# Fuzzy / Inexact Matches:\n# test[grep(\"a lot\",test$grams)]\n# Only the first two words of trigram:\n# test[grep(\"^mani time\",test$grams)]\n# grepl to get line numbers?\n# example(data.table)\n# Join two tables and match the keys, summing the values:\n# DT=merge(DT1,DT2,all=TRUE)\n# DT[,counts:=sum(counts.x,counts.y,na.rm=TRUE), by = names]\n# DT[,c(\"counts.x\",\"counts.y\") := NULL]\n# help(\":=\")\n# rename a column quickly:\n# setnames(Ufreq,\"old\",\"new\")\n####DATA.TABLE REFERENCE####",
+			"file": "Predictions9.bigramStepback..R",
+			"file_size": 8565,
+			"file_write_time": 130627993563882155,
+			"settings":
+			{
+				"buffer_size": 8282,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: EndCodeBlockSnipper"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"markdown ex",
+				"Set Syntax: Markdown Extended"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown Extended"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 498.0
+	},
+	"console":
+	{
+		"height": 181.0,
+		"history":
+		[
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"selector",
+			"Command Palette",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"view.settings().get('enable_telemetry')",
+			"view.settings().get('font_face')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictor"
+	],
+	"file_history":
+	[
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/1.sublime-project",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictor/server.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Task 2 To Do List.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/Quiz3.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/r function reference.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.7.BiGrams.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.6.ProcessFix3.TriGramsOnly.WITHSAVE..R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/mp61.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/i know its wrong.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/Dark Mirror Notes Pathology of Songwriter.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/stars bowie ballad.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.6.ProcessFix3.TriGramsOnly.RunningonNewsNow.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions6.Large.t.Tfreq6..R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/I leave the world.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/im so glad.mdown",
+		"/C/Users/Michael/SkyDrive/Artists Way/David Bowie songwriting.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Katz's back-off model - Wikipedia, the free encyclopedia.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Health2/1B.OCT14.csv",
+		"/C/Users/Michael/SkyDrive/Artists Way/bleeding",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/stars bowie in time.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/meticulous construction.mdown",
+		"/C/Users/Michael/SkyDrive/JOB/Big Data Specializations Job Counts.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/courses/libraries/widgets/mathjax/jax/output/HTML-CSS/fonts/STIX/General/Bold/Cyrillic.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Starting data analysis wrangling with R  Things I wish I'd been told_files/6yg-ggdQgQAg8SAADJkAjc-JMNnOnYuIGgH_iBV7uf8.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/o6ywMYin5kJ-ohhJxM3da1k-5TaWQ",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/JAVASCRIPT.md",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/R packages for big data.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/bigTDM all 3 texts.RData",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Big-O Algorithm Complexity Cheat Sheet.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/BlogReader-from-Template/BlogReader/BlogReader-Info.plist",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Large scale text mining in R - Job Salary Prediction   Kaggle.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/Udacity - Data Visualization and D3.js.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/why are you lyin.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Stars Change the Beginning to be more Mysterious.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Stars fresh.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Fear.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/TODO.mdown",
+		"/C/Users/Michael/SkyDrive/JOB/Job Interview.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown2/stars.md",
+		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/Default/Main.sublime-menu",
+		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Michael/SkyDrive/Artists Way/saber tooth.txt",
+		"/C/Users/Michael/SkyDrive/Artists Way/when you roll up",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/when i wish upon falling stars.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Wild.mdown",
+		"/C/Users/Michael/SkyDrive/Business/Health/Complaint about MDLive charges.txt",
+		"/C/Users/Michael/SkyDrive/My feelings on our future.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/when i wish upon a dive bar.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/stars animal eyes/when i wish upon falling stars.2_4.60 bpm.wav",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/pixies 116 was stars.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/20141208-170159 new stars chorus 4 much better yes mystery again.mp4",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/20141208-161603 new stars chorus 3 better yet.mp4",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/20141208-140118 new stars cool verse change chorus.mp4",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/20141208-150649 new stars chorus.mp4",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/new stars mockup 1.wav",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/news",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/New Snow.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/courses/libraries/widgets/mathjax/extensions/TeX/noErrors.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/ngrams.ppt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/i wish i could do something for you.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/mp26.txt",
+		"/C/Users/Michael/SkyDrive/Artists Way/Music.sublime-project",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Model1.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/C G (C) Eb A D .txt",
+		"/C/NKI/Infinite Player/Multis/EpiK DrumS SE/Drum Kits/Woody Woodmansey/Woody Woodmansey Kit GM.nkm",
+		"/C/NKI/Infinite Player/Multis/EpiK DrumS SE/Drum Kits/Woody Woodmansey/Woody Woodmansey Kit IMAP.nkm",
+		"/C/NKI/Infinite Player/Multis/EpiK DrumS SE/Drum Kits/Woody Woodmansey/Woody Woodmansey Kit VDRM.nkm",
+		"/C/Users/Michael/Downloads/VST/Sonic.Reality.EpiK.DrumS.Woody.Woodmansey.SE.Kit.for.Infinite.Player.KONTAKT-SYNTHiC4TE/syn-1132/Woody Woodmansey SE Kit/Studio ProFiles Infinite Player_info.nkx",
+		"/C/Users/Michael/Downloads/VST/Sonic.Reality.Infinite.Player.v1.1.WiN.OSX-MAGNETRiXX/readme.txt",
+		"/C/Users/Michael/Downloads/VST/Sonic.Reality.EpiK.DrumS.Woody.Woodmansey.SE.Kit.for.Infinite.Player.KONTAKT-SYNTHiC4TE/syn-1132/Woody Woodmansey SE Kit/Studio ProFiles Infinite Player_info.nkc",
+		"/C/Users/Michael/Downloads/VST/Sonic.Reality.EpiK.DrumS.Woody.Woodmansey.SE.Kit.for.Infinite.Player.KONTAKT-SYNTHiC4TE/SYNTHiC4TE.nfo",
+		"/C/Users/Michael/SkyDrive/Business/3M/Job offer 2014/Bank Transfer for PUC Transcript.mdown",
+		"/C/Users/Michael/SkyDrive/Business/3M/job offer/Bank Transfer for PUC Transcript.mdown",
+		"/C/Users/Michael/Downloads/VST/Sonic.Reality.Infinite.Player.v1.1.WiN.OSX-MAGNETRiXX/Magnetrixx.nfo",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Summer is the Signal.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions6.Large.t.Tfreq6..2.functionalize.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/mp60.mallarme.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/all the dogs run.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/penalty.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictor/ui.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/DSCapstone Phase 2 Notes.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/pleasure.mdown",
+		"/C/Users/Michael/Downloads/Sonic.Reality.Infinite.Player.v1.1.WiN.OSX-MAGNETRiXX.nfo",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/Book Mining Massive Datasets.mdown",
+		"/C/Users/Michael/Downloads/VST/Native.Instruments.Kontakt.5.v5.4.2.UNLOCKED.Update-R2R/r2r-2735/R2R.txt",
+		"/C/Users/Michael/Downloads/VST/Native.Instruments.Kontakt.5.v5.4.2.UNLOCKED.Update-R2R/R2R.nfo",
+		"/C/Users/Michael/Downloads/VST/Sonnox.Oxford.Inflator.Native.VST.v1.5.1-AiR/a-i151na/air.nfo",
+		"/C/Users/Michael/Downloads/WinDlg_v1_27/WinDlg.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/hey i gotta say.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Results of predict t.process training set.6.ProcessFix3.TriGramsOnly.mdown",
+		"/C/Users/Michael/Downloads/VST/Waves.Complete.v9r23-R2R/r2r-2776/R2R/R2R.txt",
+		"/C/Users/Michael/Downloads/VST/Waves.Complete.v9r23-R2R/R2R.nfo",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/@an @bn.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/mp59.mdown",
+		"/C/Program Files (x86)/WordWeb/ODE.lst",
+		"/C/Users/Michael/Downloads/Complete/iExplorer 3.5.0.2 with serial/sertial.txt",
+		"/C/Users/Michael/SkyDrive/Business/Backup/iphone notes 12.2.14/You need to be less...ic, more rhythmic..txt",
+		"/C/Users/Michael/Downloads/Complete/WordWeb Pro Ultimate 7.04 Retail+keygen~~/WordWeb Pro Ultimate 7.04 Retail+keygen~~/linezer0.nfo",
+		"/C/Users/Michael/Downloads/Complete/WordWeb Pro Ultimate 7.04 Retail+keygen~~/WordWeb Pro Ultimate 7.04 Retail+keygen~~/Enable.Online.References.reg",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/good times black cloud.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/old me.mdown",
+		"/C/Users/Michael/AppData/Roaming/SumatraPDF/SumatraPDF-settings.txt",
+		"/C/Users/Michael/Downloads/Complete/Nero 2015 Platinum 16.0.02900 Final (Patch) [ChingLiu]/ChingLiu.Install.Notes.nfo",
+		"/C/Users/Michael/Downloads/Complete/Sam Smith - In The Lonely Hour (Deluxe Edition) (2014) {FLAC} vtwin88cube/audiochecker.log",
+		"/C/Users/Michael/Downloads/Complete/Nero.2015.Platinum.v16.0.02900-DVT[rarbg]/dvt.nfo",
+		"/C/Users/Michael/Downloads/Complete/Nero 2015 Platinum 16.0.02900 Final (Patch) [ChingLiu]/How To Open Nfo Files.txt",
+		"/C/Users/Michael/SkyDrive/CATS.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/see the doves fly.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/MusicToDo.mdown",
+		"/C/Box Sync/REAPER/stars 61_6._7.RPP",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CreateTrainingSet.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Results of predict t.process training set.6.ProcessFix3.TriGramsOnly.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CreateTrainingSet.2.larger.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/mp58.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/a179 notes.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Harvard PDF.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Model9.onlyTriBiUni.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Model8.up to fiveGrams.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Model5.functionalizeFileToTDM.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions4.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/For what reasons, if any, will some iOS developers continue to use objective-c instead of moving to swift  - Quora_files/ehazDpFPEnK(1).html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/sublimetext2 - How do I see the current encoding of a file in Sublime Text 2  - Stack Overflow_files/nr6APkKDxn3-njzUXlTlKqm-nIGzNyS7m4b-nvPNpvyk2Uc-2PZiE-94CFoEo",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/MilestoneReport.StemmedIsNotUseful.Rmd",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/ShiftIt/ShiftIt/ShiftIt-Info.plist",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/predictions.97crash.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/24 Days of R  Day 11   PirateGrunt_files/global-print.css"
+	],
+	"find":
+	{
+		"height": 32.0
+	},
+	"find_in_files":
+	{
+		"height": 110.0,
+		"where_history":
+		[
+			"C:\\Users\\Michael\\SkyDrive\\Artists Way"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"open",
+			"recent",
+			"d3",
+			"breathing",
+			"still",
+			"bpm",
+			"DS",
+			"ezmix",
+			"vstplug",
+			"library",
+			"B",
+			"T",
+			"probability",
+			"Upred",
+			"testdata",
+			"+g",
+			"alt+g",
+			"kneser-ney",
+			"sad",
+			"only ones",
+			"sad",
+			"stanford",
+			"ctrl+d",
+			"yank",
+			"vile",
+			"label",
+			"formatc",
+			"we see",
+			"news",
+			"twitter",
+			"twitter corpus",
+			"twitter",
+			"news corpus",
+			"news",
+			"blogs",
+			"blog",
+			"tuw",
+			"tnwl",
+			"\"",
+			" ",
+			"lc",
+			"count",
+			"lc",
+			"timer",
+			"list(",
+			"1",
+			"Tres",
+			"corpus",
+			",n",
+			"font",
+			"beer",
+			"findFreqTerms",
+			"case",
+			"upper_case",
+			"title case",
+			"[[",
+			".98",
+			"hide_panel",
+			"tabs",
+			"tab",
+			"tabs",
+			"bar",
+			"tabbar",
+			"tab",
+			"view",
+			"bar",
+			"view",
+			"tabs",
+			".97",
+			".98",
+			".99",
+			"twit",
+			"ritdm",
+			"sort",
+			"text",
+			"notepad",
+			"freq",
+			"previous",
+			"back",
+			"c(",
+			"i in",
+			"for",
+			"case of",
+			"bigram",
+			"split",
+			"function",
+			"big",
+			"frew",
+			"definition",
+			"freq",
+			" 1 ",
+			"1",
+			"output",
+			"text",
+			"FF$",
+			"corpus",
+			"barbara",
+			"well",
+			"˜well",
+			"token",
+			"Run",
+			"explorerpath",
+			"Michael Liquori:",
+			"bigger",
+			"list",
+			"alt+w",
+			"wrap",
+			"block",
+			"<!--",
+			"<--",
+			"block",
+			"comment",
+			"ctrl+b",
+			"ctrl]",
+			"ctrl+b",
+			"folders",
+			"*.mdown",
+			"*.md",
+			"distraction",
+			"i",
+			"upstream",
+			"cached",
+			"stage",
+			"clone",
+			"push",
+			"Blogs",
+			"News",
+			"news"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"U",
+			"B",
+			"counts",
+			"Ufreq",
+			"<font color=\"skyblue\" face=\"bold\">**twitter**</font>",
+			"<font color=\"skyblue\" face=\"bold\">**twitter corpus**</font>",
+			"<font color=\"orange\" face=\"bold\">**news corpus**</font>",
+			"<font color=\"red\" face=\"bold\">**blogs**</font>",
+			"",
+			"lm",
+			"Count",
+			"wc",
+			"",
+			"j",
+			"twit",
+			"",
+			"output",
+			"input",
+			"Tcorpus",
+			"IfWinExist Adobe Acrobat Pro\n	WinActivate\nelse\n	Run ",
+			"test\\nz",
+			"test\\nexplorerpath",
+			"",
+			"Twitter",
+			"/",
+			"",
+			"5",
+			"large",
+			"medium",
+			"small",
+			"over",
+			"ios",
+			"rails"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "DSCapstone Phase 2 Notes.mdown",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6820,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1808,
+								1808
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "markdown extended",
+							"buffer_scroll_name": "54b7d223",
+							"syntax": "Packages/Markdown Extended/Syntaxes/Markdown Extended.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1650.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Predictions9.bigramStepback..R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4883,
+								4883
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "r",
+							"buffer_scroll_name": "d2220d16",
+							"syntax": "Packages/R/R.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5697.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 42.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 156.0
+	},
+	"project": "1.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"starbowie",
+				"MDOWN\\stars bowie in time.mdown"
+			],
+			[
+				"starsfre",
+				"MDOWN\\Stars fresh.mdown"
+			],
+			[
+				"stars",
+				"MDOWN2\\stars.md"
+			],
+			[
+				"whyare",
+				"MDOWN\\why are you lyin.mdown"
+			],
+			[
+				"mp6",
+				"@mp\\mp61.mdown"
+			],
+			[
+				"starsfresh",
+				"MDOWN\\Stars fresh.mdown"
+			],
+			[
+				"mp59",
+				"@mp\\mp59.mdown"
+			],
+			[
+				"when",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"print",
+				"GitHub\\DSCapstone\\Coursera-SwiftKey\\final\\en_US\\predictions.97crash.txt"
+			],
+			[
+				"options",
+				"DSCapstone\\Predictions.R"
+			],
+			[
+				"referen",
+				"DSCapstone\\r function reference.mdown"
+			],
+			[
+				"mac",
+				"Notes\\Mac Questions.mdown"
+			],
+			[
+				"todo",
+				"DSCapstone\\Task 2 To Do List.mdown"
+			],
+			[
+				"mp58",
+				"@mp\\mp58.mdown"
+			],
+			[
+				"wheniwish",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"wild",
+				"MDOWN\\Wild.mdown"
+			],
+			[
+				"whe",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"whenstars",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"mp57",
+				"@mp\\mp57.mdown"
+			],
+			[
+				"quiz",
+				"DSCapstone\\Quiz2.txt"
+			],
+			[
+				"testdata1",
+				"DSCapstone\\testData1.txt"
+			],
+			[
+				"unix",
+				"DSCapstone\\freq code from Unix.mdown"
+			],
+			[
+				"macq",
+				"Notes\\Mac Questions.mdown"
+			],
+			[
+				"refere",
+				"DSCapstone\\r function reference.mdown"
+			],
+			[
+				"saverds",
+				"GitHub\\DSCapstone\\24 Days of R  Day 11   PirateGrunt_files\\saved_resource"
+			],
+			[
+				"model",
+				"DSCapstone\\Model4.R"
+			],
+			[
+				"testd",
+				"DSCapstone\\testData1.txt"
+			],
+			[
+				"test",
+				"DSCapstone\\testData1.txt"
+			],
+			[
+				"refer",
+				"DSCapstone\\r function reference.mdown"
+			],
+			[
+				"model8",
+				"DSCapstone\\Model8.5.5grams.newsCorpus.R"
+			],
+			[
+				"wake",
+				"GitHub\\Notes\\WAKE UP CALL.mdown"
+			],
+			[
+				"wheniwishup",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"foru",
+				"DSCapstone\\forum response.mdown"
+			],
+			[
+				"rfu",
+				"DSCapstone\\r function reference.mdown"
+			],
+			[
+				"forum",
+				"DSCapstone\\forum response.mdown"
+			],
+			[
+				"cons",
+				"Notes\\Console.mdown"
+			],
+			[
+				"mode",
+				"DSCapstone\\Model1.R"
+			],
+			[
+				"final",
+				"DSCapstone\\FinalProject4.TestModel1.R"
+			],
+			[
+				"model1",
+				"DSCapstone\\Model1.R"
+			],
+			[
+				"",
+				"C:\\Users\\Michael\\SkyDrive\\Code\\JAVASCRIPT.md"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Michael\\SkyDrive\\Artists Way\\Music.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+		],
+		"width": 490.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 412.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,910 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"n",
+				"n"
+			],
+			[
+				"t",
+				"t"
+			],
+			[
+				"bt",
+				"bt"
+			],
+			[
+				"j",
+				"j"
+			],
+			[
+				"b",
+				"b"
+			],
+			[
+				"make",
+				"makeTriTDM"
+			],
+			[
+				"Term",
+				"TermDocumentMatrix"
+			],
+			[
+				"corpus",
+				"corpus"
+			],
+			[
+				"Act",
+				"ActiveWindow"
+			],
+			[
+				"oth",
+				"otherOtherName"
+			],
+			[
+				"get",
+				"get	Get Elements"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Phase 2 Notes.mdown",
+			"settings":
+			{
+				"buffer_size": 8473,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "process training set.10.Trigrams.complete.news.R",
+			"settings":
+			{
+				"buffer_size": 3285,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Merge Combine 3 parts to 1.R",
+			"settings":
+			{
+				"buffer_size": 507,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Accuracy Measures.mdown",
+			"settings":
+			{
+				"buffer_size": 1537,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: EndCodeBlockSnipper"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"markdown ex",
+				"Set Syntax: Markdown Extended"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown Extended"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 498.0
+	},
+	"console":
+	{
+		"height": 181.0,
+		"history":
+		[
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"sublime.log_commands(False)",
+			"sublime.log_commands(True)",
+			"selector",
+			"Command Palette",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"view.settings().get('enable_telemetry')",
+			"view.settings().get('font_face')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Combining Corpus Test.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Anything but R-bitrary  Build a search engine in 20 minutes or less_files/comments.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/Console.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/TODO.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/DSCapstone Phase 2 Notes.mdown",
+		"/C/Users/Michael/SkyDrive/Crisis of Dec 2014.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/DSCAPSTONE.sublime-project",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/DSCapstone.Rproj",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Data Science Capstone   Coursera.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/t.ass",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/triblogs only.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Task 2 To Do List.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Accuracy Measures.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions11.NoClassifying.Quiz2.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions11.NoClassifying.Quiz3.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.10.Trigrams.complete.twitter.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Merge Combine 3 parts to 1.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CreateCompleteSetsOfBlogs.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CreateTrainingSet.3.smaller(forquadrigrams).R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CreateTrainingSet.2.larger.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CreateTrainingSet.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/TrainResults.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/test.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Merge Combine Both Training Sets.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions10.NoClassifying.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.9.Trigramson2ndTrainsets.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/why are you lyin 72 bpm.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/b.Tfreq4.shrink.RDS",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/MilestoneReport.NowWillShrinkImages.Rmd",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Generating a Markov chain vs. computing the transition matrix   (R news & tutorials)_files/shBrushR.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Natural Language Processing Tutorial_files/sharebutton.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/t.Tfreq6.shrink.RDS",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Storing n-grams in less than 10 bytes.2_files/HelpCenterLinks.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Speeding up cumulative frequency calculation_files/HelpCenterLinks.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictor/server.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Misc.Cut.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/r function reference.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/function to combine data tables.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/r - tm combine list of corpora - Stack Overflow.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CountNAs.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Merge trigram sets to 1.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CreateTrainingSet.4.TrainingSet2.R",
+		"/C/Users/Michael/SkyDrive/My feelings on our future.txt",
+		"/C/Users/Michael/SkyDrive/Business/CC - Marriott/Rewards #780486114.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions8.FunctionalizeForTableOptimization.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Example/RPubs - Exploratory Data Analysis for Word Predictor.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Example/RPubs - ExploratoryAnalsysis.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Generating a Markov chain vs. computing the transition matrix   (R news & tutorials)_files/RBloggers",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/R – Data.Table Rolling Joins « GormAnalysis.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/CreateSentenceDatabase.thenSameSentenceRelations.4LargeDataSet.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/git  fetch and merge, don’t pull   Mark's Blog.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/MilestoneReport.FullLoading.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Noam Ross   FasteR! HigheR! StrongeR! - A Guide to Speeding Up R Code for Busy People_files/getAllAppDefault.esi",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/r - Show that Shiny is busy (or loading) when changing tab panels - Stack Overflow_files/oMLwppxJGeJ-pgE2Aw0ym30-2LRza",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Model1.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Model8.up to fiveGrams.3.save all results to files.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/MergingBTN1..RData",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/n.train",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions9.NObigramStepback.Quiz2.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Quiz2.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Quiz3.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Quiz2.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/1.sublime-project",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/r faq - How to write trycatch in R - Stack Overflow_files/external-editor.en.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Statistical [R]ecipes  Easy Introduction to Markov Chains in R_files/postmessageRelay(1).html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Quiz 2.2 Feedback   Coursera_files/loadOrRefreshMathJax.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/encoding - R Corpus Is Messing Up My UTF-8 Encoded Text - Stack Overflow_files/adFeedback.js",
+		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/Quiz3.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.7.BiGrams.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.6.ProcessFix3.TriGramsOnly.WITHSAVE..R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/mp61.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/i know its wrong.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/Dark Mirror Notes Pathology of Songwriter.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/stars bowie ballad.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/process training set.6.ProcessFix3.TriGramsOnly.RunningonNewsNow.R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Predictions6.Large.t.Tfreq6..R",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/I leave the world.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/im so glad.mdown",
+		"/C/Users/Michael/SkyDrive/Artists Way/David Bowie songwriting.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Katz's back-off model - Wikipedia, the free encyclopedia.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Health2/1B.OCT14.csv",
+		"/C/Users/Michael/SkyDrive/Artists Way/bleeding",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/stars bowie in time.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/meticulous construction.mdown",
+		"/C/Users/Michael/SkyDrive/JOB/Big Data Specializations Job Counts.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/courses/libraries/widgets/mathjax/jax/output/HTML-CSS/fonts/STIX/General/Bold/Cyrillic.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Starting data analysis wrangling with R  Things I wish I'd been told_files/6yg-ggdQgQAg8SAADJkAjc-JMNnOnYuIGgH_iBV7uf8.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/import - R - Text Mining - Importing a Corpus and keeping the file names in document term matrix - Stack Overflow_files/o6ywMYin5kJ-ohhJxM3da1k-5TaWQ",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/JAVASCRIPT.md",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/R packages for big data.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/bigTDM all 3 texts.RData",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Big-O Algorithm Complexity Cheat Sheet.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/BlogReader-from-Template/BlogReader/BlogReader-Info.plist",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Large scale text mining in R - Job Salary Prediction   Kaggle.html",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Notes/Udacity - Data Visualization and D3.js.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/why are you lyin.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Stars Change the Beginning to be more Mysterious.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Stars fresh.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Fear.mdown",
+		"/C/Users/Michael/SkyDrive/JOB/Job Interview.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown2/stars.md",
+		"/C/Users/Michael/AppData/Roaming/Sublime Text 3/Packages/Default/Main.sublime-menu",
+		"/C/Users/Michael/SkyDrive/Artists Way/saber tooth.txt",
+		"/C/Users/Michael/SkyDrive/Artists Way/when you roll up",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/when i wish upon falling stars.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/Wild.mdown",
+		"/C/Users/Michael/SkyDrive/Business/Health/Complaint about MDLive charges.txt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/when i wish upon a dive bar.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/stars animal eyes/when i wish upon falling stars.2_4.60 bpm.wav",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/pixies 116 was stars.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/20141208-170159 new stars chorus 4 much better yes mystery again.mp4",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/20141208-161603 new stars chorus 3 better yet.mp4",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/20141208-140118 new stars cool verse change chorus.mp4",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/20141208-150649 new stars chorus.mp4",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/new stars/new stars mockup 1.wav",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/Coursera-SwiftKey/final/en_US/news",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/New Snow.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/courses/libraries/widgets/mathjax/extensions/TeX/noErrors.js",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/DSCapstone/ngrams.ppt",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/mdown/i wish i could do something for you.mdown",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/mp26.txt",
+		"/C/Users/Michael/SkyDrive/Artists Way/Music.sublime-project",
+		"/C/Users/Michael/SkyDrive/Code/GitHub/Music/@mp/C G (C) Eb A D .txt",
+		"/C/NKI/Infinite Player/Multis/EpiK DrumS SE/Drum Kits/Woody Woodmansey/Woody Woodmansey Kit GM.nkm"
+	],
+	"find":
+	{
+		"height": 47.0
+	},
+	"find_in_files":
+	{
+		"height": 110.0,
+		"where_history":
+		[
+			"C:\\Users\\Michael\\SkyDrive\\Artists Way"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"b.",
+			"t.",
+			"#",
+			"open",
+			"recent",
+			"d3",
+			"breathing",
+			"still",
+			"bpm",
+			"DS",
+			"ezmix",
+			"vstplug",
+			"library",
+			"B",
+			"T",
+			"probability",
+			"Upred",
+			"testdata",
+			"+g",
+			"alt+g",
+			"kneser-ney",
+			"sad",
+			"only ones",
+			"sad",
+			"stanford",
+			"ctrl+d",
+			"yank",
+			"vile",
+			"label",
+			"formatc",
+			"we see",
+			"news",
+			"twitter",
+			"twitter corpus",
+			"twitter",
+			"news corpus",
+			"news",
+			"blogs",
+			"blog",
+			"tuw",
+			"tnwl",
+			"\"",
+			" ",
+			"lc",
+			"count",
+			"lc",
+			"timer",
+			"list(",
+			"1",
+			"Tres",
+			"corpus",
+			",n",
+			"font",
+			"beer",
+			"findFreqTerms",
+			"case",
+			"upper_case",
+			"title case",
+			"[[",
+			".98",
+			"hide_panel",
+			"tabs",
+			"tab",
+			"tabs",
+			"bar",
+			"tabbar",
+			"tab",
+			"view",
+			"bar",
+			"view",
+			"tabs",
+			".97",
+			".98",
+			".99",
+			"twit",
+			"ritdm",
+			"sort",
+			"text",
+			"notepad",
+			"freq",
+			"previous",
+			"back",
+			"c(",
+			"i in",
+			"for",
+			"case of",
+			"bigram",
+			"split",
+			"function",
+			"big",
+			"frew",
+			"definition",
+			"freq",
+			" 1 ",
+			"1",
+			"output",
+			"text",
+			"FF$",
+			"corpus",
+			"barbara",
+			"well",
+			"˜well",
+			"token",
+			"Run",
+			"explorerpath",
+			"Michael Liquori:",
+			"bigger",
+			"list",
+			"alt+w",
+			"wrap",
+			"block",
+			"<!--",
+			"<--",
+			"block",
+			"comment",
+			"ctrl+b",
+			"ctrl]",
+			"ctrl+b",
+			"folders",
+			"*.mdown",
+			"*.md",
+			"distraction",
+			"i",
+			"upstream",
+			"cached",
+			"stage",
+			"clone",
+			"push"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"n.",
+			"b.",
+			"",
+			"U",
+			"B",
+			"counts",
+			"Ufreq",
+			"<font color=\"skyblue\" face=\"bold\">**twitter**</font>",
+			"<font color=\"skyblue\" face=\"bold\">**twitter corpus**</font>",
+			"<font color=\"orange\" face=\"bold\">**news corpus**</font>",
+			"<font color=\"red\" face=\"bold\">**blogs**</font>",
+			"",
+			"lm",
+			"Count",
+			"wc",
+			"",
+			"j",
+			"twit",
+			"",
+			"output",
+			"input",
+			"Tcorpus",
+			"IfWinExist Adobe Acrobat Pro\n	WinActivate\nelse\n	Run ",
+			"test\\nz",
+			"test\\nexplorerpath",
+			"",
+			"Twitter",
+			"/",
+			"",
+			"5",
+			"large",
+			"medium",
+			"small",
+			"over",
+			"ios",
+			"rails"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Phase 2 Notes.mdown",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8473,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								222,
+								222
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "markdown extended",
+							"buffer_scroll_name": "5b7c857e",
+							"syntax": "Packages/Markdown Extended/Syntaxes/Markdown Extended.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "process training set.10.Trigrams.complete.news.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3285,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								3285
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "r",
+							"buffer_scroll_name": "80ab1602",
+							"syntax": "Packages/R/R.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Merge Combine 3 parts to 1.R",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 507,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								507,
+								507
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "r",
+							"buffer_scroll_name": "15cce290",
+							"syntax": "Packages/R/R.tmLanguage",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Accuracy Measures.mdown",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1537,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								52,
+								52
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "markdown extended",
+							"buffer_scroll_name": "5b7a8de3",
+							"syntax": "Packages/Markdown Extended/Syntaxes/Markdown Extended.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 40.0
+	},
+	"input":
+	{
+		"height": 42.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 156.0
+	},
+	"project": "DSCAPSTONE.sublime-project",
+	"replace":
+	{
+		"height": 92.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"dscapst",
+				"DSCapstone\\DSCapstone Phase 2 Notes.mdown"
+			],
+			[
+				"train",
+				"DSCapstone\\CreateTrainingSet.4.TrainingSet2.R"
+			],
+			[
+				"combin",
+				"DSCapstone\\function to combine data tables.R"
+			],
+			[
+				"referen",
+				"Notes\\r function reference.mdown"
+			],
+			[
+				"data.table",
+				"DSCapstone\\Predictions8.FunctionalizeForTableOptimization.R"
+			],
+			[
+				"merge",
+				"DSCapstone\\MilestoneReport.FullLoading.R"
+			],
+			[
+				"quiz3",
+				"DSCapstone\\Quiz3.txt"
+			],
+			[
+				"quiz2.txt",
+				"DSCapstone\\Quiz2.txt"
+			],
+			[
+				"starbowie",
+				"MDOWN\\stars bowie in time.mdown"
+			],
+			[
+				"starsfre",
+				"MDOWN\\Stars fresh.mdown"
+			],
+			[
+				"stars",
+				"MDOWN2\\stars.md"
+			],
+			[
+				"whyare",
+				"MDOWN\\why are you lyin.mdown"
+			],
+			[
+				"mp6",
+				"@mp\\mp61.mdown"
+			],
+			[
+				"starsfresh",
+				"MDOWN\\Stars fresh.mdown"
+			],
+			[
+				"mp59",
+				"@mp\\mp59.mdown"
+			],
+			[
+				"when",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"print",
+				"GitHub\\DSCapstone\\Coursera-SwiftKey\\final\\en_US\\predictions.97crash.txt"
+			],
+			[
+				"options",
+				"DSCapstone\\Predictions.R"
+			],
+			[
+				"mac",
+				"Notes\\Mac Questions.mdown"
+			],
+			[
+				"todo",
+				"DSCapstone\\Task 2 To Do List.mdown"
+			],
+			[
+				"mp58",
+				"@mp\\mp58.mdown"
+			],
+			[
+				"wheniwish",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"wild",
+				"MDOWN\\Wild.mdown"
+			],
+			[
+				"whe",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"whenstars",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"mp57",
+				"@mp\\mp57.mdown"
+			],
+			[
+				"quiz",
+				"DSCapstone\\Quiz2.txt"
+			],
+			[
+				"testdata1",
+				"DSCapstone\\testData1.txt"
+			],
+			[
+				"unix",
+				"DSCapstone\\freq code from Unix.mdown"
+			],
+			[
+				"macq",
+				"Notes\\Mac Questions.mdown"
+			],
+			[
+				"refere",
+				"DSCapstone\\r function reference.mdown"
+			],
+			[
+				"saverds",
+				"GitHub\\DSCapstone\\24 Days of R  Day 11   PirateGrunt_files\\saved_resource"
+			],
+			[
+				"model",
+				"DSCapstone\\Model4.R"
+			],
+			[
+				"testd",
+				"DSCapstone\\testData1.txt"
+			],
+			[
+				"test",
+				"DSCapstone\\testData1.txt"
+			],
+			[
+				"refer",
+				"DSCapstone\\r function reference.mdown"
+			],
+			[
+				"model8",
+				"DSCapstone\\Model8.5.5grams.newsCorpus.R"
+			],
+			[
+				"wake",
+				"GitHub\\Notes\\WAKE UP CALL.mdown"
+			],
+			[
+				"wheniwishup",
+				"MDOWN\\when i wish upon falling stars.mdown"
+			],
+			[
+				"foru",
+				"DSCapstone\\forum response.mdown"
+			],
+			[
+				"rfu",
+				"DSCapstone\\r function reference.mdown"
+			],
+			[
+				"forum",
+				"DSCapstone\\forum response.mdown"
+			],
+			[
+				"cons",
+				"Notes\\Console.mdown"
+			],
+			[
+				"mode",
+				"DSCapstone\\Model1.R"
+			],
+			[
+				"final",
+				"DSCapstone\\FinalProject4.TestModel1.R"
+			],
+			[
+				"model1",
+				"DSCapstone\\Model1.R"
+			],
+			[
+				"",
+				"C:\\Users\\Michael\\SkyDrive\\Code\\JAVASCRIPT.md"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Michael\\SkyDrive\\Code\\GitHub\\Music\\mdown\\MUSIC.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 375.0,
+		"selected_items":
+		[
+		],
+		"width": 490.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 412.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

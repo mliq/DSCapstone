@@ -1,0 +1,6 @@
+Overview of presentation
+
+Key reasons for my decision:
+
+* bigrams would be important in a prediction model for live typing, but not for predicting the end of a sentence.
+
