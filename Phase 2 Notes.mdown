@@ -1,6 +1,39 @@
 DS Phase 2
 ====
+# Classification is too slow
+so elinate it...
+
+# Look, now is time to report what you did, Not to solve the world in the last hour.
+
 # NEXT
+This faster lookup idea will take way too long to process.
+So i think we look at further cutting down model size, 
+
+1. Make textbox larger
+
+2. Work on presentation to be nice, 
+
+3. METICULOUS attention to rubric!
+
+* Model
+
+* Test improvement with your grep fix history in faster lookup table maker.R
+
+4-grams might legitimately improve i guess...
+but at this point, I think it's pointless to work here.
+the odds of getting that 1 point are low anyway, so just try to get the others!
+
+* SPEED is your main concern here, 
+REMEMBER YOUR IDEA to use a much SMALLER frequency table for classifying, (which might even be put in an optimized data.table), then use the normal lookup for the actual prediction.
+
+* LIMIT the lookback for classifying or it is too slow!
+
+* if only there was a way to shrink based on duplicates rather than having to build new data.tables... could that be faster?
+
+Other options are, don't bother to classify on all, eliminate some corpus.
+
+
+* Expand the size of the input since they will be pasting a paragraph! Make it a box!
 
 * **Improving lookup model:**
 	- right now I have duplicate entries? Yes, i have "zumwalt west in" and "zumwalt west won" which is completely useless!

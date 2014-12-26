@@ -7,10 +7,10 @@
 	library(SnowballC)
 	
 	# Trigrams
-	tfreq=readRDS("t.no5counts.RDS")
-	bfreq=readRDS("b.no5counts.RDS")
-	nfreq=readRDS("n.no5counts.RDS")
-	afreq=readRDS("ALL.no5counts.RDS")
+	tfreq=readRDS("t.no19counts.RDS")
+	bfreq=readRDS("b.no19counts.RDS")
+	nfreq=readRDS("n.no19counts.RDS")
+	afreq=readRDS("ALL.no19counts.RDS")
     
   ## FUNCTION DEFINITIONS ##
 
@@ -134,14 +134,16 @@
 
 		# Select frequency table based on classification results.
 		if(b.acc>t.acc && b.acc>n.acc && b.acc>a.acc){
+			bfreqBig=readRDS("b.no4counts.RDS")
 			acc=b.acc
 		} else if(t.acc>b.acc && t.acc>n.acc && t.acc>a.acc){
+			tfreqBig=readRDS("t.no4counts.RDS")
 			acc=t.acc
 		} else if(n.acc>b.acc && n.acc>t.acc && n.acc>a.acc){
+			nfreqBig=readRDS("n.no4counts.RDS")
 			acc=n.acc
-		} else if(a.acc>b.acc && a.acc>t.acc && a.acc>n.acc){
-			acc=a.acc
 		} else {
+			afreqBig=readRDS("ALL.no4counts.RDS")
 			acc=a.acc
 		}
 		return(acc)

@@ -1,0 +1,317 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #fafafa;
+  font: 18px 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+  color: #222;
+  line-height: 27px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333;
+  margin: 15px 0 0 0;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 36px;
+  line-height: 46px;
+}
+
+h2 {
+  font-size: 30px;
+  line-height: 48px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+dt {
+  margin: 6px 0;
+}
+
+a {
+  color: #840000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #aa0000;
+}
+
+pre, blockquote {
+  border-left: 1px solid #ccc;
+  margin: 0 0 20px 10px;
+  padding-left: 20px;
+  overflow: auto;
+}
+
+blockquote {
+  margin-left: 20px;
+}
+
+.entry-content blockquote:first-child {
+  margin-top: 20px;
+}
+
+pre, tt, code {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+sup {
+  font-size: 14px;
+  line-height: 10px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.inner {
+  padding: 5px 21px;
+}
+
+#container {
+  max-width: 650px;
+  margin: 25px auto;
+}
+
+aside#topbar {
+  padding: 16px 0 41px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+aside#topbar .more {
+  display: none;
+}
+
+aside#topbar ul#quick-links {
+  list-style: none;
+  float: right;
+  margin: 2px 0 0 0;
+}
+
+aside#topbar ul#quick-links li {
+  display: inline-block;
+  margin: 0 10px;
+  border: none;
+}
+
+aside#topbar h1 {
+  margin: 0px;
+  line-height: 24px;
+  float: left;
+}
+
+aside#topbar h1 a {
+  color: inherit;
+  font-weight: inherit;
+}
+
+aside#topbar h2 {
+  color: #ece7d3;
+  font-size: 19px;
+}
+
+aside#topbar ul {
+  padding-left: 15px;
+  list-style: none;
+}
+
+aside#topbar ul li {
+  border-bottom: 1px solid #47484d;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+aside#topbar ul li:last-child {
+  border-bottom: none;
+  padding-bottom: 0px;
+}
+
+article {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  margin: 40px 0 20px 0;
+}
+
+article#single {
+  margin-top: 0px;
+}
+
+article:first-child {
+  margin-top: 0px;
+}
+
+article header h1 {
+  margin-bottom: 0px;
+}
+
+article header time, #archive li time {
+  color: #888;
+}
+
+article p img {
+  display: block;
+  margin: 0 auto;
+  max-width: 95%;
+
+  padding: 2px;
+  border: 1px solid #ccc;
+}
+
+article .footnotes {
+  font-size: 16px;
+}
+
+article .footnotes:before {
+  content: "Footnotes";
+  font-size: 30px;
+  line-height: 38px;
+}
+
+article .footnotes a[rev="footnote"] {
+  padding-left: 0.3em;
+}
+
+article .footnotes ol li p {
+  margin: 0;
+}
+
+#home p#intro {
+  margin: 50px 40px;
+}
+
+#home ul.posts {
+  list-style: none;
+}
+
+#home ul.posts > li {
+  margin-bottom: 30px;
+}
+
+#pagination {
+  margin: 30px;
+  text-align: center;
+}
+
+#pagination a {
+  padding: 0px 10px;
+}
+
+footer {
+  margin: 100px 0;
+  text-align: center;
+  color: #666;
+  font-size: 17px;
+}
+
+footer a {
+  color: #888;
+}
+
+footer a:hover {
+  color: #aaa;
+}
+
+ul#archive {
+  list-style: none;
+  padding-bottom: 20px;
+  margin: 20px 0;
+}
+
+ul#archive li {
+  clear: left;
+  margin-bottom: 20px;
+}
+
+ul#archive li:after {
+  content: ".";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+ul#archive li time {
+  display: block;
+  float: left;
+  width: 24%;
+  padding-right: 2%;
+  text-align: right;
+}
+
+ul#archive li .description {
+  float: left;
+  width: 74%;
+}
+
+ul#archive li .description .excerpt {
+  margin-top: 0.5em;
+}
+
+.qtip {
+  font-size: 15px;
+  line-height: 19px;
+
+  background-color: #fff;
+  border-color: #bbb;
+  color: #333;
+}
+
+.qtip p:first-child {
+  margin-top: 0.3em;
+}
+
+.qtip p:last-child {
+  margin-bottom: 0.3em;
+}
+
+.qtip a.reversefootnote {
+  display: none;
+}
+
+@media all and (max-width: 500px) {
+  .inner {
+    padding: 5px 10px;
+  }
+
+  pre, blockquote {
+    margin-left: 10px;
+    padding-left: 10px;
+  }
+
+  #home time span.year {
+    display: none;
+  }
+
+  ul#archive {
+    padding-left: 0;
+  }
+}
+
+@media all and (max-width: 360px) {
+  aside#topbar {
+    padding: 0 0 6px 0;
+  }
+
+  aside#topbar h1 {
+    float: none;
+    margin: 0;
+    text-align: center;
+  }
+
+  aside#topbar ul#quick-links {
+    text-align: center;
+    float: none;
+    padding-left: 0;
+    margin: 17px 0 0 0;
+  }
+}

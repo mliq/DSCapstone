@@ -1,0 +1,80 @@
+
+
+* We tested many more complex algorithms such as:
+* using n-gram frequencies from 1-5 with simple backoff, Add-One, Good-Turing, and Kneser-Ney smoothing.
+* classifying the data by type (Blogs, Twitter, or News) before determining which corpus of n-gram data to use for prediction.We were able to achieve accuracy as high as 21.14% by adding classification to our algorithm, and using a larger trigram database, however the tradeoff in speed (adding 3 to 10 seconds) made these methods unsuitable for the Shiny app.
+
+  * Changing our database from a frequency table to a table that includes only the top trigram for each query, but the processing power needed to create this table was unavailable in the timeframe of this project. This should significantly increase processing time, allowing for higher accuracy to be achieved through larger databases or more complex algorithms such as using classification.
+  
+We were able to achieve 21.14The best model we tested first classified the text by testing known text against 3 separate databases: Blogs, News, Twitter, and finally if none of those excelled, using the All table. This was able to achieve 21.14% accuracy, but with a 3-10 second delay, depending on the length of text used for classifying.
+
+Other methods 
+
+
+
+A classifying function tests whether the sentence performs best under the Twitter, Blogs, or News trigram data, and if neither of those outperforms, a combined All trigram dataset is used.
+
+
+
+
+which can predict with approximately 20% accuracy, giving only one prediction, and without sacrificing too much speed, making it unusable or unstable, or exceeding shiny.io memory limits.
+
+
+The aim of the project is to develop a Shiny app which can predict the next word a user is typing with accuracy and speed, useful for applications such as the predictive text included with all mobile phone keyboards we are all probably familiar with, as well as third-party options such as Swiftkey.  
+
+The task is to predict only one word, which makes approaching any level of accuracy very difficult My goal was to approach 20% accuracy, giving only one prediction, and without sacrificing too much speed, making it unusable or unstable, or exceeding shiny.io memory limits.
+
+
+A total of 4,269,678 lines consisting of 102,080,244 words were used to develop the model, provided by S
+
+
+
+Description of Algorithm
+========================================================
+
+The final algorithm is based on an trigram model:
+* built using 100% of our 3 corpora, 
+* then reduced in size by cutting off all trigrams with counts less than 5. 
+* A classifying function tests whether the sentence performs best under the Twitter, Blogs, or News trigram data, and if neither of those outperforms, a combined All trigram dataset is used.
+
+This model offered the best combination of our 3 criteria:
+* accuracy: 19.6% on test set.
+* speed: 1-5 secs per prediction
+* and memory size: 18.9 MB, small enough to be easily used on a mobile device.
+
+Development of Algorithm
+========================================================
+
+With no reduction of low-count trigrams, we were able to achieve 21.1% accuracy, however memory size and speed were significantly compromised for this small gain in accuracy. 
+
+Further reductions beyond counts less than 5, as well as eliminating classification, increased speed and decreased memory size, but caused a significant reductions in accuracy towards the 17% level.
+
+Most of our short development timeframe was spent testing and benchmarking many different algorithms to arrive to this final model. 
+
+Options tested included: 
+* using n-gram frequencies from 1-5 by:
+  * simple backoff 
+  * Add-One smoothing, 
+  * Good-Turing,
+  * Kneser-Ney,
+* classifying the data by type (Blogs, Twitter, or News) before determining which corpus of n-gram data to use for prediction.
+
+Further speed improvements can be made with a small investment in Amazon EC2
+
+CUT
+========================================================
+Although Quadrigram
+
+aiming to approximate 20% accuracy without speed or memory size becoming too burdensome.
+
+
+Finally, the model which offered the best accuracy at an efficient size and speed was a pure trigram model which classifies the text as either blog, twitter, news, or, as a fallback, "all", using an n-gram combined table. 
+
+
+
+
+The basis of word prediction algorithms that are efficient 
+Due to the short-time frame, we are building off the years of research into this area
+Trigrams are the basis of most successful and efficient language models today,
+
+However, all of these methods did not offer enough gain in accuracy for the tradeoff in speed to make it desirable for this Shiny app prototype.

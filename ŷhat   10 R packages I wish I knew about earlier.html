@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)http://blog.yhathq.com/posts/10-R-packages-I-wish-I-knew-about-earlier.html -->
+<html class="js wf-hellenicwide-n4-active wf-museoslab-n3-active wf-museoslab-n5-active wf-museoslab-n7-active wf-museoslab-n8-active wf-proximanovaextracondensed-n7-active wf-active" hc="a3"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>ŷhat | 10 R packages I wish I knew about earlier</title>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://blog.yhathq.com/static/favicon.ico" rel="shortcut icon">
+
+        
+<meta name="description" content="top 10 packages for R I wish I knew about earlier">
+<meta name="keywords" content="R, R cran, CRAN, R packages, plyr, ggplot2, reshape2, Hadley Wickham, qcc, sqldf, RPostgreSQL, MySQLR, RMongo, randomForest, long data, wide data, melt, dcast, ddply, dlply, ggplot, yaksis, R style guide, learning R, intro to R, R tutorial, R resources">
+
+
+        <!-- facebook open graph tags -->
+<meta property="og:title" content="ŷhat | 10 R packages I wish I knew about earlier">
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://blog.yhathq.com/posts/10-R-packages-I-wish-I-knew-about-earlier.html">
+<meta property="og:image" content="http://f.cl.ly/items/0d2Z1z3Z3E2z3Y1g1K0J/logo-square.png">
+<meta property="og:site_name" content="ŷhat | Blog">
+<meta property="fb:admins" content="1018260045">
+<meta property="og:description" content="
+I started using R about 3 years ago. It was slow going at first. R had tricky and less intuitive syntax than languages I was used to, and it took a while to get accustomed to the nuances. It wasn&#39;t immediately clear to me that the power of the language was bound up with the community and the diverse packages available.
+
+R can be more prickly and obscure than other languages like Python or Java. The good news is ...">
+
+<!-- twitter -->
+<meta property="twitter:account_id" content="1081568149">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@yhathq">
+<meta name="twitter:title" content="ŷhat | 10 R packages I wish I knew about earlier">
+<meta name="twitter:description" content="
+I started using R about 3 years ago. It was slow going at first. R had tricky and less intuitive syntax than languages I was used to, and it took a while to get accustomed to the nuances. It wasn&#39;t immediately clear to me that the power of the language was bound up with the community and the diverse packages available.
+
+R can be more prickly and obscure than other languages like Python or Java. The good news is ...">
+<meta name="twitter:creator" content="@yhathq">
+<meta name="twitter:image:src" content="http://f.cl.ly/items/0d2Z1z3Z3E2z3Y1g1K0J/logo-square.png">
+<meta name="twitter:domain" content="yhathq.com">
+
+        <link href="./ŷhat   10 R packages I wish I knew about earlier_files/css" rel="stylesheet" type="text/css">
+        <link href="http://blog.yhathq.com/static/css/yhat-blog.css?v=2" rel="stylesheet">
+
+        <script type="text/javascript" async="" src="./ŷhat   10 R packages I wish I knew about earlier_files/inpage_linkid.js" id="undefined"></script><script type="text/javascript" async="" src="./ŷhat   10 R packages I wish I knew about earlier_files/mixpanel-2.2.min.js"></script><script type="text/javascript" async="" src="./ŷhat   10 R packages I wish I knew about earlier_files/dc.js"></script><script id="twitter-wjs" src="./ŷhat   10 R packages I wish I knew about earlier_files/widgets.js"></script><script type="text/javascript" async="" src="./ŷhat   10 R packages I wish I knew about earlier_files/heap.js"></script><script type="text/javascript" src="./ŷhat   10 R packages I wish I knew about earlier_files/xqn4fcl.js"></script>
+        <style type="text/css">.tk-museo-slab{font-family:"museo-slab",serif;}.tk-hellenic-wide{font-family:"hellenic-wide",sans-serif;}.tk-proxima-nova-extra-condensed{font-family:"proxima-nova-extra-condensed",sans-serif;}</style><link rel="stylesheet" href="http://use.typekit.net/c/bedb7b/1w;hellenic-wide,2,P9P:N:n4;museo-slab,2,SKB:N:n3,WH7:N:n5,VnC:N:n7,QL3:N:n8;proxima-nova-extra-condensed,2,SCm:N:n7/d?3bb2a6e53c9684ffdc9a9aff1d5b2a62de246c40fc2071e052ac61ad78c3acb4fe71c7bd687e19af53f0911d20156723746c6a27fdec6e4115cdafb37ed38c1226f41da4293a8ecf55a4cbb174587286e3bd6a7990a3ee9615a98153084ec2235b"><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+        <script src="./ŷhat   10 R packages I wish I knew about earlier_files/modernizr.js"></script>
+        
+        <!-- start Optimizely --><script src="./ŷhat   10 R packages I wish I knew about earlier_files/394671342.js"></script><!-- end Optimizely -->
+
+<!-- start Heap --><script type="text/javascript">window.heap=window.heap||[];heap.load=function(a){window._heapid=a;var b=document.createElement("script");b.type="text/javascript",b.async=!0,b.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);var d=function(a){return function(){heap.push([a].concat(Array.prototype.slice.call(arguments,0)))}},e=["identify","track"];for(var f=0;f<e.length;f++)heap[e[f]]=d(e[f])};heap.load("1998133567");</script><!-- end Heap -->
+    <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style></head>
+    <body data-twttr-rendered="true"><div id="MathJax_Message" style="display: none;"></div>
+        <header>
+    <div class="container">
+        <h1 class="logo">
+            <a href="http://promo.yhathq.com/yhat-signup-form/">
+                  <span class="yo">ŷ</span><span class="yg">hat</span>
+                  <!--<img class="hat" src="../static/img/hat-xmas.svg" alt=""/>-->
+              </a>
+          </h1>
+        <nav style="display: block;">
+            <ul class="header-menu menu">
+                <li class="dropdown-menu">
+                    <a class="hidden-xs" href="https://yhathq.com/products">Products <span class="new-badge top">new</span> <span class="icon icon-angle-down"></span></a>
+                    <ul>
+                        <li><a id="header-products-scienceops" href="https://yhathq.com/products/scienceops">ScienceOps</a></li>
+                        <li><a id="header-products-sciencebox" href="https://yhathq.com/products/sciencebox">ScienceBox &nbsp; &nbsp;<span class="new-badge">new</span></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown-menu">
+                    <a id="header-about" href="https://yhathq.com/about">About <span class="icon icon-angle-down"></span></a>
+                    <ul>
+                        <li class="hidden-xs"><a id="header-about" href="https://yhathq.com/about">Company</a></li>
+                        <li class="hidden-xs"><a id="header-about-faq" href="https://yhathq.com/about/faq">FAQ</a></li>
+                        <li class="hidden-xs"><a id="header-about-jobs" href="https://yhathq.com/about/jobs">Jobs</a></li>
+                    </ul>
+                </li>
+                <li><a id="header-blog" href="http://blog.yhathq.com/">Blog</a></li>
+                <li><a id="header-blog-rss" href="http://blog.yhathq.com/rss.xml">RSS</a></li>
+                <li><a id="header-docs" href="http://docs.yhathq.com/">Docs</a></li>
+                <li class="text-center"><iframe id="header-twitter-follow" scrolling="no" frameborder="0" allowtransparency="true" src="./ŷhat   10 R packages I wish I knew about earlier_files/follow_button.93c9003dd72a6cd9f4fee1e5eb3546c1.en.html" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 141px; height: 28px;"></iframe><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+            </ul>
+            <a id="mobile-menu-trigger" class="visible-xs"><span class="icon icon-menu"></span></a>
+        </nav>
+    </div>
+</header>
+
+        <div class="main" style="margin-bottom: 217px;">
+            
+
+
+    <section class="subscribe">
+  <form class="form-inline text-center subscribe-form" role="form">
+    <div class="form-group">
+      <input type="email" value="" name="EMAIL" class="form-control required email" placeholder="Email Address">
+    </div>
+    <button class="btn" type="submit">Get Updates</button>
+  </form>
+</section>
+
+
+
+
+<section class="pagination center-text top">
+    <div class="container">
+        <a href="http://blog.yhathq.com/">Back to blog</a>
+    </div>
+</section>
+
+<section class="article-header">
+    <div class="container">
+        <h1>10 R packages I wish I knew about earlier</h1>
+        <h4>by  yhat </h4>
+        <h5><time class="time" pubdate="pubdate">February 10, 2013</time></h5>
+        
+        <a style="margin-bottom: 4.5px;" id="learn-more-sidebar" class="btn blue btn-sm" href="http://promo.yhathq.com/yhat-signup-form/" title="Learn More About yhat!">Learn More</a>
+        <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./ŷhat   10 R packages I wish I knew about earlier_files/tweet_button.ff7d9077a26377d36b6a53b1a95be617.en.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 140px; height: 28px;"></iframe>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    </div>
+</section>
+
+<div class="container">
+  <div class="row">
+        <br>
+        <article class="col-md-11 col-md-offset-1">
+            
+<p>I started using R about 3 years ago. It was slow going at first. R had tricky and less intuitive syntax than languages I was used to, and it took a while to get accustomed to the nuances. It wasn't immediately clear to me that the power of the language was bound up with the community and the diverse packages available.</p>
+
+<p>R can be more prickly and obscure than other languages like Python or Java. The good news is that there are tons of packages which provide simple and familiar interfaces on top of Base R. This post is about ten packages I love and use everyday and ones I wish I knew about earlier.</p>
+
+<ol class="fancy">
+	<li>
+		<h4><span><a href="http://cran.r-project.org/web/packages/sqldf/index.html" title="sqldf - SQL select on R dataframes" target="_blank">sqldf</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"sqldf"</span><span class="pun">)</span></pre>
+		<p>One of the steepest parts of the R learning curve is the syntax. It took me a while to get over using <code>&lt;-</code> instead of <code>=</code>. I hear people say a lot of times <i>How do I just do a</i> <code>VLOOKUP</code><i>?!?</i> R is great for general data munging tasks, but it takes a while to master. I think it's safe to say that <code>sqldf</code> was my R "training wheels".</p>
+		<p><code>sqldf</code> let's you perform SQL queries on your R data frames. People coming over from SAS will find it very familiar and anyone with basic SQL skills will have no trouble using it--<code>sqldf</code> uses <a href="http://www.sqlite.org/lang.html" title="SQLite - self-contained, serverless, relational database engine" target="_blank">SQLite syntax.</a></p>
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4750570.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4750570" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-sqldf_examples-r-L1" rel="file-sqldf_examples-r-L1">1</span>
+            <span class="line-number" id="file-sqldf_examples-r-L2" rel="file-sqldf_examples-r-L2">2</span>
+            <span class="line-number" id="file-sqldf_examples-r-L3" rel="file-sqldf_examples-r-L3">3</span>
+            <span class="line-number" id="file-sqldf_examples-r-L4" rel="file-sqldf_examples-r-L4">4</span>
+            <span class="line-number" id="file-sqldf_examples-r-L5" rel="file-sqldf_examples-r-L5">5</span>
+            <span class="line-number" id="file-sqldf_examples-r-L6" rel="file-sqldf_examples-r-L6">6</span>
+            <span class="line-number" id="file-sqldf_examples-r-L7" rel="file-sqldf_examples-r-L7">7</span>
+            <span class="line-number" id="file-sqldf_examples-r-L8" rel="file-sqldf_examples-r-L8">8</span>
+            <span class="line-number" id="file-sqldf_examples-r-L9" rel="file-sqldf_examples-r-L9">9</span>
+            <span class="line-number" id="file-sqldf_examples-r-L10" rel="file-sqldf_examples-r-L10">10</span>
+            <span class="line-number" id="file-sqldf_examples-r-L11" rel="file-sqldf_examples-r-L11">11</span>
+            <span class="line-number" id="file-sqldf_examples-r-L12" rel="file-sqldf_examples-r-L12">12</span>
+            <span class="line-number" id="file-sqldf_examples-r-L13" rel="file-sqldf_examples-r-L13">13</span>
+            <span class="line-number" id="file-sqldf_examples-r-L14" rel="file-sqldf_examples-r-L14">14</span>
+            <span class="line-number" id="file-sqldf_examples-r-L15" rel="file-sqldf_examples-r-L15">15</span>
+            <span class="line-number" id="file-sqldf_examples-r-L16" rel="file-sqldf_examples-r-L16">16</span>
+            <span class="line-number" id="file-sqldf_examples-r-L17" rel="file-sqldf_examples-r-L17">17</span>
+            <span class="line-number" id="file-sqldf_examples-r-L18" rel="file-sqldf_examples-r-L18">18</span>
+            <span class="line-number" id="file-sqldf_examples-r-L19" rel="file-sqldf_examples-r-L19">19</span>
+            <span class="line-number" id="file-sqldf_examples-r-L20" rel="file-sqldf_examples-r-L20">20</span>
+            <span class="line-number" id="file-sqldf_examples-r-L21" rel="file-sqldf_examples-r-L21">21</span>
+            <span class="line-number" id="file-sqldf_examples-r-L22" rel="file-sqldf_examples-r-L22">22</span>
+            <span class="line-number" id="file-sqldf_examples-r-L23" rel="file-sqldf_examples-r-L23">23</span>
+            <span class="line-number" id="file-sqldf_examples-r-L24" rel="file-sqldf_examples-r-L24">24</span>
+            <span class="line-number" id="file-sqldf_examples-r-L25" rel="file-sqldf_examples-r-L25">25</span>
+            <span class="line-number" id="file-sqldf_examples-r-L26" rel="file-sqldf_examples-r-L26">26</span>
+            <span class="line-number" id="file-sqldf_examples-r-L27" rel="file-sqldf_examples-r-L27">27</span>
+            <span class="line-number" id="file-sqldf_examples-r-L28" rel="file-sqldf_examples-r-L28">28</span>
+            <span class="line-number" id="file-sqldf_examples-r-L29" rel="file-sqldf_examples-r-L29">29</span>
+            <span class="line-number" id="file-sqldf_examples-r-L30" rel="file-sqldf_examples-r-L30">30</span>
+            <span class="line-number" id="file-sqldf_examples-r-L31" rel="file-sqldf_examples-r-L31">31</span>
+            <span class="line-number" id="file-sqldf_examples-r-L32" rel="file-sqldf_examples-r-L32">32</span>
+            <span class="line-number" id="file-sqldf_examples-r-L33" rel="file-sqldf_examples-r-L33">33</span>
+            <span class="line-number" id="file-sqldf_examples-r-L34" rel="file-sqldf_examples-r-L34">34</span>
+            <span class="line-number" id="file-sqldf_examples-r-L35" rel="file-sqldf_examples-r-L35">35</span>
+            <span class="line-number" id="file-sqldf_examples-r-L36" rel="file-sqldf_examples-r-L36">36</span>
+            <span class="line-number" id="file-sqldf_examples-r-L37" rel="file-sqldf_examples-r-L37">37</span>
+            <span class="line-number" id="file-sqldf_examples-r-L38" rel="file-sqldf_examples-r-L38">38</span>
+            <span class="line-number" id="file-sqldf_examples-r-L39" rel="file-sqldf_examples-r-L39">39</span>
+            <span class="line-number" id="file-sqldf_examples-r-L40" rel="file-sqldf_examples-r-L40">40</span>
+            <span class="line-number" id="file-sqldf_examples-r-L41" rel="file-sqldf_examples-r-L41">41</span>
+            <span class="line-number" id="file-sqldf_examples-r-L42" rel="file-sqldf_examples-r-L42">42</span>
+            <span class="line-number" id="file-sqldf_examples-r-L43" rel="file-sqldf_examples-r-L43">43</span>
+            <span class="line-number" id="file-sqldf_examples-r-L44" rel="file-sqldf_examples-r-L44">44</span>
+            <span class="line-number" id="file-sqldf_examples-r-L45" rel="file-sqldf_examples-r-L45">45</span>
+            <span class="line-number" id="file-sqldf_examples-r-L46" rel="file-sqldf_examples-r-L46">46</span>
+            <span class="line-number" id="file-sqldf_examples-r-L47" rel="file-sqldf_examples-r-L47">47</span>
+            <span class="line-number" id="file-sqldf_examples-r-L48" rel="file-sqldf_examples-r-L48">48</span>
+            <span class="line-number" id="file-sqldf_examples-r-L49" rel="file-sqldf_examples-r-L49">49</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-sqldf_examples-r-LC1">library(<span class="pl-vo">sqldf</span>)
+</div><div class="line" id="file-sqldf_examples-r-LC2">&nbsp;
+</div><div class="line" id="file-sqldf_examples-r-LC3">sqldf(<span class="pl-s1"><span class="pl-pds">"</span>SELECT</span>
+</div><div class="line" id="file-sqldf_examples-r-LC4"><span class="pl-s1">        day</span>
+</div><div class="line" id="file-sqldf_examples-r-LC5"><span class="pl-s1">        , avg(temp) as avg_temp</span>
+</div><div class="line" id="file-sqldf_examples-r-LC6"><span class="pl-s1">      FROM beaver2</span>
+</div><div class="line" id="file-sqldf_examples-r-LC7"><span class="pl-s1">      GROUP BY</span>
+</div><div class="line" id="file-sqldf_examples-r-LC8"><span class="pl-s1">        day;<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-sqldf_examples-r-LC9">&nbsp;
+</div><div class="line" id="file-sqldf_examples-r-LC10"><span class="pl-c">#   day avg_temp</span>
+</div><div class="line" id="file-sqldf_examples-r-LC11"><span class="pl-c">#1 307 37.57931</span>
+</div><div class="line" id="file-sqldf_examples-r-LC12"><span class="pl-c">#2 308 37.71308</span>
+</div><div class="line" id="file-sqldf_examples-r-LC13">&nbsp;
+</div><div class="line" id="file-sqldf_examples-r-LC14"><span class="pl-c">#beavers1 and beavers2 come with base R</span>
+</div><div class="line" id="file-sqldf_examples-r-LC15"><span class="pl-vo">beavers</span> <span class="pl-k">&lt;-</span> sqldf(<span class="pl-s1"><span class="pl-pds">"</span>select * from beaver1</span>
+</div><div class="line" id="file-sqldf_examples-r-LC16"><span class="pl-s1">                  union all</span>
+</div><div class="line" id="file-sqldf_examples-r-LC17"><span class="pl-s1">                  select * from beaver2;<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-sqldf_examples-r-LC18"><span class="pl-c">#head(beavers)</span>
+</div><div class="line" id="file-sqldf_examples-r-LC19"><span class="pl-c">#  day time  temp activ</span>
+</div><div class="line" id="file-sqldf_examples-r-LC20"><span class="pl-c">#1 346  840 36.33     0</span>
+</div><div class="line" id="file-sqldf_examples-r-LC21"><span class="pl-c">#2 346  850 36.34     0</span>
+</div><div class="line" id="file-sqldf_examples-r-LC22"><span class="pl-c">#3 346  900 36.35     0</span>
+</div><div class="line" id="file-sqldf_examples-r-LC23"><span class="pl-c">#4 346  910 36.42     0</span>
+</div><div class="line" id="file-sqldf_examples-r-LC24"><span class="pl-c">#5 346  920 36.55     0</span>
+</div><div class="line" id="file-sqldf_examples-r-LC25"><span class="pl-c">#6 346  930 36.69     0</span>
+</div><div class="line" id="file-sqldf_examples-r-LC26">&nbsp;
+</div><div class="line" id="file-sqldf_examples-r-LC27"><span class="pl-vo">movies</span> <span class="pl-k">&lt;-</span> <span class="pl-st">data.frame</span>(
+</div><div class="line" id="file-sqldf_examples-r-LC28">  <span class="pl-v">title</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>The Great Outdoors<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>Caddyshack<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>Fletch<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>Days of Thunder<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>Crazy Heart<span class="pl-pds">"</span></span>),
+</div><div class="line" id="file-sqldf_examples-r-LC29">  <span class="pl-v">year</span><span class="pl-k">=</span>c(<span class="pl-c1">1988</span>, <span class="pl-c1">1980</span>, <span class="pl-c1">1985</span>, <span class="pl-c1">1990</span>, <span class="pl-c1">2009</span>)
+</div><div class="line" id="file-sqldf_examples-r-LC30">  )
+</div><div class="line" id="file-sqldf_examples-r-LC31"><span class="pl-vo">boxoffice</span> <span class="pl-k">&lt;-</span> <span class="pl-st">data.frame</span>(
+</div><div class="line" id="file-sqldf_examples-r-LC32">  <span class="pl-v">title</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>The Great Outdoors<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>Caddyshack<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>Fletch<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>Days of Thunder<span class="pl-pds">"</span></span>,<span class="pl-s1"><span class="pl-pds">"</span>Top Gun<span class="pl-pds">"</span></span>),
+</div><div class="line" id="file-sqldf_examples-r-LC33">  <span class="pl-v">revenue</span><span class="pl-k">=</span>c(<span class="pl-c1">43455230</span>, <span class="pl-c1">39846344</span>, <span class="pl-c1">59600000</span>, <span class="pl-c1">157920733</span>, <span class="pl-c1">353816701</span>)
+</div><div class="line" id="file-sqldf_examples-r-LC34">  )
+</div><div class="line" id="file-sqldf_examples-r-LC35">&nbsp;
+</div><div class="line" id="file-sqldf_examples-r-LC36">sqldf(<span class="pl-s1"><span class="pl-pds">"</span>SELECT</span>
+</div><div class="line" id="file-sqldf_examples-r-LC37"><span class="pl-s1">        m.*</span>
+</div><div class="line" id="file-sqldf_examples-r-LC38"><span class="pl-s1">        , b.revenue</span>
+</div><div class="line" id="file-sqldf_examples-r-LC39"><span class="pl-s1">      FROM</span>
+</div><div class="line" id="file-sqldf_examples-r-LC40"><span class="pl-s1">        movies m</span>
+</div><div class="line" id="file-sqldf_examples-r-LC41"><span class="pl-s1">      INNER JOIN</span>
+</div><div class="line" id="file-sqldf_examples-r-LC42"><span class="pl-s1">        boxoffice b</span>
+</div><div class="line" id="file-sqldf_examples-r-LC43"><span class="pl-s1">          ON m.title = b.title;<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-sqldf_examples-r-LC44">&nbsp;
+</div><div class="line" id="file-sqldf_examples-r-LC45"><span class="pl-c">#               title year   revenue</span>
+</div><div class="line" id="file-sqldf_examples-r-LC46"><span class="pl-c">#1 The Great Outdoors 1988  43455230</span>
+</div><div class="line" id="file-sqldf_examples-r-LC47"><span class="pl-c">#2         Caddyshack 1980  39846344</span>
+</div><div class="line" id="file-sqldf_examples-r-LC48"><span class="pl-c">#3             Fletch 1985  59600000</span>
+</div><div class="line" id="file-sqldf_examples-r-LC49"><span class="pl-c">#4    Days of Thunder 1990 157920733</span>
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4750570/raw/sqldf_examples.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4750570#file-sqldf_examples-r">sqldf_examples.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+		<p>If you like <code>sqldf</code>, checkout <a href="https://github.com/yhat/pandasql" title="yhat/pandasql - query pandas DataFrames using SQL syntax" target="_blank"><code>pandasql</code></a> library for querying <a href="http://pandas.pydata.org/" title="pandas - Python Data Analysis Library" target="_blank">pandas</a> <code>DataFrame</code>s with SQL.</p>
+	</li>
+	<li>
+		<h4><span><a href="http://cran.r-project.org/web/packages/forecast/index.html" title="forecast - forcasting functions for time series &amp; linear models in r" target="_blank">forecast</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"forecast"</span><span class="pun">)</span></pre>		
+		<p>I don't do time series analysis very often, but when I do <code>forecast</code> is my library of choice. <code>forecast</code> makes it incredibly easy to fit time series models like ARIMA, ARMA, AR, Exponential Smoothing, etc.</p>
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4750929.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4750929" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-forecast_example-r-L1" rel="file-forecast_example-r-L1">1</span>
+            <span class="line-number" id="file-forecast_example-r-L2" rel="file-forecast_example-r-L2">2</span>
+            <span class="line-number" id="file-forecast_example-r-L3" rel="file-forecast_example-r-L3">3</span>
+            <span class="line-number" id="file-forecast_example-r-L4" rel="file-forecast_example-r-L4">4</span>
+            <span class="line-number" id="file-forecast_example-r-L5" rel="file-forecast_example-r-L5">5</span>
+            <span class="line-number" id="file-forecast_example-r-L6" rel="file-forecast_example-r-L6">6</span>
+            <span class="line-number" id="file-forecast_example-r-L7" rel="file-forecast_example-r-L7">7</span>
+            <span class="line-number" id="file-forecast_example-r-L8" rel="file-forecast_example-r-L8">8</span>
+            <span class="line-number" id="file-forecast_example-r-L9" rel="file-forecast_example-r-L9">9</span>
+            <span class="line-number" id="file-forecast_example-r-L10" rel="file-forecast_example-r-L10">10</span>
+            <span class="line-number" id="file-forecast_example-r-L11" rel="file-forecast_example-r-L11">11</span>
+            <span class="line-number" id="file-forecast_example-r-L12" rel="file-forecast_example-r-L12">12</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-forecast_example-r-LC1">library(<span class="pl-vo">forecast</span>)
+</div><div class="line" id="file-forecast_example-r-LC2">&nbsp;
+</div><div class="line" id="file-forecast_example-r-LC3"><span class="pl-c"># mdeaths: Monthly Deaths from Lung Diseases in the UK</span>
+</div><div class="line" id="file-forecast_example-r-LC4"><span class="pl-vo">fit</span> <span class="pl-k">&lt;-</span> auto.arima(<span class="pl-vo">mdeaths</span>)
+</div><div class="line" id="file-forecast_example-r-LC5"><span class="pl-c">#customize your confidence intervals</span>
+</div><div class="line" id="file-forecast_example-r-LC6">forecast(<span class="pl-vo">fit</span>, <span class="pl-v">level</span><span class="pl-k">=</span>c(<span class="pl-c1">80</span>, <span class="pl-c1">95</span>, <span class="pl-c1">99</span>), <span class="pl-v">h</span><span class="pl-k">=</span><span class="pl-c1">3</span>)
+</div><div class="line" id="file-forecast_example-r-LC7"><span class="pl-c">#         Point Forecast    Lo 80    Hi 80    Lo 95    Hi 95    Lo 99    Hi 99</span>
+</div><div class="line" id="file-forecast_example-r-LC8"><span class="pl-c">#Jan 1980       1822.863 1564.192 2081.534 1427.259 2218.467 1302.952 2342.774</span>
+</div><div class="line" id="file-forecast_example-r-LC9"><span class="pl-c">#Feb 1980       1923.190 1635.530 2210.851 1483.251 2363.130 1345.012 2501.368</span>
+</div><div class="line" id="file-forecast_example-r-LC10"><span class="pl-c">#Mar 1980       1789.153 1495.048 2083.258 1339.359 2238.947 1198.023 2380.283</span>
+</div><div class="line" id="file-forecast_example-r-LC11">&nbsp;
+</div><div class="line" id="file-forecast_example-r-LC12">plot(forecast(<span class="pl-vo">fit</span>), <span class="pl-v">shadecols</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>oldstyle<span class="pl-pds">"</span></span>)
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4750929/raw/forecast_example.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4750929#file-forecast_example-r">forecast_example.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+		<br><p>My favorite feature is the resulting forecast plot.</p>
+		<img src="./ŷhat   10 R packages I wish I knew about earlier_files/forecast.png">
+	</li>	<li>
+		<h4><span><a href="http://plyr.had.co.nz/" title="plyr - The split-apply-combine strategy for R" target="_blank">plyr</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"plyr"</span><span class="pun">)</span></pre>
+		<p>When I first started using R, I was using basic control operations for manipulating data (for, if, while, etc.). I quickly learned that this was an amateur move, and that there was a better way to do it.</p>
+
+		<p>In R, the <a href="http://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/#more-2058" title="A brief introduction to apply functions in R" target="_blank">apply family of functions</a> is the preferred way to call a function on each element of a list or vector. While Base R has this out of the box, its usage can be tricky to master. I've found the <a href="http://cran.r-project.org/web/packages/plyr/index.html" title="Plyr Package for R" target="_blank"> <code>plyr</code> package</a> to be an easy to use substitute for <code>split</code>, <code>apply</code>, <code>combine</code> functionality in Base R.</p>
+
+		<p><code>plyr</code> gives you several functions (<code>ddply</code>, <code>daply</code>, <code>dlply</code>, <code>adply</code>, <code>ldply</code>) following a common blueprint: Split a data structure into groups, apply a function on each group, return the results in a data structure.</p>
+
+		<p><code>ddply</code> splits a data frame and returns a data frame (hence the dd). <code>daply</code> splits a data frame and results an array (hence the da). Hopefully you're getting the idea here.</p>
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4750641.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4750641" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-plyr_examples-r-L1" rel="file-plyr_examples-r-L1">1</span>
+            <span class="line-number" id="file-plyr_examples-r-L2" rel="file-plyr_examples-r-L2">2</span>
+            <span class="line-number" id="file-plyr_examples-r-L3" rel="file-plyr_examples-r-L3">3</span>
+            <span class="line-number" id="file-plyr_examples-r-L4" rel="file-plyr_examples-r-L4">4</span>
+            <span class="line-number" id="file-plyr_examples-r-L5" rel="file-plyr_examples-r-L5">5</span>
+            <span class="line-number" id="file-plyr_examples-r-L6" rel="file-plyr_examples-r-L6">6</span>
+            <span class="line-number" id="file-plyr_examples-r-L7" rel="file-plyr_examples-r-L7">7</span>
+            <span class="line-number" id="file-plyr_examples-r-L8" rel="file-plyr_examples-r-L8">8</span>
+            <span class="line-number" id="file-plyr_examples-r-L9" rel="file-plyr_examples-r-L9">9</span>
+            <span class="line-number" id="file-plyr_examples-r-L10" rel="file-plyr_examples-r-L10">10</span>
+            <span class="line-number" id="file-plyr_examples-r-L11" rel="file-plyr_examples-r-L11">11</span>
+            <span class="line-number" id="file-plyr_examples-r-L12" rel="file-plyr_examples-r-L12">12</span>
+            <span class="line-number" id="file-plyr_examples-r-L13" rel="file-plyr_examples-r-L13">13</span>
+            <span class="line-number" id="file-plyr_examples-r-L14" rel="file-plyr_examples-r-L14">14</span>
+            <span class="line-number" id="file-plyr_examples-r-L15" rel="file-plyr_examples-r-L15">15</span>
+            <span class="line-number" id="file-plyr_examples-r-L16" rel="file-plyr_examples-r-L16">16</span>
+            <span class="line-number" id="file-plyr_examples-r-L17" rel="file-plyr_examples-r-L17">17</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-plyr_examples-r-LC1">library(<span class="pl-vo">plyr</span>)
+</div><div class="line" id="file-plyr_examples-r-LC2">&nbsp;
+</div><div class="line" id="file-plyr_examples-r-LC3"><span class="pl-c"># split a data frame by Species, summarize it, then convert the results</span>
+</div><div class="line" id="file-plyr_examples-r-LC4"><span class="pl-c"># into a data frame</span>
+</div><div class="line" id="file-plyr_examples-r-LC5">ddply(<span class="pl-vo">iris</span>, .(<span class="pl-vo">Species</span>), <span class="pl-vo">summarise</span>,
+</div><div class="line" id="file-plyr_examples-r-LC6">      <span class="pl-v">mean_petal_length</span><span class="pl-k">=</span>mean(<span class="pl-vo">Petal.Length</span>)
+</div><div class="line" id="file-plyr_examples-r-LC7">)
+</div><div class="line" id="file-plyr_examples-r-LC8"><span class="pl-c">#     Species mean_petal_length</span>
+</div><div class="line" id="file-plyr_examples-r-LC9"><span class="pl-c">#1     setosa             1.462</span>
+</div><div class="line" id="file-plyr_examples-r-LC10"><span class="pl-c">#2 versicolor             4.260</span>
+</div><div class="line" id="file-plyr_examples-r-LC11"><span class="pl-c">#3  virginica             5.552</span>
+</div><div class="line" id="file-plyr_examples-r-LC12">&nbsp;
+</div><div class="line" id="file-plyr_examples-r-LC13"><span class="pl-c"># split a data frame by Species, summarize it, then convert the results</span>
+</div><div class="line" id="file-plyr_examples-r-LC14"><span class="pl-c"># into an array</span>
+</div><div class="line" id="file-plyr_examples-r-LC15">unlist(daply(<span class="pl-vo">iris</span>[,<span class="pl-c1">4</span><span class="pl-k">:</span><span class="pl-c1">5</span>], .(<span class="pl-vo">Species</span>), colwise(<span class="pl-vo">mean</span>)))
+</div><div class="line" id="file-plyr_examples-r-LC16"><span class="pl-c">#    setosa.Petal.Width versicolor.Petal.Width  virginica.Petal.Width </span>
+</div><div class="line" id="file-plyr_examples-r-LC17"><span class="pl-c">#                 0.246                  1.326                  2.026 </span>
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4750641/raw/plyr_examples.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4750641#file-plyr_examples-r">plyr_examples.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+	</li>
+	<li>
+		<h4><span><a href="http://cran.r-project.org/web/packages/stringr/index.html" title="stringr - string utilities for r programmers" target="_blank">stringr</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"stringr"</span><span class="pun">)</span></pre>
+		<p>I find base R's string functionality to be extremely difficult and cumbersome to use. Another package written by <a href="http://had.co.nz/" title="Hadley Wickham blog" target="_blank">Hadley Wickham</a>, <code>stringr</code>, provides some much needed string operators in R. Many of the functions use data strcutures that aren't commonly used when doing basic analysis.</p>
+
+		<img src="./ŷhat   10 R packages I wish I knew about earlier_files/stringr.png"><br>
+		<p><code>stringr</code> is remarkably easy to use. Nearly all of the functions (and all of the important ones) are prefixed with "str" so they're very easy to remember.</p>
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4750670.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4750670" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-stringr_example-r-L1" rel="file-stringr_example-r-L1">1</span>
+            <span class="line-number" id="file-stringr_example-r-L2" rel="file-stringr_example-r-L2">2</span>
+            <span class="line-number" id="file-stringr_example-r-L3" rel="file-stringr_example-r-L3">3</span>
+            <span class="line-number" id="file-stringr_example-r-L4" rel="file-stringr_example-r-L4">4</span>
+            <span class="line-number" id="file-stringr_example-r-L5" rel="file-stringr_example-r-L5">5</span>
+            <span class="line-number" id="file-stringr_example-r-L6" rel="file-stringr_example-r-L6">6</span>
+            <span class="line-number" id="file-stringr_example-r-L7" rel="file-stringr_example-r-L7">7</span>
+            <span class="line-number" id="file-stringr_example-r-L8" rel="file-stringr_example-r-L8">8</span>
+            <span class="line-number" id="file-stringr_example-r-L9" rel="file-stringr_example-r-L9">9</span>
+            <span class="line-number" id="file-stringr_example-r-L10" rel="file-stringr_example-r-L10">10</span>
+            <span class="line-number" id="file-stringr_example-r-L11" rel="file-stringr_example-r-L11">11</span>
+            <span class="line-number" id="file-stringr_example-r-L12" rel="file-stringr_example-r-L12">12</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-stringr_example-r-LC1">library(<span class="pl-vo">stringr</span>)
+</div><div class="line" id="file-stringr_example-r-LC2">&nbsp;
+</div><div class="line" id="file-stringr_example-r-LC3">names(<span class="pl-vo">iris</span>)
+</div><div class="line" id="file-stringr_example-r-LC4"><span class="pl-c">#[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"</span>
+</div><div class="line" id="file-stringr_example-r-LC5">names(<span class="pl-vo">iris</span>) <span class="pl-k">&lt;-</span> str_replace_all(names(<span class="pl-vo">iris</span>), <span class="pl-s1"><span class="pl-pds">"</span>[.]<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>_<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-stringr_example-r-LC6">names(<span class="pl-vo">iris</span>)
+</div><div class="line" id="file-stringr_example-r-LC7"><span class="pl-c">#[1] "Sepal_Length" "Sepal_Width"  "Petal_Length" "Petal_Width"  "Species"</span>
+</div><div class="line" id="file-stringr_example-r-LC8">&nbsp;
+</div><div class="line" id="file-stringr_example-r-LC9"><span class="pl-vo">s</span> <span class="pl-k">&lt;-</span> c(<span class="pl-s1"><span class="pl-pds">"</span>Go to Heaven for the climate, Hell for the company.<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-stringr_example-r-LC10">str_extract_all(<span class="pl-vo">s</span>, <span class="pl-s1"><span class="pl-pds">"</span>[H][a-z]+ <span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-stringr_example-r-LC11"><span class="pl-c">#[[1]]</span>
+</div><div class="line" id="file-stringr_example-r-LC12"><span class="pl-c">#[1] "Heaven " "Hell "  </span>
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4750670/raw/stringr_example.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4750670#file-stringr_example-r">stringr_example.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+	</li>
+	<li>
+		<h4 id="dbdriver"><span><a href="http://blog.yhathq.com/posts/10-R-packages-I-wish-I-knew-about-earlier.html#dbdriver">The database driver package of your choice</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"RPostgreSQL"</span><span class="pun">)</span><span class="pln">
+install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"RMySQL"</span><span class="pun">)</span><span class="pln">
+install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"RMongo"</span><span class="pun">)</span><span class="pln">
+install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"RODBC"</span><span class="pun">)</span><span class="pln">
+install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"RSQLite"</span><span class="pun">)</span></pre>
+		<p>Everyone does it when they first start (myself included). You've just written an awesome query in your preferred SQL editor. Everything is perfect - the column names are all <a href="http://en.wikipedia.org/wiki/Snake_case" title="Snake Case Wikipedia Page" target="_blank">snake case</a>, the dates have the right datatype, you finally debugged the <code>"must appear in the GROUP BY clause or be used in an aggregate function"</code> issue. You're ready to do some analysis in R, so you run the query in your SQL editor, copy the results to a csv (or...God forbid... .xlsx) and read into R. <strong>You don't have to do this!</strong></p>
+		
+		<p>R has great drivers for nearly every conceivable database. On the off chance you're using a database which doesn't have a standalone driver (SQL Server), you can always use <a href="http://cran.r-project.org/web/packages/RODBC/index.html" title="RODBC R SQL Driver" target="_blank"><code>RODBC</code></a>.</p>
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4750770.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4750770" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-dbdriver_example-r-L1" rel="file-dbdriver_example-r-L1">1</span>
+            <span class="line-number" id="file-dbdriver_example-r-L2" rel="file-dbdriver_example-r-L2">2</span>
+            <span class="line-number" id="file-dbdriver_example-r-L3" rel="file-dbdriver_example-r-L3">3</span>
+            <span class="line-number" id="file-dbdriver_example-r-L4" rel="file-dbdriver_example-r-L4">4</span>
+            <span class="line-number" id="file-dbdriver_example-r-L5" rel="file-dbdriver_example-r-L5">5</span>
+            <span class="line-number" id="file-dbdriver_example-r-L6" rel="file-dbdriver_example-r-L6">6</span>
+            <span class="line-number" id="file-dbdriver_example-r-L7" rel="file-dbdriver_example-r-L7">7</span>
+            <span class="line-number" id="file-dbdriver_example-r-L8" rel="file-dbdriver_example-r-L8">8</span>
+            <span class="line-number" id="file-dbdriver_example-r-L9" rel="file-dbdriver_example-r-L9">9</span>
+            <span class="line-number" id="file-dbdriver_example-r-L10" rel="file-dbdriver_example-r-L10">10</span>
+            <span class="line-number" id="file-dbdriver_example-r-L11" rel="file-dbdriver_example-r-L11">11</span>
+            <span class="line-number" id="file-dbdriver_example-r-L12" rel="file-dbdriver_example-r-L12">12</span>
+            <span class="line-number" id="file-dbdriver_example-r-L13" rel="file-dbdriver_example-r-L13">13</span>
+            <span class="line-number" id="file-dbdriver_example-r-L14" rel="file-dbdriver_example-r-L14">14</span>
+            <span class="line-number" id="file-dbdriver_example-r-L15" rel="file-dbdriver_example-r-L15">15</span>
+            <span class="line-number" id="file-dbdriver_example-r-L16" rel="file-dbdriver_example-r-L16">16</span>
+            <span class="line-number" id="file-dbdriver_example-r-L17" rel="file-dbdriver_example-r-L17">17</span>
+            <span class="line-number" id="file-dbdriver_example-r-L18" rel="file-dbdriver_example-r-L18">18</span>
+            <span class="line-number" id="file-dbdriver_example-r-L19" rel="file-dbdriver_example-r-L19">19</span>
+            <span class="line-number" id="file-dbdriver_example-r-L20" rel="file-dbdriver_example-r-L20">20</span>
+            <span class="line-number" id="file-dbdriver_example-r-L21" rel="file-dbdriver_example-r-L21">21</span>
+            <span class="line-number" id="file-dbdriver_example-r-L22" rel="file-dbdriver_example-r-L22">22</span>
+            <span class="line-number" id="file-dbdriver_example-r-L23" rel="file-dbdriver_example-r-L23">23</span>
+            <span class="line-number" id="file-dbdriver_example-r-L24" rel="file-dbdriver_example-r-L24">24</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-dbdriver_example-r-LC1">library(<span class="pl-vo">RPostgreSQL</span>)
+</div><div class="line" id="file-dbdriver_example-r-LC2">&nbsp;
+</div><div class="line" id="file-dbdriver_example-r-LC3"><span class="pl-vo">drv</span> <span class="pl-k">&lt;-</span> dbDriver(<span class="pl-s1"><span class="pl-pds">"</span>PostgreSQL<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-dbdriver_example-r-LC4"><span class="pl-vo">db</span> <span class="pl-k">&lt;-</span> dbConnect(<span class="pl-vo">drv</span>, <span class="pl-v">dbname</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>ncaa<span class="pl-pds">"</span></span>,
+</div><div class="line" id="file-dbdriver_example-r-LC5">                 <span class="pl-v">user</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>YOUR USER NAME<span class="pl-pds">"</span></span>, <span class="pl-v">password</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>YOUR PASSWORD<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-dbdriver_example-r-LC6">&nbsp;
+</div><div class="line" id="file-dbdriver_example-r-LC7"><span class="pl-vo">q</span> <span class="pl-k">&lt;-</span> <span class="pl-s1"><span class="pl-pds">"</span>SELECT</span>
+</div><div class="line" id="file-dbdriver_example-r-LC8"><span class="pl-s1">        *</span>
+</div><div class="line" id="file-dbdriver_example-r-LC9"><span class="pl-s1">      FROM</span>
+</div><div class="line" id="file-dbdriver_example-r-LC10"><span class="pl-s1">        game_scores;<span class="pl-pds">"</span></span>
+</div><div class="line" id="file-dbdriver_example-r-LC11">&nbsp;
+</div><div class="line" id="file-dbdriver_example-r-LC12"><span class="pl-vo">data</span> <span class="pl-k">&lt;-</span> dbGetQuery(<span class="pl-vo">db</span>, <span class="pl-vo">q</span>)
+</div><div class="line" id="file-dbdriver_example-r-LC13">head(<span class="pl-vo">data</span>)
+</div><div class="line" id="file-dbdriver_example-r-LC14"><span class="pl-c">#id         school  game_date spread school_score   opponent opp_score was_home</span>
+</div><div class="line" id="file-dbdriver_example-r-LC15"><span class="pl-c">#1 45111 Boston College 1985-11-16    6.0           21   Syracuse        41    False</span>
+</div><div class="line" id="file-dbdriver_example-r-LC16"><span class="pl-c">#2 45112 Boston College 1985-11-02   13.5           12 Penn State        16    False</span>
+</div><div class="line" id="file-dbdriver_example-r-LC17"><span class="pl-c">#3 45113 Boston College 1985-10-26  -11.0           17 Cincinnati        24    False</span>
+</div><div class="line" id="file-dbdriver_example-r-LC18"><span class="pl-c">#4 45114 Boston College 1985-10-12   -2.0           14       Army        45    False</span>
+</div><div class="line" id="file-dbdriver_example-r-LC19"><span class="pl-c">#5 45115 Boston College 1985-09-28    5.0           10      Miami        45     True</span>
+</div><div class="line" id="file-dbdriver_example-r-LC20"><span class="pl-c">#6 45116 Boston College 1985-09-21    6.5           29 Pittsburgh        22    False</span>
+</div><div class="line" id="file-dbdriver_example-r-LC21">nrow(<span class="pl-vo">data</span>)
+</div><div class="line" id="file-dbdriver_example-r-LC22"><span class="pl-c">#[1] 30932</span>
+</div><div class="line" id="file-dbdriver_example-r-LC23">ncol(<span class="pl-vo">data</span>)
+</div><div class="line" id="file-dbdriver_example-r-LC24"><span class="pl-c">#[1] 8</span>
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4750770/raw/dbdriver_example.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4750770#file-dbdriver_example-r">dbdriver_example.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+		<p>Next time you've got that perfect query written, just paste it into R and execute it using <a href="http://cran.r-project.org/web/packages/RPostgreSQL/index.html" title="PostgreSQL Driver for R" target="_blank"><code>RPostgreSQL</code></a>, <a href="http://cran.r-project.org/web/packages/RMySQL/index.html" title="mySQL Driver for R" target="_blank"><code>RMySQL</code></a>, <a href="http://cran.r-project.org/web/packages/RMongo/index.html" title="MongoDB Driver for R" target="_blank"><code>RMongo</code></a>, <a href="http://cran.r-project.org/web/packages/RSQLite/index.html" title="SQLite Driver for R" target="_blank"><code>SQLite</code></a>, or <code>RODBC</code>. In addition to preventing you from having tens of hundreds of CSV files sitting arround, running the query in R saves you time both in I/O but also in converting datatypes. Dates, times, and datetimes will be automatically set to their R equivalent. It also makes your R script reproducible, so you or someone else on your team can easily produce the same results.</p>
+	</li>
+	<li>
+		<h4><span><a href="http://cran.r-project.org/web/packages/lubridate/lubridate.pdf" title="lubridate - r package for dates" target="_blank">lubridate</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"lubridate"</span><span class="pun">)</span></pre>		
+		<p>I've never had great luck with dates in R. I've never fully grasped the idiosyncracies of working with <a href="http://en.wikipedia.org/wiki/POSIX" title="POSIX Wikipedia Page" target="_blank">POSIXs</a> vs. R Dates. Enter <a href="https://github.com/hadley/lubridate" title="Lubridate Github Repository" target="_blank"><code>lubridate</code></a>.</p>
+		<p><code>lubridate</code> is one of those magical libraries that just seems to do <em>exactly</em> what you expect it to. The functions all have obvious names like <code>year</code>, <code>month</code>, <code>ymd</code>, and <code>ymd_hms</code>. It's similar to <a href="http://momentjs.com/" title="Moment.js Dates Javascript Library" target="_blank">Moment.js</a> for those familiar with javascript.</p>
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4750846.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4750846" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-lubridate_example-r-L1" rel="file-lubridate_example-r-L1">1</span>
+            <span class="line-number" id="file-lubridate_example-r-L2" rel="file-lubridate_example-r-L2">2</span>
+            <span class="line-number" id="file-lubridate_example-r-L3" rel="file-lubridate_example-r-L3">3</span>
+            <span class="line-number" id="file-lubridate_example-r-L4" rel="file-lubridate_example-r-L4">4</span>
+            <span class="line-number" id="file-lubridate_example-r-L5" rel="file-lubridate_example-r-L5">5</span>
+            <span class="line-number" id="file-lubridate_example-r-L6" rel="file-lubridate_example-r-L6">6</span>
+            <span class="line-number" id="file-lubridate_example-r-L7" rel="file-lubridate_example-r-L7">7</span>
+            <span class="line-number" id="file-lubridate_example-r-L8" rel="file-lubridate_example-r-L8">8</span>
+            <span class="line-number" id="file-lubridate_example-r-L9" rel="file-lubridate_example-r-L9">9</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-lubridate_example-r-LC1">library(<span class="pl-vo">lubridate</span>)
+</div><div class="line" id="file-lubridate_example-r-LC2">&nbsp;
+</div><div class="line" id="file-lubridate_example-r-LC3">year(<span class="pl-s1"><span class="pl-pds">"</span>2012-12-12<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-lubridate_example-r-LC4"><span class="pl-c">#[1] 2012</span>
+</div><div class="line" id="file-lubridate_example-r-LC5">day(<span class="pl-s1"><span class="pl-pds">"</span>2012-12-12<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-lubridate_example-r-LC6"><span class="pl-c">#[1] 12</span>
+</div><div class="line" id="file-lubridate_example-r-LC7">ymd(<span class="pl-s1"><span class="pl-pds">"</span>2012-12-12<span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-lubridate_example-r-LC8"><span class="pl-c">#1 parsed with %Y-%m-%d</span>
+</div><div class="line" id="file-lubridate_example-r-LC9"><span class="pl-c">#[1] "2012-12-12 UTC"</span>
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4750846/raw/lubridate_example.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4750846#file-lubridate_example-r">lubridate_example.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+		<p>Here's a really handy reference card that I found in a <a href="http://www.jstatsoft.org/v40/i03/paper">paper</a>. It covers just about everything you might conveivably want to do to a date. I've also found this <a href="http://blog.yhathq.com/static/pdf/R_date_cheat_sheet.pdf" title="date cheat sheet for r programmers" target="_blank">Date Cheat Sheet</a> to be a handy reference.</p>
+	</li>
+	<li>
+		<h4><span><a href="http://docs.ggplot2.org/current/" title="ggplot2 - beautiful graphics for R programmers" target="_blank">ggplot2</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"ggplot2"</span><span class="pun">)</span></pre>		
+		<p>Another Hadley Wickham pacakge and probably his most widely known one. <code>ggplot2</code> ranks high on everyone's list of favorite R pacakges. It's easy to use and it produces some great looking plots. It's a great way to present your work, and there are many resources available to help you get started.</p>
+		<ul>
+			<li><a href="http://amzn.to/WbYXus" title="ggplot2: Elegant Graphics for Data Analysis" target="_blank">Elegant Graphics for Data Analysis by Hadley Wickham (Amazon)</a></li>
+			<li><a href="http://www.yaksis.com/posts/r-chart-chooser.html" title="Yaksis Blog - A Rosetta Stone for ggplot and Excel graphics" target="_blank">A Rosetta Stone for Excel to <code>ggplot</code> (Yaksis Blog)</a></li>
+			<li><a href="http://www.youtube.com/watch?v=TaxJwC_MP9Q" title="Hadley Wickham Google presentation on ggplot2" target="_blank">Hadley Wickham ggplot2 Presentation at Google (youtube)</a></li>
+			<li><a href="http://amzn.to/WYrFAu" title="R Graphics Cookbook on Amazon by Winston Chang" target="_blank">R Graphics Cookbook by Winston Chang (Amazon)</a></li>
+		</ul>
+		<br>
+	</li>
+	<li>
+		<h4><span><a href="http://cran.r-project.org/web/packages/qcc/index.html" title="qcc - r package for statistical quality control" target="_blank">qcc</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"qcc"</span><span class="pun">)</span></pre>		
+		<p><code>qcc</code> is a library for <a href="http://en.wikipedia.org/wiki/Statistical_process_control" title="Statistical Process Control on Wikipedia" target="_blank">statistical quality control</a>. Back in the 1950s, the now defunct <a href="http://en.wikipedia.org/wiki/Western_Electric" title=" western electric company" target="_blank">Western Electric Company</a> was looking for a better way to detect problems with telephone and eletrical lines. They came up with a <a href="http://en.wikipedia.org/wiki/Western_Electric_rules" title="Western Electric Rules" target="_blank">set of rules</a> to help them identify problematic lines. The rules look at the historical mean of a series of datapoints and based on the standard deviation, the rules help judge whether a new set of points is experiencing a mean shift.</p>
+
+		<p>The classic example is monitoring a machine that produces <a href="http://en.wikipedia.org/wiki/Lug_nut" title="Lug Nuts on Wikipedia" target="_blank">lug nuts</a>. Let's say the machine is supposed to produce 2.5 inch long lug nuts. We measure a series of lug nuts: 2.48, 2.47, 2.51, 2.52, 2.54, 2.42, 2.52, 2.58, 2.51. Is the machine broken? Well it's hard to tell, but the Western Electric Rules can help.</p>
+		
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4751004.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4751004" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-qcc_example-r-L1" rel="file-qcc_example-r-L1">1</span>
+            <span class="line-number" id="file-qcc_example-r-L2" rel="file-qcc_example-r-L2">2</span>
+            <span class="line-number" id="file-qcc_example-r-L3" rel="file-qcc_example-r-L3">3</span>
+            <span class="line-number" id="file-qcc_example-r-L4" rel="file-qcc_example-r-L4">4</span>
+            <span class="line-number" id="file-qcc_example-r-L5" rel="file-qcc_example-r-L5">5</span>
+            <span class="line-number" id="file-qcc_example-r-L6" rel="file-qcc_example-r-L6">6</span>
+            <span class="line-number" id="file-qcc_example-r-L7" rel="file-qcc_example-r-L7">7</span>
+            <span class="line-number" id="file-qcc_example-r-L8" rel="file-qcc_example-r-L8">8</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-qcc_example-r-LC1">library(<span class="pl-vo">qcc</span>)
+</div><div class="line" id="file-qcc_example-r-LC2">&nbsp;
+</div><div class="line" id="file-qcc_example-r-LC3"><span class="pl-c"># series of value w/ mean of 10 with a little random noise added in</span>
+</div><div class="line" id="file-qcc_example-r-LC4"><span class="pl-vo">x</span> <span class="pl-k">&lt;-</span> rep(<span class="pl-c1">10</span>, <span class="pl-c1">100</span>) <span class="pl-k">+</span> rnorm(<span class="pl-c1">100</span>)
+</div><div class="line" id="file-qcc_example-r-LC5"><span class="pl-c"># a test series w/ a mean of 11</span>
+</div><div class="line" id="file-qcc_example-r-LC6"><span class="pl-vo">new.x</span> <span class="pl-k">&lt;-</span> rep(<span class="pl-c1">11</span>, <span class="pl-c1">15</span>) <span class="pl-k">+</span> rnorm(<span class="pl-c1">15</span>)
+</div><div class="line" id="file-qcc_example-r-LC7"><span class="pl-c"># qcc will flag the new points</span>
+</div><div class="line" id="file-qcc_example-r-LC8">qcc(<span class="pl-vo">x</span>, <span class="pl-v">newdata</span><span class="pl-k">=</span><span class="pl-vo">new.x</span>, <span class="pl-v">type</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>xbar.one<span class="pl-pds">"</span></span>)
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4751004/raw/qcc_example.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4751004#file-qcc_example-r">qcc_example.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+
+<p>While you might not be monitoring telephone lines, <code>qcc</code> can help you monitor transaction volumes, visitors or logins on your website, database operations, and lots of other processes.</p>
+
+		<img src="./ŷhat   10 R packages I wish I knew about earlier_files/qcc.png">
+	</li>
+	<br>
+	<li>
+		<h4><span><a href="http://cran.r-project.org/web/packages/reshape2/index.html" title="reshape2 - restructure &amp; aggregate data in r" target="_blank">reshape2</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"reshape2"</span><span class="pun">)</span></pre>		
+		<p>I always find that the hardest part of any sort of analysis is getting the data into the right format. <code>reshape2</code> is yet another package by Hadley Wickham that specializes in converting data from <a href="http://en.wikipedia.org/wiki/Wide_and_narrow_data#Wide" title="wide data format" target="_blank">wide</a> to <a href="http://en.wikipedia.org/wiki/Wide_and_narrow_data#Narrow" title="long data format" target="_blank">long</a> format and vice versa. I use it all the time in conjunction with <code>ggplot2</code> and <code>plyr</code>.</p>
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4751055.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4751055" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-reshape_example-r-L1" rel="file-reshape_example-r-L1">1</span>
+            <span class="line-number" id="file-reshape_example-r-L2" rel="file-reshape_example-r-L2">2</span>
+            <span class="line-number" id="file-reshape_example-r-L3" rel="file-reshape_example-r-L3">3</span>
+            <span class="line-number" id="file-reshape_example-r-L4" rel="file-reshape_example-r-L4">4</span>
+            <span class="line-number" id="file-reshape_example-r-L5" rel="file-reshape_example-r-L5">5</span>
+            <span class="line-number" id="file-reshape_example-r-L6" rel="file-reshape_example-r-L6">6</span>
+            <span class="line-number" id="file-reshape_example-r-L7" rel="file-reshape_example-r-L7">7</span>
+            <span class="line-number" id="file-reshape_example-r-L8" rel="file-reshape_example-r-L8">8</span>
+            <span class="line-number" id="file-reshape_example-r-L9" rel="file-reshape_example-r-L9">9</span>
+            <span class="line-number" id="file-reshape_example-r-L10" rel="file-reshape_example-r-L10">10</span>
+            <span class="line-number" id="file-reshape_example-r-L11" rel="file-reshape_example-r-L11">11</span>
+            <span class="line-number" id="file-reshape_example-r-L12" rel="file-reshape_example-r-L12">12</span>
+            <span class="line-number" id="file-reshape_example-r-L13" rel="file-reshape_example-r-L13">13</span>
+            <span class="line-number" id="file-reshape_example-r-L14" rel="file-reshape_example-r-L14">14</span>
+            <span class="line-number" id="file-reshape_example-r-L15" rel="file-reshape_example-r-L15">15</span>
+            <span class="line-number" id="file-reshape_example-r-L16" rel="file-reshape_example-r-L16">16</span>
+            <span class="line-number" id="file-reshape_example-r-L17" rel="file-reshape_example-r-L17">17</span>
+            <span class="line-number" id="file-reshape_example-r-L18" rel="file-reshape_example-r-L18">18</span>
+            <span class="line-number" id="file-reshape_example-r-L19" rel="file-reshape_example-r-L19">19</span>
+            <span class="line-number" id="file-reshape_example-r-L20" rel="file-reshape_example-r-L20">20</span>
+            <span class="line-number" id="file-reshape_example-r-L21" rel="file-reshape_example-r-L21">21</span>
+            <span class="line-number" id="file-reshape_example-r-L22" rel="file-reshape_example-r-L22">22</span>
+            <span class="line-number" id="file-reshape_example-r-L23" rel="file-reshape_example-r-L23">23</span>
+            <span class="line-number" id="file-reshape_example-r-L24" rel="file-reshape_example-r-L24">24</span>
+            <span class="line-number" id="file-reshape_example-r-L25" rel="file-reshape_example-r-L25">25</span>
+            <span class="line-number" id="file-reshape_example-r-L26" rel="file-reshape_example-r-L26">26</span>
+            <span class="line-number" id="file-reshape_example-r-L27" rel="file-reshape_example-r-L27">27</span>
+            <span class="line-number" id="file-reshape_example-r-L28" rel="file-reshape_example-r-L28">28</span>
+            <span class="line-number" id="file-reshape_example-r-L29" rel="file-reshape_example-r-L29">29</span>
+            <span class="line-number" id="file-reshape_example-r-L30" rel="file-reshape_example-r-L30">30</span>
+            <span class="line-number" id="file-reshape_example-r-L31" rel="file-reshape_example-r-L31">31</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-reshape_example-r-LC1">library(<span class="pl-vo">reshape2</span>)
+</div><div class="line" id="file-reshape_example-r-LC2">&nbsp;
+</div><div class="line" id="file-reshape_example-r-LC3"><span class="pl-c"># generate a unique id for each row; this let's us go back to wide format later</span>
+</div><div class="line" id="file-reshape_example-r-LC4"><span class="pl-vo">iris</span><span class="pl-k">$</span><span class="pl-vo">id</span> <span class="pl-k">&lt;-</span> <span class="pl-c1">1</span><span class="pl-k">:</span>nrow(<span class="pl-vo">iris</span>)
+</div><div class="line" id="file-reshape_example-r-LC5">&nbsp;
+</div><div class="line" id="file-reshape_example-r-LC6"><span class="pl-vo">iris.lng</span> <span class="pl-k">&lt;-</span> melt(<span class="pl-vo">iris</span>, <span class="pl-v">id</span><span class="pl-k">=</span>c(<span class="pl-s1"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>Species<span class="pl-pds">"</span></span>))
+</div><div class="line" id="file-reshape_example-r-LC7">head(<span class="pl-vo">iris.lng</span>)
+</div><div class="line" id="file-reshape_example-r-LC8"><span class="pl-c">#  id Species     variable value</span>
+</div><div class="line" id="file-reshape_example-r-LC9"><span class="pl-c">#1  1  setosa Sepal.Length   5.1</span>
+</div><div class="line" id="file-reshape_example-r-LC10"><span class="pl-c">#2  2  setosa Sepal.Length   4.9</span>
+</div><div class="line" id="file-reshape_example-r-LC11"><span class="pl-c">#3  3  setosa Sepal.Length   4.7</span>
+</div><div class="line" id="file-reshape_example-r-LC12"><span class="pl-c">#4  4  setosa Sepal.Length   4.6</span>
+</div><div class="line" id="file-reshape_example-r-LC13"><span class="pl-c">#5  5  setosa Sepal.Length   5.0</span>
+</div><div class="line" id="file-reshape_example-r-LC14"><span class="pl-c">#6  6  setosa Sepal.Length   5.4</span>
+</div><div class="line" id="file-reshape_example-r-LC15">&nbsp;
+</div><div class="line" id="file-reshape_example-r-LC16"><span class="pl-vo">iris.wide</span> <span class="pl-k">&lt;-</span> dcast(<span class="pl-vo">iris.lng</span>, <span class="pl-vo">id</span> <span class="pl-k">+</span> <span class="pl-vo">Species</span> <span class="pl-k">~</span> <span class="pl-vo">variable</span>)
+</div><div class="line" id="file-reshape_example-r-LC17">head(<span class="pl-vo">iris.wide</span>)
+</div><div class="line" id="file-reshape_example-r-LC18"><span class="pl-c">#  id Species Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+</div><div class="line" id="file-reshape_example-r-LC19"><span class="pl-c">#1  1  setosa          5.1         3.5          1.4         0.2</span>
+</div><div class="line" id="file-reshape_example-r-LC20"><span class="pl-c">#2  2  setosa          4.9         3.0          1.4         0.2</span>
+</div><div class="line" id="file-reshape_example-r-LC21"><span class="pl-c">#3  3  setosa          4.7         3.2          1.3         0.2</span>
+</div><div class="line" id="file-reshape_example-r-LC22"><span class="pl-c">#4  4  setosa          4.6         3.1          1.5         0.2</span>
+</div><div class="line" id="file-reshape_example-r-LC23"><span class="pl-c">#5  5  setosa          5.0         3.6          1.4         0.2</span>
+</div><div class="line" id="file-reshape_example-r-LC24"><span class="pl-c">#6  6  setosa          5.4         3.9          1.7         0.4</span>
+</div><div class="line" id="file-reshape_example-r-LC25">&nbsp;
+</div><div class="line" id="file-reshape_example-r-LC26">library(<span class="pl-vo">ggplot2</span>)
+</div><div class="line" id="file-reshape_example-r-LC27">&nbsp;
+</div><div class="line" id="file-reshape_example-r-LC28"><span class="pl-c"># plots a histogram for each numeric column in the dataset</span>
+</div><div class="line" id="file-reshape_example-r-LC29"><span class="pl-vo">p</span> <span class="pl-k">&lt;-</span> ggplot(aes(<span class="pl-v">x</span><span class="pl-k">=</span><span class="pl-vo">value</span>, <span class="pl-v">fill</span><span class="pl-k">=</span><span class="pl-vo">Species</span>), <span class="pl-v">data</span><span class="pl-k">=</span><span class="pl-vo">iris.lng</span>)
+</div><div class="line" id="file-reshape_example-r-LC30"><span class="pl-vo">p</span> <span class="pl-k">+</span> geom_histogram() <span class="pl-k">+</span>
+</div><div class="line" id="file-reshape_example-r-LC31">  facet_wrap(<span class="pl-k">~</span><span class="pl-vo">variable</span>, <span class="pl-v">scales</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span>free<span class="pl-pds">"</span></span>)
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4751055/raw/reshape_example.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4751055#file-reshape_example-r">reshape_example.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+		<p>It's a great way to quickly take a look at a dataset and get your bearings. You can use the <code>melt</code> function to convert wide data to long data, and <code>dcast</code> to go from long to wide.</p>
+		<img src="./ŷhat   10 R packages I wish I knew about earlier_files/melt_color_plot.png">
+
+	</li>
+	<li>
+		<h4><span><a href="http://cran.r-project.org/web/packages/randomForest/index.html" title="randomForest - Classification &amp; regression trees in R" target="_blank">randomForest</a></span></h4>
+		<pre class="prettyprint prettyprinted"><span class="pln">install</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="str">"randomForest"</span><span class="pun">)</span></pre>		
+		<p>This list wouldn't be complete without including at least <em>one</em> machine learning package you can <a href="http://www.r-bloggers.com/10-r-one-liners-to-impress-your-friends/" title="impress your friends" target="_blank">impress your friends</a> with. <a href="http://en.wikipedia.org/wiki/Random_forest" title="Random Forest on Wikipedia" target="_blank">Random Forest</a> is a great algorithm to start with. It's easy to use, can do supervised or unsupervised learning, it can be used with many differnet types of datasets, but most importantly <b>it's effective!</b> Here's how it works in R.</p>
+		<script src="./ŷhat   10 R packages I wish I knew about earlier_files/4751178.js"></script><link rel="stylesheet" href="https://gist-assets.github.com/assets/embed-b67021dc07195830cc157f7720b938fb.css"><div id="gist4751178" class="gist">
+        <div class="gist-file">
+          <div class="gist-data gist-syntax">
+            
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-randomforest_example-r-L1" rel="file-randomforest_example-r-L1">1</span>
+            <span class="line-number" id="file-randomforest_example-r-L2" rel="file-randomforest_example-r-L2">2</span>
+            <span class="line-number" id="file-randomforest_example-r-L3" rel="file-randomforest_example-r-L3">3</span>
+            <span class="line-number" id="file-randomforest_example-r-L4" rel="file-randomforest_example-r-L4">4</span>
+            <span class="line-number" id="file-randomforest_example-r-L5" rel="file-randomforest_example-r-L5">5</span>
+            <span class="line-number" id="file-randomforest_example-r-L6" rel="file-randomforest_example-r-L6">6</span>
+            <span class="line-number" id="file-randomforest_example-r-L7" rel="file-randomforest_example-r-L7">7</span>
+            <span class="line-number" id="file-randomforest_example-r-L8" rel="file-randomforest_example-r-L8">8</span>
+            <span class="line-number" id="file-randomforest_example-r-L9" rel="file-randomforest_example-r-L9">9</span>
+            <span class="line-number" id="file-randomforest_example-r-L10" rel="file-randomforest_example-r-L10">10</span>
+            <span class="line-number" id="file-randomforest_example-r-L11" rel="file-randomforest_example-r-L11">11</span>
+            <span class="line-number" id="file-randomforest_example-r-L12" rel="file-randomforest_example-r-L12">12</span>
+            <span class="line-number" id="file-randomforest_example-r-L13" rel="file-randomforest_example-r-L13">13</span>
+            <span class="line-number" id="file-randomforest_example-r-L14" rel="file-randomforest_example-r-L14">14</span>
+            <span class="line-number" id="file-randomforest_example-r-L15" rel="file-randomforest_example-r-L15">15</span>
+            <span class="line-number" id="file-randomforest_example-r-L16" rel="file-randomforest_example-r-L16">16</span>
+            <span class="line-number" id="file-randomforest_example-r-L17" rel="file-randomforest_example-r-L17">17</span>
+            <span class="line-number" id="file-randomforest_example-r-L18" rel="file-randomforest_example-r-L18">18</span>
+            <span class="line-number" id="file-randomforest_example-r-L19" rel="file-randomforest_example-r-L19">19</span>
+            <span class="line-number" id="file-randomforest_example-r-L20" rel="file-randomforest_example-r-L20">20</span>
+            <span class="line-number" id="file-randomforest_example-r-L21" rel="file-randomforest_example-r-L21">21</span>
+            <span class="line-number" id="file-randomforest_example-r-L22" rel="file-randomforest_example-r-L22">22</span>
+            <span class="line-number" id="file-randomforest_example-r-L23" rel="file-randomforest_example-r-L23">23</span>
+            <span class="line-number" id="file-randomforest_example-r-L24" rel="file-randomforest_example-r-L24">24</span>
+            <span class="line-number" id="file-randomforest_example-r-L25" rel="file-randomforest_example-r-L25">25</span>
+            <span class="line-number" id="file-randomforest_example-r-L26" rel="file-randomforest_example-r-L26">26</span>
+            <span class="line-number" id="file-randomforest_example-r-L27" rel="file-randomforest_example-r-L27">27</span>
+            <span class="line-number" id="file-randomforest_example-r-L28" rel="file-randomforest_example-r-L28">28</span>
+            <span class="line-number" id="file-randomforest_example-r-L29" rel="file-randomforest_example-r-L29">29</span>
+            <span class="line-number" id="file-randomforest_example-r-L30" rel="file-randomforest_example-r-L30">30</span>
+            <span class="line-number" id="file-randomforest_example-r-L31" rel="file-randomforest_example-r-L31">31</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-randomforest_example-r-LC1">library(<span class="pl-vo">randomForest</span>)
+</div><div class="line" id="file-randomforest_example-r-LC2">&nbsp;
+</div><div class="line" id="file-randomforest_example-r-LC3"><span class="pl-c"># download Titanic Survivors data</span>
+</div><div class="line" id="file-randomforest_example-r-LC4"><span class="pl-vo">data</span> <span class="pl-k">&lt;-</span> read.table(<span class="pl-s1"><span class="pl-pds">"</span>http://math.ucdenver.edu/RTutorial/titanic.txt<span class="pl-pds">"</span></span>, <span class="pl-v">h</span><span class="pl-k">=</span><span class="pl-c1">T</span>, <span class="pl-v">sep</span><span class="pl-k">=</span><span class="pl-s1"><span class="pl-pds">"</span><span class="pl-cce">\t</span><span class="pl-pds">"</span></span>)
+</div><div class="line" id="file-randomforest_example-r-LC5"><span class="pl-c"># make survived into a yes/no</span>
+</div><div class="line" id="file-randomforest_example-r-LC6"><span class="pl-vo">data</span><span class="pl-k">$</span><span class="pl-vo">Survived</span> <span class="pl-k">&lt;-</span> as.factor(ifelse(<span class="pl-vo">data</span><span class="pl-k">$</span><span class="pl-vo">Survived</span><span class="pl-k">==</span><span class="pl-c1">1</span>, <span class="pl-s1"><span class="pl-pds">"</span>yes<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>no<span class="pl-pds">"</span></span>))                 
+</div><div class="line" id="file-randomforest_example-r-LC7">&nbsp;
+</div><div class="line" id="file-randomforest_example-r-LC8"><span class="pl-c"># split into a training and test set</span>
+</div><div class="line" id="file-randomforest_example-r-LC9"><span class="pl-vo">idx</span> <span class="pl-k">&lt;-</span> runif(nrow(<span class="pl-vo">data</span>)) <span class="pl-k">&lt;</span><span class="pl-k">=</span> .<span class="pl-c1">75</span>
+</div><div class="line" id="file-randomforest_example-r-LC10"><span class="pl-vo">data.train</span> <span class="pl-k">&lt;-</span> <span class="pl-vo">data</span>[<span class="pl-vo">idx</span>,]
+</div><div class="line" id="file-randomforest_example-r-LC11"><span class="pl-vo">data.test</span> <span class="pl-k">&lt;-</span> <span class="pl-vo">data</span>[<span class="pl-k">-</span><span class="pl-vo">idx</span>,]
+</div><div class="line" id="file-randomforest_example-r-LC12">&nbsp;
+</div><div class="line" id="file-randomforest_example-r-LC13"><span class="pl-c"># train a random forest</span>
+</div><div class="line" id="file-randomforest_example-r-LC14"><span class="pl-vo">rf</span> <span class="pl-k">&lt;-</span> randomForest(<span class="pl-vo">Survived</span> <span class="pl-k">~</span> <span class="pl-vo">PClass</span> <span class="pl-k">+</span> <span class="pl-vo">Age</span> <span class="pl-k">+</span> <span class="pl-vo">Sex</span>, 
+</div><div class="line" id="file-randomforest_example-r-LC15">             <span class="pl-v">data</span><span class="pl-k">=</span><span class="pl-vo">data.train</span>, <span class="pl-v">importance</span><span class="pl-k">=</span><span class="pl-c1">TRUE</span>, <span class="pl-v">na.action</span><span class="pl-k">=</span><span class="pl-vo">na.omit</span>)
+</div><div class="line" id="file-randomforest_example-r-LC16">&nbsp;
+</div><div class="line" id="file-randomforest_example-r-LC17"><span class="pl-c"># how important is each variable in the model</span>
+</div><div class="line" id="file-randomforest_example-r-LC18"><span class="pl-vo">imp</span> <span class="pl-k">&lt;-</span> importance(<span class="pl-vo">rf</span>)
+</div><div class="line" id="file-randomforest_example-r-LC19"><span class="pl-vo">o</span> <span class="pl-k">&lt;-</span> order(<span class="pl-vo">imp</span>[,<span class="pl-c1">3</span>], <span class="pl-v">decreasing</span><span class="pl-k">=</span><span class="pl-c1">T</span>)
+</div><div class="line" id="file-randomforest_example-r-LC20"><span class="pl-vo">imp</span>[<span class="pl-vo">o</span>,]
+</div><div class="line" id="file-randomforest_example-r-LC21"><span class="pl-c">#             no      yes MeanDecreaseAccuracy MeanDecreaseGini</span>
+</div><div class="line" id="file-randomforest_example-r-LC22"><span class="pl-c">#Sex    51.49855 53.30255             55.13458         63.46861</span>
+</div><div class="line" id="file-randomforest_example-r-LC23"><span class="pl-c">#PClass 25.48715 24.12522             28.43298         22.31789</span>
+</div><div class="line" id="file-randomforest_example-r-LC24"><span class="pl-c">#Age    20.08571 14.07954             24.64607         19.57423</span>
+</div><div class="line" id="file-randomforest_example-r-LC25">&nbsp;
+</div><div class="line" id="file-randomforest_example-r-LC26"><span class="pl-c"># confusion matrix [[True Neg, False Pos], [False Neg, True Pos]]</span>
+</div><div class="line" id="file-randomforest_example-r-LC27">table(<span class="pl-vo">data.test</span><span class="pl-k">$</span><span class="pl-vo">Survived</span>, predict(<span class="pl-vo">rf</span>, <span class="pl-vo">data.test</span>), <span class="pl-v">dnn</span><span class="pl-k">=</span><span class="pl-st">list</span>(<span class="pl-s1"><span class="pl-pds">"</span>actual<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>predicted<span class="pl-pds">"</span></span>))
+</div><div class="line" id="file-randomforest_example-r-LC28"><span class="pl-c">#      predicted</span>
+</div><div class="line" id="file-randomforest_example-r-LC29"><span class="pl-c">#actual  no yes</span>
+</div><div class="line" id="file-randomforest_example-r-LC30"><span class="pl-c">#   no  427  16</span>
+</div><div class="line" id="file-randomforest_example-r-LC31"><span class="pl-c">#   yes 117 195</span>
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+          </div>
+          <div class="gist-meta">
+            <a href="https://gist.github.com/glamp/4751178/raw/randomforest_example.R" style="float:right">view raw</a>
+            <a href="https://gist.github.com/glamp/4751178#file-randomforest_example-r">randomforest_example.R</a>
+            hosted with ❤ by <a href="https://github.com/">GitHub</a>
+          </div>
+        </div>
+</div>
+
+	</li>
+</ol>
+
+<h3>Other Resources:</h3>
+<ul>
+	<li><a href="http://learnr.wordpress.com/" title="Learn R Blog" target="_blank">Learn R Blog</a></li>
+	<li><a href="http://files.meetup.com/1406240/Learning%20R%20Via%20Python%20(or%20the%20other%20way%20around).pdf" title="Learn R via Python" target="_blank">Learn R via Python</a></li>
+	<li><a href="http://vita.had.co.nz/papers/tidy-data.pdf" title="Tidy Data by Hadley Wickham" target="_blank">Tidy Data by Hadley Wickham</a></li>
+	<li><a href="http://www.slideshare.net/hadley/01-intro-1690565" title="Intro to Plyr on Slideshare" target="_blank">Intro to Plyr on Slideshare</a></li>
+	<li><a href="http://www.statmethods.net/" title="R Overview" target="_blank">R Overview</a></li>
+	<li><a href="http://gallery.r-enthusiasts.com/" title="Example R graphics" target="_blank">Example R graphics</a></li>
+	<li><a href="http://stat405.had.co.nz/r-style.html" title="Hadley Wickham&#39;s R Programming style guide" target="_blank">Hadley Wickham's R programming style guide</a></li>
+	<li><a href="http://google-styleguide.googlecode.com/svn/trunk/google-r-style.html" title="Google&#39;s R Programming Style Guide" target="_blank">Google's R Programming Style Guide</a></li>
+	<li><a href="http://www.r-bloggers.com/" title="R Bloggers" target="_blank">R Bloggers</a></li>
+	<li><a href="http://www.drewconway.com/zia/?p=1614" title="Must have R Packages for Social Scientists" target="_blank">Must have R Packages for Social Scientists by Drew Conway</a></li>
+</ul>
+<br>
+
+
+        </article>
+    </div>
+</div>
+<br>
+<section class="pagination center-text top">
+    <div class="container">
+        <a href="http://blog.yhathq.com/">Back to blog</a>
+    </div>
+</section>
+
+
+        </div>
+
+        <footer>
+    <div class="container">
+        <div class="row">
+            <nav class="contact-links col-sm-2">
+                <h4>Contact Us</h4>
+                <a href="mailto:info@yhathq.com" target="_blank">info@yhathq.com</a>
+                <a href="mailto:support@yhathq.com" target="_blank">support@yhathq.com</a>
+                <a href="tel:6466995987">(646) 699-5987</a>
+            </nav>
+            <nav class="links col-sm-2">
+                <h4>Our Products</h4>
+                <a id="footer-products-scienceops" href="https://yhathq.com/products/scienceops">ScienceOps</a>
+                <a id="footer-products-sciencebox" href="https://yhathq.com/products/sciencebox">ScienceBox</a>
+            </nav>
+            <nav class="links col-sm-2">
+                <h4>Learn More</h4>
+                <a id="footer-about" href="https://yhathq.com/about">About</a>
+                <a id="footer-blog" href="http://blog.yhathq.com/">Blog</a>
+                <a id="footer-about-faq" href="https://yhathq.com/about/faq">FAQ</a>
+                <a id="footer-about-jobs" href="https://yhathq.com/about/jobs">Jobs</a>
+                <a id="footer-terms" href="https://yhathq.com/about/terms">Terms of Service</a>
+            </nav>
+            <nav class="social  col-sm-3">
+                <h4>Newsletter</h4>
+                <form class="form subscribe-form" role="form">
+                  <div class="form-group">
+                    <input type="email" value="" name="EMAIL" class="form-control required email" placeholder="Email Address">
+                  </div>
+                  <button class="btn blue" type="submit">Get Updates</button>
+                </form>
+            </nav>
+            <nav class="social col-sm-3">
+                <h4>Connect With Us</h4>
+                <div class="clearfix">
+                    <a id="footer-twitter" href="https://twitter.com/YhatHQ" target="_blank"><span class="icon icon-twitter"></span></a>
+                    <a id="footer-linkedin" href="http://www.linkedin.com/company/3176802" target="_blank"><span class="icon icon-linkedin"></span></a>
+                    <a id="footer-angellist" href="http://angel.co/yhat" target="_blank"><span class="icon icon-angellist"></span></a>
+                    <a id="footer-github" href="http://github.com/yhat" target="_blank"><span class="icon icon-github"></span></a>
+             </div>
+            </nav>
+        </div>
+        <p class="copy">
+            <a href="http://nytm.org/made-in-nyc" target="_blank">Made in New York City</a> <span class="divider">•</span> © 2014 ŷhat
+        </p>
+    </div>
+</footer>
+
+
+        <script src="./ŷhat   10 R packages I wish I knew about earlier_files/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../static/js/lib/jquery.min.js"><\/script>')</script>
+<script type="text/javascript" src="./ŷhat   10 R packages I wish I knew about earlier_files/MathJax.js"></script>
+<script src="./ŷhat   10 R packages I wish I knew about earlier_files/yhat-blog.js"></script>
+
+<!-- start Google Analytics -->
+<script type="text/javascript">var _gaq = _gaq || [], pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';_gaq.push(['_require', 'inpage_linkid', pluginUrl], ['_setAccount', 'UA-37140626-1'], ['_setDomainName', 'yhathq.com'], ['_setAllowLinker', true], ['_trackPageview']);(function () {var ga = document.createElement('script');ga.type = 'text/javascript';ga.async = true;ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);})();</script><!-- end Google Analytics -->
+
+
+<!-- start Mixpanel -->
+<script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);mixpanel.init("f0b681fc37e852c74e6e42584a821fb5");</script>
+<script>
+mixpanel.track('Page Viewed', {
+    'site' : 'Blog',
+    'post' : "10 R packages I wish I knew about earlier",
+    'page_name' : document.title,
+    'url' : window.location.pathname
+});
+mixpanel.track_links('#ami_link', 'clicked AMI link', {
+    'page_name' : document.title,
+    'url' : window.location.pathname
+});
+
+
+/* blog links */
+mixpanel.track_links('#button_for_info', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'bottom', 'link': 'learn more'});
+mixpanel.track_links('#newsletter', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'floating', 'link': 'newsletter'});
+mixpanel.track_links('#tweet-sidebar', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'floating', 'link': 'tweet'});
+mixpanel.track_links('#learn-more-sidebar', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'floating', 'link': 'learn more'});
+
+
+/* header links */
+mixpanel.track_links('#header-products-enterprise', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'products enterprise'});
+mixpanel.track_links('#header-products-cloud', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'products cloud'});
+mixpanel.track_links('#header-products-sciencebox', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'products sciencebox'});
+mixpanel.track_links('#header-about', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'about'});
+mixpanel.track_links('#header-about-faq', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'faq'});
+mixpanel.track_links('#header-about-jobs', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'jobs'});
+mixpanel.track_links('#header-blog', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'blog'});
+mixpanel.track_links('#header-blog-rss', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'blog rss'});
+mixpanel.track_links('#header-docs', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'docs'});
+mixpanel.track_links('#header-twitter-follow', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'header', 'link': 'blog twitter-follow'});
+
+/* footer links */
+mixpanel.track_links('#footer-products-enterprise', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'products enterprise'});
+mixpanel.track_links('#footer-enterprise-signup', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'enterprise signup'});
+mixpanel.track_links('#footer-products-cloud', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'products cloud'});
+mixpanel.track_links('#footer-about', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'about'});
+mixpanel.track_links('#footer-about-faq', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'faq'});
+mixpanel.track_links('#footer-about-jobs', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'jobs'});
+mixpanel.track_links('#footer-blog', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'blog'});
+mixpanel.track_links('#footer-terms', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'terms'});
+mixpanel.track_links('#footer-twitter', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'twitter'});
+mixpanel.track_links('#footer-linkedin', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'linkedin'});
+mixpanel.track_links('#footer-angelist', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'angelist'});
+mixpanel.track_links('#footer-github', 'link clicked', {'page_name' : document.title,'url' : window.location.pathname, 'location': 'footer', 'link': 'github'});
+
+</script>
+<!-- end Mixpanel -->
+
+<!-- Start Twitter -->
+<script src="./ŷhat   10 R packages I wish I knew about earlier_files/oct.js" type="text/javascript"></script>
+<script type="text/javascript">
+twttr.conversion.trackPid('l4chx');
+</script>
+<noscript>
+&lt;img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l4chx&amp;p_id=Twitter" /&gt;
+</noscript>
+<!-- end Twitter -->
+    
+
+<script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

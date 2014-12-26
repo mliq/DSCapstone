@@ -1,6 +1,11 @@
 #Make faster lookup table.R
+# Start the clock!
+ptm <- proc.time()
 
-x=readRDS("t.no4counts.RDS")
+library("stringr")
+library("data.table")
+
+x=readRDS("ALL.no4counts.RDS")
 
 #First create Trigrams so rest will work?
 
@@ -64,3 +69,6 @@ lapply(2:nrow(x),function(y){
 			}
 		}
 })
+
+# Stop the clock
+proc.time() - ptm

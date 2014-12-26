@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<!-- saved from url=(0091)http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r -->
+<html itemscope="" itemtype="http://schema.org/QAPage" style=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/math/img/favicon.ico?v=0bbf8b71fde0">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/math/img/apple-touch-icon.png?v=0ae50baa40ed">
+    <link rel="search" type="application/opensearchdescription+xml" title="Mathematics Stack Exchange" href="http://math.stackexchange.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@StackMath">
+    <meta name="twitter:domain" content="math.stackexchange.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/math/img/apple-touch-icon@2.png?v=4ec1df2e49b1">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Correct algorithm for Shannon entropy with R">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="Shannon entropy is defined by:
+$H(X) =  -\sum_{i} {P(x_i) \log_b P(x_i)}$, where b could be $e$, 2 or 10 (bit, nat, dit, respectively).
+
+My interpretation of the formula is: $H(X)$ is equal to the ">
+    <meta property="og:url" content="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r">
+    <link rel="canonical" href="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange.html">
+
+    
+    
+    <script async="" src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/quant.js"></script><script async="" src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/beacon.js"></script><script async="" src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/analytics.js"></script><script src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/jquery.min.js"></script>
+    <script src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Correct algorithm for Shannon entropy with R&#39;" href="http://math.stackexchange.com/feeds/question/712407">
+<script src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/citation.en.js"></script>    <script>
+        
+        StackExchange.ready(function () {
+
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showCitation:true,showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:712407});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('69', '712407');
+            
+                    });
+    </script>
+
+                <script type="text/x-mathjax-config;executed=true">
+                    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+                                        tex2jax: { inlineMath: [ ["$", "$"], ["\\\\(","\\\\)"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+                                        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+                                        messageStyle: "none"
+                });
+                </script>        
+            <script src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/MathJax.js"></script>  
+
+    <script>
+        StackExchange.ready(function () {
+            StackExchange.realtime.init('wss://qa.sockets.stackexchange.com,ws://qa.sockets.stackexchange.com');
+            StackExchange.realtime.subscribeToInboxNotifications();
+                    StackExchange.realtime.subscribeToReputationNotifications('69');
+                StackExchange.realtime.subscribeToTopBarNotifications('69');
+        });
+    </script>
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1418575799,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","enableUserHovercards":true,"snippets":{"enabled":false,"domain":"stacksnippets.net"},"site":{"name":"Mathematics Stack Exchange","description":"Q&A for people studying math at any level and professionals in related fields","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdsB7sSAAAAAAzjgEF_Hd8vXv-C42sa_KyofaGR","recaptchaAudioLang":"en","enableNewTagCreationWarning":false,"enableSocialMediaInSharePopup":true},"user":{"fkey":"8e0257671cb84daa8ad6b9befc2f32fb","isAnonymous":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"3ab25183041d","js/moderator.en.js":"58ec1cd46c83","js/full-anon.en.js":"28b8bceed753","js/full.en.js":"42c950191c3f","js/wmd.en.js":"d3ce4a1f613e","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"03ae92f7264a","js/help.en.js":"6ed3cbd8d6df","js/tageditor.en.js":"9c54855bf167","js/tageditornew.en.js":"db4458ea0e34","js/inline-tag-editing.en.js":"de4b95686297","js/revisions.en.js":"989c474e85a9","js/review.en.js":"7f81684d3867","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"ada585c43280","js/explore-qlist.en.js":"257ba4cb7b04","js/events.en.js":"76c06862bb34","js/keyboard-shortcuts.en.js":"bebe907894c6","js/external-editor.en.js":"49dac339584c","js/mathjax-editing.en.js":"1917e7a2cbf4"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    
+    
+<script async="" src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/full-anon.en.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">.MathJax_Preview {color: inherit!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script async="" src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/post-validation.en.js"></script><script async="" src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/external-editor.en.js"></script><style type="text/css">.MJXc-script {font-size: .8em}
+.MJXc-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXc-bold {font-weight: bold}
+.MJXc-italic {font-style: italic}
+.MJXc-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXc-largeop {font-size: 150%}
+.MJXc-largeop.MJXc-int {vertical-align: -.2em}
+.MJXc-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXc-display {display: block; text-align: center; margin: 1em 0}
+.MJXc-math span {display: inline-block}
+.MJXc-box {display: block!important; text-align: center}
+.MJXc-box:after {content: " "}
+.MJXc-rule {display: block!important; margin-top: .1em}
+.MJXc-char {display: block!important}
+.MJXc-mo {margin: 0 .15em}
+.MJXc-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXc-denom {display: inline-table!important; width: 100%}
+.MJXc-denom > * {display: table-row!important}
+.MJXc-surd {vertical-align: top}
+.MJXc-surd > * {display: block!important}
+.MJXc-script-box > *  {display: table!important; height: 50%}
+.MJXc-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXc-script-box > *:last-child > * {vertical-align: bottom}
+.MJXc-script-box > * > * > * {display: block!important}
+.MJXc-mphantom {visibility: hidden}
+.MJXc-munderover {display: inline-table!important}
+.MJXc-over {display: inline-block!important; text-align: center}
+.MJXc-over > * {display: block!important}
+.MJXc-munderover > * {display: table-row!important}
+.MJXc-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXc-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXc-mtr {display: table-row!important}
+.MJXc-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXc-mtr > .MJXc-mtd:first-child {padding-left: 0}
+.MJXc-mtr:first-child > .MJXc-mtd {padding-top: 0}
+.MJXc-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXc-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXc-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXc-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXc-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXc-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXc-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXc-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXc-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXc-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXc-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?rev=2.4-beta-2') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?rev=2.4-beta-2') format('woff'), url('http://beta.mathjax.org/mathjax/latest/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?rev=2.4-beta-2') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body class="question-page new-topbar"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+    <noscript>&lt;div id="noscript-padding"&gt;&lt;/div&gt;</noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+
+
+
+<div class="topbar">
+    <div class="topbar-wrapper">
+
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://math.stackexchange.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackexchange.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://math.blogoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+            </div>
+
+
+
+
+    <a href="http://math.stackexchange.com/" class="current-site-link site-link js-gps-track" data-id="69" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-math" title="Mathematics"></div>
+        Mathematics
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.math.stackexchange.com/" class="site-link js-gps-track" data-id="70" data-gps-track="
+            site.switch({ target_site:70, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-mathmeta" title="Mathematics Meta"></div>
+        Mathematics Meta
+    </a>
+
+                </li>
+                    </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+<a href="https://math.stackexchange.com/users/signup?returnurl=http%3a%2f%2fmath.stackexchange.com%2fquestions%2f712407%2fcorrect-algorithm-for-shannon-entropy-with-r" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://math.stackexchange.com/users/login?returnurl=http%3a%2f%2fmath.stackexchange.com%2fquestions%2f712407%2fcorrect-algorithm-for-shannon-entropy-with-r" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 132 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+
+        </div>
+
+        <div class="topbar-links">
+
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+                            <a href="https://math.stackexchange.com/users/signup?returnurl=http%3a%2f%2fmath.stackexchange.com%2fquestions%2f712407%2fcorrect-algorithm-for-shannon-entropy-with-r" class="login-link">sign up</a>
+                            <a href="https://math.stackexchange.com/users/login?returnurl=http%3a%2f%2fmath.stackexchange.com%2fquestions%2f712407%2fcorrect-algorithm-for-shannon-entropy-with-r" class="login-link">log in</a>
+                            <a href="http://math.stackexchange.com/tour">tour</a>
+
+                            <a href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://math.stackexchange.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://math.stackexchange.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.math.stackexchange.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+            <div class="search-container">
+                <form id="search" action="http://math.stackexchange.com/search" method="get" autocomplete="off">
+                    <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+    <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script>
+
+    <div class="container">
+        <div id="header">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://math.stackexchange.com/">
+                    Mathematics
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://math.stackexchange.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://math.stackexchange.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://math.stackexchange.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://math.stackexchange.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://math.stackexchange.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://math.stackexchange.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+	<link itemprop="image" href="http://cdn.sstatic.net/math/img/apple-touch-icon.png">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+            <a href="http://math.stackexchange.com/tour" id="tell-me-more" class="button">Take the 2-minute tour</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Mathematics Stack Exchange is a question and answer site for people studying math at any level and professionals in related fields. It's 100% free, no registration required.
+        </div>        
+    </div>
+    <script>
+        $('#tell-me-more').click(function () {
+            var clickSource = $("body").attr("class") + '-mini';
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+            }
+
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("aboutpage.click", { aboutclick_location: clickSource } , true);
+            });
+        });
+        $('#herobox-mini #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "close" }, true);
+            });
+            $.cookie("hero", "none", { path: "/", expires: 365 });
+            var $hero = $("#herobox-mini");
+            $hero.slideUp('fast', function () { $hero.remove(); });
+            return false;
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+			<h1 itemprop="name"><a href="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange.html" class="question-hyperlink">Correct algorithm for Shannon entropy with R</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="712407" id="question">
+
+        <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="712407">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b></b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+        <p>Shannon entropy is defined by:
+<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-1-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-1" style="width: 14.898em; display: inline-block;"><span style="display: inline-block; position: relative; width: 13.396em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.865em 1000.003em 3.246em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-2"><span class="mi" id="MathJax-Span-3" style="font-family: MathJax_Math-italic;">H<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.063em;"></span></span><span class="mo" id="MathJax-Span-4" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-5" style="font-family: MathJax_Math-italic;">X<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-6" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.303em;">=</span><span class="mo" id="MathJax-Span-8" style="font-family: MathJax_Main; padding-left: 0.303em;">−</span><span class="munderover" id="MathJax-Span-9" style="padding-left: 0.183em;"><span style="display: inline-block; position: relative; width: 1.444em; height: 0px;"><span style="position: absolute; clip: rect(1.865em 1000.003em 3.186em -0.477em); top: -2.76em; left: 0.003em;"><span class="mo" id="MathJax-Span-10" style="font-family: MathJax_Size1; vertical-align: 0.003em;">∑</span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span><span style="position: absolute; top: -1.979em; left: 1.084em;"><span class="texatom" id="MathJax-Span-11"><span class="mrow" id="MathJax-Span-12"><span class="mi" id="MathJax-Span-13" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span></span></span><span style="display: inline-block; width: 0px; height: 2.285em;"></span></span></span></span><span class="texatom" id="MathJax-Span-14" style="padding-left: 0.183em;"><span class="mrow" id="MathJax-Span-15"><span class="mi" id="MathJax-Span-16" style="font-family: MathJax_Math-italic;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.123em;"></span></span><span class="mo" id="MathJax-Span-17" style="font-family: MathJax_Main;">(</span><span class="msubsup" id="MathJax-Span-18"><span style="display: inline-block; position: relative; width: 0.964em; height: 0px;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.706em -0.477em); top: -2.52em; left: 0.003em;"><span class="mi" id="MathJax-Span-19" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 2.526em;"></span></span><span style="position: absolute; top: -2.159em; left: 0.604em;"><span class="mi" id="MathJax-Span-20" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span style="display: inline-block; width: 0px; height: 2.285em;"></span></span></span></span><span class="mo" id="MathJax-Span-21" style="font-family: MathJax_Main;">)</span><span class="msubsup" id="MathJax-Span-22" style="padding-left: 0.183em;"><span style="display: inline-block; position: relative; width: 1.625em; height: 0px;"><span style="position: absolute; clip: rect(1.865em 1000.003em 3.126em -0.538em); top: -2.76em; left: 0.003em;"><span class="mi" id="MathJax-Span-23" style="font-family: MathJax_Main;">log</span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span><span style="position: absolute; top: -2.039em; left: 1.264em;"><span class="mi" id="MathJax-Span-24" style="font-size: 70.7%; font-family: MathJax_Math-italic;">b</span><span style="display: inline-block; width: 0px; height: 2.285em;"></span></span></span></span><span class="mo" id="MathJax-Span-25"></span><span class="mi" id="MathJax-Span-26" style="font-family: MathJax_Math-italic; padding-left: 0.183em;">P<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.123em;"></span></span><span class="mo" id="MathJax-Span-27" style="font-family: MathJax_Main;">(</span><span class="msubsup" id="MathJax-Span-28"><span style="display: inline-block; position: relative; width: 0.964em; height: 0px;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.706em -0.477em); top: -2.52em; left: 0.003em;"><span class="mi" id="MathJax-Span-29" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 2.526em;"></span></span><span style="position: absolute; top: -2.159em; left: 0.604em;"><span class="mi" id="MathJax-Span-30" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span style="display: inline-block; width: 0px; height: 2.285em;"></span></span></span></span><span class="mo" id="MathJax-Span-31" style="font-family: MathJax_Main;">)</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.27em; vertical-align: -0.397em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-1">H(X) =  -\sum_{i} {P(x_i) \log_b P(x_i)}</script>, where b could be <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-2-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-32" style="width: 0.544em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.483em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.706em -0.477em); top: -2.52em; left: 0.003em;"><span class="mrow" id="MathJax-Span-33"><span class="mi" id="MathJax-Span-34" style="font-family: MathJax_Math-italic;">e</span></span><span style="display: inline-block; width: 0px; height: 2.526em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.67em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-2">e</script>, 2 or 10 (bit, nat, dit, respectively).</p>
+
+<p>My interpretation of the formula is: <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-3-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-35" style="width: 2.826em; display: inline-block;"><span style="display: inline-block; position: relative; width: 2.526em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.865em 1000.003em 3.186em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-36"><span class="mi" id="MathJax-Span-37" style="font-family: MathJax_Math-italic;">H<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.063em;"></span></span><span class="mo" id="MathJax-Span-38" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-39" style="font-family: MathJax_Math-italic;">X<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-40" style="font-family: MathJax_Main;">)</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.27em; vertical-align: -0.33em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-3">H(X)</script> is equal to the negative sum of: probability of <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-4-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-41" style="width: 1.144em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.024em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.565em 1000.003em 2.526em -0.477em); top: -2.159em; left: 0.003em;"><span class="mrow" id="MathJax-Span-42"><span class="msubsup" id="MathJax-Span-43"><span style="display: inline-block; position: relative; width: 0.964em; height: 0px;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.706em -0.477em); top: -2.52em; left: 0.003em;"><span class="mi" id="MathJax-Span-44" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 2.526em;"></span></span><span style="position: absolute; top: -2.159em; left: 0.604em;"><span class="mi" id="MathJax-Span-45" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span style="display: inline-block; width: 0px; height: 2.285em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.165em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.803em; vertical-align: -0.263em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-4">x_i</script> multiplied by <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-5-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-46" style="width: 1.805em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.625em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.625em 1000.003em 2.946em -0.477em); top: -2.52em; left: 0.003em;"><span class="mrow" id="MathJax-Span-47"><span class="mi" id="MathJax-Span-48" style="font-family: MathJax_Math-italic;">l</span><span class="mi" id="MathJax-Span-49" style="font-family: MathJax_Math-italic;">o</span><span class="msubsup" id="MathJax-Span-50"><span style="display: inline-block; position: relative; width: 0.844em; height: 0px;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.886em -0.538em); top: -2.52em; left: 0.003em;"><span class="mi" id="MathJax-Span-51" style="font-family: MathJax_Math-italic;">g<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span style="display: inline-block; width: 0px; height: 2.526em;"></span></span><span style="position: absolute; top: -2.039em; left: 0.483em;"><span class="mi" id="MathJax-Span-52" style="font-size: 70.7%; font-family: MathJax_Math-italic;">b</span><span style="display: inline-block; width: 0px; height: 2.285em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.526em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.203em; vertical-align: -0.33em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-5">log_b</script>(probability of <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-6-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-53" style="width: 1.144em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.024em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.565em 1000.003em 2.526em -0.477em); top: -2.159em; left: 0.003em;"><span class="mrow" id="MathJax-Span-54"><span class="msubsup" id="MathJax-Span-55"><span style="display: inline-block; position: relative; width: 0.964em; height: 0px;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.706em -0.477em); top: -2.52em; left: 0.003em;"><span class="mi" id="MathJax-Span-56" style="font-family: MathJax_Math-italic;">x</span><span style="display: inline-block; width: 0px; height: 2.526em;"></span></span><span style="position: absolute; top: -2.159em; left: 0.604em;"><span class="mi" id="MathJax-Span-57" style="font-size: 70.7%; font-family: MathJax_Math-italic;">i</span><span style="display: inline-block; width: 0px; height: 2.285em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.165em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.803em; vertical-align: -0.263em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-6">x_i</script>).</p>
+
+<p>So far, my implementation of Shannon entropy in <code>R</code> is (here is an example):</p>
+
+<pre><code>mystring &lt;- c(1,2,3,1,3,5,4,2,1,3,2,4,2,2,3,4,4)
+myfreqs &lt;- table(mystring)/length(mystring)
+# vectorize
+myvec &lt;- as.data.frame(myfreqs)[,2]
+# H in bit
+-sum(myvec * log2(myvec))
+[1] 2.183667
+</code></pre>
+
+<p>So for the string used in my example, <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-7-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-58" style="width: 8.471em; display: inline-block;"><span style="display: inline-block; position: relative; width: 7.631em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.865em 1000.003em 3.186em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-59"><span class="mi" id="MathJax-Span-60" style="font-family: MathJax_Math-italic;">H<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.063em;"></span></span><span class="mo" id="MathJax-Span-61" style="font-family: MathJax_Main;">(</span><span class="mi" id="MathJax-Span-62" style="font-family: MathJax_Math-italic;">X<span style="display: inline-block; overflow: hidden; height: 1px; width: 0.003em;"></span></span><span class="mo" id="MathJax-Span-63" style="font-family: MathJax_Main;">)</span><span class="mo" id="MathJax-Span-64" style="font-family: MathJax_Main; padding-left: 0.303em;">=</span><span class="mn" id="MathJax-Span-65" style="font-family: MathJax_Main; padding-left: 0.303em;">2.183667</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.27em; vertical-align: -0.33em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-7">H(X)=2.183667</script>.</p>
+
+<p>Now take a look to the <code>entropy</code> package. The function <code>entropy.empirical</code> computes the Shannon entropy:</p>
+
+<pre><code>mystring &lt;- c(1,2,3,1,3,5,4,2,1,3,2,4,2,2,3,4,4)
+entropy.empirical(mystring, unit="log2")
+[1] 3.944667
+</code></pre>
+
+<p>If we look at the code, is seems that the formula used is:</p>
+
+<pre><code>freqs &lt;- mystring / sum(mystring)
+H &lt;- -sum(freqs * log(freqs) / log(2)
+[1] 3.944667
+</code></pre>
+
+<p>My simple question: who is wrong? Why R use that code? Is that the Shannon entropy, or another entropy's calculation?</p>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://math.stackexchange.com/questions/tagged/entropy" class="post-tag js-gps-track" title="show questions tagged &#39;entropy&#39;" rel="tag">entropy</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://math.stackexchange.com/q/712407" title="short permalink to this question" class="short-link" id="link-post-712407">share</a><span class="lsep">|</span><a href="http://math.stackexchange.com/posts/712407/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2014-03-14 18:39:06Z" class="relativetime">Mar 14 at 18:39</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://math.stackexchange.com/users/33700/tommaso"><div class="gravatar-wrapper-32"><img src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/df46a2a9c834bbabde960634a3c955fe" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://math.stackexchange.com/users/33700/tommaso">Tommaso</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">25</span><span title="4 bronze badges"><span class="badge3"></span><span class="badgecount">4</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-712407" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-712407" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#" onclick=""></a>
+            </div>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								1 Answer
+                                <span style="display:none;" itemprop="answerCount">1</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="712436"></a>
+<div id="answer-712436" class="answer accepted-answer" data-answerid="712436" itemscope="" itemtype="http://schema.org/Answer" itemprop="acceptedAnswer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input type="hidden" name="_id_" value="712436">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+        <span class="vote-accepted-on load-accepted-answer-date" title="loading when this answer was accepted...">accepted</span>
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Depends on the problem at hand, both of you are correct. If your source symbols are "<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-8-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-66" style="width: 0.604em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.544em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-67"><span class="mn" id="MathJax-Span-68" style="font-family: MathJax_Main;">1</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-8">1</script>," "<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-9-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-69" style="width: 0.604em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.544em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-70"><span class="mn" id="MathJax-Span-71" style="font-family: MathJax_Main;">2</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-9">2</script>," "<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-10-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-72" style="width: 0.604em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.544em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-73"><span class="mn" id="MathJax-Span-74" style="font-family: MathJax_Main;">3</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-10">3</script>," "<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-11-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-75" style="width: 0.604em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.544em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.538em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-76"><span class="mn" id="MathJax-Span-77" style="font-family: MathJax_Main;">4</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-11">4</script>," and  "<span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-12-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-78" style="width: 0.604em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.544em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-79"><span class="mn" id="MathJax-Span-80" style="font-family: MathJax_Main;">5</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-12">5</script>," and from this source you got the sequence <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-13-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-81" style="width: 17.3em; display: inline-block;"><span style="display: inline-block; position: relative; width: 15.559em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 3.126em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-82"><span class="mn" id="MathJax-Span-83" style="font-family: MathJax_Main;">1</span><span class="mo" id="MathJax-Span-84" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-85" style="font-family: MathJax_Main; padding-left: 0.183em;">2</span><span class="mo" id="MathJax-Span-86" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-87" style="font-family: MathJax_Main; padding-left: 0.183em;">3</span><span class="mo" id="MathJax-Span-88" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-89" style="font-family: MathJax_Main; padding-left: 0.183em;">1</span><span class="mo" id="MathJax-Span-90" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-91" style="font-family: MathJax_Main; padding-left: 0.183em;">3</span><span class="mo" id="MathJax-Span-92" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-93" style="font-family: MathJax_Main; padding-left: 0.183em;">5</span><span class="mo" id="MathJax-Span-94" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-95" style="font-family: MathJax_Main; padding-left: 0.183em;">4</span><span class="mo" id="MathJax-Span-96" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-97" style="font-family: MathJax_Main; padding-left: 0.183em;">2</span><span class="mo" id="MathJax-Span-98" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-99" style="font-family: MathJax_Main; padding-left: 0.183em;">1</span><span class="mo" id="MathJax-Span-100" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-101" style="font-family: MathJax_Main; padding-left: 0.183em;">3</span><span class="mo" id="MathJax-Span-102" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-103" style="font-family: MathJax_Main; padding-left: 0.183em;">2</span><span class="mo" id="MathJax-Span-104" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-105" style="font-family: MathJax_Main; padding-left: 0.183em;">4</span><span class="mo" id="MathJax-Span-106" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-107" style="font-family: MathJax_Main; padding-left: 0.183em;">2</span><span class="mo" id="MathJax-Span-108" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-109" style="font-family: MathJax_Main; padding-left: 0.183em;">2</span><span class="mo" id="MathJax-Span-110" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-111" style="font-family: MathJax_Main; padding-left: 0.183em;">3</span><span class="mo" id="MathJax-Span-112" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-113" style="font-family: MathJax_Main; padding-left: 0.183em;">4</span><span class="mo" id="MathJax-Span-114" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-115" style="font-family: MathJax_Main; padding-left: 0.183em;">4</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.137em; vertical-align: -0.263em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-13">1,2,3,1,3,5,4,2,1,3,2,4,2,2,3,4,4</script>, then to calculate the empirical entropy of the source you count the number of times that the symbols <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-14-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-116" style="width: 0.604em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.544em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-117"><span class="mn" id="MathJax-Span-118" style="font-family: MathJax_Main;">1</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-14">1</script> through <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-15-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-119" style="width: 0.604em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.544em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-120"><span class="mn" id="MathJax-Span-121" style="font-family: MathJax_Main;">5</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-15">5</script> appear, which are <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-16-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-122" style="width: 4.748em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.267em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 3.126em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-123"><span class="mn" id="MathJax-Span-124" style="font-family: MathJax_Main;">3</span><span class="mo" id="MathJax-Span-125" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-126" style="font-family: MathJax_Main; padding-left: 0.183em;">5</span><span class="mo" id="MathJax-Span-127" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-128" style="font-family: MathJax_Main; padding-left: 0.183em;">4</span><span class="mo" id="MathJax-Span-129" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-130" style="font-family: MathJax_Main; padding-left: 0.183em;">4</span><span class="mo" id="MathJax-Span-131" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-132" style="font-family: MathJax_Main; padding-left: 0.183em;">1</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.137em; vertical-align: -0.263em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-16">3,5,4,4,1</script> respectively. Then, the empirical probabilities of the symbols will be <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-17-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-133" style="width: 8.772em; display: inline-block;"><span style="display: inline-block; position: relative; width: 7.871em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.685em 1000.003em 3.366em -0.538em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-134"><span class="mfrac" id="MathJax-Span-135"><span style="display: inline-block; position: relative; width: 0.844em; height: 0px; margin-right: 0.123em; margin-left: 0.123em;"><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.538em); top: -2.76em; left: 50%; margin-left: -0.177em;"><span class="mn" id="MathJax-Span-136" style="font-size: 70.7%; font-family: MathJax_Main;">3</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.477em); top: -1.919em; left: 50%; margin-left: -0.357em;"><span class="mn" id="MathJax-Span-137" style="font-size: 70.7%; font-family: MathJax_Main;">17</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(0.844em 1000.003em 1.264em -0.538em); top: -1.318em; left: 0.003em;"><span style="border-left-width: 0.844em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.25px; vertical-align: 0.003em;"></span><span style="display: inline-block; width: 0px; height: 1.084em;"></span></span></span></span><span class="mo" id="MathJax-Span-138" style="font-family: MathJax_Main; padding-left: 0.183em;">,</span><span class="mfrac" id="MathJax-Span-139" style="padding-left: 0.183em;"><span style="display: inline-block; position: relative; width: 0.844em; height: 0px; margin-right: 0.123em; margin-left: 0.123em;"><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.477em); top: -2.76em; left: 50%; margin-left: -0.177em;"><span class="mn" id="MathJax-Span-140" style="font-size: 70.7%; font-family: MathJax_Main;">5</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.477em); top: -1.919em; left: 50%; margin-left: -0.357em;"><span class="mn" id="MathJax-Span-141" style="font-size: 70.7%; font-family: MathJax_Main;">17</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(0.844em 1000.003em 1.264em -0.538em); top: -1.318em; left: 0.003em;"><span style="border-left-width: 0.844em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.25px; vertical-align: 0.003em;"></span><span style="display: inline-block; width: 0px; height: 1.084em;"></span></span></span></span><span class="mo" id="MathJax-Span-142" style="font-family: MathJax_Main; padding-left: 0.183em;">,</span><span class="mfrac" id="MathJax-Span-143" style="padding-left: 0.183em;"><span style="display: inline-block; position: relative; width: 0.844em; height: 0px; margin-right: 0.123em; margin-left: 0.123em;"><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.538em); top: -2.76em; left: 50%; margin-left: -0.177em;"><span class="mn" id="MathJax-Span-144" style="font-size: 70.7%; font-family: MathJax_Main;">4</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.477em); top: -1.919em; left: 50%; margin-left: -0.357em;"><span class="mn" id="MathJax-Span-145" style="font-size: 70.7%; font-family: MathJax_Main;">17</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(0.844em 1000.003em 1.264em -0.538em); top: -1.318em; left: 0.003em;"><span style="border-left-width: 0.844em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.25px; vertical-align: 0.003em;"></span><span style="display: inline-block; width: 0px; height: 1.084em;"></span></span></span></span><span class="mo" id="MathJax-Span-146" style="font-family: MathJax_Main; padding-left: 0.183em;">,</span><span class="mfrac" id="MathJax-Span-147" style="padding-left: 0.183em;"><span style="display: inline-block; position: relative; width: 0.844em; height: 0px; margin-right: 0.123em; margin-left: 0.123em;"><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.538em); top: -2.76em; left: 50%; margin-left: -0.177em;"><span class="mn" id="MathJax-Span-148" style="font-size: 70.7%; font-family: MathJax_Main;">4</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.477em); top: -1.919em; left: 50%; margin-left: -0.357em;"><span class="mn" id="MathJax-Span-149" style="font-size: 70.7%; font-family: MathJax_Main;">17</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(0.844em 1000.003em 1.264em -0.538em); top: -1.318em; left: 0.003em;"><span style="border-left-width: 0.844em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.25px; vertical-align: 0.003em;"></span><span style="display: inline-block; width: 0px; height: 1.084em;"></span></span></span></span><span class="mo" id="MathJax-Span-150" style="font-family: MathJax_Main; padding-left: 0.183em;">,</span><span class="mfrac" id="MathJax-Span-151" style="padding-left: 0.183em;"><span style="display: inline-block; position: relative; width: 0.844em; height: 0px; margin-right: 0.123em; margin-left: 0.123em;"><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.477em); top: -2.76em; left: 50%; margin-left: -0.177em;"><span class="mn" id="MathJax-Span-152" style="font-size: 70.7%; font-family: MathJax_Main;">1</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(1.685em 1000.003em 2.526em -0.477em); top: -1.919em; left: 50%; margin-left: -0.357em;"><span class="mn" id="MathJax-Span-153" style="font-size: 70.7%; font-family: MathJax_Main;">17</span><span style="display: inline-block; width: 0px; height: 2.345em;"></span></span><span style="position: absolute; clip: rect(0.844em 1000.003em 1.264em -0.538em); top: -1.318em; left: 0.003em;"><span style="border-left-width: 0.844em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.25px; vertical-align: 0.003em;"></span><span style="display: inline-block; width: 0px; height: 1.084em;"></span></span></span></span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.603em; vertical-align: -0.53em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-17">\frac{3}{17},\frac{5}{17},\frac{4}{17},\frac{4}{17},\frac{1}{17}</script> respectively, and from this you can calculate the empirical Shannon entropy to really be roughly <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-18-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-154" style="width: 2.045em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.805em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-155"><span class="mn" id="MathJax-Span-156" style="font-family: MathJax_Main;">2.18</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-18">2.18</script>, which is the result you find in your first code.</p>
+
+<p>Now, the function in the second code has a different "assumption." Its input argument is already the number of times the number of distinct symbols had appeared in the sequence. If our problem was as stated in the previous paragraph (which I believe it is due to the naming "mystring"), then you should have passed the array <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-19-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-157" style="width: 5.408em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.868em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.865em 1000.003em 3.186em -0.417em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-158"><span class="mo" id="MathJax-Span-159" style="font-family: MathJax_Main;">[</span><span class="mn" id="MathJax-Span-160" style="font-family: MathJax_Main;">3</span><span class="mo" id="MathJax-Span-161" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-162" style="font-family: MathJax_Main; padding-left: 0.183em;">5</span><span class="mo" id="MathJax-Span-163" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-164" style="font-family: MathJax_Main; padding-left: 0.183em;">4</span><span class="mo" id="MathJax-Span-165" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-166" style="font-family: MathJax_Main; padding-left: 0.183em;">4</span><span class="mo" id="MathJax-Span-167" style="font-family: MathJax_Main;">,</span><span class="mn" id="MathJax-Span-168" style="font-family: MathJax_Main; padding-left: 0.183em;">1</span><span class="mo" id="MathJax-Span-169" style="font-family: MathJax_Main;">]</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.27em; vertical-align: -0.33em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-19">[3,5,4,4,1]</script> as your argument (i.e. entropy.empirical([3 5 4 4 1], unit="log2")), and it would give you <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-20-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-170" style="width: 2.045em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.805em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-171"><span class="mn" id="MathJax-Span-172" style="font-family: MathJax_Main;">2.18</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.87em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-20">2.18</script> as well. </p>
+
+<p>What you are calculating right now in your second code is however entirely different. It is as if you have a source that generates <span class="MathJax_Preview"></span><span class="MathJax" id="MathJax-Element-21-Frame" role="textbox" aria-readonly="true"><nobr><span class="math" id="MathJax-Span-173" style="width: 1.144em; display: inline-block;"><span style="display: inline-block; position: relative; width: 1.024em; height: 0px; font-size: 111%;"><span style="position: absolute; clip: rect(1.925em 1000.003em 2.946em -0.477em); top: -2.76em; left: 0.003em;"><span class="mrow" id="MathJax-Span-174"><span class="mn" id="MathJax-Span-175" style="font-family: MathJax_Main;">17</span></span><span style="display: inline-block; width: 0px; height: 2.766em;"></span></span></span><span style="border-left-width: 0.003em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 0.937em; vertical-align: -0.063em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-21">17</script> different symbols. You generated sum(mystring) = 46 samples from this source. The first source symbol appeared mystring(1) = 1 times, the second symbol appeared mystring(2) = 2 times and so on. </p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://math.stackexchange.com/a/712436" title="short permalink to this answer" class="short-link" id="link-post-712436">share</a><span class="lsep">|</span><a href="http://math.stackexchange.com/posts/712436/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info user-hover">
+    <div class="user-action-time">
+        answered <span title="2014-03-14 19:07:38Z" class="relativetime">Mar 14 at 19:07</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://math.stackexchange.com/users/70323/lord-soth"><div class="gravatar-wrapper-32"><img src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/gjvYY.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://math.stackexchange.com/users/70323/lord-soth">Lord Soth</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">5,592</span><span title="7 silver badges"><span class="badge2"></span><span class="badgecount">7</span></span><span title="32 bronze badges"><span class="badge3"></span><span class="badgecount">32</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-712436" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-1490992" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I wrongly interpreted the help and the example of the entropy.empirical function. Thanks for the explanation.</span>
+                –&nbsp;
+                    <a href="http://math.stackexchange.com/users/33700/tommaso" title="25 reputation" class="comment-user owner">Tommaso</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#comment1490992_712436"><span title="2014-03-14 19:15:25Z" class="relativetime-clean">Mar 14 at 19:15</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1490994" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Tommaso You are welcome, glad to help.</span>
+                –&nbsp;
+                    <a href="http://math.stackexchange.com/users/70323/lord-soth" title="5592 reputation" class="comment-user">Lord Soth</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#comment1490994_712436"><span title="2014-03-14 19:16:03Z" class="relativetime-clean">Mar 14 at 19:16</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-1494090" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">What about the calculation of Shannon (or Tsallis) entropy for a continuous variable? Here is my new question: <a href="http://math.stackexchange.com/questions/713316/tsallis-entropy-for-continuous-variable-in-r" title="tsallis entropy for continuous variable in r">math.stackexchange.com/questions/713316/…</a></span>
+                –&nbsp;
+                    <a href="http://math.stackexchange.com/users/33700/tommaso" title="25 reputation" class="comment-user owner">Tommaso</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#comment1494090_712436"><span title="2014-03-16 08:46:14Z" class="relativetime-clean">Mar 16 at 8:46</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-712436" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="http://math.stackexchange.com/questions/712407/answer/submit" method="post" class="post-form">
+						    <input type="hidden" id="post-id" value="712407">
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false">
+                            <input type="hidden" name="referrer" value="https://www.google.com/">
+							<h2 class="space">Your Answer</h2>
+
+
+        <script>
+            StackExchange.ifUsing("editor", function () {
+                return StackExchange.using("mathjaxEditing", function () {
+                    StackExchange.MarkdownEditor.creationCallbacks.add(function (editor, postfix) {
+                        StackExchange.mathjaxEditing.prepareWmdForMathJax(editor, postfix, [["$", "$"], ["\\\\(","\\\\)"]]);
+                    });
+                });
+            }, "mathjax-editing");
+        </script>
+
+        
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+            // Have to fire editor after snippets, if snippets enabled
+            if (StackExchange.options.snippets.enabled) {
+                StackExchange.using("snippets", function() {
+                    createEditor();
+                });
+            }
+            else {
+                createEditor();
+            }
+        });
+
+        function createEditor() {
+            prepareEditor({
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+noCode: true,                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                ,immediatelyShowMarkdownHelp:true
+                });
+                
+
+        }
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li id="wmd-bold-button" class="wmd-button" style="left: 0px;"><span style="background-position: 0px -20px;"></span></li><li id="wmd-italic-button" class="wmd-button" style="left: 25px;"><span style="background-position: -20px -20px;"></span></li><li id="wmd-spacer1" class="wmd-spacer" style="left: 50px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-link-button" class="wmd-button" style="left: 75px;"><span style="background-position: -40px -20px;"></span></li><li id="wmd-quote-button" class="wmd-button" style="left: 100px;"><span style="background-position: -60px -20px;"></span></li><li id="wmd-code-button" class="wmd-button" style="left: 125px;"><span style="background-position: -80px -20px;"></span></li><li id="wmd-image-button" class="wmd-button" style="left: 150px;"><span style="background-position: -100px -20px;"></span></li><li id="wmd-spacer2" class="wmd-spacer" style="left: 175px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-olist-button" class="wmd-button" style="left: 200px;"><span style="background-position: -120px -20px;"></span></li><li id="wmd-ulist-button" class="wmd-button" style="left: 225px;"><span style="background-position: -140px -20px;"></span></li><li id="wmd-heading-button" class="wmd-button" style="left: 250px;"><span style="background-position: -160px -20px;"></span></li><li id="wmd-hr-button" class="wmd-button" style="left: 275px;"><span style="background-position: -180px -20px;"></span></li><li id="wmd-spacer3" class="wmd-spacer" style="left: 300px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-undo-button" class="wmd-button" style="left: 325px;"><span style="background-position: -200px -20px;"></span></li><li id="wmd-redo-button" class="wmd-button" style="left: 350px;"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="8e0257671cb84daa8ad6b9befc2f32fb">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://math.stackexchange.com/users/login?returnurl=%2fquestions%2f712407%2fcorrect-algorithm-for-shannon-entropy-with-r%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Stack Exchange</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid">
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false">
+                    <input type="hidden" name="use-google" class="use-google" value="false">
+                    <input type="button" class="submit-openid" value="Submit" style="display:none">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', '%2fquestions%2f712407%2fcorrect-algorithm-for-shannon-entropy-with-r%23new-answer');
+                    }
+                );
+            </script>
+            <noscript>
+                        &lt;h3&gt;Post as a guest&lt;/h3&gt;
+    &lt;div class="form-item"&gt;
+        &lt;table&gt;
+        &lt;tr&gt;
+                    &lt;script&gt;
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            &lt;/script&gt;
+            &lt;td class="vm"&gt;
+                &lt;div&gt;
+                    &lt;label for="display-name"&gt;Name&lt;/label&gt;
+                    &lt;input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"&gt;
+                &lt;/div&gt;
+                &lt;div&gt;
+                    &lt;label for="m-address"&gt;Email&lt;/label&gt;
+                    &lt;input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106"&gt;
+                    &lt;span class="edit-field-overlay"&gt;required, but not shown&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+            </noscript>
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://math.stackexchange.com/questions/tagged/entropy" class="post-tag" title="show questions tagged &#39;entropy&#39;" rel="tag">entropy</a>  or <a href="http://math.stackexchange.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2014-03-14 18:39:06Z"><b>9 months ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>679 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r?lastactivity" class="lastactivity-link" title="2014-03-14 19:07:38Z">9 months ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Upcoming Events
+                </div>
+                <hr>
+    <div class="spacer bulletin-item-important">
+        
+    <div class="bulletin-item-type"><a href="http://math.stackexchange.com/election?cb=1" class="question-hyperlink"><div class="favicon favicon-math" title="Mathematics Stack Exchange"></div></a></div>
+    <div class="bulletin-item-content">
+        <a href="http://math.stackexchange.com/election?cb=1" class="question-hyperlink">2014 Community Moderator Election</a>
+        <div>ends <span title="2014-12-23 20:00:00Z" class="relativetime">in 9 days</span></div>
+    </div>
+    <br class="cbt">
+</div>
+    </div>
+</div>			
+			<div style="margin-bottom: 10px;">
+        
+
+<style type="text/css">
+#newsletter-ad {
+    width: 190px;
+    height: 250px;
+    overflow: hidden;
+    background: url('//cdn.sstatic.net/math/img/newsletter-ad.png');
+    padding: 0 15px 0 15px;
+}
+#newsletter-ad-header {
+    margin-top: 60px;
+}
+#newsletter-ad ul {
+    margin: 1em 0 1em 1.5em;
+}
+#newsletter-ad ul li {
+    margin-bottom: 5px;
+}
+#newsletter-signup-container {
+    text-align: center;
+}
+#newsletter-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+#newsletter-email-input {
+    width: 200px;
+}
+</style>
+
+<script>
+    StackExchange.ready(function () {
+        StackExchange.newsletterAd.init();
+    });
+</script>
+
+<div id="newsletter-ad">
+    <p id="newsletter-ad-header">Get the <b>weekly newsletter!</b></p>
+    <ul>
+        <li>Top questions and answers</li>
+        <li>Important announcements</li>
+        <li>Unanswered questions</li>
+    </ul>
+    <div id="newsletter-signup-container"><input id="newsletter-signup" type="button" value="Sign up for the newsletter"></div>
+    <p id="newsletter-preview-container">see an <a href="http://stackexchange.com/newsletters/newsletter?site=math.stackexchange.com" id="newsletter-preview">example newsletter</a></p>
+</div>
+
+    </div>
+			  
+    
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/168583?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://math.stackexchange.com/questions/168583/how-can-i-determine-the-upper-limit-of-shannon-entropy?rq=1" class="question-hyperlink">How can I determine the upper limit of Shannon Entropy?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/169783?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">3
+    </div>
+</a><a href="http://math.stackexchange.com/questions/169783/notation-of-cross-entropy?rq=1" class="question-hyperlink">Notation of cross entropy</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/255450?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">6
+    </div>
+</a><a href="http://math.stackexchange.com/questions/255450/approximation-of-shannon-entropy-by-trigonometric-functions?rq=1" class="question-hyperlink">Approximation of Shannon entropy by trigonometric functions</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/620277?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://math.stackexchange.com/questions/620277/continous-wavelet-transform-and-shannon-entropy?rq=1" class="question-hyperlink">Continous wavelet transform and shannon Entropy.</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/778769?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">3
+    </div>
+</a><a href="http://math.stackexchange.com/questions/778769/huffman-codes-does-less-entropy-imply-less-weighted-average-codeword-length?rq=1" class="question-hyperlink">Huffman codes: does less entropy imply less weighted average codeword length?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/847228?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://math.stackexchange.com/questions/847228/conditional-entropy-calculation?rq=1" class="question-hyperlink">conditional entropy calculation</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/880669?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://math.stackexchange.com/questions/880669/finite-shannon-entropy-and-mutual-information?rq=1" class="question-hyperlink">Finite shannon entropy and mutual information</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/928972?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://math.stackexchange.com/questions/928972/relationship-between-compression-shannon-entropy-and-kolmogorov-complexity?rq=1" class="question-hyperlink">Relationship between compression, shannon entropy and kolmogorov complexity</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/1053259?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">2
+    </div>
+</a><a href="http://math.stackexchange.com/questions/1053259/shannon-entropy-continuity-constraint?rq=1" class="question-hyperlink">Shannon Entropy Continuity Constraint</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://math.stackexchange.com/q/1059533?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">0
+    </div>
+</a><a href="http://math.stackexchange.com/questions/1059533/inverse-of-shannon-entropy?rq=1" class="question-hyperlink">Inverse of shannon entropy</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/34172/a-friends-professor-is-asking-her-to-babysit-for-free-is-this-normal" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A friend's professor is asking her to babysit for free. Is this normal?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-cs" title="Computer Science Stack Exchange"></div><a href="http://cs.stackexchange.com/questions/34067/is-morse-code-without-spaces-uniquely-decipherable" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:419 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is Morse code without spaces uniquely decipherable?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/143803/controlling-heater-with-pwm-through-mosfet" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Controlling heater with PWM through MOSFET
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/75939/neighbor-installed-router" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Neighbor installed router
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/217911/xslant-mathematically" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    xslant mathematically
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/69663/make-people-understand-they-can-click-on-a-button-in-a-flat-design" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Make people understand they can click on a button in a flat design
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-earthscience" title="Earth Science Stack Exchange"></div><a href="http://earthscience.stackexchange.com/questions/3041/how-does-anthropogenic-heating-affect-global-warming" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:553 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does anthropogenic heating affect global warming?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-space" title="Space Exploration Stack Exchange"></div><a href="http://space.stackexchange.com/questions/6391/how-much-do-orbital-debris-cost-annually-to-satellite-operators" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:508 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How much do orbital debris cost annually to satellite operators?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/217906/reposition-text-around-images" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Reposition Text around Images
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/266369/when-to-use-tostring-when-concatenating-a-string-in-c" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When to use .ToString() when concatenating a string in C#?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-judaism" title="Mi Yodeya"></div><a href="http://judaism.stackexchange.com/questions/50359/what-prevented-the-antediluvian-humanity-from-using-ships-against-the-flood" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:248 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What prevented the antediluvian humanity from using ships against the Flood?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1067223/a-sum-that-came-up-while-solving-a-integral" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    A Sum that came up while solving a integral
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/74728/what-real-world-benefits-does-pgp-have-over-sending-email-with-ssl-tls-such-as-w" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What real world benefits does PGP have over sending email with SSL/TLS such as with HTTPS?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-webmasters" title="Webmasters Stack Exchange"></div><a href="http://webmasters.stackexchange.com/questions/73934/how-can-urls-have-a-dot-at-the-end-e-g-www-bla-de" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:45 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How can URLs have a dot . at the end, e.g. www.bla.de.?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/69003/align-table-entries-on-decimal-point-and-fix-number-of-digits-after-decimal-poin" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Align table entries on decimal point and fix number of digits after decimal point
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/75518/why-was-gimli-of-such-a-low-rank-compared-to-the-other-representatives-chosen-f" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why was Gimli of such a low rank, compared to the other representatives chosen for the Fellowship?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-martialarts" title="Martial Arts Stack Exchange"></div><a href="http://martialarts.stackexchange.com/questions/4605/is-it-possible-to-learn-martial-arts-kung-fu-in-my-case-effectively-without-sp" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:403 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is it possible to learn Martial Arts (Kung Fu in my case) effectively without sparring?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/34215/how-to-handle-subtly-flirtatious-emails-from-students" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to handle subtly flirtatious emails from students?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/42722/what-do-we-call-ketchup-cheesy-dip-oregano-and-things-like-that-collect" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do we call 'ketchup', 'cheesy dip' , 'oregano' and things like that collectively, as they aren't side dishes?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/217921/tikz-plot-dealing-with-infinities" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    TikZ plot dealing with infinities
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-anime" title="Anime &amp; Manga Stack Exchange"></div><a href="http://anime.stackexchange.com/questions/16715/anime-identification" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:477 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Anime identification
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/42333/verify-a-minesweeper-board" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Verify a Minesweeper board
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-security" title="Information Security Stack Exchange"></div><a href="http://security.stackexchange.com/questions/75817/is-git-crowdsourcing-cryptographic-attacks" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:162 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is Git crowdsourcing cryptographic attacks?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-android" title="Android Enthusiasts Stack Exchange"></div><a href="http://android.stackexchange.com/questions/91656/is-this-notification-that-keeps-coming-up-on-my-phone-a-virus" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:139 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is this notification that keeps coming up on my phone a virus?
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://math.stackexchange.com/feeds/question/712407" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/712407/ivc/8f88');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/712407/ivc/8f88" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript></div>
+
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://math.stackexchange.com/tour">tour</a>
+                    <a href="http://math.stackexchange.com/help">help</a>
+                    <a href="http://math.blogoverflow.com/?blb=1">blog</a>
+                        <a href="http://chat.stackexchange.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://math.stackexchange.com/contact">contact us</a></b>
+                        <b><a href="http://meta.math.stackexchange.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (13)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/?utm_source=stackoverflow.com&utm_medium=site-ui&utm_campaign=footerlink">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a>                   with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 1.0.1234.5678
+            </div>
+            
+        </div>
+    <iframe id="global-auth-frame" style="display:none" src="./Correct algorithm for Shannon entropy with R - Mathematics Stack Exchange_files/read.html"></iframe></div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Mathematics Stack Exchange works best with JavaScript enabled&lt;img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-24', '.stackexchange.com');
+        
+        
+        ga('set', 'dimension2', '|entropy|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size1, sans-serif;"></div></div><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ d.innerText=i; } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

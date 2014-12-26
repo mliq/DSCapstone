@@ -24,18 +24,18 @@ b.all3.Tfreq.RDS
 ALL.Tfreq.RDS
 
 
-x=readRDS("n.no4counts.RDS")
-x=x[counts>=6]
-saveRDS(x,file="n.no5counts.RDS")
+x=readRDS("n.no5counts.RDS")
+x=x[counts>=20]
+saveRDS(x,file="n.no19counts.RDS")
 
 x=readRDS("b.no4counts.RDS")
-x=x[counts>=6]
-saveRDS(x,file="b.no5counts.RDS")
+x=x[counts>=20]
+saveRDS(x,file="b.no19counts.RDS")
 
 x=readRDS("t.no4counts.RDS")
-x=x[counts>=6]
-saveRDS(x,file="t.no5counts.RDS")
+x=x[counts>=20]
+saveRDS(x,file="t.no40counts.RDS")
 
 x=readRDS("ALL.no4counts.RDS")
-x=x[counts>=6]
-saveRDS(x,file="ALL.no5counts.RDS")
+x=x[counts>=20]	
+saveRDS(x,file="ALL.no19counts.RDS")

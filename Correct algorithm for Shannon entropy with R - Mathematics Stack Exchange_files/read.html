@@ -1,0 +1,24 @@
+
+<!-- saved from url=(0200)https://stackauth.com/auth/global/read?request=Ola85R0O7pkCF%2FJ1QOuOo5U3Wral9WqcCpnhJSLIcEaboxu5nETVJ9EsGnRzYiT50Q0R5RqdnRN62ij9H2ocESQX5w%2Fv4O7OpPYE95A4J%2Fo%3D&nonce=ub%2BNVAAAAABxH4WjyvGfiQ%3D%3D -->
+<html style="background-color: black;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                  <script>
+                  var data = {"ReadSession":"https://stackauth.com/auth/global/read-session","Request":"Ola85R0O7pkCF/J1QOuOo5U3Wral9WqcCpnhJSLIcEaboxu5nETVJ9EsGnRzYiT50Q0R5RqdnRN62ij9H2ocESQX5w/v4O7OpPYE95A4J/o=","Nonce":"ub+NVAAAAABxH4WjyvGfiQ==","Referrer":"http://math.stackexchange.com/questions/712407/correct-algorithm-for-shannon-entropy-with-r","StorageName":"GlobalLogin"};
+
+                  var toMsg = window.parent;
+
+                  var obj = localStorage.getItem(data.StorageName);
+                  if(obj != null) {
+                  var req = new XMLHttpRequest();
+                  req.open('POST', data.ReadSession+'?request='+encodeURIComponent(data.Request)+'&nonce='+encodeURIComponent(data.Nonce)+'&seriesAndToken='+encodeURIComponent(obj), false);
+                  req.send(null);
+                  
+                    if(req.status == 200){
+                      toMsg.postMessage(req.responseText, data.Referrer);
+                    }else{
+                      toMsg.postMessage('No Session', data.Referrer);
+                    }
+                  }else{
+                    toMsg.postMessage('No Local Storage', data.Referrer);
+                  }
+                  </script>
+                  </head><body></body></html>

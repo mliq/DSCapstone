@@ -1,0 +1,88 @@
+in 1312 secs we have 7257 
+
+7257/471983 = 65
+65*1312=85280=1421 min = 23 hours.
+
+Too much.
+
+Time test on it's own:
+1000 lines: 94.44
+471983/1000=471.983*94.44=44574.07452/60=12 hours
+
+Still, not enough... for 4 corpora.
+
+ssh -i mliqu_R_AWS.pem ubuntu@54.149.2.239
+
+ssh -i mliqu_R_AWS.pem rstudio@54.149.2.239
+
+Running on AWS my 1000 line test:
+255.351 
+
+471.983*255.351=33 hours
+
+Or, 2 hours on a 16 CPU.
+
+Now the micro might only be half a CPU actually
+so 
+33/64 is possible at $1.6880
+
+I think i may as well do it, but, 
+I need to be awake to shutdown after completion.
+
+actually was a good bit slower...
+
+so 8x would be...
+3 hours, which costs money.
+
+NOW, I do get FREE 750 hours so if I split up my task and start a million instances maybe I could get it done free?
+But! only 1 GB memory .
+
+# T
+4690.51 = only 1.3 hours! but it seems small?
+
+Warning messages:
+1: In structure(.Call(C_objectSize, x), class = "object_size") :
+  Reached total allocation of 12220Mb: see help(memory.size)
+2: In structure(.Call(C_objectSize, x), class = "object_size") :
+  Reached total allocation of 12220Mb: see help(memory.size)
+
+Clearly it did not complete, yet memory is not very full so i don't get it.
+Error: cannot allocate vector of size 1.8 Mb 
+	
+
+ok using my partial t. speed table, Quiz2 took 1.42 secs.
+Now using old method? 14.11 secs.
+
+**big difference** however, also MANY more entries.
+471983 vs. 36325
+So not a fair comparison.
+nrow(tfreq[counts>=41])
+36698
+this should be more fair.
+
+2.33 secs
+
+2.33/1.42 = 64% faster.	
+
+So a way to solve THIS problem would be to write it in a way that it ERASES rather than creates a NEW data.table.
+
+# 3 model
+14.92 secs for 100 rows.
+471983/100 so 19 hours...
+
+And, this is not putting it to a precise lookup yet.
+
+An advantage is that it could be divided I guess among parts.
+
+so maybe if i used Amazon EC2 for a few hours, a few bucks, I could do this, maybe that is worth it...
+
+OK i'm trying it on a 32 CPU, so it should take less than an hour...
+
+I should have tested speed first though dammit...
+
+ok 100 in only 0.395
+but, it's not saving the damn data.table!
+
+Ah ok, duhr autocomplete screwed me up.
+but damn this shit is slow wtf!
+22.426 !

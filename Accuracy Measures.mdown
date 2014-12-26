@@ -1,6 +1,12 @@
 Accuracy Measures
 =====
 
+# ALL no4 
+Quiz2 0.1466933
+Quiz3 0.1541238
+
+5
+
 * bigrams would be important in a prediction model for live typing, but not for predicting the end of a sentence.
 
 >So, 2 count reduction with classification definitely outperforms simply using the combined database. Let's try 3 counts.
@@ -14,6 +20,9 @@ Quiz3  [1] "TWITTER" "NONE"    "NONE"    "NONE"    "NONE"
 
 I guess I would like to know which corpus works best on the NONE classifiers...
 
+# no 4 counts with no19counts as classifier
+Quiz2 0.1750391
+
 #nonClassifiers.txt
 
 afreq 0.1523606
@@ -24,7 +33,9 @@ nfreq 0.112611
 # no 6 counts
 
 Quiz2
-Quiz3 # no 5 counts
+Quiz3 
+
+# no 5 counts
 
 Quiz2 0.2012891
 Quiz3 0.1855361
